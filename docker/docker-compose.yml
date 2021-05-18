@@ -1,0 +1,61 @@
+version: "3.5"
+services:
+  php:
+    build:
+      context: ./php
+      target: nextouch_base
+    container_name: nextouch_php
+    depends_on:
+      - db
+      - cache
+      - search
+    links:
+      - db
+      - cache
+      - search
+    volumes:
+      - ./../:/var/www/html
+      - ./php/conf/php.ini:/usr/local/etc/php/conf.d/999-php.ini
+      - ./php/conf/opcache.ini:/usr/local/etc/php/conf.d/999-opcache.ini
+      - ./php/conf/apcu.ini:/usr/local/etc/php/conf.d/999-apcu.ini
+    env_file: ./../.env
+
+  db:
+    image: mariadb:10.3.28
+    container_name: nextouch_db
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./db/conf/my.cnf:/etc/mysql/conf.d/custom.cnf
+    env_file: ./../.env
+
+  cache:
+    image: redis
+    container_name: nextouch_cache
+
+  search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
+    container_name: nextouch_search
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+
+  cron:
+    build:
+      context: ./php
+      target: nextouch_cron
+    container_name: nextouch_cron
+    depends_on:
+      - php
+    links:
+      - php
+      - db
+      - cache
+      - search
+    volumes:
+      - ./../:/var/www/html
+      - ./php/conf/php.ini:/usr/local/etc/php/conf.d/999-php.ini
+      - ./php/conf/opcache.ini:/usr/local/etc/php/conf.d/999-opcache.ini
+      - ./php/conf/apcu.ini:/usr/local/etc/php/conf.d/999-apcu.ini
+
+volumes:
+  dbdata:

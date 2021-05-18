@@ -1,0 +1,41 @@
+version: "3.5"
+services:
+  php:
+    ports:
+      - "8080:80"
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.10
+
+  db:
+    ports:
+      - "33006:3306"
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.11
+
+  cache:
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.12
+
+  search:
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.13
+
+  cron:
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.14
+
+networks:
+  nextouch:
+    name: nextouch_net
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.50.0.0/16
