@@ -37,10 +37,10 @@ resize_images: ## Resize images according to view.xml
 
 # Static & Quality Tools
 phpcs: ## Run phpcs to analyze code
-	php vendor/bin/phpcs --standard=Magento2 app/code
+	php vendor/bin/phpcs --standard=Magento2 app/code/Nextouch
 
 phpcbf: ## Run phpcbf to fix code
-	php vendor/bin/phpcbf --standard=Magento2 app/code
+	php vendor/bin/phpcbf --standard=Magento2 app/code/Nextouch
 
 static: ## Run static tests on custom files
 	php ./vendor/bin/phpunit --testsuite="Local Test Suite" -c dev/tests/static/phpunit.xml

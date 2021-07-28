@@ -1,0 +1,94 @@
+<!--
+/**
+* Copyright © Axepta Spa All rights reserved.
+* See LICENSE for license details.
+*/
+-->
+<style>
+  .axepta_paymentservice .payment-method-title label img {
+      border: 0;
+      padding: 0;
+      max-height: 2em;
+      margin-left: 25px;
+  }
+  .axepta-alternative,.axepta-cc{
+  	width:unset;
+  }
+  .axepta-cc,
+  .axepta-alternative{
+  	margin-top: 10px;
+  	margin-bottom: 10px;
+  }
+  .axepta-alternative,
+  .axepta-cc {
+  	border-collapse: unset !important;
+  }
+  .axepta-cc tbody img,
+  .axepta-alternative tbody img
+  {
+  	width: 23vw;
+  	max-width: 100px;
+  }
+  .axepta-cc tbody td,
+  .axepta-alternative tbody td
+  {
+  	vertical-align: middle;
+  }
+  .axepta-checkout-methods-selectable .axepta-alternative tbody.active,
+  .axepta-checkout-methods-selectable .axepta-alternative tbody td.active,
+  .axepta-checkout-methods-selectable .axepta-alternative tbody td:hover{
+    border-color: #50b38c;
+    cursor: pointer;
+  }
+  .axepta-cc-wrapper .axepta-cc,
+  .axepta-alternative tbody td
+  {
+  	border: 1px solid transparent;
+  }
+  .axepta-checkout-methods-selectable .axepta-cc-wrapper.active .axepta-cc,
+  .axepta-checkout-methods-selectable .axepta-cc-wrapper .axepta-cc:hover
+  {
+  	border: 1px solid #50b38c !important;
+  }
+  .axepta-checkout-methods-selectable .axepta-cc-wrapper:not(.active) .axepta-cc:hover{
+  	cursor: pointer;
+  }
+</style>
+
+<div class="payment-method axepta_paymentservice" data-bind="css: {'_active': (getCode() == isChecked())}">
+  <div class="payment-method-title field choice">
+    <input type="radio" name="payment[method]" class="radio" data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+    <label data-bind="attr: {'for': getCode()}" class="label">
+      <span data-bind="text: getTitle()"></span>
+      <img data-bind="attr: { src: require.toUrl('Axepta_Paymentservice')+'/images/axepta.png' }" alt="Axepta Payment Logo" class="payment-icon">
+    </label>
+	</div>
+  <div class="payment-method-subtitle" data-bind="if: getCode() == isChecked() && (getCheckoutType() == 1 || getCheckoutType() == 3)">
+    <span data-bind="text: getDescription()"></span>
+    <div id="my-axepta-sdk-pg"></div>
+  </div>
+
+  <div class="payment-method-content">
+    <!-- ko foreach: getRegion('messages') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div class="payment-method-billing-address">
+      <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+      <!-- ko template: getTemplate() --><!-- /ko -->
+      <!--/ko-->
+    </div>
+
+    <div class="checkout-agreements-block">
+      <!-- ko foreach: $parent.getRegion('before-place-order') -->
+      <!-- ko template: getTemplate() --><!-- /ko -->
+      <!--/ko-->
+    </div>
+    <div class="actions-toolbar">
+      <div class="primary">
+        <button data-role="review-save" type="submit" data-bind="attr: {title: $t('Place Order')}, enable: (getCode() == isChecked() && isPlaceOrderButtonEnabled() && (isAxeptaCardFormValid() || (getCheckoutType() == 1))), click: placeOrder" class="action primary checkout" disabled>
+          <span data-bind="i18n: 'Place Order'"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

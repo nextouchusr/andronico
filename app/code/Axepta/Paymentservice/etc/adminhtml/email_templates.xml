@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="assistance_email_template" label="Assistance Email" file="assistance_email.html" type="text" module="Axepta_Paymentservice" area="adminhtml"/>
+</config>

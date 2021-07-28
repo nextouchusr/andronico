@@ -33,7 +33,9 @@
             "Magento\\": "app/code/Magento/",
             "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\Setup\\": "setup/src/Magento/Setup/",
-            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
+            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/",
+            "Axepta\\Payment\\": "app/code/Axepta/Paymentservice/lib/src/",
+            "Payment\\": "app/code/Axepta/Paymentservice/lib/src/Payment/"
         }
     },
     "require-dev": {
