@@ -1,0 +1,10 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\DisabledTextTitle
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\DisabledTextTitle $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+
+?>
+<input id="axepta_text_disabled_title" disabled="disabled" name="title" value="<?php echo $block->escapeHtml(__('Paga con carte di credito')) ?>" class=" input-text admin__control-text" type="text">

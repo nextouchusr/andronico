@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<countries>
+	<language><code>IT</code><name_en>Italiano</name_en><name_it>Italiano</name_it></language>
+	<language><code>DE</code><name_en>Tedesco</name_en><name_it>Tedesco</name_it></language>
+	<language><code>AL</code><name_en>Albanese</name_en><name_it>Albanese</name_it></language>
+	<language><code>AT</code><name_en>Austriaco</name_en><name_it>Austriaco</name_it></language>
+	<language><code>CZ</code><name_en>Ceco</name_en><name_it>Ceco</name_it></language>
+	<language><code>CS</code><name_en>Ceco</name_en><name_it>Ceco</name_it></language>
+	<language><code>DK</code><name_en>Danese</name_en><name_it>Danese</name_it></language>
+	<language><code>EN</code><name_en>Inglese</name_en><name_it>Inglese</name_it></language>
+	<language><code>FI</code><name_en>Finlandese</name_en><name_it>Finlandese</name_it></language>
+	<language><code>FR</code><name_en>Francese</name_en><name_it>Francese</name_it></language>
+	<language><code>GR</code><name_en>Greco</name_en><name_it>Greco</name_it></language>
+	<language><code>HU</code><name_en>Ungherese</name_en><name_it>Ungherese</name_it></language>
+	<language><code>JP</code><name_en>Giapponese</name_en><name_it>Giapponese</name_it></language>
+	<language><code>NL</code><name_en>Olandese</name_en><name_it>Olandese</name_it></language>
+	<language><code>NO</code><name_en>Norvegese</name_en><name_it>Norvegese</name_it></language>
+	<language><code>PL</code><name_en>Polacco</name_en><name_it>Polacco</name_it></language>
+	<language><code>PT</code><name_en>Portoghese</name_en><name_it>Portoghese</name_it></language>
+	<language><code>RO</code><name_en>Rumeno</name_en><name_it>Rumeno</name_it></language>
+	<language><code>RU</code><name_en>Russo</name_en><name_it>Russo</name_it></language>
+	<language><code>ES</code><name_en>Spagnolo</name_en><name_it>Spagnolo</name_it></language>
+	<language><code>SE</code><name_en>Svedese</name_en><name_it>Svedese</name_it></language>
+	<language><code>SK</code><name_en>Slovacco</name_en><name_it>Slovacco</name_it></language>
+	<language><code>SL</code><name_en>Sloveno</name_en><name_it>Sloveno</name_it></language>
+	<language><code>TR</code><name_en>Turco</name_en><name_it>Turco</name_it></language>
+	<language><code>ZH</code><name_en>Cinese semplificato</name_en><name_it>Cinese semplificato</name_it></language>
+</countries>

@@ -1,0 +1,15 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\TestDataButton
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\TestDataButton $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+?>
+<button
+        id="payment_axepta_paymentservice_testdatabutton"
+        type="button"
+        class="button"
+        style="width:92%;">
+    <span><?= $block->escapeHtml(__('Set Test Data')) ?></span>
+</button>

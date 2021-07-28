@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Axepta Spa All rights reserved.
+ * See LICENSE for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- 
+        This save data inside Payment Object in Additional Data! the hook is called by named convention:
+        "payment_method_assign_data_{code}" or "payment_method_assign_data" for all payment 
+    -->
+    <event name="payment_method_assign_data_axepta_paymentservice">
+        <observer name="axepta_paymentservice_gateway_data_assign" instance="Axepta\Paymentservice\Observer\DataAssignObserver" />
+    </event>
+</config>

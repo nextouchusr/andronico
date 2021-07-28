@@ -1,0 +1,11 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\InformationHeading
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\InformationHeading $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+
+?>
+<label for="heading"><span data-config-scope="[STORE VIEW]"><strong><?php echo $block->escapeHtml(__('Informazioni aggiuntive	'))?></strong></span></label>
+<hr>
