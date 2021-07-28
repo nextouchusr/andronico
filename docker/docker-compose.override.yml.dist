@@ -32,6 +32,14 @@ services:
       nextouch:
         ipv4_address: 172.50.0.14
 
+  ftpd:
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.15
+
 networks:
   nextouch:
     name: nextouch_net

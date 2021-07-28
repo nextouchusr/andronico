@@ -65,3 +65,21 @@ Magento 2.4.2 needs the following technologies to work:
 - Search engine: Elasticsearch 7.x
 - Message Broker: RabbitMQ 3.8.x
 - Recommend: Docker
+
+### Docker containers
+The application runs using Docker containers. Starting from Docker images, the following containers have been configured:
+* php: container with PHP 7.4 and Apache webserver where to run Magento framework
+* db: container with MariaDB 10.3.28 where is hosted Magento database
+* cache: container with Redis 6.2.5 used for users session storage and page caching
+* cron: container used to run scheduled operations
+* ftpd: container used for file transfer from ERP and e-commerce
+
+Containers belong to the same `nextouch_net` network and, except for the `php` container which has a configuration specific for the Magento framework,
+the others are based on simple Docker images linked and configured through a `.env` file.
+
+#### PHP container
+Starting from the php: 7.4-apache image, the Debian libraries necessary for Magento startup (libsodium, mcrypt, zip etc.) are installed,
+as well as a whole series of PHP extensions without which the installation would not be successful (opcache, mbstring, soap, sockets, pdo_mysql etc.).
+To improve the speed and debugging of the application, the APCU extension and Xdebug have also been installed.
+The container also installs the latest LTS version of Node 14.x, necessary for installing dependencies via npm (Grunt, Husky, Conventional Commit ...).
+Finally, create a magento user and group and set permissions on the working directory.
