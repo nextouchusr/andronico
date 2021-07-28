@@ -81,3 +81,6 @@ search_container: ## Connect to search container
 
 cron_container: ## Connect to cron container
 	cd docker && docker-compose exec cron bash
+
+ftpd_container: ## Connect to ftpd container
+	cd docker && docker-compose exec ftpd bash
