@@ -11,7 +11,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Nextouch\Catalog\Model\Product\ProductAttributeEnum;
 
-class AddAlternativeCodeAttribute implements DataPatchInterface
+class AddBrandAttribute implements DataPatchInterface
 {
     private ModuleDataSetupInterface $moduleDataSetup;
     private EavSetupFactory $eavSetupFactory;
@@ -44,17 +44,23 @@ class AddAlternativeCodeAttribute implements DataPatchInterface
 
         $productSetup->addAttribute(
             Product::ENTITY,
-            ProductAttributeEnum::ALTERNATIVE_CODE,
+            ProductAttributeEnum::BRAND,
             [
                 'group' => 'Product Details',
-                'type' => 'varchar',
-                'label' => 'Alternative Code',
-                'input' => 'text',
+                'type' => 'int',
+                'label' => 'Brand',
+                'input' => 'swatch_visual',
                 'required' => false,
-                'sort_order' => 25,
+                'sort_order' => 150,
                 'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'user_defined' => true,
+                'is_used_in_grid' => true,
+                'is_visible_in_grid' => true,
+                'is_filterable_in_grid' => true,
                 'visible' => true,
+                'comparable' => true,
+                'filterable' => 1,
+                'visible_on_front' => true,
             ]
         );
 
