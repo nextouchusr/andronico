@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="eav_attribute_set">
+        <column xsi:type="varchar"
+                name="external_value_id"
+                length="50"
+                nullable="true"
+                comment="External Value ID"/>
+    </table>
+
+    <table name="eav_attribute_option_value">
+        <column xsi:type="varchar"
+                name="external_value_id"
+                length="10"
+                nullable="true"
+                comment="External Value ID"/>
+    </table>
+</schema>
