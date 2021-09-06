@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Nextouch\Catalog\Setup\Patch\Data;
 
-use Magento\Catalog\Model\Product;
+use Magento\Catalog\Api\Data\ProductAttributeInterface;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Nextouch\Catalog\Model\Product\ProductAttributeEnum;
+use Nextouch\Catalog\Api\Data\ProductInterface;
 
 class AddBrandAttribute implements DataPatchInterface
 {
@@ -43,8 +43,8 @@ class AddBrandAttribute implements DataPatchInterface
         $productSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
 
         $productSetup->addAttribute(
-            Product::ENTITY,
-            ProductAttributeEnum::BRAND,
+            ProductAttributeInterface::ENTITY_TYPE_CODE,
+            ProductInterface::BRAND,
             [
                 'group' => 'Product Details',
                 'type' => 'int',

@@ -1,0 +1,24 @@
+{
+  "name": "nextouch/import-export",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "ext-json": "*",
+    "lambdish/phunctional": "^2.1",
+    "league/csv": "^9.0",
+    "magento/framework": "*",
+    "magento/module-import-export": "101.0.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Nextouch\\ImportExport\\": ""
+    }
+  }
+}

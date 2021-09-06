@@ -11,8 +11,12 @@
     },
     "version": "2.4.2-p1",
     "require": {
-        "magento/product-enterprise-edition": "2.4.2-p1",
-        "magento/composer-root-update-plugin": "~1.1"
+        "ext-json": "*",
+        "danielgsims/php-collections": "^2.2",
+        "lambdish/phunctional": "^2.1",
+        "league/csv": "^9.0",
+        "magento/composer-root-update-plugin": "~1.1",
+        "magento/product-enterprise-edition": "2.4.2-p1"
     },
     "autoload": {
         "exclude-from-classmap": [

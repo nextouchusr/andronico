@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\ImportExport\Api\AttributeDataProviderInterface"
+                type="Nextouch\ImportExport\Model\Attribute\WinsDataProvider"/>
+    <preference for="Nextouch\ImportExport\Api\AttributeDataImportInterface"
+                type="Nextouch\ImportExport\Model\Product\Attribute\WinsDataImport"/>
+
+    <type name="Nextouch\ImportExport\Model\Attribute\WinsDataProvider">
+        <arguments>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Sftp</argument>
+        </arguments>
+    </type>
+</config>

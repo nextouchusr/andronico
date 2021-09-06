@@ -3,17 +3,17 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="eav_attribute_set">
         <column xsi:type="varchar"
-                name="external_value_id"
+                name="external_set_id"
                 length="50"
                 nullable="true"
-                comment="External Value ID"/>
+                comment="External Set ID"/>
     </table>
 
-    <table name="eav_attribute_option_value">
+    <table name="eav_attribute_option">
         <column xsi:type="varchar"
-                name="external_value_id"
+                name="external_option_id"
                 length="10"
                 nullable="true"
-                comment="External Value ID"/>
+                comment="External Option ID"/>
     </table>
 </schema>
