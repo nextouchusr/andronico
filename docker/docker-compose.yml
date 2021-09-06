@@ -58,10 +58,8 @@ services:
       - ./php/conf/apcu.ini:/usr/local/etc/php/conf.d/999-apcu.ini
 
   ftpd:
-    image: stilliard/pure-ftpd
+    image: atmoz/sftp
     container_name: nextouch_ftpd
-    volumes:
-      - ./../var/import:/home/nextouch/
     restart: always
     env_file: ./../.env
 
