@@ -44,7 +44,7 @@ class AttributeOptionManagement implements AttributeOptionManagementInterface
             ->getFirstItem();
 
         if (!$attributeOption->getOptionId()) {
-            throw new NoSuchEntityException(__('Attribute option does not exist.'));
+            throw new NoSuchEntityException(__('The attribute option that was requested does not exist.'));
         }
 
         return $attributeOption;

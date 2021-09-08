@@ -12,9 +12,9 @@ use Nextouch\ImportExport\Model\Wins\Property\TextualProperty;
 abstract class Property
 {
     protected string $code;
-    protected ?Group $group;
     protected string $description;
     protected int $sortOrder;
+    protected ?Group $group;
 
     public function __construct(string $code, string $description, int $sortOrder)
     {
@@ -46,18 +46,6 @@ abstract class Property
         return $this->code;
     }
 
-    public function getGroup(): ?Group
-    {
-        return $this->group;
-    }
-
-    public function setGroup(Group $group): self
-    {
-        $this->group = $group;
-
-        return $this;
-    }
-
     public function getDescription(): string
     {
         return $this->description;
@@ -78,6 +66,18 @@ abstract class Property
     public function setSortOrder(int $sortOrder): self
     {
         $this->sortOrder = $sortOrder;
+
+        return $this;
+    }
+
+    public function getGroup(): ?Group
+    {
+        return $this->group;
+    }
+
+    public function setGroup(Group $group): self
+    {
+        $this->group = $group;
 
         return $this;
     }

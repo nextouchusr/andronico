@@ -27,7 +27,7 @@ use Nextouch\ImportExport\Model\Wins\PropertyValue;
 use Nextouch\ImportExport\Model\Wins\Template;
 use Psr\Log\LoggerInterface;
 
-class WinsDataImport implements AttributeDataImportInterface
+class WinsAttributeDataImport implements AttributeDataImportInterface
 {
     private const ATTRIBUTE_SET_SKELETON_ID = 4;
 
@@ -71,10 +71,10 @@ class WinsDataImport implements AttributeDataImportInterface
 
     public function importData(\IteratorAggregate $data): void
     {
-        \Lambdish\Phunctional\each(fn(Template $item) => $this->upsertAttributeSet($item), $data);
+        \Lambdish\Phunctional\each(fn(Template $item) => $this->saveAttributeSet($item), $data);
     }
 
-    private function upsertAttributeSet(Template $template): void
+    private function saveAttributeSet(Template $template): void
     {
         try {
             $attributeSet = $this->attributeSetRepository->getByExternalSetId($template->getCode());
@@ -87,15 +87,15 @@ class WinsDataImport implements AttributeDataImportInterface
             $attributeSet = $this->attributeSetManagement->create($attributeSet, self::ATTRIBUTE_SET_SKELETON_ID);
         }
 
-        $this->upsertAttributeGroups($attributeSet, $template->getGroups());
+        $this->saveAttributeGroups($attributeSet, $template->getGroups());
     }
 
-    private function upsertAttributeGroups(AttributeSetInterface $attributeSet, \IteratorAggregate $groups): void
+    private function saveAttributeGroups(AttributeSetInterface $attributeSet, \IteratorAggregate $groups): void
     {
-        \Lambdish\Phunctional\each(fn(Group $item) => $this->upsertAttributeGroup($attributeSet, $item), $groups);
+        \Lambdish\Phunctional\each(fn(Group $item) => $this->saveAttributeGroup($attributeSet, $item), $groups);
     }
 
-    private function upsertAttributeGroup(AttributeSetInterface $attributeSet, Group $group): void
+    private function saveAttributeGroup(AttributeSetInterface $attributeSet, Group $group): void
     {
         try {
             $attributeGroup = $this->attributeGroupRepository->getByAttributeGroupCode(
@@ -111,19 +111,19 @@ class WinsDataImport implements AttributeDataImportInterface
 
         try {
             $attributeGroup = $this->attributeGroupRepository->save($attributeGroup);
-            $this->upsertAttributes($attributeGroup, $group->getProperties());
+            $this->saveAttributes($attributeGroup, $group->getProperties());
         } catch (LocalizedException $e) {
-            $message = "Failed to import attribute group {$group->getDescription()}. Error: {$e->getMessage()}";
+            $message = __('Failed to import attribute group %1. Error: %2', $group->getDescription(), $e->getMessage());
             $this->logger->error($message);
         }
     }
 
-    private function upsertAttributes(AttributeGroupInterface $attributeGroup, \IteratorAggregate $properties): void
+    private function saveAttributes(AttributeGroupInterface $attributeGroup, \IteratorAggregate $properties): void
     {
-        \Lambdish\Phunctional\each(fn(Property $item) => $this->upsertAttribute($attributeGroup, $item), $properties);
+        \Lambdish\Phunctional\each(fn(Property $item) => $this->saveAttribute($attributeGroup, $item), $properties);
     }
 
-    private function upsertAttribute(AttributeGroupInterface $attributeGroup, Property $property): void
+    private function saveAttribute(AttributeGroupInterface $attributeGroup, Property $property): void
     {
         try {
             $attribute = $this->attributeRepository->get($property->getCode());
@@ -144,20 +144,20 @@ class WinsDataImport implements AttributeDataImportInterface
             );
 
             if ($property instanceof SelectableProperty) {
-                $this->upsertAttributeOptions($attribute, $property->getValues());
+                $this->saveAttributeOptions($attribute, $property->getValues());
             }
         } catch (LocalizedException $e) {
-            $message = "Failed to import attribute {$property->getDescription()}. Error: {$e->getMessage()}";
+            $message = __('Failed to import attribute %1. Error: %2', $property->getDescription(), $e->getMessage());
             $this->logger->error($message);
         }
     }
 
-    private function upsertAttributeOptions(AttributeInterface $attribute, \IteratorAggregate $values): void
+    private function saveAttributeOptions(AttributeInterface $attribute, \IteratorAggregate $values): void
     {
-        \Lambdish\Phunctional\each(fn(PropertyValue $item) => $this->upsertAttributeOption($attribute, $item), $values);
+        \Lambdish\Phunctional\each(fn(PropertyValue $item) => $this->saveAttributeOption($attribute, $item), $values);
     }
 
-    private function upsertAttributeOption(AttributeInterface $attribute, PropertyValue $value): void
+    private function saveAttributeOption(AttributeInterface $attribute, PropertyValue $value): void
     {
         try {
             $attributeOption = $this->attributeOptionManagement->getByExternalOptionId(
@@ -178,7 +178,8 @@ class WinsDataImport implements AttributeDataImportInterface
                 $attributeOption
             );
         } catch (LocalizedException $e) {
-            $message = "Failed to import attribute option {$value->getDescription()}. Error: {$e->getMessage()}";
+            $text = 'Failed to import option %1 for the attribute %2. Error: %3';
+            $message = __($text, $value->getDescription(), $value->getProperty()->getDescription(), $e->getMessage());
             $this->logger->error($message);
         }
     }
