@@ -33,7 +33,7 @@ class AttributeSetRepository implements AttributeSetRepositoryInterface
             ->getFirstItem();
 
         if (!$attributeSet->getAttributeSetId()) {
-            throw new NoSuchEntityException(__('Attribute set does not exist.'));
+            throw new NoSuchEntityException(__('The attribute set that was requested does not exist.'));
         }
 
         return $attributeSet;

@@ -10,8 +10,8 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class Group
 {
     private string $code;
-    private ?Template $template;
     private string $description;
+    private ?Template $template;
     private Collection $properties;
 
     /**
@@ -42,18 +42,6 @@ class Group
         return $this->code;
     }
 
-    public function getTemplate(): ?Template
-    {
-        return $this->template;
-    }
-
-    public function setTemplate(Template $template): self
-    {
-        $this->template = $template;
-
-        return $this;
-    }
-
     public function getDescription(): string
     {
         return $this->description;
@@ -62,6 +50,18 @@ class Group
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTemplate(): ?Template
+    {
+        return $this->template;
+    }
+
+    public function setTemplate(Template $template): self
+    {
+        $this->template = $template;
 
         return $this;
     }

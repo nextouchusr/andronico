@@ -23,7 +23,7 @@ class AttributeGroupRepository extends GroupRepository implements AttributeGroup
             ->getFirstItem();
 
         if (!$attributeGroup->getAttributeGroupId()) {
-            throw new NoSuchEntityException(__('Attribute group does not exist.'));
+            throw new NoSuchEntityException(__('The attribute group that was requested does not exist.'));
         }
 
         return $attributeGroup;

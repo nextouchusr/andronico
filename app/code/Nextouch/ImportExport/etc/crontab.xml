@@ -7,5 +7,11 @@
              method="execute">
             <schedule>* * * * *</schedule>
         </job>
+
+        <job name="nextouch_import_export_feature_set_import"
+             instance="Nextouch\ImportExport\Cron\FeatureSetImport"
+             method="execute">
+            <schedule>* * * * *</schedule>
+        </job>
     </group>
 </config>

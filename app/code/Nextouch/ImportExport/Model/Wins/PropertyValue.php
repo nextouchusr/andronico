@@ -8,8 +8,8 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class PropertyValue
 {
     private string $code;
-    private ?Property $property;
     private string $description;
+    private ?Property $property;
 
     public function __construct(string $code, string $description)
     {
@@ -32,18 +32,6 @@ class PropertyValue
         return $this->code;
     }
 
-    public function getProperty(): ?Property
-    {
-        return $this->property;
-    }
-
-    public function setProperty(Property $property): self
-    {
-        $this->property = $property;
-
-        return $this;
-    }
-
     public function getDescription(): string
     {
         return $this->description;
@@ -52,6 +40,18 @@ class PropertyValue
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getProperty(): ?Property
+    {
+        return $this->property;
+    }
+
+    public function setProperty(Property $property): self
+    {
+        $this->property = $property;
 
         return $this;
     }

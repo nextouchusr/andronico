@@ -2,11 +2,24 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Nextouch\ImportExport\Api\AttributeDataProviderInterface"
-                type="Nextouch\ImportExport\Model\Attribute\WinsDataProvider"/>
-    <preference for="Nextouch\ImportExport\Api\AttributeDataImportInterface"
-                type="Nextouch\ImportExport\Model\Product\Attribute\WinsDataImport"/>
+                type="Nextouch\ImportExport\Model\Attribute\WinsAttributeDataProvider"/>
 
-    <type name="Nextouch\ImportExport\Model\Attribute\WinsDataProvider">
+    <preference for="Nextouch\ImportExport\Api\AttributeDataImportInterface"
+                type="Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataImport"/>
+
+    <preference for="Nextouch\ImportExport\Api\FeatureSetDataProviderInterface"
+                type="Nextouch\ImportExport\Model\Product\WinsFeatureSetDataProvider"/>
+
+    <preference for="Nextouch\ImportExport\Api\FeatureSetDataImportInterface"
+                type="Nextouch\ImportExport\Model\Product\WinsFeatureSetDataImport"/>
+
+    <type name="Nextouch\ImportExport\Model\Attribute\WinsAttributeDataProvider">
+        <arguments>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Sftp</argument>
+        </arguments>
+    </type>
+
+    <type name="Nextouch\ImportExport\Model\Product\WinsFeatureSetDataProvider">
         <arguments>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Sftp</argument>
         </arguments>

@@ -1,40 +1,33 @@
 <?php
 declare(strict_types=1);
 
-namespace Nextouch\ImportExport\Model\Attribute;
+namespace Nextouch\ImportExport\Model\Product;
 
 use Collections\Exceptions\InvalidArgumentException;
 use League\Csv\Exception as CsvException;
 use League\Csv\Reader;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem\Io\IoInterface;
-use Nextouch\ImportExport\Api\AttributeDataProviderInterface;
+use Nextouch\ImportExport\Api\FeatureSetDataProviderInterface;
 use Nextouch\ImportExport\Helper\ImportExportConfig;
-use Nextouch\ImportExport\Model\Wins\Collection\Template as TemplateCollection;
-use Nextouch\ImportExport\Model\Wins\Group;
-use Nextouch\ImportExport\Model\Wins\Property;
-use Nextouch\ImportExport\Model\Wins\Property\SelectableProperty;
-use Nextouch\ImportExport\Model\Wins\PropertyValue;
-use Nextouch\ImportExport\Model\Wins\Template;
+use Nextouch\ImportExport\Model\Wins\Collection\FeatureSet as FeatureSetCollection;
+use Nextouch\ImportExport\Model\Wins\Feature;
+use Nextouch\ImportExport\Model\Wins\FeatureSet;
 use Psr\Log\LoggerInterface;
 use function Lambdish\Phunctional\all;
 use function Lambdish\Phunctional\reduce;
 
-class WinsDataProvider implements AttributeDataProviderInterface
+class WinsFeatureSetDataProvider implements FeatureSetDataProviderInterface
 {
-    private const CSV_FILENAME = './template.csv';
+    private const CSV_FILENAME = './caratteristiche.csv';
     private const CSV_DELIMITER = ';';
     private const CSV_HEADER = [
-        'CodiceTemplate',
-        'DescrizioneTemplate',
-        'CodiceGruppo',
-        'DescrizioneGruppo',
+        'CodiceProdotto',
+        'CodiceEcatDM',
         'CodiceCaratteristica',
         'DescrizioneCaratteristica',
-        'TipoCaratteristica',
-        'Ordinamento',
         'CodiceValore',
-        'DescrizioneValore',
+        'Valore',
     ];
 
     private IoInterface $client;
@@ -53,18 +46,18 @@ class WinsDataProvider implements AttributeDataProviderInterface
 
     public function fetchData(): \IteratorAggregate
     {
-        $templates = new TemplateCollection();
+        $featureSets = new FeatureSetCollection();
 
         try {
             $this->openConnection();
-            $templates = $this->fetchTemplates();
+            $featureSets = $this->fetchFeatureSets();
         } catch (\Exception $e) {
-            $this->logger->error('Failed to read Wins "template.csv". Error: ' . $e->getMessage());
+            $this->logger->error('Failed to read Wins "caratteristiche.csv". Error: ' . $e->getMessage());
         } finally {
             $this->client->close();
         }
 
-        return $templates;
+        return $featureSets;
     }
 
     private function openConnection(): void
@@ -78,29 +71,18 @@ class WinsDataProvider implements AttributeDataProviderInterface
      * @throws InvalidArgumentException
      * @throws LocalizedException
      */
-    private function fetchTemplates(): TemplateCollection
+    private function fetchFeatureSets(): FeatureSetCollection
     {
-        return reduce(function (TemplateCollection $acc, array $record) {
-            $record += ['CodiceGruppo' => 'attributes', 'DescrizioneGruppo' => 'Attributes'];
-
+        return reduce(function (FeatureSetCollection $acc, array $record) {
             if (!$this->validateRecord($record)) {
-                throw new LocalizedException(__('Invalid template record: %1', json_encode($record)));
+                throw new LocalizedException(__('Invalid feature set record: %1', json_encode($record)));
             }
 
-            $template = $acc->findReference(Template::fromArray($record));
-            $group = $template->findGroupReference(Group::fromArray($record));
-            $property = $group->findPropertyReference(Property::fromArray($record));
+            $featureSet = $acc->findReference(FeatureSet::fromArray($record));
+            $featureSet->addFeature(Feature::fromArray($record));
 
-            if ($property instanceof SelectableProperty) {
-                $value = $property->findValueReference(PropertyValue::fromArray($record));
-                $property->addValueIfNotExists($value);
-            }
-
-            $group->addPropertyIfNotExists($property);
-            $template->addGroupIfNotExists($group);
-
-            return $acc->addIfNotExists($template);
-        }, $this->fetchRecords(), new TemplateCollection());
+            return $acc->addIfNotExists($featureSet);
+        }, $this->fetchRecords(), new FeatureSetCollection());
     }
 
     /**
