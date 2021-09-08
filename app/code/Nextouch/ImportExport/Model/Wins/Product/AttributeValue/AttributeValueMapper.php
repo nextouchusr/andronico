@@ -68,9 +68,9 @@ class AttributeValueMapper
     private function fetchValue(Feature $feature): string
     {
         try {
-            $attribute = $this->attributeRepository->get($feature->getCode());
+            if ($feature->hasValueCode()) {
+                $attribute = $this->attributeRepository->get($feature->getCode());
 
-            if ($attribute->getOptions()) {
                 $attributeOption = $this->attributeOptionManagement->getByExternalOptionId(
                     (int) $attribute->getAttributeId(),
                     $feature->getValueCode()

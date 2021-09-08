@@ -66,6 +66,11 @@ class Feature
         return $this;
     }
 
+    public function hasValueCode(): bool
+    {
+        return strlen($this->getValueCode()) > 0;
+    }
+
     public function getValue(): string
     {
         return $this->value;
