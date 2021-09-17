@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6cfdbfe138849dceb610dec52644668",
+    "content-hash": "46f68b7eabea780d96f87ead691600b9",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -50,6 +50,671 @@
                 "source": "https://github.com/2tvenom/CBOREncode/tree/1.0.2"
             },
             "time": "2020-10-27T07:22:41+00:00"
+        },
+        {
+            "name": "amasty/advanced-review",
+            "version": "1.14.11",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/advanced-review-1.14.11-ee.zip"
+            },
+            "require": {
+                "amasty/aminvisiblecaptcha": ">=2.4.1",
+                "amasty/base": ">=1.12.14",
+                "amasty/cron-schedule-list": ">=1.0.5",
+                "php": "^7.1.0"
+            },
+            "suggest": {
+                "amasty/advanced-review-graphql": "Install advanced-review-graphql module to activate GraphQl and Advanced Review integration.",
+                "amasty/advanced-reviews-page-builder": "Install advanced-reviews-page-builder module to activate PageBuilder and Advanced Review integration."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\AdvancedReview\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Advanced Review by Amasty"
+        },
+        {
+            "name": "amasty/aminvisiblecaptcha",
+            "version": "2.4.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/aminvisiblecaptcha-2.4.1-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\InvisibleCaptcha\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Amasty Google Invisible Captcha"
+        },
+        {
+            "name": "amasty/base",
+            "version": "1.12.14",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/base-1.12.14-ee.zip"
+            },
+            "require": {
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Base\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Amasty Base"
+        },
+        {
+            "name": "amasty/cron-schedule-list",
+            "version": "1.0.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/cron-schedule-list-1.0.5-ee.zip"
+            },
+            "require": {
+                "amasty/base": "^1.3.5",
+                "php": "7.0.2|7.0.4|~7.0.6|^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\CronScheduleList\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Cron Schedule List by Amasty"
+        },
+        {
+            "name": "amasty/delivery-date",
+            "version": "1.6.24",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/delivery-date-1.6.24-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/cron-schedule-list": ">=1.0.5",
+                "php": "^7.1.0"
+            },
+            "suggest": {
+                "amasty/module-mixin-rewrite-patch": "Install mixin rewrite patch if you have a problem with extension on Magento 2.4.2+ version on Checkout"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Deliverydate\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Amasty Delivery Date"
+        },
+        {
+            "name": "amasty/geoip",
+            "version": "1.5.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/geoip-1.5.5-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "php": "^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Geoip\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Amasty Geoip Data"
+        },
+        {
+            "name": "amasty/geoipredirect",
+            "version": "1.3.8",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/geoipredirect-1.3.8-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/geoip": ">=1.5.5",
+                "php": "^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\GeoipRedirect\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "GeoIP Redirect by Amasty"
+        },
+        {
+            "name": "amasty/mega-menu",
+            "version": "2.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/mega-menu-2.1.1-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-mega-menu-lite": ">=1.1.1",
+                "magento/module-review": "*",
+                "php": "^7.3.0"
+            },
+            "suggest": {
+                "amasty/mega-menu-graphql": "Install mega-menu-graphql module to activate GraphQl and Mega Menu integration.",
+                "amasty/mega-menu-page-builder": "Install mega-menu-page-builder module to activate PageBuilder and Mega Menu integration.",
+                "amasty/module-mega-menu-mftf-2": "Install mega-menu-mftf-2 module to be able to run Mega Menu MFTF tests for Magento 2.3.5+ version",
+                "amasty/module-mega-menu-mftf-3": "Install mega-menu-mftf-3 module to be able to run Mega Menu MFTF tests for Magento 2.4.0+ version"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\MegaMenu\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Mega Menu By Amasty"
+        },
+        {
+            "name": "amasty/module-advanced-conditions",
+            "version": "1.5.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-advanced-conditions-1.5.3-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.4.7",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Conditions\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Advanced Conditions by Amasty"
+        },
+        {
+            "name": "amasty/module-elastic-search",
+            "version": "1.13.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-elastic-search-1.13.2-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/cron-schedule-list": ">=1.0.5",
+                "amasty/xsearch": ">=1.17.8",
+                "elasticsearch/elasticsearch": ">=5.1",
+                "php": "^7.3.0"
+            },
+            "suggest": {
+                "amasty/module-elastic-search-graphql": "Install module-elastic-search-graphql module to activate Graphql and Elastic Search",
+                "amasty/module-elastic-search-mftf-2": "Install elastic-search-mftf-2 module to be able to run ElasticSearch MFTF tests for Magento 2.3.5+ version",
+                "amasty/module-elastic-search-mftf-3": "Install elastic-search-mftf-3 module to be able to run ElasticSearch MFTF tests for Magento 2.4.0+ version"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\ElasticSearch\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Elastic Search Module by Amasty"
+        },
+        {
+            "name": "amasty/module-improved-layered-navigation-page",
+            "version": "2.7.11",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-improved-layered-navigation-page-2.7.11-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-shop-by-base": ">=2.15.0",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\ShopbyPage\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Improved Layered Navigation by Amasty - Page sub-module"
+        },
+        {
+            "name": "amasty/module-mage24fix",
+            "version": "1.0.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-mage24fix-1.0.6-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "php": "^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Mage24Fix\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Fix for Magento 2.4.0 by Amasty"
+        },
+        {
+            "name": "amasty/module-mega-menu-lite",
+            "version": "1.1.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-mega-menu-lite-1.1.2-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "magento/module-catalog": "*",
+                "mobiledetect/mobiledetectlib": "^2.8",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\MegaMenuLite\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Mega Menu Lite by Amasty",
+            "homepage": "https://amasty.com/"
+        },
+        {
+            "name": "amasty/module-shipping-calculator",
+            "version": "1.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-shipping-calculator-1.0.3-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "php": "~5.6.5|7.0.2|7.0.4|~7.0.6|^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\ShippingCalculator\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Shipping Calculator by Amasty"
+        },
+        {
+            "name": "amasty/module-shippingarea",
+            "version": "1.0.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-shippingarea-1.0.5-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\ShippingArea\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Shipping Areas by Amasty"
+        },
+        {
+            "name": "amasty/module-shop-by-base",
+            "version": "2.15.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-shop-by-base-2.15.0-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-mage24fix": ">=1.0.6",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\ShopbyBase\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Base Improved Layered Navigation by Amasty"
+        },
+        {
+            "name": "amasty/module-shop-by-brand",
+            "version": "2.12.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-shop-by-brand-2.12.1-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-shop-by-base": ">=2.15.0",
+                "php": "^7.3.0"
+            },
+            "suggest": {
+                "amasty/module-shop-by-brand-graphql": "Install module-shop-by-brand-graphql module to activate GraphQl and Shop By Brand integration."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\ShopbyBrand\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Shop by Brand by Amasty"
+        },
+        {
+            "name": "amasty/module-store-pickup",
+            "version": "1.0.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-store-pickup-1.0.2-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "php": "^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\StorePickup\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Store Pickup by Amasty"
+        },
+        {
+            "name": "amasty/orderattr",
+            "version": "3.7.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/orderattr-3.7.5-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "php": "^7.3.0"
+            },
+            "suggest": {
+                "amasty/module-orderattr-mftf-2": "Install module-orderattr-mftf-2 module to be able to run Order Attribute MFTF tests for Magento 2.3.5+ version.",
+                "amasty/module-orderattr-mftf-3": "Install module-orderattr-mftf-3 module to be able to run Order Attribute MFTF tests for Magento 2.4.0+ version."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Orderattr\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Order Attributes by Amasty"
+        },
+        {
+            "name": "amasty/shiprestriction",
+            "version": "2.5.7",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/shiprestriction-2.5.7-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-shippingarea": ">=1.0.4",
+                "amasty/system-common-rules": ">=2.4.11",
+                "php": "^7.1.0"
+            },
+            "suggest": {
+                "amasty/module-shiprestriction-mftf-2": "Install module-shiprestriction-mftf-2 module to be able to run Shipping Restriction MFTF tests for Magento 2.3.6 and higher.",
+                "amasty/module-shiprestriction-mftf-3": "Install module-shiprestriction-mftf-3 module to be able to run Shipping Restriction MFTF tests for Magento 2.4.1 and higher."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Shiprestriction\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Shipping Restrictions By Amasty"
+        },
+        {
+            "name": "amasty/shopby",
+            "version": "2.17.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/shopby-2.17.1-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-improved-layered-navigation-page": ">=2.7.11",
+                "amasty/module-shop-by-base": ">=2.15.0",
+                "amasty/module-shop-by-brand": ">=2.12.1",
+                "amasty/shopby-seo": ">=2.12.1",
+                "magento/module-catalog-search": ">=101.0.2",
+                "magento/module-layered-navigation": ">=100.2.0",
+                "magento/module-swatches": ">=100.2.0",
+                "php": "^7.3.0"
+            },
+            "suggest": {
+                "amasty/module-grouped-options": "Install module-grouped-options module to activate Grouped Options integration.",
+                "amasty/module-shopby-mftf-2": "Install module-shopby-mftf-2 module to implement mftf-tests for Magento 2.3.6+ versions.",
+                "amasty/module-shopby-mftf-3": "Install module-shopby-mftf-3 module to implement mftf-tests for Magento 2.4.1+ versions.",
+                "amasty/shopby-graphql": "Install shopby-graph-ql module to activate GraphQl and Shopby integration."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Shopby\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Improved Layered Navigation by Amasty"
+        },
+        {
+            "name": "amasty/shopby-seo",
+            "version": "2.12.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/shopby-seo-2.12.1-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-shop-by-base": ">=2.15.0",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\ShopbySeo\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Improved Layered Navigation by Amasty - SEO sub-module"
+        },
+        {
+            "name": "amasty/system-common-rules",
+            "version": "2.4.11",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/system-common-rules-2.4.11-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-advanced-conditions": ">=1.5.3",
+                "php": "^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\CommonRules\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Common Rules by Amasty"
+        },
+        {
+            "name": "amasty/xsearch",
+            "version": "1.17.8",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/xsearch-1.17.8-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "magento/module-cms": "*",
+                "php": "^7.3.0"
+            },
+            "suggest": {
+                "amasty/module-xsearch-mftf-2": "Install xsearch-mftf-2 module to be able to run Advanced Search MFTF tests for Magento 2.3.5+ version",
+                "amasty/module-xsearch-mftf-3": "Install xsearch-mftf-3 module to be able to run Advanced Search MFTF tests for Magento 2.4.0+ version"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Xsearch\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Search Autocomplete by Amasty"
         },
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -21410,6 +22075,68 @@
                 "source": "https://github.com/magento/zf1/tree/1.14.5"
             },
             "time": "2020-12-02T21:12:59+00:00"
+        },
+        {
+            "name": "mobiledetect/mobiledetectlib",
+            "version": "2.8.37",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/serbanghita/Mobile-Detect.git",
+                "reference": "9841e3c46f5bd0739b53aed8ac677fa712943df7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/9841e3c46f5bd0739b53aed8ac677fa712943df7",
+                "reference": "9841e3c46f5bd0739b53aed8ac677fa712943df7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8.35||~5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "Mobile_Detect.php"
+                ],
+                "psr-0": {
+                    "Detection": "namespaced/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Serban Ghita",
+                    "email": "serbanghita@gmail.com",
+                    "homepage": "http://mobiledetect.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
+            "homepage": "https://github.com/serbanghita/Mobile-Detect",
+            "keywords": [
+                "detect mobile devices",
+                "mobile",
+                "mobile detect",
+                "mobile detector",
+                "php mobile detect"
+            ],
+            "support": {
+                "issues": "https://github.com/serbanghita/Mobile-Detect/issues",
+                "source": "https://github.com/serbanghita/Mobile-Detect/tree/2.8.37"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/serbanghita",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-02-19T21:22:57+00:00"
         },
         {
             "name": "monolog/monolog",
