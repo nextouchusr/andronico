@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Nextouch\ImportExport\Model\Attribute;
+namespace Nextouch\ImportExport\Model\Product\Attribute;
 
 use Collections\Exceptions\InvalidArgumentException;
 use League\Csv\Exception as CsvException;
 use League\Csv\Reader;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem\Io\IoInterface;
-use Nextouch\ImportExport\Api\AttributeDataProviderInterface;
+use Nextouch\ImportExport\Api\EntityDataProviderInterface;
 use Nextouch\ImportExport\Helper\ImportExportConfig;
 use Nextouch\ImportExport\Model\Wins\Collection\Template as TemplateCollection;
 use Nextouch\ImportExport\Model\Wins\Group;
@@ -16,13 +16,12 @@ use Nextouch\ImportExport\Model\Wins\Property;
 use Nextouch\ImportExport\Model\Wins\Property\SelectableProperty;
 use Nextouch\ImportExport\Model\Wins\PropertyValue;
 use Nextouch\ImportExport\Model\Wins\Template;
-use Psr\Log\LoggerInterface;
 use function Lambdish\Phunctional\all;
 use function Lambdish\Phunctional\reduce;
 
-class WinsAttributeDataProvider implements AttributeDataProviderInterface
+class WinsAttributeDataProvider implements EntityDataProviderInterface
 {
-    private const CSV_FILENAME = './template.csv';
+    public const CSV_FILENAME = 'template.csv';
     private const CSV_DELIMITER = ';';
     private const CSV_HEADER = [
         'CodiceTemplate',
@@ -39,18 +38,16 @@ class WinsAttributeDataProvider implements AttributeDataProviderInterface
 
     private IoInterface $client;
     private ImportExportConfig $config;
-    private LoggerInterface $logger;
 
-    public function __construct(
-        IoInterface $client,
-        ImportExportConfig $config,
-        LoggerInterface $logger
-    ) {
+    public function __construct(IoInterface $client, ImportExportConfig $config)
+    {
         $this->client = $client;
         $this->config = $config;
-        $this->logger = $logger;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function fetchData(): \IteratorAggregate
     {
         $templates = new TemplateCollection();
@@ -59,7 +56,7 @@ class WinsAttributeDataProvider implements AttributeDataProviderInterface
             $this->openConnection();
             $templates = $this->fetchTemplates();
         } catch (\Exception $e) {
-            $this->logger->error('Failed to read Wins "template.csv". Error: ' . $e->getMessage());
+            throw new LocalizedException(__('Failed to read Wins "template.csv". Error: %1', $e->getMessage()));
         } finally {
             $this->client->close();
         }
@@ -108,7 +105,8 @@ class WinsAttributeDataProvider implements AttributeDataProviderInterface
      */
     private function fetchRecords(): \Iterator
     {
-        $content = $this->client->read(self::CSV_FILENAME);
+        $filePath = $this->config->getWinsFilePath(self::CSV_FILENAME);
+        $content = $this->client->read($filePath);
 
         if (!is_string($content)) {
             return new \EmptyIterator();

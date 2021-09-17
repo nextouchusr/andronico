@@ -60,10 +60,9 @@ Magento 2.4.2 needs the following technologies to work:
 - Package manager: Composer 2.x
 - Front-end: Node 14.16.1 with npm 6.14.12
 - Database: MySQL 8.0 or MariaDB 10.4
-- Caching: Redis 6.0, Varnish 6.5.1
+- Caching: Redis 6.0
 - Session storage: Redis 6.0
 - Search engine: Elasticsearch 7.x
-- Message Broker: RabbitMQ 3.8.x
 - Recommend: Docker
 
 ### Docker containers
@@ -72,7 +71,8 @@ The application runs using Docker containers. Starting from Docker images, the f
 * db: container with MariaDB 10.3.28 where is hosted Magento database
 * cache: container with Redis 6.2.5 used for users session storage and page caching
 * cron: container used to run scheduled operations
-* ftpd: container used for file transfer from ERP and e-commerce
+* sftp: container used externally for file transfer from ERP and e-commerce
+* ftpd: container used internally to access files transferred from the ERP 
 
 Containers belong to the same `nextouch_net` network and, except for the `php` container which has a configuration specific for the Magento framework,
 the others are based on simple Docker images linked and configured through a `.env` file.

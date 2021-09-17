@@ -33,12 +33,19 @@ services:
       nextouch:
         ipv4_address: 172.50.0.14
 
-  ftpd:
+  sftp:
     ports:
       - "22:22"
     networks:
       nextouch:
         ipv4_address: 172.50.0.15
+
+  ftpd:
+    ports:
+      - "21:21"
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.16
 
 networks:
   nextouch:

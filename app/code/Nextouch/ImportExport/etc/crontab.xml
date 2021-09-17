@@ -2,14 +2,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
-        <job name="nextouch_import_export_attribute_import"
-             instance="Nextouch\ImportExport\Cron\AttributeImport"
-             method="execute">
-            <schedule>* * * * *</schedule>
-        </job>
-
-        <job name="nextouch_import_export_feature_set_import"
-             instance="Nextouch\ImportExport\Cron\FeatureSetImport"
+        <job name="nextouch_import_export_entity_data_operations_combiner"
+             instance="Nextouch\ImportExport\Cron\EntityDataOperationsCombiner"
              method="execute">
             <schedule>* * * * *</schedule>
         </job>

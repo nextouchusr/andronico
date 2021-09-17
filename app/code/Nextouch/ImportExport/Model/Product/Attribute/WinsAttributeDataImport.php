@@ -18,7 +18,7 @@ use Nextouch\Eav\Api\AttributeOptionManagementInterface;
 use Nextouch\Eav\Api\AttributeSetRepositoryInterface;
 use Nextouch\Eav\Api\Data\AttributeOptionInterfaceFactory;
 use Nextouch\Eav\Api\Data\AttributeSetInterfaceFactory;
-use Nextouch\ImportExport\Api\AttributeDataImportInterface;
+use Nextouch\ImportExport\Api\EntityDataImportInterface;
 use Nextouch\ImportExport\Model\Wins\Group;
 use Nextouch\ImportExport\Model\Wins\Product\Attribute\AttributeMapperFactory;
 use Nextouch\ImportExport\Model\Wins\Property;
@@ -27,7 +27,7 @@ use Nextouch\ImportExport\Model\Wins\PropertyValue;
 use Nextouch\ImportExport\Model\Wins\Template;
 use Psr\Log\LoggerInterface;
 
-class WinsAttributeDataImport implements AttributeDataImportInterface
+class WinsAttributeDataImport implements EntityDataImportInterface
 {
     private const ATTRIBUTE_SET_SKELETON_ID = 4;
 
@@ -69,11 +69,17 @@ class WinsAttributeDataImport implements AttributeDataImportInterface
         $this->logger = $logger;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function importData(\IteratorAggregate $data): void
     {
         \Lambdish\Phunctional\each(fn(Template $item) => $this->saveAttributeSet($item), $data);
     }
 
+    /**
+     * @throws LocalizedException
+     */
     private function saveAttributeSet(Template $template): void
     {
         try {
@@ -123,6 +129,9 @@ class WinsAttributeDataImport implements AttributeDataImportInterface
         \Lambdish\Phunctional\each(fn(Property $item) => $this->saveAttribute($attributeGroup, $item), $properties);
     }
 
+    /**
+     * @throws LocalizedException
+     */
     private function saveAttribute(AttributeGroupInterface $attributeGroup, Property $property): void
     {
         try {

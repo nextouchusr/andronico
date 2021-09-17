@@ -1,27 +1,85 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Nextouch\ImportExport\Api\AttributeDataProviderInterface"
-                type="Nextouch\ImportExport\Model\Attribute\WinsAttributeDataProvider"/>
-
-    <preference for="Nextouch\ImportExport\Api\AttributeDataImportInterface"
-                type="Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataImport"/>
-
-    <preference for="Nextouch\ImportExport\Api\FeatureSetDataProviderInterface"
-                type="Nextouch\ImportExport\Model\Product\WinsFeatureSetDataProvider"/>
-
-    <preference for="Nextouch\ImportExport\Api\FeatureSetDataImportInterface"
-                type="Nextouch\ImportExport\Model\Product\WinsFeatureSetDataImport"/>
-
-    <type name="Nextouch\ImportExport\Model\Attribute\WinsAttributeDataProvider">
+    <type name="Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataProvider">
         <arguments>
-            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Sftp</argument>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
         </arguments>
     </type>
 
     <type name="Nextouch\ImportExport\Model\Product\WinsFeatureSetDataProvider">
         <arguments>
-            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Sftp</argument>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
         </arguments>
     </type>
+
+    <type name="Nextouch\ImportExport\Cron\EntityDataOperationsCombiner">
+        <arguments>
+            <argument name="operations" xsi:type="array">
+                <item name="winsAttributeDataOperation" xsi:type="object">winsAttributeDataOperation</item>
+                <item name="winsProductDataOperation" xsi:type="object">winsProductDataOperation</item>
+                <item name="winsFeatureSetDataOperation" xsi:type="object">winsFeatureSetDataOperation</item>
+                <item name="winsProductStockDataOperation" xsi:type="object">winsProductStockDataOperation</item>
+                <item name="winsProductImageDataOperation" xsi:type="object">winsProductImageDataOperation</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="winsAttributeDataOperation" type="Nextouch\ImportExport\Model\WinsEntityDataOperation">
+        <arguments>
+            <argument name="filename" xsi:type="const">
+                Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataProvider::CSV_FILENAME
+            </argument>
+            <argument name="client" xsi:type="object">
+                Magento\Framework\Filesystem\Io\Ftp
+            </argument>
+            <argument name="entityDataProvider" xsi:type="object">
+                Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataProvider
+            </argument>
+            <argument name="entityDataImport" xsi:type="object">
+                Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataImport
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="winsProductDataOperation" type="Nextouch\ImportExport\Model\WinsScheduledMagentoOperation">
+        <arguments>
+            <argument name="filename" xsi:type="string">prodotti.csv</argument>
+            <argument name="operationName" xsi:type="string">wins_product_data_operation</argument>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="winsFeatureSetDataOperation" type="Nextouch\ImportExport\Model\WinsEntityDataOperation">
+        <arguments>
+            <argument name="filename" xsi:type="const">
+                Nextouch\ImportExport\Model\Product\WinsFeatureSetDataProvider::CSV_FILENAME
+            </argument>
+            <argument name="client" xsi:type="object">
+                Magento\Framework\Filesystem\Io\Ftp
+            </argument>
+            <argument name="entityDataProvider" xsi:type="object">
+                Nextouch\ImportExport\Model\Product\WinsFeatureSetDataProvider
+            </argument>
+            <argument name="entityDataImport" xsi:type="object">
+                Nextouch\ImportExport\Model\Product\WinsFeatureSetDataImport
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="winsProductStockDataOperation" type="Nextouch\ImportExport\Model\WinsScheduledMagentoOperation">
+        <arguments>
+            <argument name="filename" xsi:type="string">giacenze.csv</argument>
+            <argument name="operationName" xsi:type="string">wins_product_stock_data_operation</argument>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="winsProductImageDataOperation" type="Nextouch\ImportExport\Model\WinsScheduledMagentoOperation">
+        <arguments>
+            <argument name="filename" xsi:type="string">immagini.csv</argument>
+            <argument name="operationName" xsi:type="string">wins_product_image_data_operation</argument>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </virtualType>
 </config>
