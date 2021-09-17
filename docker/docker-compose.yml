@@ -57,11 +57,22 @@ services:
       - ./php/conf/opcache.ini:/usr/local/etc/php/conf.d/999-opcache.ini
       - ./php/conf/apcu.ini:/usr/local/etc/php/conf.d/999-apcu.ini
 
-  ftpd:
+  sftp:
     image: atmoz/sftp
+    container_name: nextouch_sftp
+    volumes:
+      - importdata:/home/nextouch/import
+    restart: always
+    env_file: ./../.env
+
+  ftpd:
+    image: stilliard/pure-ftpd
     container_name: nextouch_ftpd
+    volumes:
+      - importdata:/home/nextouch/import
     restart: always
     env_file: ./../.env
 
 volumes:
   dbdata:
+  importdata:

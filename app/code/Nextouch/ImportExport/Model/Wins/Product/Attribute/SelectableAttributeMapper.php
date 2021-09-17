@@ -20,8 +20,6 @@ class SelectableAttributeMapper extends AbstractAttributeMapper
         $attribute->setIsRequired(false);
         $attribute->setScope(EavAttributeInterface::SCOPE_STORE_TEXT);
         $attribute->setIsUserDefined(true);
-        $attribute->setIsUsedInGrid(true);
-        $attribute->setIsFilterableInGrid(true);
         $attribute->setIsVisible(true);
         $attribute->setIsComparable(true);
         $attribute->setIsFilterable(true);

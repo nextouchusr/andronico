@@ -5,12 +5,12 @@ namespace Nextouch\ImportExport\Model\Product;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Nextouch\ImportExport\Api\FeatureSetDataImportInterface;
+use Nextouch\ImportExport\Api\EntityDataImportInterface;
 use Nextouch\ImportExport\Model\Wins\FeatureSet;
 use Nextouch\ImportExport\Model\Wins\Product\AttributeValue\AttributeValueMapper;
 use Psr\Log\LoggerInterface;
 
-class WinsFeatureSetDataImport implements FeatureSetDataImportInterface
+class WinsFeatureSetDataImport implements EntityDataImportInterface
 {
     private ProductRepositoryInterface $productRepository;
     private AttributeValueMapper $attributeValueMapper;
@@ -26,6 +26,9 @@ class WinsFeatureSetDataImport implements FeatureSetDataImportInterface
         $this->logger = $logger;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function importData(\IteratorAggregate $data): void
     {
         \Lambdish\Phunctional\each(fn(FeatureSet $item) => $this->saveProductFeatureSet($item), $data);

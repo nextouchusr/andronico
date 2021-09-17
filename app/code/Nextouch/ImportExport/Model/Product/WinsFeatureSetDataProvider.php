@@ -8,18 +8,17 @@ use League\Csv\Exception as CsvException;
 use League\Csv\Reader;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Filesystem\Io\IoInterface;
-use Nextouch\ImportExport\Api\FeatureSetDataProviderInterface;
+use Nextouch\ImportExport\Api\EntityDataProviderInterface;
 use Nextouch\ImportExport\Helper\ImportExportConfig;
 use Nextouch\ImportExport\Model\Wins\Collection\FeatureSet as FeatureSetCollection;
 use Nextouch\ImportExport\Model\Wins\Feature;
 use Nextouch\ImportExport\Model\Wins\FeatureSet;
-use Psr\Log\LoggerInterface;
 use function Lambdish\Phunctional\all;
 use function Lambdish\Phunctional\reduce;
 
-class WinsFeatureSetDataProvider implements FeatureSetDataProviderInterface
+class WinsFeatureSetDataProvider implements EntityDataProviderInterface
 {
-    private const CSV_FILENAME = './caratteristiche.csv';
+    public const CSV_FILENAME = 'caratteristiche.csv';
     private const CSV_DELIMITER = ';';
     private const CSV_HEADER = [
         'CodiceProdotto',
@@ -32,18 +31,16 @@ class WinsFeatureSetDataProvider implements FeatureSetDataProviderInterface
 
     private IoInterface $client;
     private ImportExportConfig $config;
-    private LoggerInterface $logger;
 
-    public function __construct(
-        IoInterface $client,
-        ImportExportConfig $config,
-        LoggerInterface $logger
-    ) {
+    public function __construct(IoInterface $client, ImportExportConfig $config)
+    {
         $this->client = $client;
         $this->config = $config;
-        $this->logger = $logger;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function fetchData(): \IteratorAggregate
     {
         $featureSets = new FeatureSetCollection();
@@ -52,7 +49,7 @@ class WinsFeatureSetDataProvider implements FeatureSetDataProviderInterface
             $this->openConnection();
             $featureSets = $this->fetchFeatureSets();
         } catch (\Exception $e) {
-            $this->logger->error('Failed to read Wins "caratteristiche.csv". Error: ' . $e->getMessage());
+            throw new LocalizedException(__('Failed to read Wins "caratteristiche.csv". Error: %1', $e->getMessage()));
         } finally {
             $this->client->close();
         }
@@ -90,7 +87,8 @@ class WinsFeatureSetDataProvider implements FeatureSetDataProviderInterface
      */
     private function fetchRecords(): \Iterator
     {
-        $content = $this->client->read(self::CSV_FILENAME);
+        $filePath = $this->config->getWinsFilePath(self::CSV_FILENAME);
+        $content = $this->client->read($filePath);
 
         if (!is_string($content)) {
             return new \EmptyIterator();

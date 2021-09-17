@@ -21,12 +21,17 @@
 
                 <field id="username" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Username</label>
-                    <comment>Username of the SFTP server</comment>
+                    <comment>Username of the FTP server</comment>
                 </field>
 
                 <field id="password" translate="label comment" type="password" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
                     <label>Password</label>
-                    <comment>Password of the SFTP server</comment>
+                    <comment>Password of the FTP server</comment>
+                </field>
+
+                <field id="location" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Location</label>
+                    <comment>Server location where files are saved</comment>
                 </field>
             </group>
         </section>
