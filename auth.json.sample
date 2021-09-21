@@ -3,6 +3,10 @@
         "repo.magento.com": {
             "username": "<public-key>",
             "password": "<private-key>"
+        },
+        "composer.amasty.com": {
+            "username": "<public-key>",
+            "password": "<private-key>"
         }
     }
 }
