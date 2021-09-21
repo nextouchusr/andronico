@@ -1,7 +1,18 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType">
+        <plugin name="prepare_brand_attribute_value"
+                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\PrepareBrandAttributeValue"/>
+    </type>
+
     <type name="Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataProvider">
+        <arguments>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </type>
+
+    <type name="Nextouch\ImportExport\Model\Product\Attribute\WinsBrandDataProvider">
         <arguments>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
         </arguments>
@@ -17,6 +28,7 @@
         <arguments>
             <argument name="operations" xsi:type="array">
                 <item name="winsAttributeDataOperation" xsi:type="object">winsAttributeDataOperation</item>
+                <item name="winsBrandDataOperation" xsi:type="object">winsBrandDataOperation</item>
                 <item name="winsProductDataOperation" xsi:type="object">winsProductDataOperation</item>
                 <item name="winsFeatureSetDataOperation" xsi:type="object">winsFeatureSetDataOperation</item>
                 <item name="winsProductStockDataOperation" xsi:type="object">winsProductStockDataOperation</item>
@@ -38,6 +50,23 @@
             </argument>
             <argument name="entityDataImport" xsi:type="object">
                 Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataImport
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="winsBrandDataOperation" type="Nextouch\ImportExport\Model\WinsEntityDataOperation">
+        <arguments>
+            <argument name="filename" xsi:type="const">
+                Nextouch\ImportExport\Model\Product\Attribute\WinsBrandDataProvider::CSV_FILENAME
+            </argument>
+            <argument name="client" xsi:type="object">
+                Magento\Framework\Filesystem\Io\Ftp
+            </argument>
+            <argument name="entityDataProvider" xsi:type="object">
+                Nextouch\ImportExport\Model\Product\Attribute\WinsBrandDataProvider
+            </argument>
+            <argument name="entityDataImport" xsi:type="object">
+                Nextouch\ImportExport\Model\Product\Attribute\WinsBrandDataImport
             </argument>
         </arguments>
     </virtualType>
