@@ -24,6 +24,12 @@
         </arguments>
     </type>
 
+    <type name="Nextouch\ImportExport\Model\Product\Gallery\WinsVideoDataProvider">
+        <arguments>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </type>
+
     <type name="Nextouch\ImportExport\Cron\EntityDataOperationsCombiner">
         <arguments>
             <argument name="operations" xsi:type="array">
@@ -33,6 +39,7 @@
                 <item name="winsFeatureSetDataOperation" xsi:type="object">winsFeatureSetDataOperation</item>
                 <item name="winsProductStockDataOperation" xsi:type="object">winsProductStockDataOperation</item>
                 <item name="winsProductImageDataOperation" xsi:type="object">winsProductImageDataOperation</item>
+                <item name="winsVideoDataOperation" xsi:type="object">winsVideoDataOperation</item>
             </argument>
         </arguments>
     </type>
@@ -109,6 +116,23 @@
             <argument name="filename" xsi:type="string">immagini.csv</argument>
             <argument name="operationName" xsi:type="string">wins_product_image_data_operation</argument>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="winsVideoDataOperation" type="Nextouch\ImportExport\Model\WinsEntityDataOperation">
+        <arguments>
+            <argument name="filename" xsi:type="const">
+                Nextouch\ImportExport\Model\Product\Gallery\WinsVideoDataProvider::CSV_FILENAME
+            </argument>
+            <argument name="client" xsi:type="object">
+                Magento\Framework\Filesystem\Io\Ftp
+            </argument>
+            <argument name="entityDataProvider" xsi:type="object">
+                Nextouch\ImportExport\Model\Product\Gallery\WinsVideoDataProvider
+            </argument>
+            <argument name="entityDataImport" xsi:type="object">
+                Nextouch\ImportExport\Model\Product\Gallery\WinsVideoDataImport
+            </argument>
         </arguments>
     </virtualType>
 </config>
