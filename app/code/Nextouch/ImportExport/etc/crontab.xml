@@ -2,10 +2,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
-        <job name="nextouch_import_export_entity_data_operations_combiner"
-             instance="Nextouch\ImportExport\Cron\EntityDataOperationsCombiner"
+        <job name="nextouch_import_export_wins_entity_data_import_job"
+             instance="Nextouch\ImportExport\Cron\WinsEntityDataImportJob"
              method="execute">
-            <schedule>* * * * *</schedule>
+            <schedule>0 1 * * *</schedule>
         </job>
     </group>
 </config>

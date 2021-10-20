@@ -21,6 +21,21 @@ class ImportExportConfig extends AbstractHelper
         ];
     }
 
+    private function getWinsHost(): string
+    {
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_HOST);
+    }
+
+    private function getWinsUsername(): string
+    {
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_USERNAME);
+    }
+
+    private function getWinsPassword(): string
+    {
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_PASSWORD);
+    }
+
     public function getWinsFilePath(string $filename): string
     {
         $location = $this->getWinsLocation();
@@ -44,22 +59,7 @@ class ImportExportConfig extends AbstractHelper
         return "$location/unprocessed/{$now}_$filename";
     }
 
-    private function getWinsHost(): string
-    {
-        return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_HOST);
-    }
-
-    private function getWinsUsername(): string
-    {
-        return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_USERNAME);
-    }
-
-    private function getWinsPassword(): string
-    {
-        return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_PASSWORD);
-    }
-
-    private function getWinsLocation(): string
+    public function getWinsLocation(): string
     {
         return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_LOCATION);
     }

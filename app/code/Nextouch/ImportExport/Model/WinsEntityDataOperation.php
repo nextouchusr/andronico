@@ -13,9 +13,6 @@ use Psr\Log\LoggerInterface;
 
 class WinsEntityDataOperation implements EntityDataOperationInterface
 {
-    private const PROCESSED_DIR = './processed';
-    private const UNPROCESSED_DIR = './unprocessed';
-
     private string $filename;
     private IoInterface $client;
     private ImportExportConfig $config;

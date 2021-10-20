@@ -35,6 +35,10 @@ class PrepareBrandAttributeValue
         array $rowData
     ): array {
         try {
+            if (!isset($rowData['manufacturer'])) {
+                return $result;
+            }
+
             $attribute = $this->attributeRepository->get(ProductInterface::BRAND);
             $attributeOption = $this->attributeOptionManagement->getByExternalOptionId(
                 (int) $attribute->getAttributeId(),
