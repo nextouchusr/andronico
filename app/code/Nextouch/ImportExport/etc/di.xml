@@ -30,7 +30,7 @@
         </arguments>
     </type>
 
-    <type name="Nextouch\ImportExport\Cron\EntityDataOperationsCombiner">
+    <type name="Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner">
         <arguments>
             <argument name="operations" xsi:type="array">
                 <item name="winsAttributeDataOperation" xsi:type="object">winsAttributeDataOperation</item>
@@ -40,6 +40,17 @@
                 <item name="winsProductStockDataOperation" xsi:type="object">winsProductStockDataOperation</item>
                 <item name="winsProductImageDataOperation" xsi:type="object">winsProductImageDataOperation</item>
                 <item name="winsVideoDataOperation" xsi:type="object">winsVideoDataOperation</item>
+            </argument>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="winsEntityDataImport" xsi:type="object">
+                    Nextouch\ImportExport\Console\Command\WinsEntityDataImportCommand
+                </item>
             </argument>
         </arguments>
     </type>

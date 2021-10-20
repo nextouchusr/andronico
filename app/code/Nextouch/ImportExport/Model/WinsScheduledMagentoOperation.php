@@ -14,9 +14,6 @@ use Psr\Log\LoggerInterface;
 
 class WinsScheduledMagentoOperation implements EntityDataOperationInterface
 {
-    private const PROCESSED_DIR = './processed';
-    private const UNPROCESSED_DIR = './unprocessed';
-
     private string $filename;
     private string $operationName;
     private IoInterface $client;
