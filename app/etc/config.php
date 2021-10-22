@@ -453,6 +453,7 @@ return [
         'Klarna_Onsitemessaging' => 1,
         'Klarna_KpGraphQl' => 1,
         'Nextouch_Eav' => 1,
+        'Nextouch_CatalogRule' => 1,
         'Nextouch_Catalog' => 1,
         'Nextouch_ImportExport' => 1,
         'PayPal_Braintree' => 1,
