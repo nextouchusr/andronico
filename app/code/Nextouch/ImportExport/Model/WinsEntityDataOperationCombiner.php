@@ -40,7 +40,7 @@ class WinsEntityDataOperationCombiner implements EntityDataOperationInterface
             \Lambdish\Phunctional\each(fn(EntityDataOperationInterface $item) => $item->run(), $this->operations);
             $this->removeSemaphoreFiles();
         } else {
-            $this->logger->error('Failed to run entity data operations. Wins semaphore files do not exist.');
+            $this->logger->notice('Impossible to run entity data operations. Wins semaphore files do not exist.');
         }
 
         $this->logger->info(__('Finishing to run Wins entity data operations'));
