@@ -6,7 +6,7 @@
 namespace Magento\CustomerCustomAttributes\Model\Sales\Order;
 
 /**
- * @magentoDataFixture Magento/CustomerCustomAttributes/_files/order_address_with_attribute.php
+ * Class AddressTest
  */
 class AddressTest extends \PHPUnit\Framework\TestCase
 {
@@ -15,6 +15,9 @@ class AddressTest extends \PHPUnit\Framework\TestCase
      */
     protected $_model;
 
+    /**
+     * @inheritDoc
+     */
     protected function setUp(): void
     {
         $this->_model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
@@ -22,6 +25,9 @@ class AddressTest extends \PHPUnit\Framework\TestCase
         );
     }
 
+    /**
+     * @magentoDataFixture Magento/CustomerCustomAttributes/_files/order_address_with_attribute.php
+     */
     public function testAttachDataToEntities()
     {
         $address = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(

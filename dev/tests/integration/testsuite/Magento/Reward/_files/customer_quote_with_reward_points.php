@@ -57,5 +57,5 @@ $quote->getShippingAddress()->collectShippingRates();
 $quote->getPayment()->setMethod('checkmo');
 $quoteRepository->save($quote);
 $importer->import($quote, $quote->getPayment(), true);
-$quote->collectTotals();
+$quote->setTotalsCollectedFlag(false)->collectTotals();
 $quoteRepository->save($quote);

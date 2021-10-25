@@ -81,4 +81,46 @@ class SaveTest extends AbstractBackendController
         $this->dispatch($this->uri);
         $this->assertSessionMessages($this->containsEqual(__('You have saved the hierarchy.')));
     }
+
+    /**
+     * Test save cms hierarchy with invalid url
+     *
+     * @return void
+     */
+    public function testSaveHierarchyWithInvalidUrl(): void
+    {
+        $identifier = 'admin';
+        $reservedWords = 'admin, soap, rest, graphql, standard';
+        $data = [
+            'nodes_data' => json_encode([
+                '_0' => [
+                    'node_id' => '_0',
+                    'page_id' => null,
+                    'parent_node_id' => null,
+                    'identifier' => $identifier,
+                    'scope' => 0,
+                    'level' => 1,
+                    'label' => 'Node 3',
+                    'sort_order' => 3,
+                    'top_menu_visibility' => 1,
+                    'menu_visibility' => 1,
+                    'pager_visibility' => 1,
+                ],
+            ]),
+            'identifier' => $identifier,
+        ];
+
+        $this->getRequest()->setMethod(HttpRequest::METHOD_POST);
+        $this->getRequest()->setPostValue($data);
+        $this->dispatch($this->uri);
+        $this->assertSessionMessages(
+            $this->containsEqual(
+                __(sprintf(
+                    'URL key "%s" matches a reserved endpoint name (%s). Use another URL key.',
+                    $identifier,
+                    $reservedWords
+                ))
+            )
+        );
+    }
 }

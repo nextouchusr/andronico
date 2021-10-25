@@ -22,7 +22,7 @@ define([
         );
         $('body').append(form);
         button = form.find('button[type="submit"]');
-        $(form).submit(function (event) {
+        $(form).on('submit', function (event) {
             event.preventDefault();
         });
         injector.mock(mocks);

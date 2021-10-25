@@ -3,14 +3,21 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magento\VersionsCms\Model\Hierarchy;
 
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\SortOrderBuilder;
 use Magento\Store\Model\Store;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\TestFramework\ObjectManager;
+use Magento\VersionsCms\Api\Data\HierarchyNodeSearchResultsInterface;
 use Magento\VersionsCms\Model\Hierarchy\NodeRepository;
 
+/**
+ * @magentoAppIsolation enabled
+ */
 class NodeRepositoryTest extends \PHPUnit\Framework\TestCase
 {
     /** @var  NodeRepository */
@@ -84,5 +91,58 @@ class NodeRepositoryTest extends \PHPUnit\Framework\TestCase
         $this->assertCount(2, $items);
         $this->assertEquals('third', array_shift($items)['identifier']);
         $this->assertEquals('first', array_shift($items)['identifier']);
+    }
+
+    /**
+     * @magentoDataFixture Magento/VersionsCms/_files/hierarcy_nodes_with_pages_on_different_websites.php
+     * @magentoDataFixture Magento/VersionsCms/_files/hierarcy_nodes_with_pages_on_default_store.php
+     * @param string $storeCode
+     * @param array $expected
+     * @dataProvider storeFilterDataProvider
+     */
+    public function testStoreFilter(string $storeCode, array $expected): void
+    {
+        $objectManager = ObjectManager::getInstance();
+        /** @var StoreManagerInterface $storeManager */
+        $storeManager = $objectManager->get(StoreManagerInterface::class);
+        $store = $storeManager->getStore($storeCode);
+        $this->searchCriteriaBuilder->addFilter('store_id', $store->getId());
+        $this->searchCriteriaBuilder->addFilter('scope_id', $store->getId());
+        $searchCriteria = $this->searchCriteriaBuilder->create();
+        /** @var HierarchyNodeSearchResultsInterface $result */
+        $result = $this->repository->getList($searchCriteria);
+        $actual = [];
+        foreach ($result->getItems() as $item) {
+            $actual[] = $item['request_url'] ?? null;
+        }
+        $this->assertEqualsCanonicalizing(
+            $expected,
+            $actual
+        );
+    }
+
+    /**
+     * @return array[]
+     */
+    public function storeFilterDataProvider(): array
+    {
+        return [
+            [
+                'default',
+                [
+                    null,
+                    'default_store_main_node',
+                    'default_store_main_node/page_design_blank',
+                ]
+            ],
+            [
+                'test',
+                [
+                    null,
+                    'main',
+                    'main/page100',
+                ]
+            ]
+        ];
     }
 }

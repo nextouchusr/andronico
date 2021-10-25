@@ -3,51 +3,68 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 /**
  * Test class for \Magento\GiftRegistry\Block\Customer\Edit\AbstractEdit
  */
 namespace Magento\GiftRegistry\Block\Customer\Edit;
 
-class AbstractTest extends \PHPUnit\Framework\TestCase
+use Magento\Framework\View\LayoutInterface;
+use Magento\TestFramework\Helper\Bootstrap;
+use PHPUnit\Framework\TestCase;
+
+class AbstractTest extends TestCase
 {
     /**
      * Stub class name
      */
     const STUB_CLASS = 'Magento_GiftRegistry_Block_Customer_Edit_AbstractEdit_Stub';
 
-    public function testGetCalendarDateHtml()
-    {
+    /**
+     * Verify format and value calendar HTML
+     *
+     * @magentoAppArea frontend
+     * @param string $date
+     * @param string $dateFormat
+     * @param int $formatType
+     * @param string $dateExpect
+     * @dataProvider dataProviderGetCalendarDateHtml
+     * @return void
+     */
+    public function testGetCalendarDateHtml(
+        string $date,
+        string $dateFormat,
+        int $formatType,
+        string $dateExpect
+    ) {
         $this->getMockForAbstractClass(
-            \Magento\GiftRegistry\Block\Customer\Edit\AbstractEdit::class,
+            AbstractEdit::class,
             [],
             self::STUB_CLASS,
             false
         );
-        \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(\Magento\Framework\App\State::class)
-            ->setAreaCode('frontend');
-        /** @var \Magento\GiftRegistry\Block\Customer\Edit\AbstractEdit $block */
-        $block = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            \Magento\Framework\View\LayoutInterface::class
-        )->createBlock(
-            self::STUB_CLASS
-        );
-
-        $date = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            \Magento\Framework\Stdlib\DateTime\TimezoneInterface::class
-        )->date(strtotime(null), null, null, false);
-        $formatType = \IntlDateFormatter::MEDIUM;
-
+         /** @var AbstractEdit $block */
+        $block = Bootstrap::getObjectManager()
+            ->get(LayoutInterface::class)
+            ->createBlock(self::STUB_CLASS);
         $html = $block->getCalendarDateHtml('date_name', 'date_id', $date, $formatType);
-
-        $dateFormat = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
-            \Magento\Framework\Stdlib\DateTime\TimezoneInterface::class
-        )->getDateFormat(
-            $formatType
-        );
-        $value = $block->formatDate($date, $formatType);
-
         $this->assertStringContainsString('dateFormat: "' . $dateFormat . '",', $html);
-        $this->assertStringContainsString('value="' . $value . '"', $html);
+        $this->assertStringContainsString('value="' . $dateExpect . '"', $html);
+    }
+
+    /**
+     * @return array
+     */
+    public function dataProviderGetCalendarDateHtml(): array
+    {
+        return [
+            [
+                'date' => '2021-02-01',
+                'dateFormat' => 'M/d/yy',
+                'formatType' => \IntlDateFormatter::SHORT,
+                'dateExpect' => '2/1/21',
+            ],
+        ];
     }
 }

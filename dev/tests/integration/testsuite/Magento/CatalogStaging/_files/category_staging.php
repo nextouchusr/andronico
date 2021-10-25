@@ -45,7 +45,7 @@ $staging = $objectManager->create(CategoryStagingInterface::class);
 
 $changes = [
     'name' => 'Category_en Updated',
-    'image' => null,
+    'image' => '',
     'description' => '<p>Category_en Description Updated</p>',
     'display_mode' => 'PAGE',
     'is_anchor' => 1,

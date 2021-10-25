@@ -52,6 +52,12 @@ class FullTest extends \PHPUnit\Framework\TestCase
         $filtersSelect = $connection->select()->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
 
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         //test if execute generated all filters
         $this->assertEquals(
             [

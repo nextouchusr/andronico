@@ -3,26 +3,43 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\GiftRegistry\Model\ResourceModel\Item;
 
-class CollectionTest extends \PHPUnit\Framework\TestCase
+use Magento\Framework\ObjectManagerInterface;
+use Magento\GiftRegistry\Model\EntityFactory;
+use Magento\TestFramework\Helper\Bootstrap;
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Integration tests for Gift Registry items Collection.
+ */
+class CollectionTest extends TestCase
 {
     /**
-     * @var \Magento\GiftRegistry\Model\ResourceModel\Item\Collection
+     * @var Collection
      */
     protected $_collection = null;
 
     /**
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @var ObjectManagerInterface
      */
     protected $objectManager;
 
+    /**
+     * @var EntityFactory
+     */
+    private $giftRegistryFactory;
+
+    /**
+     * @inheritDoc
+     */
     protected function setUp(): void
     {
-        $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
-        $this->_collection = $this->objectManager->create(
-            \Magento\GiftRegistry\Model\ResourceModel\Item\Collection::class
-        );
+        $this->objectManager = Bootstrap::getObjectManager();
+        $this->_collection = $this->objectManager->create(Collection::class);
+        $this->giftRegistryFactory = $this->objectManager->get(EntityFactory::class);
     }
 
     public function testAddProductFilter()
@@ -62,7 +79,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $gr = $this->objectManager->get(\Magento\Framework\Registry::class)->registry('test_gift_registry');
         $product = $this->objectManager->get(\Magento\Framework\Registry::class)->registry('test_product');
 
-        $collection = $this->objectManager->create(\Magento\GiftRegistry\Model\ResourceModel\Item\Collection::class);
+        $collection = $this->objectManager->create(Collection::class);
         $collection->addRegistryFilter($gr->getId())->addWebsiteFilter();
 
         $this->assertTrue($collection->getSize() > 0);
@@ -71,11 +88,72 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $relation->removeProducts([1], [$product->getId()]);
 
         $collection = $this->objectManager->create(
-            \Magento\GiftRegistry\Model\ResourceModel\Item\Collection::class
+            Collection::class
         )->addRegistryFilter(
             $gr->getId()
         )->addWebsiteFilter();
 
         $this->assertTrue($collection->getSize() == 0);
+    }
+
+    /**
+     * Test if collection is properly loaded with product out of stock
+     *
+     * @magentoAppArea frontend
+     * @magentoDataFixture Magento/GiftRegistry/_files/gift_registry_with_out_of_stock_product.php
+     */
+    public function testGiftRegistryCollectionWithOutOfStockProduct(): void
+    {
+        $giftRegistry = $this->giftRegistryFactory->create()->loadByUrlKey('gift_registry_birthday_type_url');
+        $collection = $this->objectManager->create(Collection::class);
+        $collection->addRegistryFilter($giftRegistry->getId());
+        $items = $collection->getItems();
+        $this->assertTrue(count($items) > 0);
+
+        $options = reset($items)->getOptions();
+        $this->assertTrue(count($options) > 0);
+        $this->assertNotNull(reset($options)->getProduct());
+        $this->assertEquals('simple-out-of-stock', reset($options)->getProduct()->getSku());
+    }
+
+    /**
+     * Check that Collection is empty using Frontend scope.
+     *
+     * @return void
+     * @magentoAppArea frontend
+     * @magentoDataFixture Magento/GiftRegistry/_files/gift_registry_with_disabled_product.php
+     */
+    public function testLoadCollectionWithDisabledProductInFrontendScope(): void
+    {
+        $this->prepareAndVerifyCollection('gift_registry_birthday_type_url', 0);
+    }
+
+    /**
+     * Check that Collection is NOT empty using Admin scope.
+     *
+     * @return void
+     * @magentoAppArea adminhtml
+     * @magentoDataFixture Magento/GiftRegistry/_files/gift_registry_with_disabled_product.php
+     */
+    public function testLoadCollectionWithDisabledProductInAdminScope(): void
+    {
+        $this->prepareAndVerifyCollection('gift_registry_birthday_type_url', 1);
+    }
+
+    /**
+     * Filter Gift Registry items Collection by provided Url Key and verify its size.
+     *
+     * @param string $urlKey
+     * @param int $expectedCount
+     * @return void
+     */
+    private function prepareAndVerifyCollection(string $urlKey, int $expectedCount): void
+    {
+        $giftRegistry = $this->giftRegistryFactory->create()
+            ->loadByUrlKey($urlKey);
+        $this->_collection->addRegistryFilter($giftRegistry->getId())
+            ->addWebsiteFilter();
+
+        $this->assertCount($expectedCount, $this->_collection);
     }
 }

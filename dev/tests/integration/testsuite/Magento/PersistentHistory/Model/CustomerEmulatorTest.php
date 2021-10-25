@@ -38,6 +38,11 @@ class CustomerEmulatorTest extends \PHPUnit\Framework\TestCase
      */
     protected $_sessionFactory;
 
+    /**
+     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     */
+    protected $_customerRepositoryInterface;
+
     protected function setUp(): void
     {
         $this->_objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
@@ -55,6 +60,9 @@ class CustomerEmulatorTest extends \PHPUnit\Framework\TestCase
         );
 
         $this->_sessionFactory = $this->_objectManager->create(\Magento\Persistent\Model\SessionFactory::class);
+        $this->_customerRepositoryInterface = $this->_objectManager->get(
+            \Magento\Customer\Api\CustomerRepositoryInterface::class
+        );
     }
 
     /**
@@ -93,5 +101,29 @@ class CustomerEmulatorTest extends \PHPUnit\Framework\TestCase
             $this->assertArrayHasKey($key, $actualCustomAttributes);
             $this->assertEquals($attribute->getValue(), $actualCustomAttributes[$key]->getValue());
         }
+    }
+
+    /**
+     * @magentoDataFixture Magento/Customer/_files/customer.php
+     * @magentoConfigFixture current_store persistent/options/shopping_cart 1
+     * @magentoConfigFixture current_store persistent/options/enabled 1
+     */
+    public function testCustomerAddress()
+    {
+        $actualCustomer = $this->_customerRepositoryInterface->getById(1);
+        $actualCustomer->setDefaultBilling(100);
+        $actualCustomer->setDefaultShipping(101);
+        $this->_customerRepositoryInterface->save($actualCustomer);
+        /** @var \Magento\Persistent\Model\Session $sessionModel */
+        $sessionModel = $this->_sessionFactory->create();
+        $sessionModel->setCustomerId(1)->save();
+
+        $this->_persistentSessionHelper->setSession($sessionModel);
+
+        $this->_model->emulate();
+
+        $expectedCustomer = $this->_customerSession->getCustomerDataObject();
+
+        $this->assertEquals($expectedCustomer->getId(), $actualCustomer->getId());
     }
 }
