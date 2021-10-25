@@ -103,10 +103,12 @@ class AddGiftCardToWishlistTest extends GraphQlAbstract
         $this->assertArrayHasKey('addProductsToWishlist', $response);
         $this->assertArrayHasKey('wishlist', $response['addProductsToWishlist']);
         $response = $response['addProductsToWishlist']['wishlist'];
+        $wishlistId = $response['id'];
         $this->assertEquals($wishlist->getItemsCount(), $response['items_count']);
         $this->assertEquals($wishlist->getSharingCode(), $response['sharing_code']);
         $this->assertEquals($wishlist->getUpdatedAt(), $response['updated_at']);
         $this->assertEquals((int) $item->getQty(), $response['items_v2']['items'][0]['quantity']);
+        $wishlistItemId = $response['items_v2']['items'][0]['id'];
         $this->assertEquals($item->getAddedAt(), $response['items_v2']['items'][0]['added_at']);
         $giftCardOptionsResponse = $response['items_v2']['items'][0]['gift_card_options'];
         $this->assertEquals('Sender 1', $giftCardOptionsResponse['sender_name']);
@@ -116,10 +118,17 @@ class AddGiftCardToWishlistTest extends GraphQlAbstract
         if ($customAmount) {
             $this->assertEquals(250, $giftCardOptionsResponse['custom_giftcard_amount']['value']);
             $this->assertEquals('USD', $giftCardOptionsResponse['custom_giftcard_amount']['currency']);
+
         } else {
             $this->assertEquals(120, $giftCardOptionsResponse['amount']['value']);
             $this->assertEquals('USD', $giftCardOptionsResponse['amount']['currency']);
         }
+        $wishlistToCartQuery = $this->addGiftCardFromWishlistToCart($wishlistId, $wishlistItemId);
+        $response = $this->graphQlMutation($wishlistToCartQuery, [], '', $this->getHeaderMap());
+        $this->assertArrayHasKey('addWishlistItemsToCart', $response);
+        $this->assertArrayHasKey('status', $response['addWishlistItemsToCart']);
+        $this->assertEquals(true, $response['addWishlistItemsToCart']['status']);
+        $this->assertEmpty($response['addWishlistItemsToCart']['add_wishlist_items_to_cart_user_errors']);
     }
 
     /**
@@ -426,5 +435,32 @@ QUERY;
     private function generateUid(string $key): string
     {
         return base64_encode($key);
+    }
+
+    /**
+     *
+     * @param int $wishlistId
+     * @param $wishlistItemId
+     * @return string
+     */
+    private function addGiftCardFromWishlistToCart($wishlistId, $wishlistItemId): string
+    {
+        return <<<MUTATION
+mutation{
+addWishlistItemsToCart
+  (
+    wishlistId:{$wishlistId}
+    wishlistItemIds:[{$wishlistItemId}]
+  )
+  {
+    status
+    add_wishlist_items_to_cart_user_errors {
+      message
+      code
+    }
+
+  }
+}
+MUTATION;
     }
 }

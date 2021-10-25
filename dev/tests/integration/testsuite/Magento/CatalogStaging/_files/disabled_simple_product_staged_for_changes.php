@@ -15,6 +15,7 @@ use Magento\Staging\Model\UpdateFactory;
 use Magento\Staging\Model\VersionManager;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\TestFramework\Helper\Bootstrap;
+use Magento\Catalog\Api\CategoryLinkManagementInterface;
 
 $objectManager = Bootstrap::getObjectManager();
 $updateFactory = $objectManager->get(UpdateFactory::class);
@@ -23,9 +24,10 @@ $productStaging = $objectManager->get(ProductStagingInterface::class);
 $versionManager = $objectManager->get(VersionManager::class);
 $productRepository = $objectManager->get(ProductRepositoryInterface::class);
 
-/** @var Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement */
-$categoryLinkManagement = $objectManager->create(\Magento\Catalog\Api\CategoryLinkManagementInterface::class);
+/** @var CategoryLinkManagementInterface $categoryLinkManagement */
+$categoryLinkManagement = $objectManager->create(CategoryLinkManagementInterface::class);
 
+/** @var \Magento\Catalog\Model\Category $category */
 $category = $objectManager->create(\Magento\Catalog\Model\Category::class);
 $category->isObjectNew(true);
 $category->setName('Category For Disabled Product')
@@ -56,6 +58,7 @@ $product->setTypeId(Type::TYPE_SIMPLE)
     ->setStatus(Status::STATUS_DISABLED)
     ->setStockData(['use_config_manage_stock' => 1, 'qty' => 100, 'is_qty_decimal' => 0, 'is_in_stock' => 1])
     ->setCanSaveCustomOptions(true)
+    ->setCategoryIds([$category->getEntityId()])
     ->setHasOptions(true);
 $productRepository->save($product);
 

@@ -8,10 +8,10 @@ declare(strict_types=1);
 namespace Magento\Invitation\Model;
 
 use Magento\Customer\Model\CustomerRegistry;
-use Magento\Invitation\Model\ResourceModel\Invitation as InvitationResource;
 use Magento\Email\Model\ResourceModel\Template\CollectionFactory as TemplateCollectionFactory;
 use Magento\Framework\App\Config\MutableScopeConfigInterface;
 use Magento\Framework\ObjectManagerInterface;
+use Magento\Invitation\Model\ResourceModel\Invitation as InvitationResource;
 use Magento\Store\Model\ScopeInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\TestFramework\Mail\Template\TransportBuilderMock;
@@ -113,11 +113,24 @@ class InvitationTest extends TestCase
     public function testSendInvitationEmailWithCustomTemplate(): void
     {
         $message = 'Custom template message';
-        $expectedData = ['name' => 'Owner', 'email' => 'owner@example.com', 'message' => $message,];
-        $this->setConfig([Invitation::XML_PATH_EMAIL_TEMPLATE => $this->getCustomTemplateId(),]);
+        $expectedData = ['name' => 'Owner', 'email' => 'owner@example.com', 'message' => $message];
+        $this->setConfig([Invitation::XML_PATH_EMAIL_TEMPLATE => $this->getCustomTemplateId()]);
         $invitation = $this->getInvitation($message);
         $invitation->sendInvitationEmail();
         $this->assertEmailData($expectedData);
+    }
+
+    /**
+     * @magentoDataFixture Magento/Customer/_files/customer.php
+     * @magentoDataFixture Magento/Invitation/_files/custom_invitation_template.php
+     * @return void
+     */
+    public function testCanBeSent(): void
+    {
+        $message = 'Custom template message';
+        $this->setConfig([Invitation::XML_PATH_EMAIL_TEMPLATE => $this->getCustomTemplateId()]);
+        $invitation = $this->getInvitation($message);
+        $this->assertIsBool($invitation->canBeSent());
     }
 
     /**
@@ -128,15 +141,15 @@ class InvitationTest extends TestCase
         return [
             'default_email_identity_with_empty_message' => [
                 'config' => [],
-                'result' => ['name' => 'Owner', 'email' => 'owner@example.com', 'message' => '',],
+                'result' => ['name' => 'Owner', 'email' => 'owner@example.com', 'message' => ''],
             ],
             'custom_email_identity' => [
-                'config' => [Invitation::XML_PATH_EMAIL_IDENTITY => 'custom1',],
-                'result' => ['name' => 'Custom 1', 'email' => 'custom1@example.com', 'message' => '',],
+                'config' => [Invitation::XML_PATH_EMAIL_IDENTITY => 'custom1'],
+                'result' => ['name' => 'Custom 1', 'email' => 'custom1@example.com', 'message' => ''],
             ],
             'custom_email_identity_with_message' => [
-                'config' => [Invitation::XML_PATH_EMAIL_IDENTITY => 'custom2',],
-                'result' => ['name' => 'Custom 2', 'email' => 'custom2@example.com', 'message' => 'Test Message',],
+                'config' => [Invitation::XML_PATH_EMAIL_IDENTITY => 'custom2'],
+                'result' => ['name' => 'Custom 2', 'email' => 'custom2@example.com', 'message' => 'Test Message'],
             ],
         ];
     }

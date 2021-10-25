@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Magento\GraphQl\Reward\Checkout;
 
 use Magento\Framework\Exception\AuthenticationException;
-use Magento\GraphQl\Reward\AccessibilityTest;
 use Magento\GraphQl\GetCustomerAuthenticationHeader;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\QuoteFactory;
@@ -140,8 +139,6 @@ MUTATION;
      */
     public function testApplyRewardPoints()
     {
-        $this->markTestSkipped();
-
         $quote = $this->quoteFactory->create()->load('test_order_item_with_items', 'reserved_order_id');
         /** @var string $quoteMaskedId */
         $quoteMaskedId = $this->getQuoteMaskedId($quote);
@@ -172,7 +169,8 @@ MUTATION;
 
         /** @var float $grandTotalAfterPointsApplied */
         $grandTotalAfterPointsApplied = $response['applyRewardPointsToCart']['cart']['prices']['grand_total']['value'];
-        $this->assertEquals(2, $grandTotalBeforePointsApplied - $grandTotalAfterPointsApplied);
+        $this->assertEquals(30, $grandTotalBeforePointsApplied);
+        $this->assertEquals(2, $grandTotalAfterPointsApplied);
     }
 
     /**
