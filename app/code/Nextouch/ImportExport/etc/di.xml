@@ -45,16 +45,6 @@
         </arguments>
     </type>
 
-    <type name="Magento\Framework\Console\CommandListInterface">
-        <arguments>
-            <argument name="commands" xsi:type="array">
-                <item name="winsEntityDataImport" xsi:type="object">
-                    Nextouch\ImportExport\Console\Command\WinsEntityDataImportCommand
-                </item>
-            </argument>
-        </arguments>
-    </type>
-
     <virtualType name="winsAttributeDataOperation" type="Nextouch\ImportExport\Model\WinsEntityDataOperation">
         <arguments>
             <argument name="filename" xsi:type="const">
