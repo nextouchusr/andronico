@@ -17,6 +17,9 @@ build_backend: ## Build project backend
 build_frontend: ## Build project frontend
 	bash dev/scripts/build_frontend.sh
 
+change_permissions: ## Change permissions
+	bash dev/scripts/change_permissions.sh
+
 refresh: ## Refresh index and cache
 	bash dev/scripts/refresh.sh
 
