@@ -21,6 +21,7 @@ class TextualAttributeMapper extends AbstractAttributeMapper
         $attribute->setScope(EavAttributeInterface::SCOPE_STORE_TEXT);
         $attribute->setIsUserDefined(true);
         $attribute->setIsVisible(true);
+        $attribute->setIsVisibleOnFront(true);
         $attribute->setIsHtmlAllowedOnFront(true);
 
         return $attribute;
