@@ -14,15 +14,14 @@ class NumericAttributeMapper extends AbstractAttributeMapper
         $attribute = $this->attributeFactory->create();
 
         $attribute->setAttributeCode($property->getCode());
-        $attribute->setBackendType('varchar');
+        $attribute->setBackendType('decimal');
         $attribute->setDefaultFrontendLabel($property->getDescription());
-        $attribute->setFrontendInput('text');
-        $attribute->setFrontendClass('validate-number');
+        $attribute->setFrontendInput('price');
         $attribute->setIsRequired(false);
         $attribute->setScope(EavAttributeInterface::SCOPE_STORE_TEXT);
         $attribute->setIsUserDefined(true);
         $attribute->setIsVisible(true);
-        $attribute->setIsHtmlAllowedOnFront(true);
+        $attribute->setIsVisibleOnFront(true);
 
         return $attribute;
     }
