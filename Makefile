@@ -26,6 +26,10 @@ refresh: ## Refresh index and cache
 compile_di: ## Compile generated classes
 	php bin/magento setup:di:compile
 
+clean_static: ## Clean generated static view files
+	rm -r pub/static/*/*
+	rm -r var/view_preprocessed/*
+
 cache_flush: ## Cache flush
 	php bin/magento cache:flush
 
@@ -37,6 +41,9 @@ config_export: ## Export Magento configuration
 
 resize_images: ## Resize images according to view.xml
 	php bin/magento catalog:images:resize
+
+wins_import_job: ## Run Wins entity data import job
+	php ./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_entity_data_import_job
 
 # Static & Quality Tools
 phpcs: ## Run phpcs to analyze code
