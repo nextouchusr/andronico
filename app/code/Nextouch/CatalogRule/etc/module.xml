@@ -4,6 +4,7 @@
     <module name="Nextouch_CatalogRule" setup_version="1.0.0">
         <sequence>
             <module name="Magento_CatalogRule"/>
+            <module name="Magento_CatalogRuleStaging"/>
         </sequence>
     </module>
 </config>

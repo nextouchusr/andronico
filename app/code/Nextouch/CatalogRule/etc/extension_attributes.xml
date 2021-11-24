@@ -4,5 +4,7 @@
     <extension_attributes for="Magento\CatalogRule\Api\Data\RuleInterface">
         <attribute code="website_ids" type="int[]"/>
         <attribute code="customer_group_ids" type="int[]"/>
+        <attribute code="from_date" type="string"/>
+        <attribute code="to_date" type="string"/>
     </extension_attributes>
 </config>
