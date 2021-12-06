@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <fast_est>
+                <active>0</active>
+                <title>Fast-Est</title>
+                <sallowspecific>0</sallowspecific>
+                <sort_order>15</sort_order>
+            </fast_est>
+        </carriers>
+    </default>
+</config>
