@@ -6,30 +6,70 @@
             <label>Nextouch</label>
         </tab>
 
-        <section id="import_export" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="import_export"
+                 translate="label"
+                 type="text"
+                 sortOrder="1"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
             <label>ImportExport</label>
             <tab>nextouch</tab>
             <resource>Nextouch_ImportExport::config_import_export</resource>
 
-            <group id="wins" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="wins"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
                 <label>Wins</label>
 
-                <field id="host" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <field id="host"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
                     <label>Host</label>
                     <comment>Host server on which you import data</comment>
                 </field>
 
-                <field id="username" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <field id="username"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
                     <label>Username</label>
                     <comment>Username of the FTP server</comment>
                 </field>
 
-                <field id="password" translate="label comment" type="password" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <field id="password"
+                       translate="label comment"
+                       type="password"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
                     <label>Password</label>
                     <comment>Password of the FTP server</comment>
                 </field>
 
-                <field id="location" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                <field id="location"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
                     <label>Location</label>
                     <comment>Server location where files are saved</comment>
                 </field>

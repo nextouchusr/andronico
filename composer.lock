@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4cb0c6eca505e5cb60dac9ba7cba09de",
+    "content-hash": "3c1a8a3e9327551273cbf3f62cb36bef",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -270,6 +270,60 @@
             "description": "Mega Menu By Amasty"
         },
         {
+            "name": "amasty/mega-menu-graphql",
+            "version": "1.0.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/mega-menu-graphql-1.0.6-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/mega-menu": ">=2.1.0",
+                "magento/module-graph-ql": "*",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\MegaMenuGraphQl\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Mega Menu Graphql By Amasty"
+        },
+        {
+            "name": "amasty/mega-menu-page-builder",
+            "version": "1.0.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/mega-menu-page-builder-1.0.5-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.1",
+                "amasty/mega-menu": ">=1.9.1",
+                "magento/module-page-builder": "*",
+                "php": "7.0.2|7.0.4|~7.0.6|^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\MegaMenuPageBuilder\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Mega Menu Page Builder By Amasty"
+        },
+        {
             "name": "amasty/module-advanced-conditions",
             "version": "1.5.3",
             "dist": {
@@ -510,6 +564,33 @@
                 "Commercial"
             ],
             "description": "Shop by Brand by Amasty"
+        },
+        {
+            "name": "amasty/module-shop-by-brand-graphql",
+            "version": "1.0.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-shop-by-brand-graphql-1.0.5-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.14",
+                "amasty/module-shop-by-brand": ">=2.12.1",
+                "magento/module-graph-ql": "*",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\ShopbyBrandGraphQl\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Brand Graphql By Amasty"
         },
         {
             "name": "amasty/module-store-pickup",
@@ -1582,6 +1663,41 @@
                 "source": "https://github.com/colinmollenhour/php-redis-session-abstract/tree/v1.4.4"
             },
             "time": "2021-04-07T21:51:17+00:00"
+        },
+        {
+            "name": "community-engineering/language-it_it",
+            "version": "0.0.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magento-l10n/language-it_IT.git",
+                "reference": "174f49c15fa7055d04522c5d3cf9410ba5f1cd82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magento-l10n/language-it_IT/zipball/174f49c15fa7055d04522c5d3cf9410ba5f1cd82",
+                "reference": "174f49c15fa7055d04522c5d3cf9410ba5f1cd82",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "*"
+            },
+            "type": "magento2-language",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "it_IT language package.",
+            "support": {
+                "issues": "https://github.com/magento-l10n/language-it_IT/issues",
+                "source": "https://github.com/magento-l10n/language-it_IT/tree/v0.0.17"
+            },
+            "time": "2021-11-09T00:04:45+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -24444,6 +24560,46 @@
                 "source": "https://github.com/Seldaek/phar-utils/tree/1.1.2"
             },
             "time": "2021-08-19T21:01:38+00:00"
+        },
+        {
+            "name": "splashlab/magento-2-cors-requests",
+            "version": "100.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/splashlab/magento-2-cors-requests.git",
+                "reference": "ca68279c4ed39547711318e2a9ee5b4d8dcd1a63"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/splashlab/magento-2-cors-requests/zipball/ca68279c4ed39547711318e2a9ee5b4d8dcd1a63",
+                "reference": "ca68279c4ed39547711318e2a9ee5b4d8dcd1a63",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "*",
+                "php": "~7.1.3||~7.2.0||~7.3.0||~7.4.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "SplashLab\\CorsRequests\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Enabling cross-origin resource sharing (CORS) requests to Magento 2 API from configured Origin domain",
+            "homepage": "https://github.com/splashlab/magento-2-cors-requests",
+            "support": {
+                "issues": "https://github.com/splashlab/magento-2-cors-requests/issues",
+                "source": "https://github.com/splashlab/magento-2-cors-requests"
+            },
+            "time": "2021-02-08T22:20:41+00:00"
         },
         {
             "name": "spomky-labs/aes-key-wrap",
