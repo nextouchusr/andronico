@@ -170,7 +170,8 @@ class WinsAttributeDataImport implements EntityDataImportInterface
     {
         try {
             $attributeOption = $this->attributeOptionManagement->getByExternalOptionId(
-                (int) $attribute->getAttributeId(),
+                ProductAttributeInterface::ENTITY_TYPE_CODE,
+                $attribute->getAttributeCode(),
                 $value->getCode()
             );
             $attributeOption->setLabel($value->getDescription());
