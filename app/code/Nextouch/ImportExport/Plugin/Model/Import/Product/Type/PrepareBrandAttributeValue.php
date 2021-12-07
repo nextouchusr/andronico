@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\ImportExport\Plugin\Model\Import\Product\Type;
 
+use Magento\Catalog\Api\Data\ProductAttributeInterface;
 use Magento\Catalog\Api\ProductAttributeRepositoryInterface;
 use Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -41,7 +42,8 @@ class PrepareBrandAttributeValue
 
             $attribute = $this->attributeRepository->get(ProductInterface::BRAND);
             $attributeOption = $this->attributeOptionManagement->getByExternalOptionId(
-                (int) $attribute->getAttributeId(),
+                ProductAttributeInterface::ENTITY_TYPE_CODE,
+                $attribute->getAttributeCode(),
                 $rowData['manufacturer']
             );
 

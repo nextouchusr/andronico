@@ -10,7 +10,14 @@ interface AttributeSetInterface extends \Magento\Eav\Api\Data\AttributeSetInterf
 {
     public const EXTERNAL_SET_ID = 'external_set_id';
 
+    /**
+     * @return string
+     */
     public function getExternalSetId(): string;
 
+    /**
+     * @param string $externalSetId
+     * @return AttributeSetInterface
+     */
     public function setExternalSetId(string $externalSetId): self;
 }

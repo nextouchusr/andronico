@@ -34,13 +34,29 @@ class AttributeOptionManagement implements AttributeOptionManagementInterface
     /**
      * {@inheritDoc}
      */
-    public function getByExternalOptionId(int $attributeId, string $externalOptionId): AttributeOptionInterface
+    public function getItems(string $entityTypeCode, string $attributeCode): array
     {
+        return $this->attributeOptionCollectionFactory
+            ->create()
+            ->joinAttributeOptionValue()
+            ->addAttributeFilter($entityTypeCode, $attributeCode)
+            ->getItems();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getByExternalOptionId(
+        string $entityTypeCode,
+        string $attributeCode,
+        string $externalOptionId
+    ): AttributeOptionInterface {
         /** @var AttributeOptionInterface $attributeOption */
         $attributeOption = $this->attributeOptionCollectionFactory
             ->create()
-            ->addFieldToFilter(AttributeOptionInterface::ATTRIBUTE_ID, $attributeId)
-            ->addFieldToFilter(AttributeOptionInterface::EXTERNAL_OPTION_ID, $externalOptionId)
+            ->joinAttributeOptionValue()
+            ->addAttributeFilter($entityTypeCode, $attributeCode)
+            ->addExternalOptionIdFilter($externalOptionId)
             ->getFirstItem();
 
         if (!$attributeOption->getOptionId()) {
@@ -53,14 +69,14 @@ class AttributeOptionManagement implements AttributeOptionManagementInterface
     /**
      * {@inheritDoc}
      */
-    public function save(string $entityType, string $attributeCode, AttributeOptionInterface $option): int
+    public function save(string $entityTypeCode, string $attributeCode, AttributeOptionInterface $option): int
     {
         try {
             if (!$option->getOptionId()) {
-                return $this->add($entityType, $attributeCode, $option);
+                return $this->add($entityTypeCode, $attributeCode, $option);
             }
 
-            return $this->update($entityType, $attributeCode, $option);
+            return $this->update($entityTypeCode, $attributeCode, $option);
         } catch (LocalizedException $e) {
             throw new CouldNotSaveException(__($e->getMessage()));
         }
@@ -69,9 +85,9 @@ class AttributeOptionManagement implements AttributeOptionManagementInterface
     /**
      * @throws LocalizedException
      */
-    private function add(string $entityType, string $attributeCode, AttributeOptionInterface $option): int
+    private function add(string $entityTypeCode, string $attributeCode, AttributeOptionInterface $option): int
     {
-        $optionId = (int) $this->attributeOptionManagement->add($entityType, $attributeCode, $option);
+        $optionId = (int) $this->attributeOptionManagement->add($entityTypeCode, $attributeCode, $option);
 
         // Save attribute option custom fields
         $option->setOptionId($optionId);
@@ -83,15 +99,23 @@ class AttributeOptionManagement implements AttributeOptionManagementInterface
     /**
      * @throws LocalizedException
      */
-    private function update(string $entityType, string $attributeCode, AttributeOptionInterface $option): int
+    private function update(string $entityTypeCode, string $attributeCode, AttributeOptionInterface $option): int
     {
         $this->attributeOptionUpdate->update(
-            $entityType,
+            $entityTypeCode,
             $attributeCode,
             $option->getOptionId(),
             $option
         );
 
         return $option->getOptionId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function delete(string $entityTypeCode, string $attributeCode, int $optionId): bool
+    {
+        return $this->attributeOptionManagement->delete($entityTypeCode, $attributeCode, $optionId);
     }
 }
