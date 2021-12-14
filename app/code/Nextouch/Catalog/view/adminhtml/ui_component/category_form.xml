@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="general">
+        <field name="external_category_id" sortOrder="40">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">External Category ID</label>
+                <disabled>true</disabled>
+            </settings>
+        </field>
+    </fieldset>
+</form>
