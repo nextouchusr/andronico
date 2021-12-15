@@ -10,12 +10,10 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Nextouch\Catalog\Api\Data\CategoryInterface;
 use Nextouch\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 use Psr\Log\LoggerInterface;
-use function Lambdish\Phunctional\map;
+use function Lambdish\Phunctional\reduce;
 
 class AssociateExternalCategoryId
 {
-    private const CATEGORY_SEPARATOR = '/';
-
     private CategoryCollectionFactory $categoryCollectionFactory;
     private CategoryRepositoryInterface $categoryRepository;
     private LoggerInterface $logger;
@@ -51,15 +49,24 @@ class AssociateExternalCategoryId
 
     private function canExtractCategoryRawData(array $rowData): bool
     {
-        return isset($rowData['category_ids_tree']) && isset($rowData['categories']);
+        return isset($rowData['category_paths']) && isset($rowData['category_url_paths']);
     }
 
     private function extractCategoryRawData(array $rowData): array
     {
-        $categoryIds = explode(self::CATEGORY_SEPARATOR, $rowData['category_ids_tree']);
-        $categoryNames = explode(self::CATEGORY_SEPARATOR, $rowData['categories']);
+        $categoryPaths = explode(CategoryInterface::PATH_SEPARATOR, $rowData['category_paths']);
+        $categoryUrlPaths = explode(CategoryInterface::PATH_SEPARATOR, $rowData['category_url_paths']);
 
-        return map(fn(string $id, int $index) => ['id' => $id, 'name' => $categoryNames[$index]], $categoryIds);
+        return reduce(function (array $acc, string $id, int $index) use ($categoryUrlPaths) {
+            if ($categoryUrlPaths[$index] === CategoryInterface::ROOT_CATEGORY_PATH) {
+                return $acc;
+            }
+
+            $urlPath = implode(CategoryInterface::PATH_SEPARATOR, array_slice($categoryUrlPaths, 1, $index));
+            $category = ['id' => $id, 'url_path' => $urlPath];
+
+            return [...$acc, $category];
+        }, $categoryPaths, []);
     }
 
     private function associateExternalCategoryId(array $rawData): void
@@ -68,7 +75,7 @@ class AssociateExternalCategoryId
             /** @var CategoryInterface $category */
             $category = $this->categoryCollectionFactory
                 ->create()
-                ->addNameToFilter($rawData['name'])
+                ->addUrlPathToFilter($rawData['url_path'])
                 ->getFirstItem();
 
             if (!$category->getId()) {
@@ -80,7 +87,7 @@ class AssociateExternalCategoryId
             $this->categoryRepository->save($category);
         } catch (LocalizedException $e) {
             $text = 'Failed to associate external category id %1 to the category %2. Error: %3';
-            $message = __($text, $rawData['id'], $rawData['name'], $e->getMessage());
+            $message = __($text, $rawData['id'], $rawData['url_path'], $e->getMessage());
             $this->logger->error($message);
         }
     }
