@@ -3,10 +3,16 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\CatalogImportExport\Model\Import\Product\Type\AbstractType">
         <plugin name="associate_external_category_id"
-                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\AssociateExternalCategoryId"/>
+                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\AssociateExternalCategoryId"
+                sortOrder="20"/>
 
-        <plugin name="prepare_brand_attribute_value"
-                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\PrepareBrandAttributeValue"/>
+        <plugin name="prepare_category_url_paths_value"
+                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\PrepareCategoryUrlPathsValue"
+                sortOrder="10"/>
+
+        <plugin name="prepare_product_brand_value"
+                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\PrepareProductBrandValue"
+                sortOrder="10"/>
     </type>
 
     <type name="Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataProvider">

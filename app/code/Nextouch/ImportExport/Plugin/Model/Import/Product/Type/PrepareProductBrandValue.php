@@ -11,7 +11,7 @@ use Nextouch\Catalog\Api\Data\ProductInterface;
 use Nextouch\Eav\Api\AttributeOptionManagementInterface;
 use Psr\Log\LoggerInterface;
 
-class PrepareBrandAttributeValue
+class PrepareProductBrandValue
 {
     private ProductAttributeRepositoryInterface $attributeRepository;
     private AttributeOptionManagementInterface $attributeOptionManagement;
