@@ -39,6 +39,12 @@
             <resource ref="Magento_Catalog::read_products"/>
         </resources>
     </route>
+    <route url="/V1/products/attribute-sets/:attributeSetId/user-defined-attributes" method="GET">
+        <service class="Nextouch\Catalog\Api\ProductAttributeManagementInterface" method="getUserDefinedAttributes"/>
+        <resources>
+            <resource ref="Magento_Catalog::sets"/>
+        </resources>
+    </route>
 
     <!-- Product Website Links -->
     <route url="/V1/products/:sku/websites" method="POST">
