@@ -13,6 +13,9 @@
     <preference for="Nextouch\Eav\Api\AttributeGroupRepositoryInterface"
                 type="Nextouch\Eav\Model\AttributeGroupRepository"/>
 
+    <preference for="Nextouch\Eav\Api\AttributeManagementInterface"
+                type="Nextouch\Eav\Model\AttributeManagement"/>
+
     <preference for="Nextouch\Eav\Api\AttributeOptionManagementInterface"
                 type="Nextouch\Eav\Model\AttributeOptionManagement"/>
 </config>
