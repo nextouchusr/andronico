@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Nextouch_FastEst" setup_version="1.0.0">
+    <module name="Nextouch_Customer" setup_version="1.0.0">
         <sequence>
-            <module name="Nextouch_Sales"/>
+            <module name="Magento_Customer"/>
+            <module name="Nextouch_Eav"/>
         </sequence>
     </module>
 </config>
