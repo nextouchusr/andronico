@@ -7,22 +7,22 @@ use Collections\Collection;
 use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\Data\OutputInterface;
 use Nextouch\FastEst\Model\Common\StatusReturn;
-use Nextouch\FastEst\Model\Directory\Source;
+use Nextouch\FastEst\Model\Directory\Hour;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use function Lambdish\Phunctional\map;
 
-class SourceListResponse implements OutputInterface
+class GetHourList implements OutputInterface
 {
     private StatusReturn $statusReturn;
-    private Collection $sources;
+    private Collection $hours;
 
     /**
      * @throws InvalidArgumentException
      */
-    private function __construct(StatusReturn $statusReturn, array $sources = [])
+    private function __construct(StatusReturn $statusReturn, array $hours = [])
     {
         $this->statusReturn = $statusReturn;
-        $this->sources = new Collection(Source::class, $sources);
+        $this->hours = new Collection(Hour::class, $hours);
     }
 
     public function getStatusReturn(): StatusReturn
@@ -30,9 +30,9 @@ class SourceListResponse implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getSources(): Collection
+    public function getHours(): Collection
     {
-        return $this->sources;
+        return $this->hours;
     }
 
     /**
@@ -43,12 +43,12 @@ class SourceListResponse implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $sources = $propertyAccessor->getValue($object, 'source_ids');
-        $sources = is_array($sources) ? $sources : [$sources];
+        $hours = $propertyAccessor->getValue($object, 'hour_ids');
+        $hours = is_array($hours) ? $hours : [$hours];
 
         return new self(
             StatusReturn::fromObject($statusReturn),
-            map(fn(\stdClass $item) => Source::fromObject($item), $sources)
+            map(fn(\stdClass $item) => Hour::fromObject($item), $hours)
         );
     }
 }

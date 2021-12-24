@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nextouch\FastEst\Api;
 
 use Collections\Exceptions\InvalidArgumentException;
-use Nextouch\FastEst\Model\Response\Directory\ProductListResponse;
+use Nextouch\FastEst\Model\Response\Directory\GetProductList;
 
 /**
  * @api
@@ -14,5 +14,5 @@ interface ProductRepositoryInterface
     /**
      * @throws InvalidArgumentException
      */
-    public function getAll(): ProductListResponse;
+    public function getAll(): GetProductList;
 }

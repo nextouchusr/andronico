@@ -11,6 +11,7 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     // Attributes
     public const ALTERNATIVE_CODE = 'alternative_code';
     public const BRAND = 'brand';
+    public const FAST_EST_TYPE_ID = 'fast_est_type_id';
 
     // Customizable Options
     public const SERVICES_OPTION = 'services';
@@ -26,6 +27,8 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const PRODUCT_PICKUP_SERVICE = 'product_pickup';
     public const PRODUCT_DELIVERY_SERVICE = 'product_delivery';
     public const NOTICE_CALL_SERVICE = 'notice_call';
+
+    public const DEFAULT_FAST_EST_TYPE_ID = 20;
 
     /**
      * @return string
@@ -48,4 +51,20 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
      * @return ProductInterface
      */
     public function setBrand(int $brand): self;
+
+    /**
+     * @return string
+     */
+    public function getBrandDescription(): string;
+
+    /**
+     * @return int
+     */
+    public function getFastEstTypeId(): int;
+
+    /**
+     * @param int $fastEstTypeId
+     * @return ProductInterface
+     */
+    public function setFastEstTypeId(int $fastEstTypeId): self;
 }

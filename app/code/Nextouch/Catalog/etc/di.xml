@@ -7,6 +7,9 @@
     <preference for="Nextouch\Catalog\Api\Data\ProductInterface"
                 type="Nextouch\Catalog\Model\Product"/>
 
+    <preference for="Nextouch\Catalog\Api\ProductRepositoryInterface"
+                type="Nextouch\Catalog\Model\ProductRepository"/>
+
     <preference for="Nextouch\Catalog\Api\ProductAttributeManagementInterface"
                 type="Nextouch\Catalog\Model\Product\Attribute\Management"/>
 </config>

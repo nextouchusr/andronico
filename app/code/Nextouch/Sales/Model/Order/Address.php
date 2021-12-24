@@ -12,6 +12,16 @@ class Address extends \Magento\Sales\Model\Order\Address implements OrderAddress
         return $this->getStreetLine(1);
     }
 
+    public function getRegionCode(): string
+    {
+        return (string) parent::getRegionCode();
+    }
+
+    public function getPostcode(): string
+    {
+        return (string) $this->getData(self::POSTCODE);
+    }
+
     public function getMobilePhone(): string
     {
         return (string) $this->getData(self::MOBILE_PHONE);
@@ -70,5 +80,10 @@ class Address extends \Magento\Sales\Model\Order\Address implements OrderAddress
         $this->setData(self::LIFT, $lift);
 
         return $this;
+    }
+
+    public function getVatId(): string
+    {
+        return (string) $this->getData(self::VAT_ID);
     }
 }

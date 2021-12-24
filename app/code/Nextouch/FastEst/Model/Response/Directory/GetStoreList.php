@@ -7,22 +7,22 @@ use Collections\Collection;
 use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\Data\OutputInterface;
 use Nextouch\FastEst\Model\Common\StatusReturn;
-use Nextouch\FastEst\Model\Directory\Hour;
+use Nextouch\FastEst\Model\Directory\Store;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use function Lambdish\Phunctional\map;
 
-class HourListResponse implements OutputInterface
+class GetStoreList implements OutputInterface
 {
     private StatusReturn $statusReturn;
-    private Collection $hours;
+    private Collection $stores;
 
     /**
      * @throws InvalidArgumentException
      */
-    private function __construct(StatusReturn $statusReturn, array $hours = [])
+    private function __construct(StatusReturn $statusReturn, array $stores = [])
     {
         $this->statusReturn = $statusReturn;
-        $this->hours = new Collection(Hour::class, $hours);
+        $this->stores = new Collection(Store::class, $stores);
     }
 
     public function getStatusReturn(): StatusReturn
@@ -30,9 +30,9 @@ class HourListResponse implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getHours(): Collection
+    public function getStores(): Collection
     {
-        return $this->hours;
+        return $this->stores;
     }
 
     /**
@@ -43,12 +43,12 @@ class HourListResponse implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $hours = $propertyAccessor->getValue($object, 'hour_ids');
-        $hours = is_array($hours) ? $hours : [$hours];
+        $stores = $propertyAccessor->getValue($object, 'store_ids');
+        $stores = is_array($stores) ? $stores : [$stores];
 
         return new self(
             StatusReturn::fromObject($statusReturn),
-            map(fn(\stdClass $item) => Hour::fromObject($item), $hours)
+            map(fn(\stdClass $item) => Store::fromObject($item), $stores)
         );
     }
 }

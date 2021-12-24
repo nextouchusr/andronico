@@ -24,4 +24,7 @@
 
     <preference for="Nextouch\FastEst\Api\VanRepositoryInterface"
                 type="Nextouch\FastEst\Model\VanRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\DeliveryRepositoryInterface"
+                type="Nextouch\FastEst\Model\DeliveryRepository"/>
 </config>

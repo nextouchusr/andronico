@@ -7,22 +7,22 @@ use Collections\Collection;
 use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\Data\OutputInterface;
 use Nextouch\FastEst\Model\Common\StatusReturn;
-use Nextouch\FastEst\Model\Directory\Store;
+use Nextouch\FastEst\Model\Directory\Product;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use function Lambdish\Phunctional\map;
 
-class StoreListResponse implements OutputInterface
+class GetProductList implements OutputInterface
 {
     private StatusReturn $statusReturn;
-    private Collection $stores;
+    private Collection $products;
 
     /**
      * @throws InvalidArgumentException
      */
-    private function __construct(StatusReturn $statusReturn, array $stores = [])
+    private function __construct(StatusReturn $statusReturn, array $products = [])
     {
         $this->statusReturn = $statusReturn;
-        $this->stores = new Collection(Store::class, $stores);
+        $this->products = new Collection(Product::class, $products);
     }
 
     public function getStatusReturn(): StatusReturn
@@ -30,9 +30,9 @@ class StoreListResponse implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getStores(): Collection
+    public function getProducts(): Collection
     {
-        return $this->stores;
+        return $this->products;
     }
 
     /**
@@ -43,12 +43,12 @@ class StoreListResponse implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $stores = $propertyAccessor->getValue($object, 'store_ids');
-        $stores = is_array($stores) ? $stores : [$stores];
+        $products = $propertyAccessor->getValue($object, 'product_ids');
+        $products = is_array($products) ? $products : [$products];
 
         return new self(
             StatusReturn::fromObject($statusReturn),
-            map(fn(\stdClass $item) => Store::fromObject($item), $stores)
+            map(fn(\stdClass $item) => Product::fromObject($item), $products)
         );
     }
 }

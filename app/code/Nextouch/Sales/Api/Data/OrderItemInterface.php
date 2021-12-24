@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Nextouch\Sales\Api\Data;
 
+use Nextouch\Catalog\Api\Data\ProductInterface;
+
 /**
  * @api
  */
@@ -21,6 +23,11 @@ interface OrderItemInterface extends \Magento\Sales\Api\Data\OrderItemInterface
     public const PRODUCT_PICKUP_SERVICE = 'product_pickup';
     public const PRODUCT_DELIVERY_SERVICE = 'product_delivery';
     public const NOTICE_CALL_SERVICE = 'notice_call';
+
+    /**
+     * @return ProductInterface|null
+     */
+    public function getProduct(): ?ProductInterface;
 
     /**
      * @return array

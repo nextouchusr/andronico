@@ -22,6 +22,16 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
     /**
      * @return string
      */
+    public function getRegionCode(): string;
+
+    /**
+     * @return string
+     */
+    public function getPostcode(): string;
+
+    /**
+     * @return string
+     */
     public function getMobilePhone(): string;
 
     /**
@@ -73,4 +83,9 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
      * @return OrderAddressInterface
      */
     public function setLift(bool $lift): self;
+
+    /**
+     * @return string
+     */
+    public function getVatId(): string;
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Nextouch\FastEst\Api;
 
 use Collections\Exceptions\InvalidArgumentException;
-use Nextouch\FastEst\Model\Response\Directory\SourceListResponse;
+use Nextouch\FastEst\Model\Response\Directory\GetSourceList;
 
 /**
  * @api
@@ -14,5 +14,5 @@ interface SourceRepositoryInterface
     /**
      * @throws InvalidArgumentException
      */
-    public function getAll(): SourceListResponse;
+    public function getAll(): GetSourceList;
 }

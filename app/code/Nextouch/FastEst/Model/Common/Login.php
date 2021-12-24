@@ -29,9 +29,8 @@ class Login implements InputInterface
     public function asObject(): \stdClass
     {
         $object = new \stdClass();
-        $object->login = new \stdClass();
-        $object->login->username = $this->getUsername();
-        $object->login->password = $this->getPassword();
+        $object->username = $this->getUsername();
+        $object->password = $this->getPassword();
 
         return $object;
     }

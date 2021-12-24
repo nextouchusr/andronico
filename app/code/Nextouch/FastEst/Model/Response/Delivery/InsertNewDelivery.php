@@ -1,28 +1,28 @@
 <?php
 declare(strict_types=1);
 
-namespace Nextouch\FastEst\Model\Response\Directory;
+namespace Nextouch\FastEst\Model\Response\Delivery;
 
 use Collections\Collection;
 use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\Data\OutputInterface;
 use Nextouch\FastEst\Model\Common\StatusReturn;
-use Nextouch\FastEst\Model\Directory\Van;
+use Nextouch\FastEst\Model\Delivery\DeliveryReturn;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use function Lambdish\Phunctional\map;
 
-class VanListResponse implements OutputInterface
+class InsertNewDelivery implements OutputInterface
 {
     private StatusReturn $statusReturn;
-    private Collection $vans;
+    private Collection $deliveryReturns;
 
     /**
      * @throws InvalidArgumentException
      */
-    private function __construct(StatusReturn $statusReturn, array $vans = [])
+    private function __construct(StatusReturn $statusReturn, array $deliveryReturns = [])
     {
         $this->statusReturn = $statusReturn;
-        $this->vans = new Collection(Van::class, $vans);
+        $this->deliveryReturns = new Collection(DeliveryReturn::class, $deliveryReturns);
     }
 
     public function getStatusReturn(): StatusReturn
@@ -30,9 +30,9 @@ class VanListResponse implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getVans(): Collection
+    public function getDeliveryReturns(): Collection
     {
-        return $this->vans;
+        return $this->deliveryReturns;
     }
 
     /**
@@ -43,12 +43,12 @@ class VanListResponse implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $vans = $propertyAccessor->getValue($object, 'van_ids');
-        $vans = is_array($vans) ? $vans : [$vans];
+        $deliveryReturns = $propertyAccessor->getValue($object, 'delivery_return');
+        $deliveryReturns = is_array($deliveryReturns) ? $deliveryReturns : [$deliveryReturns];
 
         return new self(
             StatusReturn::fromObject($statusReturn),
-            map(fn(\stdClass $item) => Van::fromObject($item), $vans)
+            map(fn(\stdClass $item) => DeliveryReturn::fromObject($item), $deliveryReturns)
         );
     }
 }

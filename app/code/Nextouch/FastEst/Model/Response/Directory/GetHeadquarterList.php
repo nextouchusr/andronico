@@ -11,7 +11,7 @@ use Nextouch\FastEst\Model\Directory\Headquarter;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use function Lambdish\Phunctional\map;
 
-class HeadquarterListResponse implements OutputInterface
+class GetHeadquarterList implements OutputInterface
 {
     private StatusReturn $statusReturn;
     private Collection $headquarters;
