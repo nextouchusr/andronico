@@ -11,7 +11,7 @@ use Nextouch\FastEst\Model\Directory\Status;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use function Lambdish\Phunctional\map;
 
-class StatusListResponse implements OutputInterface
+class GetStatusList implements OutputInterface
 {
     private StatusReturn $statusReturn;
     private Collection $statuses;

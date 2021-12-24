@@ -148,21 +148,20 @@ class Customer implements InputInterface
     public function asObject(): \stdClass
     {
         $object = new \stdClass();
-        $object->customer = new \stdClass();
-        $object->customer->customer_name = $this->getName();
-        $object->customer->customer_surname = $this->getSurname();
-        $object->customer->customer_address = $this->getAddress();
-        $object->customer->customer_province = $this->getProvince();
-        $object->customer->customer_city = $this->getCity();
-        $object->customer->customer_cap = $this->getPostCode();
-        $object->customer->customer_floor = $this->getFloor();
-        $object->customer->customer_ztl = (int) $this->isLimitedTrafficZone();
-        $object->customer->customer_stair = (int) $this->hasStair();
-        $object->customer->customer_lift = (int) $this->hasLift();
-        $object->customer->customer_email = $this->getEmail();
-        $object->customer->customer_tel = $this->getPhone();
-        $object->customer->customer_cell = $this->getMobilePhone();
-        $object->customer->customer_codfis = $this->getVatId();
+        $object->customer_name = $this->getName();
+        $object->customer_surname = $this->getSurname();
+        $object->customer_address = $this->getAddress();
+        $object->customer_province = $this->getProvince();
+        $object->customer_city = $this->getCity();
+        $object->customer_cap = $this->getPostCode();
+        $object->customer_floor = $this->getFloor();
+        $object->customer_ztl = (int) $this->isLimitedTrafficZone();
+        $object->customer_stair = (int) $this->hasStair();
+        $object->customer_lift = (int) $this->hasLift();
+        $object->customer_email = $this->getEmail();
+        $object->customer_tel = $this->getPhone();
+        $object->customer_cell = $this->getMobilePhone();
+        $object->customer_codfis = $this->getVatId();
 
         return $object;
     }

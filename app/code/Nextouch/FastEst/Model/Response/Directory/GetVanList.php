@@ -7,22 +7,22 @@ use Collections\Collection;
 use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\Data\OutputInterface;
 use Nextouch\FastEst\Model\Common\StatusReturn;
-use Nextouch\FastEst\Model\Directory\Place;
+use Nextouch\FastEst\Model\Directory\Van;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use function Lambdish\Phunctional\map;
 
-class PlaceListResponse implements OutputInterface
+class GetVanList implements OutputInterface
 {
     private StatusReturn $statusReturn;
-    private Collection $places;
+    private Collection $vans;
 
     /**
      * @throws InvalidArgumentException
      */
-    private function __construct(StatusReturn $statusReturn, array $places = [])
+    private function __construct(StatusReturn $statusReturn, array $vans = [])
     {
         $this->statusReturn = $statusReturn;
-        $this->places = new Collection(Place::class, $places);
+        $this->vans = new Collection(Van::class, $vans);
     }
 
     public function getStatusReturn(): StatusReturn
@@ -30,9 +30,9 @@ class PlaceListResponse implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getPlaces(): Collection
+    public function getVans(): Collection
     {
-        return $this->places;
+        return $this->vans;
     }
 
     /**
@@ -43,12 +43,12 @@ class PlaceListResponse implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $places = $propertyAccessor->getValue($object, 'place_ids');
-        $places = is_array($places) ? $places : [$places];
+        $vans = $propertyAccessor->getValue($object, 'van_ids');
+        $vans = is_array($vans) ? $vans : [$vans];
 
         return new self(
             StatusReturn::fromObject($statusReturn),
-            map(fn(\stdClass $item) => Place::fromObject($item), $places)
+            map(fn(\stdClass $item) => Van::fromObject($item), $vans)
         );
     }
 }

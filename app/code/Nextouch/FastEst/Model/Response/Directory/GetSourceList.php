@@ -7,22 +7,22 @@ use Collections\Collection;
 use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\Data\OutputInterface;
 use Nextouch\FastEst\Model\Common\StatusReturn;
-use Nextouch\FastEst\Model\Directory\Product;
+use Nextouch\FastEst\Model\Directory\Source;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use function Lambdish\Phunctional\map;
 
-class ProductListResponse implements OutputInterface
+class GetSourceList implements OutputInterface
 {
     private StatusReturn $statusReturn;
-    private Collection $products;
+    private Collection $sources;
 
     /**
      * @throws InvalidArgumentException
      */
-    private function __construct(StatusReturn $statusReturn, array $products = [])
+    private function __construct(StatusReturn $statusReturn, array $sources = [])
     {
         $this->statusReturn = $statusReturn;
-        $this->products = new Collection(Product::class, $products);
+        $this->sources = new Collection(Source::class, $sources);
     }
 
     public function getStatusReturn(): StatusReturn
@@ -30,9 +30,9 @@ class ProductListResponse implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getProducts(): Collection
+    public function getSources(): Collection
     {
-        return $this->products;
+        return $this->sources;
     }
 
     /**
@@ -43,12 +43,12 @@ class ProductListResponse implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $products = $propertyAccessor->getValue($object, 'product_ids');
-        $products = is_array($products) ? $products : [$products];
+        $sources = $propertyAccessor->getValue($object, 'source_ids');
+        $sources = is_array($sources) ? $sources : [$sources];
 
         return new self(
             StatusReturn::fromObject($statusReturn),
-            map(fn(\stdClass $item) => Product::fromObject($item), $products)
+            map(fn(\stdClass $item) => Source::fromObject($item), $sources)
         );
     }
 }

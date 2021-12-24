@@ -6,21 +6,24 @@ namespace Nextouch\FastEst\Model;
 use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\StoreRepositoryInterface;
 use Nextouch\FastEst\Model\Common\Login;
-use Nextouch\FastEst\Model\Response\Directory\StoreListResponse;
+use Nextouch\FastEst\Model\Request\Directory\GetDirectoryList;
+use Nextouch\FastEst\Model\Response\Directory\GetStoreList;
 
 class StoreRepository extends AbstractBaseRepository implements StoreRepositoryInterface
 {
     /**
      * @throws InvalidArgumentException
      */
-    public function getAll(): StoreListResponse
+    public function getAll(): GetStoreList
     {
         $username = $this->config->getUsername($this->scopeCode);
         $password = $this->config->getPassword($this->scopeCode);
+
         $login = new Login($username, $password);
+        $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_store_ids', $login->asObject());
+        $result = $this->client->call('get_store_ids', $request->asObject());
 
-        return StoreListResponse::fromObject($result);
+        return GetStoreList::fromObject($result);
     }
 }

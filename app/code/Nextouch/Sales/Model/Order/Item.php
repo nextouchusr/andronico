@@ -3,14 +3,29 @@ declare(strict_types=1);
 
 namespace Nextouch\Sales\Model\Order;
 
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Nextouch\Catalog\Api\Data\ProductInterface;
+use Nextouch\Catalog\Api\ProductRepositoryInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
 use function Lambdish\Phunctional\search;
 
 class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
 {
+    public function getProduct(): ?ProductInterface
+    {
+        try {
+            $productRepository = ObjectManager::getInstance()->get(ProductRepositoryInterface::class);
+
+            return $productRepository->getById((int) $this->getProductId());
+        } catch (NoSuchEntityException $e) {
+            return null;
+        }
+    }
+
     public function getSelectedOptions(): array
     {
-        return $this->getProductOptionByCode(self::SELECTED_OPTIONS);
+        return (array) $this->getProductOptionByCode(self::SELECTED_OPTIONS);
     }
 
     public function hasProductInstallService(): bool
