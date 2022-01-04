@@ -35,6 +35,17 @@
                     <label>Title</label>
                 </field>
 
+                <field id="name"
+                       translate="label"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Method Name</label>
+                </field>
+
                 <field id="wsdl"
                        translate="label"
                        type="text"

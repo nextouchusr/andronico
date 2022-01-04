@@ -10,6 +10,7 @@ class FastEstConfig extends AbstractHelper
 {
     private const XML_PATH_FAST_EST_ACTIVE = 'carriers/fast_est/active';
     private const XML_PATH_FAST_EST_TITLE = 'carriers/fast_est/title';
+    private const XML_PATH_FAST_EST_NAME = 'carriers/fast_est/name';
     private const XML_PATH_FAST_EST_WSDL = 'carriers/fast_est/wsdl';
     private const XML_PATH_FAST_EST_USERNAME = 'carriers/fast_est/username';
     private const XML_PATH_FAST_EST_PASSWORD = 'carriers/fast_est/password';
@@ -31,6 +32,15 @@ class FastEstConfig extends AbstractHelper
     {
         return (string) $this->scopeConfig->getValue(
             self::XML_PATH_FAST_EST_TITLE,
+            ScopeInterface::SCOPE_STORE,
+            $scopeCode
+        );
+    }
+
+    public function getName(string $scopeCode = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::XML_PATH_FAST_EST_NAME,
             ScopeInterface::SCOPE_STORE,
             $scopeCode
         );

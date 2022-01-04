@@ -10,6 +10,7 @@ use Nextouch\Catalog\Api\Data\ProductInterface;
  */
 interface OrderItemInterface extends \Magento\Sales\Api\Data\OrderItemInterface
 {
+    public const PRODUCT = 'product';
     public const SELECTED_OPTIONS = 'options';
 
     // Product Service Options
