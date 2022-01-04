@@ -476,6 +476,7 @@ return [
         'Nextouch_Catalog' => 1,
         'Nextouch_Sales' => 1,
         'Nextouch_ImportExport' => 1,
+        'Nextouch_Shipping' => 1,
         'Nextouch_FastEst' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,

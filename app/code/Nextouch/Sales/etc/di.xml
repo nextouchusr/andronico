@@ -9,4 +9,10 @@
 
     <preference for="Nextouch\Sales\Api\Data\OrderItemInterface"
                 type="Nextouch\Sales\Model\Order\Item"/>
+
+    <preference for="Nextouch\Sales\Api\Data\ShipmentInterface"
+                type="Nextouch\Sales\Model\Order\Shipment"/>
+
+    <preference for="Nextouch\Sales\Api\Data\ShipmentItemInterface"
+                type="Nextouch\Sales\Model\Order\Shipment\Item"/>
 </config>

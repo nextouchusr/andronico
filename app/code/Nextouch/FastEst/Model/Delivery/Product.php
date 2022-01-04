@@ -5,8 +5,9 @@ namespace Nextouch\FastEst\Model\Delivery;
 
 use Nextouch\FastEst\Api\Data\InputInterface;
 use Nextouch\FastEst\Api\Data\OutputInterface;
-use Nextouch\Sales\Api\Data\OrderItemInterface;
+use Nextouch\Sales\Api\Data\ShipmentItemInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Webmozart\Assert\Assert;
 
 class Product implements InputInterface, OutputInterface
 {
@@ -71,15 +72,21 @@ class Product implements InputInterface, OutputInterface
         return $this->serviceList;
     }
 
-    public static function fromDomain(OrderItemInterface $orderItem): self
+    public static function fromDomain(ShipmentItemInterface $shipmentItem): self
     {
+        $orderItem = $shipmentItem->getOrderItem();
+        Assert::notNull($orderItem);
+
+        $product = $orderItem->getProduct();
+        Assert::notNull($product);
+
         return new self(
-            $orderItem->getProduct()->getFastEstTypeId(),
-            (int) $orderItem->getQtyOrdered(),
-            $orderItem->getProduct()->getBrandDescription(),
-            $orderItem->getProduct()->getName(),
+            $product->getFastEstTypeId(),
+            (int) $shipmentItem->getQty(),
+            $product->getBrandDescription(),
+            $product->getName(),
             10, // TODO: replace mock data
-            $orderItem->getProduct()->getFastEstTypeId(),
+            $product->getFastEstTypeId(),
             ServiceList::fromDomain($orderItem)
         );
     }

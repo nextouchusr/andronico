@@ -14,10 +14,16 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
 {
     public function getProduct(): ?ProductInterface
     {
+        if ($this->getData(self::PRODUCT)) {
+            return $this->getData(self::PRODUCT);
+        }
+
         try {
             $productRepository = ObjectManager::getInstance()->get(ProductRepositoryInterface::class);
+            $product = $productRepository->getById((int) $this->getProductId());
+            $this->setData(self::PRODUCT, $product);
 
-            return $productRepository->getById((int) $this->getProductId());
+            return $product;
         } catch (NoSuchEntityException $e) {
             return null;
         }
