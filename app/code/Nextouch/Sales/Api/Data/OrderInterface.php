@@ -9,6 +9,12 @@ namespace Nextouch\Sales\Api\Data;
 interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
 {
     /**
+     * @param string $carrierCode
+     * @return bool
+     */
+    public function isShippedBy(string $carrierCode): bool;
+
+    /**
      * @return OrderAddressInterface|null
      */
     public function getShippingAddress(): ?OrderAddressInterface;

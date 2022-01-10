@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Model;
 
-use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\PlaceRepositoryInterface;
 use Nextouch\FastEst\Model\Common\Login;
 use Nextouch\FastEst\Model\Request\Directory\GetDirectoryList;
@@ -11,9 +10,6 @@ use Nextouch\FastEst\Model\Response\Directory\GetPlaceList;
 
 class PlaceRepository extends AbstractBaseRepository implements PlaceRepositoryInterface
 {
-    /**
-     * @throws InvalidArgumentException
-     */
     public function getAll(): GetPlaceList
     {
         $username = $this->config->getUsername($this->scopeCode);

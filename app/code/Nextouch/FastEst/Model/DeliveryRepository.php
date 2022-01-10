@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Model;
 
-use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\DeliveryRepositoryInterface;
 use Nextouch\FastEst\Model\Common\Login;
 use Nextouch\FastEst\Model\Delivery\Customer;
@@ -17,9 +16,6 @@ use function Lambdish\Phunctional\map;
 
 class DeliveryRepository extends AbstractBaseRepository implements DeliveryRepositoryInterface
 {
-    /**
-     * @throws InvalidArgumentException
-     */
     public function create(ShipmentInterface $shipment): InsertNewDeliveryResponse
     {
         $username = $this->config->getUsername($this->scopeCode);

@@ -3,6 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Nextouch_FastEst" setup_version="1.0.0">
         <sequence>
+            <module name="Amasty_Deliverydate"/>
             <module name="Nextouch_Sales"/>
             <module name="Nextouch_Shipping"/>
         </sequence>

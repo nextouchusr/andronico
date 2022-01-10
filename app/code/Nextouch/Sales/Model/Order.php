@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nextouch\Sales\Model;
 
 use Magento\Framework\App\ObjectManager;
+use Magento\Quote\Api\Data\ShippingMethodInterface;
 use Nextouch\Sales\Api\Data\OrderAddressInterface;
 use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
@@ -12,6 +13,13 @@ use Nextouch\Sales\Model\ResourceModel\Order\Item\CollectionFactory as ItemColle
 
 class Order extends \Magento\Sales\Model\Order implements OrderInterface
 {
+    public function isShippedBy(string $carrierCode): bool
+    {
+        $shippingMethod = $this->getShippingMethod(true);
+
+        return $shippingMethod->getData(ShippingMethodInterface::KEY_CARRIER_CODE) === $carrierCode;
+    }
+
     public function getShippingAddress(): ?OrderAddressInterface
     {
         $address = parent::getShippingAddress();
