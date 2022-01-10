@@ -7,6 +7,7 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\Data\ShipmentInterface;
 use Nextouch\FastEst\Api\DeliveryRepositoryInterface;
+use Nextouch\FastEst\Model\Carrier\FastEst;
 use Nextouch\Sales\Api\Data\ShipmentInterface as FastEstShipmentInterface;
 use Nextouch\Sales\Model\ResourceModel\Order\Shipment\CollectionFactory as ShipmentCollectionFactory;
 
@@ -30,6 +31,10 @@ class CreateNewDelivery implements ObserverInterface
 
         /** @var FastEstShipmentInterface $fastEstShipment */
         $fastEstShipment = $this->shipmentCollectionFactory->create()->getItemById($shipment->getEntityId());
+
+        if (!$fastEstShipment->getOrder()->isShippedBy(FastEst::CODE)) {
+            return;
+        }
 
         $this->deliveryRepository->create($fastEstShipment);
     }

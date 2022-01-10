@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Model;
 
-use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\ProductRepositoryInterface;
 use Nextouch\FastEst\Model\Common\Login;
 use Nextouch\FastEst\Model\Request\Directory\GetDirectoryList;
@@ -11,9 +10,6 @@ use Nextouch\FastEst\Model\Response\Directory\GetProductList;
 
 class ProductRepository extends AbstractBaseRepository implements ProductRepositoryInterface
 {
-    /**
-     * @throws InvalidArgumentException
-     */
     public function getAll(): GetProductList
     {
         $username = $this->config->getUsername($this->scopeCode);

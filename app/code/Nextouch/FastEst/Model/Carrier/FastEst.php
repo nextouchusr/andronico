@@ -14,7 +14,9 @@ use Psr\Log\LoggerInterface;
 
 class FastEst extends AbstractCarrier implements CarrierInterface
 {
-    protected $_code = 'fast_est';
+    public const CODE = 'fast_est';
+
+    protected $_code = self::CODE;
     protected $_isFixed = true;
 
     private ResultFactory $rateResultFactory;

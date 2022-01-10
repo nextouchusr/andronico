@@ -25,6 +25,14 @@
     <preference for="Nextouch\FastEst\Api\VanRepositoryInterface"
                 type="Nextouch\FastEst\Model\VanRepository"/>
 
+    <preference for="Nextouch\FastEst\Api\AppointmentRepositoryInterface"
+                type="Nextouch\FastEst\Model\AppointmentRepository"/>
+
     <preference for="Nextouch\FastEst\Api\DeliveryRepositoryInterface"
                 type="Nextouch\FastEst\Model\DeliveryRepository"/>
+
+    <type name="Amasty\Deliverydate\Model\DeliverydateConfigProvider">
+        <plugin name="add_fast_est_available_slots"
+                type="Nextouch\FastEst\Plugin\Model\AddFastEstAvailableSlots"/>
+    </type>
 </config>
