@@ -22,16 +22,25 @@ class StatusReturn implements OutputInterface
         $this->errorDescription = $errorDescription;
     }
 
+    /**
+     * @return bool
+     */
     public function isOk(): bool
     {
         return $this->isOk;
     }
 
+    /**
+     * @return int
+     */
     public function getErrorCode(): int
     {
         return $this->errorCode;
     }
 
+    /**
+     * @return string
+     */
     public function getErrorDescription(): string
     {
         return $this->errorDescription;

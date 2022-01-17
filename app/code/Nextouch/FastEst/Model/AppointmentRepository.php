@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Model;
 
-use Magento\Quote\Api\Data\CartInterface;
 use Nextouch\FastEst\Api\AppointmentRepositoryInterface;
+use Nextouch\FastEst\Model\Appointment\CartInformation;
 use Nextouch\FastEst\Model\Appointment\SlotRequest;
 use Nextouch\FastEst\Model\Common\Login;
 use Nextouch\FastEst\Model\Request\Appointment\GetAvailableSlotList as GetAvailableSlotListRequest;
@@ -12,7 +12,7 @@ use Nextouch\FastEst\Model\Response\Appointment\GetAvailableSlotList as GetAvail
 
 class AppointmentRepository extends AbstractBaseRepository implements AppointmentRepositoryInterface
 {
-    public function getAvailableSlots(CartInterface $cart): GetAvailableSlotListResponse
+    public function getAvailableSlots(CartInformation $cart): GetAvailableSlotListResponse
     {
         $username = $this->config->getUsername($this->scopeCode);
         $password = $this->config->getPassword($this->scopeCode);

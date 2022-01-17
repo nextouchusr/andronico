@@ -52,66 +52,105 @@ class Store implements OutputInterface
         $this->billingEmail = $billingEmail;
     }
 
+    /**
+     * @return int
+     */
     public function getStoreId(): int
     {
         return $this->storeId;
     }
 
+    /**
+     * @return int
+     */
     public function getChainId(): int
     {
         return $this->chainId;
     }
 
+    /**
+     * @return int
+     */
     public function getHeadquarterId(): int
     {
         return $this->headquarterId;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
+    /**
+     * @return string
+     */
     public function getAddress(): string
     {
         return $this->address;
     }
 
+    /**
+     * @return string
+     */
     public function getCity(): string
     {
         return $this->city;
     }
 
+    /**
+     * @return string
+     */
     public function getCap(): string
     {
         return $this->cap;
     }
 
+    /**
+     * @return string
+     */
     public function getProvince(): string
     {
         return $this->province;
     }
 
+    /**
+     * @return string
+     */
     public function getPhone1(): string
     {
         return $this->phone1;
     }
 
+    /**
+     * @return string
+     */
     public function getPhone2(): string
     {
         return $this->phone2;
     }
 
+    /**
+     * @return string
+     */
     public function getFax(): string
     {
         return $this->fax;
     }
 
+    /**
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
+    /**
+     * @return string
+     */
     public function getBillingEmail(): string
     {
         return $this->billingEmail;

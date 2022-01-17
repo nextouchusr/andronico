@@ -25,14 +25,20 @@ class GetHeadquarterList implements OutputInterface
         $this->headquarters = new Collection(Headquarter::class, $headquarters);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getHeadquarters(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Directory\Headquarter[]
+     */
+    public function getHeadquarters(): array
     {
-        return $this->headquarters;
+        return $this->headquarters->toArray();
     }
 
     /**

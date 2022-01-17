@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Api;
 
-use Collections\Exceptions\InvalidArgumentException;
-use Magento\Quote\Api\Data\CartInterface;
+use Nextouch\FastEst\Model\Appointment\CartInformation;
 use Nextouch\FastEst\Model\Response\Appointment\GetAvailableSlotList;
 
 /**
@@ -13,7 +12,10 @@ use Nextouch\FastEst\Model\Response\Appointment\GetAvailableSlotList;
 interface AppointmentRepositoryInterface
 {
     /**
-     * @throws InvalidArgumentException
+     * @param \Nextouch\FastEst\Model\Appointment\CartInformation $cart
+     * @return \Nextouch\FastEst\Model\Response\Appointment\GetAvailableSlotList
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Collections\Exceptions\InvalidArgumentException
      */
-    public function getAvailableSlots(CartInterface $cart): GetAvailableSlotList;
+    public function getAvailableSlots(CartInformation $cart): GetAvailableSlotList;
 }

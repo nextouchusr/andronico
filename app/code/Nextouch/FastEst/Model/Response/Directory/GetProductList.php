@@ -25,14 +25,20 @@ class GetProductList implements OutputInterface
         $this->products = new Collection(Product::class, $products);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getProducts(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Directory\Product[]
+     */
+    public function getProducts(): array
     {
-        return $this->products;
+        return $this->products->toArray();
     }
 
     /**

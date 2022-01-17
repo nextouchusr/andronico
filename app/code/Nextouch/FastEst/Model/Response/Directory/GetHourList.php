@@ -25,14 +25,20 @@ class GetHourList implements OutputInterface
         $this->hours = new Collection(Hour::class, $hours);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getHours(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Directory\Hour[]
+     */
+    public function getHours(): array
     {
-        return $this->hours;
+        return $this->hours->toArray();
     }
 
     /**

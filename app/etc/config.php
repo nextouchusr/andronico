@@ -472,6 +472,7 @@ return [
         'Klarna_KpGraphQl' => 1,
         'Nextouch_Eav' => 1,
         'Nextouch_CatalogRule' => 1,
+        'Nextouch_Checkout' => 1,
         'Nextouch_Customer' => 1,
         'Nextouch_Catalog' => 1,
         'Nextouch_Sales' => 1,

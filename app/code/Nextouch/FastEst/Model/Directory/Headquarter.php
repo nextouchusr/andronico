@@ -55,71 +55,113 @@ class Headquarter implements OutputInterface
         $this->waybillReport = $waybillReport;
     }
 
+    /**
+     * @return int
+     */
     public function getHeadquarterId(): int
     {
         return $this->headquarterId;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
+    /**
+     * @return string
+     */
     public function getAddress(): string
     {
         return $this->address;
     }
 
+    /**
+     * @return string
+     */
     public function getCity(): string
     {
         return $this->city;
     }
 
+    /**
+     * @return string
+     */
     public function getCap(): string
     {
         return $this->cap;
     }
 
+    /**
+     * @return string
+     */
     public function getProvince(): string
     {
         return $this->province;
     }
 
+    /**
+     * @return string
+     */
     public function getPhone1(): string
     {
         return $this->phone1;
     }
 
+    /**
+     * @return string
+     */
     public function getPhone2(): string
     {
         return $this->phone2;
     }
 
+    /**
+     * @return string
+     */
     public function getFax(): string
     {
         return $this->fax;
     }
 
+    /**
+     * @return string
+     */
     public function getVatId(): string
     {
         return $this->vatId;
     }
 
+    /**
+     * @return string
+     */
     public function getEmail(): string
     {
         return $this->email;
     }
 
+    /**
+     * @return string
+     */
     public function getBillingEmail(): string
     {
         return $this->billingEmail;
     }
 
+    /**
+     * @return bool
+     */
     public function isTractionEnable(): bool
     {
         return $this->tractionEnable;
     }
 
+    /**
+     * @return string
+     */
     public function getWaybillReport(): string
     {
         return $this->waybillReport;

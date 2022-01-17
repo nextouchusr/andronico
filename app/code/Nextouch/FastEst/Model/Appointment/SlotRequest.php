@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Model\Appointment;
 
-use Magento\Quote\Api\Data\CartInterface;
 use Nextouch\FastEst\Api\Data\InputInterface;
 use Nextouch\FastEst\Model\Directory\Place;
 
@@ -80,12 +79,12 @@ class SlotRequest implements InputInterface
         return $this->usedPick;
     }
 
-    public static function fromDomain(CartInterface $cart): self
+    public static function fromDomain(CartInformation $cart): self
     {
         return new self(
             TimeSlotRange::fromToday(),
-            '95127', // TODO: replace with customer post code
-            (int) $cart->getItemsQty(),
+            $cart->getCustomerPostCode(),
+            $cart->getQuantity(),
             Place::STORE
         );
     }
