@@ -30,9 +30,9 @@ class InsertNewDelivery implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getDeliveryReturns(): Collection
+    public function getDeliveryReturns(): array
     {
-        return $this->deliveryReturns;
+        return $this->deliveryReturns->toArray();
     }
 
     /**

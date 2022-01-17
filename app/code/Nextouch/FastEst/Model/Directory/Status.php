@@ -17,11 +17,17 @@ class Status implements OutputInterface
         $this->description = $description;
     }
 
+    /**
+     * @return int
+     */
     public function getStatusId(): int
     {
         return $this->statusId;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription(): string
     {
         return $this->description;

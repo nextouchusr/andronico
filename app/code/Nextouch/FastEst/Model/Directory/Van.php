@@ -37,41 +37,65 @@ class Van implements OutputInterface
         $this->helpLoginId = $helpLoginId;
     }
 
+    /**
+     * @return int
+     */
     public function getVanId(): int
     {
         return $this->vanId;
     }
 
+    /**
+     * @return int
+     */
     public function getHeadquarterId(): int
     {
         return $this->headquarterId;
     }
 
+    /**
+     * @return string
+     */
     public function getPlate(): string
     {
         return $this->plate;
     }
 
+    /**
+     * @return string
+     */
     public function getBrand(): string
     {
         return $this->brand;
     }
 
+    /**
+     * @return string
+     */
     public function getModel(): string
     {
         return $this->model;
     }
 
+    /**
+     * @return string
+     */
     public function getPhone(): string
     {
         return $this->phone;
     }
 
+    /**
+     * @return int
+     */
     public function getDriveLoginId(): int
     {
         return $this->driveLoginId;
     }
 
+    /**
+     * @return int
+     */
     public function getHelpLoginId(): int
     {
         return $this->helpLoginId;

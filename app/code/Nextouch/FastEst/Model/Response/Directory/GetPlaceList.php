@@ -25,14 +25,20 @@ class GetPlaceList implements OutputInterface
         $this->places = new Collection(Place::class, $places);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getPlaces(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Directory\Place[]
+     */
+    public function getPlaces(): array
     {
-        return $this->places;
+        return $this->places->toArray();
     }
 
     /**

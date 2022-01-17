@@ -6,7 +6,7 @@ namespace Nextouch\FastEst\Model\Appointment;
 use Nextouch\FastEst\Api\Data\OutputInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
-class SlotResponse implements OutputInterface, \JsonSerializable
+class SlotResponse implements OutputInterface
 {
     private string $date;
     private string $timeSlot;
@@ -19,16 +19,25 @@ class SlotResponse implements OutputInterface, \JsonSerializable
         $this->slotsNumber = $slotsNumber;
     }
 
+    /**
+     * @return string
+     */
     public function getDate(): string
     {
         return $this->date;
     }
 
+    /**
+     * @return string
+     */
     public function getTimeSlot(): string
     {
         return $this->timeSlot;
     }
 
+    /**
+     * @return int
+     */
     public function getSlotsNumber(): int
     {
         return $this->slotsNumber;
@@ -43,14 +52,5 @@ class SlotResponse implements OutputInterface, \JsonSerializable
         $slotsNumber = (int) $propertyAccessor->getValue($object, 'slots_number');
 
         return new self($date, $timeSlot, $slotsNumber);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return [
-            'date' => $this->getDate(),
-            'time_slot' => $this->getTimeSlot(),
-            'slots_number' => $this->getSlotsNumber(),
-        ];
     }
 }

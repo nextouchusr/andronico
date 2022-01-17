@@ -25,14 +25,20 @@ class GetVanList implements OutputInterface
         $this->vans = new Collection(Van::class, $vans);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getVans(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Directory\Van[]
+     */
+    public function getVans(): array
     {
-        return $this->vans;
+        return $this->vans->toArray();
     }
 
     /**

@@ -25,14 +25,20 @@ class GetStoreList implements OutputInterface
         $this->stores = new Collection(Store::class, $stores);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getStores(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Directory\Store[]
+     */
+    public function getStores(): array
     {
-        return $this->stores;
+        return $this->stores->toArray();
     }
 
     /**

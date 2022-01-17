@@ -17,11 +17,17 @@ class Hour implements OutputInterface
         $this->description = $description;
     }
 
+    /**
+     * @return int
+     */
     public function getHourId(): int
     {
         return $this->hourId;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription(): string
     {
         return $this->description;

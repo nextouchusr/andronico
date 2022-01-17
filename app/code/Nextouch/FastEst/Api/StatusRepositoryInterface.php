@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Api;
 
-use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Model\Response\Directory\GetStatusList;
 
 /**
@@ -12,7 +11,8 @@ use Nextouch\FastEst\Model\Response\Directory\GetStatusList;
 interface StatusRepositoryInterface
 {
     /**
-     * @throws InvalidArgumentException
+     * @return \Nextouch\FastEst\Model\Response\Directory\GetStatusList
+     * @throws \Collections\Exceptions\InvalidArgumentException
      */
     public function getAll(): GetStatusList;
 }

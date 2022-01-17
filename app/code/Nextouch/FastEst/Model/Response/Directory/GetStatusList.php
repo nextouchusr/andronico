@@ -25,14 +25,20 @@ class GetStatusList implements OutputInterface
         $this->statuses = new Collection(Status::class, $statuses);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getStatuses(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Directory\Status[]
+     */
+    public function getStatuses(): array
     {
-        return $this->statuses;
+        return $this->statuses->toArray();
     }
 
     /**

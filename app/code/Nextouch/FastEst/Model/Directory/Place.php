@@ -20,11 +20,17 @@ class Place implements OutputInterface
         $this->description = $description;
     }
 
+    /**
+     * @return int
+     */
     public function getPlaceId(): int
     {
         return $this->placeId;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription(): string
     {
         return $this->description;

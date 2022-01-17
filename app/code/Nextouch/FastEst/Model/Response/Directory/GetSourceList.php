@@ -25,14 +25,20 @@ class GetSourceList implements OutputInterface
         $this->sources = new Collection(Source::class, $sources);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getSources(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Directory\Source[]
+     */
+    public function getSources(): array
     {
-        return $this->sources;
+        return $this->sources->toArray();
     }
 
     /**

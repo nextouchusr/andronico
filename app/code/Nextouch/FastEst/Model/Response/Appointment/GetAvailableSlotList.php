@@ -25,14 +25,20 @@ class GetAvailableSlotList implements OutputInterface
         $this->slotResponse = new Collection(SlotResponse::class, $slotResponse);
     }
 
+    /**
+     * @return \Nextouch\FastEst\Model\Common\StatusReturn
+     */
     public function getStatusReturn(): StatusReturn
     {
         return $this->statusReturn;
     }
 
-    public function getSlotResponse(): Collection
+    /**
+     * @return \Nextouch\FastEst\Model\Appointment\SlotResponse[]
+     */
+    public function getSlotResponse(): array
     {
-        return $this->slotResponse;
+        return $this->slotResponse->toArray();
     }
 
     /**

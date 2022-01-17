@@ -17,11 +17,17 @@ class Source implements OutputInterface
         $this->description = $description;
     }
 
+    /**
+     * @return int
+     */
     public function getSourceId(): int
     {
         return $this->sourceId;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription(): string
     {
         return $this->description;
