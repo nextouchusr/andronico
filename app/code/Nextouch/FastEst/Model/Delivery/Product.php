@@ -81,12 +81,12 @@ class Product implements InputInterface, OutputInterface
         Assert::notNull($product);
 
         return new self(
-            $product->getFastEstTypeId(),
+            $product->getFastEstType(),
             (int) $shipmentItem->getQty(),
             $product->getBrandDescription(),
             $product->getName(),
             10, // TODO: replace mock data
-            $product->getFastEstTypeId(),
+            $product->getFastEstType(),
             ServiceList::fromDomain($orderItem)
         );
     }

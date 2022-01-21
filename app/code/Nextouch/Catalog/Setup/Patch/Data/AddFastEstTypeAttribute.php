@@ -3,15 +3,17 @@ declare(strict_types=1);
 
 namespace Nextouch\Catalog\Setup\Patch\Data;
 
-use Magento\Catalog\Api\Data\CategoryAttributeInterface;
+use Magento\Catalog\Api\Data\ProductAttributeInterface;
+use Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use Nextouch\Catalog\Api\Data\CategoryInterface;
+use Nextouch\Catalog\Api\Data\ProductInterface;
+use Nextouch\Catalog\Model\Config\Product\FastEstTypes;
 
-class AddExternalCategoryIdAttribute implements DataPatchInterface
+class AddFastEstTypeAttribute implements DataPatchInterface
 {
     private ModuleDataSetupInterface $moduleDataSetup;
     private EavSetupFactory $eavSetupFactory;
@@ -40,19 +42,24 @@ class AddExternalCategoryIdAttribute implements DataPatchInterface
      */
     public function apply(): self
     {
-        $categorySetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
+        $productSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
 
-        $categorySetup->addAttribute(
-            CategoryAttributeInterface::ENTITY_TYPE_CODE,
-            CategoryInterface::EXTERNAL_CATEGORY_ID,
+        $productSetup->addAttribute(
+            ProductAttributeInterface::ENTITY_TYPE_CODE,
+            ProductInterface::FAST_EST_TYPE,
             [
-                'group' => 'General Information',
-                'type' => 'varchar',
-                'label' => 'External Category ID',
-                'input' => 'text',
-                'visible' => true,
+                'group' => 'Product Details',
+                'type' => 'int',
+                'label' => 'Fast-Est Type',
+                'input' => 'select',
+                'source' => FastEstTypes::class,
+                'backend' => ArrayBackend::class,
                 'required' => false,
+                'sort_order' => 30,
                 'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
+                'user_defined' => true,
+                'visible' => true,
+                'default' => ProductInterface::DEFAULT_FAST_EST_TYPE,
             ]
         );
 
