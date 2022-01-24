@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a5c88ba249b9bbb6d3476a85bed0d98",
+    "content-hash": "e996ab1aff74612fef0b7d905f51b996",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -109,10 +109,10 @@
         },
         {
             "name": "amasty/base",
-            "version": "1.12.15",
+            "version": "1.12.19",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/base-1.12.15-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/base-1.12.19-ee.zip"
             },
             "require": {
                 "php": "^7.3.0"
@@ -325,13 +325,13 @@
         },
         {
             "name": "amasty/module-advanced-conditions",
-            "version": "1.5.3",
+            "version": "1.5.4",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/module-advanced-conditions-1.5.3-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/module-advanced-conditions-1.5.4-ee.zip"
             },
             "require": {
-                "amasty/base": ">=1.4.7",
+                "amasty/base": ">=1.12.19",
                 "php": "^7.3.0"
             },
             "type": "magento2-module",
@@ -347,6 +347,31 @@
                 "Commercial"
             ],
             "description": "Advanced Conditions by Amasty"
+        },
+        {
+            "name": "amasty/module-banners-lite",
+            "version": "1.0.19",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-banners-lite-1.0.19-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.19",
+                "php": "^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\BannersLite\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Promo Banners Lite by Amasty"
         },
         {
             "name": "amasty/module-elastic-search",
@@ -459,6 +484,32 @@
             ],
             "description": "Mega Menu Lite by Amasty",
             "homepage": "https://amasty.com/"
+        },
+        {
+            "name": "amasty/module-salesrulewizard",
+            "version": "1.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-salesrulewizard-1.0.3-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.19",
+                "amasty/promo": ">=2.11.0",
+                "php": "^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\SalesRuleWizard\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Sales Rule Wizard by Amasty"
         },
         {
             "name": "amasty/module-shipping-calculator",
@@ -593,6 +644,63 @@
             "description": "Brand Graphql By Amasty"
         },
         {
+            "name": "amasty/module-special-promo",
+            "version": "2.9.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-special-promo-2.9.1-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.19",
+                "amasty/module-banners-lite": ">=1.0.19",
+                "amasty/rgrid": ">=1.0.7",
+                "php": "^7.3.0"
+            },
+            "suggest": {
+                "amasty/module-special-promo-mftf-2": "Install module-special-promo-mftf-2 module to be able to run Special Promotions MFTF tests for Magento 2.3.5+ version.",
+                "amasty/module-special-promo-mftf-3": "Install module-special-promo-mftf-3 module to be able to run Special Promotions MFTF tests for Magento 2.4.0+ version."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Rules\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Special Promotions by Amasty"
+        },
+        {
+            "name": "amasty/module-special-promo-pro",
+            "version": "2.8.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/module-special-promo-pro-2.8.5-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.19",
+                "amasty/module-special-promo": ">=2.9.1",
+                "php": "^7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\RulesPro\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Special Promotions Pro by Amasty"
+        },
+        {
             "name": "amasty/module-store-pickup",
             "version": "1.0.3",
             "dist": {
@@ -645,6 +753,64 @@
                 "Commercial"
             ],
             "description": "Order Attributes by Amasty"
+        },
+        {
+            "name": "amasty/promo",
+            "version": "2.11.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/promo-2.11.0-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.19",
+                "amasty/module-advanced-conditions": ">=1.5.4",
+                "amasty/module-banners-lite": ">=1.0.19",
+                "amasty/module-salesrulewizard": ">=1.0.3",
+                "amasty/rgrid": ">=1.0.7",
+                "php": "^7.3.0"
+            },
+            "suggest": {
+                "amasty/module-promo-mftf-2": "Install module-promo-mftf-2 module to be able to run Free Gift MFTF tests for Magento 2.3.5+ version.",
+                "amasty/module-promo-mftf-3": "Install module-promo-mftf-3 module to be able to run Free Gift MFTF tests for Magento 2.4.0+ version."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Promo\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Free Gift by Amasty"
+        },
+        {
+            "name": "amasty/rgrid",
+            "version": "1.0.7",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/rgrid-1.0.7-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.12.19",
+                "php": "~5.6.5|7.0.2|7.0.4|~7.0.6|^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Rgrid\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Extended Rules Grid by Amasty"
         },
         {
             "name": "amasty/shiprestriction",
