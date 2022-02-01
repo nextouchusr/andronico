@@ -10,7 +10,6 @@ use Nextouch\FastEst\Model\Common\Login;
 use Nextouch\FastEst\Model\Delivery\Customer;
 use Nextouch\FastEst\Model\Delivery\DeliveryBase;
 use Nextouch\FastEst\Model\Delivery\Product;
-use function Lambdish\Phunctional\map;
 
 class InsertNewDelivery implements InputInterface
 {
@@ -60,7 +59,7 @@ class InsertNewDelivery implements InputInterface
         $object->login = $this->getLogin()->asObject();
         $object->customer = $this->getCustomer()->asObject();
         $object->delivery_base = $this->getDeliveryBase()->asObject();
-        $object->products = map(fn(Product $item) => $item->asObject(), $this->getProducts());
+        $object->products = $this->products->map(fn(Product $item) => $item->asObject())->toArray();
 
         return $object;
     }
