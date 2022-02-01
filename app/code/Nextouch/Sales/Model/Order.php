@@ -13,11 +13,9 @@ use Nextouch\Sales\Model\ResourceModel\Order\Item\CollectionFactory as ItemColle
 
 class Order extends \Magento\Sales\Model\Order implements OrderInterface
 {
-    public function isShippedBy(string $carrierCode): bool
+    public function isShippedBy(string $shippingMethod): bool
     {
-        $shippingMethod = $this->getShippingMethod(true);
-
-        return $shippingMethod->getData(ShippingMethodInterface::KEY_CARRIER_CODE) === $carrierCode;
+        return $this->getShippingMethod() === $shippingMethod;
     }
 
     public function getShippingAddress(): ?OrderAddressInterface

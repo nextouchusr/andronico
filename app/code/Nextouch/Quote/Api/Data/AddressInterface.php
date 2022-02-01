@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Nextouch\Sales\Api\Data;
+namespace Nextouch\Quote\Api\Data;
 
 /**
  * @api
  */
-interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInterface
+interface AddressInterface extends \Magento\Quote\Api\Data\AddressInterface
 {
     public const PEC = 'pec';
     public const SDI_CODE = 'sdi_code';
@@ -21,31 +21,11 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
     /**
      * @return string
      */
-    public function getStreetAsLine(): string;
-
-    /**
-     * @return string
-     */
-    public function getRegionCode(): string;
-
-    /**
-     * @return string
-     */
-    public function getPostcode(): string;
-
-    /**
-     * @return bool
-     */
-    public function isCompany(): bool;
-
-    /**
-     * @return string
-     */
     public function getPec(): string;
 
     /**
      * @param string $pec
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setPec(string $pec): self;
 
@@ -56,7 +36,7 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
 
     /**
      * @param string $sdiCode
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setSdiCode(string $sdiCode): self;
 
@@ -67,7 +47,7 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
 
     /**
      * @param string $invoiceType
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setInvoiceType(string $invoiceType): self;
 
@@ -78,7 +58,7 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
 
     /**
      * @param string $mobilePhone
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setMobilePhone(string $mobilePhone): self;
 
@@ -89,7 +69,7 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
 
     /**
      * @param string $fiscalCode
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setFiscalCode(string $fiscalCode): self;
 
@@ -100,7 +80,7 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
 
     /**
      * @param bool $limitedTrafficZone
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setLimitedTrafficZone(bool $limitedTrafficZone): self;
 
@@ -111,7 +91,7 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
 
     /**
      * @param int $floor
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setFloor(int $floor): self;
 
@@ -122,7 +102,7 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
 
     /**
      * @param bool $stair
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setStair(bool $stair): self;
 
@@ -133,12 +113,7 @@ interface OrderAddressInterface extends \Magento\Sales\Api\Data\OrderAddressInte
 
     /**
      * @param bool $lift
-     * @return OrderAddressInterface
+     * @return AddressInterface
      */
     public function setLift(bool $lift): self;
-
-    /**
-     * @return string
-     */
-    public function getVatId(): string;
 }

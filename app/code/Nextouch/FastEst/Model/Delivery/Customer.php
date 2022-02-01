@@ -10,6 +10,7 @@ class Customer implements InputInterface
 {
     private string $name;
     private string $surname;
+    private ?string $company;
     private string $address;
     private string $province;
     private string $city;
@@ -21,11 +22,13 @@ class Customer implements InputInterface
     private string $email;
     private string $phone;
     private string $mobilePhone;
+    private string $fiscalCode;
     private string $vatId;
 
     private function __construct(
         string $name,
         string $surname,
+        ?string $company,
         string $address,
         string $province,
         string $city,
@@ -37,10 +40,12 @@ class Customer implements InputInterface
         string $email,
         string $phone,
         string $mobilePhone,
+        string $fiscalCode,
         string $vatId
     ) {
         $this->name = $name;
         $this->surname = $surname;
+        $this->company = $company;
         $this->address = $address;
         $this->province = $province;
         $this->city = $city;
@@ -52,6 +57,7 @@ class Customer implements InputInterface
         $this->email = $email;
         $this->phone = $phone;
         $this->mobilePhone = $mobilePhone;
+        $this->fiscalCode = $fiscalCode;
         $this->vatId = $vatId;
     }
 
@@ -63,6 +69,16 @@ class Customer implements InputInterface
     public function getSurname(): string
     {
         return $this->surname;
+    }
+
+    public function getCompany(): ?string
+    {
+        return $this->company;
+    }
+
+    public function isCompany(): bool
+    {
+        return $this->getCompany() !== null;
     }
 
     public function getAddress(): string
@@ -90,17 +106,17 @@ class Customer implements InputInterface
         return $this->floor;
     }
 
-    public function isLimitedTrafficZone(): bool
+    public function getLimitedTrafficZone(): bool
     {
         return $this->limitedTrafficZone;
     }
 
-    public function hasStair(): bool
+    public function getStair(): bool
     {
         return $this->stair;
     }
 
-    public function hasLift(): bool
+    public function getLift(): bool
     {
         return $this->lift;
     }
@@ -120,6 +136,11 @@ class Customer implements InputInterface
         return $this->mobilePhone;
     }
 
+    public function getFiscalCode(): string
+    {
+        return $this->fiscalCode;
+    }
+
     public function getVatId(): string
     {
         return $this->vatId;
@@ -130,17 +151,19 @@ class Customer implements InputInterface
         return new self(
             $address->getFirstname(),
             $address->getLastname(),
+            $address->getCompany(),
             $address->getStreetAsLine(),
             $address->getRegionCode(),
             $address->getCity(),
             $address->getPostcode(),
             $address->getFloor(),
-            $address->isLimitedTrafficZone(),
-            $address->hasStair(),
-            $address->hasLift(),
+            $address->getLimitedTrafficZone(),
+            $address->getStair(),
+            $address->getLift(),
             $address->getEmail(),
             $address->getTelephone(),
             $address->getMobilePhone(),
+            $address->getFiscalCode(),
             $address->getVatId()
         );
     }
@@ -148,20 +171,26 @@ class Customer implements InputInterface
     public function asObject(): \stdClass
     {
         $object = new \stdClass();
-        $object->customer_name = $this->getName();
-        $object->customer_surname = $this->getSurname();
         $object->customer_address = $this->getAddress();
         $object->customer_province = $this->getProvince();
         $object->customer_city = $this->getCity();
         $object->customer_cap = $this->getPostCode();
         $object->customer_floor = $this->getFloor();
-        $object->customer_ztl = (int) $this->isLimitedTrafficZone();
-        $object->customer_stair = (int) $this->hasStair();
-        $object->customer_lift = (int) $this->hasLift();
+        $object->customer_ztl = (int) $this->getLimitedTrafficZone();
+        $object->customer_stair = (int) $this->getStair();
+        $object->customer_lift = (int) $this->getLift();
         $object->customer_email = $this->getEmail();
         $object->customer_tel = $this->getPhone();
         $object->customer_cell = $this->getMobilePhone();
-        $object->customer_codfis = $this->getVatId();
+
+        if ($this->isCompany()) {
+            $object->customer_surname = $this->getCompany();
+            $object->customer_codfis = $this->getVatId();
+        } else {
+            $object->customer_name = $this->getName();
+            $object->customer_surname = $this->getSurname();
+            $object->customer_codfis = $this->getFiscalCode();
+        }
 
         return $object;
     }

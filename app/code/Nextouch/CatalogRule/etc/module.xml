@@ -5,6 +5,8 @@
         <sequence>
             <module name="Magento_CatalogRule"/>
             <module name="Magento_CatalogRuleStaging"/>
+            <module name="Nextouch_Catalog"/>
+            <module name="Nextouch_Customer"/>
         </sequence>
     </module>
 </config>

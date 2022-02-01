@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Observer;
 
+use Collections\Exceptions\InvalidArgumentException;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Api\Data\ShipmentInterface;
@@ -24,6 +25,9 @@ class CreateNewDelivery implements ObserverInterface
         $this->shipmentCollectionFactory = $shipmentCollectionFactory;
     }
 
+    /**
+     * @throws InvalidArgumentException
+     */
     public function execute(Observer $observer): void
     {
         /** @var ShipmentInterface $shipment */
@@ -32,7 +36,7 @@ class CreateNewDelivery implements ObserverInterface
         /** @var FastEstShipmentInterface $fastEstShipment */
         $fastEstShipment = $this->shipmentCollectionFactory->create()->getItemById($shipment->getEntityId());
 
-        if (!$fastEstShipment->getOrder()->isShippedBy(FastEst::CODE)) {
+        if (!$fastEstShipment->getOrder()->isShippedBy(FastEst::SHIPPING_METHOD)) {
             return;
         }
 

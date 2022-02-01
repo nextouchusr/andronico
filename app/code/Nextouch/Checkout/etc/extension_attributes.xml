@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Quote\Api\Data\AddressInterface">
+        <attribute code="pec" type="string"/>
+        <attribute code="sdi_code" type="string"/>
+        <attribute code="invoice_type" type="string"/>
+        <attribute code="mobile_phone" type="string"/>
+        <attribute code="fiscal_code" type="string"/>
+    </extension_attributes>
+</config>

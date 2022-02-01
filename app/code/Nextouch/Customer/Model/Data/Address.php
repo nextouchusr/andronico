@@ -7,6 +7,47 @@ use Nextouch\Customer\Api\Data\AddressInterface;
 
 class Address extends \Magento\Customer\Model\Data\Address implements AddressInterface
 {
+    public function isCompany(): bool
+    {
+        return $this->getCompany() !== null;
+    }
+
+    public function getPec(): string
+    {
+        return (string) $this->_get(self::PEC);
+    }
+
+    public function setPec(string $pec): self
+    {
+        $this->setData(self::PEC, $pec);
+
+        return $this;
+    }
+
+    public function getSdiCode(): string
+    {
+        return (string) $this->_get(self::SDI_CODE);
+    }
+
+    public function setSdiCode(string $sdiCode): self
+    {
+        $this->setData(self::SDI_CODE, $sdiCode);
+
+        return $this;
+    }
+
+    public function getInvoiceType(): string
+    {
+        return (string) $this->_get(self::INVOICE_TYPE);
+    }
+
+    public function setInvoiceType(string $invoiceType): self
+    {
+        $this->setData(self::INVOICE_TYPE, $invoiceType);
+
+        return $this;
+    }
+
     public function getMobilePhone(): string
     {
         return (string) $this->_get(self::MOBILE_PHONE);
@@ -19,7 +60,19 @@ class Address extends \Magento\Customer\Model\Data\Address implements AddressInt
         return $this;
     }
 
-    public function isLimitedTrafficZone(): bool
+    public function getFiscalCode(): string
+    {
+        return (string) $this->_get(self::FISCAL_CODE);
+    }
+
+    public function setFiscalCode(string $fiscalCode): self
+    {
+        $this->setData(self::FISCAL_CODE, $fiscalCode);
+
+        return $this;
+    }
+
+    public function getLimitedTrafficZone(): bool
     {
         return (bool) $this->_get(self::LIMITED_TRAFFIC_ZONE);
     }
@@ -43,7 +96,7 @@ class Address extends \Magento\Customer\Model\Data\Address implements AddressInt
         return $this;
     }
 
-    public function hasStair(): bool
+    public function getStair(): bool
     {
         return (bool) $this->_get(self::STAIR);
     }
@@ -55,7 +108,7 @@ class Address extends \Magento\Customer\Model\Data\Address implements AddressInt
         return $this;
     }
 
-    public function hasLift(): bool
+    public function getLift(): bool
     {
         return (bool) $this->_get(self::LIFT);
     }
