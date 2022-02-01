@@ -7,13 +7,12 @@ use Magento\Customer\Api\AddressMetadataInterface;
 use Magento\Customer\Model\ResourceModel\Attribute as AttributeResourceModel;
 use Magento\Customer\Setup\CustomerSetupFactory;
 use Magento\Eav\Api\Data\AttributeSetInterfaceFactory;
-use Magento\Eav\Model\Entity\Attribute\Source\Boolean;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Nextouch\Customer\Api\Data\AddressInterface;
 
-class AddStairAttribute implements DataPatchInterface
+class AddPecAttribute implements DataPatchInterface
 {
     private ModuleDataSetupInterface $moduleDataSetup;
     private CustomerSetupFactory $customerSetupFactory;
@@ -58,18 +57,17 @@ class AddStairAttribute implements DataPatchInterface
 
         $customerSetup->addAttribute(
             AddressMetadataInterface::ENTITY_TYPE_ADDRESS,
-            AddressInterface::STAIR,
+            AddressInterface::PEC,
             [
-                'type' => 'int',
-                'label' => 'Stair',
-                'input' => 'boolean',
-                'source' => Boolean::class,
+                'type' => 'varchar',
+                'label' => 'PEC',
+                'input' => 'text',
                 'required' => false,
-                'sort_order' => 150,
-                'position' => 150,
+                'sort_order' => 65,
+                'position' => 65,
                 'visible' => true,
                 'visible_on_front' => true,
-                'default' => false,
+                'default' => '',
                 'user_defined' => true,
                 'system' => false,
             ]
@@ -77,7 +75,7 @@ class AddStairAttribute implements DataPatchInterface
 
         $attribute = $customerSetup
             ->getEavConfig()
-            ->getAttribute(AddressMetadataInterface::ENTITY_TYPE_ADDRESS, AddressInterface::STAIR)
+            ->getAttribute(AddressMetadataInterface::ENTITY_TYPE_ADDRESS, AddressInterface::PEC)
             ->addData([
                 'attribute_set_id' => $attributeSetId,
                 'attribute_group_id' => $attributeGroupId,

@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 class FastEst extends AbstractCarrier implements CarrierInterface
 {
     public const CODE = 'fast_est';
+    public const SHIPPING_METHOD = 'fast_est_fast_est';
 
     protected $_code = self::CODE;
     protected $_isFixed = true;

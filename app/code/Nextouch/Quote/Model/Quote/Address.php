@@ -1,32 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Nextouch\Sales\Model\Order;
+namespace Nextouch\Quote\Model\Quote;
 
-use Nextouch\Sales\Api\Data\OrderAddressInterface;
+use Nextouch\Quote\Api\Data\AddressInterface;
 
-class Address extends \Magento\Sales\Model\Order\Address implements OrderAddressInterface
+class Address extends \Magento\Quote\Model\Quote\Address implements AddressInterface
 {
-    public function getStreetAsLine(): string
-    {
-        return $this->getStreetLine(1);
-    }
-
-    public function getRegionCode(): string
-    {
-        return (string) parent::getRegionCode();
-    }
-
-    public function getPostcode(): string
-    {
-        return (string) $this->getData(self::POSTCODE);
-    }
-
-    public function isCompany(): bool
-    {
-        return $this->getCompany() !== null;
-    }
-
     public function getPec(): string
     {
         return (string) $this->getData(self::PEC);
@@ -133,10 +113,5 @@ class Address extends \Magento\Sales\Model\Order\Address implements OrderAddress
         $this->setData(self::LIFT, $lift);
 
         return $this;
-    }
-
-    public function getVatId(): string
-    {
-        return (string) $this->getData(self::VAT_ID);
     }
 }

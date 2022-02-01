@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Api\ShippingInformationManagementInterface">
+        <plugin name="save_pec_address_field"
+                type="Nextouch\Checkout\Plugin\Model\ShippingInformation\SavePecAddressField"/>
+
+        <plugin name="save_sdi_code_address_field"
+                type="Nextouch\Checkout\Plugin\Model\ShippingInformation\SaveSdiCodeAddressField"/>
+
+        <plugin name="save_invoice_type_address_field"
+                type="Nextouch\Checkout\Plugin\Model\ShippingInformation\SaveInvoiceTypeAddressField"/>
+
+        <plugin name="save_mobile_phone_address_field"
+                type="Nextouch\Checkout\Plugin\Model\ShippingInformation\SaveMobilePhoneAddressField"/>
+
+        <plugin name="save_fiscal_code_address_field"
+                type="Nextouch\Checkout\Plugin\Model\ShippingInformation\SaveFiscalCodeAddressField"/>
+    </type>
+</config>
