@@ -24,16 +24,16 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         $address = parent::getShippingAddress();
         $addressId = $address ? $address->getId() : null;
 
-        $addressCollectionFactory = ObjectManager::getInstance()->get(AddressCollectionFactory::class);
+        $collectionFactory = ObjectManager::getInstance()->get(AddressCollectionFactory::class);
 
-        return $addressCollectionFactory->create()->getItemById((int) $addressId);
+        return $collectionFactory->create()->getItemById((int) $addressId);
     }
 
     public function getItems(): array
     {
         if (!$this->getData(self::ITEMS)) {
-            $itemCollectionFactory = ObjectManager::getInstance()->get(ItemCollectionFactory::class);
-            $items = $itemCollectionFactory
+            $collectionFactory = ObjectManager::getInstance()->get(ItemCollectionFactory::class);
+            $items = $collectionFactory
                 ->create()
                 ->addFilter(OrderItemInterface::ORDER_ID, $this->getId())
                 ->getItems();

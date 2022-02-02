@@ -20,8 +20,8 @@ class Shipment extends \Magento\Sales\Model\Order\Shipment implements ShipmentIn
             return $this->getData(self::ORDER);
         }
 
-        $orderCollectionFactory = ObjectManager::getInstance()->get(OrderCollectionFactory::class);
-        $order = $orderCollectionFactory->create()->getItemById($this->getOrderId());
+        $collectionFactory = ObjectManager::getInstance()->get(OrderCollectionFactory::class);
+        $order = $collectionFactory->create()->getItemById($this->getOrderId());
         $this->setData(self::ORDER, $order);
 
         return $order;
@@ -35,8 +35,8 @@ class Shipment extends \Magento\Sales\Model\Order\Shipment implements ShipmentIn
     public function getItems(): array
     {
         if (!$this->getData(self::ITEMS)) {
-            $itemCollectionFactory = ObjectManager::getInstance()->get(ItemCollectionFactory::class);
-            $collection = $itemCollectionFactory->create()->setShipmentFilter($this->getId());
+            $collectionFactory = ObjectManager::getInstance()->get(ItemCollectionFactory::class);
+            $collection = $collectionFactory->create()->setShipmentFilter($this->getId());
 
             if ($this->getId()) {
                 each(fn(Item $item) => $item->setShipment($this), $collection);

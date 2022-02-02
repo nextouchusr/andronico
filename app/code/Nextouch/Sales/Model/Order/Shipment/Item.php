@@ -18,9 +18,9 @@ class Item extends \Magento\Sales\Model\Order\Shipment\Item implements ShipmentI
             return $this->getData(self::SHIPMENT);
         }
 
-        $shipmentCollectionFactory = ObjectManager::getInstance()->get(ShipmentCollectionFactory::class);
+        $collectionFactory = ObjectManager::getInstance()->get(ShipmentCollectionFactory::class);
         $shipmentId = $this->_shipment ? $this->_shipment->getId() : null;
-        $shipment = $shipmentCollectionFactory->create()->getItemById((int) $shipmentId);
+        $shipment = $collectionFactory->create()->getItemById((int) $shipmentId);
         $this->setData(self::SHIPMENT, $shipment);
 
         return $shipment;
@@ -39,8 +39,8 @@ class Item extends \Magento\Sales\Model\Order\Shipment\Item implements ShipmentI
             return $orderItem;
         }
 
-        $orderItemCollectionFactory = ObjectManager::getInstance()->get(OrderItemCollectionFactory::class);
-        $orderItem = $orderItemCollectionFactory->create()->getItemById($this->getOrderItemId());
+        $collectionFactory = ObjectManager::getInstance()->get(OrderItemCollectionFactory::class);
+        $orderItem = $collectionFactory->create()->getItemById($this->getOrderItemId());
         $this->setData(self::ORDER_ITEM, $orderItem);
 
         return $orderItem;
