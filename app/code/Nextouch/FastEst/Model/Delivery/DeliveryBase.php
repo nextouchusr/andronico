@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Nextouch\FastEst\Model\Delivery;
 
 use Nextouch\FastEst\Api\Data\InputInterface;
+use Nextouch\Sales\Api\Data\ShipmentInterface;
 
 class DeliveryBase implements InputInterface
 {
@@ -79,16 +80,16 @@ class DeliveryBase implements InputInterface
     /**
      * TODO: replace mock data
      */
-    public static function fromDomain(): self
+    public static function fromDomain(ShipmentInterface $shipment): self
     {
         return new self(
             1,
             1306,
             strtoupper(uniqid()),
             0,
-            '',
-            '',
-            '',
+            $shipment->getOrder()->getDeliveryComment(),
+            $shipment->getOrder()->getDeliveryDate(),
+            $shipment->getOrder()->getDeliveryTime(),
             false
         );
     }
