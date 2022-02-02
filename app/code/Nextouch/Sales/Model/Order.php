@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace Nextouch\Sales\Model;
 
+use Amasty\Deliverydate\Api\Data\DeliverydateInterface;
+use Amasty\Deliverydate\Model\ResourceModel\Deliverydate\CollectionFactory as DeliveryInformationCollectionFactory;
 use Magento\Framework\App\ObjectManager;
-use Magento\Quote\Api\Data\ShippingMethodInterface;
 use Nextouch\Sales\Api\Data\OrderAddressInterface;
 use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
@@ -48,5 +49,35 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         $items = $this->getItems();
 
         return $items[$itemId] ?? null;
+    }
+
+    public function getDeliveryInformation(): DeliverydateInterface
+    {
+        if (!$this->getData(self::DELIVERY_INFORMATION)) {
+            $collectionFactory = ObjectManager::getInstance()->get(DeliveryInformationCollectionFactory::class);
+            $deliveryInformation = $collectionFactory
+                ->create()
+                ->addFilter(DeliverydateInterface::ORDER_ID, $this->getId())
+                ->getFirstItem();
+
+            $this->setData(self::DELIVERY_INFORMATION, $deliveryInformation);
+        }
+
+        return $this->getData(self::DELIVERY_INFORMATION);
+    }
+
+    public function getDeliveryDate(): string
+    {
+        return (string) $this->getDeliveryInformation()->getDate();
+    }
+
+    public function getDeliveryTime(): string
+    {
+        return (string) $this->getDeliveryInformation()->getTime();
+    }
+
+    public function getDeliveryComment(): string
+    {
+        return (string) $this->getDeliveryInformation()->getComment();
     }
 }

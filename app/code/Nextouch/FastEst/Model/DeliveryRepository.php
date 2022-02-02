@@ -23,7 +23,7 @@ class DeliveryRepository extends AbstractBaseRepository implements DeliveryRepos
 
         $login = new Login($username, $password);
         $customer = Customer::fromDomain($shipment->getShippingAddress());
-        $deliveryBase = DeliveryBase::fromDomain(); // TODO: pass domain object
+        $deliveryBase = DeliveryBase::fromDomain($shipment);
         $products = map(fn(ShipmentItemInterface $item) => Product::fromDomain($item), $shipment->getItems());
         $request = new InsertNewDeliveryRequest($login, $customer, $deliveryBase, $products);
 
