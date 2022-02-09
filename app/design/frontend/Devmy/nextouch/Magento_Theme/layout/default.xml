@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.panel.wrapper" remove="true"/>
+
+        <referenceContainer name="footer" htmlClass="footer content">
+            <referenceBlock name="store_switcher" remove="true"/>
+            <referenceBlock name="footer_links" remove="true"/>
+            <referenceBlock name="form.subscribe" remove="true"/>
+            <referenceBlock name="report.bugs" remove="true"/>
+
+            <container name="footer-links" htmlTag="div" htmlClass="text-center" before="-">
+                <block class="Magento\Framework\View\Element\Html\Links" name="footer.links.column1">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">footer links</argument>
+                    </arguments>
+
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="terms-and-conditions-link" before="-">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Terms and Conditions</argument>
+                            <argument name="path" xsi:type="string">terms-and-conditions</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="privacy-policy-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Privacy</argument>
+                            <argument name="path" xsi:type="string">privacy-policy</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="cookies-policy-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Cookies</argument>
+                            <argument name="path" xsi:type="string">cookies-policy</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="partner-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Partner</argument>
+                            <argument name="path" xsi:type="string">partner</argument>
+                        </arguments>
+                    </block>
+                </block>
+
+                <block class="Magento\Framework\View\Element\Html\Links" name="footer.links.column2">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">footer links</argument>
+                    </arguments>
+
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="contact/contact/enabled" name="contact-us-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
+                            <argument name="path" xsi:type="string">contact</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="help-and-advice-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Help and Advice</argument>
+                            <argument name="path" xsi:type="string">help-and-advice</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="account-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Your Account</argument>
+                            <argument name="path" xsi:type="string">customer/account</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="track-order-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Track your Order</argument>
+                            <argument name="path" xsi:type="string">track-order</argument>
+                        </arguments>
+                    </block>
+                </block>
+
+                <block class="Magento\Framework\View\Element\Html\Links" name="footer.links.column3">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">footer links</argument>
+                    </arguments>
+
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="about-us-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">About Us</argument>
+                            <argument name="path" xsi:type="string">about-us</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="find-shop-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Find a Shop Near You</argument>
+                            <argument name="path" xsi:type="string">find-shop</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="our-services-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Our Services</argument>
+                            <argument name="path" xsi:type="string">our-services</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Html\Link\Current" name="feedback-link">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">Feedback</argument>
+                            <argument name="path" xsi:type="string">feedback</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </container>
+
+            <container name="footer-social-wrapper" htmlTag="div" after="footer-links">
+                <block name="footer.social.links"
+                       class="Magento\Framework\View\Element\Template"
+                       template="Magento_Theme::html/social-links.phtml">
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

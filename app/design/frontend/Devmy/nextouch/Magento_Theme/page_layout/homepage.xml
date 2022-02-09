@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="cms-full-width"/>
+
+    <referenceContainer name="main">
+        <block class="Nextouch\Theme\Block\Pages\Homepage"
+               name="pages.homepage"
+               template="Magento_Theme::pages/homepage.phtml">
+        </block>
+    </referenceContainer>
+</layout>
