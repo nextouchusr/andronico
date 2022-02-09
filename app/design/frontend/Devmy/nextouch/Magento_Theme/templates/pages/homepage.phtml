@@ -1,0 +1,85 @@
+<?php /** @var \Nextouch\Theme\Block\Pages\Homepage $block */ ?>
+
+<div class="row text-center">
+    <div class="col-12">
+        <?= $block->getMainSlider(); ?>
+    </div>
+
+    <div class="col-12">
+        <a href="<?= $block->getDecisionTreeUrl(); ?>" class="btn btn-primary">Decision Tree</a>
+    </div>
+
+    <div class="col-12">
+        <h2><?= __('Start your search here'); ?></h2>
+    </div>
+
+    <div class="col-12">
+        <h4><?= __('Follow our directions to find the best solution for you.'); ?></h4>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <img src="<?= $block->getMainBannerImage(); ?>" alt="">
+        </div>
+    </div>
+
+    <div class="row">
+        <h2><?= __('Promotions'); ?></h2>
+
+        <div class="col-6">
+            <a href="<?= $block->getPromotionUrl1() ?>">
+                <img src="<?= $block->getPromotionImage1(); ?>" alt="">
+            </a>
+        </div>
+
+        <div class="col-6">
+            <a href="<?= $block->getPromotionUrl2() ?>">
+                <img src="<?= $block->getPromotionImage2(); ?>" alt="">
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <h2><?= __('Discover the news'); ?></h2>
+
+        <div class="col-12">
+            <?= $block->getNewsSlider(); ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <h2 class="text-center"><?= __('Offers in evidence'); ?></h2>
+
+        <div class="col-12">
+            <ul class="nav justify-content-center">
+                <?php foreach ($block->getOffersNavLinks() as $name): ?>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link"><?= $name; ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
+        <div class="col-12">
+            <?= $block->getOffersSlider(); ?>
+        </div>
+    </div>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-auto">
+            <img src="<?= $block->getViewFileUrl('Magento_Theme::images/helpdesk/assistenza.png'); ?>" width="200" alt=""/>
+        </div>
+
+        <div class="col-auto">
+            <h4 class="text-center">
+                <?= __("Our specialists always <br> at your disposal"); ?>
+            </h4>
+        </div>
+
+        <div class="col-auto">
+            <img src="<?= $block->getViewFileUrl('Magento_Theme::images/helpdesk/cuffie.svg'); ?>" width="130" alt=""/>
+        </div>
+    </div>
+</div>

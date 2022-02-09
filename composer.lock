@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e996ab1aff74612fef0b7d905f51b996",
+    "content-hash": "bb10bdcb14c65fbc62c151e2aed6e1ce",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -1193,6 +1193,48 @@
                 "source": "https://github.com/adobe/stock-api-libphp/tree/master"
             },
             "time": "2020-04-20T17:47:06+00:00"
+        },
+        {
+            "name": "avada/module-proofo",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Proofo/proofo-magento-2.git",
+                "reference": "b25831077338cac895d7403e03938606a2fadfb6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Proofo/proofo-magento-2/zipball/b25831077338cac895d7403e03938606a2fadfb6",
+                "reference": "b25831077338cac895d7403e03938606a2fadfb6",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Avada\\Proofo\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Proofo Team",
+                    "email": "proofo@avada.io",
+                    "homepage": "https://proofo.io",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Proofo Social Proof",
+            "support": {
+                "issues": "https://github.com/Proofo/proofo-magento-2/issues",
+                "source": "https://github.com/Proofo/proofo-magento-2/tree/master"
+            },
+            "time": "2020-07-02T09:11:56+00:00"
         },
         {
             "name": "aws/aws-crt-php",
@@ -22954,6 +22996,93 @@
                 "source": "https://github.com/magento/zf1/tree/1.14.5"
             },
             "time": "2020-12-02T21:12:59+00:00"
+        },
+        {
+            "name": "mageplaza/module-banner-slider",
+            "version": "4.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-banner-slider.git",
+                "reference": "40045f9f5224b94ab26e41fd082f2296af79a56b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-banner-slider/zipball/40045f9f5224b94ab26e41fd082f2296af79a56b",
+                "reference": "40045f9f5224b94ab26e41fd082f2296af79a56b",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.4.5"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\BannerSlider\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Magento 2 Banner Slider extension",
+            "support": {
+                "issues": "https://github.com/mageplaza/magento-2-banner-slider/issues",
+                "source": "https://github.com/mageplaza/magento-2-banner-slider/tree/v4.0.2"
+            },
+            "time": "2021-08-17T09:58:53+00:00"
+        },
+        {
+            "name": "mageplaza/module-core",
+            "version": "1.4.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/module-core.git",
+                "reference": "45cf1e6a79ca82acc1fe82372bbb4e83ea308b6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/45cf1e6a79ca82acc1fe82372bbb4e83ea308b6b",
+                "reference": "45cf1e6a79ca82acc1fe82372bbb4e83ea308b6b",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Mageplaza Core for Magento 2",
+            "support": {
+                "issues": "https://github.com/mageplaza/module-core/issues",
+                "source": "https://github.com/mageplaza/module-core/tree/v1.4.11"
+            },
+            "time": "2021-07-21T06:58:49+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

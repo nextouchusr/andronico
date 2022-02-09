@@ -27,6 +27,7 @@
         "amasty/promo": "^2.11",
         "amasty/shiprestriction": "^2.5",
         "amasty/shopby": "^2.17",
+        "avada/module-proofo": "^1.0",
         "community-engineering/language-it_it": "^0.0.17",
         "danielgsims/php-collections": "^2.2",
         "lambdish/phunctional": "^2.1",
@@ -35,6 +36,7 @@
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
         "magento/product-enterprise-edition": "2.4.3-p1",
+        "mageplaza/module-banner-slider": "^4.0",
         "splashlab/magento-2-cors-requests": "^100.0",
         "webmozart/assert": "^1.10"
     },
