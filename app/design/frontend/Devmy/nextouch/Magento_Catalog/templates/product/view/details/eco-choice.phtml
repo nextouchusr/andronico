@@ -1,0 +1,25 @@
+<?php /** @var \Magento\Catalog\Block\Product\View\Description $block */ ?>
+
+<div id="product-eco-choice-collapsible">
+    <div data-role="title">
+        <h2><?= __('Ecological / eco-friendly choice'); ?></h2>
+    </div>
+
+    <div data-role="content">
+        <?= $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
+            $block->getProduct(),
+            $block->getProduct()->getEcoChoice(),
+            'eco_choice'
+        ); ?>
+    </div>
+</div>
+
+<script>
+    require(['jquery', 'collapsible'], function ($) {
+        $("#product-eco-choice-collapsible").collapsible({
+            collapsible: true,
+            openedState: 'active',
+            animate: {duration: 1000, easing: 'easeInCubic'}
+        });
+    });
+</script>

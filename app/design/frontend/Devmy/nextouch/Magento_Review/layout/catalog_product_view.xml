@@ -1,7 +1,7 @@
+<?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <head>
-        <css src="css/vendor/bootstrap.css"/>
-        <css src="https://use.fontawesome.com/releases/v5.15.4/css/all.css" src_type="url"/>
-    </head>
+    <body>
+        <move element="reviews.tab" destination="content" after="product.info.details"/>
+    </body>
 </page>

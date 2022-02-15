@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist"
+                type="Nextouch\Theme\Block\Catalog\Product\View\AddTo\Wishlist"/>
+
     <type name="Amasty\MegaMenuLite\Block\Container">
         <plugin name="change_root_menu_category"
                 type="Nextouch\Theme\Plugin\Block\MegaMenuLite\ChangeRootMenuCategory"/>

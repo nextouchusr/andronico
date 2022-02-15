@@ -58,11 +58,11 @@ static: ## Run static tests on custom files
 # Debugging
 template_hints_enable: ## Enable template hints
 	php bin/magento dev:template-hints:enable
-	make refresh
+	make cache_flush
 
 template_hints_disable: ## Disable template hints
 	php bin/magento dev:template-hints:disable
-	make refresh
+	make cache_flush
 
 # Docker
 run: ## Start containers

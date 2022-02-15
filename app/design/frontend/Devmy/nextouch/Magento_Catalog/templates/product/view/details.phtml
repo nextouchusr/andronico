@@ -1,0 +1,26 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View\Details $block */
+
+$layout = $block->getLayout();
+?>
+
+<div class="product info detailed">
+    <?= $block->getChildHtml('product.info.details.gallery'); ?>
+
+    <div class="row">
+        <div class="col-6">
+            <?= $layout->renderElement('product.attributes'); ?>
+            <?= $layout->renderElement('product.info.ecoChoice'); ?>
+        </div>
+
+        <div class="col-6 mt-2">
+            <?= $layout->renderElement('product.info.description'); ?>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <?= $layout->renderElement('product.info.easeOfUse'); ?>
+        </div>
+    </div>
+</div>

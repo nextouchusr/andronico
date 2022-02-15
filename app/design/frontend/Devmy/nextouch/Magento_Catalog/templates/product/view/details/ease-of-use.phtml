@@ -1,0 +1,9 @@
+<?php /** @var \Magento\Catalog\Block\Product\View\Description $block */ ?>
+
+<div data-role="content">
+    <?= $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
+        $block->getProduct(),
+        $block->getProduct()->getEaseOfUse(),
+        'ease_of_use'
+    ); ?>
+</div>
