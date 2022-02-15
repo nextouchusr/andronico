@@ -3,103 +3,98 @@ declare(strict_types=1);
 
 namespace Nextouch\Theme\Block\Pages;
 
+use Magento\Cms\Block\BlockByIdentifier;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
-use Magento\Framework\View\Element\Template\Context;
-use Nextouch\Theme\Block\BannerSlider\Widget;
-use Nextouch\Theme\Helper\HomepageConfig;
 
 class Homepage extends Template
 {
-    private const MAIN_SLIDER_NAME = 'main_homepage_slider';
-    private const NEWS_SLIDER_NAME = 'news_homepage_slider';
-    private const OFFERS_SLIDER_NAME = 'offers_homepage_slider';
+    private const HERO_SLIDER_BLOCK_ID = 'homepage_hero_slider';
+    private const DECISION_TREE_BLOCK_ID = 'homepage_decision_tree';
+    private const MAIN_BANNER_BLOCK_ID = 'homepage_main_banner';
+    private const PROMOTIONS_BLOCK_ID = 'homepage_promotions';
+    private const NEWS_BLOCK_ID = 'homepage_news';
+    private const OFFERS_BLOCK_ID = 'homepage_offers';
+    private const HELPDESK_BLOCK_ID = 'homepage_helpdesk';
 
-    private HomepageConfig $config;
-
-    public function __construct(Context $context, HomepageConfig $config, array $data = [])
-    {
-        parent::__construct($context, $data);
-        $this->config = $config;
-    }
-
-    public function getMainSlider(): string
+    public function createHeroSliderBlock(): string
     {
         try {
             return $this->getLayout()
-                ->createBlock(Widget::class)
-                ->setSliderName(self::MAIN_SLIDER_NAME)
+                ->createBlock(BlockByIdentifier::class)
+                ->setIdentifier(self::HERO_SLIDER_BLOCK_ID)
                 ->toHtml();
         } catch (LocalizedException $e) {
             return '';
         }
     }
 
-    public function getDecisionTreeUrl(): string
-    {
-        return $this->config->getDecisionTreeUrl();
-    }
-
-    public function getMainBannerImage(): string
-    {
-        return $this->config->getMainBannerImage();
-    }
-
-    public function getMainBannerUrl(): string
-    {
-        return $this->config->getMainBannerUrl();
-    }
-
-    public function getPromotionImage1(): string
-    {
-        return $this->config->getPromotionImage1();
-    }
-
-    public function getPromotionUrl1(): string
-    {
-        return $this->config->getPromotionUrl1();
-    }
-
-    public function getPromotionImage2(): string
-    {
-        return $this->config->getPromotionImage2();
-    }
-
-    public function getPromotionUrl2(): string
-    {
-        return $this->config->getPromotionUrl2();
-    }
-
-    public function getNewsSlider(): string
+    public function createDecisionTreeBlock(): string
     {
         try {
             return $this->getLayout()
-                ->createBlock(Widget::class)
-                ->setSliderName(self::NEWS_SLIDER_NAME)
+                ->createBlock(BlockByIdentifier::class)
+                ->setIdentifier(self::DECISION_TREE_BLOCK_ID)
                 ->toHtml();
         } catch (LocalizedException $e) {
             return '';
         }
     }
 
-    public function getOffersNavLinks(): array
-    {
-        try {
-            /** @var Widget $slider */
-            $slider = $this->getLayout()->createBlock(Widget::class)->setSliderName(self::OFFERS_SLIDER_NAME);
-
-            return $slider->getBannerCollection()->getColumnValues('title');
-        } catch (LocalizedException $e) {
-            return [];
-        }
-    }
-
-    public function getOffersSlider(): string
+    public function createMainBannerBlock(): string
     {
         try {
             return $this->getLayout()
-                ->createBlock(Widget::class)
-                ->setSliderName(self::OFFERS_SLIDER_NAME)
+                ->createBlock(BlockByIdentifier::class)
+                ->setIdentifier(self::MAIN_BANNER_BLOCK_ID)
+                ->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    public function createPromotionsBlock(): string
+    {
+        try {
+            return $this->getLayout()
+                ->createBlock(BlockByIdentifier::class)
+                ->setIdentifier(self::PROMOTIONS_BLOCK_ID)
+                ->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    public function createNewsBlock(): string
+    {
+        try {
+            return $this->getLayout()
+                ->createBlock(BlockByIdentifier::class)
+                ->setIdentifier(self::NEWS_BLOCK_ID)
+                ->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    public function createOffersBlock(): string
+    {
+        try {
+            return $this->getLayout()
+                ->createBlock(BlockByIdentifier::class)
+                ->setIdentifier(self::OFFERS_BLOCK_ID)
+                ->toHtml();
+        } catch (LocalizedException $e) {
+            return '';
+        }
+    }
+
+    public function createHelpdeskBlock(): string
+    {
+        try {
+            return $this->getLayout()
+                ->createBlock(BlockByIdentifier::class)
+                ->setIdentifier(self::HELPDESK_BLOCK_ID)
                 ->toHtml();
         } catch (LocalizedException $e) {
             return '';

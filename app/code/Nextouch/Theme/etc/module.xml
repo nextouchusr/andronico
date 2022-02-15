@@ -4,7 +4,7 @@
     <module name="Nextouch_Theme" setup_version="1.0.0">
         <sequence>
             <module name="Magento_Theme"/>
-            <module name="Mageplaza_BannerSlider"/>
+            <module name="Magento_Cms"/>
             <module name="Amasty_MegaMenuLite"/>
         </sequence>
     </module>

@@ -13,6 +13,8 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const BRAND = 'brand';
     public const FAST_EST_TYPE = 'fast_est_type';
     public const SELECTABLE_COURIERS = 'selectable_couriers';
+    public const ECO_CHOICE = 'eco_choice';
+    public const EASE_OF_USE = 'ease_of_use';
 
     // Customizable Options
     public const SERVICES_OPTION = 'services';

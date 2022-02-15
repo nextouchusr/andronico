@@ -13,6 +13,7 @@
     "require": {
         "ext-json": "*",
         "amasty/advanced-review": "^1.14",
+        "amasty/advanced-reviews-page-builder": "^1.0",
         "amasty/delivery-date": "^1.6",
         "amasty/geoipredirect": "^1.3",
         "amasty/mega-menu": "^2.1",
@@ -33,10 +34,11 @@
         "lambdish/phunctional": "^2.1",
         "laminas/laminas-form": "^3.0",
         "league/csv": "^9.0",
+        "magenio/magento2-tinyslider": "^1.0",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
         "magento/product-enterprise-edition": "2.4.3-p1",
-        "mageplaza/module-banner-slider": "^4.0",
+        "msp/cmsimportexport": "^1.1",
         "splashlab/magento-2-cors-requests": "^100.0",
         "webmozart/assert": "^1.10"
     },

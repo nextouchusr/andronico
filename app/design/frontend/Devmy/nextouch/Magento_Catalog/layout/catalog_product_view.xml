@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Move -->
+        <move element="product.info.media" destination="product.info.media.wrapper"/>
+        <move element="product.info.main" destination="product.info.main.wrapper"/>
+
+        <move element="product.info.stock.sku" destination="product.info.media"/>
+        <move element="product.info.addto" destination="product.info.media" after="product.info.stock.sku"/>
+        <move element="product.info.social" destination="product.info.media" after="product.info.addto"/>
+
+        <move element="product.info.price" destination="product.info.options.wrapper.bottom" before="product.info.addtocart"/>
+        <move element="product.info.options.wrapper.bottom" destination="product.info.form.options.col1"/>
+        <move element="product.info.options.wrapper" destination="product.info.form.options.col2"/>
+
+        <!-- Remove -->
+        <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
+        <referenceContainer name="skip_gallery_after.wrapper" remove="true"/>
+        <referenceContainer name="skip_gallery_before.target" remove="true"/>
+        <referenceBlock name="skip_gallery_after.target" remove="true"/>
+        <referenceBlock name="product.info.review" remove="true"/>
+        <referenceBlock name="product.info.sku" remove="true"/>
+        <referenceBlock name="view.addto.compare" remove="true"/>
+        <referenceBlock name="product.info.overview" remove="true"/>
+
+        <referenceContainer name="content">
+            <container name="product.info.wrapper" htmlTag="div" htmlClass="row" before="product.info.details">
+                <container name="product.info.media.wrapper" htmlTag="div" htmlClass="col-4 text-center"/>
+
+                <container name="product.info.main.wrapper" htmlTag="div" htmlClass="col">
+                    <container name="product.info.main.details.wrapper" htmlTag="div" htmlClass="row">
+                        <container name="product.info.main.details.name.wrapper" htmlTag="div" htmlClass="col">
+                            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.main.details.name" template="Magento_Catalog::product/view/attribute.phtml">
+                                <arguments>
+                                    <argument name="at_call" xsi:type="string">getName</argument>
+                                    <argument name="at_code" xsi:type="string">name</argument>
+                                    <argument name="css_class" xsi:type="string">name</argument>
+                                    <argument name="at_label" xsi:type="string">none</argument>
+                                    <argument name="title" translate="true" xsi:type="string">Name</argument>
+                                    <argument name="sort_order" xsi:type="string">10</argument>
+                                </arguments>
+                            </block>
+                        </container>
+
+                        <container name="product.info.main.details.shortDescription.wrapper" htmlTag="div" htmlClass="col">
+                            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.main.details.shortDescription" template="Magento_Catalog::product/view/attribute.phtml">
+                                <arguments>
+                                    <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                                    <argument name="at_code" xsi:type="string">short_description</argument>
+                                    <argument name="css_class" xsi:type="string">short_description</argument>
+                                    <argument name="at_label" xsi:type="string">none</argument>
+                                    <argument name="title" translate="true" xsi:type="string">Short Description</argument>
+                                    <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+                                </arguments>
+                            </block>
+                        </container>
+                    </container>
+
+                    <referenceBlock name="product.info.form.options">
+                        <container name="product.info.form.options.col1" htmlTag="div" htmlClass="col"/>
+                        <container name="product.info.form.options.col2" htmlTag="div" htmlClass="col"/>
+                    </referenceBlock>
+                </container>
+            </container>
+
+            <referenceBlock name="product.info.details">
+                <referenceBlock name="product.info.description" template="Magento_Catalog::product/view/details/description.phtml"/>
+
+                <block class="Magento\Catalog\Block\Product\View\Gallery" name="product.info.details.gallery" template="Magento_Catalog::product/view/details/gallery.phtml">
+                    <arguments>
+                        <argument name="gallery_options" xsi:type="object">Magento\Catalog\Block\Product\View\GalleryOptions</argument>
+                        <argument name="imageHelper" xsi:type="object">Magento\Catalog\Helper\Image</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.ecoChoice" template="Magento_Catalog::product/view/details/eco-choice.phtml">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getEcoChoice</argument>
+                        <argument name="at_code" xsi:type="string">eco_choice</argument>
+                        <argument name="css_class" xsi:type="string">eco_choice</argument>
+                        <argument name="at_label" xsi:type="string">none</argument>
+                        <argument name="title" translate="true" xsi:type="string">Eco Choice</argument>
+                        <argument name="sort_order" xsi:type="string">10</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.easeOfUse" template="Magento_Catalog::product/view/details/ease-of-use.phtml">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getEaseOfUse</argument>
+                        <argument name="at_code" xsi:type="string">ease_of_use</argument>
+                        <argument name="css_class" xsi:type="string">ease_of_use</argument>
+                        <argument name="at_label" xsi:type="string">none</argument>
+                        <argument name="title" translate="true" xsi:type="string">Ease of Use</argument>
+                        <argument name="sort_order" xsi:type="string">10</argument>
+                    </arguments>
+                </block>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>
