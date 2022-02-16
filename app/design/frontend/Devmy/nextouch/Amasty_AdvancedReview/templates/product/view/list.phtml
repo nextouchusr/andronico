@@ -15,7 +15,7 @@ $isFilterApplied = $displayedCollection->getFlag(Applier::COLLECTION_FLAG);
 
 <?php if (count($_items) || $isFilterApplied) : ?>
 <div class="block review-list" id="customer-reviews">
-    <div class="amrev-title-block amreview-customer-review pages justify-content-center">
+    <div class="amrev-title-block amreview-customer-review pages">
         <strong class="am-strong">
             <?= __('Reviews'); ?>
         </strong>
@@ -31,7 +31,7 @@ $isFilterApplied = $displayedCollection->getFlag(Applier::COLLECTION_FLAG);
                     }
                 }'>
                 <?php foreach ($_items as $review) : ?>
-                    <li class="item review-item amreview-review-wrapper justify-content-center"
+                    <li class="item review-item amreview-review-wrapper"
                         data-amreview-js="review-entity"
                         data-amreview-id="<?= (int)$review->getId(); ?>"
                         itemscope itemprop="review"

@@ -8,13 +8,16 @@ $layout = $block->getLayout();
     <?= $block->getChildHtml('product.info.details.gallery'); ?>
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-sm-6 order-1 order-sm-0">
             <?= $layout->renderElement('product.attributes'); ?>
-            <?= $layout->renderElement('product.info.ecoChoice'); ?>
         </div>
 
-        <div class="col-6 mt-2">
+        <div class="col-12 col-sm-6 order-0 order-sm-0">
             <?= $layout->renderElement('product.info.description'); ?>
+        </div>
+
+        <div class="col-12 col-sm-6 order-3 order-sm-0">
+            <?= $layout->renderElement('product.info.ecoChoice'); ?>
         </div>
     </div>
 
