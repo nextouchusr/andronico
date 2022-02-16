@@ -3,6 +3,21 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+  #customer-reviews {
+    .amreview-customer-review {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .amreview-review-wrapper {
+      justify-content: center;
+    }
+
+    .amreview-submit-form {
+      margin: 0;
+      background-color: transparent;
+    }
+  }
 }
 
 //
@@ -17,8 +32,4 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
-  .amreview-submit-form {
-    margin: 0;
-    background-color: transparent;
-  }
 }

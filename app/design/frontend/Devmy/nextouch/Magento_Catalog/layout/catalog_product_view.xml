@@ -10,7 +10,7 @@
         <move element="product.info.addto" destination="product.info.media" after="product.info.stock.sku"/>
         <move element="product.info.social" destination="product.info.media" after="product.info.addto"/>
 
-        <move element="product.info.price" destination="product.info.options.wrapper.bottom" before="product.info.addtocart"/>
+        <move element="product.info.price" destination="product.info.form.options.col1" before="product.info.options.wrapper.bottom"/>
         <move element="product.info.options.wrapper.bottom" destination="product.info.form.options.col1"/>
         <move element="product.info.options.wrapper" destination="product.info.form.options.col2"/>
 

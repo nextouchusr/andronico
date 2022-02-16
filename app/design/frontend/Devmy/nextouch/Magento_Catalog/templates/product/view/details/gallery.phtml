@@ -13,7 +13,9 @@ $images = $block->getGalleryImages()->getItems();
                 <?php foreach ($images as $image): ?>
                     <?php if (!$block->isMainImage($image)): ?>
                         <div class="item tns-item tns-slide-cloned">
-                            <img src="<?= $image->getData('medium_image_url'); ?>" alt=""/>
+                            <a href="javascript:void(0)" class="product-media-link" data-media-url="<?= $image->getVideoUrl() ?: $image->getData('medium_image_url'); ?>">
+                                <img src="<?= $image->getData('medium_image_url'); ?>" alt=""/>
+                            </a>
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
@@ -22,8 +24,36 @@ $images = $block->getGalleryImages()->getItems();
     </div>
 </div>
 
+<div id="product-media-modal">
+    <div class="modal-body-content text-center">
+        <iframe src="" width="100%" allow="autoplay; encrypted-media" allowfullscreen style="height: calc(80vh - 50px)"></iframe>
+    </div>
+</div>
+
 <script>
-    require(['tinySlider'], function () {
+    require(['jquery', 'Magento_Ui/js/modal/modal', 'tinySlider'], function ($, modal) {
+        $(document).ready(function () {
+            var $productMediaModal = $('#product-media-modal');
+            var $iframe = $productMediaModal.find('iframe');
+
+            modal({
+                type: 'popup',
+                modalClass: 'product-media-popup',
+                responsive: true,
+                buttons: [],
+            }, $productMediaModal);
+
+            $('.tns-inner').on('click', '.product-media-link', function () {
+                var mediaUrl = $(this).data('media-url');
+                $iframe.prop('src', mediaUrl);
+                $productMediaModal.modal('openModal');
+            });
+
+            $iframe.on('load', function() {
+                $iframe.contents().find('body').css('text-align', 'center');
+            });
+        });
+
         tns({
             container: '#product-gallery',
             items: 3,
