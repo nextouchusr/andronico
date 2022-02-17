@@ -5,14 +5,10 @@
         <!-- Move -->
         <move element="product.info.media" destination="product.info.media.wrapper"/>
         <move element="product.info.main" destination="product.info.main.wrapper"/>
-
         <move element="product.info.stock.sku" destination="product.info.media"/>
         <move element="product.info.addto" destination="product.info.media" after="product.info.stock.sku"/>
         <move element="product.info.social" destination="product.info.media" after="product.info.addto"/>
-
-        <move element="product.info.price" destination="product.info.form.options.col1" before="product.info.options.wrapper.bottom"/>
-        <move element="product.info.options.wrapper.bottom" destination="product.info.form.options.col1"/>
-        <move element="product.info.options.wrapper" destination="product.info.form.options.col2"/>
+        <move element="product.info.price" destination="product.info.form.content" before="product.info.addtocart"/>
 
         <!-- Remove -->
         <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
@@ -57,9 +53,14 @@
                         </container>
                     </container>
 
-                    <referenceBlock name="product.info.form.options">
-                        <container name="product.info.form.options.col1" htmlTag="div" htmlClass="col"/>
-                        <container name="product.info.form.options.col2" htmlTag="div" htmlClass="col"/>
+                    <referenceBlock name="product.info.options.wrapper.bottom">
+                        <block class="Magento\Catalog\Pricing\Render" name="product.options.price.final" before="product.info.addtocart.additional">
+                            <arguments>
+                                <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                                <argument name="price_type_code" xsi:type="string">final_price</argument>
+                                <argument name="zone" xsi:type="string">item_view</argument>
+                            </arguments>
+                        </block>
                     </referenceBlock>
                 </container>
             </container>
