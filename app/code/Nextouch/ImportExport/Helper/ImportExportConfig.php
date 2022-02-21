@@ -18,6 +18,7 @@ class ImportExportConfig extends AbstractHelper
             'host' => $this->getWinsHost(),
             'user' => $this->getWinsUsername(),
             'password' => $this->getWinsPassword(),
+            'passive' => true,
         ];
     }
 
