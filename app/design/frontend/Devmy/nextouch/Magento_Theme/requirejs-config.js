@@ -1,9 +1,16 @@
 var config = {
+    map: {
+        "*": {
+            'negativeSlider': 'Magento_Theme/js/negative-slider',
+            'initSlick': 'Magento_Theme/js/init-slick'
+        }
+    },
     paths: {
-        'bootstrap': 'Magento_Theme/js/vendor/bootstrap.bundle',
+        'negativeSlider': 'Magento_Theme/js/negative-slider',
+        'initSlick': 'Magento_Theme/js/init-slick'
     },
     shim: {
-        'bootstrap': {
+        'negativeSlider': {
             'deps': ['jquery']
         }
     }
