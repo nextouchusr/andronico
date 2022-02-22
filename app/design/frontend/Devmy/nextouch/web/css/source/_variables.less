@@ -15,6 +15,17 @@
 @font-family-name__base: 'Montserrat';
 @font-family__base: @font-family-name__base, @font-family__sans-serif;
 
+@h1__font-size: ceil((@font-size__base * 2)); //
+@h1__font-size-desktop: ceil((@font-size__base * 3.2));
+@h2__font-size-desktop: ceil((@font-size__base * 2.85)); // 40px
+@h2__font-weight: @font-weight__bold;
+@h2__line-height: @heading__line-height__base;
+@h3__font-size-desktop: ceil((@font-size__base * 2)); // 30px
+@h3__font-weight: @font-weight__bold;
+@h4__font-size-desktop: ceil((@font-size__base * 1.5)); //
+@h5__font-size-desktop: ceil((@font-size__base)); //
+@h4__font-size-desktop: ceil((@font-size__base * .85));
+
 //  Colors nesting
 @theme__color__primary: #0b4966;
 @theme__color__primary-alt: #0b4966;
@@ -54,3 +65,19 @@
 //  ---------------------------------------------
 
 @block-items__counter__color: @color-gray43;
+
+
+@z-index-5: 5;  // used for negative slider mobile
+@z-index-10: 10; // used for header mobile
+
+
+//
+//  FORMS
+//
+
+@button-primary__font-size: @font-size__base;
+@button-primary__font-weight: 400;
+@button-primary__padding: 30px 50px;
+@button-primary__background: @theme__color__secondary;
+@button-primary__color: @theme__color__primary;
+@button-primary__border: 0;

@@ -1,0 +1,66 @@
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .negative-carousel {
+
+    }
+    .slick-slide {
+        position: relative;
+    }
+
+    .slick-dots.slick-dots {
+        margin: 10px 0;
+        li {
+            button:before {
+                border-radius: 100%;
+                background-color: @theme__color__primary;
+            }
+            &.slick-active button:before {
+                background-color: @theme__color__primary-alt;
+            }
+        }
+    }
+
+
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .cms-index-index {
+        header {
+            z-index: @z-index-10;
+        }
+        .negative-slider-mobile {
+            z-index: @z-index-5;
+        }
+    }
+}
+
+
+
+//
+//  Desktop
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .cms-index-index {
+        h2 {
+            font-size: @h2__font-size-desktop;
+        }
+        h3 {
+            font-size: @h3__font-size-desktop;
+        }
+        h4 {
+            font-size: @h4__font-size-desktop;
+        }
+    }
+}
