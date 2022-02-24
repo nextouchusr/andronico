@@ -3,22 +3,51 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-  .product-info-main {
-    #product_addtocart_form {
-      .field.qty {
-        display: none;
-      }
+    .product-info-main {
+        #product_addtocart_form {
+          .field.qty {
+            display: none;
+          }
 
-      .product-options-bottom {
-        flex: 1 0 0;
-      }
+          .product-options-bottom {
+            flex: 1 0 0;
+          }
 
-      .product-options-wrapper {
-        flex: 1 0 0;
-        order: 1;
-      }
+          .product-options-wrapper {
+            flex: 1 0 0;
+            order: 1;
+          }
+        }
     }
-  }
+
+    .product-info-stock-sku {
+        .stock {
+            text-align: center;
+            .lib-font-size(20);
+            padding: 10px;
+            margin: 25px 0;
+            vertical-align: middle;
+            span {
+                &:before {
+                    display: inline-block;
+                    content: "";
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 100%;
+                    margin-right: 10px;
+                    margin-bottom: -3px;
+                    background: @theme__color__secondary;
+                }
+            }
+            &.out-of-stock {
+                span {
+                    &:before {
+                        background: @error__color;
+                    }
+                }
+            }
+        }
+    }
 
   .product-media-popup {
     .modal-inner-wrap {
@@ -35,6 +64,18 @@
       padding: 0;
     }
   }
+
+    .title-crumbs-container {
+        display: flex;
+        flex-flow: row nowrap;
+        margin-bottom: 50px;
+        justify-content: space-between;
+        .static-title {
+            font-weight: 700;
+            font-size: 4rem;
+        }
+    }
+
 }
 
 //
@@ -42,10 +83,19 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .catalog-category-view {
+        .page-title-wrapper {
+            h1 {
+                font-size: 4.5rem;
+                text-transform: none;
+                font-weight: 700;
+            }
+        }
+    }
+
   .page-layout-1column {
     .product-info-main {
-      width: 100%;
-      float: left;
 
       .product-add-form {
         width: 100%;
