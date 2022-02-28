@@ -8,9 +8,7 @@ $layout = $block->getLayout();
     <?= $block->getChildHtml('product.info.details.gallery'); ?>
 
     <div class="product-details-boxes">
-        <div class="product-attributes">
-            <?= $layout->renderElement('product.attributes'); ?>
-        </div>
+
 
         <div class="product-description">
             <div data-role="title">
@@ -20,6 +18,12 @@ $layout = $block->getLayout();
                 <?= $layout->renderElement('product.info.description'); ?>
             </div>
         </div>
+
+
+        <div class="product-attributes">
+            <?= $layout->renderElement('product.attributes'); ?>
+        </div>
+
 
         <div class="product-ecochoice">
             <div data-role="title">

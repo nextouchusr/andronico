@@ -182,7 +182,7 @@
             .page-title {
                 line-height: @line-height__base;
                 margin-bottom: @indent__s;
-                font-size:4rem;
+                font-size:1.8rem;
             }
         }
 
@@ -561,6 +561,81 @@
         }
     }
 
+    .page-layout-1column {
+        .product-main-wrapper {
+            display: flex;
+            flex-flow: row wrap;
+            padding-top: 50px;
+            font-size: 1rem;
+            .product.info.detailed {
+                h2 {
+                    font-size: 1.2rem;
+                }
+            }
+            .product-info-main {
+                width: 75%;
+                order: 5;
+                .price-box {
+                    .price-wrapper {
+                        .price {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
+            .product-secondary-wrapper {
+                width: 75%;
+                order: 10;
+            }
+
+            .product-media-wrapper {
+                width: 20%;
+                order: 2;
+                position: relative;
+                .product-info-stock-sku {
+                    position: absolute;
+                    width: 80vw;
+                    left: 0;
+                    top: -50px;
+                    min-width: 120px;
+                    text-align: left;
+                    .stock {
+                        padding: 0;
+                        margin: 0;
+                        text-align: left;
+                        font-size: 1rem;
+                        span {
+                            &:before {
+                                display: none;
+                            }
+                            &:after {
+                                display: inline-block;
+                                content: "";
+                                width: 15px;
+                                height: 15px;
+                                border-radius: 100%;
+                                margin-left: 10px;
+                                margin-bottom: -3px;
+                                background: @theme__color__secondary;
+                            }
+                        }
+                    }
+                }
+                .product-addto-links {
+                    position: absolute;
+                    right: -400%;
+                    top: -60px;
+                    > a {
+                        margin: 0 15px;
+                        display: inline-block;
+                    }
+                }
+            }
+            justify-content: space-between;
+        }
+
+    }
+
     .product-info-main .box-tocart {
         .actions {
             .action.tocart {
@@ -601,6 +676,11 @@
 
     .product-info-main {
         float: right;
+        .page-title-wrapper {
+            .page-title {
+                font-size: 4rem;
+            }
+        }
     }
 
     .product.media {
