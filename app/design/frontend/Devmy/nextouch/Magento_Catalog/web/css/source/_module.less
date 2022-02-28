@@ -161,7 +161,11 @@
     .product.info.detailed {
         clear: both;
         margin-bottom: 30px;
-
+        padding: 30px 0;
+        border-top: 1px dashed @primary__color;
+        h2 {
+            font-size: 4rem;
+        }
         .additional-attributes {
             width: auto;
             .lib-table-resize(
@@ -354,6 +358,7 @@
 
             .action.tocart {
                 &:extend(.abs-button-l all);
+                margin-bottom: 50px;
             }
         }
 
@@ -589,12 +594,60 @@
             font-weight: 700;
             font-size: 3.8rem;
         }
+        .overview {
+            font-size: 1.6rem;
+        }
     }
+
+    .product-info-main {
+        float: right;
+    }
+
+    .product.media {
+        float: left;
+        margin-bottom: @indent__m;
+    }
+
+    .page-layout-1column {
+        .product-main-wrapper {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            .product-info-main {
+                width: 38%;
+                order: 5
+            }
+
+            .product-secondary-wrapper {
+                width: 40%;
+                order: 10;
+            }
+
+            .product-media-wrapper {
+                width: 18%;
+                order: 2;
+            }
+        }
+    }
+
+    .page-layout-2columns-left,
+    .page-layout-2columns-right,
+    .page-layout-3columns {
+        .product-info-main {
+            width: 48%;
+        }
+
+        .product.media {
+            width: 50%;
+        }
+    }
+
 
     .product-info-main,
     .product-options-bottom {
         .box-tocart {
             display: table;
+            width: 100%;
 
             .field.qty {
                 display: table-cell;
@@ -668,41 +721,6 @@
     }
 }
 
-//
-//  Category page layout
-//  ---------------------------------------------
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    .product-info-main {
-        float: right;
-    }
-
-    .product.media {
-        float: left;
-        margin-bottom: @indent__m;
-    }
-
-    .page-layout-1column {
-        .product-info-main {
-            width: 40%;
-        }
-        .product.media {
-            width: 20%;
-        }
-    }
-
-    .page-layout-2columns-left,
-    .page-layout-2columns-right,
-    .page-layout-3columns {
-        .product-info-main {
-            width: 48%;
-        }
-
-        .product.media {
-            width: 50%;
-        }
-    }
-}
 
 //
 //  Common

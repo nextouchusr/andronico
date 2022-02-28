@@ -14,6 +14,18 @@
 
         <referenceContainer name="content">
             <container name="product.info.wrapper" htmlTag="div" htmlClass="product-main-wrapper" before="product.info.details">
+                <referenceContainer name="product.info.main">
+                    <!-- TODO: replace with correct attribute -->
+                    <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.subtitle" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="page.main.title">
+                        <arguments>
+                            <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                            <argument name="at_code" xsi:type="string">short_description</argument>
+                            <argument name="css_class" xsi:type="string">placeholder</argument>
+                            <argument name="at_label" xsi:type="string">none</argument>
+                            <argument name="title" translate="true" xsi:type="string">Placeholder</argument>
+                        </arguments>
+                    </block>
+                </referenceContainer>
                 <container name="product.info.media.wrapper" htmlTag="div" htmlClass="product-media-wrapper" before="-"/>
                 <container name="product.info.secondary.wrapper" htmlTag="div" htmlClass="product-secondary-wrapper"/>
             </container>
@@ -51,6 +63,11 @@
             </referenceBlock>
         </referenceContainer>
 
+        <referenceBlock name="product.info.addto">
+            <block class="Magento\Framework\View\Element\Template" name="view.addto.share"
+                   template="Magento_Catalog::product/view/addto/share.phtml" />
+        </referenceBlock>
+
 
 
 
@@ -64,13 +81,18 @@
         <referenceBlock name="view.addto.compare" remove="true"/>
 
         <move element="page.main.title" destination="product.info.main" before="-"/>
-        <move element="product.info.overview" destination="product.info.main" after="page.main.title" />
+        <move element="product.info.subtitle" destination="page.main.title" after="-"/>
+
         <move element="product.info.main" destination="product.info.wrapper" before="-"/>
+
         <move element="breadcrumbs" destination="title-breadcrumbs-container" after="static-title"/>
-        <move element="product.info.description" destination="product.info.secondary.wrapper" before="-" />
+
+        <move element="product.info.overview" destination="product.info.secondary.wrapper" before="-" />
+        <move element="product.info.description" destination="product.info.details" before="-" />
 
         <move element="product.info.media" destination="product.info.media.wrapper"/>
         <move element="product.info.stock.sku" destination="product.info.media"/>
+
         <move element="product.info.addto" destination="product.info.media" after="product.info.stock.sku"/>
         <move element="product.info.social" destination="product.info.media" after="product.info.addto"/>
         <move element="product.info.price" destination="product.info.form.content" before="product.info.addtocart"/>

@@ -7,23 +7,58 @@ $layout = $block->getLayout();
 <div class="product info detailed">
     <?= $block->getChildHtml('product.info.details.gallery'); ?>
 
-    <div class="row">
-        <div class="col-12 col-sm-6 order-1 order-sm-0">
+    <div class="product-details-boxes">
+        <div class="product-attributes">
             <?= $layout->renderElement('product.attributes'); ?>
         </div>
 
-        <div class="col-12 col-sm-6 order-0 order-sm-0">
-            <?= $layout->renderElement('product.info.description'); ?>
+        <div class="product-description">
+            <div data-role="title">
+                <?php __('Description') ?>
+            </div>
+            <div data-role="content">
+                <?= $layout->renderElement('product.info.description'); ?>
+            </div>
         </div>
 
-        <div class="col-12 col-sm-6 order-3 order-sm-0">
-            <?= $layout->renderElement('product.info.ecoChoice'); ?>
+        <div class="product-ecochoice">
+            <div data-role="title">
+                <?php __('Eco choice / eco-friendly') ?>
+            </div>
+            <div data-role="content">
+                <?= $layout->renderElement('product.info.ecoChoice'); ?>
+            </div>
+        </div>
+
+        <div class="product-easeofuse">
+            <div data-role="title">
+                <?php __('Easy to Use') ?>
+            </div>
+            <div data-role="content">
+                <?= $layout->renderElement('product.info.easeOfUse'); ?>
+            </div>
         </div>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-12">
-            <?= $layout->renderElement('product.info.easeOfUse'); ?>
-        </div>
-    </div>
+
+    <script>
+        require(['jquery', 'collapsible'], function ($) {
+            $("#product-description-collapsible").collapsible({
+                collapsible: true,
+                openedState: 'active',
+                animate: {duration: 1000, easing: 'easeInCubic'}
+            });
+            $("#product-ecochoice-collapsible").collapsible({
+                collapsible: true,
+                openedState: 'active',
+                animate: {duration: 1000, easing: 'easeInCubic'}
+            });
+            $("#product-easeofuse-collapsible").collapsible({
+                collapsible: true,
+                openedState: 'active',
+                animate: {duration: 1000, easing: 'easeInCubic'}
+            });
+        });
+    </script>
+
 </div>

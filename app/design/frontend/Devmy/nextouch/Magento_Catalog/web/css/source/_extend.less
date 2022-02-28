@@ -20,6 +20,66 @@
         }
     }
 
+    .product-details-boxes {
+        > div {
+            box-shadow: @theme__box-shadow__primary;
+            margin: 50px 0;
+            border-radius: 50px;
+            padding: 50px;
+            box-sizing: border-box;
+            div[data-role="title"] {
+              text-align: center;
+            }
+            &.product-easeofuse {
+                width: 100%;
+                box-shadow: none;
+            }
+            &.product-attributes {
+                background: @theme__color__secondary;
+            }
+        }
+
+        #product-attributes-collapsible {
+            .lib-font-size(20);
+
+            > div[data-role="title"] {
+                color: @theme__color__secondary_contr;
+                .lib-font-size(45);
+                text-align: center;
+            }
+            .additional-attributes-wrapper table-wrapper {
+                margin: 50px 0;
+            }
+            .additional-attributes {
+                color: @theme__color__secondary_contr2;
+                th {
+                    font-weight: 400;
+                    min-width: 50%;
+                    width: 70%;
+                }
+                td {
+                    max-width: 50%;
+                }
+                tr.heading {
+                    color: @theme__color__secondary_contr;
+                }
+            }
+        }
+    }
+
+    .product-media-wrapper {
+        .product-addto-links {
+            > a {
+                display: block;
+                margin: 50px 0;
+                text-align: center;
+                color: @theme__color__secondary;
+            }
+        }
+    }
+
+
+
     .product-info-stock-sku {
         .stock {
             text-align: center;
@@ -94,17 +154,24 @@
         }
     }
 
+    .product-details-boxes {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        > div {
+            width: 46%;
+        }
+        #product-attributes-collapsible {
+            padding: 50px;
+            margin: 50px 0;
+        }
+    }
+
   .page-layout-1column {
     .product-info-main {
 
       .product-add-form {
         width: 100%;
-      }
-
-      #product_addtocart_form {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
       }
     }
   }
