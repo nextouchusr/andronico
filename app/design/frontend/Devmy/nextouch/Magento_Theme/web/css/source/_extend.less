@@ -12,6 +12,12 @@
         position: relative;
     }
 
+    button {
+        border-radius: 100px;
+        box-shadow: 3px 3px 3px #cccc;
+    }
+
+
     .slick-dots.slick-dots {
         margin: 10px 0;
         li {
@@ -24,6 +30,35 @@
             }
         }
     }
+
+    .breadcrumbs {
+        display: none;
+    }
+
+    input[type="radio"] {
+        display: none;
+        + label {
+            &:before {
+                display: inline-block;
+                border-radius: 100%;
+                border: 1px solid @theme__color__primary-darker;
+                width: 26px;
+                height: 26px;
+                content: "";
+                margin-right: 30px;
+                margin-bottom: -8px;
+            }
+        }
+        &:checked {
+            + label {
+                &:before {
+                    background: @theme__color__secondary;
+                }
+            }
+        }
+    }
+
+
 
 
 }
@@ -43,6 +78,7 @@
             z-index: @z-index-5;
         }
     }
+
 }
 
 
@@ -61,6 +97,18 @@
         }
         h4 {
             font-size: @h4__font-size-desktop;
+        }
+    }
+
+
+    .breadcrumbs {
+        height: 54px;
+        display: block;
+        line-height: 56px;
+        text-align: right;
+        font-size: 1.3rem;
+        li {
+            font-size: 1.3rem;
         }
     }
 }

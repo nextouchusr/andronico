@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="94" height="96" viewBox="0 0 94 96">
+  <defs>
+    <filter id="Ellisse_256" x="0" y="1" width="94" height="95" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#00f1a2"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellisse_258" x="0" y="1" width="94" height="95" filterUnits="userSpaceOnUse">
+      <feOffset dy="10" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-color="#00f1a2"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Ellisse_260" x="2.889" y="0" width="88" height="88" filterUnits="userSpaceOnUse">
+      <feOffset dy="6" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur-3"/>
+      <feFlood flood-color="#00f1a2"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="ico-burger" transform="translate(-1340.111 -89.57)">
+    <g transform="matrix(1, 0, 0, 1, 1340.11, 89.57)" filter="url(#Ellisse_256)">
+      <circle id="Ellisse_256-2" data-name="Ellisse 256" cx="38" cy="38" r="38" transform="translate(9 1)" fill="#fff" opacity="0"/>
+    </g>
+    <circle id="Ellisse_257" data-name="Ellisse 257" cx="38" cy="38" r="38" transform="translate(1349.111 90.57)" fill="#fff"/>
+    <line id="Linea_509" data-name="Linea 509" x2="34.5" transform="translate(1369.861 116.82)" fill="none" stroke="#0b4966" stroke-width="3"/>
+    <line id="Linea_510" data-name="Linea 510" x2="34.5" transform="translate(1369.861 128.57)" fill="none" stroke="#0b4966" stroke-width="3"/>
+    <line id="Linea_511" data-name="Linea 511" x2="34.5" transform="translate(1369.861 140.32)" fill="none" stroke="#0b4966" stroke-width="3"/>
+    <g transform="matrix(1, 0, 0, 1, 1340.11, 89.57)" filter="url(#Ellisse_258)">
+      <circle id="Ellisse_258-2" data-name="Ellisse 258" cx="38" cy="38" r="38" transform="translate(9 1)" fill="#fff" opacity="0"/>
+    </g>
+    <circle id="Ellisse_259" data-name="Ellisse 259" cx="38" cy="38" r="38" transform="translate(1349.111 90.57)" fill="#fff"/>
+    <line id="Linea_512" data-name="Linea 512" x2="34.5" transform="translate(1369.861 116.82)" fill="none" stroke="#0b4966" stroke-width="3"/>
+    <line id="Linea_513" data-name="Linea 513" x2="34.5" transform="translate(1369.861 128.57)" fill="none" stroke="#0b4966" stroke-width="3"/>
+    <line id="Linea_514" data-name="Linea 514" x2="34.5" transform="translate(1369.861 140.32)" fill="none" stroke="#0b4966" stroke-width="3"/>
+    <g transform="matrix(1, 0, 0, 1, 1340.11, 89.57)" filter="url(#Ellisse_260)">
+      <circle id="Ellisse_260-2" data-name="Ellisse 260" cx="38" cy="38" r="38" transform="translate(8.89)" fill="#fff" opacity="0"/>
+    </g>
+  </g>
+</svg>

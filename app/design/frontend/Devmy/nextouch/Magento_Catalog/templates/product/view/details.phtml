@@ -2,28 +2,49 @@
 /** @var \Magento\Catalog\Block\Product\View\Details $block */
 
 $layout = $block->getLayout();
+
 ?>
 
 <div class="product info detailed">
     <?= $block->getChildHtml('product.info.details.gallery'); ?>
 
-    <div class="row">
-        <div class="col-12 col-sm-6 order-1 order-sm-0">
-            <?= $layout->renderElement('product.attributes'); ?>
+    <div class="product-details-boxes">
+
+
+        <div id="product-description-collapsible" class="product-description">
+            <div data-role="title">
+                <h2><?= __('Description') ?></h2>
+            </div>
+            <div data-role="content">
+                <?= $layout->renderElement('product.info.description'); //TODO: add dynamic attribute label ?>
+            </div>
         </div>
 
-        <div class="col-12 col-sm-6 order-0 order-sm-0">
-            <?= $layout->renderElement('product.info.description'); ?>
+
+        <div class="product-attributes">
+            <?= $layout->renderElement('product.attributes'); //TODO: add dynamic attribute label ?>
         </div>
 
-        <div class="col-12 col-sm-6 order-3 order-sm-0">
-            <?= $layout->renderElement('product.info.ecoChoice'); ?>
-        </div>
-    </div>
 
-    <div class="row mt-5">
-        <div class="col-12">
+        <div class="product-ecochoice">
+           <?= $layout->renderElement('product.info.ecoChoice'); ?>
+        </div>
+
+        <div id="product-easeofuse-collapsible" class="product-easeofuse">
             <?= $layout->renderElement('product.info.easeOfUse'); ?>
         </div>
     </div>
+
+
+    <script>
+        require(['jquery', 'collapsible'], function ($) {
+            $("#product-description-collapsible").collapsible({
+                collapsible: true,
+                openedState: 'active',
+                active: false,
+                animate: {duration: 500, easing: 'ease-in-out'}
+            });
+        });
+    </script>
+
 </div>
