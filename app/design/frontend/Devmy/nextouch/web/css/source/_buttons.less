@@ -40,10 +40,15 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
     .product-info-main {
-        .box-tocart .action.tocart {
-            font-size: 1rem;
-            padding: @button__padding__mobile;
-            line-height: 1.2rem;
+        .box-tocart .actions {
+            .action.tocart {
+                .lib-font-size(12);
+                padding: @button__padding__mobile;
+                line-height: 1.3rem;
+                color: @theme__color__primary;
+                width: auto;
+                box-shadow: none;
+            }
         }
     }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="main">
+            <container name="reviews.wrapper" htmlTag="div" htmlClass="review-box">
+                <block class="Magento\Framework\View\Element\Template" name="reviews.heading" template="Amasty_AdvancedReview::product/view/heading.phtml"/>
+            </container>
+        </referenceContainer>
+
+
+        <move element="product.review.form" destination="reviews.wrapper"  />
+        <move element="reviews.tab" destination="reviews.wrapper" before="-" />
+        <move element="reviews.heading" destination="reviews.wrapper" before="-" />
+    </body>
+</page>

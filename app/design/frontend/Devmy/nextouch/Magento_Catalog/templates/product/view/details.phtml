@@ -2,6 +2,7 @@
 /** @var \Magento\Catalog\Block\Product\View\Details $block */
 
 $layout = $block->getLayout();
+
 ?>
 
 <div class="product info detailed">
@@ -10,37 +11,27 @@ $layout = $block->getLayout();
     <div class="product-details-boxes">
 
 
-        <div class="product-description">
+        <div id="product-description-collapsible" class="product-description">
             <div data-role="title">
-                <?php __('Description') ?>
+                <h2><?= __('Description') ?></h2>
             </div>
             <div data-role="content">
-                <?= $layout->renderElement('product.info.description'); ?>
+                <?= $layout->renderElement('product.info.description'); //TODO: add dynamic attribute label ?>
             </div>
         </div>
 
 
         <div class="product-attributes">
-            <?= $layout->renderElement('product.attributes'); ?>
+            <?= $layout->renderElement('product.attributes'); //TODO: add dynamic attribute label ?>
         </div>
 
 
         <div class="product-ecochoice">
-            <div data-role="title">
-                <?php __('Eco choice / eco-friendly') ?>
-            </div>
-            <div data-role="content">
-                <?= $layout->renderElement('product.info.ecoChoice'); ?>
-            </div>
+           <?= $layout->renderElement('product.info.ecoChoice'); ?>
         </div>
 
-        <div class="product-easeofuse">
-            <div data-role="title">
-                <?php __('Easy to Use') ?>
-            </div>
-            <div data-role="content">
-                <?= $layout->renderElement('product.info.easeOfUse'); ?>
-            </div>
+        <div id="product-easeofuse-collapsible" class="product-easeofuse">
+            <?= $layout->renderElement('product.info.easeOfUse'); ?>
         </div>
     </div>
 
@@ -50,17 +41,8 @@ $layout = $block->getLayout();
             $("#product-description-collapsible").collapsible({
                 collapsible: true,
                 openedState: 'active',
-                animate: {duration: 1000, easing: 'easeInCubic'}
-            });
-            $("#product-ecochoice-collapsible").collapsible({
-                collapsible: true,
-                openedState: 'active',
-                animate: {duration: 1000, easing: 'easeInCubic'}
-            });
-            $("#product-easeofuse-collapsible").collapsible({
-                collapsible: true,
-                openedState: 'active',
-                animate: {duration: 1000, easing: 'easeInCubic'}
+                active: false,
+                animate: {duration: 500, easing: 'ease-in-out'}
             });
         });
     </script>

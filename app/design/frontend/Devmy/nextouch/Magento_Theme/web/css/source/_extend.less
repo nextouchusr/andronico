@@ -35,6 +35,30 @@
         display: none;
     }
 
+    input[type="radio"] {
+        display: none;
+        + label {
+            &:before {
+                display: inline-block;
+                border-radius: 100%;
+                border: 1px solid @theme__color__primary-darker;
+                width: 26px;
+                height: 26px;
+                content: "";
+                margin-right: 30px;
+                margin-bottom: -8px;
+            }
+        }
+        &:checked {
+            + label {
+                &:before {
+                    background: @theme__color__secondary;
+                }
+            }
+        }
+    }
+
+
 
 
 }
@@ -54,6 +78,7 @@
             z-index: @z-index-5;
         }
     }
+
 }
 
 

@@ -235,6 +235,8 @@
     }
 
     .product-options-wrapper {
+        display: none;
+        margin: 20px 0;
         .fieldset-product-options-inner {
             .legend {
                 .lib-css(font-weight, @font-weight__bold);
@@ -273,6 +275,29 @@
         }
 
         .field {
+            font-size: 1.8rem;
+            > .label {
+                font-size: 3rem;
+
+            }
+            &.choice {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                > .label {
+                    font-size: 1.8rem;
+                    span {
+                        flex-grow: 4;
+                        min-width: 40%;
+                        &:first-child {
+                            //TODO: load icon with specific class
+                        }
+                    }
+                }
+                .price-notice {
+                    font-weight: 700;
+                }
+            }
             .note {
                 display: block;
             }
@@ -567,11 +592,7 @@
             flex-flow: row wrap;
             padding-top: 50px;
             font-size: 1rem;
-            .product.info.detailed {
-                h2 {
-                    font-size: 1.2rem;
-                }
-            }
+
             .product-info-main {
                 width: 75%;
                 order: 5;
@@ -581,11 +602,22 @@
                             font-size: 1rem;
                         }
                     }
+                    .price-container {
+                        .lib-font-size(12);
+                    }
+                    .price-wrapper .price {
+                        .lib-font-size(12);
+                    }
                 }
             }
+
+
             .product-secondary-wrapper {
                 width: 75%;
                 order: 10;
+                .product.attribute.overview {
+                    display: none;
+                }
             }
 
             .product-media-wrapper {
@@ -632,6 +664,56 @@
                 }
             }
             justify-content: space-between;
+        }
+        .product.info.detailed {
+            font-size: 1.2rem;
+            h2 {
+                font-size: 1.2rem;
+                text-align: center;
+                border: 1px solid @theme__color__primary;
+                border-radius: 50px;
+                padding: 10px 40px;
+                min-width: 120px;
+                width: auto;
+                margin: 0 auto;
+                display: inline-block;
+            }
+            .active {
+                h2 {
+                    margin-bottom: 20px;
+                }
+            }
+            .gallery-photo-video {
+                margin-bottom: 50px;
+                h2 {
+                    border: 0;
+                }
+            }
+            .product-attributes {
+                h2 {
+                    border-color: @theme__color__primary_contr;
+                }
+                .active {
+                    h2 {
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            .product-ecochoice {
+                h2 {
+                    color: @theme__color__secondary;
+                    border-color: @theme__color__secondary;
+
+
+                }
+            }
+            .product-easeofuse {
+                border: 0;
+                margin-bottom: 20px;
+                h2 {
+                    margin-bottom: 20px;
+                }
+            }
         }
 
     }
@@ -701,8 +783,11 @@
             .product-secondary-wrapper {
                 width: 40%;
                 order: 10;
-            }
 
+            }
+            .product.attribute.shortdescription-mobile {
+                display: none;
+            }
             .product-media-wrapper {
                 width: 18%;
                 order: 2;
@@ -720,6 +805,10 @@
         .product.media {
             width: 50%;
         }
+    }
+
+    .product-options-wrapper {
+        display: block;
     }
 
 
