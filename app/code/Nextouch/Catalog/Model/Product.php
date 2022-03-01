@@ -69,4 +69,40 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
 
         return $this;
     }
+
+    public function getEcoChoice(): string
+    {
+        return (string) $this->getData(self::ECO_CHOICE);
+    }
+
+    public function setEcoChoice(string $ecoChoice): self
+    {
+        $this->setData(self::ECO_CHOICE, $ecoChoice);
+
+        return $this;
+    }
+
+    public function getEaseOfUse(): string
+    {
+        return (string) $this->getData(self::EASE_OF_USE);
+    }
+
+    public function setEaseOfUse(string $easeOfUse): self
+    {
+        $this->setData(self::EASE_OF_USE, $easeOfUse);
+
+        return $this;
+    }
+
+    public function isRecommended(): bool
+    {
+        return (bool) $this->getData(self::IS_RECOMMENDED);
+    }
+
+    public function setIsRecommended(bool $isRecommended): self
+    {
+        $this->setData(self::IS_RECOMMENDED, $isRecommended);
+
+        return $this;
+    }
 }

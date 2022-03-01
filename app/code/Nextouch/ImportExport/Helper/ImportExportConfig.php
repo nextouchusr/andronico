@@ -11,6 +11,7 @@ class ImportExportConfig extends AbstractHelper
     private const XML_PATH_WINS_USERNAME = 'import_export/wins/username';
     private const XML_PATH_WINS_PASSWORD = 'import_export/wins/password';
     private const XML_PATH_WINS_LOCATION = 'import_export/wins/location';
+    private const XML_PATH_WINS_PASSIVE_MODE = 'import_export/wins/passive_mode';
 
     public function getWinsConfig(): array
     {
@@ -18,7 +19,7 @@ class ImportExportConfig extends AbstractHelper
             'host' => $this->getWinsHost(),
             'user' => $this->getWinsUsername(),
             'password' => $this->getWinsPassword(),
-            'passive' => true,
+            'passive' => $this->isWinsPassiveModeEnabled(),
         ];
     }
 
@@ -63,5 +64,10 @@ class ImportExportConfig extends AbstractHelper
     public function getWinsLocation(): string
     {
         return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_LOCATION);
+    }
+
+    public function isWinsPassiveModeEnabled(): bool
+    {
+        return $this->scopeConfig->isSetFlag(self::XML_PATH_WINS_PASSIVE_MODE);
     }
 }
