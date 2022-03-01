@@ -16,8 +16,8 @@
                 <height>165</height>
             </image>
             <image id="category_page_grid" type="small_image">
-                <width>240</width>
-                <height>300</height>
+                <width>250</width>
+                <height>225</height>
             </image>
             <image id="category_page_grid-1" type="small_image">
                 <width>240</width>
