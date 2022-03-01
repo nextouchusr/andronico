@@ -1,11 +1,26 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist"
-                type="Nextouch\Theme\Block\Catalog\Product\View\AddTo\Wishlist"/>
+    <preference for="Magento\Catalog\Block\Product\ListProduct"
+                type="Nextouch\Theme\Block\Catalog\Product\ListProduct"/>
 
     <type name="Amasty\MegaMenuLite\Block\Container">
         <plugin name="change_root_menu_category"
                 type="Nextouch\Theme\Plugin\Block\MegaMenuLite\ChangeRootMenuCategory"/>
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="edit_available_sort_options"
+                type="Nextouch\Theme\Plugin\Block\Catalog\Product\ProductList\Toolbar\EditAvailableSortOptions"/>
+    </type>
+
+    <type name="Magento\CatalogSearch\Block\Result">
+        <plugin name="edit_available_sort_options"
+                type="Nextouch\Theme\Plugin\Block\CatalogSearch\Result\EditAvailableSortOptions"/>
+    </type>
+
+    <type name="Magento\Catalog\Block\Adminhtml\Product\Attribute\Edit\Tab\Advanced">
+        <plugin name="add_attribute_explanation_field"
+                type="Nextouch\Theme\Plugin\Block\Adminhtml\Catalog\Product\Attribute\Edit\Tab\Advanced\AddAttributeExplanationField"/>
     </type>
 </config>

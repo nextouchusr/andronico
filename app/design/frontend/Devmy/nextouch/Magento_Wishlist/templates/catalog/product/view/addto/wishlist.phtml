@@ -1,15 +1,11 @@
-<?php /** @var \Nextouch\Theme\Block\Catalog\Product\View\AddTo\Wishlist $block */ ?>
+<?php /** @var \Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist $block */ ?>
 
 <?php if ($block->isWishListAllowed()) : ?>
     <a href="#"
        class="action towishlist"
-       data-post='<?= $block->getPostParams(); ?>'
+       data-post='<?= $block->getAddToWishlistParams($block->getProduct()); ?>'
        data-action="add-to-wishlist">
-        <?php if ($block->isInWishlist()) : ?>
-            <i class="fas fa-heart fa-3x text-primary"></i>
-        <?php else : ?>
-            <i class="far fa-heart fa-3x text-primary"></i>
-        <?php endif; ?>
+        <span class="material-icons text-primary">favorite</span>
     </a>
 <?php endif; ?>
 

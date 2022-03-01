@@ -15,6 +15,7 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const SELECTABLE_COURIERS = 'selectable_couriers';
     public const ECO_CHOICE = 'eco_choice';
     public const EASE_OF_USE = 'ease_of_use';
+    public const IS_RECOMMENDED = 'is_recommended';
 
     // Customizable Options
     public const SERVICES_OPTION = 'services';
@@ -81,4 +82,37 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
      * @return ProductInterface
      */
     public function setSelectableCouriers(array $selectableCouriers): self;
+
+    /**
+     * @return string
+     */
+    public function getEcoChoice(): string;
+
+    /**
+     * @param string $ecoChoice
+     * @return ProductInterface
+     */
+    public function setEcoChoice(string $ecoChoice): self;
+
+    /**
+     * @return string
+     */
+    public function getEaseOfUse(): string;
+
+    /**
+     * @param string $easeOfUse
+     * @return ProductInterface
+     */
+    public function setEaseOfUse(string $easeOfUse): self;
+
+    /**
+     * @return bool
+     */
+    public function isRecommended(): bool;
+
+    /**
+     * @param bool $isRecommended
+     * @return ProductInterface
+     */
+    public function setIsRecommended(bool $isRecommended): self;
 }

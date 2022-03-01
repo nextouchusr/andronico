@@ -3,8 +3,11 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Nextouch_Theme" setup_version="1.0.0">
         <sequence>
-            <module name="Magento_Theme"/>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_CatalogSearch"/>
             <module name="Magento_Cms"/>
+            <module name="Magento_Theme"/>
+            <module name="Magento_Wishlist"/>
             <module name="Amasty_MegaMenuLite"/>
         </sequence>
     </module>

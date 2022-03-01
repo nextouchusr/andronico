@@ -73,6 +73,19 @@
                     <label>Location</label>
                     <comment>Server location where files are saved</comment>
                 </field>
+
+                <field id="passive_mode"
+                       translate="label"
+                       type="select"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Passive Mode</label>
+                    <comment>Enable passive mode for files transfer</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
         </section>
     </system>
