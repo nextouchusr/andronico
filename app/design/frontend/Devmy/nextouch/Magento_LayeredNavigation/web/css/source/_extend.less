@@ -1,0 +1,45 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .filter {
+    &-subtitle {
+      display: none;
+    }
+
+    &-options {
+      &-title {
+        cursor: pointer;
+        font-weight: @font-weight__semibold;
+        margin: 0;
+        padding: @indent__base 0;
+        border-top: 1px solid @primary__color;
+        overflow: hidden;
+        position: relative;
+        text-transform: capitalize;
+        word-break: break-word;
+
+        .lib-icon-font(
+          @_icon-font-content: @icon-up,
+          @_icon-font-size: 42px,
+          @_icon-font-position: after,
+          @_icon-font-display: block
+        );
+
+        &:after {
+          position: absolute;
+          top: 5px;
+          right: 0;
+        }
+
+        .active > & {
+          .lib-icon-font-symbol(
+            @_icon-font-content: @icon-down,
+            @_icon-font-position: after
+          );
+        }
+      }
+    }
+  }
+}
