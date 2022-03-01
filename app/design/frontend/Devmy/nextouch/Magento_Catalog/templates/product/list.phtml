@@ -65,7 +65,7 @@ $_helper = $block->getData('outputHelper');
                        tabindex="-1">
                         <?php if ($savingPercent > 0): ?>
                             <span class="product-item-badge product-item-badge--on-sale">
-                               <?= sprintf('-%s%%', $savingPercent); ?>
+                               <?= __('Save up on -%1%', $savingPercent); ?>
                             </span>
                         <?php elseif ($isRecommended): ?>
                             <span class="product-item-badge product-item-badge--recommended">
