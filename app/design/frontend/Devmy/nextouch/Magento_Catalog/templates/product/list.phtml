@@ -63,13 +63,13 @@ $_helper = $block->getData('outputHelper');
                     <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
                        class="product photo product-item-photo"
                        tabindex="-1">
-                        <?php if ($isRecommended): ?>
-                            <span class="product-item-badge product-item-badge--recommended">
-                                <?= __('Recommended'); ?>
-                            </span>
-                        <?php elseif ($savingPercent > 0): ?>
+                        <?php if ($savingPercent > 0): ?>
                             <span class="product-item-badge product-item-badge--on-sale">
                                <?= sprintf('-%s%%', $savingPercent); ?>
+                            </span>
+                        <?php elseif ($isRecommended): ?>
+                            <span class="product-item-badge product-item-badge--recommended">
+                                <?= __('Recommended'); ?>
                             </span>
                         <?php endif; ?>
                         <?= $productImage->toHtml() ?>
