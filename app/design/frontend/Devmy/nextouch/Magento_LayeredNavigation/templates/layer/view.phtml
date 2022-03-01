@@ -29,6 +29,7 @@
             <?php endif; ?>
             <?php $wrapOptions = false; ?>
             <?php foreach ($block->getFilters() as $filter) : ?>
+                <?php $isProductAttribute = $filter instanceof \Amasty\Shopby\Model\Layer\Filter\Attribute; ?>
                 <?php if ($filter->getItemsCount()) : ?>
                     <?php if (!$wrapOptions) : ?>
                         <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= $block->escapeHtml(__('Shopping Options')); ?></strong>
@@ -47,7 +48,7 @@
                     <div data-role="collapsible" class="filter-options-item">
                         <div data-role="title" class="filter-options-title">
                             <?= $block->escapeHtml(__($filter->getName())); ?>
-                            <?php if ($filter->getAttributeModel()->getAttributeExplanation()): ?>
+                            <?php if ($isProductAttribute && $filter->getAttributeModel()->getAttributeExplanation()): ?>
                                 <!-- TODO: show attribute explanation using: $filter->getAttributeModel()->getAttributeExplanation() -->
                                 <span class="material-icons text-primary">info</span>
                             <?php endif; ?>
