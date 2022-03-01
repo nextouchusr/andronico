@@ -4,7 +4,7 @@
 $images = $block->getGalleryImages()->getItems();
 ?>
 
-<div class="row">
+<div class="gallery-photo-video">
     <div class="col-12">
         <h2><?= __('Photo & Video'); ?></h2>
 
@@ -56,11 +56,23 @@ $images = $block->getGalleryImages()->getItems();
 
         tns({
             container: '#product-gallery',
-            items: 3,
+            items: 2,
             mouseDrag: true,
             swipeAngle: false,
             controls: false,
             nav: false,
+            edgePadding: 50,
+            gutter: 10,
+            lazyload: true,
+            loop: false,
+            "responsive": {
+                "250": {
+                    "items": 2,
+                },
+                "780": {
+                    "items": 2
+                }
+            }
         });
     });
 </script>

@@ -15,12 +15,6 @@ $isFilterApplied = $displayedCollection->getFlag(Applier::COLLECTION_FLAG);
 
 <?php if (count($_items) || $isFilterApplied) : ?>
 <div class="block review-list" id="customer-reviews">
-    <div class="amrev-title-block amreview-customer-review pages">
-        <strong class="am-strong">
-            <?= __('Reviews'); ?>
-        </strong>
-    </div>
-
     <div class="amrev-items-block block-content" data-amload-js="container">
         <?php if (count($_items)): ?>
             <ol class="items amreview-review-items"
@@ -57,7 +51,7 @@ $isFilterApplied = $displayedCollection->getFlag(Applier::COLLECTION_FLAG);
 
                             <div class="amrev-desc-title">
                                 <span class="amreview-title-review" itemprop="name">
-                                    <?= $block->escapeHtml($review->getNickname()); ?> -
+                                    <span class="nickname"> <?= $block->escapeHtml($review->getNickname()); ?></span> -
                                     <?= $block->escapeHtml($review->getTitle()); ?>
                                 </span>
                                 <div class="amrev-comment-toolbar -nocomments">
