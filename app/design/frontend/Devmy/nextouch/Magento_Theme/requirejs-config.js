@@ -2,7 +2,8 @@ var config = {
     map: {
         "*": {
             'negativeSlider': 'Magento_Theme/js/negative-slider',
-            'initSlick': 'Magento_Theme/js/init-slick'
+            'initSlick': 'Magento_Theme/js/init-slick',
+            'scrollDecisionTree': "Magento_Theme/js/scroll-decision-tree"
         }
     },
     paths: {
