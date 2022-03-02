@@ -24,12 +24,16 @@
 
     .gallery-photo-video {
         margin: 20px 0;
+        overflow: hidden;
         h2 {
             margin-bottom: 20px;
         }
         img {
             border-radius: 20px;
 
+        }
+        .tns-slider {
+            margin-left: -40px;
         }
     }
     .product-details-boxes {
@@ -42,6 +46,7 @@
             width: 100%;
             div[data-role="title"] {
               text-align: center;
+                cursor: pointer;
             }
             &.product-easeofuse {
                 width: 100%;
@@ -53,6 +58,7 @@
             &.product-ecochoice {
                 .eco-rating {
                     margin-left: 10px;
+                    white-space: nowrap;
                     span {
                         width: 6px;
                         height: 6px;
@@ -245,6 +251,7 @@
                 clear: left;
                 div[data-role="title"] {
                     padding-left: 100px;
+                    cursor: pointer;
                 }
                 h2 {
                     font-size: 2rem;

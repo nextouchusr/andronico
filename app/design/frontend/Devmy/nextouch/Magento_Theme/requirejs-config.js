@@ -14,5 +14,5 @@ var config = {
         'negativeSlider': {
             'deps': ['jquery']
         }
-    }
+    },
 };

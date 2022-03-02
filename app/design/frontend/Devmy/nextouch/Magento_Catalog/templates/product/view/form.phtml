@@ -1,0 +1,68 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php $_helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
+<?php $_product = $block->getProduct(); ?>
+
+<form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
+      action="<?= $block->escapeUrl($block->getSubmitUrl($_product)) ?>" method="post"
+      id="product_addtocart_form"<?php if ($_product->getOptions()) :?> enctype="multipart/form-data"<?php endif; ?>>
+    <input type="hidden" name="product" value="<?= (int)$_product->getId() ?>" />
+    <input type="hidden" name="selected_configurable_option" value="" />
+    <input type="hidden" name="related_product" id="related-products-field" value="" />
+    <input type="hidden" name="item"  value="<?= (int)$block->getRequest()->getParam('id') ?>" />
+    <?= $block->getBlockHtml('formkey') ?>
+    <?= $block->getChildHtml('form_top') ?>
+<div class="product-info-main-cols">
+    <div class="product-info-main-primary">
+    <?= $block->getChildHtml('page.main.title') ?>
+    <?= $block->getChildHtml('product.info.subtitle') ?>
+
+        <div class="product-add-form">
+
+                <?php echo $block->getChildHtml('product_options_wrapper_bottom') ?>
+                <?php if (!$block->hasOptions()) :?>
+                    <?= $block->getChildHtml('product_info_form_content') ?>
+                <?php else :?>
+                    <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1') :?>
+                        <?= $block->getChildChildHtml('options_container') ?>
+                    <?php endif;?>
+                <?php endif; ?>
+
+
+                <?= $block->getChildHtml('form_bottom') ?>
+
+        </div>
+
+    <script type="text/x-magento-init">
+        {
+            "[data-role=priceBox][data-price-box=product-id-<?= $block->escapeHtml($_product->getId()) ?>]": {
+                "priceBox": {
+                    "priceConfig":  <?= /* @noEscape */ $block->getJsonConfig() ?>
+                }
+            }
+        }
+    </script>
+
+    </div>
+
+    <div class="product-info-main-right">
+
+        <?= $block->getChildHtml('product.info.secondary.wrapper') ?>
+        <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2') :?>
+            <?= $block->getChildChildHtml('options_container') ?>
+        <?php endif;?>
+    </div>
+</div>
+</form>

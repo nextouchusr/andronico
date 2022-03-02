@@ -45,7 +45,7 @@
                 width: 26px;
                 height: 26px;
                 content: "";
-                margin-right: 30px;
+                margin-right: 15px;
                 margin-bottom: -8px;
             }
         }
@@ -109,6 +109,15 @@
         font-size: 1.3rem;
         li {
             font-size: 1.3rem;
+        }
+    }
+    input[type="radio"] {
+        display: none;
+
+        + label {
+            &:before {
+                margin-right: 30px;
+            }
         }
     }
 }
