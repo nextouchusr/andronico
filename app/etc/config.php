@@ -483,6 +483,7 @@ return [
         'Magefan_AdminUserGuide' => 1,
         'Magefan_Community' => 1,
         'Magefan_LazyLoad' => 1,
+        'Magefan_WysiwygAdvanced' => 1,
         'Magenio_TinySlider' => 1,
         'Nextouch_Eav' => 1,
         'Nextouch_Customer' => 1,

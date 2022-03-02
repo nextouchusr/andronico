@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de3971f88ed6c280cc1c38d2a1ff3b6d",
+    "content-hash": "ef17f826df1f56592741ea28e5daa602",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -6872,6 +6872,44 @@
                 "source": "https://github.com/magefan/module-lazyload/tree/2.0.16"
             },
             "time": "2022-02-07T15:05:56+00:00"
+        },
+        {
+            "name": "magefan/module-wysiwyg-advanced",
+            "version": "2.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magefan/module-wysiwyg-advanced.git",
+                "reference": "18408e78cabd3bffb1e07af0c2f6fc1b1aed55fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magefan/module-wysiwyg-advanced/zipball/18408e78cabd3bffb1e07af0c2f6fc1b1aed55fd",
+                "reference": "18408e78cabd3bffb1e07af0c2f6fc1b1aed55fd",
+                "shasum": ""
+            },
+            "require": {
+                "magefan/module-community": ">=2.0.12"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magefan\\WysiwygAdvanced\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Extend TinyMCE 4 in Magento 2",
+            "support": {
+                "issues": "https://github.com/magefan/module-wysiwyg-advanced/issues",
+                "source": "https://github.com/magefan/module-wysiwyg-advanced/tree/2.0.10"
+            },
+            "time": "2020-07-17T07:29:00+00:00"
         },
         {
             "name": "magenio/magento2-tinyslider",
