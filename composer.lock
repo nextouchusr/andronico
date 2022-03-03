@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7daa262ac919a00e23716f7ffe35fae1",
+    "content-hash": "de3971f88ed6c280cc1c38d2a1ff3b6d",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -6764,6 +6764,114 @@
                 }
             ],
             "time": "2021-09-25T08:23:19+00:00"
+        },
+        {
+            "name": "magefan/module-admin-user-guide",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magefan/module-admin-user-guide.git",
+                "reference": "35f950396e7a443cf93e00603e45b2da23c03b58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magefan/module-admin-user-guide/zipball/35f950396e7a443cf93e00603e45b2da23c03b58",
+                "reference": "35f950396e7a443cf93e00603e45b2da23c03b58",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magefan\\AdminUserGuide\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Admin panel user guides.",
+            "support": {
+                "issues": "https://github.com/magefan/module-admin-user-guide/issues",
+                "source": "https://github.com/magefan/module-admin-user-guide/tree/2.0.1"
+            },
+            "time": "2021-12-30T07:25:20+00:00"
+        },
+        {
+            "name": "magefan/module-community",
+            "version": "2.1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magefan/module-community.git",
+                "reference": "1ba131ffe9d60f01194fb28785bc004803f0f97b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magefan/module-community/zipball/1ba131ffe9d60f01194fb28785bc004803f0f97b",
+                "reference": "1ba131ffe9d60f01194fb28785bc004803f0f97b",
+                "shasum": ""
+            },
+            "require": {
+                "magefan/module-admin-user-guide": ">=2.0.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magefan\\Community\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "support": {
+                "issues": "https://github.com/magefan/module-community/issues",
+                "source": "https://github.com/magefan/module-community/tree/2.1.8"
+            },
+            "time": "2021-12-22T11:09:27+00:00"
+        },
+        {
+            "name": "magefan/module-lazyload",
+            "version": "2.0.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magefan/module-lazyload.git",
+                "reference": "9d485be65d5a554e43cf07c52ea45d2fb65f287f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magefan/module-lazyload/zipball/9d485be65d5a554e43cf07c52ea45d2fb65f287f",
+                "reference": "9d485be65d5a554e43cf07c52ea45d2fb65f287f",
+                "shasum": ""
+            },
+            "require": {
+                "magefan/module-community": ">=2.1.8"
+            },
+            "suggest": {
+                "magefan/module-rocketjavascript": "Install Rocket JavaScript to optimize JS loading.",
+                "magefan/module-webp": "Install WebP Optimized Images to serve images in the next-gen format. Use coupon code COMPOSER-FAN to get 10% discount on magefan.com."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magefan\\LazyLoad\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Magefan",
+                    "email": "support@magefan.com"
+                }
+            ],
+            "description": "Images lazyloading on Magento 2 store.",
+            "support": {
+                "issues": "https://github.com/magefan/module-lazyload/issues",
+                "source": "https://github.com/magefan/module-lazyload/tree/2.0.16"
+            },
+            "time": "2022-02-07T15:05:56+00:00"
         },
         {
             "name": "magenio/magento2-tinyslider",
