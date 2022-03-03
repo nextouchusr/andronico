@@ -1,0 +1,80 @@
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .page-footer{
+    .footer.content{
+      background: @theme__color__primary;
+      max-width: @layout__max-width;
+      padding-left: @layout-indent__width;
+      padding-right: @layout-indent__width;
+      width: auto;
+      font-size: 1.2rem;
+      font-weight: @font-weight__bold;
+      .links{
+        margin: 0 50px;
+        padding: 0;
+        &:first-child{
+          margin-left: 0px;
+        }
+      }
+      .text-center{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        max-width: 1100px;
+        width: auto;
+        margin: 40px auto;
+        .footer.links{
+          flex: 1 1 0px;
+          border-right: 1px solid #fff;
+          &:last-child{
+            border-right: none;
+          }
+        }
+      }
+      .footer-social{
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        .col-auto{
+          width: 100px;
+        }
+      }
+      a{
+        color: @color-white;
+      }
+      .footer-copyright{
+        display: flex;
+        justify-content: space-between;
+        .text-copyright{
+          color: @color-white;
+          font-size: 1.2rem;
+          font-weight: normal;
+          max-width: 550px;
+          padding-right: 50px;
+        }
+      }
+    }
+  }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {}
+
+
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {}

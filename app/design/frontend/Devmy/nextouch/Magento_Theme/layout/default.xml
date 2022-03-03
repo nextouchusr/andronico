@@ -105,7 +105,7 @@
                 </block>
             </container>
 
-            <container name="footer-social-wrapper" htmlTag="div" after="footer-links">
+            <container name="footer-social-wrapper" htmlTag="div" htmlClass="footer-social" after="footer-links">
                 <block name="footer.social.links"
                        class="Magento\Framework\View\Element\Template"
                        template="Magento_Theme::html/social-links.phtml">
