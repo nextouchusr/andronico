@@ -58,6 +58,34 @@
         .lib-vendor-prefix-display(flex);
         .lib-vendor-prefix-flex-direction(column);
         min-height: 100vh; // Stretch content area for sticky footer
+      .ammenu-menu-wrapper{
+        background: #EEF1E9;
+        .ammenu-link{
+
+        }
+        .ammenu-text-block{
+          .ammenu-text{
+            color:#0B4966;
+            font-size: 1.2rem;
+            font-weight: normal;
+            &:hover{
+              text-shadow: -0.06ex 0 currentColor, 0.06ex 0 currentColor;
+            }
+          }
+        }
+        .ammenu-submenu-block{
+          background:  rgba(238,241,233,0.5) !important;
+          box-shadow: 500px 0px 0px 0px  rgba(238,241,233,0.5),-500px 0px 0px 0px  rgba(238,241,233,0.5);
+          .ammenu-text-block{
+            margin-bottom: 20px;
+            .ammenu-text{
+              color:#0B4966;
+              font-size: 1.2rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
     }
 
     .page-main {
@@ -73,7 +101,7 @@
         border-bottom: 1px solid @border-color__base;
         margin-bottom: @indent__base;
         .account-wrapper {
-
+            order: 3;
             width: 76px;
             height: 76px;
             .showaccount {
@@ -92,14 +120,20 @@
                 }
             }
         }
-    }
-
-    .header {
-        &.content {
-            &:extend(.abs-add-clearfix all);
-            padding-top: @indent__s;
-            position: relative;
-        }
+      .header {
+           &.content {
+             &:extend(.abs-add-clearfix all);
+             padding-top: @indent__s;
+             position: relative;
+             background: #EEF1E9;
+             margin-bottom: 0;
+             .block-search{
+               input{
+                 background: #fff;
+               }
+             }
+           }
+         }
     }
 
     .logo {
@@ -328,6 +362,9 @@
             width: 90%;
             display: none; //TODO: Check why amasty override classes
         }
+      .minicart-wrapper{
+        order: 4;
+      }
     }
 
     .page-header {
