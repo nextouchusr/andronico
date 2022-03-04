@@ -79,12 +79,9 @@
         </referenceContainer>
 
         <referenceBlock name="product.info.addto">
-            <block class="Magento\Framework\View\Element\Template" name="view.addto.share"
+            <block class="Magento\Catalog\Block\Product\View" name="view.addto.share"
                    template="Magento_Catalog::product/view/addto/share.phtml" />
         </referenceBlock>
-
-
-
 
         <!-- Remove -->
         <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
@@ -94,6 +91,7 @@
         <referenceBlock name="product.info.review" remove="true"/>
         <referenceBlock name="product.info.sku" remove="true"/>
         <referenceBlock name="view.addto.compare" remove="true"/>
+        <referenceBlock name="product.info.mailto" remove="true"/>
 
         <move element="page.main.title" destination="product.info" before="-"/>
         <move element="product.info.subtitle" destination="page.main.title" after="-"/>
