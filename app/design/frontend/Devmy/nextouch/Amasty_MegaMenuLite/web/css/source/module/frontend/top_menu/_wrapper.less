@@ -8,6 +8,8 @@
 
 & when (@media-common = true) {
     .ammenu-nav-sections.-topmenu {
+        background-color: @color-transparent;
+
         & {
             .ammenu-transition(.1);
         }
@@ -18,6 +20,8 @@
             }
 
             .ammenu-main-container {
+                background-color: @color-white !important;
+
                 &:extend(.ammenu-sticky);
             }
 
