@@ -395,6 +395,9 @@
                 background: none;
                 margin-left: 20px;
                 margin-right: 20px;
+                &.ui-state-active {
+                    z-index: 1;
+                }
                 a.tab-title {
                     background: none;
                     color: @theme__color__primary;
@@ -402,6 +405,10 @@
                     font-size: 2.2rem;
                 }
             }
+        }
+
+        div .tabs-content {
+            z-index: 1;
         }
     }
 
