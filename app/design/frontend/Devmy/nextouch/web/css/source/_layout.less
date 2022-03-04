@@ -45,6 +45,10 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .hidden-sm {
+        display: none !important;
+    }
+
     .navigation,
     .page-header .header.panel,
     .header.content,
