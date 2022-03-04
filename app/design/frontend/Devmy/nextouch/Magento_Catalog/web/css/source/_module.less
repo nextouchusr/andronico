@@ -342,6 +342,12 @@
         }
     }
 
+    .product-options-bottom {
+        + .box-tocart {
+            display: none!important;
+        }
+    }
+
     .product-info-main,
     .product-options-bottom {
         .price-box {
@@ -600,6 +606,10 @@
         .page-title {
             font-weight: 700;
             font-size: 1.4rem;
+        }
+        .page-main {
+            background: url('@{baseDir}images/texture.jpg') no-repeat center 700px;
+            background-size: 120%;
         }
     }
 }
@@ -866,8 +876,7 @@
             }
         }
         .product.info.detailed {
-            padding: 30px 0;
-            border-top: 1px dashed @primary__color;
+            padding: 20px 0;
         }
     }
 

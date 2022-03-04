@@ -7,7 +7,8 @@ $rating = 3; // TODO: add dynamic value; 0-5 int value
 
 <div id="product-eco-choice-collapsible">
     <div data-role="title">
-        <h2 class="text-center text-sm-start">
+        <span class="icon-veg"><img src="<?= $block->getViewFileUrl('images/veg_icon.svg'); ?>" width="60" alt=""/></span>
+        <h2 class="text-sm-start">
             <?= __('Ecological / eco-friendly choice'); ?>
             <span class="eco-rating eco-rating-<?= $rating; ?>">
                 <span></span>
@@ -19,21 +20,18 @@ $rating = 3; // TODO: add dynamic value; 0-5 int value
         </h2>
     </div>
 
-    <div data-role="content">
+    <div data-role="content" class="more-less-content">
+        <div class="more-less-wrapper">
         <?= $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
             $block->getProduct(),
             $block->getProduct()->getEcoChoice(),
             'eco_choice'
         ); ?>
+        </div>
+        <div class="more-less">
+            <span class="more"> <?= __('Show more') ?></span>
+            <span class="less"> <?= __('Show less') ?></span>
+        </div>
     </div>
 </div>
 
-<script>
-    require(['jquery', 'collapsible'], function ($) {
-        $("#product-eco-choice-collapsible").collapsible({
-            collapsible: true,
-            openedState: 'active',
-            animate: {duration: 1000, easing: 'easeInCubic'}
-        });
-    });
-</script>

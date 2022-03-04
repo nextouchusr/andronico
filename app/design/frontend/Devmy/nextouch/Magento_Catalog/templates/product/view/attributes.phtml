@@ -11,33 +11,30 @@ $_product = $block->getProduct();
             <h2 class="text-center text-sm-start"><?= __('Features'); ?></h2>
         </div>
 
-        <div data-role="content">
-            <div class="additional-attributes-wrapper table-wrapper">
-                <table class="data table additional-attributes" id="product-attribute-specs-table">
-                    <tbody>
-                    <?php foreach ($_additional as $_data) : ?>
-                        <tr>
-                            <th class="col label" scope="row">
-                                <?= $block->escapeHtml($_data['label']); ?>
-                            </th>
-                            <td class="col data" data-th="<?= $block->escapeHtmlAttr($_data['label']); ?>">
-                                <?= $_helper->productAttribute($_product, $_data['value'], $_data['code']); ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
+        <div data-role="content" class="more-less-content">
+            <div class="more-less-wrapper">
+                <div class="additional-attributes-wrapper table-wrapper">
+                    <table class="data table additional-attributes" id="product-attribute-specs-table">
+                        <tbody>
+                        <?php foreach ($_additional as $_data) : ?>
+                            <tr>
+                                <th class="col label" scope="row">
+                                    <?= $block->escapeHtml($_data['label']); ?>
+                                </th>
+                                <td class="col data" data-th="<?= $block->escapeHtmlAttr($_data['label']); ?>">
+                                    <?= $_helper->productAttribute($_product, $_data['value'], $_data['code']); ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="more-less">
+                <span class="more"> <?= __('Show more') ?></span>
+                <span class="less"> <?= __('Show less') ?></span>
             </div>
         </div>
     </div>
 
-    <script>
-        require(['jquery', 'collapsible'], function ($) {
-            $("#product-attributes-collapsible").collapsible({
-                collapsible: true,
-                openedState: 'active',
-                animate: {duration: 1000, easing: 'easeInCubic'}
-            });
-        });
-    </script>
 <?php endif; ?>

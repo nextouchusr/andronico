@@ -9,19 +9,22 @@ define([
         mediaCheck({
             media: '(min-width: 768px)',
             entry: $.proxy(function () {
-                    $(element).css('height',$(element).innerHeight);
+                    $(element).css('height',$(element).innerHeight());
                     $(window).on('scroll', function() {
                         var initialPos = $(element).offset().top;
-                        if($(window).scrollTop() > (initialPos - 260)) {
+                        if($(window).scrollTop() > (initialPos + $('.decision-tree-btn').height())) {
                             $(element).find('.decision-tree-btn').addClass('stickyTree');
                         }
                         else {
                             $(element).find('.decision-tree-btn').removeClass('stickyTree');
+                            $(element).css('height','auto');
+                            $(element).css('height',$(element).innerHeight());
                         }
                     });
             }, this),
             exit: $.proxy(function () {
-
+                $(element).css('height','auto');
+                $(element).css('height',$(element).innerHeight());
             }, this)
         });
     };

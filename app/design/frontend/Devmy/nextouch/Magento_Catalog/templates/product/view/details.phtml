@@ -8,28 +8,41 @@ $layout = $block->getLayout();
 <div class="product info detailed">
     <?= $block->getChildHtml('product.info.details.gallery'); ?>
 
-    <div class="product-details-boxes">
+    <div class="product-details-boxes-columns">
 
-
-        <div id="product-description-collapsible" class="product-description">
-            <div data-role="title">
-                <h2><?= __('Description') ?></h2>
+        <div class="product-details-boxes details-box-col1">
+            <div class="product-attributes">
+                <?= $layout->renderElement('product.attributes'); //TODO: add dynamic attribute label ?>
             </div>
-            <div data-role="content">
-                <?= $layout->renderElement('product.info.description'); //TODO: add dynamic attribute label ?>
+
+
+            <div class="product-ecochoice">
+                <?= $layout->renderElement('product.info.ecoChoice'); ?>
+            </div>
+        </div>
+        <div class="product-details-boxes details-box-col2">
+            <div id="product-description-collapsible" class="product-description">
+                <div data-role="title">
+                    <h2><?= __('Description') ?></h2>
+                </div>
+                <div data-role="content" class="more-less-content">
+                     <div class="more-less-wrapper">
+                        <?= $layout->renderElement('product.info.description'); //TODO: add dynamic attribute label ?>
+                    </div>
+                    <div class="more-less">
+                        <span class="more"> <?= __('Show more') ?></span>
+                        <span class="less"> <?= __('Show less') ?></span>
+                    </div>
+
+                </div>
             </div>
         </div>
 
 
-        <div class="product-attributes">
-            <?= $layout->renderElement('product.attributes'); //TODO: add dynamic attribute label ?>
-        </div>
+    </div>
 
 
-        <div class="product-ecochoice">
-           <?= $layout->renderElement('product.info.ecoChoice'); ?>
-        </div>
-
+    <div class="product-details-boxes product-details-box-easeofuse">
         <div id="product-easeofuse-collapsible" class="product-easeofuse">
             <?= $layout->renderElement('product.info.easeOfUse'); ?>
         </div>
@@ -37,13 +50,23 @@ $layout = $block->getLayout();
 
 
     <script>
-        require(['jquery', 'collapsible'], function ($) {
-            $("#product-description-collapsible").collapsible({
-                collapsible: true,
-                openedState: 'active',
-                active: false,
-                animate: {duration: 500, easing: 'linear'}
+        require(['jquery'], function ($) {
+            $(".more-less-content .more-less").on('click', function() {
+                $(this).closest('.more-less-content').toggleClass('active');
+                var parentMoreLess = $(this).closest('.more-less-content');
+                var moreLessActive = $('.more-less-content.active');
+                if(moreLessActive) {
+                    $('.product-details-boxes-columns').addClass('active');
+                }
+                else {
+                    $('.product-details-boxes-columns').removeClass('active');
+                }
             });
+
+            $('.product-details-boxes div[data-role="title"').on('click', function() {
+                $(this).parent().toggleClass('active-mobile');
+            });
+
         });
     </script>
 

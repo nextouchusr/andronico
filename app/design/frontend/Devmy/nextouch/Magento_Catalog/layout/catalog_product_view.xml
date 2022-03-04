@@ -17,7 +17,7 @@
                 <referenceContainer name="product.info.main">
                     <referenceBlock name="product.info">
                         <block class="Magento\Framework\View\Element\Template" name="product.info.main.wrapper" template="Magento_Catalog::product/view.phtml">
-                            <!-- TODO: replace with correct attribute -->
+                            <!-- TODO: replace with correct attribute
                             <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.subtitle" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="page.main.title">
                                 <arguments>
                                     <argument name="at_call" xsi:type="string">getShortDescription</argument>
@@ -26,7 +26,7 @@
                                     <argument name="at_label" xsi:type="string">none</argument>
                                     <argument name="title" translate="true" xsi:type="string">Placeholder</argument>
                                 </arguments>
-                            </block>
+                            </block> -->
                             <!-- Todo: suggest to change graphics for print single attribute on page -->
                             <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.overview.mobile" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="product.info.subtitle">
                                 <arguments>
@@ -113,6 +113,6 @@
 
         <move element="product.info.addto" destination="product.info.media" after="product.info.stock.sku"/>
         <move element="product.info.social" destination="product.info.media" after="product.info.addto"/>
-        <move element="product.info.price" destination="product.info.form.content" before="product.info.addtocart"/>
+        <move element="product.info.price" destination="product.info" />
     </body>
 </page>

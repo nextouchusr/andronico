@@ -36,6 +36,7 @@ $images = $block->getGalleryImages()->getItems();
             var $productMediaModal = $('#product-media-modal');
             var $iframe = $productMediaModal.find('iframe');
 
+
             modal({
                 type: 'popup',
                 modalClass: 'product-media-popup',
@@ -43,10 +44,13 @@ $images = $block->getGalleryImages()->getItems();
                 buttons: [],
             }, $productMediaModal);
 
-            $('.tns-inner').on('click', '.product-media-link', function () {
-                var mediaUrl = $(this).data('media-url');
-                $iframe.prop('src', mediaUrl);
-                $productMediaModal.modal('openModal');
+
+            $('.tns-inner .product-media-link').on('click', function () {
+                if(!detailsGalleryDragMove) {
+                    var mediaUrl = $(this).data('media-url');
+                    $iframe.prop('src', mediaUrl);
+                    $productMediaModal.modal('openModal');
+                }
             });
 
             $iframe.on('load', function() {
@@ -54,7 +58,7 @@ $images = $block->getGalleryImages()->getItems();
             });
         });
 
-        tns({
+        var sliderGallery = tns({
             container: '#product-gallery',
             items: 2,
             mouseDrag: true,
@@ -73,6 +77,15 @@ $images = $block->getGalleryImages()->getItems();
                     "items": 2
                 }
             }
+        });
+
+
+        var detailsGalleryDragMove = false;
+        sliderGallery.events.on('dragEnd', function (info) {
+            detailsGalleryDragMove = false;
+        });
+        sliderGallery.events.on('dragMove', function (info) {
+            detailsGalleryDragMove = true;
         });
     });
 </script>

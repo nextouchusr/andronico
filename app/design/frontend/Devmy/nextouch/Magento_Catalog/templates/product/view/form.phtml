@@ -31,6 +31,8 @@
 
         <div class="product-add-form">
 
+            <?= $block->getChildHtml('product.info.price') ?>
+
                 <?php echo $block->getChildHtml('product_options_wrapper_bottom') ?>
                 <?php if (!$block->hasOptions()) :?>
                     <?= $block->getChildHtml('product_info_form_content') ?>
@@ -42,6 +44,7 @@
 
 
                 <?= $block->getChildHtml('form_bottom') ?>
+
 
         </div>
 
