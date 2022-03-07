@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef17f826df1f56592741ea28e5daa602",
+    "content-hash": "49cb7cea5825b4d59eec0647bd95561f",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -6828,50 +6828,6 @@
                 "source": "https://github.com/magefan/module-community/tree/2.1.8"
             },
             "time": "2021-12-22T11:09:27+00:00"
-        },
-        {
-            "name": "magefan/module-lazyload",
-            "version": "2.0.16",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/magefan/module-lazyload.git",
-                "reference": "9d485be65d5a554e43cf07c52ea45d2fb65f287f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/magefan/module-lazyload/zipball/9d485be65d5a554e43cf07c52ea45d2fb65f287f",
-                "reference": "9d485be65d5a554e43cf07c52ea45d2fb65f287f",
-                "shasum": ""
-            },
-            "require": {
-                "magefan/module-community": ">=2.1.8"
-            },
-            "suggest": {
-                "magefan/module-rocketjavascript": "Install Rocket JavaScript to optimize JS loading.",
-                "magefan/module-webp": "Install WebP Optimized Images to serve images in the next-gen format. Use coupon code COMPOSER-FAN to get 10% discount on magefan.com."
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Magefan\\LazyLoad\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Magefan",
-                    "email": "support@magefan.com"
-                }
-            ],
-            "description": "Images lazyloading on Magento 2 store.",
-            "support": {
-                "issues": "https://github.com/magefan/module-lazyload/issues",
-                "source": "https://github.com/magefan/module-lazyload/tree/2.0.16"
-            },
-            "time": "2022-02-07T15:05:56+00:00"
         },
         {
             "name": "magefan/module-wysiwyg-advanced",

@@ -482,7 +482,7 @@ return [
         'MSP_CmsImportExport' => 1,
         'Magefan_AdminUserGuide' => 1,
         'Magefan_Community' => 1,
-        'Magefan_LazyLoad' => 1,
+        'Magefan_LazyLoad' => 0,
         'Magefan_WysiwygAdvanced' => 1,
         'Magenio_TinySlider' => 1,
         'Nextouch_Eav' => 1,
