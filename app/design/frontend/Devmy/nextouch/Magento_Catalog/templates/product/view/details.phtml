@@ -15,10 +15,7 @@ $layout = $block->getLayout();
                 <?= $layout->renderElement('product.attributes'); //TODO: add dynamic attribute label ?>
             </div>
 
-
-            <div class="product-ecochoice">
-                <?= $layout->renderElement('product.info.ecoChoice'); ?>
-            </div>
+            <?= $layout->renderElement('product.info.ecoChoice'); ?>
         </div>
         <div class="product-details-boxes details-box-col2">
             <div id="product-description-collapsible" class="product-description">

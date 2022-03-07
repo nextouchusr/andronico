@@ -54,7 +54,9 @@
                     </arguments>
                 </block>
 
-                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.ecoChoice" template="Magento_Catalog::product/view/details/eco-choice.phtml">
+                <block class="Nextouch\Theme\Block\Catalog\Product\View\EcoChoice"
+                       name="product.info.ecoChoice"
+                       template="Magento_Catalog::product/view/details/eco-choice.phtml">
                     <arguments>
                         <argument name="at_call" xsi:type="string">getEcoChoice</argument>
                         <argument name="at_code" xsi:type="string">eco_choice</argument>
