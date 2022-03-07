@@ -51,7 +51,7 @@ class AddEcoChoiceLevelAttribute implements DataPatchInterface
                 'label' => 'Eco Choice Level',
                 'input' => 'text',
                 'required' => false,
-                'sort_order' => 20,
+                'sort_order' => 25,
                 'global' => ScopedAttributeInterface::SCOPE_STORE,
                 'user_defined' => true,
                 'visible' => true,
