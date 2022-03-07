@@ -3,7 +3,7 @@
 
 use Nextouch\Catalog\Api\Data\ProductInterface;
 
-$rating = $block->getProduct()->getEcoChoiceLevel();
+$level = $block->getProduct()->getEcoChoiceLevel();
 ?>
 
 <div class="product-ecochoice">
@@ -12,7 +12,7 @@ $rating = $block->getProduct()->getEcoChoiceLevel();
             <span class="icon-veg"><img src="<?= $block->getViewFileUrl('images/veg_icon.svg'); ?>" width="60" alt=""/></span>
             <h2 class="text-sm-start">
                 <?= __('Ecological / eco-friendly choice'); ?>
-                <span class="eco-rating eco-rating-<?= $rating; ?>">
+                <span class="eco-level eco-level-<?= $level; ?>">
                     <span></span>
                     <span></span>
                     <span></span>
