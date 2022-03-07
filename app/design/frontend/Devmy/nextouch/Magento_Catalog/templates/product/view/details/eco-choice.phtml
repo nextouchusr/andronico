@@ -1,7 +1,9 @@
 <?php
 /** @var \Nextouch\Theme\Block\Catalog\Product\View\EcoChoice $block */
 
-$rating = 3; // TODO: add dynamic value; 0-5 int value
+use Nextouch\Catalog\Api\Data\ProductInterface;
+
+$rating = $block->getProduct()->getEcoChoiceLevel();
 ?>
 
 <div class="product-ecochoice">
@@ -25,7 +27,7 @@ $rating = 3; // TODO: add dynamic value; 0-5 int value
             <?= $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
                 $block->getProduct(),
                 $block->getProduct()->getEcoChoice(),
-                'eco_choice'
+                ProductInterface::ECO_CHOICE
             ); ?>
             </div>
             <div class="more-less">

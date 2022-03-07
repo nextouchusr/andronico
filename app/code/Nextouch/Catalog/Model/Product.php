@@ -82,6 +82,18 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
         return $this;
     }
 
+    public function getEcoChoiceLevel(): int
+    {
+        return (int) $this->getData(self::ECO_CHOICE_LEVEL);
+    }
+
+    public function setEcoChoiceLevel(int $ecoChoiceLevel): self
+    {
+        $this->setData(self::ECO_CHOICE_LEVEL, $ecoChoiceLevel);
+
+        return $this;
+    }
+
     public function getEaseOfUse(): string
     {
         return (string) $this->getData(self::EASE_OF_USE);

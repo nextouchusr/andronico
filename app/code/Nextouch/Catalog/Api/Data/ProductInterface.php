@@ -14,6 +14,7 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const FAST_EST_TYPE = 'fast_est_type';
     public const SELECTABLE_COURIERS = 'selectable_couriers';
     public const ECO_CHOICE = 'eco_choice';
+    public const ECO_CHOICE_LEVEL = 'eco_choice_level';
     public const EASE_OF_USE = 'ease_of_use';
     public const IS_RECOMMENDED = 'is_recommended';
 
@@ -93,6 +94,17 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
      * @return ProductInterface
      */
     public function setEcoChoice(string $ecoChoice): self;
+
+    /**
+     * @return int
+     */
+    public function getEcoChoiceLevel(): int;
+
+    /**
+     * @param int $ecoChoiceLevel
+     * @return ProductInterface
+     */
+    public function setEcoChoiceLevel(int $ecoChoiceLevel): self;
 
     /**
      * @return string

@@ -1,12 +1,16 @@
-<?php /** @var \Magento\Catalog\Block\Product\View\Description $block */ ?>
+<?php /** @var \Magento\Catalog\Block\Product\View\Description $block */
+
+use Nextouch\Catalog\Api\Data\ProductInterface;
+
+?>
 
 <div data-role="title">
-    <h2><?=__('Easy to Use') ?></h2>
+    <h2><?= __('Easy to Use') ?></h2>
 </div>
 <div data-role="content">
     <?= $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
         $block->getProduct(),
         $block->getProduct()->getEaseOfUse(),
-        'ease_of_use'
+        ProductInterface::EASE_OF_USE
     ); ?>
 </div>
