@@ -18,7 +18,7 @@ class StoreRepository extends AbstractBaseRepository implements StoreRepositoryI
         $login = new Login($username, $password);
         $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_store_ids', $request->asObject());
+        $result = $this->doRequest('get_store_ids', $request);
 
         return GetStoreList::fromObject($result);
     }

@@ -29,6 +29,16 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         return $collectionFactory->create()->getItemById((int) $addressId);
     }
 
+    public function getBillingAddress(): ?OrderAddressInterface
+    {
+        $address = parent::getBillingAddress();
+        $addressId = $address ? $address->getId() : null;
+
+        $collectionFactory = ObjectManager::getInstance()->get(AddressCollectionFactory::class);
+
+        return $collectionFactory->create()->getItemById((int) $addressId);
+    }
+
     public function getItems(): array
     {
         if (!$this->getData(self::ITEMS)) {

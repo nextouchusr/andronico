@@ -9,11 +9,14 @@ use Magento\Framework\Data\OptionSourceInterface;
 
 class InvoiceTypes extends AbstractSource implements SourceInterface, OptionSourceInterface
 {
+    public const INVOICE_TYPE = 'invoice';
+    public const RECEIPT_TYPE = 'receipt';
+
     public function getAllOptions(): array
     {
         $this->_options = [
-            ['label' => __('Invoice'), 'value' => 'invoice'],
-            ['label' => __('Receipt'), 'value' => 'receipt'],
+            ['label' => __('Invoice'), 'value' => self::INVOICE_TYPE],
+            ['label' => __('Receipt'), 'value' => self::RECEIPT_TYPE],
         ];
 
         return $this->_options;

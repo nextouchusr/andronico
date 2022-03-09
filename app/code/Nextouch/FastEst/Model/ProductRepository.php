@@ -18,7 +18,7 @@ class ProductRepository extends AbstractBaseRepository implements ProductReposit
         $login = new Login($username, $password);
         $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_product_ids', $request->asObject());
+        $result = $this->doRequest('get_product_ids', $request);
 
         return GetProductList::fromObject($result);
     }

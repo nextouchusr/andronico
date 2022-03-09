@@ -26,7 +26,7 @@ interface OrderItemInterface extends \Magento\Sales\Api\Data\OrderItemInterface
     public const NOTICE_CALL_SERVICE = 'notice_call';
 
     /**
-     * @return ProductInterface|null
+     * @return \Nextouch\Catalog\Api\Data\ProductInterface|null
      */
     public function getProduct(): ?ProductInterface;
 

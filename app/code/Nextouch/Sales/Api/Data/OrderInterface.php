@@ -19,23 +19,28 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public function isShippedBy(string $shippingMethod): bool;
 
     /**
-     * @return OrderAddressInterface|null
+     * @return \Nextouch\Sales\Api\Data\OrderAddressInterface|null
      */
     public function getShippingAddress(): ?OrderAddressInterface;
 
     /**
-     * @return OrderItemInterface[]
+     * @return \Nextouch\Sales\Api\Data\OrderAddressInterface|null
+     */
+    public function getBillingAddress(): ?OrderAddressInterface;
+
+    /**
+     * @return \Nextouch\Sales\Api\Data\OrderItemInterface[]
      */
     public function getItems(): array;
 
     /**
      * @param $itemId
-     * @return OrderItemInterface|null
+     * @return \Nextouch\Sales\Api\Data\OrderItemInterface|null
      */
     public function getItemById($itemId): ?OrderItemInterface;
 
     /**
-     * @return DeliverydateInterface
+     * @return \Amasty\Deliverydate\Api\Data\DeliverydateInterface
      */
     public function getDeliveryInformation(): DeliverydateInterface;
 

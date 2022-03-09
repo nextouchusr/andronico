@@ -496,6 +496,7 @@ return [
         'Nextouch_Shipping' => 1,
         'Nextouch_FastEst' => 1,
         'Nextouch_Theme' => 1,
+        'Nextouch_Wins' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
         'SplashLab_CorsRequests' => 1,

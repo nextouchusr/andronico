@@ -27,7 +27,7 @@ class DeliveryRepository extends AbstractBaseRepository implements DeliveryRepos
         $products = map(fn(ShipmentItemInterface $item) => Product::fromDomain($item), $shipment->getItems());
         $request = new InsertNewDeliveryRequest($login, $customer, $deliveryBase, $products);
 
-        $result = $this->client->call('insert_new_delivery', $request->asObject());
+        $result = $this->doRequest('insert_new_delivery', $request);
 
         return InsertNewDeliveryResponse::fromObject($result);
     }
