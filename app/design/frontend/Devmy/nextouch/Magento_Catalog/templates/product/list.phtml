@@ -50,8 +50,7 @@ $_helper = $block->getData('outputHelper');
             <li class="item product product-item">
                 <div class="product-item-info"
                      id="product-item-info_<?= /* @noEscape */ $_product->getId() ?>"
-                     data-container="product-<?= /* @noEscape */ $viewMode ?>"
-                     style="border-top-left-radius: <?= $changeTopLeftBorder ? '0px' : '50px'; ?>">
+                     data-container="product-<?= /* @noEscape */ $viewMode ?>">
                     <?php
                     $productImage = $block->getImage($_product, $imageDisplayArea);
                     if ($pos != null) {
@@ -82,15 +81,18 @@ $_helper = $block->getData('outputHelper');
                                 <?=/* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name')?>
                             </a>
                         </strong>
+                        <div class="product-short-info"> <?php // TODO: add subtext ?> </div>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                         <div class="product-item-prices">
                             <?= /* @noEscape */ $block->getProductPrice($_product) ?>
-                            <?php if ($savingPercent > 0): ?>
-                                <span class="saving-percent">
+
+                        </div>
+                        <?php if ($savingPercent > 0): ?>
+                            <span class="saving-percent">
                                     <?= sprintf('-%s%%', $savingPercent); ?>
                                 </span>
-                            <?php endif; ?>
-                        </div>
+                        <?php endif; ?>
+
 
                         <?= $block->getProductDetailsHtml($_product) ?>
 

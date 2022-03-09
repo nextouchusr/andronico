@@ -1,30 +1,37 @@
-<?php /** @var $block Toolbar */
-
-use Magento\Catalog\Block\Product\ProductList\Toolbar;
-use Magento\Framework\Json\Helper\Data;
-
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 ?>
-
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+?>
 <?php if ($block->getCollection()->getSize()) :?>
-    <?php $widget = $this->helper(Data::class)->jsonDecode($block->getWidgetOptionsJson());
-        $widgetOptions = $this->helper(Data::class)->jsonEncode($widget['productListToolbarForm']);
+    <?php $widget = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonDecode($block->getWidgetOptionsJson());
+    $widgetOptions = $this->helper(\Magento\Framework\Json\Helper\Data::class)->jsonEncode($widget['productListToolbarForm']);
     ?>
-    <div class="toolbar toolbar-products" data-mage-init='{"productListToolbarForm":<?= $widgetOptions; ?>}'>
+    <div class="toolbar toolbar-products" data-mage-init='{"productListToolbarForm":<?= /* @noEscape */ $widgetOptions ?>}'>
         <?php if ($block->getIsBottom()): ?>
-            <?= $block->getPagerHtml(); ?>
-            <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')); ?>
+            <?= $block->getPagerHtml() ?>
+            <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
         <?php else: ?>
-            <div class="row">
-                <div class="col-12 col-sm-6 mb-4 mb-lg-0">
-                    <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/info.phtml')); ?>
-                </div>
-
-                <div class="col-12 col-sm-6">
-                    <?php if ($block->isExpanded()): ?>
-                        <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')); ?>
-                    <?php endif ?>
-                </div>
-            </div>
+        <div class="category-info-top">
+            <?php echo $block->getChildHtml('category.info.top') ?>
+        </div>
+        <div class="toolbar-options">
+            <?php if ($block->isExpanded()): ?>
+                <?php // $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
+            <?php endif ?>
+            <?php // $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
+            <?php if ($block->isExpanded()): ?>
+                <?= $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter-custom.phtml')) ?>
+            <?php endif ?>
+        </div>
         <?php endif ?>
     </div>
 <?php endif ?>

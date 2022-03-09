@@ -31,25 +31,19 @@
         &-items {
             font-size: 0;
             &:extend(.abs-reset-list all);
+            display: grid;
+            column-gap: 20px;
+            row-gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
         }
 
         &-item {
             font-size: 1.4rem;
             vertical-align: top;
-            box-shadow: 0 5px 15px #aaa;
+            box-shadow: @theme__box-shadow__primary;
             border-radius: 30px;
-            padding: 15px;
-
-            .products-grid & {
-                display: inline-block;
-                margin-left: 2%;
-                padding: 0;
-                width: calc(~'(100% - 2%) / 2');
-            }
-
-            &:nth-child(2n + 1) {
-                margin-left: 0;
-            }
+            padding: 15px 15px 100px 15px;
+            position: relative;
 
             &:extend(.abs-add-box-sizing all);
 
@@ -67,10 +61,8 @@
 
             &-info {
                 max-width: 100%;
-                width: 152px;
 
                 .page-products & {
-                    width: 240px;
                 }
             }
 
@@ -83,12 +75,17 @@
 
                 .action.tocart.primary {
                     border-radius: 100px;
+                    position: absolute;
+                    bottom: 50px;
+                    left: 50%;
+                    transform: translateX(-50%);
                 }
                 .actions-secondary {
                     display: inline-block;
                     font-size: 1.4rem;
                     vertical-align: middle;
                     white-space: nowrap;
+                    display: none;
                     > button.action {
                         .lib-button-reset();
                     }
@@ -132,6 +129,8 @@
 
             .price-box {
                 margin: @indent__s 0 @indent__m;
+                display: flex;
+                flex-flow: column nowrap;
 
                 .price {
                     .lib-font-size(14);
@@ -140,7 +139,7 @@
                 }
 
                 .price-label {
-                    font-size: @font-size__s;
+                    display: none;
 
                     &:after {
                         content: ':';
@@ -150,6 +149,7 @@
 
             .special-price,
             .minimal-price {
+                order: 5;
                 .price {
                     .lib-font-size(14);
                     font-weight: @font-weight__bold;
@@ -169,6 +169,9 @@
             }
 
             .old-price {
+                order: 1;
+                color: @theme__color__gray;
+                font-size: 1.8rem;
                 .price {
                     font-weight: @font-weight__regular;
                 }
@@ -219,6 +222,11 @@
 
             .tocart {
                 white-space: nowrap;
+                line-height: 4rem;
+                padding-left: 30px;
+                padding-right: 30px;
+                font-size: 1.8rem;
+                color: @theme__color__primary;
             }
         }
     }
@@ -305,6 +313,89 @@
         }
     }
 }
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .product {
+        &-items {
+            grid-template-columns: repeat(2,1fr);
+            gap: 0;
+
+            .product-item {
+                padding: 60px 20px 60px 20px;
+                box-shadow: 0 0 1px #999;
+                border-radius: 10px;
+                .product-item-name {
+                    font-size: 1.2rem;
+                }
+                .product-short-info {
+                    font-size: 1.2rem;
+                }
+                .price-box {
+                    position: absolute;
+                    right: 20px;
+                    top: 20px;
+                    text-align: right;
+                    .price {
+                        text-align: right;
+                    }
+                }
+                .product-item-actions {
+                    .action.tocart.primary {
+                        background-image: url('@{baseDir}images/ico-cart-mono.svg');
+                        background-position: center center;
+                        bottom: 20px;
+                        left: inherit;
+                        padding: 15px;
+                        right: 20px;
+                        width: 60px;
+                        box-sizing: border-box;
+                        height: 50px;
+                        border-radius: 15px;
+                        transform: none;
+                        box-shadow: @theme__box-shadow__secondary;
+
+                        span {
+                            display: none;
+                        }
+                    }
+                    .compare-link {
+                        display: none;
+                    }
+                    .actions-secondary {
+                        display: block;
+                        .towishlist {
+                            background-image: url('@{baseDir}images/ico-wishlist-mono.svg');
+                            background-color: #fff;
+                            background-position: center center;
+                            display: inline-block;
+                            box-sizing: border-box;
+                            position: absolute;
+                            padding: 15px;
+                            bottom: 20px;
+                            left: 20px;
+                            width: 60px;
+                            height: 50px;
+                            border-radius: 10px;
+                            box-shadow: @theme__box-shadow__secondary;
+                            &:before {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .block.filter {
+        display: none;
+        &.active.show {
+            display: block;
+        }
+    }
+}
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
     .product {
@@ -326,11 +417,10 @@
                     }
                 }
             }
+            .product-item-name {
+                font-size: 1.2rem;
+            }
         }
-    }
-
-    .products-grid .product-item {
-        width: 100%/3;
     }
 
     .page-products,
@@ -340,13 +430,7 @@
     .page-products.page-layout-3columns {
         .products-grid {
             .product-item {
-                margin-left: 2%;
-                padding: 0;
-                width: calc(~'(100% - 4%) / 3');
 
-                &:nth-child(3n + 1) {
-                    margin-left: 0;
-                }
             }
         }
     }
@@ -358,14 +442,37 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .page-products {
+        .toolbar-products {
+            display: flex;
+            flex-flow: row nowrap;
+            .category-info-top {
+                width: 40%;
+            }
+            .toolbar-options {
+                width: 60%;
+            }
+        }
         .products-grid {
-            .product-item {
-                margin-left: 40px;
-                padding: 40px;
-                width: calc(~'(100% - 80px) / 3');
+            .product-items {
+                row-gap: 50px;
+                column-gap: 50px;
 
-                &:nth-child(3n + 1) {
-                    margin-left: 0;
+                .product-item {
+
+                    .price-box {
+                        .price {
+                            .lib-font-size(22);
+                        }
+
+                    }
+
+                    .special-price,
+                    .minimal-price {
+                        .price {
+                            .lib-font-size(22);
+                        }
+
+                    }
                 }
             }
         }
@@ -374,7 +481,6 @@
     .page-products.page-layout-1column {
         .products-grid {
             .product-item {
-                width: 100%/4;
             }
         }
     }
@@ -382,7 +488,6 @@
     .page-products.page-layout-3columns {
         .products-grid {
             .product-item {
-                width: 100%/2;
             }
         }
     }

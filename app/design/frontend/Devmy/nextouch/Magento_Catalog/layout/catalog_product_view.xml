@@ -103,7 +103,6 @@
 
         <move element="product.info.options.wrapper.bottom" destination="product.info" before="-"/>
 
-        <move element="breadcrumbs" destination="title-breadcrumbs-container" after="static-title"/>
 
         <move element="product.info.overview" destination="product.info.secondary.wrapper" before="-" />
         <move element="product.info.description" destination="product.info.details" before="-" />
