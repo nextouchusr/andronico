@@ -21,7 +21,7 @@ class AppointmentRepository extends AbstractBaseRepository implements Appointmen
         $slotRequest = SlotRequest::fromDomain($cart);
         $request = new GetAvailableSlotListRequest($login, $slotRequest);
 
-        $result = $this->client->call('get_available_slots', $request->asObject());
+        $result = $this->doRequest('get_available_slots', $request);
 
         return GetAvailableSlotListResponse::fromObject($result);
     }

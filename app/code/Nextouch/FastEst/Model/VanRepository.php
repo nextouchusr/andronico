@@ -18,7 +18,7 @@ class VanRepository extends AbstractBaseRepository implements VanRepositoryInter
         $login = new Login($username, $password);
         $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_van_ids', $request->asObject());
+        $result = $this->doRequest('get_van_ids', $request);
 
         return GetVanList::fromObject($result);
     }

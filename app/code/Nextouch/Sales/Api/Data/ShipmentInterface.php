@@ -11,17 +11,17 @@ interface ShipmentInterface extends \Magento\Sales\Api\Data\ShipmentInterface
     public const ORDER = 'order';
 
     /**
-     * @return OrderInterface
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function getOrder(): OrderInterface;
 
     /**
-     * @return OrderAddressInterface
+     * @return \Nextouch\Sales\Api\Data\OrderAddressInterface
      */
     public function getShippingAddress(): OrderAddressInterface;
 
     /**
-     * @return ShipmentItemInterface[]
+     * @return \Nextouch\Sales\Api\Data\ShipmentItemInterface[]
      */
     public function getItems(): array;
 }

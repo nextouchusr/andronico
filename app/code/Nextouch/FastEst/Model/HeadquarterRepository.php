@@ -18,7 +18,7 @@ class HeadquarterRepository extends AbstractBaseRepository implements Headquarte
         $login = new Login($username, $password);
         $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_headquarter_ids', $request->asObject());
+        $result = $this->doRequest('get_headquarter_ids', $request);
 
         return GetHeadquarterList::fromObject($result);
     }

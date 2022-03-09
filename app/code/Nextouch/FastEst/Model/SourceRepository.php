@@ -18,7 +18,7 @@ class SourceRepository extends AbstractBaseRepository implements SourceRepositor
         $login = new Login($username, $password);
         $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_source_ids', $request->asObject());
+        $result = $this->doRequest('get_source_ids', $request);
 
         return GetSourceList::fromObject($result);
     }
