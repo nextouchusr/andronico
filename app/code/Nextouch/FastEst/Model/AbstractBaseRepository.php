@@ -31,9 +31,11 @@ abstract class AbstractBaseRepository
     protected function doRequest(string $method, InputInterface $data): \stdClass
     {
         $result = $this->client->call($method, $data->asObject());
+        $isOk = $result->status_return->ok;
+        $errorDescription = $result->status_return->error_descr;
 
-        if (!$result->ok) {
-            $this->logger->error(__('Error during FastEst SOAP request %1 - %2', $method, $result->error_descr));
+        if (!$isOk) {
+            $this->logger->error(__('Error during FastEst SOAP request %1 - %2', $method, $errorDescription));
         }
 
         return $result;
