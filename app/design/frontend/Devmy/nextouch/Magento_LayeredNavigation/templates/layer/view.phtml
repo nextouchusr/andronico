@@ -28,7 +28,9 @@
                 </div>
             <?php endif; ?>
             <?php $wrapOptions = false; ?>
+            <?php $i = 0; ?>
             <?php foreach ($block->getFilters() as $filter) : ?>
+                <?php $i++; ?>
                 <?php $isProductAttribute = $filter instanceof \Amasty\Shopby\Model\Layer\Filter\Attribute; ?>
                 <?php if ($filter->getItemsCount()) : ?>
                     <?php if (!$wrapOptions) : ?>
@@ -48,10 +50,23 @@
                     <div data-role="collapsible" class="filter-options-item">
                         <div data-role="title" class="filter-options-title">
                             <?= $block->escapeHtml(__($filter->getName())); ?>
+
+                            <div data-bind="mageInit: {
+                                'Magento_Ui/js/modal/modal':{
+                                    'type': 'popup',
+                                    'title': '<? /* TODO: escape all chars $block->escapeHtml(__($filter->getName())); */ ?>',
+                                    'trigger': '[data-trigger=trigger<?= $i ?>]',
+                                    'responsive': true,
+                                    'buttons': false
+                                }}">
+                                <div class="content">
                             <?php if ($isProductAttribute && $filter->getAttributeModel()->getAttributeExplanation()): ?>
+                            Lorem Ipsum
                                 <!-- TODO: show attribute explanation using: $filter->getAttributeModel()->getAttributeExplanation() -->
-                                <span class="material-icons text-primary">info</span>
                             <?php endif; ?>
+                                </div>
+                            </div>
+                            <span class="info-icon" data-trigger="trigger<?= $i ?>"></span>
                         </div>
                         <div data-role="content" class="filter-options-content">
                             <?= $block->getChildBlock('renderer')->render($filter); ?>
@@ -73,3 +88,6 @@
         </div>
     </div>
 <?php endif; ?>
+
+
+

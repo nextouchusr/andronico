@@ -119,18 +119,20 @@
             .product-reviews-summary {
                 .rating-summary {
                     margin: 0 4px 0 0;
+                    padding: 10px 0;
                 }
 
                 .reviews-actions {
-                    font-size: @font-size__s;
-                    margin-top: 5px;
+                    font-size: 1.6rem;
                 }
             }
 
             .price-box {
                 margin: @indent__s 0 @indent__m;
                 display: flex;
-                flex-flow: column nowrap;
+                flex-flow: row nowrap;
+                width: 100%;
+                justify-content: space-between;
 
                 .price {
                     .lib-font-size(14);
@@ -417,9 +419,7 @@
                     }
                 }
             }
-            .product-item-name {
-                font-size: 1.2rem;
-            }
+
         }
     }
 

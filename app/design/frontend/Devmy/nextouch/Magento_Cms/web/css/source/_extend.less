@@ -21,6 +21,15 @@
             padding: 0;
             .item {
                 overflow: hidden;
+                display: none;
+                &:first-child {
+                    display: block;
+                }
+            }
+            &.loaded {
+                .item {
+                    display: block;
+                }
             }
             .slick-dots {
                 margin-top: -12%;
@@ -298,7 +307,7 @@
             position: fixed;
             max-width: 120px;
             transition: all 0.5s ease-out;
-            z-index: 999999;
+            z-index: 99;
         }
 
         h2 {

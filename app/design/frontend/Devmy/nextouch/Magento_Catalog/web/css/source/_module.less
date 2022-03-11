@@ -302,6 +302,8 @@
                 > .label {
                     &:before {
                         margin-bottom: 0;
+                        flex-shrink: 0;
+                        margin-right: 20px;
                     }
                     font-size: 1.2rem;
                     display: flex;
@@ -313,19 +315,31 @@
                         display: inline-block;
                     }
                      > span {
-                        flex-grow: 4;
-                        min-width: 40%;
-                        padding: 5px 0 5px 50px;
+                        flex-grow: 1;
                         line-height: 3rem;
                          min-height: 40px;
                          box-sizing: border-box;
                         &:first-child {
                             //TODO: load icon with specific class
-                            background: url('@{baseDir}images/icon-ritiro.png') 0 0 no-repeat;
+                            background: url('@{baseDir}images/icon-ritiro.png') 0 50% no-repeat;
                             background-size: 40px;
                         }
                          &.price-notice {
                              padding-left: 0;
+                         }
+                         &.option-name {
+                             min-width: 40%;
+                             flex-grow: 3;
+                             padding: 5px 0 5px 60px;
+                         }
+                         &.icon-modal {
+                             background: url('@{baseDir}images/ico-info.svg') 0 50% no-repeat;
+                             background-size: 40px;
+                             width: 40px;
+                             padding: 12px;
+                             min-width: 40px;
+                             flex-grow: 0;
+                             flex-shrink: 0;
                          }
                     }
                 }
@@ -767,7 +781,13 @@
                 }
             }
         }
+    }
 
+    .product-options-wrapper {
+        display: none;
+        .field.choice > .label > span:first-child {
+
+        }
     }
 
     .product-info-main .box-tocart {
@@ -840,6 +860,13 @@
                 font-size: 3rem;
 
             }
+            input:checked {
+                + label .price-notice {
+                    color: @theme__color__secondary;
+                    width: 120px;
+                    text-align: right;
+                }
+            }
             &.choice {
                 > .label {
                     font-size: 1.8rem;
@@ -847,7 +874,7 @@
                         padding: 12px 0 12px 80px;
                         min-height: 60px;
                         &:first-child {
-                            background-size: 60px;
+                            background-size: 50px;
                         }
                     }
                 }

@@ -11,15 +11,35 @@
  * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
  */
 ?>
-<div class="toolbar-sorter sorter">
-    <label class="sorter-label" for="sorter"><?= $block->escapeHtml(__('Sort By')) ?></label>
-    <div class="clone-select">
-        <?php foreach ($block->getAvailableOrders() as $_key => $_order) :?>
-            <span class="option-link<?php if ($block->isOrderCurrent($_key)) :?> selected <?php endif; ?>" data-value="<?= $block->escapeHtmlAttr($_key) ?>">
-                <?= $block->escapeHtml(__($_order)) ?>
-            </span>
-        <?php endforeach; ?>
+<div class="toolbar-sorter sorter-custom sorter">
+
+    <label class="sorter-label"><?= $block->escapeHtml(__('Sort By')) ?></label>
+    <div
+        data-mage-init='{"dropdown":{}}'
+        data-toggle="sorter-dropdown"
+        class="sorter-dropdown"
+        data-action="sorter-menu-toggle">
+        <span>Price +</span>
     </div>
+    <ul data-target="sorter-dropdown" class="sorter-dropdown-options">
+        <?php foreach ($block->getAvailableOrders() as $_key => $_order) :?>
+        <li class="option">
+            <a href="#" title="<?= $block->escapeHtml(__($_order)) ?>" value="<?= $block->escapeHtmlAttr($_key) ?>"
+                <?php if ($block->isOrderCurrent($_key)) :?>
+                    class="selected"
+                <?php endif; ?>
+            >
+                <?= $block->escapeHtml(__($_order)) ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+
+
+
+<div class="toolbar-sorter sorter">
+
     <?php /*
     <select id="sorter" data-role="sorter" class="sorter-options">
         <?php foreach ($block->getAvailableOrders() as $_key => $_order) :?>
