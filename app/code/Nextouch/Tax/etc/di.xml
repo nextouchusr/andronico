@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\Tax\Api\TaxRateRepositoryInterface"
+                type="Nextouch\Tax\Model\TaxRateRepository"/>
+
+    <preference for="Nextouch\Tax\Api\TaxClassRepositoryInterface"
+                type="Nextouch\Tax\Model\TaxClassRepository"/>
+</config>

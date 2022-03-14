@@ -18,7 +18,7 @@ class PlaceRepository extends AbstractBaseRepository implements PlaceRepositoryI
         $login = new Login($username, $password);
         $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_place_ids', $request->asObject());
+        $result = $this->doRequest('get_place_ids', $request);
 
         return GetPlaceList::fromObject($result);
     }
