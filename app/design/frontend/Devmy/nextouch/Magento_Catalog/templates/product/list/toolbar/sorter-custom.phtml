@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+?>
+<div class="toolbar-sorter sorter-custom sorter">
+
+    <label class="sorter-label"><?= $block->escapeHtml(__('Sort By')) ?></label>
+    <div
+        data-mage-init='{"dropdown":{}}'
+        data-toggle="sorter-dropdown"
+        class="sorter-dropdown"
+        data-action="sorter-menu-toggle">
+        <span>Price +</span>
+    </div>
+    <ul data-target="sorter-dropdown" class="sorter-dropdown-options">
+        <?php foreach ($block->getAvailableOrders() as $_key => $_order) :?>
+        <li class="option">
+            <a href="#" title="<?= $block->escapeHtml(__($_order)) ?>" value="<?= $block->escapeHtmlAttr($_key) ?>"
+                <?php if ($block->isOrderCurrent($_key)) :?>
+                    class="selected"
+                <?php endif; ?>
+            >
+                <?= $block->escapeHtml(__($_order)) ?>
+            </a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+
+
+
+<div class="toolbar-sorter sorter">
+
+    <?php /*
+    <select id="sorter" data-role="sorter" class="sorter-options">
+        <?php foreach ($block->getAvailableOrders() as $_key => $_order) :?>
+            <option value="<?= $block->escapeHtmlAttr($_key) ?>"
+                <?php if ($block->isOrderCurrent($_key)) :?>
+                    selected="selected"
+                <?php endif; ?>
+                >
+                <?= $block->escapeHtml(__($_order)) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+ */ ?>
+    <?php if ($block->getCurrentDirection() == 'desc') :?>
+        <a title="<?= $block->escapeHtmlAttr(__('Set Ascending Direction')) ?>"
+           href="#"
+           class="action sorter-action sort-desc"
+           data-role="direction-switcher"
+           data-value="asc">
+            <span><?= $block->escapeHtml(__('Set Ascending Direction')) ?></span>
+        </a>
+    <?php else :?>
+        <a title="<?= $block->escapeHtmlAttr(__('Set Descending Direction')) ?>"
+           href="#"
+           class="action sorter-action sort-asc"
+           data-role="direction-switcher"
+           data-value="desc">
+            <span><?= $block->escapeHtml(__('Set Descending Direction')) ?></span>
+        </a>
+    <?php endif; ?>
+</div>

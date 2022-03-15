@@ -150,11 +150,11 @@
                 display: none;
             }
             input:checked {
-                + label:before {
-                    background: @theme__color__secondary!important;
-                }
                 ~  label:before {
-                    background: @theme__color__secondary_contr;
+                    background-image: url('@{baseDir}images/circle.svg');
+                }
+                + label:before {
+                    background-image: url('@{baseDir}images/circle-sel.svg') ;
                 }
             }
         }
@@ -177,11 +177,12 @@
                 line-height: normal;
                 content: "";
                 display: inline-block;
-                width: 10px;
-                height: 10px;
-                background: @theme__color__secondary;
-                border: 1px solid @theme__color__secondary;
-                border-radius: 100%;
+                width: 50px;
+                height: 50px;
+                border: 0;
+                border-radius: 0;
+                background: url('@{baseDir}images/circle-sel.svg') 0 0;
+                background-size: 50px;
                 opacity: 1;
             }
         }
@@ -384,8 +385,8 @@
         }
         .review-control-vote.control {
             label:before {
-                width: 36px;
-                height: 36px;
+                width: 50px;
+                height: 50px;
             }
         }
     }

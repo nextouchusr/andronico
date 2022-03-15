@@ -18,7 +18,7 @@ class StatusRepository extends AbstractBaseRepository implements StatusRepositor
         $login = new Login($username, $password);
         $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_status_ids', $request->asObject());
+        $result = $this->doRequest('get_status_ids', $request);
 
         return GetStatusList::fromObject($result);
     }

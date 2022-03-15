@@ -84,19 +84,23 @@ class WinsAttributeDataProvider implements EntityDataProviderInterface
                 throw new LocalizedException(__('Invalid template record: %1', json_encode($record)));
             }
 
-            $template = $acc->findReference(Template::fromArray($record));
-            $group = $template->findGroupReference(Group::fromArray($record));
-            $property = $group->findPropertyReference(Property::fromArray($record));
+            try {
+                $template = $acc->findReference(Template::fromArray($record));
+                $group = $template->findGroupReference(Group::fromArray($record));
+                $property = $group->findPropertyReference(Property::fromArray($record));
 
-            if ($property instanceof SelectableProperty) {
-                $value = $property->findValueReference(PropertyValue::fromArray($record));
-                $property->addValueIfNotExists($value);
+                if ($property instanceof SelectableProperty) {
+                    $value = $property->findValueReference(PropertyValue::fromArray($record));
+                    $property->addValueIfNotExists($value);
+                }
+
+                $group->addPropertyIfNotExists($property);
+                $template->addGroupIfNotExists($group);
+
+                return $acc->addIfNotExists($template);
+            } catch (LocalizedException $e) {
+                return $acc;
             }
-
-            $group->addPropertyIfNotExists($property);
-            $template->addGroupIfNotExists($group);
-
-            return $acc->addIfNotExists($template);
         }, $this->fetchRecords(), new TemplateCollection());
     }
 

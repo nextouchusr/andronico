@@ -18,7 +18,7 @@ class HourRepository extends AbstractBaseRepository implements HourRepositoryInt
         $login = new Login($username, $password);
         $request = new GetDirectoryList($login);
 
-        $result = $this->client->call('get_hour_ids', $request->asObject());
+        $result = $this->doRequest('get_hour_ids', $request);
 
         return GetHourList::fromObject($result);
     }

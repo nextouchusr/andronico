@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\Wins\Api\AuthManagementInterface"
+                type="Nextouch\Wins\Model\AuthManagement"/>
+
+    <preference for="Nextouch\Wins\Api\OrderRepositoryInterface"
+                type="Nextouch\Wins\Model\OrderRepository"/>
+
+    <preference for="Nextouch\Wins\Api\OrderManagementInterface"
+                type="Nextouch\Wins\Model\OrderManagement"/>
+</config>

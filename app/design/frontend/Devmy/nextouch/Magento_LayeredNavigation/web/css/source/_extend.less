@@ -41,5 +41,53 @@
         }
       }
     }
+      .info-icon {
+          background: url('@{baseDir}images/ico-info.svg') 50% 50% no-repeat;
+          background-size: 20px;
+          width: 20px;
+          min-width: 20px;
+          display: inline-block;
+          height: 20px;
+          vertical-align: middle;
+      }
   }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .block.filter .filter-title {
+        font-size: 3rem;
+    }
+    .filter-options .filter-options-title {
+        font-size: 2rem;
+        padding-right: 30px;
+        margin-bottom: 0;
+        &:after {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 5rem;
+            line-height: 4rem;
+            content:"";
+            background: url('@{baseDir}images/arrow-right.svg') 100% 50% no-repeat;
+            vertical-align: middle;
+            font-weight: normal;
+            overflow: hidden;
+            speak: none;
+            text-align: center;
+        }
+        &.active {
+            &:after {
+                background-position: 50% 50%;
+                transform: rotate(90deg);
+            }
+        }
+    }
 }

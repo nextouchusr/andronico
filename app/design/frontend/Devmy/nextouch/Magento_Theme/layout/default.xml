@@ -4,6 +4,10 @@
     <body>
         <referenceContainer name="header.panel.wrapper" remove="true"/>
 
+        <referenceContainer name="columns.top">
+            <container name="title-breadcrumbs-container" htmlClass="title-crumbs-container" htmlTag="div" after="page.messages"/>
+        </referenceContainer>
+
         <referenceContainer name="footer" htmlClass="footer content">
             <referenceBlock name="store_switcher" remove="true"/>
             <referenceBlock name="footer_links" remove="true"/>
@@ -112,5 +116,8 @@
                 </block>
             </container>
         </referenceContainer>
+
+
+        <move element="breadcrumbs" destination="title-breadcrumbs-container" after="-"/>
     </body>
 </page>
