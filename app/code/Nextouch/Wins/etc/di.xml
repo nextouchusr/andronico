@@ -9,4 +9,12 @@
 
     <preference for="Nextouch\Wins\Api\OrderManagementInterface"
                 type="Nextouch\Wins\Model\OrderManagement"/>
+
+    <preference for="Nextouch\Wins\Api\ProductSalableQtyManagementInterface"
+                type="Nextouch\Wins\Model\ProductSalableQtyManagement"/>
+
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="check_product_salable_qty"
+                type="Nextouch\Wins\Plugin\Quote\Model\CheckProductSalableQty"/>
+    </type>
 </config>

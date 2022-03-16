@@ -4,9 +4,8 @@ declare(strict_types=1);
 namespace Nextouch\Wins\Model\Auth;
 
 use Nextouch\Wins\Api\Data\ArrayableInterface;
-use Nextouch\Wins\Api\Data\EmptyInterface;
 
-class LoginInfo implements EmptyInterface, ArrayableInterface
+class LoginInfo implements ArrayableInterface
 {
     private string $user;
     private string $password;
@@ -25,11 +24,6 @@ class LoginInfo implements EmptyInterface, ArrayableInterface
     public function getPassword(): string
     {
         return $this->password;
-    }
-
-    public static function asEmpty(): self
-    {
-        return new self('', '');
     }
 
     public static function fromArray(array $data): self

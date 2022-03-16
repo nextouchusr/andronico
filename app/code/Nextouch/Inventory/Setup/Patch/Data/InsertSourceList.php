@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\Inventory\Setup\Patch\Data;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\InventoryApi\Api\Data\SourceInterfaceFactory;
 use Magento\InventoryApi\Api\SourceRepositoryInterface;
@@ -31,6 +32,9 @@ class InsertSourceList implements DataPatchInterface
         return [];
     }
 
+    /**
+     * @throws LocalizedException
+     */
     public function apply(): self
     {
         each(function (array $data) {

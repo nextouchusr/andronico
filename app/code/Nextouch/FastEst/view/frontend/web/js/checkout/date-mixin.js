@@ -52,14 +52,13 @@ define([
                 },
 
                 disableNotAvailableDates: function (d) {
-                    var availableDates = availableSlots.map(function (item) {
-                        return new Date(item['date']);
-                    });
+                    var isAvailable = availableSlots.some(function (item) {
+                        var availableDate = new Date(item['date']);
 
-                    var isAvailable = availableDates.some(function (item) {
-                        return item.getYear() === d.getYear()
-                            && item.getMonth() === d.getMonth()
-                            && item.getDate() === d.getDate();
+                        return availableDate.getYear() === d.getYear()
+                            && availableDate.getMonth() === d.getMonth()
+                            && availableDate.getDate() === d.getDate()
+                            && item['slots_number'] > 0;
                     });
 
                     return !isAvailable;

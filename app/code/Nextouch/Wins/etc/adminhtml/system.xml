@@ -38,6 +38,16 @@
                     <comment>Base URL for Wins APIs</comment>
                     <validate>required-entry validate-url</validate>
                 </field>
+            </group>
+
+            <group id="authentication"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Authentication</label>
 
                 <field id="username"
                        translate="label comment"
@@ -48,7 +58,7 @@
                        showInStore="0"
                        canRestore="1">
                     <label>Username</label>
-                    <comment>Username used to authorize operations</comment>
+                    <comment>Username Used to Generate Access Token</comment>
                     <validate>required-entry</validate>
                 </field>
 
@@ -61,7 +71,43 @@
                        showInStore="0"
                        canRestore="1">
                     <label>Password</label>
-                    <comment>Password used to authorize operations</comment>
+                    <comment>Password Used to Generate Access Token</comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+
+            <group id="magento"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Magento</label>
+
+                <field id="username"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Username</label>
+                    <comment>Username Used to Access Magento APIs</comment>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="password"
+                       translate="label comment"
+                       type="password"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Password</label>
+                    <comment>Password Used to Access Magento APIs</comment>
                     <validate>required-entry</validate>
                 </field>
             </group>

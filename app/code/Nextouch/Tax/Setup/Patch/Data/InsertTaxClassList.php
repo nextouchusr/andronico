@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\Tax\Setup\Patch\Data;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Tax\Api\Data\TaxClassInterfaceFactory;
 use Magento\Tax\Api\TaxClassRepositoryInterface;
@@ -11,6 +12,10 @@ use function Lambdish\Phunctional\each;
 
 class InsertTaxClassList implements DataPatchInterface
 {
+    private const TAXABLE_GOODS_CLASS_ID = 2;
+    private const VAT_022_CLASS_ID = 4;
+    private const VAT_22_CLASS_ID = 5;
+
     private TaxClassInterfaceFactory $taxClassFactory;
     private TaxClassRepositoryInterface $taxClassRepository;
 
@@ -32,8 +37,13 @@ class InsertTaxClassList implements DataPatchInterface
         return [];
     }
 
+    /**
+     * @throws LocalizedException
+     */
     public function apply(): self
     {
+        $this->removeDefaultTaxClassList();
+
         each(function (array $data) {
             $taxClass = $this->taxClassFactory->create();
             $taxClass->setClassName($data['name']);
@@ -45,23 +55,33 @@ class InsertTaxClassList implements DataPatchInterface
         return $this;
     }
 
+    /**
+     * @throws LocalizedException
+     */
+    private function removeDefaultTaxClassList(): void
+    {
+        $this->taxClassRepository->deleteById(self::TAXABLE_GOODS_CLASS_ID);
+        $this->taxClassRepository->deleteById(self::VAT_022_CLASS_ID);
+        $this->taxClassRepository->deleteById(self::VAT_22_CLASS_ID);
+    }
+
     private function getTaxClassList(): array
     {
         return [
             [
-                'name' => '4', // Aliq. Iva 4%
+                'name' => '004', // Aliq. Iva 4%
                 'type' => ClassModel::TAX_CLASS_TYPE_PRODUCT,
             ],
             [
-                'name' => '5', // Aliq. Iva 5%
+                'name' => '005', // Aliq. Iva 5%
                 'type' => ClassModel::TAX_CLASS_TYPE_PRODUCT,
             ],
             [
-                'name' => '10', // Aliq. Iva 10%
+                'name' => '010', // Aliq. Iva 10%
                 'type' => ClassModel::TAX_CLASS_TYPE_PRODUCT,
             ],
             [
-                'name' => '22', // Aliq. Iva 22%
+                'name' => '022', // Aliq. Iva 22%
                 'type' => ClassModel::TAX_CLASS_TYPE_PRODUCT,
             ],
             [

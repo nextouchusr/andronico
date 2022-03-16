@@ -5,51 +5,31 @@ namespace Nextouch\Wins\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Sales\Api\Data\OrderInterface;
-use Nextouch\Sales\Api\Data\OrderInterface as NextouchOrderInterface;
-use Nextouch\Sales\Model\ResourceModel\Order\CollectionFactory as OrderCollectionFactory;
-use Nextouch\Wins\Api\AuthManagementInterface;
-use Nextouch\Wins\Api\OrderRepositoryInterface;
-use Nextouch\Wins\Helper\WinsConfig;
-use Nextouch\Wins\Model\Request\Auth\Authorize;
-use Nextouch\Wins\Model\Request\Order\CreateOrder;
+use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Sales\Model\Order;
+use Nextouch\Wins\Service\Order\CreateNewOrder as CreateNewOrderService;
+use function Lambdish\Phunctional\first;
 
 class CreateNewOrder implements ObserverInterface
 {
-    private OrderCollectionFactory $orderCollectionFactory;
-    private AuthManagementInterface $authManagement;
     private OrderRepositoryInterface $orderRepository;
-    private WinsConfig $config;
+    private CreateNewOrderService $createNewOrderService;
 
     public function __construct(
-        OrderCollectionFactory $orderCollectionFactory,
-        AuthManagementInterface $authManagement,
         OrderRepositoryInterface $orderRepository,
-        WinsConfig $config
+        CreateNewOrderService $createNewOrderService
     ) {
-        $this->orderCollectionFactory = $orderCollectionFactory;
-        $this->authManagement = $authManagement;
         $this->orderRepository = $orderRepository;
-        $this->config = $config;
+        $this->createNewOrderService = $createNewOrderService;
     }
 
     public function execute(Observer $observer): void
     {
-        /** @var OrderInterface $order */
-        $order = $observer->getData('order');
+        $orderId = first($observer->getData('order_ids'));
 
-        /** @var NextouchOrderInterface $nextouchOrder */
-        $nextouchOrder = $this->orderCollectionFactory->create()->getItemById($order->getEntityId());
+        /** @var Order $order */
+        $order = $this->orderRepository->get($orderId);
 
-        $authorizeReq = new Authorize($this->config->getUsername(), $this->config->getPassword());
-        $authorizeRes = $this->authManagement->authorize($authorizeReq);
-
-        $createOrderReq = new CreateOrder(
-            $authorizeRes->getAccessToken(),
-            $authorizeRes->getLoginInfo(),
-            $nextouchOrder
-        );
-
-        $this->orderRepository->create($createOrderReq);
+        $this->createNewOrderService->create($order);
     }
 }

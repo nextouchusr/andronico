@@ -35,7 +35,7 @@
                        showInStore="0"
                        canRestore="1">
                     <label>Host</label>
-                    <comment>Host server on which you import data</comment>
+                    <comment>Host Server on Which You Import Data</comment>
                 </field>
 
                 <field id="username"
@@ -71,7 +71,7 @@
                        showInStore="0"
                        canRestore="1">
                     <label>Location</label>
-                    <comment>Server location where files are saved</comment>
+                    <comment>Server Location Where Files Are Saved</comment>
                 </field>
 
                 <field id="passive_mode"
@@ -83,7 +83,7 @@
                        showInStore="0"
                        canRestore="1">
                     <label>Passive Mode</label>
-                    <comment>Enable passive mode for files transfer</comment>
+                    <comment>Enable Passive Mode for Files Transfer</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>

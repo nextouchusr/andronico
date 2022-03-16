@@ -8,21 +8,33 @@ use Magento\Framework\App\Helper\AbstractHelper;
 class WinsConfig extends AbstractHelper
 {
     private const XML_PATH_GENERAL_BASE_URL = 'wins/general/base_url';
-    private const XML_PATH_GENERAL_USERNAME = 'wins/general/username';
-    private const XML_PATH_GENERAL_PASSWORD = 'wins/general/password';
+    private const XML_PATH_AUTHENTICATION_USERNAME = 'wins/authentication/username';
+    private const XML_PATH_AUTHENTICATION_PASSWORD = 'wins/authentication/password';
+    private const XML_PATH_MAGENTO_USERNAME = 'wins/magento/username';
+    private const XML_PATH_MAGENTO_PASSWORD = 'wins/magento/password';
 
     public function getBaseUrl(): string
     {
         return (string) $this->scopeConfig->getValue(self::XML_PATH_GENERAL_BASE_URL);
     }
 
-    public function getUsername(): string
+    public function getAuthUsername(): string
     {
-        return (string) $this->scopeConfig->getValue(self::XML_PATH_GENERAL_USERNAME);
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_AUTHENTICATION_USERNAME);
     }
 
-    public function getPassword(): string
+    public function getAuthPassword(): string
     {
-        return (string) $this->scopeConfig->getValue(self::XML_PATH_GENERAL_PASSWORD);
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_AUTHENTICATION_PASSWORD);
+    }
+
+    public function getMagentoUsername(): string
+    {
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_MAGENTO_USERNAME);
+    }
+
+    public function getMagentoPassword(): string
+    {
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_MAGENTO_PASSWORD);
     }
 }
