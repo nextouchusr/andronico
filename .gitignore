@@ -33,6 +33,7 @@ atlassian*
 /.php_cs.cache
 /pub/media/*.*
 !/pub/media/.htaccess
+/pub/media/amasty/*
 /pub/media/attribute/*
 !/pub/media/attribute/.htaccess
 /pub/media/analytics/*

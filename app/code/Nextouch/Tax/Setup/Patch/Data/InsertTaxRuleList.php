@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\Tax\Setup\Patch\Data;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Tax\Api\Data\TaxRuleInterfaceFactory;
 use Magento\Tax\Api\TaxRuleRepositoryInterface;
@@ -44,6 +45,9 @@ class InsertTaxRuleList implements DataPatchInterface
         return [];
     }
 
+    /**
+     * @throws LocalizedException
+     */
     public function apply(): self
     {
         each(function (array $data) {

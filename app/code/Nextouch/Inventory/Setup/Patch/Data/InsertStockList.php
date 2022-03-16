@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\Inventory\Setup\Patch\Data;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\InventoryApi\Api\Data\StockInterfaceFactory;
 use Magento\InventoryApi\Api\Data\StockSourceLinkInterfaceFactory;
@@ -50,6 +51,9 @@ class InsertStockList implements DataPatchInterface
         return [];
     }
 
+    /**
+     * @throws LocalizedException
+     */
     public function apply(): self
     {
         $defaultStockId = $this->defaultStockProvider->getId();

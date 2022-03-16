@@ -67,7 +67,7 @@
                     </arguments>
                 </block>
 
-                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.easeOfUse" template="Magento_Catalog::product/view/details/ease-of-use.phtml">
+                <block class="Nextouch\Theme\Block\Catalog\Product\View\EaseOfUse" name="product.info.easeOfUse" template="Magento_Catalog::product/view/details/ease-of-use.phtml">
                     <arguments>
                         <argument name="at_call" xsi:type="string">getEaseOfUse</argument>
                         <argument name="at_code" xsi:type="string">ease_of_use</argument>

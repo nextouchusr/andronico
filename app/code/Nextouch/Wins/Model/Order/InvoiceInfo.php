@@ -3,16 +3,13 @@ declare(strict_types=1);
 
 namespace Nextouch\Wins\Model\Order;
 
-use Nextouch\Customer\Model\Config\Address\InvoiceTypes;
-use Nextouch\Sales\Api\Data\OrderAddressInterface;
+use Magento\Sales\Api\Data\OrderAddressInterface;
+use Nextouch\Wins\Api\Data\ArrayableInterface;
 
-class InvoiceInfo
+class InvoiceInfo implements ArrayableInterface
 {
     private const PRIVATE_COMPANY = 'private';
     private const BUSINESS_COMPANY = 'company';
-
-    private const INVOICE_TYPE = 'INVOICE';
-    private const RECEIPT_TYPE = 'RECEPIT';
 
     private string $privateCompany;
     private string $vatId;
@@ -69,16 +66,40 @@ class InvoiceInfo
 
     public static function fromDomain(OrderAddressInterface $address): self
     {
-        $privateCompany = $address->getCompany() ? self::PRIVATE_COMPANY : self::BUSINESS_COMPANY;
-        $type = $address->getInvoiceType() === InvoiceTypes::INVOICE_TYPE ? self::INVOICE_TYPE : self::RECEIPT_TYPE;
+        $isCompany = $address->getCompany() !== null;
+        $privateCompany = $isCompany ? self::BUSINESS_COMPANY : self::PRIVATE_COMPANY;
 
         return new self(
             $privateCompany,
-            $address->getVatId(),
-            $address->getFiscalCode(),
-            $address->getSdiCode(),
-            $address->getPec(),
-            $type
+            (string) $address->getVatId(),
+            (string) $address->getFiscalCode(),
+            (string) $address->getSdiCode(),
+            (string) $address->getPec(),
+            strtoupper((string) $address->getInvoiceType())
         );
+    }
+
+    public static function fromArray(array $data): self
+    {
+        return new self(
+            (string) $data['private_company'],
+            (string) $data['vat_id'],
+            (string) $data['fiscal_code'],
+            (string) $data['sdi'],
+            (string) $data['pec'],
+            (string) $data['type'],
+        );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'private_company' => $this->getPrivateCompany(),
+            'vat_id' => $this->getVatId(),
+            'fiscal_code' => $this->getFiscalCode(),
+            'sdi' => $this->getSdi(),
+            'pec' => $this->getPec(),
+            'type' => $this->getType(),
+        ];
     }
 }
