@@ -148,9 +148,12 @@
           float: none;
           margin: 0 auto;
       }
-      .products.wrapper ~ .toolbar .pages .action.previous,
-      .products.wrapper ~ .toolbar .pages .action.next {
+      .products.wrapper ~ .toolbar .pages .action {
           border-radius: 100%;
+
+          &::before {
+            color: @theme__color__primary;
+          }
       }
       .product-short-info {
           color: @theme__color__gray;
