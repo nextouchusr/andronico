@@ -68,25 +68,6 @@
                                 </div>
                                 <span class="info-icon" data-trigger="trigger<?= $i ?>"></span>
                             <?php endif; ?>
-
-                            <!-- TODO: to remove: is only for demo. True script is above ^ -->
-                            <div data-bind="mageInit: {
-                                    'Magento_Ui/js/modal/modal':{
-                                        'type': 'popup',
-                                        'modalClass':'modalfilter',
-                                        'parentModalClass':'modalfilter',
-                                        'title': 'Attribute Name',
-                                        'trigger': '[data-trigger=trigger<?= $i ?>]',
-                                        'responsive': true,
-                                        'buttons': false
-                                    }}">
-                                <div class="content">
-                                    Lorem Ipsum
-                                </div>
-                            </div>
-                            <span class="info-icon" data-trigger="trigger<?= $i ?>"></span>
-
-
                         </div>
                         <div data-role="content" class="filter-options-content">
                             <?= $block->getChildBlock('renderer')->render($filter); ?>
