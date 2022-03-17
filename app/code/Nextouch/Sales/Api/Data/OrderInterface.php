@@ -11,7 +11,8 @@ use Amasty\Deliverydate\Api\Data\DeliverydateInterface;
 interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
 {
     public const DELIVERY_INFORMATION = 'delivery_information';
-    public const WINS_SYNC_FAILURES = 'wins_sync_failures';
+    public const ORDER_SYNC_FAILURES = 'order_sync_failures';
+    public const INVOICE_PDF_FILE = 'invoice_pdf_file';
 
     /**
      * @param string $shippingMethod
@@ -63,20 +64,20 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     /**
      * @return int
      */
-    public function getWinsSyncFailures(): int;
+    public function getOrderSyncFailures(): int;
 
     /**
      * @return OrderInterface
      */
-    public function increaseWinsSyncFailures(): self;
+    public function increaseOrderSyncFailures(): self;
 
     /**
      * @return OrderInterface
      */
-    public function decreaseWinsSyncFailures(): self;
+    public function decreaseOrderSyncFailures(): self;
 
     /**
      * @return OrderInterface
      */
-    public function resetWinsSyncFailures(): self;
+    public function resetOrderSyncFailures(): self;
 }

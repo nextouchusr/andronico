@@ -34,6 +34,7 @@ atlassian*
 /pub/media/*.*
 !/pub/media/.htaccess
 /pub/media/amasty/*
+/pub/media/amasty_checkout/*
 /pub/media/attribute/*
 !/pub/media/attribute/.htaccess
 /pub/media/analytics/*

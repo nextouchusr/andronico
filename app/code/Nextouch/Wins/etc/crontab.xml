@@ -5,7 +5,13 @@
         <job name="nextouch_wins_retry_order_creation"
              instance="Nextouch\Wins\Cron\RetryOrderCreation"
              method="execute">
-            <schedule>0 1/2 * * *</schedule>
+            <schedule>*/30 * * * *</schedule>
+        </job>
+
+        <job name="nextouch_wins_attach_order_invoice"
+             instance="Nextouch\Wins\Cron\AttachInvoiceToOrder"
+             method="execute">
+            <schedule>0 */1 * * *</schedule>
         </job>
     </group>
 </config>

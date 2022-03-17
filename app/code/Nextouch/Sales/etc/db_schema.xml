@@ -3,13 +3,13 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="sales_order">
         <column xsi:type="int"
-                name="wins_sync_failures"
+                name="order_sync_failures"
                 padding="11"
                 unsigned="false"
                 identity="false"
                 nullable="false"
                 default="0"
-                comment="Wins Sync Failures"/>
+                comment="Order Sync Failures"/>
     </table>
 
     <table name="sales_order_address">
