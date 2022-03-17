@@ -91,30 +91,30 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         return (string) $this->getDeliveryInformation()->getComment();
     }
 
-    public function getWinsSyncFailures(): int
+    public function getOrderSyncFailures(): int
     {
-        return (int) $this->getData(self::WINS_SYNC_FAILURES);
+        return (int) $this->getData(self::ORDER_SYNC_FAILURES);
     }
 
-    public function increaseWinsSyncFailures(): self
+    public function increaseOrderSyncFailures(): self
     {
-        $failures = $this->getWinsSyncFailures();
-        $this->setData(self::WINS_SYNC_FAILURES, ++$failures);
+        $failures = $this->getOrderSyncFailures();
+        $this->setData(self::ORDER_SYNC_FAILURES, ++$failures);
 
         return $this;
     }
 
-    public function decreaseWinsSyncFailures(): self
+    public function decreaseOrderSyncFailures(): self
     {
-        $failures = $this->getWinsSyncFailures();
-        $this->setData(self::WINS_SYNC_FAILURES, --$failures);
+        $failures = $this->getOrderSyncFailures();
+        $this->setData(self::ORDER_SYNC_FAILURES, --$failures);
 
         return $this;
     }
 
-    public function resetWinsSyncFailures(): self
+    public function resetOrderSyncFailures(): self
     {
-        $this->setData(self::WINS_SYNC_FAILURES, 0);
+        $this->setData(self::ORDER_SYNC_FAILURES, 0);
 
         return $this;
     }
