@@ -4,6 +4,7 @@
     <module name="Nextouch_Wins" setup_version="1.0.0">
         <sequence>
             <module name="Nextouch_Sales"/>
+            <module name="Nextouch_ImportExport"/>
         </sequence>
     </module>
 </config>

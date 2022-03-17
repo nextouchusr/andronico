@@ -37,10 +37,10 @@ class CreateNewOrder
         $isSuccess = $this->createOrder($order);
 
         if ($isSuccess) {
-            $order->setData(OrderInterface::WINS_SYNC_FAILURES, 0);
+            $order->setData(OrderInterface::ORDER_SYNC_FAILURES, 0);
         } else {
-            $failures = (int) $order->getData(OrderInterface::WINS_SYNC_FAILURES);
-            $order->setData(OrderInterface::WINS_SYNC_FAILURES, ++$failures);
+            $failures = (int) $order->getData(OrderInterface::ORDER_SYNC_FAILURES);
+            $order->setData(OrderInterface::ORDER_SYNC_FAILURES, ++$failures);
         }
 
         $this->orderRepository->save($order);

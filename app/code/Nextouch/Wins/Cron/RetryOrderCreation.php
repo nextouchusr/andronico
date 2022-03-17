@@ -29,7 +29,7 @@ class RetryOrderCreation
     public function execute(): void
     {
         $criteria = $this->searchCriteriaBuilder
-            ->addFilter(OrderInterface::WINS_SYNC_FAILURES, 0, 'gt')
+            ->addFilter(OrderInterface::ORDER_SYNC_FAILURES, 0, 'gt')
             ->create();
 
         $orders = $this->orderRepository->getList($criteria)->getItems();
