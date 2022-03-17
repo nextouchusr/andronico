@@ -166,7 +166,7 @@
                 margin: 0 20px;
                 &:before {
                     background-image: url('@{baseDir}images/ico-cart.svg');
-                    content:"";
+                    content:""!important;
                     width: 76px;
                     height: 76px;
                     background-repeat: no-repeat;
@@ -435,9 +435,15 @@
     .minicart-wrapper {
         margin-left: 13px;
 
-        .block-minicart {
+        div.block-minicart {
             right: -15px;
             width: 390px;
+            &:before {
+                right: 61px;
+            }
+            &:after {
+                right: 60px;
+            }
         }
     }
 }

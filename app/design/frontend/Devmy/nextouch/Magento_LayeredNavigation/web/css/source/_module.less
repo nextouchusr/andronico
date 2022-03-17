@@ -48,6 +48,45 @@
         }
     }
 
+    .modalfilter.modal-popup {
+        > .modal-inner-wrap {
+            margin-left: 0;
+            height: ~"calc(100vh - 5rem)";
+            border-top-right-radius: 50px;
+            box-shadow: @theme__box-shadow__primary;
+            padding: 2.5% 2.5% 5% 2.5%;
+            .modal-header {
+                border: 0;
+                margin-bottom: 25px;
+                h1 {
+                    font-size: 3rem;
+                    font-weight: 600;
+                }
+                .action-close {
+                    top: 50px;
+                    &:before {
+                        display: inline-block;
+                        width: 50px;
+                        height: 50px;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        font-size: 6rem;
+                        line-height: 4rem;
+                        content: "";
+                        color: @theme__color__primary;
+                        background: url('@{baseDir}images/arrow-right.svg') 50% 50% no-repeat;
+                        transform: rotate(180deg);
+                        vertical-align: middle;
+                        font-weight: normal;
+                        overflow: hidden;
+                        speak: none;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+
     .filter-options {
         margin: 0;
 
@@ -61,8 +100,26 @@
         .filter-options-content {
             margin: 0 0 @indent__m;
 
+            .am-filter-items-category_ids {
+                .item {
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
             .item {
-                margin-bottom: 3px;
+                margin-bottom: 10px;
+                font-size: 2rem;
+                &:before {
+                    content: "";
+                    float: left;
+                    display: inline-block;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 2px;
+                    margin-right: 5px;
+                    border: 1px solid @theme__color__primary
+                }
             }
         }
 

@@ -141,6 +141,11 @@
     .cart-empty {
         text-align: center;
         font-weight: 700;
+        font-size: 3rem;
+        padding: 10vh;
+        + .methods {
+            display: none;
+        }
     }
 
     #gift-options-cart {
@@ -671,9 +676,41 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .checkout-cart-index {
-        .page-title {
+        h1.page-title {
             background: url(../images/ico-cart.svg) no-repeat 0 0;
-            padding-left: 150px;
+            padding-left: 130px;
+            background-size: 120px;
+            font-size: 7rem;
+            padding-top: 25px;
+        }
+        #maincontent {
+            &:before {
+                content: "";
+                z-index: -1;
+                display: block;
+                width: 959px;
+                height: 959px;
+                border-radius: 100%;
+                position: absolute;
+                left: 0;
+                transform: translateX(-50%);
+                top:70vh;
+                background: @theme__color__secondary;
+            }
+            &:after {
+
+                content: "";
+                z-index: -1;
+                display: block;
+                width: 405px;
+                height: 405px;
+                border-radius: 100%;
+                position: absolute;
+                right: 0;
+                transform: translateX(50%);
+                top:50vh;
+                background: @theme__color__secondary;
+            }
         }
     }
     .cart-container {
@@ -727,6 +764,9 @@
                 width: auto;
                 > .item {
                     padding: 80px 0 130px 0;
+                    &:first-child {
+                        padding-top: 40px;
+                    }
                 }
             }
 

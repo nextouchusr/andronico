@@ -103,13 +103,33 @@
 
     .breadcrumbs {
         height: 54px;
-        display: block;
-        line-height: 56px;
+        line-height: 2rem;
         text-align: right;
-        font-size: 1.3rem;
-        display: inline-block;
+        font-size: 1.8rem;
+        font-weight: 200;
+        display: block;
+        .items {
+            display: flex;
+        }
         li {
-            font-size: 1.3rem;
+            font-size: 1.8rem;
+            &.item {
+                line-height: 2rem;
+                height: 40px;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                white-space: nowrap;
+                &:not(:last-child):after {
+                    content: "";
+                    background: url('@{baseDir}images/arrow-right.svg') 50% 50% no-repeat;
+                    width: 40px;
+                    height: 40px;
+                    display: inline-block;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+            }
         }
     }
     .catalog-category-view {

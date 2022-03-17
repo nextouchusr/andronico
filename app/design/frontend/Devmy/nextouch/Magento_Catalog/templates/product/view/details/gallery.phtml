@@ -33,6 +33,8 @@ $images = $block->getGalleryImages()->getItems();
 <script>
     require(['jquery', 'Magento_Ui/js/modal/modal', 'tinySlider'], function ($, modal) {
         $(document).ready(function () {
+
+            /*
             var $productMediaModal = $('#product-media-modal');
             var $iframe = $productMediaModal.find('iframe');
 
@@ -43,6 +45,8 @@ $images = $block->getGalleryImages()->getItems();
                 responsive: true,
                 buttons: [],
             }, $productMediaModal);
+
+             */
 
 
             $('.tns-inner .product-media-link').on('click', function () {
@@ -80,6 +84,7 @@ $images = $block->getGalleryImages()->getItems();
         });
 
 
+        /*
         var detailsGalleryDragMove = false;
         sliderGallery.events.on('dragEnd', function (info) {
             detailsGalleryDragMove = false;
@@ -87,5 +92,7 @@ $images = $block->getGalleryImages()->getItems();
         sliderGallery.events.on('dragMove', function (info) {
             detailsGalleryDragMove = true;
         });
+
+         */
     });
 </script>
