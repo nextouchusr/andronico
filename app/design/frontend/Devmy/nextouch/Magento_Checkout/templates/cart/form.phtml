@@ -94,3 +94,22 @@
         });
     });
 </script>
+
+<script>
+    require(['jquery',
+        'Magento_Customer/js/model/authentication-popup',
+        'Magento_Customer/js/customer-data',
+    ], function ($,authenticationPopup,customerData) {
+        var cart = customerData.get('cart'),
+            customer = customerData.get('customer'),
+            checkoutButton = $('.checkout.methods');
+
+        $(checkoutButton).on('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+            if (!customer().firstname) {
+                authenticationPopup.showModal();
+            }
+        });
+    });
+</script>
