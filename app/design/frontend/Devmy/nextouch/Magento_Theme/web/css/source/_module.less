@@ -67,7 +67,7 @@
         .ammenu-text-block{
           .ammenu-text{
             color:#0B4966;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             font-weight: normal;
             &:hover{
               text-shadow: -0.06ex 0 currentColor, 0.06ex 0 currentColor;
@@ -75,9 +75,7 @@
           }
         }
         .ammenu-submenu-block{
-          position: fixed;
           background:  transparent !important;
-          backdrop-filter: blur(50px);
 
           .ammenu-text-block{
             margin-bottom: 20px;
@@ -89,6 +87,18 @@
           }
         }
       }
+    }
+
+
+    .overlay-megamenu {
+        background: transparent;
+        backdrop-filter: blur(12px);
+        position: fixed;
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 87;
     }
 
     .page-main {
@@ -469,6 +479,14 @@
 
         .switcher {
             display: inline-block;
+        }
+        .ammenu-menu-wrapper {
+            .ammenu-text-block {
+                white-space: nowrap;
+                .ammenu-text {
+                    font-size: 1.8rem;
+                }
+            }
         }
 
     }

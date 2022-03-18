@@ -53,7 +53,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             margin: 0;
             padding: 0;
             list-style: none;
@@ -99,4 +99,19 @@
         margin: 0 auto;
         max-width: @ammenu-menu__max-width;
     }
+}
+
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .ammenu-nav-sections.-topmenu {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
 }
