@@ -7,11 +7,18 @@
 //  ----------------------------------------------
 
 & when (@media-common = true) {
-    .ammenu-nav-sections.-topmenu .ammenu-submenu-wrapper {
-        position: fixed;
-        border-radius: 0 0 15px 15px;
-        box-shadow: 0 8px 15px rgba(72, 88, 112, .11);
-        top: 110px;
-        background: rgba(255,255,255,0.6)!important;
+    .ammenu-nav-sections.-topmenu {
+        .ammenu-submenu-wrapper {
+            position: fixed;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 8px 15px rgba(72, 88, 112, .11);
+            top: 145px;
+            background: rgba(255, 255, 255, 0.6) !important;
+        }
+        &.-sticky {
+            .ammenu-submenu-wrapper {
+                top: 72px;
+            }
+        }
     }
 }
