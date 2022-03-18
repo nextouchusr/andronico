@@ -1,0 +1,46 @@
+//
+//  Amasty Category Columns Component
+//  ______________________________________________
+
+//
+//  Variables
+//  ----------------------------------------------
+
+@ammenu-column__count: 10;
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .ammenu-category-columns {
+        & {
+            .ammenu-flex(none, none, wrap);
+            .ammenu-column-width(@ammenu-column__count);
+        }
+
+        .ammenu-column {
+            & {
+                display: inline-block;
+                box-sizing: border-box;
+                padding-bottom: @ammenu__indent__xl;
+                width: 100%;
+            }
+
+            &:not(:last-child):not(.-col-1) {
+                padding-right: 35px;
+            }
+        }
+
+        .ammenu-column.-col-1 {
+            & {
+                display: block;
+                width: 100%;
+            }
+
+            .ammenu-title {
+                width: 100%;
+            }
+        }
+    }
+}
