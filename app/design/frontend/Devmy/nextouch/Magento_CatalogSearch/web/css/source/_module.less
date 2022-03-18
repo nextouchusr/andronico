@@ -18,6 +18,63 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    .categories-search {
+        position: absolute;
+        top: 10px;
+        left: 0px;
+        display: inline-block;
+        .current {
+            font-weight: 700;
+            padding: 10px;
+            height: 50px;
+            box-sizing: border-box;
+            font-size: 1.8rem;
+            cursor: pointer;
+            &:after {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                font-size: 6rem;
+                line-height: 4rem;
+                content: "";
+                color: @theme__color__primary;
+                background: url('@{baseDir}images/arrow-right.svg') 50% 50% no-repeat;
+                transform: rotate(90deg);
+                vertical-align: middle;
+                font-weight: normal;
+                overflow: hidden;
+                speak: none;
+                text-align: center;
+            }
+        }
+        .list {
+            position: absolute;
+            display: none;
+            left: 0;
+            top: 70px;
+            z-index: 10;
+            background: #eee;
+            padding: 0;
+            list-style: none;
+            margin: 0;
+            &.active {
+                display: block;
+            }
+            li {
+                font-size: 1.8rem;
+                font-weight: 300;
+                padding: 15px 40px;
+                border-bottom: 1px solid #fff;
+                list-style: none;
+                white-space: nowrap;
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
     .block-search {
         margin-bottom: 0;
 
@@ -69,6 +126,7 @@
             left: -300%;
             margin: 15px 0;
             position: absolute;
+            padding-left: 80px;
         }
 
         .nested {
