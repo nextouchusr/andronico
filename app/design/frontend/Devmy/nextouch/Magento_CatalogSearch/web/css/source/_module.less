@@ -49,6 +49,11 @@
                 text-align: center;
             }
         }
+        &.active {
+            .list {
+                display: block;
+            }
+        }
         .list {
             position: absolute;
             display: none;
@@ -59,9 +64,8 @@
             padding: 0;
             list-style: none;
             margin: 0;
-            &.active {
-                display: block;
-            }
+            border-radius: 15px;
+
             li {
                 font-size: 1.8rem;
                 font-weight: 300;
@@ -69,12 +73,43 @@
                 border-bottom: 1px solid #fff;
                 list-style: none;
                 white-space: nowrap;
+                margin: 0;
                 &:last-child {
                     border-bottom: 0;
                 }
             }
         }
     }
+    body.active-search-menu {
+        .header {
+            &:before {
+                display: block;
+                content: "";
+                width: 100%;
+                height: 100%;
+                z-index: 10000;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: transparent;
+                backdrop-filter: blur(8px) contrast(0.6);
+            }
+
+            .ammenu-logo,
+            .minicart-wrapper,
+            .account-wrapper {
+                z-index: 10001;
+            }
+
+            .block-search {
+                z-index: 10001;
+                position: relative;
+            }
+        }
+
+    }
+
+
     .block-search {
         margin-bottom: 0;
 
@@ -126,7 +161,7 @@
             left: -300%;
             margin: 15px 0;
             position: absolute;
-            padding-left: 80px;
+            padding-left: 80px!important;
         }
 
         .nested {
