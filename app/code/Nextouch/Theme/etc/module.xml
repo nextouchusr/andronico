@@ -8,7 +8,6 @@
             <module name="Magento_Cms"/>
             <module name="Magento_Theme"/>
             <module name="Magento_Wishlist"/>
-            <module name="Amasty_MegaMenuLite"/>
         </sequence>
     </module>
 </config>

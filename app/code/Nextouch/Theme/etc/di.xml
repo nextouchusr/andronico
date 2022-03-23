@@ -4,11 +4,6 @@
     <preference for="Magento\Catalog\Block\Product\ListProduct"
                 type="Nextouch\Theme\Block\Catalog\Product\ListProduct"/>
 
-    <type name="Amasty\MegaMenuLite\Block\Container">
-        <plugin name="change_root_menu_category"
-                type="Nextouch\Theme\Plugin\Block\MegaMenuLite\ChangeRootMenuCategory"/>
-    </type>
-
     <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
         <plugin name="edit_available_sort_options"
                 type="Nextouch\Theme\Plugin\Block\Catalog\Product\ProductList\Toolbar\EditAvailableSortOptions"/>
