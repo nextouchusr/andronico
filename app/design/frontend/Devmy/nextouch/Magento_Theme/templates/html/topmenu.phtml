@@ -1,0 +1,77 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+?>
+
+<nav class="megamenu" data-action="navigation">
+    <ul>
+        <?= /* @noEscape */ $_menuHtml?>
+        <?= $block->getChildHtml() ?>
+    </ul>
+</nav>
+<span class="overlay-megamenu"></span>
+
+
+<script type="text/javascript">
+
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            var megamenu = $('.megamenu');
+
+            $(megamenu).find('.category-item.parent').prepend('<span class="openChild"></div>');
+
+            $(megamenu).on('mouseover', function() {
+               $('body').addClass('overmenu');
+            });
+            $(megamenu).on('mouseleave', function() {
+               $('body').removeClass('overmenu');
+            });
+
+            $(megamenu).on('click', '.openChild', function() {
+                $(this).parent().toggleClass('open').parent().toggleClass('childOpened');
+                $(window).scrollTop();
+            });
+
+            $(megamenu).on('click', '.level-back', function() {
+                $(this).parent().parent().toggleClass('open').parent().toggleClass('childOpened');
+                $(window).scrollTop();
+            });
+
+            $('body').on('click', '.nav-toggle', function() {
+                $(megamenu).closest('.nav-sections').toggleClass('show');
+                $('body').toggleClass('openMenu');
+            });
+
+
+            document.addEventListener('resize', function(e) {
+                $('.page-header').height('auto');
+                $('body').removeClass('stickyMenu').removeClass('overmenu');
+            });
+
+            $('.page-header').height($('.page-header').outerHeight());
+            document.addEventListener('scroll', function(e) {
+                var menuContainer = $('.nav-sections');
+                var header = $('.page-header');
+                var windowScrollTop = $(window).scrollTop();
+                var headerHeight = $(header).outerHeight();
+                if(windowScrollTop >= headerHeight + $(menuContainer).outerHeight()) {
+                    $('body').addClass('stickyMenu');
+                }
+                else {
+                    $('body').removeClass('stickyMenu');
+                }
+            });
+        });
+    });
+</script>

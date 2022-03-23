@@ -685,9 +685,47 @@ define([
                 'data-amsearch-js': 'search-wrapper-input'
             })
             // TODO: add macrocategories
-            $(wrapper).prepend('<div class="categories-search"><span>All</span></div>')
+            var categories = [
+                {
+                    'id': 0,
+                    'code': '232',
+                    'label': 'Grandi Elettrodomestici'
+                },
+                {
+                    'id': 1,
+                    'code': 'test 2',
+                    'label': 'Piccoli Elettrodomestici'
+                },
+                {
+                    'id': 2,
+                    'code': 'test 3',
+                    'label': 'Tv Home & Cinema'
+                }
+            ]
+            var catListHtml = '<li class="search-category search-category-all" data-category="">All</li>';
+            for (var key in categories) {
+                var category = categories[key];
+                catListHtml = catListHtml + '<li class="search-category search-category-' + category.id +'" data-category="' + category.code + '">' + category.label + '</li>';
+            }
+
+            var wrapper = $('<div/>', {
+                class: 'amsearch-wrapper-input',
+                'data-amsearch-js': 'search-wrapper-input'
+            })
+            // TODO: add macrocategories
+            $(wrapper).prepend('<div class="categories-search"><div class="current">All</div><ul class="list">' + catListHtml + '</ul> </div>')
             $(wrapper).appendTo($(this.searchForm.find('.control')));
             $(this.searchForm.find('.input-text')).appendTo($(this.searchForm.find('[data-amsearch-js="search-wrapper-input"]')));
+
+            $(wrapper).find('.categories-search').on('click', '.current', function(e) {
+                e.stopPropagation();
+                $('body').toggleClass('active-search-menu');
+                $(this).parent().toggleClass('active');
+            });
+            $('body').on('click', function() {
+                $('.categories-search').removeClass('active');
+                $('body').removeClass('active-search-menu');
+            })
 
         },
 

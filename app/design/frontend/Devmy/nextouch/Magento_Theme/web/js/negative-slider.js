@@ -12,6 +12,7 @@ define([
                 if(!config.onlyMobile) {
                     let offsetSlider = $(element).offset().top * (-1);
                     $(element).css('margin-top', offsetSlider);
+                    console.log
                 }
             }, this),
             exit: $.proxy(function () {

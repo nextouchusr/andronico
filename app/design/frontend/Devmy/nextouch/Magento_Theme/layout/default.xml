@@ -8,6 +8,8 @@
             <container name="title-breadcrumbs-container" htmlClass="title-crumbs-container" htmlTag="div" after="page.messages"/>
         </referenceContainer>
 
+        <referenceContainer name="store.links" remove="true"/>
+
         <referenceContainer name="footer" htmlClass="footer content">
             <referenceBlock name="store_switcher" remove="true"/>
             <referenceBlock name="footer_links" remove="true"/>

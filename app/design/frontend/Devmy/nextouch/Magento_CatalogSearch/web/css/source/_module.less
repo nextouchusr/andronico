@@ -25,7 +25,7 @@
         display: inline-block;
         .current {
             font-weight: 700;
-            padding: 10px;
+            padding: 0 10px;
             height: 50px;
             box-sizing: border-box;
             font-size: 1.8rem;
@@ -40,7 +40,8 @@
                 line-height: 4rem;
                 content: "";
                 color: @theme__color__primary;
-                background: url('@{baseDir}images/arrow-right.svg') 50% 50% no-repeat;
+                background: url('@{baseDir}images/arrow-right-blue.svg') 50% 50% no-repeat;
+                background-size: 10px;
                 transform: rotate(90deg);
                 vertical-align: middle;
                 font-weight: normal;
@@ -69,11 +70,12 @@
             li {
                 font-size: 1.8rem;
                 font-weight: 300;
-                padding: 15px 40px;
+                padding: 10px 40px;
                 border-bottom: 1px solid #fff;
                 list-style: none;
                 white-space: nowrap;
                 margin: 0;
+                cursor: pointer;
                 &:last-child {
                     border-bottom: 0;
                 }
@@ -102,8 +104,9 @@
             }
 
             .block-search {
-                z-index: 10001;
+                z-index: 10002!important;
                 position: relative;
+
             }
         }
 
@@ -112,6 +115,11 @@
 
     .block-search {
         margin-bottom: 0;
+        position: relative;
+        label {
+            position: absolute;
+            left: 5px;
+        }
 
         .block {
             &-title {
@@ -121,13 +129,12 @@
 
         .block-content {
             margin-bottom: 0;
-            padding: 0 10%;
         }
 
         .label {
             .lib-icon-font(
             @_icon-font-content: @icon-search,
-            @_icon-font-size: 35px,
+            @_icon-font-size: 25px,
             @_icon-font-line-height: 33px,
             @_icon-font-color: @header-icons-color,
             @_icon-font-color-hover: @header-icons-color-hover,
@@ -151,17 +158,14 @@
         }
 
         .control {
-            border-top: 1px solid @border-color__base;
             clear: both;
-            margin: 0 -@layout__width-xs-indent -1px;
         }
 
         input {
-            font-size: 16px;
-            left: -300%;
-            margin: 15px 0;
-            position: absolute;
-            padding-left: 80px!important;
+            background: transparent;
+            border-radius: 10px;
+            border-color: @theme__color__primary;
+            padding-left: 30px;
         }
 
         .nested {
@@ -300,10 +304,10 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .block-search {
         flex-grow: 5;
-        padding-left: 15px;
         position: relative;
         min-width: 250px;
         z-index: 4;
+        padding: 0 10%;
         .advanced {
             display: none;
         }
@@ -331,7 +335,10 @@
             border:0;
             min-height: 50px;
             background: none;
+            font-size: 1.6rem;
+            padding-left: 80px!important;
             color: @theme__color__primary;
+            background: #fff;
 
         }
         .search .amsearch-loupe {

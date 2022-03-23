@@ -21,6 +21,100 @@
         }
     }
 
+
+    .category-cms {
+        h2 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+        }
+        .block-banners {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            > a.box-banner {
+                display: block;
+                width: 45%;
+                min-height: 285px;
+                box-shadow: @theme__box-shadow__primary;
+                position: relative;
+                border-radius: 50px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+                .cta-text {
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    font-weight: 700;
+                    font-size: 3rem;
+                    top: 5%;
+                    &:after {
+                        display: inline-block;
+                        width: 40px;
+                        height: 40px;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        font-size: 6rem;
+                        line-height: 4rem;
+                        content: "";
+                        color: @theme__color__primary;
+                        background: url('@{baseDir}images/arrow-right-blue.svg') 50% 50% no-repeat;
+                        background-size: 10px;
+                        vertical-align: middle;
+                        font-weight: normal;
+                        overflow: hidden;
+                        speak: none;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        .white-boxes {
+            display: flex;
+            flex-flow: row nowrap;
+            margin-bottom: 50px;
+            .white-box {
+                box-shadow: @theme__box-shadow__primary;
+                background: #fff;
+                padding: 50px 50px 100px 50px;
+                font-size: 1.8rem;
+                border-radius: 30px;
+                position: relative;
+                h3,h4 {
+                    font-weight: 300;
+                    font-size: 3rem;
+                    text-transform: uppercase;
+                }
+                img {
+                    border-radius: 10px;
+                }
+                .more {
+                    position: absolute;
+                    bottom: 40px;
+                    font-size: 2rem;
+                    text-decoration: underline;
+                    left: 0;
+                    width: 100%;
+                    text-align: center;
+                }
+                &.type-box {
+                    padding: 0;
+                    .content {
+                        padding: 20px 50px;
+                    }
+                    .heading {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        position: relative;
+                        .more {
+                            position: relative;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .gallery-photo-video {
         margin: 20px 0;
         overflow: hidden;
