@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "acfe0d925f390b2ccad99e07861ed5e6",
+    "content-hash": "228b1327e248bc86a36b99b9af025611",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -53,16 +53,16 @@
         },
         {
             "name": "amasty/advanced-review",
-            "version": "1.15.1",
+            "version": "1.15.2",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/advanced-review-1.15.1-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/advanced-review-1.15.2-ee.zip"
             },
             "require": {
-                "amasty/aminvisiblecaptcha": ">=2.4.3",
-                "amasty/base": "*",
+                "amasty/aminvisiblecaptcha": ">=2.4.4",
+                "amasty/base": ">=1.12.19",
                 "amasty/cron-schedule-list": ">=1.0.5",
-                "php": "^7.3.0"
+                "php": ">=7.3.0"
             },
             "suggest": {
                 "amasty/advanced-review-graphql": "Install advanced-review-graphql module to activate GraphQl and Advanced Review integration.",
@@ -111,10 +111,10 @@
         },
         {
             "name": "amasty/aminvisiblecaptcha",
-            "version": "2.4.3",
+            "version": "2.4.4",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/aminvisiblecaptcha-2.4.3-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/aminvisiblecaptcha-2.4.4-ee.zip"
             },
             "require": {
                 "amasty/base": ">=1.10.2",
@@ -264,93 +264,6 @@
             "description": "GeoIP Redirect by Amasty"
         },
         {
-            "name": "amasty/mega-menu",
-            "version": "2.2.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/mega-menu-2.2.1-ee.zip"
-            },
-            "require": {
-                "amasty/base": ">=1.10.8",
-                "amasty/module-mega-menu-lite": ">=1.2.2",
-                "magento/module-review": "*",
-                "php": ">=7.3.0"
-            },
-            "suggest": {
-                "amasty/mega-menu-graphql": "Install mega-menu-graphql module to activate GraphQl and Mega Menu integration.",
-                "amasty/mega-menu-page-builder": "Install mega-menu-page-builder module to activate PageBuilder and Mega Menu integration.",
-                "amasty/module-mega-menu-mftf-2": "Install mega-menu-mftf-2 module to be able to run Mega Menu MFTF tests for Magento 2.3.5+ version",
-                "amasty/module-mega-menu-mftf-3": "Install mega-menu-mftf-3 module to be able to run Mega Menu MFTF tests for Magento 2.4.0+ version"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Amasty\\MegaMenu\\": ""
-                }
-            },
-            "license": [
-                "Commercial"
-            ],
-            "description": "Mega Menu By Amasty"
-        },
-        {
-            "name": "amasty/mega-menu-graphql",
-            "version": "1.0.8",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/mega-menu-graphql-1.0.8-ee.zip"
-            },
-            "require": {
-                "amasty/base": "*",
-                "amasty/mega-menu": ">=2.2.1",
-                "magento/module-graph-ql": "*",
-                "php": ">=7.3"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Amasty\\MegaMenuGraphQl\\": ""
-                }
-            },
-            "license": [
-                "Commercial"
-            ],
-            "description": "Mega Menu Graphql By Amasty"
-        },
-        {
-            "name": "amasty/mega-menu-page-builder",
-            "version": "1.0.6",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/mega-menu-page-builder-1.0.6-ee.zip"
-            },
-            "require": {
-                "amasty/base": "*",
-                "amasty/mega-menu": ">=2.2.1",
-                "magento/module-page-builder": "*",
-                "php": "^7.1.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Amasty\\MegaMenuPageBuilder\\": ""
-                }
-            },
-            "license": [
-                "Commercial"
-            ],
-            "description": "Mega Menu Page Builder By Amasty"
-        },
-        {
             "name": "amasty/module-advanced-conditions",
             "version": "1.5.4",
             "dist": {
@@ -435,14 +348,14 @@
         },
         {
             "name": "amasty/module-improved-layered-navigation-page",
-            "version": "2.7.13",
+            "version": "2.7.14",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/module-improved-layered-navigation-page-2.7.13-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/module-improved-layered-navigation-page-2.7.14-ee.zip"
             },
             "require": {
                 "amasty/base": ">=1.0.1",
-                "amasty/module-shop-by-base": ">=2.15.2",
+                "amasty/module-shop-by-base": ">=2.15.4",
                 "php": ">=7.3.0"
             },
             "type": "magento2-module",
@@ -483,34 +396,6 @@
                 "Commercial"
             ],
             "description": "Fix for Magento 2.4.0 by Amasty"
-        },
-        {
-            "name": "amasty/module-mega-menu-lite",
-            "version": "1.2.2",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/module-mega-menu-lite-1.2.2-ee.zip"
-            },
-            "require": {
-                "amasty/base": "*",
-                "magento/module-catalog": "*",
-                "mobiledetect/mobiledetectlib": "^2.8",
-                "php": ">=7.3.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Amasty\\MegaMenuLite\\": ""
-                }
-            },
-            "license": [
-                "Commercial"
-            ],
-            "description": "Mega Menu Lite by Amasty",
-            "homepage": "https://amasty.com/"
         },
         {
             "name": "amasty/module-salesrulewizard",
@@ -590,10 +475,10 @@
         },
         {
             "name": "amasty/module-shop-by-base",
-            "version": "2.15.2",
+            "version": "2.15.4",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/module-shop-by-base-2.15.2-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/module-shop-by-base-2.15.4-ee.zip"
             },
             "require": {
                 "amasty/base": "*",
@@ -619,14 +504,14 @@
         },
         {
             "name": "amasty/module-shop-by-brand",
-            "version": "2.12.5",
+            "version": "2.12.6",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/module-shop-by-brand-2.12.5-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/module-shop-by-brand-2.12.6-ee.zip"
             },
             "require": {
                 "amasty/base": ">=1.10.8",
-                "amasty/module-shop-by-base": ">=2.15.2",
+                "amasty/module-shop-by-base": ">=2.15.3",
                 "php": ">=7.3.0"
             },
             "suggest": {
@@ -675,16 +560,16 @@
         },
         {
             "name": "amasty/module-special-promo",
-            "version": "2.9.1",
+            "version": "2.9.2",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/module-special-promo-2.9.1-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/module-special-promo-2.9.2-ee.zip"
             },
             "require": {
                 "amasty/base": ">=1.4.7",
                 "amasty/module-banners-lite": ">=1.0.19",
                 "amasty/rgrid": ">=1.0.7",
-                "php": "^7.3.0"
+                "php": ">=7.3"
             },
             "suggest": {
                 "amasty/module-special-promo-mftf-2": "Install module-special-promo-mftf-2 module to be able to run Special Promotions MFTF tests for Magento 2.3.5+ version.",
@@ -706,15 +591,15 @@
         },
         {
             "name": "amasty/module-special-promo-pro",
-            "version": "2.8.5",
+            "version": "2.8.6",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/module-special-promo-pro-2.8.5-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/module-special-promo-pro-2.8.6-ee.zip"
             },
             "require": {
                 "amasty/base": ">=1.4.7",
-                "amasty/module-special-promo": ">=2.9.1",
-                "php": "^7.3.0"
+                "amasty/module-special-promo": ">=2.9.2",
+                "php": ">=7.3"
             },
             "type": "magento2-module",
             "autoload": {
@@ -819,14 +704,14 @@
         },
         {
             "name": "amasty/rgrid",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/rgrid-1.0.7-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/rgrid-1.0.8-ee.zip"
             },
             "require": {
                 "amasty/base": ">=1.4.7",
-                "php": "~5.6.5|7.0.2|7.0.4|~7.0.6|^7.1.0"
+                "php": ">=7.3"
             },
             "type": "magento2-module",
             "autoload": {
@@ -875,15 +760,15 @@
         },
         {
             "name": "amasty/shopby",
-            "version": "2.18.1",
+            "version": "2.18.3",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/shopby-2.18.1-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/shopby-2.18.3-ee.zip"
             },
             "require": {
                 "amasty/base": ">=1.12.4",
                 "amasty/module-improved-layered-navigation-page": ">=2.7.13",
-                "amasty/module-shop-by-base": ">=2.15.2",
+                "amasty/module-shop-by-base": ">=2.15.3",
                 "amasty/module-shop-by-brand": ">=2.12.5",
                 "amasty/shopby-seo": ">=2.13.0",
                 "magento/module-catalog-search": ">=101.0.2",
@@ -913,14 +798,14 @@
         },
         {
             "name": "amasty/shopby-seo",
-            "version": "2.13.0",
+            "version": "2.13.1",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.amasty.com/enterprise/packages/shopby-seo-2.13.0-ee.zip"
+                "url": "https://composer.amasty.com/enterprise/packages/shopby-seo-2.13.1-ee.zip"
             },
             "require": {
                 "amasty/base": ">=1.0.1",
-                "amasty/module-shop-by-base": ">=2.15.2",
+                "amasty/module-shop-by-base": ">=2.15.4",
                 "php": ">=7.3.0"
             },
             "type": "magento2-module",
@@ -1318,16 +1203,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.212.3",
+            "version": "3.215.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "1d3db6d276299136bcaa7896653be0dcd2aaa92a"
+                "reference": "79c4ffdf93cdcc7be9196ae2e22f0d0323cb2557"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1d3db6d276299136bcaa7896653be0dcd2aaa92a",
-                "reference": "1d3db6d276299136bcaa7896653be0dcd2aaa92a",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/79c4ffdf93cdcc7be9196ae2e22f0d0323cb2557",
+                "reference": "79c4ffdf93cdcc7be9196ae2e22f0d0323cb2557",
                 "shasum": ""
             },
             "require": {
@@ -1403,22 +1288,22 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.212.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.215.0"
             },
-            "time": "2022-03-07T19:48:01+00:00"
+            "time": "2022-03-18T18:16:01+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Bacon/BaconQrCode.git",
-                "reference": "0069435e2a01a57193b25790f105a5d3168653c1"
+                "reference": "d70c840f68657ce49094b8d91f9ee0cc07fbf66c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/0069435e2a01a57193b25790f105a5d3168653c1",
-                "reference": "0069435e2a01a57193b25790f105a5d3168653c1",
+                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/d70c840f68657ce49094b8d91f9ee0cc07fbf66c",
+                "reference": "d70c840f68657ce49094b8d91f9ee0cc07fbf66c",
                 "shasum": ""
             },
             "require": {
@@ -1457,9 +1342,9 @@
             "homepage": "https://github.com/Bacon/BaconQrCode",
             "support": {
                 "issues": "https://github.com/Bacon/BaconQrCode/issues",
-                "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.6"
+                "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.7"
             },
-            "time": "2022-02-04T20:16:05+00:00"
+            "time": "2022-03-14T02:02:36+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -3347,16 +3232,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.3",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85"
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
-                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/337e3ad8e5716c15f9657bd214d16cc5e69df268",
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268",
                 "shasum": ""
             },
             "require": {
@@ -3437,7 +3322,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.3"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.5"
             },
             "funding": [
                 {
@@ -3453,7 +3338,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-05T13:56:00+00:00"
+            "time": "2022-03-20T21:51:18+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -6180,16 +6065,16 @@
         },
         {
             "name": "laminas/laminas-validator",
-            "version": "2.16.0",
+            "version": "2.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-validator.git",
-                "reference": "329900ab7674c198e91e85b2e09080cdf493ce07"
+                "reference": "bdd503adc83d814a5c94e598ea0eb9fc7ca56339"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/329900ab7674c198e91e85b2e09080cdf493ce07",
-                "reference": "329900ab7674c198e91e85b2e09080cdf493ce07",
+                "url": "https://api.github.com/repos/laminas/laminas-validator/zipball/bdd503adc83d814a5c94e598ea0eb9fc7ca56339",
+                "reference": "bdd503adc83d814a5c94e598ea0eb9fc7ca56339",
                 "shasum": ""
             },
             "require": {
@@ -6266,7 +6151,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-01-21T14:30:01+00:00"
+            "time": "2022-03-08T18:16:51+00:00"
         },
         {
             "name": "laminas/laminas-view",
@@ -23160,73 +23045,17 @@
             "time": "2020-12-02T21:12:59+00:00"
         },
         {
-            "name": "mobiledetect/mobiledetectlib",
-            "version": "2.8.39",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/serbanghita/Mobile-Detect.git",
-                "reference": "0fd6753003fc870f6e229bae869cc1337c99bc45"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/0fd6753003fc870f6e229bae869cc1337c99bc45",
-                "reference": "0fd6753003fc870f6e229bae869cc1337c99bc45",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8.35||~5.7"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Detection": "namespaced/"
-                },
-                "classmap": [
-                    "Mobile_Detect.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Serban Ghita",
-                    "email": "serbanghita@gmail.com",
-                    "homepage": "http://mobiledetect.net",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Mobile_Detect is a lightweight PHP class for detecting mobile devices. It uses the User-Agent string combined with specific HTTP headers to detect the mobile environment.",
-            "homepage": "https://github.com/serbanghita/Mobile-Detect",
-            "keywords": [
-                "detect mobile devices",
-                "mobile",
-                "mobile detect",
-                "mobile detector",
-                "php mobile detect"
-            ],
-            "support": {
-                "issues": "https://github.com/serbanghita/Mobile-Detect/issues",
-                "source": "https://github.com/serbanghita/Mobile-Detect/tree/2.8.39"
-            },
-            "time": "2022-02-17T19:24:25+00:00"
-        },
-        {
             "name": "monolog/monolog",
-            "version": "1.26.1",
+            "version": "1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c6b00f05152ae2c9b04a448f99c7590beb6042f5"
+                "reference": "52ebd235c1f7e0d5e1b16464b695a28335f8e44a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c6b00f05152ae2c9b04a448f99c7590beb6042f5",
-                "reference": "c6b00f05152ae2c9b04a448f99c7590beb6042f5",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/52ebd235c1f7e0d5e1b16464b695a28335f8e44a",
+                "reference": "52ebd235c1f7e0d5e1b16464b695a28335f8e44a",
                 "shasum": ""
             },
             "require": {
@@ -23287,7 +23116,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/1.26.1"
+                "source": "https://github.com/Seldaek/monolog/tree/1.27.0"
             },
             "funding": [
                 {
@@ -23299,7 +23128,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-28T08:32:12+00:00"
+            "time": "2022-03-13T20:29:46+00:00"
         },
         {
             "name": "msp/cmsimportexport",
@@ -25202,16 +25031,16 @@
         },
         {
             "name": "spomky-labs/otphp",
-            "version": "v10.0.2",
+            "version": "v10.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Spomky-Labs/otphp.git",
-                "reference": "cd6b57baf37e2551cfb6d8706201c153e5ac1a4d"
+                "reference": "9784d9f7c790eed26e102d6c78f12c754036c366"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Spomky-Labs/otphp/zipball/cd6b57baf37e2551cfb6d8706201c153e5ac1a4d",
-                "reference": "cd6b57baf37e2551cfb6d8706201c153e5ac1a4d",
+                "url": "https://api.github.com/repos/Spomky-Labs/otphp/zipball/9784d9f7c790eed26e102d6c78f12c754036c366",
+                "reference": "9784d9f7c790eed26e102d6c78f12c754036c366",
                 "shasum": ""
             },
             "require": {
@@ -25271,9 +25100,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Spomky-Labs/otphp/issues",
-                "source": "https://github.com/Spomky-Labs/otphp/tree/v10.0.2"
+                "source": "https://github.com/Spomky-Labs/otphp/tree/v10.0.3"
             },
-            "time": "2022-02-15T08:38:37+00:00"
+            "time": "2022-03-17T08:00:35+00:00"
         },
         {
             "name": "symfony/config",
@@ -29032,16 +28861,16 @@
         },
         {
             "name": "codeception/codeception",
-            "version": "4.1.30",
+            "version": "4.1.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "a035d77d070fa57fad438e07a65447aeca248c45"
+                "reference": "15524571ae0686a7facc2eb1f40f600e5bbce9e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/a035d77d070fa57fad438e07a65447aeca248c45",
-                "reference": "a035d77d070fa57fad438e07a65447aeca248c45",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/15524571ae0686a7facc2eb1f40f600e5bbce9e5",
+                "reference": "15524571ae0686a7facc2eb1f40f600e5bbce9e5",
                 "shasum": ""
             },
             "require": {
@@ -29118,7 +28947,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeception/Codeception/issues",
-                "source": "https://github.com/Codeception/Codeception/tree/4.1.30"
+                "source": "https://github.com/Codeception/Codeception/tree/4.1.31"
             },
             "funding": [
                 {
@@ -29126,7 +28955,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-03-05T18:12:30+00:00"
+            "time": "2022-03-13T17:07:08+00:00"
         },
         {
             "name": "codeception/lib-asserts",
