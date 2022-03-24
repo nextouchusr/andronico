@@ -135,22 +135,22 @@ class WinsAttributeDataImport implements EntityDataImportInterface
     private function saveAttribute(AttributeGroupInterface $attributeGroup, Property $property): void
     {
         try {
-            $attribute = $this->attributeRepository->get($property->getCode());
-            $attribute->setDefaultFrontendLabel($property->getDescription());
-        } catch (NoSuchEntityException $e) {
-            $attributeMapper = $this->attributeMapperFactory->create($property);
-            $attribute = $attributeMapper->map($property);
-        }
+            try {
+                $attribute = $this->attributeRepository->get($property->getCode());
+                $attribute->setDefaultFrontendLabel($property->getDescription());
+                $attribute = $this->attributeRepository->save($attribute);
+            } catch (NoSuchEntityException $e) {
+                $attributeMapper = $this->attributeMapperFactory->create($property);
+                $attribute = $attributeMapper->map($property);
+                $attribute = $this->attributeRepository->save($attribute);
 
-        try {
-            $attribute = $this->attributeRepository->save($attribute);
-
-            $this->attributeManagement->assign(
-                $attributeGroup->getAttributeSetId(),
-                $attributeGroup->getAttributeGroupId(),
-                $attribute->getAttributeCode(),
-                $property->getSortOrder()
-            );
+                $this->attributeManagement->assign(
+                    $attributeGroup->getAttributeSetId(),
+                    $attributeGroup->getAttributeGroupId(),
+                    $attribute->getAttributeCode(),
+                    $property->getSortOrder()
+                );
+            }
 
             if ($property instanceof SelectableProperty) {
                 $this->saveAttributeOptions($attribute, $property->getValues());
