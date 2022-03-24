@@ -268,6 +268,84 @@
     <vars module="Js_Bundle">
         <var name="bundle_size">1MB</var>
     </vars>
+    <vars module="Magento_PageBuilder">
+        <var name="breakpoints">
+            <var name="desktop">
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">4</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+            <var name="tablet">
+                <var name="conditions">
+                    <var name="max-width">1024px</var>
+                    <var name="min-width">768px</var>
+                </var>
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">3</var>
+                        </var>
+                        <var name="continuous">
+                            <var name="slidesToShow">3</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+            <var name="little_desktop">
+                <var name="conditions">
+                    <var name="max-width">1440px</var>
+                    <var name="min-width">1025</var>
+                </var>
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">3</var>
+                        </var>
+                        <var name="continuous">
+                            <var name="slidesToShow">3</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+            <var name="mobile">
+                <var name="label">Mobile</var>
+                <var name="stage">true</var>
+                <var name="class">mobile-switcher</var>
+                <var name="icon">Magento_PageBuilder::css/images/switcher/switcher-mobile.svg</var>
+                <var name="media">only screen and (max-width: 768px)</var>
+                <var name="conditions">
+                    <var name="max-width">768px</var>
+                    <var name="min-width">640px</var>
+                </var>
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">2</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+            <var name="mobile-small">
+                <var name="conditions">
+                    <var name="max-width">640px</var>
+                </var>
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">2</var>
+                        </var>
+                        <var name="continuous">
+                            <var name="slidesToShow">2</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+        </var>
+    </vars>
     <exclude>
         <item type="file">Lib::chartjs/Chart.min.js</item>
         <item type="file">Lib::jquery/jquery.min.js</item>
