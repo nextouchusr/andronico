@@ -12,4 +12,7 @@
 
     <preference for="Nextouch\Catalog\Api\ProductAttributeManagementInterface"
                 type="Nextouch\Catalog\Model\Product\Attribute\Management"/>
+
+    <preference for="Nextouch\Catalog\Api\CategoryManagementInterface"
+                type="Nextouch\Catalog\Model\CategoryManagement"/>
 </config>

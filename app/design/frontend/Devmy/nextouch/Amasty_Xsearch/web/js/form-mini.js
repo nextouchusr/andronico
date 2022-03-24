@@ -683,50 +683,32 @@ define([
             var wrapper = $('<div/>', {
                 class: 'amsearch-wrapper-input',
                 'data-amsearch-js': 'search-wrapper-input'
-            })
-            // TODO: add macrocategories
-            var categories = [
-                {
-                    'id': 0,
-                    'code': '232',
-                    'label': 'Grandi Elettrodomestici'
-                },
-                {
-                    'id': 1,
-                    'code': 'test 2',
-                    'label': 'Piccoli Elettrodomestici'
-                },
-                {
-                    'id': 2,
-                    'code': 'test 3',
-                    'label': 'Tv Home & Cinema'
-                }
-            ]
-            var catListHtml = '<li class="search-category search-category-all" data-category="">All</li>';
-            for (var key in categories) {
-                var category = categories[key];
-                catListHtml = catListHtml + '<li class="search-category search-category-' + category.id +'" data-category="' + category.code + '">' + category.label + '</li>';
-            }
+            });
 
-            var wrapper = $('<div/>', {
-                class: 'amsearch-wrapper-input',
-                'data-amsearch-js': 'search-wrapper-input'
-            })
-            // TODO: add macrocategories
-            $(wrapper).prepend('<div class="categories-search"><div class="current">All</div><ul class="list">' + catListHtml + '</ul> </div>')
+            $(wrapper).prepend('<div class="categories-search"><div class="current">All</div><ul class="list"></ul> </div>')
             $(wrapper).appendTo($(this.searchForm.find('.control')));
             $(this.searchForm.find('.input-text')).appendTo($(this.searchForm.find('[data-amsearch-js="search-wrapper-input"]')));
 
-            $(wrapper).find('.categories-search').on('click', '.current', function(e) {
+            $(wrapper).find('.categories-search').on('click', '.current', function (e) {
                 e.stopPropagation();
                 $('body').toggleClass('active-search-menu');
                 $(this).parent().toggleClass('active');
             });
-            $('body').on('click', function() {
+
+            $('body').on('click', function () {
                 $('.categories-search').removeClass('active');
                 $('body').removeClass('active-search-menu');
-            })
+            });
 
+            $.get('/rest/it_IT/V1/categories/menu-categories-search').done(function (categories) {
+                var catListHtml = '<li class="search-category search-category-all" data-category="">All</li>';
+                for (var category of categories) {
+                    var label = category.name.charAt(0).toUpperCase() + category.name.slice(1).toLowerCase();
+                    catListHtml = catListHtml + '<li class="search-category search-category-' + category.id + '" data-category="' + category.id + '">' + label + '</li>';
+                }
+
+                $(wrapper).find('.list').html(catListHtml);
+            });
         },
 
         createCloseIcon: function () {

@@ -109,6 +109,12 @@
             <resource ref="Magento_Catalog::read_categories"/>
         </resources>
     </route>
+    <route url="/V1/categories/menu-categories-search" method="GET">
+        <service class="Nextouch\Catalog\Api\CategoryManagementInterface" method="getMenuCategoriesSearch"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 
     <!-- Category Product Links -->
     <route url="/V1/categories/:categoryId/products" method="GET">
