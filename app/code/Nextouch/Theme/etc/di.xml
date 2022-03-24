@@ -4,6 +4,9 @@
     <preference for="Magento\Catalog\Block\Product\ListProduct"
                 type="Nextouch\Theme\Block\Catalog\Product\ListProduct"/>
 
+    <preference for="Magento\Theme\Block\Html\Topmenu"
+                type="Nextouch\Theme\Block\Html\Topmenu"/>
+
     <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
         <plugin name="edit_available_sort_options"
                 type="Nextouch\Theme\Plugin\Block\Catalog\Product\ProductList\Toolbar\EditAvailableSortOptions"/>
