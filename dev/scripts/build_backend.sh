@@ -14,6 +14,7 @@ fi
 bash dev/scripts/install/backend.sh
 
 # Clean directories
+rm -rf generated/code/Magento/*
 rm -rf generated/code
 rm -rf generated/metadata
 
