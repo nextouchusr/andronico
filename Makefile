@@ -39,8 +39,8 @@ config_import: ## Import Magento configuration
 config_export: ## Export Magento configuration
 	php bin/magento app:config:dump
 
-resize_images: ## Resize images according to view.xml
-	php bin/magento catalog:images:resize
+resize_images: ## Resize images
+	bash dev/scripts/resize_images.sh
 
 wins_import_job: ## Run Wins entity data import job
 	php ./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_entity_data_import_job
