@@ -8,6 +8,26 @@
             <container name="title-breadcrumbs-container" htmlClass="title-crumbs-container" htmlTag="div" after="page.messages"/>
         </referenceContainer>
 
+        <referenceContainer name="header-wrapper">
+            <container name="mobile-static-link-container" htmlTag="div" htmlClass="mobile-links-container" after="logo">
+                <block class="Magento\Cms\Block\Block" name="mobile-static-link" >
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">mobile-static-link</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+
+        <referenceBlock name="catalog.topnav">
+            <block class="Magento\Cms\Block\Block" name="mobile-bottom-static-link">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">mobile-bottom-static-link</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+
         <referenceContainer name="store.links" remove="true"/>
 
         <referenceContainer name="footer" htmlClass="footer content">
