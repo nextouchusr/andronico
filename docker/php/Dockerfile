@@ -67,7 +67,9 @@ RUN apt-get install -y gnupg \
   && apt-get install -y nodejs \
   && mkdir /var/www/.config /var/www/.npm \
   && chown magento:magento /var/www/.config /var/www/.npm \
-  && npm install -g grunt-cli
+  && npm install -g grunt-cli \
+  && npm install -g requirejs \
+  && npm install -g terser
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | \
