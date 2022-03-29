@@ -13,12 +13,11 @@
 $columnsLimit = $block->getColumnsLimit() ?: 0;
 $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 ?>
-
 <nav class="megamenu" data-action="navigation">
     <ul>
         <?= /* @noEscape */ $_menuHtml?>
-        <?= $block->getChildHtml() ?>
     </ul>
+    <div id="mobile-bottom-menu-links" class="mobile-bottom-static-link"><?= $block->getChildHtml('mobile-bottom-static-link') ?></div>
 </nav>
 <span class="overlay-megamenu"></span>
 
@@ -40,11 +39,19 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 
             $(megamenu).on('click', '.openChild', function() {
                 $(this).parent().toggleClass('open').parent().toggleClass('childOpened');
+                if($(this).parent().hasClass('level0')) {
+                    $('body').addClass('openMenuLv0');
+                }
+                $('#mobile-bottom-menu-links').appendTo($(this).parent().children('ul'));
                 $(window).scrollTop();
             });
 
             $(megamenu).on('click', '.level-back', function() {
                 $(this).parent().parent().toggleClass('open').parent().toggleClass('childOpened');
+                $('#mobile-bottom-menu-links').appendTo($(this).parent().parent().children('ul'));
+                if($(this).parent().hasClass('level0')) {
+                    $('body').removeClass('openMenuLv0');
+                }
                 $(window).scrollTop();
             });
 
