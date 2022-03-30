@@ -25,7 +25,20 @@
 
     .checkout-index-index {
         .page-title-wrapper {
-            &:extend(.abs-visually-hidden all);
+        }
+        .page-header .header.content {
+            &:before,
+            &:after {
+                display: none!important;
+            }
+        }
+        .opc {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #maincontent {
+            padding-top: 50px;
         }
     }
 
@@ -38,7 +51,24 @@
         .lib-css(margin, 0 0 @checkout-wrapper__margin);
 
         .opc {
-            &:extend(.abs-reset-list all);
+            > li {
+                box-shadow: @theme__box-shadow__primary;
+                padding: 25px;
+                border-radius: 15px;
+                margin-bottom: 50px;
+                list-style: none;
+                font-size: 1rem;
+                .step-title {
+                    font-size: 1rem;
+                    border:0;
+                    font-weight: 700;
+                }
+                .action.primary {
+                    padding: 5px;
+                    max-height: 35px;
+                    color: @theme__color__primary;
+                }
+            }
         }
 
         .step-title {
@@ -84,15 +114,105 @@
     }
 }
 
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .checkout-index-index {
+        .page-title {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        .opc > li .action.primary {
+            height: 36px;
+            width: auto;
+            padding-left: 30px!important;
+            padding-right: 30px!important;
+        }
+    }
+
+    .opc-progress-bar {
+        .title {
+            display: none;
+        }
+        .opc-progress-bar-item {
+            font-weight: 400;
+            text-align: left;
+            padding-left: 0;
+            padding-right: 0;
+            > span {
+                font-weight: 400;
+                color: @theme__color__secondary;
+            }
+
+            &._active {
+                font-weight: 700;
+                > span {
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}
+
 //
 //  Desktop
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .checkout-index-index {
+        .page-title-wrapper {
+            display: none;
+        }
+    }
+
     .opc-wrapper {
         &:extend(.abs-add-box-sizing-desktop-m all);
-        .lib-layout-column(2, 1, @checkout-wrapper__columns);
-        padding-right: @indent__l;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+        box-sizing: border-box;
+
+        .opc {
+            hr {
+                display: none;
+            }
+            button {
+                height: 64px;
+                color: @theme__color__primary;
+                padding: 15px 30px;
+                &.action.primary {
+                    height: 80px;
+                    font-size: 2.4rem;
+                    padding: 30px 50px;
+                    box-sizing: border-box;
+                    max-height: 80px;
+                    line-height: 2.6rem;
+                }
+            }
+            > li {
+                font-size: 2rem;
+                padding: 50px;
+                border-radius: 50px;
+                .step-title {
+                    font-size: 3rem
+                }
+                form {
+                    padding: 20px 10px;
+                    select,
+                    input.input-text {
+                        height: 54px;
+                        font-size: 2rem;
+                        padding: 10px;
+                        box-sizing: border-box;
+                    }
+                }
+            }
+        }
     }
 
     .checkout-onepage-success {
@@ -102,4 +222,35 @@
             margin: 22px 0 0;
         }
     }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .opc-wrapper {
+        padding-left: 12%;
+        padding-right: 12%;
+      .opc > li form {
+          padding: 20px 30px;
+      }
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .opc-wrapper {
+        padding-left: 22%;
+        padding-right: 22%;
+
+        .opc > li form {
+            padding: 20px 100px;
+        }
+    }
+
 }
