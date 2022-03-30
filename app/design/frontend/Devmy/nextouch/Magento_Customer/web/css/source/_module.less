@@ -30,6 +30,13 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+
+    .customer-account-login {
+        .page-title-wrapper {
+            display: none;
+        }
+    }
+
     .login-container {
         .block {
             &-new-customer {
@@ -41,6 +48,30 @@
             .block-title {
                 &:extend(.abs-login-block-title all);
                 .lib-font-size(18);
+                text-align: center;
+                border: 0;
+            }
+        }
+        .customer-login-right-block {
+            box-shadow: @theme__box-shadow__primary;
+            box-sizing: border-box;
+            border-radius: 50px;
+
+            ul {
+                padding: 0;
+                margin: 0;
+                li {
+                    padding-left: 60px;
+                    margin: 20px 0;
+                    min-height: 40px;
+                    display: block;
+                    font-size: 3rem;
+                    list-style: none;
+                    background: url('@{baseDir}images/circle-check.svg') 0 50% no-repeat;
+                    background-size: 45px;
+                    font-weight: 200;
+                    line-height: 3.2rem;
+                }
             }
         }
 
@@ -49,6 +80,41 @@
             &:after {
                 margin-top: 35px;
             }
+            label.label {
+                display: none;
+            }
+            input.input-text {
+                border-radius: 50px;
+                border-color: @theme__color__primary;
+                height: 60px;
+                font-size: 2rem;
+                padding: 20px;
+                width: 100%;
+            }
+            .field.choice:before {
+                display: none;
+            }
+        }
+        .action.login.primary {
+            background-color: @theme__color__primary;
+            font-size: 3rem;
+            color: @theme__color__primary_contr;
+            min-width: 250px;
+            font-weight: 200;
+        }
+        .no-button {
+            width: 100%;
+            font-size: 3rem;
+            font-weight: 200;
+            text-align: center;
+            display: block;
+            margin: 25px 0;
+        }
+        .secondary {
+            margin: 50px 0;
+            text-align: center;
+            font-weight: 200;
+            font-size: 1.6rem;
         }
     }
 
@@ -360,9 +426,36 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .login-container {
+        padding: 50px 0;
         .fieldset {
             &:after {
                 text-align: center;
+            }
+            .primary {
+                text-align: center;
+            }
+            .action.login.primary {
+                font-size: 1rem;
+            }
+        }
+        .customer-login-right-block {
+            padding: 25px;
+            h2 {
+                text-align: center;
+            }
+            ul li {
+                font-size: 1rem;
+                float: left;
+                width: 50%;
+                box-sizing: border-box;
+                padding-left: 30px;
+                background-size: 20px;
+                line-height: 1.2rem;
+                min-height: 15px;
+                &:nth-child(2n + 1) {
+                    clear: left;
+                }
+
             }
         }
     }
@@ -407,11 +500,19 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+
+
+
     .login-container {
         &:extend(.abs-add-clearfix-desktop all);
-
+        h2 {
+            font-size: 4.5rem;
+        }
+        .customer-login-right-block ul li {
+            font-size: 2rem;
+        }
         .block {
-            &:extend(.abs-blocks-2columns all);
             .login {
                 .actions-toolbar {
                     > .primary {
@@ -534,4 +635,35 @@
             margin: 0 @indent__s @indent__s 0;
         }
     }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .customer-login-left-block {
+        width: 50%;
+        padding: 5%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    .customer-login-right-block {
+        box-shadow: @theme__box-shadow__primary;
+        margin-left: 10%;
+        padding: 5%;
+        width:40%;
+        box-sizing: border-box;
+        ul li {
+            font-size: 3rem;
+        }
+
+    }
+
+    .columns-customer-login {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
 }
