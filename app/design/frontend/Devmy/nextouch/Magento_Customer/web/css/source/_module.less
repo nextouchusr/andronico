@@ -100,6 +100,7 @@
             }
             &:after {
                 margin-top: 35px;
+                display: none;
             }
             label.label {
                 text-align: left;
@@ -578,8 +579,11 @@
             }
         }
 
-        .action.primary.submit {
-            font-size: 3rem;
+        .action.primary {
+            &.submit,
+            &.login {
+                font-size: 3rem;
+            }
         }
 
         .fieldset {
