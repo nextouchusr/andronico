@@ -27,10 +27,93 @@
     //  ---------------------------------------------
 
     .opc-block-summary {
-        &:extend(.abs-add-box-sizing all);
-        .lib-css(background, @checkout-summary__background-color);
-        .lib-css(padding, @checkout-summary__padding);
-        margin: 0 0 @indent__base;
+        position: fixed;
+        right: 0;
+        transform: translate(100%, 0%);
+        top: 0;
+        padding: 0 0 160px 0;
+        height: 100%;
+        box-shadow: 0 0 10px #ccc;
+        z-index: 100;
+        background: #fff;
+        width: 400px;
+        .opc-block-summary-scrolling {
+            overflow-y: scroll;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            flex-flow: column;
+            .items-in-cart {
+                order: 5;
+            }
+            > * {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+        }
+        &.active {
+            transform: translate(0, 0);
+        }
+        .heading {
+            position: absolute;
+            left: -100px;
+            top: 50%;
+            margin-top: -33px;
+            width: 320px;
+            height: 66px;
+            cursor: pointer;
+            .title {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-left: -252px;
+                margin-top: -33px;
+                transform: rotate(-90deg);
+                background: @theme__color__secondary;
+                border-top-left-radius: 50px;
+                border-top-right-radius: 50px;
+                font-size: 3rem;
+                font-weight: 700;
+                color: #fff;
+                width: 320px;
+                height: 66px;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 15px;
+            }
+        }
+
+        .table-totals {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            background: #ebebeb;
+            order: 10;
+            tr {
+                td,th {
+                    &:first-child {
+                        padding-left: 30px;
+                    }
+                }
+                .amount.amount {
+                    padding-right: 30px;
+                }
+            }
+            tbody {
+                tr:first-child {
+                    td, th {
+                        padding-top: 30px;
+                    }
+                }
+                tr:last-child {
+                    td, th {
+                        padding-bottom: 30px;
+                    }
+                }
+            }
+        }
 
         > .title {
             &:extend(.abs-checkout-title all);
@@ -47,6 +130,27 @@
                 .lib-css(color, @checkout-summary-mark-value__color);
                 display: block;
             }
+        }
+
+        .assistence {
+            text-align: center;
+            padding: 45px 15px;
+            font-size: 1.8rem;
+            a {
+                display: block;
+                text-decoration: underline;
+            }
+        }
+
+        .product-item-details {
+            font-size: 1.2rem;
+            padding-left: 140px;
+            .product-item-name {
+                font-size: 1.2rem;
+            }
+        }
+        .product-image-container {
+            width: auto!important;
         }
 
         .discount.coupon {
@@ -118,6 +222,8 @@
 
             .product {
                 position: relative;
+                display: flex;
+                flex-flow: row nowrap;
                 .item-options {
                     &:extend(.abs-product-options-list all);
                     &:extend(.abs-add-clearfix all);
@@ -125,11 +231,17 @@
             }
         }
 
+        .assistence {
+            width: 100%;
+            min-height: 100px;
+            display: block;
+            background: rgba(0,241,162,0.3);
+            box-sizing: border-box;
+            order: 100;
+        }
+
         //  Cart items
         .minicart-items-wrapper {
-            .lib-css(margin, 0 -(@checkout-summary-items__padding) 0 0);
-            .lib-css(max-height, @checkout-summary-items__max-height);
-            .lib-css(padding, @checkout-summary-items__padding @checkout-summary-items__padding 0 0);
             border: 0;
         }
 
@@ -137,6 +249,7 @@
             .product-item {
                 margin: 0;
                 padding-left: 0;
+                border: 0;
             }
         }
 
