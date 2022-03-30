@@ -304,7 +304,7 @@
                 z-index: 1005;
                 max-height: ~"calc(100vh - " @heightHeader ~" - 45px)";
                 overflow-y: auto;
-                margin-bottom: 50px;
+                margin-bottom: 0;
                 border-bottom-right-radius: 20px;
                 border-bottom-left-radius: 20px;
                 .openChild,
@@ -421,13 +421,14 @@
         }
     }
 }
+@padding-items-level0: 15px;
 
 //
 //  Desktop
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    @padding-items-level0: 15px;
+
     @height-header: 106px;
     @height-items-level0: 20px;
 
@@ -472,16 +473,22 @@
 
             li.level0 {
                 > .level-top {
-                    padding: @padding-items-level0;
-                    font-size: 1.8rem;
+                    padding: @padding-items-level0 8px;
+                    font-size: 1.3rem;
                     line-height: 2rem;
                     color: @theme__color__primary;
                     display: inline-block;
+                    white-space: nowrap;
 
                     &.active {
                         font-weight: 700;
                     }
                 }
+
+                &:nth-child(n+6) {
+                    display: none;
+                }
+
 
                 > .submenu {
                     display: none;
@@ -591,6 +598,10 @@
         }
     }
 
+    #mobile-bottom-menu-links {
+        display: none;
+    }
+
     .nav-toggle {
         display: none;
         order: 99;
@@ -668,4 +679,47 @@
             display: inline-block;
         }
     }
+}
+
+//
+//  Desktop Large
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .nav-sections .megamenu.megamenu li.level0 {
+        > .level-top {
+            font-size: 1.4rem;
+            padding: @padding-items-level0 10px;
+        }
+        &:nth-child(n+5) {
+            display: inline-block;
+        }
+        &:nth-child(n+8) {
+            display: none;
+        }
+    }
+
+}
+
+//
+//  Desktop Large
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+    .nav-sections .megamenu.megamenu li.level0 {
+        > .level-top {
+            font-size: 1.8rem;
+            padding: @padding-items-level0 10px;
+        }
+        &:nth-child(n+8) {
+            display: inline-block;
+        }
+
+        &:nth-child(n+10) {
+            display: none;
+        }
+    }
+
 }
