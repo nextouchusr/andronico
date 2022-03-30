@@ -1,0 +1,20 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="opc-block-summary" data-bind="blockLoader: isLoading">
+    <div class="heading opc-summary-heading"> <span data-bind="i18n: 'Summary'" class="title"></span></div>
+    <div class="opc-block-summary-scrolling">
+        <!-- ko foreach: elems() -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+
+        <span class="assistence">
+            <span data-bind="i18n: 'Customer Care'" class="text"></span>
+            <a href="#" data-bind="i18n: 'For More information click here'"></a>
+        </span>
+    </div>
+</div>
+
