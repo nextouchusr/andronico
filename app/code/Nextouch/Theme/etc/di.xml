@@ -4,6 +4,9 @@
     <preference for="Magento\Catalog\Block\Product\ListProduct"
                 type="Nextouch\Theme\Block\Catalog\Product\ListProduct"/>
 
+    <preference for="Magento\Checkout\Block\Cart\Item\Renderer"
+                type="Nextouch\Theme\Block\Checkout\Cart\Item\Renderer"/>
+
     <preference for="Magento\Theme\Block\Html\Topmenu"
                 type="Nextouch\Theme\Block\Html\Topmenu"/>
 
