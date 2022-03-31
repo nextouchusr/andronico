@@ -7,7 +7,7 @@
 // phpcs:disable Magento2.Templates.ThisInTemplate
 // phpcs:disable Magento2.Files.LineLength.MaxExceeded
 
-/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
+/** @var $block \Nextouch\Theme\Block\Checkout\Cart\Item\Renderer */
 
 $_item = $block->getItem();
 $product = $_item->getProduct();
@@ -76,6 +76,16 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                     <?php else :?>
                         <div class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
                             <?= $block->getUnitPriceHtml($_item) ?>
+
+                            <?php if ($block->hasSpecialPrice()): ?>
+                                <span class="old-price">
+                                    <?= /* @noEscape */ $block->renderAmount(\Magento\Catalog\Pricing\Price\RegularPrice::PRICE_CODE, [
+                                        'price_type'        => 'oldPrice',
+                                        'include_container' => true,
+                                        'skip_adjustments'  => true
+                                    ]); ?>
+                                </span>
+                            <?php endif; ?>
                         </div>
                     <?php endif; ?>
 

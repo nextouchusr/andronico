@@ -8,6 +8,17 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="checkout_cart_item_renderers"/>
     <body>
+        <referenceContainer name="main">
+            <block class="Nextouch\Theme\Block\Checkout\Cart\Offers"
+                   name="checkout.cart.offers"
+                   template="Magento_Catalog::product/list/items.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">offers</argument>
+                    <argument name="view_model" xsi:type="object">Magento\Catalog\ViewModel\Product\Listing\PreparePostData</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
         <move element="cart.summary" destination="checkout.cart.container" after="checkout.cart.form" />
         <move element="checkout.cart.methods.bottom" destination="main" after="-" />
         <move element="checkout.cart.coupons" destination="checkout.cart.container" after="-" />
