@@ -37,6 +37,7 @@
         z-index: 100;
         background: #fff;
         width: 400px;
+        max-width: 90vw;
         .opc-block-summary-scrolling {
             overflow-y: scroll;
             height: 100%;
@@ -144,7 +145,7 @@
 
         .product-item-details {
             font-size: 1.2rem;
-            padding-left: 140px;
+            padding-left: 10px;
             .product-item-name {
                 font-size: 1.2rem;
             }
@@ -233,7 +234,7 @@
 
         .assistence {
             width: 100%;
-            min-height: 100px;
+            min-height: 140px;
             display: block;
             background: rgba(0,241,162,0.3);
             box-sizing: border-box;
@@ -243,6 +244,7 @@
         //  Cart items
         .minicart-items-wrapper {
             border: 0;
+            max-height: inherit;
         }
 
         .column.main & {
@@ -303,6 +305,23 @@
                     margin: 0;
                 }
             }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .opc-block-summary .heading {
+        width: 450px;
+        .title {
+            height: 33px;
+            font-size: 1.4rem;
+            padding: 5px 10px;
+            width: 220px;
         }
     }
 }
