@@ -65,6 +65,15 @@
 
 
 //
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+
+//
 //  Desktop
 //  _____________________________________________
 
@@ -72,6 +81,9 @@
 
     .block.filter .filter-title {
         font-size: 3rem;
+    }
+    .open-filter-mobile {
+        display: none;
     }
     .filter-options {
         .filter-options-title {
