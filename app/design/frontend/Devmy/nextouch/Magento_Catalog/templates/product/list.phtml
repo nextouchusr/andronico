@@ -85,13 +85,26 @@ $_helper = $block->getData('outputHelper');
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                         <div class="product-item-prices">
                             <?= /* @noEscape */ $block->getProductPrice($_product) ?>
-
                         </div>
+                        <span class="tax-included"><?= __('Tax included') ?></span>
+
+
                         <?php if ($savingPercent > 0): ?>
                             <span class="saving-percent">
                                     <?= sprintf('-%s%%', $savingPercent); ?>
                                 </span>
                         <?php endif; ?>
+
+                        <div data-role="add-to-links" class="actions-secondary">
+                            <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                            <?php endif; ?>
+                        </div>
+                        <?= strpos($pos, $viewMode . '-secondary') ?
+                            /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                                $position,
+                                'product-item-info_' . $_product->getId() . ' div.actions-secondary'
+                            ) : '' ?>
 
 
                         <?= $block->getProductDetailsHtml($_product) ?>
@@ -142,16 +155,7 @@ $_helper = $block->getData('outputHelper');
                                         $position,
                                         'product-item-info_' . $_product->getId() . ' div.actions-primary'
                                     ) : '' ?>
-                                <div data-role="add-to-links" class="actions-secondary">
-                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
-                                        <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
-                                    <?php endif; ?>
-                                </div>
-                                <?= strpos($pos, $viewMode . '-secondary') ?
-                                    /* @noEscape */ $secureRenderer->renderStyleAsTag(
-                                        $position,
-                                        'product-item-info_' . $_product->getId() . ' div.actions-secondary'
-                                    ) : '' ?>
+
                             </div>
                             <?php if ($showDescription): ?>
                                 <div class="product description product-item-description">
@@ -188,3 +192,16 @@ $_helper = $block->getData('outputHelper');
     }
     </script>
 <?php endif; ?>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            $('.open-filter-mobile').on('click', function() {
+                $('#layered-filter-block').addClass('active').addClass('show');
+            });
+            $('.close-filter-mobile').on('click', function() {
+                $('#layered-filter-block').removeClass('active').removeClass('show');
+            })
+        });
+    });
+</script>

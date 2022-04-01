@@ -48,6 +48,44 @@
 
         </div>
 
+
+        <?php /* TODO: Add dynamic info
+
+        <div id="product-sticky-bar" class="product-sticky-bar">
+            <div class="container">
+                <div class="image">
+                        <img src="lorg.png" />
+                </div>
+                <div class="product-title">
+                    <?= $block->getChildHtml('page.main.title') ?>
+                </div>
+                <div class="product-price">
+    23234
+                </div>
+                <div class="product-buttons">
+                    <button type="submit" title="Aggiungi al Carrello" class="action primary tocart">
+                        <span>Aggiungi al Carrello</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+*/ ?>
+        <script>
+            require(['jquery'], function ($) {
+                $(".more-less-content .more-less").on('click', function () {
+                    $(this).closest('.more-less-content').toggleClass('active');
+                });
+                $(window).on('scroll', function() {
+                    if($(window).scrollTop() > $('.box-tocart').offset().top) {
+                        $('#product-sticky-bar').addClass('active');
+                    }
+                    else {
+                        $('#product-sticky-bar').removeClass('active');
+                    }
+                });
+            });
+        </script>
+
     <script type="text/x-magento-init">
         {
             "[data-role=priceBox][data-price-box=product-id-<?= $block->escapeHtml($_product->getId()) ?>]": {

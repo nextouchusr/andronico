@@ -15,9 +15,10 @@
             }
         }
     }'>
+        <span class="close-filter-mobile"></span>
         <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
         <div class="block-title filter-title" data-count="<?= $filtered; ?>">
-            <strong data-role="title"><?= $block->escapeHtml(__('Shop By')); ?></strong>
+            <strong data-role="title"><?= $block->escapeHtml(__('Filters')); ?></strong>
         </div>
         <div class="block-content filter-content">
             <?php if ($block->getLayer()->getState()->getFilters()) : ?>
@@ -60,6 +61,7 @@
                                         'title': '<?= $block->escapeHtml(__($filter->getName())); ?>',
                                         'trigger': '[data-trigger=trigger<?= $i ?>]',
                                         'responsive': true,
+                                        'zIndex': '999',
                                         'buttons': false
                                     }}">
                                     <div class="content">
@@ -89,3 +91,4 @@
         </div>
     </div>
 <?php endif; ?>
+
