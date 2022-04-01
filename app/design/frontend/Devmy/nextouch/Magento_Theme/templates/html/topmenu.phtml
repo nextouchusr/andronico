@@ -14,10 +14,12 @@ $columnsLimit = $block->getColumnsLimit() ?: 0;
 $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 ?>
 <nav class="megamenu" data-action="navigation">
-    <ul>
-        <?= /* @noEscape */ $_menuHtml?>
-    </ul>
-    <div id="mobile-bottom-menu-links" class="mobile-bottom-static-link"><?= $block->getChildHtml('mobile-bottom-static-link') ?></div>
+    <div class="megamenu-inner">
+        <ul>
+            <?= /* @noEscape */ $_menuHtml?>
+        </ul>
+        <div id="mobile-bottom-menu-links" class="mobile-bottom-static-link"><?= $block->getChildHtml('mobile-bottom-static-link') ?></div>
+    </div>
 </nav>
 <span class="overlay-megamenu"></span>
 
@@ -82,18 +84,26 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 
             $('.page-header').height($('.page-header').outerHeight());
             document.addEventListener('scroll', function(e) {
-                var menuContainer = $('.nav-sections');
-                var header = $('.page-header');
-                var windowScrollTop = $(window).scrollTop();
-                var headerHeight = $(header).outerHeight();
-                if(windowScrollTop >= headerHeight + $(menuContainer).outerHeight()) {
-                    $('body').addClass('stickyMenu');
-                    $('.page-wrapper').css('padding-top',headerHeight + $(menuContainer).outerHeight());
-                }
-                else {
-                    $('body').removeClass('stickyMenu');
-                    $('.page-wrapper').css('padding-top','inherit');
-                }
+                mediaCheck({
+                    media: '(min-width: 768px)',
+                    entry: $.proxy(function () {
+                        var menuContainer = $('.nav-sections');
+                        var header = $('.page-header');
+                        var windowScrollTop = $(window).scrollTop();
+                        var headerHeight = $(header).outerHeight();
+                        if (windowScrollTop >= headerHeight + $(menuContainer).outerHeight()) {
+                            $('body').addClass('stickyMenu');
+                            $('.page-wrapper').css('padding-top', headerHeight + $(menuContainer).outerHeight());
+                        } else {
+                            $('body').removeClass('stickyMenu');
+                            $('.page-wrapper').css('padding-top', 'inherit');
+                        }
+                    }, this),
+                    exit: $.proxy(function () {
+
+                    }, this)
+                });
+
             });
         });
     });

@@ -52,6 +52,24 @@
           margin-left: 10px;
       }
   }
+    .modalfilter {
+        z-index: 999!important;
+        &.modal-popup .modal-inner-wrap {
+            transform: translateX(-200%);
+            -webkit-transform: translateX(-200%);
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
 }
 
 
@@ -63,6 +81,9 @@
 
     .block.filter .filter-title {
         font-size: 3rem;
+    }
+    .open-filter-mobile {
+        display: none;
     }
     .filter-options {
         .filter-options-title {
