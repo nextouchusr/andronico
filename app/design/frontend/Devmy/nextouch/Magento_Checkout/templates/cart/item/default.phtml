@@ -15,6 +15,7 @@ $isVisibleProduct = $product->isVisibleInSiteVisibility();
 /** @var \Magento\Msrp\Helper\Data $helper */
 $helper = $this->helper(Magento\Msrp\Helper\Data::class);
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+$_services = $block->getFormattedServiceList();
 ?>
 <div class="cart item">
     <div class="item-info">
@@ -121,27 +122,25 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
 
         </div>
         <div class="item-options-container">
-            <?php if ($_options = $block->getOptionList()) :?>
+            <?php if ($_services) : ?>
                 <dl class="item-options">
-                    <?php foreach ($_options as $_option) :?>
-                        <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
-                        <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+                    <?php foreach ($_services as $_service): ?>
                         <dd>
-                            <span class="close"></span>
+                            <a href="#"
+                               class="action"
+                               title="<?= __('Remove Service'); ?>"
+                               aria-label="<?= __('Remove Service'); ?>"
+                               data-post='<?= $block->getRemoveServicePostDataParams($_service); ?>'
+                               role="button">
+                                <span class="material-icons">close</span>
+                            </a>
                             <span class="info">
-                            <?php if (isset($_formatedOptionValue['full_view'])) :?>
-                                <?= $block->escapeHtml($_formatedOptionValue['full_view']) ?>
-                            <?php else :?>
-                                <?= $block->escapeHtml($_formatedOptionValue['value'], ['span', 'a']) ?>
-                            <?php endif; ?>
-                                <span class="more-info"><?= __('Learn More Info') ?></span>
+                                <?= $block->escapeHtml($_service['serviceLabel'], ['span', 'a']) ?>
                             </span>
-                            <span class="price-option">20,00 €</span>
-
                         </dd>
                     <?php endforeach; ?>
                 </dl>
-            <?php endif;?>
+            <?php endif; ?>
             <div class="col subtotal" data-th="<?= $block->escapeHtml(__('Subtotal')) ?>">
                 <?php if ($canApplyMsrp) :?>
                     <span class="cart msrp subtotal">--</span>
