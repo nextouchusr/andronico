@@ -563,13 +563,13 @@
                         font-size: 1.8rem;
                         color: @theme__color__primary;
                         padding: @layout-indent__width;
-                        max-width: @layout__max-width;
+                        max-width: 100vw;
                         flex-flow: row wrap;
-                        justify-content: space-between;
+                        justify-content: flex-start;
                         background: rgba(255, 255, 255, 0.5);
                         backdrop-filter: blur(20px) contrast(1.1);
                         max-height: ~"calc(100vh - 120px)";
-                        overflow-y: scroll;
+                        overflow-y: auto;
 
                         &.mosaic {
                             flex-flow: column wrap;

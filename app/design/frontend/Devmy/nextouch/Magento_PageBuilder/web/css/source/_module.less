@@ -51,6 +51,12 @@
     .pagebuilder-accordion {
         .lib-data-accordion();
     }
+
+    [data-content-type='row'][data-appearance='contained'] {
+        &.total-width {
+            max-width: 100%;
+        }
+    }
 }
 
 //
@@ -71,4 +77,13 @@
     .pagebuilder-mobile-only {
         display: none !important;
     }
+
+    .product-item .product-item-prices {
+        .price-box {
+            .price {
+                font-size: 2.2rem;
+            }
+        }
+    }
+
 }
