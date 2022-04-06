@@ -48,15 +48,21 @@ $layout = $block->getLayout();
 
     <script>
         require(['jquery'], function ($) {
+            var moreLessContainers = $('.more-less-content');
+            $(moreLessContainers).each(function(i) {
+                if (this && $(this).find('.more-less-wrapper').outerHeight() <= $(this).find('.more-less-wrapper > div').outerHeight()) {
+                    $(this).addClass('no-moreless');
+                }
+            });
             $(".more-less-content .more-less").on('click', function() {
-                $(this).closest('.more-less-content').toggleClass('active');
+              //   $(this).closest('.more-less-content').toggleClass('active');
                 var parentMoreLess = $(this).closest('.more-less-content');
-                var moreLessActive = $('.more-less-content.active');
-                if(moreLessActive) {
+                if(parentMoreLess.hasClass('active')) {
                     $('.product-details-boxes-columns').addClass('active');
                 }
                 else {
                     $('.product-details-boxes-columns').removeClass('active');
+                    $('html,body').animate({scrollTop: $(this).parent().offset().top - 200},400);
                 }
             });
 
