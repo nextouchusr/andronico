@@ -331,7 +331,6 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
-  .page-products {
 
       .support-box,
       .store-locator-box {
@@ -343,6 +342,11 @@
 
     .products-grid {
       .product-item {
+
+          .product-item-name {
+              height: 60px;
+              overflow: hidden;
+          }
 
         .product-item-info {
           margin: 0 auto;
@@ -391,6 +395,5 @@
           }
         }
       }
-    }
   }
 }
