@@ -12,23 +12,27 @@ use Nextouch\Wins\Helper\WinsConfig;
 use Nextouch\Wins\Model\Auth\LoginInfo;
 use Nextouch\Wins\Model\Request\Auth\Authorize;
 use Nextouch\Wins\Model\Request\Order\CreateOrder;
+use Nextouch\Wins\Service\Order\Item\CustomOptionsProcessor;
 
 class CreateNewOrder
 {
     private OrderRepositoryInterface $orderRepository;
     private AuthManagementInterface $authManagement;
     private WinsOrderRepositoryInterface $winsOrderRepository;
+    private CustomOptionsProcessor $customOptionsProcessor;
     private WinsConfig $config;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
         AuthManagementInterface $authManagement,
         WinsOrderRepositoryInterface $winsOrderRepository,
+        CustomOptionsProcessor $customOptionsProcessor,
         WinsConfig $config
     ) {
         $this->orderRepository = $orderRepository;
         $this->authManagement = $authManagement;
         $this->winsOrderRepository = $winsOrderRepository;
+        $this->customOptionsProcessor = $customOptionsProcessor;
         $this->config = $config;
     }
 
@@ -48,6 +52,10 @@ class CreateNewOrder
 
     private function createOrder(Order $order): bool
     {
+        $customOptions = $this->customOptionsProcessor->getAllCustomOptions($order);
+        $items = array_merge($order->getItems(), $customOptions);
+        $order->setItems($items);
+
         $authorizeReq = new Authorize($this->config->getAuthUsername(), $this->config->getAuthPassword());
         $authorizeRes = $this->authManagement->authorize($authorizeReq);
 

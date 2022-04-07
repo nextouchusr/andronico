@@ -47,20 +47,20 @@ class CreateOrder implements InputInterface
         $dataObjectConverter = ObjectManager::getInstance()->create(ExtensibleDataObjectConverter::class);
         $order = $dataObjectConverter->toNestedArray($this->getOrder(), [], OrderInterface::class);
         $order['extension_attributes'] = [
-            'shipping_assignments' => $order['shipping_assignments'],
-            'payment_additional_info' => $order['payment_additional_info'],
-            'applied_taxes' => $order['applied_taxes'],
-            'item_applied_taxes' => $order['item_applied_taxes'],
-            'converting_from_quote' => $order['converting_from_quote'],
-            'gift_cards' => $order['gift_cards'],
-            'base_gift_cards_amount' => $order['base_gift_cards_amount'],
-            'gift_cards_amount' => $order['gift_cards_amount'],
-            'gw_base_price' => $order['gw_base_price'],
-            'gw_price' => $order['gw_price'],
-            'gw_items_base_price' => $order['gw_items_base_price'],
-            'gw_items_price' => $order['gw_items_price'],
-            'gw_card_base_price' => $order['gw_card_base_price'],
-            'gw_card_price' => $order['gw_card_price'],
+            'shipping_assignments' => $order['shipping_assignments'] ?? null,
+            'payment_additional_info' => $order['payment_additional_info'] ?? null,
+            'applied_taxes' => $order['applied_taxes'] ?? null,
+            'item_applied_taxes' => $order['item_applied_taxes'] ?? null,
+            'converting_from_quote' => $order['converting_from_quote'] ?? null,
+            'gift_cards' => $order['gift_cards'] ?? null,
+            'base_gift_cards_amount' => $order['base_gift_cards_amount'] ?? null,
+            'gift_cards_amount' => $order['gift_cards_amount'] ?? null,
+            'gw_base_price' => $order['gw_base_price'] ?? null,
+            'gw_price' => $order['gw_price'] ?? null,
+            'gw_items_base_price' => $order['gw_items_base_price'] ?? null,
+            'gw_items_price' => $order['gw_items_price'] ?? null,
+            'gw_card_base_price' => $order['gw_card_base_price'] ?? null,
+            'gw_card_price' => $order['gw_card_price'] ?? null,
         ];
 
         return array_merge(

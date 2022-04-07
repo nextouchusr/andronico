@@ -30,6 +30,10 @@ clean_static: ## Clean generated static view files
 	rm -r pub/static/*/*
 	rm -r var/view_preprocessed/*
 
+cache_reset: ## Flush Magento cache and restart php container
+	cd docker && docker-compose exec php make cache_flush
+	cd docker && docker-compose restart php
+
 cache_flush: ## Cache flush
 	php bin/magento cache:flush
 
