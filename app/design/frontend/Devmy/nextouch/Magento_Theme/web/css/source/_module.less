@@ -54,6 +54,15 @@
         .lib-css(background-color, @page__background-color);
     }
 
+    [data-content-type="tabs"] {
+        opacity: 0;
+        max-height: 200px;
+        &.ui-widget {
+            opacity: 1;
+            max-height: inherit;
+        }
+    }
+
     .page-wrapper {
         .lib-vendor-prefix-display(flex);
         .lib-vendor-prefix-flex-direction(column);

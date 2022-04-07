@@ -54,11 +54,18 @@
   }
     .modalfilter {
         z-index: 999!important;
-        &.modal-popup .modal-inner-wrap {
-            transform: translateX(-200%);
-            -webkit-transform: translateX(-200%);
-            transform: translateY(0);
-            -webkit-transform: translateY(0);
+        &.modal-popup.modal-popup {
+            &._show {
+                .modal-inner-wrap {
+                    transform: translateX(0);
+                    -webkit-transform: translateX(0);
+                }
+            }
+            .modal-inner-wrap {
+                transform: translate(-200%, 0);
+                -webkit-transform: translate(-200%, 0);
+                transition: transform 0.3s ease-in-out;
+            }
         }
     }
 }
