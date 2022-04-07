@@ -15,4 +15,17 @@
 
     <preference for="Nextouch\Catalog\Api\CategoryManagementInterface"
                 type="Nextouch\Catalog\Model\CategoryManagement"/>
+
+    <preference for="Nextouch\Catalog\Api\CustomOptionsExtraInfoProcessorInterface"
+                type="Nextouch\Catalog\Model\CustomOptionsExtraInfoProcessor"/>
+
+    <type name="Magento\Catalog\Model\Product\Type\AbstractType">
+        <plugin name="remove_sku_appended_by_custom_options"
+                type="Nextouch\Catalog\Plugin\Model\Product\Type\RemoveSkuAppendedByCustomOptions"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\ProductOptionProcessorInterface">
+        <plugin name="add_custom_options_extra_info"
+                type="Nextouch\Catalog\Plugin\Model\AddCustomOptionsExtraInfo"/>
+    </type>
 </config>

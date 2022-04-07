@@ -10,6 +10,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Data\Form\FormKey\Validator;
+use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote\Item;
 use Magento\Quote\Model\Quote\Item\OptionFactory;
 use Magento\Store\Model\StoreManagerInterface;
@@ -21,6 +22,7 @@ class RemoveQuoteItemService extends Cart
     private const SERVICE_SEPARATOR = ',';
 
     private OptionFactory $optionFactory;
+    private CartRepositoryInterface $cartRepository;
 
     public function __construct(
         Context $context,
@@ -29,7 +31,8 @@ class RemoveQuoteItemService extends Cart
         StoreManagerInterface $storeManager,
         Validator $formKeyValidator,
         CustomerCart $cart,
-        OptionFactory $optionFactory
+        OptionFactory $optionFactory,
+        CartRepositoryInterface $cartRepository
     ) {
         parent::__construct(
             $context,
@@ -40,6 +43,7 @@ class RemoveQuoteItemService extends Cart
             $cart
         );
         $this->optionFactory = $optionFactory;
+        $this->cartRepository = $cartRepository;
     }
 
     private function getQuoteItem(): ?Item
@@ -96,8 +100,7 @@ class RemoveQuoteItemService extends Cart
         $item->removeOption('option_ids');
         $item->saveItemOptions();
 
-        $this->cart->getQuote()->collectTotals();
-        $this->cart->getQuote()->save();
+        $this->recalculateTotals();
     }
 
     private function removeSingleService(): void
@@ -117,6 +120,14 @@ class RemoveQuoteItemService extends Cart
 
         $item->setOptions([$option]);
         $item->saveItemOptions();
-        $item->getQuote()->collectTotals()->save();
+
+        $this->recalculateTotals();
+    }
+
+    private function recalculateTotals(): void
+    {
+        $quote = $this->cart->getQuote();
+        $quote->collectTotals();
+        $this->cartRepository->save($quote);
     }
 }

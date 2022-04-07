@@ -24,6 +24,8 @@ use function Lambdish\Phunctional\flat_map;
 
 class Offers extends Crosssell
 {
+    private const MAX_OFFERS_TO_DISPLAY = 10;
+
     private OnSaleHelper $onSaleHelper;
 
     public function __construct(
@@ -80,10 +82,12 @@ class Offers extends Crosssell
     public function getItemCollection(): array
     {
         if ($this->hasCombinedOffers()) {
-            return $this->getCombinedOffersItemCollection();
+            $items = $this->getCombinedOffersItemCollection();
+        } else {
+            $items = $this->getRandomOffersItemCollection();
         }
 
-        return $this->getRandomOffersItemCollection();
+        return array_slice($items, 0, self::MAX_OFFERS_TO_DISPLAY);
     }
 
     private function getCombinedOffersItemCollection(): array
