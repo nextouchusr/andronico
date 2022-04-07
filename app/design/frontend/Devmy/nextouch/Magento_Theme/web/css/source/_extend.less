@@ -5,6 +5,14 @@
 
 & when (@media-common = true) {
 
+    body {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        &.ready {
+            opacity: 1;
+        }
+    }
+
     .negative-carousel {
 
     }

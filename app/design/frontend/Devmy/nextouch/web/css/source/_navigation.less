@@ -198,6 +198,9 @@
         overflow-x: hidden;
         width: 100%;
         .megamenu-inner {
+            > #mobile-bottom-menu-links {
+                display: none;
+            }
             > ul {
                 display: grid !important;
                 grid-template-columns: 50% 50%;
@@ -453,6 +456,9 @@
         .megamenu {
             left: 0;
         }
+        .home-slick-slider.negative-slider {
+            opacity: 0!important;
+        }
     }
 }
 
@@ -500,6 +506,7 @@
                 padding-right: calc(@layout-indent__width - @padding-items-level0);
                 margin-left: auto;
                 margin-right: auto;
+                overflow-x: hidden;
 
                 ul {
                     margin: 0;

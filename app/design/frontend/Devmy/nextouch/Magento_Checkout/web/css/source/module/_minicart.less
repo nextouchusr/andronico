@@ -166,7 +166,7 @@
 
             &.showcart {
                 white-space: nowrap;
-                margin: 0  0 0 20px;
+                margin: 0;
                 &:before {
                     background-image: url('@{baseDir}images/ico-cart.svg');
                     content:""!important;
@@ -401,8 +401,13 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
-    .minicart-wrapper .block-minicart {
-        width: 290px;
+    .minicart-wrapper {
+        .action.showcart .counter.qty {
+            margin-left: -20px;
+        }
+        .block-minicart {
+            width: 290px;
+        }
     }
 }
 

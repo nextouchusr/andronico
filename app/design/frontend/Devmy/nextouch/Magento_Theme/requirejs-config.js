@@ -1,4 +1,7 @@
 var config = {
+    deps: [
+        'Magento_Theme/js/theme',
+    ],
     map: {
         "*": {
             'negativeSlider': 'Magento_Theme/js/negative-slider',
