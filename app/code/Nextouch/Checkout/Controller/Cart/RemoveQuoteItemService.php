@@ -15,11 +15,12 @@ use Magento\Quote\Model\Quote\Item;
 use Magento\Quote\Model\Quote\Item\OptionFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use function Lambdish\Phunctional\filter;
+use function Lambdish\Phunctional\pipe;
 use function Lambdish\Phunctional\search;
 
 class RemoveQuoteItemService extends Cart
 {
-    private const SERVICE_SEPARATOR = ',';
+    private const OPTION_SEPARATOR = ',';
 
     private OptionFactory $optionFactory;
     private CartRepositoryInterface $cartRepository;
@@ -60,10 +61,10 @@ class RemoveQuoteItemService extends Cart
         $serviceId = $this->getRequest()->getParam('serviceId');
 
         $option = $item->getOptionByCode('option_' . $optionId);
-        $currentServiceIds = explode(self::SERVICE_SEPARATOR, $option->getValue());
+        $currentServiceIds = explode(self::OPTION_SEPARATOR, $option->getValue());
         $selectedServiceIds = filter(fn(string $id) => $id !== $serviceId, $currentServiceIds);
 
-        return implode(self::SERVICE_SEPARATOR, $selectedServiceIds);
+        return implode(self::OPTION_SEPARATOR, $selectedServiceIds);
     }
 
     private function hasSelectedServices(): bool
@@ -97,10 +98,23 @@ class RemoveQuoteItemService extends Cart
         $optionId = $this->getRequest()->getParam('optionId');
 
         $item->removeOption('option_' . $optionId);
-        $item->removeOption('option_ids');
-        $item->saveItemOptions();
+        $option = $item->getOptionByCode('option_ids');
 
-        $this->recalculateTotals();
+        pipe(
+            fn() => explode(self::OPTION_SEPARATOR, $option->getValue()),
+            fn(array $optionIds) => filter(fn(string $item) => $item !== $optionId, $optionIds),
+            fn(array $optionIds) => implode(self::OPTION_SEPARATOR, $optionIds),
+            function (string $optionIds) use ($option, $item) {
+                if ($optionIds) {
+                    $option->setValue($optionIds);
+                } else {
+                    $item->removeOption('option_ids');
+                }
+
+                $item->saveItemOptions();
+                $this->recalculateTotals();
+            }
+        )();
     }
 
     private function removeSingleService(): void
