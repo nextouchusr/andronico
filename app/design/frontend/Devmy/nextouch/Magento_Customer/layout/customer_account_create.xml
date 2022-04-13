@@ -17,5 +17,11 @@
             </block>
         </referenceBlock>
 
+        <referenceBlock name="customer_form_register">
+            <arguments>
+                <argument name="show_address_fields" xsi:type="boolean">true</argument>
+            </arguments>
+        </referenceBlock>
+
     </body>
 </page>

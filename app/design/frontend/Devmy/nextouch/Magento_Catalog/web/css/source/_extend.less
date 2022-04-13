@@ -266,7 +266,7 @@
 
                     &.group {
                         color: @color-white;
-                        font-weight: @font-weight__extrabold;
+                        font-weight: @font-weight__regular;
                     }
                 }
                 td {
@@ -499,6 +499,7 @@
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
+        gap: 6%;
         > div {
             width: 48%;
         }
@@ -520,6 +521,7 @@
                 font-size: 2rem;
                 h2 {
                     margin-top: 0;
+                    margin-bottom: 80px;
                 }
                 #product-attributes-collapsible {
                     .additional-attributes {
@@ -528,7 +530,7 @@
                 }
                 .more-less-content {
                     .more-less-wrapper {
-                        max-height: 0;
+                       max-height: 1px;
                         overflow: hidden;
                     }
                     &.active {
@@ -548,7 +550,7 @@
                 }
                 .more-less-content {
                     .more-less-wrapper {
-                        max-height: 300px;
+                        max-height: 395px;
                         overflow: hidden;
                     }
                     &.active {
@@ -611,7 +613,7 @@
         }
         .more-less {
             text-align: center;
-            margin-bottom: -30px;
+            margin-bottom: -10px;
             margin-top: 30px;
             cursor: pointer;
             font-size: 1.4rem;
@@ -705,6 +707,9 @@
 
     .category-view .category-description .white-boxes .white-box {
         padding: 50px 50px 100px 50px;
+    }
+    .product-details-boxes-columns {
+        gap: 10%;
     }
 }
 

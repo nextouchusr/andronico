@@ -50,7 +50,7 @@ $layout = $block->getLayout();
         require(['jquery'], function ($) {
             var moreLessContainers = $('.more-less-content');
             $(moreLessContainers).each(function(i) {
-                if (this && $(this).find('.more-less-wrapper').outerHeight() <= $(this).find('.more-less-wrapper > div').outerHeight()) {
+                if (this && $(this).find('.more-less-wrapper').outerHeight() >= $(this).find('.more-less-wrapper > div').outerHeight()) {
                     $(this).addClass('no-moreless');
                 }
             });

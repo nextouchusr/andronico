@@ -1,0 +1,264 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//
+//  ---------------------------------------------
+
+@checkout-source-selector-popup-location_border: @border-width__base solid
+@color-gray80;
+@checkout-delivery-method-selector-action__background: @color-white;
+
+@checkout-pickup-location-name_font-size: @font-size__l;
+@checkout-pickup-location-name_font-weight: @font-weight__bold;
+
+@checkout-pickup-location-name-popup_font-size: @font-size__l;
+
+@checkout-pickup-location-popup-search_padding: 0 0 @indent__s;
+@checkout-pickup-location-popup-search_margin: 0 0 @indent__base;
+@checkout-pickup-location-popup-search_border: @modal-title__border;
+
+@checkout-pickup-location-popup-note_margin: 0 0 @indent__base;
+
+& when (@media-common = true) {
+    /**
+     * @codingStandardsIgnoreStart
+     */
+    #store-pickup {
+        &.selected-shipping {
+            ~ #store-selector {
+                display: none;
+            }
+        }
+
+        &.selected-store-pickup {
+            ~ #shipping,
+            ~ #opc-shipping_method {
+                visibility: hidden;
+                height: 0;
+                overflow: hidden;
+            }
+        }
+    }
+
+
+    #delivery-method-selector {
+        //  @codingStandardsIgnoreEnd
+        .lib-vendor-prefix-display(flex);
+        justify-content: space-between;
+        font-size: 1.8rem;
+
+        .action {
+            .lib-button-l();
+            padding: 15px 50px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            &:not(.selected) {
+                .lib-css(
+                    background,
+                    @checkout-delivery-method-selector-action__background
+                );
+                border: 2px solid @theme__color__secondary;
+            }
+            &:focus {
+                .lib-css(
+                    background,
+                    @checkout-delivery-method-selector-action__background
+                );
+            }
+        }
+    }
+
+    /**
+      * @codingStandardsIgnoreStart
+      */
+    #store-selector {
+        .form-login {
+            border-bottom: 0;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        //  @codingStandardsIgnoreEnd
+        .form-continue {
+            margin: @indent__base 0 0;
+
+            .actions-toolbar {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                width: 100%;
+                &:before,
+                &:after {
+                    display: none;
+                }
+                .action {
+                        &:extend(.abs-button-l all);
+                        height: 80px;
+                        font-size: 2.4rem;
+                        padding: 30px 50px;
+                        box-sizing: border-box;
+                        max-height: 80px;
+                        line-height: 2.6rem;
+                    &.primary {
+                        font-size: 2.4rem;
+                        line-height: 2.6rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .location-details {
+        .location-name {
+            .lib-css(font-size, @checkout-pickup-location-name_font-size);
+            .lib-css(font-weight, @checkout-pickup-location-name_font-weight);
+        }
+    }
+
+    .store-selector-popup {
+        .modal-popup._inner-scroll .modal-inner-wrap {
+            min-height: 60vh;
+        }
+
+        .modal-title {
+            border-bottom: 0;
+            padding: 50px;
+            padding-bottom: 10px;
+        }
+
+        .modal-header {
+            padding-bottom: 0;
+        }
+        .modal-content {
+            padding: 50px;
+            padding-top: 10px;
+        }
+        #store-selector-search-input {
+            border-radius: 50px;
+            min-height: 65px;
+            border:1px solid @theme__color__primary;
+        }
+        .action-close {
+            right: 30px;
+            top: 30px;
+            font-size: 3rem;
+            &:before {
+                font-size: 5rem;
+            }
+        }
+        button {
+
+        }
+    }
+    /**
+      * @codingStandardsIgnoreStart
+      */
+    #opc-store-selector-popup {
+        //  @codingStandardsIgnoreEnd
+        display: none;
+
+        .block-search {
+            float: none;
+            width: 100%;
+            .lib-css(margin, @checkout-pickup-location-popup-search_margin);
+            .lib-css(padding, @checkout-pickup-location-popup-search_padding);
+        }
+    }
+
+    .modal-content {
+        #opc-store-selector-popup {
+            display: block;
+        }
+    }
+
+    .store-selector-popup-table {
+        thead {
+            th {
+                display: none;
+            }
+        }
+
+        tbody {
+            .location {
+                .location-name {
+                    .lib-css(
+                        font-size,
+                        @checkout-pickup-location-name-popup_font-size
+                    );
+                }
+
+                + .location {
+                    .lib-css(
+                        border-top,
+                        @checkout-source-selector-popup-location_border
+                    );
+                }
+            }
+
+            .col-location-details {
+                padding-left: 0;
+
+                p {
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .col-location-actions {
+                padding-right: 0;
+                vertical-align: middle;
+                text-align: right;
+
+                .action {
+                    font-size: 2rem;
+                    padding: 30px 50px;
+                    color: @theme__color__primary;
+                    line-height: 1rem;
+                    box-sizing: border-box;
+
+                }
+            }
+        }
+    }
+
+    .store-selector-popup-empty-query,
+    .store-selector-popup-no-locations {
+        .lib-css(margin, @checkout-pickup-location-popup-note_margin);
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break)
+when
+    (@extremum = 'min')
+and
+    (@break = @screen__m) {
+    /**
+     * @codingStandardsIgnoreStart
+     */
+    #store-selector {
+        //  @codingStandardsIgnoreEnd
+        .form-continue {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            .actions-toolbar {
+                margin: 0!important;
+                > .primary {
+                }
+
+                .action {
+                    &.primary {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}
