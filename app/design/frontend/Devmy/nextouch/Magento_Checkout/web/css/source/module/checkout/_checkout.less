@@ -44,6 +44,56 @@
         }
     }
 
+    #delivery-method-selector .action-select-shipping {
+
+    }
+
+    .axepta-sdk-textfield-outlined-inline:invalid:not(:focus):not(:placeholder-shown) {
+        border: 0!important;
+        padding: 0!important;
+        .axepta-sdk-flex-row-inline.axepta-sdk-input-add-on-inline {
+            display: block;
+            width: 100%;
+        }
+        .axepta-sdk-textfield-outlined-noBorder-Pan {
+            width: ~"calc(100% - 60px)";
+            outline: none;
+        }
+        .axepta-sdk-pan-icon-inline,
+        #scadenza_carta,
+        .axepta-sdk-pan-icon-inline-cvv {
+            border: 1px solid @theme__color__primary;
+            height: 64px;
+            font-size: 2rem;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            width: 100%;
+            margin-bottom: 20px;
+            min-width: 150px!important;
+            border-radius: 50px;
+        }
+        .axepta-sdk-textfield-outlined-noBorder {
+            min-width: inherit!important;
+        }
+
+        .axepta-sdk-inline-container {
+            max-width: inherit;
+            min-width: inherit;
+        }
+        .axepta-sdk-pan-icon-inline {
+        }
+        #scadenza_carta {
+            margin-right: 20px;
+            min-width: 150px!important;
+        }
+        .axepta-sdk-input-add-on-item-inline {
+            top: 15px;
+        }
+        .axepta-sdk-input-add-on-item-inline-cvv {
+            top: 15px;
+        }
+    }
+
     .opc-block-shipping-information {
         display: none;
     }
@@ -82,10 +132,11 @@
                 .actions-toolbar {
                     .action.primary {
                         &.checkout {
-                            max-height: 65px;
+                            max-height: 80px;
                             line-height: 1.4rem;
-                            height: 65px;
-                            padding: 20px 50px;
+                            font-size: 2.4rem;
+                            height: 80px;
+                            padding: 30px 50px;
                         }
                     }
                 }

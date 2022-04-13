@@ -98,6 +98,9 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                             $('body').removeClass('stickyMenu');
                             $('.page-wrapper').css('padding-top', 'inherit');
                         }
+                        if($('body').hasClass('overmenu')) {
+                            $(megamenu).find('ul.level0').css('top',($(megamenu).offset().top + $(megamenu).outerHeight() - $(window).scrollTop()));
+                        }
                     }, this),
                     exit: $.proxy(function () {
 

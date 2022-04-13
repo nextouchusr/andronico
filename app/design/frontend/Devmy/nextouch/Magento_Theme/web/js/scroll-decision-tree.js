@@ -10,6 +10,7 @@ define([
             media: '(min-width: 768px)',
             entry: $.proxy(function () {
                     $(element).css('height',$(element).innerHeight());
+                    console.log($(element));
                     $(window).on('scroll', function() {
                         var initialPos = $(element).offset().top;
                         if($(window).scrollTop() > (initialPos + $('.decision-tree-btn').height())) {
@@ -17,8 +18,6 @@ define([
                         }
                         else {
                             $(element).find('.decision-tree-btn').removeClass('stickyTree');
-                            $(element).css('height','auto');
-                            $(element).css('height',$(element).innerHeight());
                         }
                     });
             }, this),

@@ -48,6 +48,40 @@
             }
         }
 
+        button.action-update {
+            line-height: 2rem;
+            margin: 0 10px;
+            height: 48px;
+            font-size: 1.6rem;
+        }
+
+        .payment-option {
+            .form-discount,
+            .form-giftcard-account {
+                button.action {
+                    line-height: 2rem;
+                    margin: 0 10px;
+                    height: 48px;
+
+                    &.primary.primary {
+                        height: 48px;
+                        line-height: 2rem;
+                        padding: 15px 30px;
+                        font-size: 1.6rem;
+                    }
+
+                    span {
+                        font-size: 1.6rem;
+                        line-height: 2rem;
+                    }
+                }
+            }
+        }
+
+
+
+
+
         .payment-option-title {
             .lib-css(padding, @checkout-payment-option-title__padding 0);
 
