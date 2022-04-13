@@ -7,6 +7,11 @@ use Nextouch\Quote\Api\Data\AddressInterface;
 
 class Address extends \Magento\Quote\Model\Quote\Address implements AddressInterface
 {
+    public function getStreetAsLine(): string
+    {
+        return $this->getStreetLine(1);
+    }
+
     public function getPec(): string
     {
         return (string) $this->getData(self::PEC);

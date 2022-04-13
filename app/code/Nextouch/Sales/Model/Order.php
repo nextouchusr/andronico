@@ -118,4 +118,28 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
 
         return $this;
     }
+
+    public function getFindomesticApplicationId(): string
+    {
+        return (string) $this->getData(self::FINDOMESTIC_APPLICATION_ID);
+    }
+
+    public function setFindomesticApplicationId(string $applicationId): OrderInterface
+    {
+        $this->setData(self::FINDOMESTIC_APPLICATION_ID, $applicationId);
+
+        return $this;
+    }
+
+    public function getFindomesticIssuerInstallmentId(): string
+    {
+        return (string) $this->getData(self::FINDOMESTIC_ISSUER_INSTALLMENT_ID);
+    }
+
+    public function setFindomesticIssuerInstallmentId(string $issuerInstallmentId): OrderInterface
+    {
+        $this->setData(self::FINDOMESTIC_ISSUER_INSTALLMENT_ID, $issuerInstallmentId);
+
+        return $this;
+    }
 }

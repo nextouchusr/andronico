@@ -13,6 +13,8 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public const DELIVERY_INFORMATION = 'delivery_information';
     public const ORDER_SYNC_FAILURES = 'order_sync_failures';
     public const INVOICE_PDF_FILE = 'invoice_pdf_file';
+    public const FINDOMESTIC_APPLICATION_ID = 'findomestic_application_id';
+    public const FINDOMESTIC_ISSUER_INSTALLMENT_ID = 'findomestic_issuer_installment_id';
 
     /**
      * @param string $shippingMethod
@@ -80,4 +82,26 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
      * @return OrderInterface
      */
     public function resetOrderSyncFailures(): self;
+
+    /**
+     * @return string
+     */
+    public function getFindomesticApplicationId(): string;
+
+    /**
+     * @param string $applicationId
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setFindomesticApplicationId(string $applicationId): self;
+
+    /**
+     * @return string
+     */
+    public function getFindomesticIssuerInstallmentId(): string;
+
+    /**
+     * @param string $issuerInstallmentId
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setFindomesticIssuerInstallmentId(string $issuerInstallmentId): self;
 }

@@ -21,6 +21,11 @@ interface AddressInterface extends \Magento\Quote\Api\Data\AddressInterface
     /**
      * @return string
      */
+    public function getStreetAsLine(): string;
+
+    /**
+     * @return string
+     */
     public function getPec(): string;
 
     /**

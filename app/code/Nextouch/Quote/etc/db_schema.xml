@@ -1,6 +1,19 @@
 <?xml version="1.0"?>
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote">
+        <column xsi:type="varchar"
+                name="findomestic_application_id"
+                length="100"
+                nullable="true"
+                comment="Findomestic Application ID"/>
+        <column xsi:type="varchar"
+                name="findomestic_issuer_installment_id"
+                length="100"
+                nullable="true"
+                comment="Findomestic Issuer Installment ID"/>
+    </table>
+
     <table name="quote_address">
         <column xsi:type="varchar"
                 name="pec"
