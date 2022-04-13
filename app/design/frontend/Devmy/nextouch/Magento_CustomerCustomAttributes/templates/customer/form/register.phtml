@@ -47,7 +47,7 @@ $formData = $block->getFormData();
                 ->toHtml()
             ?>
 
-            <?php if ($block->isNewsletterEnabled()): ?>
+            <?php /* if ($block->isNewsletterEnabled()): ?>
             <div class="field choice newsletter">
                 <input type="checkbox"
                        name="is_subscribed"
@@ -60,9 +60,9 @@ $formData = $block->getFormData();
                     <span><?= $block->escapeHtml(__('Sign Up for Newsletter')) ?></span>
                 </label>
             </div>
-                <?php /* Extensions placeholder */ ?>
+                <?php /* Extensions placeholder *3/ ?>
                 <?= $block->getChildHtml('customer.form.register.newsletter') ?>
-            <?php endif ?>
+            <?php endif */ ?>
 
             <?php $_dob = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Dob::class) ?>
             <?php if ($_dob->isEnabled()): ?>

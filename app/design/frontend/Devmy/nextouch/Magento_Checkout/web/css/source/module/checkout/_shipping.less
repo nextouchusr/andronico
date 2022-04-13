@@ -56,7 +56,7 @@
 
             .fieldset {
                 .note {
-                    font-size: @font-size__base;
+                    font-size: @font-size__xs;
                     margin-top: @indent__s;
                 }
             }
@@ -224,7 +224,7 @@
 
         .form-login,
         .form-shipping-address {
-            .lib-css(margin-top, @checkout-shipping-address__margin-top);
+            margin-bottom: 0;
         }
 
         .action-select-shipping-item {
@@ -278,6 +278,12 @@
         .form-login,
         .form-shipping-address {
             .lib-css(max-width, @checkout-shipping-address__max-width);
+
+            fieldset {
+                .note {
+                    font-size: @font-size__base;
+                }
+            }
         }
     }
 

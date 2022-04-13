@@ -11,10 +11,10 @@
 @color-gray80;
 @checkout-delivery-method-selector-action__background: @color-white;
 
-@checkout-pickup-location-name_font-size: @font-size__l;
+@checkout-pickup-location-name_font-size: 1.2rem;
 @checkout-pickup-location-name_font-weight: @font-weight__bold;
 
-@checkout-pickup-location-name-popup_font-size: @font-size__l;
+@checkout-pickup-location-name-popup_font-size: 1.2rem;
 
 @checkout-pickup-location-popup-search_padding: 0 0 @indent__s;
 @checkout-pickup-location-popup-search_margin: 0 0 @indent__base;
@@ -46,27 +46,31 @@
 
     #delivery-method-selector {
         //  @codingStandardsIgnoreEnd
-        .lib-vendor-prefix-display(flex);
-        justify-content: space-between;
-        font-size: 1.8rem;
 
         .action {
-            .lib-button-l();
+            .lib-button();
             padding: 15px 50px;
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            &:not(.selected) {
-                .lib-css(
-                    background,
-                    @checkout-delivery-method-selector-action__background
-                );
-                border: 2px solid @theme__color__secondary;
-            }
+            margin-bottom: 20px;
+            width: 100%;
+            line-height: 3rem;
+            height: 58px;
+            max-height: 58px;
+            background-color: @theme__color__secondary;
+            color: @theme__color__secondary_contr;
+            &:hover,
             &:focus {
+                background-color: @theme__color__secondary;
+                color: @theme__color__secondary_contr;
+            }
+            &:not(.selected):not(:focus) {
                 .lib-css(
                     background,
                     @checkout-delivery-method-selector-action__background
                 );
+                color: @theme__color__secondary;
+                border: 2px solid @theme__color__secondary;
             }
         }
     }
@@ -78,11 +82,12 @@
         .form-login {
             border-bottom: 0;
             margin-bottom: 0;
-            padding-bottom: 0;
+            padding:0;
         }
         //  @codingStandardsIgnoreEnd
         .form-continue {
             margin: @indent__base 0 0;
+            padding: 0;
 
             .actions-toolbar {
                 display: flex;
@@ -94,17 +99,12 @@
                     display: none;
                 }
                 .action {
-                        &:extend(.abs-button-l all);
-                        height: 80px;
-                        font-size: 2.4rem;
-                        padding: 30px 50px;
-                        box-sizing: border-box;
-                        max-height: 80px;
-                        line-height: 2.6rem;
-                    &.primary {
-                        font-size: 2.4rem;
-                        line-height: 2.6rem;
-                    }
+                    &:extend(.abs-button all);
+                    height: 35px;
+                    font-size: 1.2rem;
+                    padding: 15px 30px;
+                    line-height: 1rem;
+
                 }
             }
         }
@@ -117,14 +117,19 @@
         }
     }
 
-    .store-selector-popup {
+    .store-selector-popup.store-selector-popup {
         .modal-popup._inner-scroll .modal-inner-wrap {
             min-height: 60vh;
+            border-top-left-radius: 100px!important;
+            border-bottom-left-radius: 100px!important;
+            font-size: 1.2rem;
         }
-
+        .modal-header {
+            padding: 0;
+        }
         .modal-title {
             border-bottom: 0;
-            padding: 50px;
+            padding: 50px 10px;
             padding-bottom: 10px;
         }
 
@@ -132,18 +137,18 @@
             padding-bottom: 0;
         }
         .modal-content {
-            padding: 50px;
+            padding: 50px 15px;
             padding-top: 10px;
         }
         #store-selector-search-input {
             border-radius: 50px;
-            min-height: 65px;
+            min-height: 35px;
             border:1px solid @theme__color__primary;
         }
         .action-close {
             right: 30px;
             top: 30px;
-            font-size: 3rem;
+            font-size: 1rem;
             &:before {
                 font-size: 5rem;
             }
@@ -199,6 +204,7 @@
 
             .col-location-details {
                 padding-left: 0;
+                font-size: 1.1rem;
 
                 p {
                     &:last-child {
@@ -213,11 +219,11 @@
                 text-align: right;
 
                 .action {
-                    font-size: 2rem;
-                    padding: 30px 50px;
                     color: @theme__color__primary;
                     line-height: 1rem;
                     box-sizing: border-box;
+                    height: 35px;
+                    padding: 0 15px;
 
                 }
             }
@@ -242,6 +248,60 @@ and
     /**
      * @codingStandardsIgnoreStart
      */
+
+    #delivery-method-selector {
+        //  @codingStandardsIgnoreEnd
+        .lib-vendor-prefix-display(flex);
+        justify-content: space-between;
+        font-size: 1.8rem;
+        width: auto;
+        .action {
+            .lib-button-l();
+            padding: 15px 50px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            height: 65px;
+            width: auto;
+            box-sizing: border-box;
+            max-height: 80px;
+            line-height: 2.6rem;
+            &.primary {
+                font-size: 2.4rem;
+                line-height: 2.6rem;
+            }
+        }
+    }
+
+    .store-selector-popup.store-selector-popup {
+        #store-selector-search-input {
+            border-radius: 50px;
+            min-height: 65px;
+        }
+        .modal-content {
+            padding: 50px;
+            padding-top: 0;
+        }
+        .modal-title {
+            padding: 50px;
+        }
+        tbody {
+            .col-location-details {
+                font-size: 1.4rem;
+
+                .location-name {
+                    font-size: 1.8rem;
+                }
+            }
+            .col-location-actions .action {
+                padding: 15px 50px;
+                font-size: 2.4rem;
+                line-height: 2.6rem;
+                height: 80px;
+                box-sizing: border-box;
+            }
+        }
+    }
+
     #store-selector {
         //  @codingStandardsIgnoreEnd
         .form-continue {
@@ -254,11 +314,20 @@ and
                 }
 
                 .action {
+                    padding: 15px 50px;
+                    font-size: 2.4rem;
+                    line-height: 2.6rem;
+                    height: 80px;
+                    max-height: 80px;
+                    box-sizing: border-box;
                     &.primary {
                         margin: 0;
                     }
                 }
             }
+        }
+        .action-close {
+            font-size: 1.4rem;
         }
     }
 }

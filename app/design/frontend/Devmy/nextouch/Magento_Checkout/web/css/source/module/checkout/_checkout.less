@@ -24,6 +24,9 @@
 & when (@media-common = true) {
 
     .checkout-index-index {
+        .opc-wrapper .opc hr {
+            display: none;
+        }
         .page-title-wrapper {
         }
         .page-header .header.content {
@@ -41,6 +44,13 @@
             padding-top: 50px;
             padding-left: 30px;
             padding-right: 30px;
+        }
+        button {
+            &:hover,
+            &:focus {
+                background-color: @theme__color__secondary;
+                color: @theme__color__secondary_contr;
+            }
         }
     }
 
@@ -123,6 +133,7 @@
                     border:0;
                     font-weight: 700;
                 }
+                .action,
                 .action.primary {
                     padding: 5px;
                     max-height: 35px;
@@ -132,11 +143,12 @@
                 .actions-toolbar {
                     .action.primary {
                         &.checkout {
-                            max-height: 80px;
-                            line-height: 1.4rem;
-                            font-size: 2.4rem;
-                            height: 80px;
-                            padding: 30px 50px;
+                            max-height: 60px;
+                            line-height: 1.6rem;
+                            font-size: 1.6rem;
+                            height: 60px;
+                            width: 100%;
+                            padding: 15px 50px;
                         }
                     }
                 }
@@ -203,6 +215,9 @@
             width: auto;
             padding-left: 30px!important;
             padding-right: 30px!important;
+        }
+        .field-tooltip {
+            top: -8px;
         }
     }
 
@@ -281,6 +296,18 @@
                         font-size: 2rem;
                         padding: 10px;
                         box-sizing: border-box;
+                    }
+                }
+                .actions-toolbar {
+                    .action.primary {
+                        &.checkout {
+                            max-height: 80px;
+                            line-height: 1.4rem;
+                            font-size: 2.4rem;
+                            height: 80px;
+                            padding: 30px 50px;
+                            width: auto;
+                        }
                     }
                 }
             }
