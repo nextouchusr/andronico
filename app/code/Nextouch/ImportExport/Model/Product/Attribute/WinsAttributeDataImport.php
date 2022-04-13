@@ -77,23 +77,26 @@ class WinsAttributeDataImport implements EntityDataImportInterface
         \Lambdish\Phunctional\each(fn(Template $item) => $this->saveAttributeSet($item), $data);
     }
 
-    /**
-     * @throws LocalizedException
-     */
     private function saveAttributeSet(Template $template): void
     {
         try {
-            $attributeSet = $this->attributeSetRepository->getByExternalSetId($template->getCode());
-            $attributeSet->setAttributeSetName($template->getDescription());
-            $attributeSet = $this->attributeSetRepository->save($attributeSet);
-        } catch (LocalizedException $e) {
-            $attributeSet = $this->attributeSetFactory->create();
-            $attributeSet->setAttributeSetName($template->getDescription());
-            $attributeSet->setExternalSetId($template->getCode());
-            $attributeSet = $this->attributeSetManagement->create($attributeSet, self::ATTRIBUTE_SET_SKELETON_ID);
-        }
+            try {
+                $attributeSet = $this->attributeSetRepository->getByExternalSetId($template->getCode());
+                $attributeSet->setAttributeSetName($template->getDescription());
+                $attributeSet = $this->attributeSetRepository->save($attributeSet);
+            } catch (LocalizedException $e) {
+                $attributeSet = $this->attributeSetFactory->create();
+                $attributeSet->setAttributeSetName($template->getDescription());
+                $attributeSet->setExternalSetId($template->getCode());
+                $attributeSet = $this->attributeSetManagement->create($attributeSet, self::ATTRIBUTE_SET_SKELETON_ID);
+            }
 
-        $this->saveAttributeGroups($attributeSet, $template->getGroups());
+            $this->saveAttributeGroups($attributeSet, $template->getGroups());
+        } catch (LocalizedException $e) {
+            $text = 'Failed to import attribute set %1. Error: %2';
+            $message = __($text, $template->getDescription(), $e->getMessage());
+            $this->logger->error($message);
+        }
     }
 
     private function saveAttributeGroups(AttributeSetInterface $attributeSet, \IteratorAggregate $groups): void

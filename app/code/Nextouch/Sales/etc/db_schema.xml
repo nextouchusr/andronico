@@ -10,6 +10,16 @@
                 nullable="false"
                 default="0"
                 comment="Order Sync Failures"/>
+        <column xsi:type="varchar"
+                name="findomestic_application_id"
+                length="100"
+                nullable="true"
+                comment="Findomestic Application ID"/>
+        <column xsi:type="varchar"
+                name="findomestic_issuer_installment_id"
+                length="100"
+                nullable="true"
+                comment="Findomestic Issuer Installment ID"/>
     </table>
 
     <table name="sales_order_address">

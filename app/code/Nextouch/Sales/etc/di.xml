@@ -15,4 +15,7 @@
 
     <preference for="Nextouch\Sales\Api\Data\ShipmentItemInterface"
                 type="Nextouch\Sales\Model\Order\Shipment\Item"/>
+
+    <preference for="Nextouch\Sales\Api\OrderRepositoryInterface"
+                type="Nextouch\Sales\Model\OrderRepository"/>
 </config>

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Nextouch\Wins\Service\Order\Item;
 
-use Magento\Catalog\Api\Data\CustomOptionInterface;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\Data\OrderItemExtensionFactory;
 use Magento\Sales\Api\Data\OrderItemInterface;
@@ -32,14 +31,13 @@ class CustomOptionsProcessor
     public function getAllCustomOptions(OrderInterface $order): array
     {
         return reduce(function (array $acc, OrderItemInterface $item) {
-            $productOption = $item->getProductOption();
+            $productOption = $item->getProductOptions();
 
             if (!$productOption) {
                 return $acc;
             }
 
-            $extensionAttributes = $productOption->getExtensionAttributes();
-            $customOptions = $extensionAttributes ? $extensionAttributes->getCustomOptions() : [];
+            $customOptions = $productOption['options'] ?? [];
 
             return $this->transformOptionsToOrderItems((int) $item->getItemId(), $customOptions);
         }, $order->getItems(), []);
@@ -50,15 +48,12 @@ class CustomOptionsProcessor
      */
     private function transformOptionsToOrderItems(int $referenceItemId, array $customOptions): array
     {
-        return reduce(function (array $acc, CustomOptionInterface $item) use ($referenceItemId) {
+        return reduce(function (array $acc, array $item) use ($referenceItemId) {
             return array_merge($acc, $this->transformOptionToOrderItem($referenceItemId, $item));
         }, $customOptions, []);
     }
 
-    /**
-     * @return OrderItemInterface[]
-     */
-    private function transformOptionToOrderItem(int $referenceItemId, CustomOptionInterface $customOption): array
+    private function transformOptionToOrderItem(int $referenceItemId, array $customOption): array
     {
         return map(function (array $option) use ($referenceItemId) {
             $orderItem = $this->orderItemInterfaceFactory->create()
@@ -75,14 +70,12 @@ class CustomOptionsProcessor
         }, $this->mergeCustomOptionExtraInfo($customOption));
     }
 
-    private function mergeCustomOptionExtraInfo(CustomOptionInterface $customOption): array
+    private function mergeCustomOptionExtraInfo(array $customOption): array
     {
-        $extensionAttributes = $customOption->getExtensionAttributes();
-
-        $optionValues = explode(self::OPTION_SEPARATOR, $customOption->getOptionValue());
-        $optionSkus = explode(self::OPTION_SEPARATOR, $extensionAttributes->getOptionSku());
-        $optionTitles = explode(self::OPTION_SEPARATOR, $extensionAttributes->getOptionTitle());
-        $optionPrices = explode(self::OPTION_SEPARATOR, $extensionAttributes->getOptionPrice());
+        $optionValues = explode(self::OPTION_SEPARATOR, $customOption['option_value']);
+        $optionSkus = explode(self::OPTION_SEPARATOR, $customOption['option_sku']);
+        $optionTitles = explode(self::OPTION_SEPARATOR, $customOption['option_title']);
+        $optionPrices = explode(self::OPTION_SEPARATOR, $customOption['option_price']);
 
         return array_map(function (int $index) use ($optionSkus, $optionTitles, $optionPrices) {
             return [

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="findomestic_application_preapprove_end">
+        <observer name="create_new_order"
+                  instance="Nextouch\Wins\Observer\Findomestic\CreateNewOrder"/>
+    </event>
+
+    <event name="findomestic_application_complete_end">
+        <observer name="change_order_status_to_paid"
+                  instance="Nextouch\Wins\Observer\Findomestic\ChangeOrderStatusToPaid"/>
+    </event>
+</config>

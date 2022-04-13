@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 abstract class AbstractBaseRestApi
 {
     protected const HTTP_OK = 200;
+    protected const HTTP_CREATED = 201;
     protected const HTTP_NO_CONTENT = 204;
 
     protected ResponseFactory $responseFactory;
