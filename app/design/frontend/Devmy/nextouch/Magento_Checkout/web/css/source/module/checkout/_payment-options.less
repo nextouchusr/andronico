@@ -60,18 +60,21 @@
             .form-giftcard-account {
                 button.action {
                     line-height: 2rem;
-                    margin: 0 10px;
+                    margin: 0;
                     height: 48px;
+                    font-size: 1.1rem;
+                    width: auto;
+                    padding: 15px 30px;
 
                     &.primary.primary {
                         height: 48px;
-                        line-height: 2rem;
-                        padding: 15px 30px;
-                        font-size: 1.6rem;
+                        line-height: 1rem;
+                        padding: 10px 30px;
+                        font-size: 1.2rem;
                     }
 
                     span {
-                        font-size: 1.6rem;
+                        font-size: 1.2rem;
                         line-height: 2rem;
                     }
                 }
@@ -230,6 +233,25 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .checkout-payment-method {
         .payment-option-title {
+        }
+        .payment-option {
+            .form-discount,
+            .form-giftcard-account {
+                button.action {
+                    margin: 0 10px;
+                    font-size: 2rem;
+                    padding: 15px 30px;
+                    max-height: 65px;
+                    width: auto;
+                    &.primary.primary {
+                        font-size: 2rem;
+                        padding: 15px 30px;
+                    }
+                    span {
+                        font-size: 1.6rem;
+                    }
+                }
+            }
         }
 
         .payment-option-content {
