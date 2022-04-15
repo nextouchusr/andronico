@@ -54,7 +54,9 @@ class CheckProductSalableQty
      */
     private function validateQuoteBeforeSubmit(Quote $quote): void
     {
-        each(fn(QuoteItem $item) => $this->validateProductSalableQty($item), $quote->getItems());
+        $items = $quote->getItems() ?? [];
+
+        each(fn(QuoteItem $item) => $this->validateProductSalableQty($item), $items);
     }
 
     /**
