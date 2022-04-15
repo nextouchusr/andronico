@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="sidebar.main.account_nav">
+            <arguments>
+                <argument name="block_title" translate="true" xsi:type="string">My Account</argument>
+                <argument name="block_css" xsi:type="string">block-collapsible-nav</argument>
+            </arguments>
+        </referenceBlock>
+        <move element="page.main.title" destination="content.top" before="-"/>
+
+        <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true" />
+        <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true" />
+        <referenceBlock name="customer-account-navigation-giftregistry-link" remove="true" />
+
+        <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-title-account" template="Magento_Customer::account/navigation-title.phtml">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Account</argument>
+                <argument name="sortOrder" xsi:type="number">1000</argument>
+            </arguments>
+        </block>
+        <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-title-perte" template="Magento_Customer::account/navigation-title.phtml">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">For you</argument>
+                <argument name="sortOrder" xsi:type="number">10</argument>
+            </arguments>
+        </block>
+
+        <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-title-lists" template="Magento_Customer::account/navigation-title.phtml">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Your Lists</argument>
+                <argument name="sortOrder" xsi:type="number">100</argument>
+            </arguments>
+        </block>
+
+        <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-title-newsletter" template="Magento_Customer::account/navigation-title.phtml">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Newsletter</argument>
+                <argument name="sortOrder" xsi:type="number">41</argument>
+            </arguments>
+        </block>
+
+        <referenceBlock name="customer-account-navigation-return-history-link">
+            <arguments><argument name="sortOrder" xsi:type="number">180</argument></arguments>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-gift-card-link">
+            <arguments><argument name="sortOrder" xsi:type="number">8</argument></arguments>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-customer-balance-link">
+            <arguments><argument name="sortOrder" xsi:type="number">20</argument></arguments>
+        </referenceBlock>
+
+
+        <referenceBlock name="customer-account-navigation-checkout-sku-link" remove="true"/>
+
+        <referenceBlock name="customer-account-navigation-delimiter-1" remove="true"/>
+        <referenceBlock name="customer-account-navigation-delimiter-2" remove="true"/>
+
+        <move element="customer-account-navigation-title-newsletter" destination="customer_account_navigation" before="customer-account-navigation-newsletter-subscriptions-link" />
+        <move element="customer-account-navigation-title-account" destination="customer_account_navigation" before="customer-account-navigation-account-link" />
+        <move element="customer-account-navigation-title-lists" destination="customer_account_navigation" before="customer-account-navigation-wish-list-link" />
+        <move element="customer-account-navigation-title-perte" destination="customer_account_navigation" after="customer-account-navigation-title-account" />
+        <move element="customer-account-navigation-return-history-link" destination="customer_account_navigation" />
+
+
+    </body>
+</page>

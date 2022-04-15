@@ -105,7 +105,7 @@
             label.label {
                 text-align: left;
                 font-weight: 200;
-                font-size: 2rem;
+                font-size: 1rem;
                 color: @theme__color__primary_gray;
             }
             legend.legend {
@@ -588,6 +588,9 @@
         }
 
         .fieldset {
+            label.label {
+                font-size: 2rem;
+            }
             &:after {
                 &:extend(.abs-margin-for-forms-desktop all);
             }
@@ -622,11 +625,11 @@
     .account.page-layout-2columns-left {
         .sidebar-main,
         .sidebar-additional {
-            width: 22.3%;
+            width: 33%;
         }
 
         .column.main {
-            width: 77.7%;
+            width: 66.6%;
         }
     }
 
