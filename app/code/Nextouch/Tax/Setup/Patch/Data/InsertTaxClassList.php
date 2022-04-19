@@ -55,14 +55,15 @@ class InsertTaxClassList implements DataPatchInterface
         return $this;
     }
 
-    /**
-     * @throws LocalizedException
-     */
     private function removeDefaultTaxClassList(): void
     {
-        $this->taxClassRepository->deleteById(self::TAXABLE_GOODS_CLASS_ID);
-        $this->taxClassRepository->deleteById(self::VAT_022_CLASS_ID);
-        $this->taxClassRepository->deleteById(self::VAT_22_CLASS_ID);
+        try {
+            $this->taxClassRepository->deleteById(self::TAXABLE_GOODS_CLASS_ID);
+            $this->taxClassRepository->deleteById(self::VAT_022_CLASS_ID);
+            $this->taxClassRepository->deleteById(self::VAT_22_CLASS_ID);
+        } catch (LocalizedException $e) {
+            // Do nothing
+        }
     }
 
     private function getTaxClassList(): array
