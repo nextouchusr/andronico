@@ -15,12 +15,11 @@ atlassian*
 /pub/sitemap.xml
 /.idea
 /.gitattributes
-
+/auth.json
 /app/config_sandbox
-/app/etc/config.php
 /app/etc/env.php
-
 /app/code/Magento/TestModule*
+/certificates/*
 /lib/internal/flex/uploader/.actionScriptProperties
 /lib/internal/flex/uploader/.flexProperties
 /lib/internal/flex/uploader/.project
