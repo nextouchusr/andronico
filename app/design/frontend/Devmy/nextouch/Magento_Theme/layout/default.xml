@@ -107,7 +107,7 @@
                     <block class="Magento\Framework\View\Element\Html\Link\Current" name="about-us-link">
                         <arguments>
                             <argument name="label" xsi:type="string" translate="true">About Us</argument>
-                            <argument name="path" xsi:type="string">about-us</argument>
+                            <argument name="path" xsi:type="string">su-di-noi</argument>
                         </arguments>
                     </block>
                     <block class="Magento\Framework\View\Element\Html\Link\Current" name="find-shop-link">
