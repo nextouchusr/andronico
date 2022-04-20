@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Nextouch\FastEst\Model\Delivery;
 
 use Nextouch\FastEst\Api\Data\InputInterface;
+use Nextouch\FastEst\Model\Directory\Hour;
+use Nextouch\FastEst\Model\Directory\Store;
 use Nextouch\Sales\Api\Data\ShipmentInterface;
 
 class DeliveryBase implements InputInterface
@@ -79,18 +81,20 @@ class DeliveryBase implements InputInterface
 
     /**
      * TODO: replace mock data
+     * TODO: Manage parked deliveries, or those whose payment will take place in the future (Findomestic, Bank Transfer)
+     * TODO: Save all orders as parked and use a cronjob to confirm parked deliveries
      */
     public static function fromDomain(ShipmentInterface $shipment): self
     {
         return new self(
-            1,
-            1306,
+            Hour::ANY,
+            Store::WEB,
             strtoupper(uniqid()),
             0,
             $shipment->getOrder()->getDeliveryComment(),
             $shipment->getOrder()->getDeliveryDate(),
             $shipment->getOrder()->getDeliveryTime(),
-            false
+            true
         );
     }
 

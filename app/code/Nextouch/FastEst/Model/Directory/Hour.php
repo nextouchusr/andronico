@@ -8,6 +8,8 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class Hour implements OutputInterface
 {
+    public const ANY = 1;
+
     private int $hourId;
     private string $description;
 
