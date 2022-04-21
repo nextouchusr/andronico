@@ -1,19 +1,9 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
+/** @var \Nextouch\Theme\Block\Catalog\Product\View $block */
 
-// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
-
-/**
- * Product view template
- *
- * @var $block \Magento\Catalog\Block\Product\View
- */
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
 ?>
-<?php $_helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
-<?php $_product = $block->getProduct(); ?>
 
 <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
       action="<?= $block->escapeUrl($block->getSubmitUrl($_product)) ?>" method="post"
@@ -24,86 +14,78 @@
     <input type="hidden" name="item"  value="<?= (int)$block->getRequest()->getParam('id') ?>" />
     <?= $block->getBlockHtml('formkey') ?>
     <?= $block->getChildHtml('form_top') ?>
-<div class="product-info-main-cols">
-    <div class="product-info-main-primary">
-    <?= $block->getChildHtml('page.main.title') ?>
-    <?= $block->getChildHtml('product.info.subtitle') ?>
 
-        <div class="product-add-form">
+    <div class="product-info-main-cols">
+        <div class="product-info-main-primary">
+            <?= $block->getChildHtml('page.main.title') ?>
+            <?= $block->getChildHtml('product.info.subtitle') ?>
 
-            <?= $block->getChildHtml('product.info.price') ?>
+            <div class="product-add-form">
+                <?= $block->getChildHtml('product.info.price') ?>
+                <?= $block->getChildHtml('product_options_wrapper_bottom') ?>
 
-                <?php echo $block->getChildHtml('product_options_wrapper_bottom') ?>
                 <?php if (!$block->hasOptions()) :?>
                     <?= $block->getChildHtml('product_info_form_content') ?>
                 <?php else :?>
-                    <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1') :?>
+                    <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1') : ?>
                         <?= $block->getChildChildHtml('options_container') ?>
                     <?php endif;?>
                 <?php endif; ?>
 
-
                 <?= $block->getChildHtml('form_bottom') ?>
+            </div>
 
-
-        </div>
-
-
-        <?php /* TODO: Add dynamic info
-
-        <div id="product-sticky-bar" class="product-sticky-bar">
-            <div class="container">
-                <div class="image">
-                        <img src="lorg.png" />
-                </div>
-                <div class="product-title">
-                    <?= $block->getChildHtml('page.main.title') ?>
-                </div>
-                <div class="product-price">
-    23234
-                </div>
-                <div class="product-buttons">
-                    <button type="submit" title="Aggiungi al Carrello" class="action primary tocart">
-                        <span>Aggiungi al Carrello</span>
-                    </button>
+            <div id="product-sticky-bar" class="product-sticky-bar">
+                <div class="container">
+                    <div class="image">
+                        <img src="<?= $block->getStickyImageUrl() ?>" alt="main product photo"/>
+                    </div>
+                    <div class="product-title">
+                        <?= $block->getChildHtml('page.main.title') ?>
+                    </div>
+                    <div class="product-price">
+                        <?= $block->getChildHtml('product.info.price') ?>
+                    </div>
+                    <div class="product-buttons">
+                        <button type="submit" class="action primary tocart" title="<?= $block->escapeHtml(__('Add to Shopping Cart')) ?>">
+                            <span><?= $block->escapeHtml(__('Add to Shopping Cart')) ?></span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-*/ ?>
-        <script>
-            require(['jquery'], function ($) {
-                $(".more-less-content .more-less").on('click', function () {
-                    $(this).closest('.more-less-content').toggleClass('active');
-                });
-                $(window).on('scroll', function() {
-                    if($(window).scrollTop() > $('.box-tocart').offset().top) {
-                        $('#product-sticky-bar').addClass('active');
-                    }
-                    else {
-                        $('#product-sticky-bar').removeClass('active');
-                    }
-                });
-            });
-        </script>
 
-    <script type="text/x-magento-init">
-        {
-            "[data-role=priceBox][data-price-box=product-id-<?= $block->escapeHtml($_product->getId()) ?>]": {
-                "priceBox": {
-                    "priceConfig":  <?= /* @noEscape */ $block->getJsonConfig() ?>
+            <script>
+                require(['jquery'], function ($) {
+                    $(".more-less-content .more-less").on('click', function () {
+                        $(this).closest('.more-less-content').toggleClass('active');
+                    });
+                    $(window).on('scroll', function() {
+                        if($(window).scrollTop() > $('.box-tocart').offset().top) {
+                            $('#product-sticky-bar').addClass('active');
+                        }
+                        else {
+                            $('#product-sticky-bar').removeClass('active');
+                        }
+                    });
+                });
+            </script>
+
+            <script type="text/x-magento-init">
+                {
+                    "[data-role=priceBox][data-price-box=product-id-<?= $block->escapeHtml($_product->getId()) ?>]": {
+                        "priceBox": {
+                            "priceConfig": <?= /* @noEscape */ $block->getJsonConfig() ?>
+                        }
+                    }
                 }
-            }
-        }
-    </script>
+            </script>
+        </div>
 
+        <div class="product-info-main-right">
+            <?= $block->getChildHtml('product.info.secondary.wrapper') ?>
+            <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2') : ?>
+                <?= $block->getChildChildHtml('options_container') ?>
+            <?php endif;?>
+        </div>
     </div>
-
-    <div class="product-info-main-right">
-
-        <?= $block->getChildHtml('product.info.secondary.wrapper') ?>
-        <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2') :?>
-            <?= $block->getChildChildHtml('options_container') ?>
-        <?php endif;?>
-    </div>
-</div>
 </form>
