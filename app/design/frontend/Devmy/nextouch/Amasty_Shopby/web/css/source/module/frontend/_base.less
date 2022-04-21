@@ -34,6 +34,23 @@
         width: 100%;
     }
 
+    .amslider.ambrands-slider {
+        padding: 0 !important;
+
+        .swiper-slide {
+            box-shadow: 0 3px 8px #999;
+            padding: @indent__s;
+            margin: @indent__s;
+            border-radius: 30px;
+            min-width: 425px;
+
+            img {
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+    }
+
     .am-rating-up {
         font-size: smaller;
     }
@@ -698,6 +715,19 @@
             display: inline-block;
             margin: 0 0 0 15px;
             transform: translateY(-2px);
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .amslider.ambrands-slider {
+        .swiper-slide {
+            max-width: 300px;
+            min-width: auto;
         }
     }
 }
