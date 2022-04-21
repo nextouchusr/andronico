@@ -15,12 +15,14 @@
             </block>
         </referenceContainer>
 
-        <referenceContainer name="product_list_toolbar">
+        <referenceBlock name="product_list_toolbar">
             <block class="Magento\Cms\Block\Block" name="category.info.top">
                 <arguments>
                     <argument name="block_id" xsi:type="string">category-info-top</argument>
                 </arguments>
             </block>
-        </referenceContainer>
+        </referenceBlock>
+
+        <move element="catalog.compare.sidebar" destination="product_list_toolbar" after="-"/>
     </body>
 </page>

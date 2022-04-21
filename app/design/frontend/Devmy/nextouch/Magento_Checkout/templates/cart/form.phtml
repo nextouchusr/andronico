@@ -107,6 +107,7 @@
         $(checkoutButton).on('click', function(event) {
             event.stopPropagation();
             event.preventDefault();
+            console.log(customer());
             if (!customer().firstname) {
                 authenticationPopup.showModal();
             }

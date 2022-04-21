@@ -24,7 +24,9 @@
             <?php echo $block->getChildHtml('category.info.top') ?>
         </div>
         <div class="toolbar-options">
+
             <span class="open-filter-mobile"><?= __('Filters') ?></span>
+            <span class="open-compare-mobile"><?= __('Compare') ?></span>
             <?php if ($block->isExpanded()): ?>
                 <?php // $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
             <?php endif ?>
@@ -34,6 +36,9 @@
             <?php endif ?>
         </div>
         <?php endif ?>
+        <?php if (!$block->getIsBottom()): ?>
+            <?= $block->getChildHtml('catalog.compare.sidebar') ?>
+        <?php endif; ?>
     </div>
 <?php endif ?>
 

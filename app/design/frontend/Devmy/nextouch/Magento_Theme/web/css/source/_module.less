@@ -145,6 +145,8 @@
                 }
                 &:before {
                     background-image: url('@{baseDir}images/ico-account.svg');
+                    background-color: #fff;
+                    border-radius: 100%;
                     background-repeat: no-repeat;
                     background-size: contain;
                     content:"";
@@ -170,7 +172,7 @@
                    order: 10;
                    z-index: 99;
                    &.active {
-                       z-index: 899;
+                       z-index: 999!important;
                    }
                }
                .logo {
@@ -178,7 +180,7 @@
                    z-index: 99;
                }
                .account-wrapper {
-                   order: 6;
+                   order: 99;
                    z-index: 99;
                }
                .toggle-nav {

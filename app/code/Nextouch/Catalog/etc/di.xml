@@ -26,4 +26,8 @@
         <plugin name="prepare_additional_order_options"
                 type="Nextouch\Catalog\Plugin\Model\Product\Type\PrepareAdditionalOrderOptions"/>
     </type>
+
+    <type name="Magento\Catalog\CustomerData\CompareProducts">
+        <plugin name="addImageToCompareProducts" type="Nextouch\Catalog\Plugin\AddImageToCompareProductsPlugin" />
+    </type>
 </config>

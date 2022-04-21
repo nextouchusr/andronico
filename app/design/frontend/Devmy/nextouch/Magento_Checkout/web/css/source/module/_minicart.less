@@ -83,12 +83,19 @@
                             display: block;
                             margin-bottom: 15px;
                             width: 100%;
+                            height: 66px;
+                            padding: 15px 30px;
+
 
                             &:last-child {
                                 margin-bottom: 0;
                             }
                         }
                     }
+                }
+                .paypal {
+                    background-color: @theme__color__primary;
+                    color: @theme__color__primary_contr;
                 }
             }
         }
@@ -169,6 +176,8 @@
                 margin: 0;
                 &:before {
                     background-image: url('@{baseDir}images/ico-cart.svg');
+                    background-color: #fff;
+                    border-radius: 100%;
                     content:""!important;
                     width: 76px;
                     height: 76px;
@@ -193,6 +202,8 @@
                     padding: 0 3px;
                     text-align: center;
                     white-space: normal;
+                    right: -10px;
+                    position: absolute;
 
                     &.empty {
                         display: none;
@@ -451,6 +462,18 @@
             }
             &:after {
                 right: 60px;
+            }
+            .block-content > .actions  {
+                > .primary .action.primary {
+                    padding: 15px 30px;
+                    font-size: 2rem;
+                    color: @theme__color__primary;
+                }
+                .paypal.action {
+                    color: @theme__color__primary_contr;
+                    font-size: 2rem;
+                    padding: 15px 30px;
+                }
             }
         }
     }
