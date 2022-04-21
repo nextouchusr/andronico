@@ -9,7 +9,6 @@
 
 & when (@media-common = true) {
     .order-links {
-        border-bottom: @border-width__base solid @border-color__base;
         margin-bottom: 10px;
 
         .item {
@@ -108,6 +107,7 @@
 
             &.print {
                 margin: 0;
+                display: none;
             }
         }
     }
@@ -363,8 +363,7 @@
 
     .order-actions-toolbar {
         .action.print {
-            display: block;
-            float: right;
+            display: none;
         }
     }
 
