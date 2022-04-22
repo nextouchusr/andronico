@@ -704,7 +704,8 @@ define([
                 var catListHtml = '<li class="search-category search-category-all" data-category="">All</li>';
                 for (var category of categories) {
                     var label = category.name.charAt(0).toUpperCase() + category.name.slice(1).toLowerCase();
-                    catListHtml = catListHtml + '<li class="search-category search-category-' + category.id + '" data-category="' + category.id + '">' + label + '</li>';
+                    var url = '#' //TODO: add url
+                    catListHtml = catListHtml + '<li class="search-category search-category-' + category.id + '" data-category="' + category.id + '"><a href="' + url + '">' + label + '</a></li>';
                 }
 
                 $(wrapper).find('.list').html(catListHtml);
