@@ -19,17 +19,21 @@
 
 & when (@media-common = true) {
     .categories-search {
-        position: absolute;
-        top: 10px;
-        left: 0px;
-        display: inline-block;
+        position: relative;
+        display: flex;
+        box-shadow: 0 4px 2px #ccc;
+        background: #fff;
+        border-radius: 10px 0 0 10px;
+        align-items: center;
         .current {
             font-weight: 700;
-            padding: 0px 10px;
+            padding: 0 10px;
             height: 40px;
             box-sizing: border-box;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
             &:after {
                 display: inline-block;
                 width: 40px;
@@ -331,15 +335,18 @@
             .lib-input-placeholder(@form-element-input-placeholder__color);
             position: static;
             box-shadow: 0 4px 2px #ccc;
-            border-radius: 10px;
+            border-radius: 0 10px 10px 0;
             border:0;
             min-height: 50px;
             background: none;
             font-size: 1.6rem;
-            padding-left: 80px!important;
+            padding-left: 20px !important;
             color: @theme__color__primary;
             background: #fff;
 
+            &:focus {
+                box-shadow: 0 4px 2px #ccc;
+            }
         }
         .search .amsearch-loupe {
             display: none!important;
