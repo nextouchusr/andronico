@@ -23,10 +23,11 @@
         <div class="category-info-top">
             <?php echo $block->getChildHtml('category.info.top') ?>
         </div>
+
+            <span class="open-compare-mobile"><?= __('Compare') ?></span>
         <div class="toolbar-options">
 
             <span class="open-filter-mobile"><?= __('Filters') ?></span>
-            <span class="open-compare-mobile"><?= __('Compare') ?></span>
             <?php if ($block->isExpanded()): ?>
                 <?php // $block->fetchView($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
             <?php endif ?>
