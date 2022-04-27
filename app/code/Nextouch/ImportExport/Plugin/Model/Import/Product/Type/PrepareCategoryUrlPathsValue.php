@@ -21,9 +21,9 @@ class PrepareCategoryUrlPathsValue
         }
 
         $rowData['category_url_paths'] = u($rowData['categories'])
+            ->replaceMatches('/[^A-Za-z0-9-]+/', '')
+            ->trim('-')
             ->lower()
-            ->replace(' ', '-')
-            ->replaceMatches('/[^A-Za-z0-9-\/]+/', '')
             ->toString();
 
         return [$rowData, $withDefaultValue];
