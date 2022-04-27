@@ -19,7 +19,6 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
             $colStops = $this->_columnBrake($child->getChildren(), $limit);
         }
 
-
         $html .= '<ul class="level' . $childLevel . ' ' . $childrenWrapClass . '">';
         $html .= '<li class="level' . $childLevel . ' level-back "><span>';
         $html .= $this->escapeHtml($child->getName()) . '</span></li>';
