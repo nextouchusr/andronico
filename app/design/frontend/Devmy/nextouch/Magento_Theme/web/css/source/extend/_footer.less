@@ -59,6 +59,7 @@
           padding-right: 50px;
         }
       }
+
     }
   }
 }
@@ -69,11 +70,43 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-  .page-footer .footer.content ul.links {
-    padding: 0 15px 0 0;
-    margin: 0 5%;
-    font-size:0.5rem
+  .page-footer .footer.content {
+      ul.links {
+          padding: 0 15px 0 0;
+          margin: 0 3%;
+          font-size: 0.8rem;
+          font-weight: 300;
+          &:last-child {
+              margin-right: 0;
+              padding-right: 0;
+          }
+      }
+      .footer-social {
+          .col-auto {
+              width: 35px!important;
+          }
+          a img {
+              max-width: 20px;
+          }
+      }
+      .footer-copyright {
+          .text-copyright.text-copyright {
+              font-size: 0.5rem;
+          }
+      }
+      .payments-icon {
+          display: flex;
+          flex-flow: row wrap;
+          max-width: 50%;
+          > div {
+              padding: 0 5px;
+              max-width: 20px;
+          }
+          img {
+          }
+      }
   }
+
 }
 
 
@@ -83,4 +116,34 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .page-footer .footer.content {
+        .text-center {
+            margin: 80px auto;
+            .footer.links {
+                border-right-width: 2px;
+                font-size: 1.8rem;
+            }
+        }
+        .footer-copyright {
+            .text-copyright {
+                font-size: 1.8rem;
+                font-weight: 200;
+            }
+        }
+        .payments-icon {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+            .col-auto {
+                padding: 5px;
+                img {
+                    width: auto!important;
+                    max-width: 90px;
+                }
+            }
+        }
+    }
+
+}

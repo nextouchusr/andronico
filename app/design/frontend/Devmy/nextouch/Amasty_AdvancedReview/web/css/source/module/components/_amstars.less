@@ -21,17 +21,17 @@
     .amstars-rating-container {
         & {
             background-image: @amstars-star__background;
-            background-size: 50px;
-            height: @amstars-star__l__height;
+            background-size: 20px;
+            height: 20px;
             margin: 0 0 @amrev__indent 0;
             overflow: hidden;
-            width: 250px;
+            width: 100px;
         }
 
         &.-small {
             background-image: @amstars-star-small__background;
-            height: @amstars-star__s__height;
-            width: 250px;
+            height: 20px;
+            width: 100px;
         }
 
         &.-small .amstars-stars {
@@ -44,7 +44,31 @@
             background-repeat: no-repeat;
             background-position:0 0;
             height: 100%;
+            background-size: 20px;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amstars-rating-container {
+        & {
+            background-size: 50px;
+            width: 250px;
+            height: 50px;
+        }
+        &.-small {
+            background-size: 50px;
+            width: 250px;
+            height: 50px;
+        }
+        .amstars-stars {
+
             background-size: 50px;
         }
     }
+
 }

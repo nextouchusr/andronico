@@ -8,14 +8,16 @@
 
 /* @var $block \Magento\Framework\View\Element\Template */
 ?>
-<div class="block block-compare" data-bind="scope: 'compareProducts'" data-role="compare-products-sidebar">
+<div class="block-compare-container" data-bind="scope: 'compareProducts'">
+
+    <!-- ko if: compareProducts().count -->
+<div class="block block-compare" style="display: none" data-bind="style: {display: !compareProducts().count ? 'none' : 'block' }" data-role="compare-products-sidebar">
     <div class="block-title  block-compare-title">
         <strong id="block-compare-heading" role="heading" aria-level="2">
             <span class="current"> <?= $block->escapeHtml(__('Compare')) ?></span>
             <span class="opened"><?= $block->escapeHtml(__('Close')) ?></span>
         </strong>
     </div>
-    <!-- ko if: compareProducts().count -->
     <div class="block-content no-display" aria-labelledby="block-compare-heading" data-bind="css: {'no-display': !compareProducts().count}">
         <ol id="compare-items" class="product-items product-items-names" data-bind="foreach: compareProducts().items">
                 <li class="product-item">
@@ -41,9 +43,7 @@
             </div>
         </div>
     </div>
-    <!-- /ko -->
-    <!-- ko ifnot: compareProducts().count -->
-    <div class="empty"><?= $block->escapeHtml(__('You have no items to compare.')) ?></div>
+</div>
     <!-- /ko -->
 </div>
 <script type="text/x-magento-init">
@@ -78,10 +78,10 @@
 
                 }, this),
                 exit: $.proxy(function () {
-                    $(window).on('scroll', function () {
+                    $(window).on('scroll', function() {
                         var openCompareMobile = $('.open-compare-mobile');
                         $('.block-compare').css('top', $(openCompareMobile).offset().top - $(window).scrollTop() + $(openCompareMobile).innerHeight() + 50);
-                    }, this);
+                    }, this)
                 }),
             });
 
