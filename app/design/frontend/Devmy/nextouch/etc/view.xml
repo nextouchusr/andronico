@@ -8,8 +8,8 @@
                 <height>140</height>
             </image>
             <image id="cart_cross_sell_products" type="small_image">
-                <width>240</width>
-                <height>300</height>
+                <width>350</width>
+                <height>350</height>
             </image>
             <image id="cart_page_product_thumbnail" type="small_image">
                 <width>165</width>
