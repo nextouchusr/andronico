@@ -102,15 +102,47 @@
     ], function ($,authenticationPopup,customerData) {
         var cart = customerData.get('cart'),
             customer = customerData.get('customer'),
-            checkoutButton = $('.checkout.methods');
+            checkoutButton = $('.checkout.methods'),
+            loginContinueButton = $('.block-customer-login .continue-url a');
 
         $(checkoutButton).on('click', function(event) {
             event.stopPropagation();
             event.preventDefault();
-            console.log(customer());
             if (!customer().firstname) {
                 authenticationPopup.showModal();
             }
+            else {
+
+            }
         });
+
+        $('body').on('click', function(event) {
+            var target = $(event.target);
+            if(!target.closest('.modal-popup-crosssell').length &&
+                $('.modal-popup-crosssell').hasClass("_show")) {
+                authenticationPopup.hideModal();
+                $('.block-modal-crosssell-container').modal('closeModal');
+            }
+        });
+
+        $(document).ready(function () {
+            $('body').on('click', '.block-customer-login .continue-url a', function (event) {
+                var crossSellContainer = $('.block-modal-crosssell-container');
+                console.log(crossSellContainer);
+                if(crossSellContainer) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    authenticationPopup.hideModal();
+                    var checkoutUrl = $(this).attr('href');
+                    $(crossSellContainer).modal('openModal');
+                }
+
+            });
+        });
+
+
+
+
+
     });
 </script>

@@ -40,6 +40,10 @@ define([
         /** Show login popup window */
         showModal: function () {
             $(this.modalWindow).modal('openModal').trigger('contentUpdated');
+        },
+        /** Show login popup window */
+        hideModal: function () {
+            $(this.modalWindow).modal('closeModal').trigger('contentUpdated');
         }
 
     };
