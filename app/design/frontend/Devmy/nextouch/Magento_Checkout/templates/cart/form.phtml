@@ -128,13 +128,16 @@
         $(document).ready(function () {
             $('body').on('click', '.block-customer-login .continue-url a', function (event) {
                 var crossSellContainer = $('.block-modal-crosssell-container');
-                console.log(crossSellContainer);
                 if(crossSellContainer) {
                     event.stopPropagation();
                     event.preventDefault();
                     authenticationPopup.hideModal();
                     var checkoutUrl = $(this).attr('href');
                     $(crossSellContainer).modal('openModal');
+                }
+                else {
+                    var checkoutUrl = $(this).attr('href');
+                    window.location.href = checkoutUrl;
                 }
 
             });
