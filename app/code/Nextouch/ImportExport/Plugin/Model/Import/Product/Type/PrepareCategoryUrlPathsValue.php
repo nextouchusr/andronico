@@ -24,6 +24,7 @@ class PrepareCategoryUrlPathsValue
             ->replaceMatches('/[^A-Za-z0-9-\/]+/', '-')
             ->trim('-')
             ->lower()
+            ->replaceMatches('#-+#','-')
             ->toString();
 
         return [$rowData, $withDefaultValue];
