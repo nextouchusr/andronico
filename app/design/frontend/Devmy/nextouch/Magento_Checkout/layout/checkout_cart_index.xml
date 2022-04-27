@@ -19,11 +19,16 @@
             </block>
         </referenceContainer>
 
+        <referenceBlock name="checkout.cart.giftcardaccount" remove="true" />
+
+
         <move element="cart.summary" destination="checkout.cart.container" after="checkout.cart.form" />
         <move element="checkout.cart.methods.bottom" destination="main" after="-" />
         <move element="checkout.cart.coupons" destination="checkout.cart.container" after="-" />
         <move element="checkout.cart.giftcardaccount" destination="checkout.cart.container" after="checkout.cart.coupons" />
-        <move element="checkout.cart.offers" destination="main" after="checkout.cart.methods.bottom" />
+
+        <move element="checkout.cart.crosssell" destination="page.wrapper" after="main.content" />
+        <move element="checkout.cart.offers" destination="page.wrapper" after="main.content" />
 
     </body>
 </page>

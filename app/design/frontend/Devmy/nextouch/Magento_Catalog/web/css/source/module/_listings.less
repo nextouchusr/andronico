@@ -269,6 +269,10 @@
                 padding-right: 30px;
                 font-size: 1.8rem;
                 color: @theme__color__primary;
+                &:hover,
+                &:active {
+                    color: @theme__color__primary;
+                }
             }
         }
     }
@@ -391,6 +395,7 @@
                 border-radius: 10px;
                 .product-item-name {
                     font-size: 1.2rem;
+                    min-height: 40px;
                 }
                 .product-short-info {
                     font-size: 1.2rem;
@@ -422,9 +427,10 @@
                     font-size: 1.2rem;
                 }
                 .product-item-actions {
-                    .action.tocart.primary {
+                    .action.tocart.primary:not(.noicon) {
                         background-image: url('@{baseDir}images/ico-cart.svg');
                         background-position: center center;
+                        background-repeat: no-repeat;
                         background-size: 50px;
                         bottom: 20px;
                         left: inherit;
@@ -440,6 +446,17 @@
                         span {
                             display: none;
                         }
+                    }
+                    .action.tocart.primary.noicon {
+                        padding: 12px 15px;
+                        font-size: 1rem;
+                        margin: 15px auto;
+                        position: relative;
+                        left: inherit;
+                        bottom: inherit;
+                        transform: inherit;
+                        line-height: 1rem;
+                        right: inherit;
                     }
 
                     .compare-link {

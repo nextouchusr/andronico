@@ -18,7 +18,7 @@ switch ($type = $block->getType()) {
         if ($exist = $block->hasItems()) {
             $type = 'related';
             $class = $type;
-
+            $modal = false;
             $image = 'related_products_list';
             $title = __('Related Products');
             $items = $block->getAllItems();
@@ -26,7 +26,7 @@ switch ($type = $block->getType()) {
             $shuffle = (int) $block->isShuffled();
             $isWeightedRandom = (int) $block->getRotation()->isWeightedRandom($block->getProductListType());
             $canItemsAddToCart = $block->canItemsAddToCart();
-
+            $noiconCart = '';
             $showAddTo = true;
             $showCart = false;
             $templateType = null;
@@ -40,6 +40,7 @@ switch ($type = $block->getType()) {
             $type = 'related';
             $class = $type;
 
+            $modal = false;
             $image = 'related_products_list';
             $title = __('Related Products');
             $items = $block->getItems();
@@ -47,7 +48,7 @@ switch ($type = $block->getType()) {
             $shuffle = 0;
             $isWeightedRandom = 0;
             $canItemsAddToCart = $block->canItemsAddToCart();
-
+            $noiconCart = '';
             $showAddTo = true;
             $showCart = false;
             $templateType = null;
@@ -60,13 +61,14 @@ switch ($type = $block->getType()) {
             $type = 'upsell';
             $class = $type;
 
+            $modal = false;
             $image = 'upsell_products_list';
             $title = __('We found other products you might like!');
             $items = $block->getAllItems();
             $limit = $block->getPositionLimit();
             $shuffle = (int) $block->isShuffled();
             $isWeightedRandom = (int) $block->getRotation()->isWeightedRandom($block->getProductListType());
-
+            $noiconCart = '';
             $showAddTo = false;
             $showCart = false;
             $templateType = null;
@@ -80,7 +82,7 @@ switch ($type = $block->getType()) {
         if ($exist = count($block->getItemCollection()->getItems())) {
             $type = 'upsell';
             $class = $type;
-
+            $noiconCart = '';
             $image = 'upsell_products_list';
             $title = __('We found other products you might like!');
             $items = $block->getItemCollection()->getItems();
@@ -88,6 +90,7 @@ switch ($type = $block->getType()) {
             $shuffle = 0;
             $isWeightedRandom = 0;
 
+            $modal = false;
             $showAddTo = false;
             $showCart = false;
             $templateType = null;
@@ -102,6 +105,8 @@ switch ($type = $block->getType()) {
             $type = 'crosssell';
             $class = $type;
 
+            $modal = true;
+            $noiconCart = 'noicon';
             $image = 'cart_cross_sell_products';
             $title = __('Often bought together:');
             $items = $block->getItemCollection();
@@ -120,10 +125,12 @@ switch ($type = $block->getType()) {
             $type = 'crosssell';
             $class = $type;
 
+            $noiconCart = 'noicon';
             $image = 'cart_cross_sell_products';
             $title = __('Often bought together:');
             $items = $block->getItems();
 
+            $modal = true;
             $showAddTo = true;
             $showCart = true;
             $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
@@ -137,13 +144,14 @@ switch ($type = $block->getType()) {
             $type = 'new';
             $mode = 'grid';
             $type = $type . ' ' . $mode;
-
+            $noiconCart = 'noicon';
             $class = 'widget' . ' ' . $type;
 
             $image = 'new_products_content_widget_grid';
             $title = __('New Products');
             $items = $exist;
 
+            $modal = false;
             $showAddTo = true;
             $showCart = true;
             $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
@@ -158,10 +166,12 @@ switch ($type = $block->getType()) {
             $type = 'offers';
             $class = $type;
 
+            $noiconCart = 'noicon';
             $image = 'cart_cross_sell_products';
             $title = $block->getTitle();
             $items = $block->getItemCollection();
 
+            $modal = false;
             $showAddTo = true;
             $showCart = true;
             $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
@@ -178,28 +188,49 @@ $_item = null;
 
 <?php if ($exist):?>
 
+
+    <?php if($modal): ?>
+    <div class="block-modal-container block-modal-<?= $type ?>-container" data-bind="mageInit: {
+                        'Magento_Ui/js/modal/modal':{
+                            'modalClass': 'modal-popup-<?= $type ?>',
+                            'type': 'popup',
+                            'trigger': '[data-trigger=openCrosssell]',
+                            'responsive': true,
+                            'buttons': {},
+
+                            <?php if($type == 'crosssell'): ?>
+                            'closed': function() {
+                                console.log('closeeed');
+                                window.location.href = '<?= $block->getUrl('checkout') ?>';
+                            }
+                            <?php endif; ?>
+                        }}"
+    >
+    <?php endif; ?>
     <?php if ($type == 'related' || $type == 'upsell'):?>
         <?php if ($type == 'related'):?>
-<div class="block <?= $block->escapeHtmlAttr($class) ?>"
-     data-mage-init='{"relatedProducts":{"relatedCheckbox":".related.checkbox"}}'
-     data-limit="<?= $block->escapeHtmlAttr($limit) ?>"
-     data-shuffle="<?= /* @noEscape */ $shuffle ?>"
-     data-shuffle-weighted="<?= /* @noEscape */ $isWeightedRandom ?>">
-    <?php else:?>
-    <div class="block <?= $block->escapeHtmlAttr($class) ?>"
-         data-mage-init='{"upsellProducts":{}}'
-         data-limit="<?= $block->escapeHtmlAttr($limit) ?>"
-         data-shuffle="<?= /* @noEscape */ $shuffle ?>"
-         data-shuffle-weighted="<?= /* @noEscape */ $isWeightedRandom ?>">
-        <?php endif; ?>
+
+            <div class="block <?= $block->escapeHtmlAttr($class) ?>"
+                 data-mage-init='{"relatedProducts":{"relatedCheckbox":".related.checkbox"}}'
+                 data-limit="<?= $block->escapeHtmlAttr($limit) ?>"
+                 data-shuffle="<?= /* @noEscape */ $shuffle ?>"
+                 data-shuffle-weighted="<?= /* @noEscape */ $isWeightedRandom ?>">
         <?php else:?>
+            <div class="block <?= $block->escapeHtmlAttr($class) ?>"
+                 data-mage-init='{"upsellProducts":{}}'
+                 data-limit="<?= $block->escapeHtmlAttr($limit) ?>"
+                 data-shuffle="<?= /* @noEscape */ $shuffle ?>"
+                 data-shuffle-weighted="<?= /* @noEscape */ $isWeightedRandom ?>">
+        <?php endif; ?>
+
+    <?php else:?>
         <div class="block <?= $block->escapeHtmlAttr($class) ?>">
-            <?php endif; ?>
-            <div class="block-title title">
-                <strong id="block-<?= $block->escapeHtmlAttr($class) ?>-heading" role="heading"
+    <?php endif; ?>
+        <div class="block-title title">
+            <strong id="block-<?= $block->escapeHtmlAttr($class) ?>-heading" role="heading"
                         aria-level="2"><?= $block->escapeHtml($title) ?></strong>
-            </div>
-            <div class="block-content content" aria-labelledby="block-<?= $block->escapeHtmlAttr($class) ?>-heading">
+        </div>
+        <div class="block-content content" aria-labelledby="block-<?= $block->escapeHtmlAttr($class) ?>-heading">
                 <?php if ($type == 'related' && $canItemsAddToCart):?>
                     <div class="block-actions">
                         <?= $block->escapeHtml(__('Check items to add to the cart or')) ?>
@@ -241,11 +272,28 @@ $_item = null;
                                             <?= $block->escapeHtml($_item->getName()) ?></a>
                                     </strong>
 
+
+                                    <?php if($type == 'offers'): ?>
+                                        <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                           class="product product-item-link-details">
+                                            <?= __('See product details') ?>
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <?php if($type == 'crosssell'): ?>
+                                        <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                           class="product product-item-link-details">
+                                            <?= __('More Informations') ?>
+                                        </a>
+                                    <?php endif; ?>
+
                                     <?= /* @noEscape */ $block->getProductPrice($_item) ?>
 
                                     <?php if ($templateType):?>
                                         <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
                                     <?php endif; ?>
+
+
 
                                     <?php if ($canItemsAddToCart && !$_item->isComposite() && $_item->isSaleable()
                                         && $type == 'related'):?>
@@ -273,7 +321,7 @@ $_item = null;
                                                 <?php if ($_item->isSaleable()):?>
                                                     <?php if (!$_item->getTypeInstance()->isPossibleBuyFromList($_item)):?>
                                                         <button
-                                                                class="action tocart primary"
+                                                                class="action tocart primary <?= $noiconCart; ?>"
                                                                 data-mage-init='{"redirectUrl": {"url": "<?= $block->escapeUrl($block->getAddToCartUrl($_item)) ?>"}}' type="button" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>">
                                                             <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                                         </button>
@@ -299,7 +347,7 @@ $_item = null;
                                                             <?= $block->getBlockHtml('formkey') ?>
                                                             <button type="submit"
                                                                     title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
-                                                                    class="action tocart primary">
+                                                                    class="action tocart primary <?= $noiconCart; ?>">
                                                                 <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                                             </button>
                                                         </form>
@@ -335,8 +383,12 @@ $_item = null;
                         <?php endforeach ?>
                     </ol>
                 </div>
-            </div>
         </div>
+      </div>
+
+    <?php if($modal): ?>
+     </div>
+    <?php endif; ?>
         <?php if (!$block->isRedirectToCartEnabled() && $_item):?>
             <script type="text/x-magento-init">
             {
@@ -348,4 +400,4 @@ $_item = null;
             }
             </script>
         <?php endif;?>
-        <?php endif;?>
+<?php endif;?>
