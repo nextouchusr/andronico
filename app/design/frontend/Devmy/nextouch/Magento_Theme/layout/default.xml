@@ -3,6 +3,8 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="header.panel.wrapper" remove="true"/>
+        <move element="page.main.title" destination="title-breadcrumbs-container" before="-"/>
+        <move element="title-breadcrumbs-container" destination="main" before="-"/>
 
         <referenceContainer name="columns.top">
             <container name="title-breadcrumbs-container" htmlClass="title-crumbs-container" htmlTag="div" after="page.messages"/>

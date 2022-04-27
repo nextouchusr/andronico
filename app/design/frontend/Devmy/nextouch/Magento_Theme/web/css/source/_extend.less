@@ -83,6 +83,22 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .cms-page-view {
+        .title-crumbs-container {
+            margin: @indent__base 0;
+            font-weight: 700;
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+
+        .page-title-wrapper {
+            h1 {
+                font-weight: 700;
+                font-size: 1.8rem;
+            }
+        }
+    }
 
     .cms-index-index {
         header {
@@ -123,6 +139,14 @@
         }
     }
 
+    .cms-page-view {
+        .page-title-wrapper {
+            h1 {
+                font-size: 4.5rem;
+                font-weight: 700;
+            }
+        }
+    }
 
     .breadcrumbs {
         height: 54px;

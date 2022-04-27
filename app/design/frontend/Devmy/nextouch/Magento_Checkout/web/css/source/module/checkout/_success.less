@@ -17,8 +17,10 @@
       box-shadow: @theme__box-shadow__primary;
       background: @theme__color__primary_contr;
       border-radius: 50px;
-      padding: 5% 10%;
-      margin-top: 50px;
+      padding: 50px 10%;
+        margin: 50px auto;
+        max-width: 1000px;
+        box-sizing: border-box;
 
       &__icons {
         display: flex;
@@ -52,6 +54,8 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
   .checkout-onepage-success {
     .checkout-success {
+        margin-top: 100px;
+        margin-bottom: 100px;
       &__icons {
         display: flex;
         flex-direction: column;
