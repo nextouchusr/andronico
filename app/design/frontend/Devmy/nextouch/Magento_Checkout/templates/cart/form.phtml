@@ -78,7 +78,6 @@
             if(!$(this).hasClass('disabled')) {
                 var qtyField = $(this).parent().find('input');
                 var qtyValue = parseInt($(qtyField).val());
-                console.log(qtyField);
                 if ($(this).hasClass('less-button') && qtyValue > 0) {
                     qtyValue = qtyValue - 1
                 } else {

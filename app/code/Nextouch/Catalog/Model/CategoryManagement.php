@@ -16,9 +16,8 @@ class CategoryManagement implements CategoryManagementInterface
 
     public function getMenuCategoriesSearch(): array
     {
-        $categoryTree = $this->categoryManagement->getTree(null, 2);
-        $rootChildren = $categoryTree->getChildrenData();
+        $categoryTree = $this->categoryManagement->getTree(null, 1);
 
-        return $rootChildren ? $rootChildren[0]->getChildrenData() : [];
+        return $categoryTree->getChildrenData();
     }
 }

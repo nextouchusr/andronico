@@ -577,9 +577,17 @@ define([
                     this.ajaxRequest.abort();
                 }
 
+                var $categoryId = $('.amsearch-wrapper-input').find("input[name='category_id']");
+                var params = {
+                    q: value,
+                    category_id: $categoryId.val(),
+                    uenc: self.options.currentUrlEncoded,
+                    form_key: $.mage.cookies.get('form_key')
+                };
+
                 this.ajaxRequest = $.get(
                     self.options.url,
-                    {q: value, uenc: self.options.currentUrlEncoded, form_key: $.mage.cookies.get('form_key')},
+                    params,
                     $.proxy(function (data) {
                         this.showPopup(data);
                         this.hideLoader();
@@ -685,7 +693,11 @@ define([
                 'data-amsearch-js': 'search-wrapper-input'
             });
 
-            $(wrapper).prepend('<div class="categories-search"><div class="current">All</div><ul class="list"></ul> </div>')
+            $(wrapper).prepend('<div class="categories-search">' +
+                '<div class="current">All</div>' +
+                '<input type="hidden" name="category_id" value="2"/>' +
+                '<ul class="list"></ul>' +
+            '</div>');
             $(wrapper).appendTo($(this.searchForm.find('.control')));
             $(this.searchForm.find('.input-text')).appendTo($(this.searchForm.find('[data-amsearch-js="search-wrapper-input"]')));
 
@@ -695,17 +707,41 @@ define([
                 $(this).parent().toggleClass('active');
             });
 
+            $(wrapper).on('click', '.search-category', function (e) {
+                e.stopPropagation();
+
+                var categoryId = $(this).attr('data-category-id');
+                var categoryName = $(this).text();
+
+                var $categoriesSearch = $(this).parent().parent();
+                var $current = $categoriesSearch.find('.current');
+                $current.attr('data-category-id', categoryId);
+                $current.text(categoryName);
+
+                var $categoryId = $current.next();
+                $categoryId.val(categoryId);
+
+                $('.categories-search').removeClass('active');
+                $('body').removeClass('active-search-menu');
+            });
+
             $('body').on('click', function () {
                 $('.categories-search').removeClass('active');
                 $('body').removeClass('active-search-menu');
             });
 
             $.get('/rest/it_IT/V1/categories/menu-categories-search').done(function (categories) {
-                var catListHtml = '<li class="search-category search-category-all" data-category="">All</li>';
+                var catListHtml = '<li class="search-category search-category-all" data-category-id="2">All</li>';
+                var urlParams = new URLSearchParams(window.location.search);
+                var currentCategoryId = parseInt(urlParams.get('category_id'));
+
                 for (var category of categories) {
                     var label = category.name.charAt(0).toUpperCase() + category.name.slice(1).toLowerCase();
-                    var url = '#' //TODO: add url
-                    catListHtml = catListHtml + '<li class="search-category search-category-' + category.id + '" data-category="' + category.id + '"><a href="' + url + '">' + label + '</a></li>';
+                    catListHtml = catListHtml + '<li class="search-category search-category-' + category.id + '" data-category-id="' + category.id + '">' + label + '</li>';
+
+                    if (category.id === currentCategoryId) {
+                        $('.categories-search').find('.current').text(category.name)
+                    }
                 }
 
                 $(wrapper).find('.list').html(catListHtml);
