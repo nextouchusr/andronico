@@ -33,7 +33,8 @@
 
     .customer-account-login,
     .customer-account-create {
-        .page-title-wrapper {
+        .page-title-wrapper,
+        .title-crumbs-container {
             display: none;
         }
     }
@@ -463,7 +464,7 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .login-container {
-        padding: 50px 0;
+        padding: 50px 10%;
         .fieldset {
             text-align: center;
             &:after {
@@ -481,8 +482,10 @@
                 font-size: 1rem;
                 margin: 25px 0;
             }
-            input.input-text {
+            input.input-text,
+            .control select {
                 height: 30px;
+                padding: 15px 20px;
                 font-size: 1rem;
             }
         }

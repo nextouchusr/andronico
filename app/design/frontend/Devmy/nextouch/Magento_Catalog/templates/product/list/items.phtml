@@ -200,7 +200,6 @@ $_item = null;
 
                             <?php if($type == 'crosssell'): ?>
                             'closed': function() {
-                                console.log('closeeed');
                                 window.location.href = '<?= $block->getUrl('checkout') ?>';
                             }
                             <?php endif; ?>
