@@ -78,7 +78,6 @@
             if(!$(this).hasClass('disabled')) {
                 var qtyField = $(this).parent().find('input');
                 var qtyValue = parseInt($(qtyField).val());
-                console.log(qtyField);
                 if ($(this).hasClass('less-button') && qtyValue > 0) {
                     qtyValue = qtyValue - 1
                 } else {
@@ -128,13 +127,16 @@
         $(document).ready(function () {
             $('body').on('click', '.block-customer-login .continue-url a', function (event) {
                 var crossSellContainer = $('.block-modal-crosssell-container');
-                console.log(crossSellContainer);
                 if(crossSellContainer) {
                     event.stopPropagation();
                     event.preventDefault();
                     authenticationPopup.hideModal();
                     var checkoutUrl = $(this).attr('href');
                     $(crossSellContainer).modal('openModal');
+                }
+                else {
+                    var checkoutUrl = $(this).attr('href');
+                    window.location.href = checkoutUrl;
                 }
 
             });
