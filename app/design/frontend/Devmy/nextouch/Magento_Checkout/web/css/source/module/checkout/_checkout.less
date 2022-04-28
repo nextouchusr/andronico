@@ -58,50 +58,64 @@
 
     }
 
-    .axepta-sdk-textfield-outlined-inline:invalid:not(:focus):not(:placeholder-shown) {
+    .axepta-sdk-card-inline {
+        max-width: inherit!important;
+        min-width: inherit!important;
+    }
+
+    .axepta-sdk-textfield-outlined-inline {
         border: 0!important;
         padding: 0!important;
-        .axepta-sdk-flex-row-inline.axepta-sdk-input-add-on-inline {
-            display: block;
-            width: 100%;
-        }
-        .axepta-sdk-textfield-outlined-noBorder-Pan {
-            width: ~"calc(100% - 60px)";
-            outline: none;
-        }
-        .axepta-sdk-pan-icon-inline,
-        #scadenza_carta,
-        .axepta-sdk-pan-icon-inline-cvv {
-            border: 1px solid @theme__color__primary;
-            height: 64px;
-            font-size: 2rem;
-            line-height: 4rem;
-            padding: 10px 20px;
-            box-sizing: border-box;
-            width: 100%;
-            margin-bottom: 20px;
-            min-width: 150px!important;
-            border-radius: 50px;
-        }
-        .axepta-sdk-textfield-outlined-noBorder {
-            min-width: inherit!important;
-        }
+        .axepta-sdk-textfield-outlined-inline {
+            .axepta-sdk-flex-row-inline.axepta-sdk-input-add-on-inline {
+                display: block;
+                width: 100%;
+            }
 
-        .axepta-sdk-inline-container {
-            max-width: inherit;
-            min-width: inherit;
-        }
-        .axepta-sdk-pan-icon-inline {
-        }
-        #scadenza_carta {
-            margin-right: 20px;
-            min-width: 150px!important;
-        }
-        .axepta-sdk-input-add-on-item-inline {
-            top: 18px;
-        }
-        .axepta-sdk-input-add-on-item-inline-cvv {
-            top: 18px;
+            .axepta-sdk-textfield-outlined-noBorder-Pan {
+                width: ~"calc(100% - 60px)";
+                outline: none;
+            }
+
+            .axepta-sdk-pan-icon-inline,
+            #scadenza_carta,
+            .axepta-sdk-pan-icon-inline-cvv {
+                border: 1px solid @theme__color__primary;
+                height: 64px;
+                font-size: 2rem;
+                line-height: 4rem;
+                padding: 10px 20px;
+                box-sizing: border-box;
+                width: 100%;
+                margin-bottom: 20px;
+                min-width: 150px !important;
+                border-radius: 50px;
+            }
+
+            .axepta-sdk-textfield-outlined-noBorder {
+                min-width: inherit !important;
+            }
+
+            .axepta-sdk-inline-container {
+                max-width: inherit !important;
+                min-width: inherit !important;
+            }
+
+            .axepta-sdk-pan-icon-inline {
+            }
+
+            #scadenza_carta {
+                margin-right: 20px;
+                min-width: 150px !important;
+            }
+
+            .axepta-sdk-input-add-on-item-inline {
+                top: 18px;
+            }
+
+            .axepta-sdk-input-add-on-item-inline-cvv {
+                top: 18px;
+            }
         }
     }
 
@@ -116,6 +130,20 @@
 
     .opc-estimated-wrapper {
         display: none;
+    }
+
+    .checkout-index-index {
+        .modal-popup {
+            .action,
+            .action.primary {
+                padding: 5px 12px;
+                max-height: 35px;
+                color: @theme__color__primary;
+                line-height: 2.2rem;
+                font-size: 1.4rem;
+
+            }
+        }
     }
 
     .opc-wrapper {
@@ -136,9 +164,11 @@
                 }
                 .action,
                 .action.primary {
-                    padding: 5px;
+                    padding: 5px 12px;
                     max-height: 35px;
                     color: @theme__color__primary;
+                    line-height: 2.2rem;
+                    font-size: 1.4rem;
 
                 }
                 .actions-toolbar {
@@ -244,6 +274,9 @@
             }
         }
     }
+    .axepta-sdk-input-add-on-inline {
+        display: block!important;
+    }
 }
 
 //
@@ -255,6 +288,40 @@
     .checkout-index-index {
         .page-title-wrapper {
             display: none;
+        }
+
+        .popup-authentication,
+        .modal-popup {
+            .modal-inner-wrap {
+                padding-left: 3%;
+                padding-right: 3%;
+                .modal-header {
+                    padding-top: 4rem;
+                    padding-bottom: 3rem;
+                    font-weight: 700;
+                    .modal-title {
+                        font-weight: 700;
+                    }
+                }
+                .action-close {
+                    &:before {
+                        font-size: 12rem;
+                        font-weight: 200;
+                        line-height: 50px;
+                        width: 100px;
+                        color: @theme__color__primary;
+                        margin-top: 15px;
+                        margin-right: 30px;
+                    }
+                }
+                input.input-text,
+                .control select {
+                    height: 54px;
+                    font-size: 2rem;
+                    padding: 10px;
+                    box-sizing: border-box;
+                }
+            }
         }
     }
 
@@ -314,6 +381,7 @@
             }
         }
     }
+
 
     .checkout-onepage-success {
         .print {
