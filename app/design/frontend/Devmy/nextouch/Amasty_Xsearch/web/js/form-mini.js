@@ -740,7 +740,9 @@ define([
                     catListHtml = catListHtml + '<li class="search-category search-category-' + category.id + '" data-category-id="' + category.id + '">' + label + '</li>';
 
                     if (category.id === currentCategoryId) {
-                        $('.categories-search').find('.current').text(category.name)
+                        var $current = $('.categories-search').find('.current');
+                        $current.attr('data-category-id', currentCategoryId);
+                        $current.text(category.name);
                     }
                 }
 
