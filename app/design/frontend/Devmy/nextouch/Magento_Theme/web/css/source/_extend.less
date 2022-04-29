@@ -73,9 +73,52 @@
         }
     }
 
+    .decision-tree-popup {
+        z-index: 999;
+        backdrop-filter: blur(20px);
 
+        .modal-inner-wrap {
+            background-color: rgba(90, 90, 90, 0.3) !important;
+            border-radius: 0 !important;
+            max-height: none !important;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
 
+        .modal-header {
+            border: 0;
+        }
 
+        .modal-content {
+            height: calc(100vh - 42px);
+            width: 100vw;
+            padding: 0;
+            background-color: transparent;
+            border: 0;
+        }
+
+        .action-close {
+            padding: 0 2rem;
+
+            &:before {
+                font-size: 80px;
+                line-height: 80px;
+                color: #fff;
+            }
+
+            &:hover:before {
+                font-size: 80px;
+                line-height: 80px;
+                color: #fff;
+            }
+        }
+
+        iframe {
+            height: calc(100vh - 50px);
+            border: 0;
+        }
+    }
 }
 
 
