@@ -51,7 +51,6 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 
             $('body').on('click', function(event) {
                 var target = $(event.target);
-                console.log(target.closest('.nav-sections').length);
                 if(!target.closest('.nav-sections').length &&
                     $('.nav-sections').hasClass("show")) {
                     $('body').removeClass('openMenu');

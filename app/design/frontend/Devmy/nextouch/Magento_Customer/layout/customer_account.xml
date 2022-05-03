@@ -56,6 +56,15 @@
             <arguments><argument name="sortOrder" xsi:type="number">20</argument></arguments>
         </referenceBlock>
 
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="customer-account-navigation-logout-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">customer/account/logout</argument>
+                    <argument name="label" translate="true" xsi:type="string">Logout</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
 
         <referenceBlock name="customer-account-navigation-checkout-sku-link" remove="true"/>
 

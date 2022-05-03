@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block Magento\Catalog\Block\Product\View */
+?>
+<?php
+$required = '';
+if ($block->hasRequiredOptions()) {
+    $required = ' data-hasrequired="' . $block->escapeHtmlAttr(__('* Required Fields')) . '"';
+}
+?>
+<div class="btn-open-options-container"> <span class="btn btn-open-options-wrapper"><span><?= $block->escapeHtml(__('Services')) ?></span></span> </div>
+<div class="product-options-wrapper" id="product-options-wrapper"<?= /* @noEscape */ $required ?>>
+    <div class="fieldset" tabindex="0">
+        <?= $block->getChildHtml('', true) ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    require(['jquery', 'matchMedia', "Magento_Ui/js/modal/modal"], function ($, mediaCheck, modal) {
+        $(document).ready(function () {
+            mediaCheck({
+                media: '(min-width: 768px)',
+                entry: $.proxy(function () {
+                }, this),
+                exit: $.proxy(function () {
+
+                    var options = {
+                        type: 'popup',
+                        responsive: true,
+                        buttons: [],
+                        modalClass: 'product-options-modal'
+                    };
+
+                    var popup = modal(options, $('#product-options-wrapper'));
+                    $(".btn-open-options-wrapper").click(function() {
+                        $('#product-options-wrapper').modal('openModal');
+                    });
+
+                    $('.btn-open-options-wrapper').on('click', function() {
+                        $('body').addClass('openOptionsWrapper');
+                    });
+                    $(window).on('click', function(e) {
+                        if(!$(e.target).closest('#product-options-wrapper').length && $('#product-options-wrapper').is(":visible")) {
+                            $('body').removeClass('openOptionsWrapper');
+                        }
+                    });
+
+                }, this)
+            });
+        });
+    });
+</script>
