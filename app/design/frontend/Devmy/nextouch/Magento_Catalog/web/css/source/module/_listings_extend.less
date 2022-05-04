@@ -45,6 +45,7 @@
           margin-bottom: 20px;
           text-align: left;
           min-height: 50px;
+          display: inline-block;
           .d-block {
               display: block;
           }
@@ -211,7 +212,7 @@
         }
 
         .tax-included {
-            display: none;
+            font-size: 1.2rem;
         }
 
         .product-reviews-summary {
@@ -300,6 +301,16 @@
                 @_icon-font-text-hide: true
             );
             .lib-button-reset();
+        }
+        .products-grid {
+            .product-item {
+                .product-item-badge {
+                    height: 30px;
+                    top: -20px;
+                    padding-top: 8px;
+                    z-index: 10;
+                }
+            }
         }
     }
 }
