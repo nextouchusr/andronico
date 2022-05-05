@@ -4,32 +4,32 @@ declare(strict_types=1);
 namespace Nextouch\Findomestic\Plugin\Sales\Model;
 
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Sales\Api\ShipOrderInterface;
-use Nextouch\Findomestic\Service\Installment\ActivateInstallment as ActivateInstallmentService;
+use Magento\Sales\Api\OrderManagementInterface;
+use Nextouch\Findomestic\Service\Installment\CancelInstallment as CancelInstallmentService;
 use Nextouch\Sales\Api\OrderRepositoryInterface;
 use Nextouch\Sales\Model\Order;
 use Psr\Log\LoggerInterface;
 
-class ActivateOrderInstallment
+class CancelOrderInstallment
 {
     private OrderRepositoryInterface $orderRepository;
-    private ActivateInstallmentService $activateInstallmentService;
+    private CancelInstallmentService $cancelInstallmentService;
     private LoggerInterface $logger;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
-        ActivateInstallmentService $activateInstallmentService,
+        CancelInstallmentService $cancelInstallmentService,
         LoggerInterface $logger
     ) {
         $this->orderRepository = $orderRepository;
-        $this->activateInstallmentService = $activateInstallmentService;
+        $this->cancelInstallmentService = $cancelInstallmentService;
         $this->logger = $logger;
     }
 
     /**
      * @noinspection PhpUnusedParameterInspection
      */
-    public function afterExecute(ShipOrderInterface $subject, string $result, $orderId): string
+    public function afterCancel(OrderManagementInterface $subject, bool $result, $orderId): bool
     {
         try {
             /** @var Order $order */
@@ -39,11 +39,9 @@ class ActivateOrderInstallment
                 return $result;
             }
 
-            $this->activateInstallmentService->activate($order);
+            $this->cancelInstallmentService->cancel($order);
         } catch (LocalizedException $e) {
             $this->logger->error($e->getMessage());
-        } catch (\Exception $e) {
-            $this->logger->critical($e->getMessage());
         }
 
         return $result;

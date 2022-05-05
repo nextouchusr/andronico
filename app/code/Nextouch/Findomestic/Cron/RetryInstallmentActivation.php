@@ -34,7 +34,13 @@ class RetryInstallmentActivation
             OrderInterface::FINDOMESTIC_APPLICATION_STATUS_TO_ACTIVATE
         )->getItems();
 
-        each(fn(Order $item) => $this->activateInstallment($item), $orders);
+        each(function (Order $order) {
+            if (!$order->hasFindomesticPayment()) {
+                return;
+            }
+
+            $this->activateInstallment($order);
+        }, $orders);
     }
 
     private function activateInstallment(Order $order): void

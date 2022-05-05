@@ -41,6 +41,10 @@ class ActivateOrderInstallment implements ObserverInterface
             /** @var Order $order */
             $order = $this->orderRepository->get($orderId);
 
+            if (!$order->hasFindomesticPayment()) {
+                return;
+            }
+
             $this->activateInstallmentService->activate($order);
         } catch (LocalizedException $e) {
             $this->logger->error($e->getMessage());
