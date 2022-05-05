@@ -142,4 +142,55 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
 
         return $this;
     }
+
+    public function isFindomesticApplicationInactive(): bool
+    {
+        $status = (int) $this->getData(self::FINDOMESTIC_APPLICATION_STATUS);
+
+        return $status === self::FINDOMESTIC_APPLICATION_STATUS_INACTIVE;
+    }
+
+    public function setFindomesticApplicationInactive(): OrderInterface
+    {
+        $this->setData(self::FINDOMESTIC_APPLICATION_STATUS, self::FINDOMESTIC_APPLICATION_STATUS_INACTIVE);
+
+        return $this;
+    }
+
+    public function isFindomesticApplicationToActivate(): bool
+    {
+        $status = (int) $this->getData(self::FINDOMESTIC_APPLICATION_STATUS);
+
+        return $status === self::FINDOMESTIC_APPLICATION_STATUS_TO_ACTIVATE;
+    }
+
+    public function setFindomesticApplicationToActivate(): OrderInterface
+    {
+        $this->setData(self::FINDOMESTIC_APPLICATION_STATUS, self::FINDOMESTIC_APPLICATION_STATUS_TO_ACTIVATE);
+
+        return $this;
+    }
+
+    public function isFindomesticApplicationActive(): bool
+    {
+        $status = (int) $this->getData(self::FINDOMESTIC_APPLICATION_STATUS);
+
+        return $status === self::FINDOMESTIC_APPLICATION_STATUS_ACTIVE;
+    }
+
+    public function setFindomesticApplicationActive(): OrderInterface
+    {
+        $this->setData(self::FINDOMESTIC_APPLICATION_STATUS, self::FINDOMESTIC_APPLICATION_STATUS_ACTIVE);
+
+        return $this;
+    }
+
+    public function canActivateInstallment(): bool
+    {
+        return (
+            !$this->canInvoice() &&
+            !$this->canShip() &&
+            $this->isFindomesticApplicationToActivate()
+        );
+    }
 }

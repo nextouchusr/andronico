@@ -11,10 +11,29 @@ use Nextouch\Sales\Model\ResourceModel\Order\CollectionFactory;
 class OrderRepository implements OrderRepositoryInterface
 {
     private CollectionFactory $collectionFactory;
+    private \Magento\Sales\Api\OrderRepositoryInterface $orderRepository;
 
-    public function __construct(CollectionFactory $collectionFactory)
-    {
+    public function __construct(
+        CollectionFactory $collectionFactory,
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
+    ) {
         $this->collectionFactory = $collectionFactory;
+        $this->orderRepository = $orderRepository;
+    }
+
+    public function get(int $id): OrderInterface
+    {
+        /** @var OrderInterface $order */
+        $order = $this->collectionFactory
+            ->create()
+            ->addFieldToFilter('entity_id', $id)
+            ->getFirstItem();
+
+        if (!$order->getId()) {
+            throw new NoSuchEntityException(__('The order that was requested does not exist.'));
+        }
+
+        return $order;
     }
 
     public function getByIncrementId(string $incrementId): OrderInterface
@@ -30,5 +49,12 @@ class OrderRepository implements OrderRepositoryInterface
         }
 
         return $order;
+    }
+
+    public function save(OrderInterface $order): OrderInterface
+    {
+        $this->orderRepository->save($order);
+
+        return $this->get((int) $order->getEntityId());
     }
 }
