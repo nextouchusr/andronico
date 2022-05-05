@@ -185,12 +185,40 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         return $this;
     }
 
+    public function isFindomesticApplicationCancel(): bool
+    {
+        $status = (int) $this->getData(self::FINDOMESTIC_APPLICATION_STATUS);
+
+        return $status === self::FINDOMESTIC_APPLICATION_STATUS_CANCEL;
+    }
+
+    public function setFindomesticApplicationCancel(): OrderInterface
+    {
+        $this->setData(self::FINDOMESTIC_APPLICATION_STATUS, self::FINDOMESTIC_APPLICATION_STATUS_CANCEL);
+
+        return $this;
+    }
+
+    public function hasFindomesticPayment(): bool
+    {
+        return $this->getPayment()->getMethod() === 'findomestic_paymentservice';
+    }
+
     public function canActivateInstallment(): bool
     {
         return (
             !$this->canInvoice() &&
             !$this->canShip() &&
+            $this->hasFindomesticPayment() &&
             $this->isFindomesticApplicationToActivate()
         );
+    }
+
+    public function canCancelInstallment(): bool
+    {
+        return (
+            $this->isCanceled() &&
+            $this->hasFindomesticPayment() &&
+            !$this->isFindomesticApplicationCancel());
     }
 }

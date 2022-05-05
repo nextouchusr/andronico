@@ -16,4 +16,9 @@
         <plugin name="activate_order_installment"
                 type="Nextouch\Findomestic\Plugin\Sales\Model\ActivateOrderInstallment"/>
     </type>
+
+    <type name="Magento\Sales\Api\OrderManagementInterface">
+        <plugin name="cancel_order_installment"
+                type="Nextouch\Findomestic\Plugin\Sales\Model\CancelOrderInstallment"/>
+    </type>
 </config>

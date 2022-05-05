@@ -20,6 +20,7 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public const FINDOMESTIC_APPLICATION_STATUS_INACTIVE = 0;
     public const FINDOMESTIC_APPLICATION_STATUS_TO_ACTIVATE = 1;
     public const FINDOMESTIC_APPLICATION_STATUS_ACTIVE = 2;
+    public const FINDOMESTIC_APPLICATION_STATUS_CANCEL = 3;
 
     /**
      * @param string $shippingMethod
@@ -139,6 +140,21 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
      * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function setFindomesticApplicationActive(): self;
+
+    /**
+     * @return bool
+     */
+    public function isFindomesticApplicationCancel(): bool;
+
+    /**
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setFindomesticApplicationCancel(): self;
+
+    /**
+     * @return bool
+     */
+    public function hasFindomesticPayment(): bool;
 
     /**
      * @return bool
