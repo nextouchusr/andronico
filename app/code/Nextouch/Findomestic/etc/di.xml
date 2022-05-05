@@ -11,4 +11,9 @@
         <plugin name="wrap_installment_notification_request"
                 type="Nextouch\Findomestic\Plugin\Webapi\Controller\Rest\WrapInstallmentNotificationRequest"/>
     </type>
+
+    <type name="Magento\Sales\Api\ShipOrderInterface">
+        <plugin name="activate_order_installment"
+                type="Nextouch\Findomestic\Plugin\Sales\Model\ActivateOrderInstallment"/>
+    </type>
 </config>

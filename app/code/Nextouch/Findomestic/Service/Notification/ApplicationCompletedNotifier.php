@@ -6,11 +6,9 @@ namespace Nextouch\Findomestic\Service\Notification;
 use Magento\Framework\DB\Transaction;
 use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Sales\Api\InvoiceRepositoryInterface;
 use Magento\Sales\Model\Order\Invoice;
 use Magento\Sales\Model\Service\InvoiceService;
 use Nextouch\Findomestic\Model\Request\Installment\Notification as NotificationRequest;
-use Nextouch\Findomestic\Service\Installment\ActivateInstallment as ActivateInstallmentService;
 use Nextouch\Sales\Api\OrderRepositoryInterface;
 use Nextouch\Sales\Model\Order;
 use Nextouch\Sales\Model\Order\Status;
@@ -19,26 +17,20 @@ use Psr\Log\LoggerInterface;
 class ApplicationCompletedNotifier implements InstallmentNotifierInterface
 {
     private OrderRepositoryInterface $orderRepository;
-    private InvoiceRepositoryInterface $invoiceRepository;
     private InvoiceService $invoiceService;
-    private ActivateInstallmentService $activateInstallmentService;
     private Transaction $transaction;
     private ManagerInterface $eventManager;
     private LoggerInterface $logger;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
-        InvoiceRepositoryInterface $invoiceRepository,
         InvoiceService $invoiceService,
-        ActivateInstallmentService $activateInstallmentService,
         Transaction $transaction,
         ManagerInterface $eventManager,
         LoggerInterface $logger
     ) {
         $this->orderRepository = $orderRepository;
-        $this->invoiceRepository = $invoiceRepository;
         $this->invoiceService = $invoiceService;
-        $this->activateInstallmentService = $activateInstallmentService;
         $this->transaction = $transaction;
         $this->eventManager = $eventManager;
         $this->logger = $logger;
@@ -57,8 +49,6 @@ class ApplicationCompletedNotifier implements InstallmentNotifierInterface
                 'request' => $request,
                 'order' => $order,
             ]);
-
-            $this->activateInstallmentService->activate($order);
         } catch (\Exception $e) {
             $this->logger->error($e->getMessage());
             throw $e;
@@ -79,6 +69,7 @@ class ApplicationCompletedNotifier implements InstallmentNotifierInterface
         $order->setCustomerNoteNotify(false);
         $order->setStatus(Status::PAID['status']);
         $order->setState(Status::PAID['state']);
+        $order->setFindomesticApplicationToActivate();
         $this->transaction->addObject($invoice)->addObject($order)->save();
 
         return $order;
