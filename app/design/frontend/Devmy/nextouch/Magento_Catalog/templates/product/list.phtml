@@ -82,7 +82,22 @@ $_helper = $block->getData('outputHelper');
                             </a>
                         </strong>
                         <div class="product-short-info"> <?php // TODO: add subtext ?> </div>
-                        <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                        <?php $review =  $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                        <?php if($review): ?>
+                        <?= $review; ?>
+                        <?php else: ?>
+                            <div class="product-reviews-summary short">
+                                <div class="rating-summary rating-empty">
+                                    <div class="rating-result"></div>
+                                </div>
+                                <div class="reviews-actions">
+                                    <span class="view">
+                                        0
+                                        <span><?= __('Reviews') ?></span>
+                                    </span>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="product-item-prices">
                             <?= /* @noEscape */ $block->getProductPrice($_product) ?>
                         </div>
