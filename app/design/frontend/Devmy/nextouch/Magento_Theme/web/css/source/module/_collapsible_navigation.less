@@ -63,6 +63,7 @@
                 a,
                 > strong {
                     font-weight: 200;
+                    text-decoration: underline;
                 }
 
                 a {
@@ -85,7 +86,7 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .block-collapsible-nav {
         box-shadow: @theme__box-shadow__primary;
-        padding: 30px 50px;
+        padding: 20px 10px;
         width: 100%;
         max-width: 450px;
         box-sizing: border-box;
@@ -95,6 +96,17 @@
         }
     }
 }
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .block-collapsible-nav {
+        padding: 30px 50px;
+    }
+}
+
 
 //
 //  Mobile

@@ -1415,7 +1415,7 @@
                 tr {
                     display: none;
                     &.different {
-                        display: table-row;
+                        display: flex;
                     }
                 }
             }
@@ -1447,6 +1447,7 @@
         width: 400px;
         max-width: 90vw;
         display: block;
+        min-height: 320px;
 
         &:before,
         &:after {
@@ -1531,6 +1532,24 @@
         }
     }
     .catalog-product_compare-index {
+
+        .modal-popup.confirm {
+            button {
+                &.action-primary {
+                    padding: 20px 30px;
+                    color: @theme__color__primary;
+                    margin-right: 10px;
+                }
+                &.action-secondary {
+                    padding: 20px 30px;
+                    margin-right: 10px;
+                    &:hover {
+                        background-color: @theme__color__primary;
+                    }
+                }
+            }
+        }
+
         .table-comparison-head {
 
             .show-difference {
@@ -1555,6 +1574,8 @@
                 box-shadow: @theme__box-shadow__primary;
                 border-radius: 50px;
                 padding: 30px;
+                height: 100%;
+                box-sizing: border-box;
             }
             td .product-item-name {
                 font-size: 2rem;
@@ -1644,6 +1665,7 @@
                     margin: 3px 0;
                     border-radius: 10px;
                     width: 100%;
+                    height: 100%;
                     box-sizing: border-box;
                 }
             }

@@ -191,4 +191,21 @@
             }
         }
     }
+
+    .modalfilter.modal-popup {
+        > .modal-inner-wrap {
+            .modal-header {
+                .action-close {
+                    top: 20px;
+                    &:before {
+                        content: @icon-remove;
+                        background: none;
+                        font-family: @icons__font-name;
+                        font-size: 4rem;
+                        color: @theme__color__primary_gray;
+                    }
+                }
+            }
+        }
+    }
 }
