@@ -13,6 +13,7 @@
 $columnsLimit = $block->getColumnsLimit() ?: 0;
 $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 ?>
+<div class="loader"></div>
 <nav class="megamenu" data-action="navigation">
     <div class="megamenu-inner">
         <ul>
@@ -23,10 +24,12 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 </nav>
 <span class="overlay-megamenu"></span>
 
-
 <script type="text/javascript">
-
     require(['jquery','matchMedia'], function ($,mediaCheck) {
+        $(window).load(function() {
+            $('.loader').fadeOut('slow');
+        });
+
         $(document).ready(function () {
             var megamenu = $('.megamenu');
 
