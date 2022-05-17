@@ -37,4 +37,9 @@
     <type name="Magento\Catalog\Block\Product\View\Attributes">
         <plugin name="Amasty_Shopby::productViewAttributes" disabled="true"/>
     </type>
+
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="add_grand_total_data"
+                type="Nextouch\Theme\Plugin\CustomerData\Checkout\AddGrandTotalData"/>
+    </type>
 </config>
