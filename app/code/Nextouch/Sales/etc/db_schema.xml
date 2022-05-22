@@ -20,6 +20,14 @@
                 length="100"
                 nullable="true"
                 comment="Findomestic Issuer Installment ID"/>
+        <column xsi:type="smallint"
+                name="findomestic_application_status"
+                padding="5"
+                unsigned="true"
+                identity="false"
+                nullable="false"
+                default="0"
+                comment="Findomestic Application Status"/>
     </table>
 
     <table name="sales_order_address">

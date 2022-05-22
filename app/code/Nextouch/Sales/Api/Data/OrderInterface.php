@@ -15,6 +15,12 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public const INVOICE_PDF_FILE = 'invoice_pdf_file';
     public const FINDOMESTIC_APPLICATION_ID = 'findomestic_application_id';
     public const FINDOMESTIC_ISSUER_INSTALLMENT_ID = 'findomestic_issuer_installment_id';
+    public const FINDOMESTIC_APPLICATION_STATUS = 'findomestic_application_status';
+
+    public const FINDOMESTIC_APPLICATION_STATUS_INACTIVE = 0;
+    public const FINDOMESTIC_APPLICATION_STATUS_TO_ACTIVATE = 1;
+    public const FINDOMESTIC_APPLICATION_STATUS_ACTIVE = 2;
+    public const FINDOMESTIC_APPLICATION_STATUS_CANCEL = 3;
 
     /**
      * @param string $shippingMethod
@@ -104,4 +110,54 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
      * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function setFindomesticIssuerInstallmentId(string $issuerInstallmentId): self;
+
+    /**
+     * @return bool
+     */
+    public function isFindomesticApplicationInactive(): bool;
+
+    /**
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setFindomesticApplicationInactive(): self;
+
+    /**
+     * @return bool
+     */
+    public function isFindomesticApplicationToActivate(): bool;
+
+    /**
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setFindomesticApplicationToActivate(): self;
+
+    /**
+     * @return bool
+     */
+    public function isFindomesticApplicationActive(): bool;
+
+    /**
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setFindomesticApplicationActive(): self;
+
+    /**
+     * @return bool
+     */
+    public function isFindomesticApplicationCancel(): bool;
+
+    /**
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setFindomesticApplicationCancel(): self;
+
+    /**
+     * @return bool
+     */
+    public function hasFindomesticPayment(): bool;
+
+    /**
+     * @return bool
+     */
+    public function canActivateInstallment(): bool;
 }

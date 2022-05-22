@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace Nextouch\Findomestic\Api;
 
 use Nextouch\Findomestic\Model\Request\Installment\Activate as ActivateRequest;
+use Nextouch\Findomestic\Model\Request\Installment\Cancel as CancelRequest;
 use Nextouch\Findomestic\Model\Request\Installment\Create as CreateRequest;
 use Nextouch\Findomestic\Model\Request\Installment\Refresh as RefreshRequest;
 use Nextouch\Findomestic\Model\Response\Installment\Activate as ActivateResponse;
+use Nextouch\Findomestic\Model\Response\Installment\Cancel as CancelResponse;
 use Nextouch\Findomestic\Model\Response\Installment\Create as CreateResponse;
 use Nextouch\Findomestic\Model\Response\Installment\Refresh as RefreshResponse;
 
@@ -32,4 +34,10 @@ interface InstallmentManagementInterface
      * @return \Nextouch\Findomestic\Model\Response\Installment\Activate
      */
     public function activate(ActivateRequest $request): ActivateResponse;
+
+    /**
+     * @param \Nextouch\Findomestic\Model\Request\Installment\Cancel $request
+     * @return \Nextouch\Findomestic\Model\Response\Installment\Cancel
+     */
+    public function cancel(CancelRequest $request): CancelResponse;
 }
