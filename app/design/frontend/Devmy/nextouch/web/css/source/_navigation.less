@@ -787,3 +787,18 @@
         }
     }
 }
+
+//
+//  Desktop Large
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xxl) {
+    .nav-sections .megamenu.megamenu .megamenu-inner li.level0 > .submenu {
+        padding-top: @layout-indent__width;
+        padding-bottom: @layout-indent__width;
+        padding-left: ~"calc((100vw - 1680px + 100px) / 2)";
+        padding-right: ~"calc((100vw - 1680px + 100px) / 2)";
+    }
+}
+
+

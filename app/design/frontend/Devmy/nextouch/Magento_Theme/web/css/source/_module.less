@@ -101,6 +101,7 @@
     .overlay-megamenu {
         background: transparent;
         backdrop-filter: blur(8px) contrast(0.9);
+        -webkit-backdrop-filter: blur(8px) contrast(0.9);
         position: fixed;
         top: 0px;
         left: 0;
@@ -423,6 +424,7 @@
         .minicart-wrapper,
         .account-wrapper {
             width: 15%;
+            text-align: right;
         }
     }
 
@@ -476,7 +478,23 @@
 
 }
 
+//
+//  Mobile
+//  _____________________________________________
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+
+    .page-header .header.content {
+
+        .logo {
+            width: 35%;
+        }
+        .minicart-wrapper,
+        .account-wrapper {
+            width: 60px;
+        }
+    }
+}
 
 
 //
