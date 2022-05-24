@@ -725,7 +725,7 @@
                     width: 30%;
                     font-size: 2.5rem;
                     .page-title {
-                        font-size: 2.5rem;
+                        font-size: 2rem;
                         font-weight: 300;
                         margin: 0;
                     }
@@ -743,7 +743,8 @@
                 &.product-buttons {
                     .action.primary {
                         color: @theme__color__primary;
-                        font-size: 2rem;
+                        padding: 15px 30px;
+                        font-size: 1.4rem;
                         font-weight: 300;
                     }
                 }
@@ -767,3 +768,21 @@
     }
 }
 
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .product-sticky-bar {
+        > .container {
+            > div {
+                &.product-title {
+                    font-size: 2.5rem;
+                }
+                &.product-buttons {
+                    .action.primary {
+                        font-size: 2rem;
+                        padding: 30px 50px;
+                    }
+                }
+            }
+        }
+    }
+}

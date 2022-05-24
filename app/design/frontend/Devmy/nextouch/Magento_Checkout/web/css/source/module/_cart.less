@@ -204,8 +204,10 @@
             min-height: 80px;
             margin: 100px 0;
             li {
-                float: right;
-                margin-left: 25px;
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+                text-align: center;
                 .primary.checkout {
                     line-height: 1.5rem;
                     color: @theme__color__primary;
@@ -918,6 +920,9 @@
 
         .checkout-methods-items.checkout-methods-items {
             li {
+                float: right;
+                margin-left: 25px;
+                width: auto;
                 .primary.checkout {
                     padding: 30px 50px;
                     font-size: 2rem;

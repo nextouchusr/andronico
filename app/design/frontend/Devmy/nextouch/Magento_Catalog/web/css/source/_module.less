@@ -395,10 +395,10 @@
             font-weight: @font-weight__bold;
 
             .price-container {
-                .lib-font-size(40);
+                .lib-font-size(20);
             }
             .price-wrapper .price {
-                .lib-font-size(40);
+                .lib-font-size(20);
                 font-weight: @font-weight__bold;
             }
 
@@ -654,6 +654,8 @@
             .product-info-main {
                 width: 75%;
                 order: 5;
+                padding-left: 10px;
+                box-sizing: border-box;
                 .price-box {
                     .price-wrapper {
                         .price {
@@ -832,17 +834,7 @@
 
     .product-info-main {
         float: right;
-        .product-info-main-cols {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            > div {
-                width: 46%;
-                &.product-info-main-right {
-                    width: 52%;
-                }
-            }
-        }
+
         .page-title-wrapper {
             .page-title {
                 font-size: 4rem;
@@ -1006,6 +998,28 @@
             }
         }
     }
+    .product-info-main {
+        .product-info-main-cols {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            > div {
+                width: 46%;
+                &.product-info-main-right {
+                    width: 52%;
+                }
+            }
+        }
+        .price-box {
+            .special-price .price-container {
+                .lib-font-size(40);
+            }
+
+            .price-wrapper .price {
+                .lib-font-size(40);
+            }
+        }
+    }
 }
 
 
@@ -1041,6 +1055,7 @@
         text-align: center;
         min-width: 120px;
         white-space: nowrap;
+        margin: 0;
         &:after {
             display: inline-block;
             width: 25px;
@@ -1059,6 +1074,11 @@
             overflow: hidden;
             speak: none;
             text-align: center;
+        }
+        &.active {
+            &:after {
+                transform: rotate(-90deg);
+            }
         }
     }
 
@@ -1083,7 +1103,7 @@
             height: 30px;
             position: absolute;
             top: -10px;
-            left: 43%;
+            left: ~'calc(50% - (30px / 2))';
             transform: rotate(-45deg);
             box-shadow: 0 0px 10px #ccc;
             background: #fff;
@@ -1093,7 +1113,7 @@
             display: block;
             content: "";
             position: absolute;
-            left: 41%;
+            left: ~'calc(46% - (30px / 2))';
             width: 100%;
             background: #fff;
             height: 40px;
