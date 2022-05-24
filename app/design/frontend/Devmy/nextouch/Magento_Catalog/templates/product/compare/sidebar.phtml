@@ -90,7 +90,7 @@
                     }, this),
                     exit: $.proxy(function () {
                         var openCompareMobile = $('body').find('.open-compare-mobile');
-                        if(openCompareMobile && $('.block-compare.visible')) {
+                        if(openCompareMobile.length && $('.block-compare.visible')) {
                             $('.block-compare').css('top', $(openCompareMobile).offset().top - $(window).scrollTop() + $(openCompareMobile).innerHeight() + 30);
                         }
                     },this)
