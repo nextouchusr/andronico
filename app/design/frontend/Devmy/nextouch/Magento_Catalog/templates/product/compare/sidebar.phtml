@@ -11,7 +11,7 @@
 <div class="block-compare-container" data-bind="scope: 'compareProducts'">
 
     <!-- ko if: compareProducts().count -->
-<div class="block block-compare" style="display: none" data-bind="style: {display: !compareProducts().count ? 'none' : 'block' }" data-role="compare-products-sidebar">
+<div class="block block-compare" data-bind="css: {visible: compareProducts().count}" data-role="compare-products-sidebar">
     <div class="block-title  block-compare-title">
         <strong id="block-compare-heading" role="heading" aria-level="2">
             <span class="current"> <?= $block->escapeHtml(__('Compare')) ?></span>
@@ -61,28 +61,40 @@
                 if(!target.closest('.block-compare').length &&
                     $('.block-compare').is(":visible") && !$(target).is('.open-compare-mobile')) {
                     $('.block-compare').removeClass('active');
+                    $('.open-compare-mobile').removeClass('active');
                 }
             });
-            $('.open-compare-mobile').on('click', function() {
+
+            $('body').on('click', '.open-compare-mobile', function() {
                 $('.block-compare').toggleClass('active').toggleClass('show');
+                if($('.block-compare').is(':visible')) {
+                    $('.open-compare-mobile').addClass('active');
+                }
+                else {
+                    $('.open-compare-mobile').removeClass('active');
+                }
                 var posTop = $(this).offset().top;
                 var scrollTop = $(window).scrollTop();
-                $('.block-compare').css('top', posTop - scrollTop + $(this).innerHeight() + 50 );
+                $('.block-compare').css('top', posTop - scrollTop + $(this).innerHeight() + 30 );
             });
+
             $('.close-compare-mobile').on('click', function() {
                 $('.block-compare').removeClass('active').removeClass('show');
+                $('.open-compare-mobile').removeClass('active');
             });
-            mediaCheck({
-                media: '(min-width: 768px)',
-                entry: $.proxy(function () {
+            $(window).on('scroll', function() {
+                mediaCheck({
+                    media: '(min-width: 768px)',
+                    entry: $.proxy(function () {
 
-                }, this),
-                exit: $.proxy(function () {
-                    $(window).on('scroll', function() {
-                        var openCompareMobile = $('.open-compare-mobile');
-                        $('.block-compare').css('top', $(openCompareMobile).offset().top - $(window).scrollTop() + $(openCompareMobile).innerHeight() + 50);
-                    }, this)
-                }),
+                    }, this),
+                    exit: $.proxy(function () {
+                        var openCompareMobile = $('body').find('.open-compare-mobile');
+                        if(openCompareMobile && $('.block-compare.visible')) {
+                            $('.block-compare').css('top', $(openCompareMobile).offset().top - $(window).scrollTop() + $(openCompareMobile).innerHeight() + 30);
+                        }
+                    },this)
+                });
             });
 
 
