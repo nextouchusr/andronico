@@ -289,6 +289,14 @@
 
     .product-media-wrapper {
         .product-addto-links {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            &:before,
+            &:after {
+                display: inline-block;
+                content: "";
+            }
             > a {
                 display: block;
                 margin: 50px 0;
@@ -681,6 +689,15 @@
 
             .product-add-form {
                 width: 100%;
+                .product-info-price {
+                    .price-final_price {
+                        color: @theme__color__secondary;
+                        font-weight: 700;
+                        .price {
+                            font-weight: 700;
+                        }
+                    }
+                }
             }
         }
     }
