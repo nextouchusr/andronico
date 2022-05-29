@@ -79,7 +79,8 @@
         &:extend(.abs-adjustment-incl-excl-tax all);
     }
 
-    .block.offers {
+    .block.offers,
+    .block.upsell {
         box-shadow: @theme__box-shadow__primary;
         padding: 25px 10%;
         border-radius: 50px;
@@ -1243,12 +1244,16 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
-    .checkout-cart-index {
-        .block.offers {
-            .products-grid .product-items {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-            }
+
+    .block.block.offers,
+    .block.block.upsell {
+        .products-grid .product-items {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
         }
+    }
+
+
+    .checkout-cart-index {
 
         .block.crosssell .products-grid {
             .product-item .product-item-info .product-item-link-details {
