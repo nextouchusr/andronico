@@ -18,4 +18,7 @@
 
     <preference for="Nextouch\Sales\Api\OrderRepositoryInterface"
                 type="Nextouch\Sales\Model\OrderRepository"/>
+
+    <preference for="Nextouch\Sales\Api\OrderManagementInterface"
+                type="Nextouch\Sales\Model\OrderManagement"/>
 </config>
