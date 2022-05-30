@@ -80,6 +80,7 @@
     }
 
     .block.offers,
+    .block.crosssell:not(.crosssell-modal),
     .block.upsell {
         box-shadow: @theme__box-shadow__primary;
         padding: 25px 10%;
@@ -552,7 +553,7 @@
     //  Cross sell
     //  ---------------------------------------------
 
-    .modal-popup-crosssell {
+    .modal-popup-crosssell-modal {
         left: 0!important;
         width: 100%;
         height: 100%;
@@ -590,7 +591,7 @@
             }
         }
     }
-    .block.crosssell {
+    .block.crosssell-modal {
         .block-title {
             font-size: 2.3rem;
             text-align: center;
@@ -632,6 +633,21 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .block.crosssell {
+        .product-items .product-item {
+            .secondary-addto-links {
+                display: none!important;
+            }
+            .action.tocompare {
+                display: none !important;
+            }
+
+            .action.towishlist {
+                display: none !important;
             }
         }
     }
@@ -934,7 +950,8 @@
             padding: 0 100px;
         }
 
-        .block.offers {
+        .block.offers,
+        .block.crosssell:not(.crosssell-modal) {
             .products-grid .product-items {
                 grid-template-columns: repeat(3,minmax(0, 1fr));
                 gap: 0;
@@ -988,7 +1005,7 @@
             }
         }
 
-        .modal-popup-crosssell {
+        .modal-popup-crosssell-modal {
             &.modal-popup.modal-slide {
                 .modal-inner-wrap {
                     border-radius: 100px;
@@ -999,60 +1016,74 @@
                     margin-top: 5%;
                     .action-close {
                         display: block;
+                        width: auto;
+                        &:before {
+                            display: none;
+                        }
+                        span {
+                            display: inline-block;
+                            position: relative;
+                            width: auto;
+                            height: auto;
+                            font-size: 1.6rem;
+                        }
                     }
                 }
             }
-        }
-        .block.crosssell {
-            .block-title {
-                strong {
-                    font-size: 2.3rem;
+            .block.crosssell-modal {
+                .block-title {
+                    width: 100%;
+                    text-align: left;
+                    strong {
+                        font-size: 2.3rem;
+                    }
                 }
-            }
-            .products-grid {
-                .product-item {
-                    .product-item-info {
-                        padding: 0 0 100px 0;
-                        display: flex;
-                        flex-flow: row nowrap;
-                        .product-item-photo {
-                            min-width: 180px;
-                            margin: 0 20px;
-                        }
-                        .price-box {
-                            .price {
-                                font-size: 2.4rem;
+                .products-grid {
+                    .product-item {
+                        .product-item-info {
+                            padding: 0 0 100px 0;
+                            display: flex;
+                            flex-flow: row nowrap;
+                            .product-item-photo {
+                                min-width: 180px;
+                                margin: 0 20px;
                             }
-                        }
-                        .actions-primary {
-                            .action.primary {
-                                bottom: 0;
-                                left: inherit;
-                                right: 0;
-                                padding: 30px 50px;
-                                line-height: 2rem;
+                            .price-box {
+                                .price {
+                                    font-size: 2.4rem;
+                                }
+                            }
+                            .actions-primary {
+                                .action.primary {
+                                    bottom: 0;
+                                    left: inherit;
+                                    right: 0;
+                                    padding: 30px 50px;
+                                    line-height: 2rem;
+                                    color: @theme__color__primary_contr;
+                                    transform: none;
+                                }
+                            }
+                            .product-item-link-details {
+                                background: @theme__color__primary;
+                                border: 0;
                                 color: @theme__color__primary_contr;
-                                transform: none;
+                                cursor: pointer;
+                                border-radius: 50px;
+                                font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                                font-weight: 400;
+                                padding: 30px 50px;
+                                font-size: 2.1rem;
+                                line-height: 2rem;
+                                box-sizing: border-box;
+                                vertical-align: middle;
                             }
-                        }
-                        .product-item-link-details {
-                            background: @theme__color__primary;
-                            border: 0;
-                            color: @theme__color__primary_contr;
-                            cursor: pointer;
-                            border-radius: 50px;
-                            font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-                            font-weight: 400;
-                            padding: 30px 50px;
-                            font-size: 2.1rem;
-                            line-height: 2rem;
-                            box-sizing: border-box;
-                            vertical-align: middle;
                         }
                     }
                 }
             }
         }
+
 
     }
     .cart-container {
@@ -1246,6 +1277,7 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
 
     .block.block.offers,
+    .block.block.crosssell:not(.crosssell-modal),
     .block.block.upsell {
         .products-grid .product-items {
             grid-template-columns: repeat(4, minmax(0, 1fr));

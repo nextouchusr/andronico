@@ -120,14 +120,14 @@
             if(!target.closest('.modal-popup-crosssell').length &&
                 $('.modal-popup-crosssell').hasClass("_show")) {
                 authenticationPopup.hideModal();
-                $('.block-modal-crosssell-container').modal('closeModal');
+                $('.block-modal-crosssell-modal-container').modal('closeModal');
             }
         });
 
         $(document).ready(function () {
             $('body').on('click', '.block-customer-login .continue-url a', function (event) {
-                var crossSellContainer = $('.block-modal-crosssell-container');
-                if(crossSellContainer) {
+                var crossSellContainer = $('.block-modal-crosssell-modal-container');
+                if(crossSellContainer.length) {
                     event.stopPropagation();
                     event.preventDefault();
                     authenticationPopup.hideModal();

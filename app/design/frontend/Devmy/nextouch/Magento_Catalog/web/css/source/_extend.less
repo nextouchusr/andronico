@@ -205,6 +205,36 @@
             &.product-easeofuse {
                 width: 100%;
                 box-shadow: none;
+                .more-less-content {
+                    .more-less-wrapper {
+                        max-height: 160px;
+                        overflow: hidden;
+                    }
+
+                    &.active {
+                        .more-less-wrapper {
+                            max-height: inherit;
+                        }
+                        .more-less {
+                            .less {
+                                display: block;
+                            }
+                            .more {
+                                display: none;
+                            }
+                        }
+                    }
+                    .more-less {
+                        display: block;
+                        text-align: center;
+                        .more {
+                            display: block;
+                        }
+                        .less {
+                            display: none;
+                        }
+                    }
+                }
             }
             &.product-attributes {
                 background: @theme__color__secondary;
@@ -651,6 +681,12 @@
             &.product-easeofuse {
                 width: 100%;
                 clear: both;
+                .more-less-content .more-less-wrapper {
+                    max-height: inherit!important;
+                    + .more-less {
+                        display: none;
+                    }
+                }
             }
         }
         .more-less {

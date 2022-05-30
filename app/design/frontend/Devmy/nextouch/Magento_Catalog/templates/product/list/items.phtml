@@ -105,7 +105,7 @@ switch ($type = $block->getType()) {
             $type = 'crosssell';
             $class = $type;
 
-            $modal = true;
+            $modal = false;
             $noiconCart = 'noicon';
             $image = 'cart_cross_sell_products';
             $title = __('Often bought together:');
@@ -124,6 +124,26 @@ switch ($type = $block->getType()) {
         if ($exist = count($block->getItems())) {
             $type = 'crosssell';
             $class = $type;
+
+            $noiconCart = 'noicon';
+            $image = 'cart_cross_sell_products';
+            $title = __('Often bought together:');
+            $items = $block->getItems();
+
+            $modal = false;
+            $showAddTo = true;
+            $showCart = true;
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $description = false;
+            $canItemsAddToCart = false;
+        }
+        break;
+
+    case 'crosssell-modal':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        if ($exist = count($block->getItems())) {
+            $type = 'crosssell-modal';
+            $class = 'crosssell ' . $type;
 
             $noiconCart = 'noicon';
             $image = 'cart_cross_sell_products';
@@ -197,8 +217,8 @@ $_item = null;
                             'trigger': '[data-trigger=openCrosssell]',
                             'responsive': true,
                             'buttons': {},
-
-                            <?php if($type == 'crosssell'): ?>
+                            <?php if($type == 'crosssell-modal'): ?>
+                            'closeText': '<?= __('Continue without Buy') ?>',
                             'closed': function() {
                                 window.location.href = '<?= $block->getUrl('checkout') ?>';
                             }
@@ -279,7 +299,7 @@ $_item = null;
                                         </a>
                                     <?php endif; ?>
 
-                                    <?php if($type == 'crosssell'): ?>
+                                    <?php if($type == 'crosssell-modal'): ?>
                                         <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
                                            class="product product-item-link-details">
                                             <?= __('More Informations') ?>
