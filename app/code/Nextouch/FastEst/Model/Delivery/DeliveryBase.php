@@ -81,20 +81,18 @@ class DeliveryBase implements InputInterface
 
     /**
      * TODO: replace mock data
-     * TODO: Manage parked deliveries, or those whose payment will take place in the future (Findomestic, Bank Transfer)
-     * TODO: Save all orders as parked and use a cronjob to confirm parked deliveries
      */
     public static function fromDomain(ShipmentInterface $shipment): self
     {
         return new self(
             Hour::ANY,
             Store::WEB,
-            strtoupper(uniqid()),
+            $shipment->getOrder()->getIncrementId(),
             0,
             $shipment->getOrder()->getDeliveryComment(),
             $shipment->getOrder()->getDeliveryDate(),
             $shipment->getOrder()->getDeliveryTime(),
-            true
+            false
         );
     }
 
