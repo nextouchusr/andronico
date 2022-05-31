@@ -48,7 +48,8 @@ class ChangeOrderStatusToPaid implements ObserverInterface
             $authorizeRes->getAccessToken(),
             $loginInfo,
             $order->getIncrementId(),
-            Status::PAID['status']
+            Status::PAID['status'],
+            $order->getFindomesticIssuerInstallmentId()
         );
 
         $updateOrderState = new UpdateOrderState(
