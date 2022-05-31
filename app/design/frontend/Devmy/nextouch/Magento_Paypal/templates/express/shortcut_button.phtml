@@ -1,0 +1,22 @@
+<?php /** @var \Magento\Paypal\Block\Express\InContext\SmartButton $block */ ?>
+
+<button
+        type="button"
+        id="paypal-express-btn"
+        class="button button-paypal action paypal checkout primary"
+        data-role="proceed-to-checkout"
+        data-mage-init='{
+            "Magento_Checkout/js/proceed-to-checkout":{
+                "checkoutUrl":"<?= $block->getUrl('checkout') ?>"
+            }
+        }'>
+    <span><?= __('Express Checkout Paypal') ?></span>
+</button>
+
+<script>
+    require(['jquery', 'jquery/jquery.cookie'], function ($) {
+        $('#paypal-express-btn').click(function () {
+            $.cookie('default_payment_method', 'paypal_express');
+        })
+    });
+</script>
