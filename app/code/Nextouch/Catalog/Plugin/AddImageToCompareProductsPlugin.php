@@ -2,46 +2,46 @@
 
 namespace Nextouch\Catalog\Plugin;
 
+use Magento\Catalog\CustomerData\CompareProducts;
 use Magento\Catalog\Helper\ImageFactory;
-use Magento\Catalog\Helper\Product\Compare;
+use Magento\Catalog\Helper\Product\Compare as CompareHelper;
 use Magento\Catalog\Model\ProductRepository;
 
 class AddImageToCompareProductsPlugin
 {
-    protected $helper;
-
-    protected $imageHelperFactory;
-
-    protected $productRepository;
+    private CompareHelper $compareHelper;
+    private ImageFactory $imageHelperFactory;
+    private ProductRepository $productRepository;
 
     public function __construct(
-        Compare $helper,
+        CompareHelper $compareHelper,
         ImageFactory $imageHelperFactory,
         ProductRepository $productRepository
-    )
-    {
-        $this->helper = $helper;
+    ) {
+        $this->compareHelper = $compareHelper;
         $this->imageHelperFactory = $imageHelperFactory;
         $this->productRepository = $productRepository;
     }
 
-    public function afterGetSectionData(\Magento\Catalog\CustomerData\CompareProducts $subject, $result)
+    /**
+     * @noinspection PhpUnusedParameterInspection
+     */
+    public function afterGetSectionData(CompareProducts $subject, array $result): array
     {
-
         $images = [];
 
-        foreach ($this->helper->getItemCollection() as $item) {
-
+        foreach ($this->compareHelper->getItemCollection() as $item) {
             $imageHelper = $this->imageHelperFactory->create();
 
             try {
                 $product = $this->productRepository->getById($item->getId());
 
-                $images[$item->getId()] = $imageHelper->init($product, 'recently_compared_products_grid_content_widget')->getUrl();
-            } catch (\Exception $ex) {
+                $images[$item->getId()] = $imageHelper
+                    ->init($product, 'recently_compared_products_grid_content_widget')
+                    ->getUrl();
+            } catch (\Exception $e) {
                 $images[$item->getId()] = $imageHelper->getDefaultPlaceholderUrl();
             }
-
         }
 
         $items = $result['items'];
