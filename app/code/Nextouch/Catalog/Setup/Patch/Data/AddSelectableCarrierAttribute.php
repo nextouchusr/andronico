@@ -11,9 +11,9 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Nextouch\Catalog\Api\Data\ProductInterface;
-use Nextouch\Catalog\Model\Config\Product\SelectableCouriers;
+use Nextouch\Catalog\Model\Config\Product\SelectableCarrier;
 
-class AddSelectableCouriersAttribute implements DataPatchInterface
+class AddSelectableCarrierAttribute implements DataPatchInterface
 {
     private ModuleDataSetupInterface $moduleDataSetup;
     private EavSetupFactory $eavSetupFactory;
@@ -46,13 +46,13 @@ class AddSelectableCouriersAttribute implements DataPatchInterface
 
         $productSetup->addAttribute(
             ProductAttributeInterface::ENTITY_TYPE_CODE,
-            ProductInterface::SELECTABLE_COURIERS,
+            ProductInterface::SELECTABLE_CARRIER,
             [
                 'group' => 'Product Details',
                 'type' => 'text',
-                'label' => 'Selectable Couriers',
-                'input' => 'multiselect',
-                'source' => SelectableCouriers::class,
+                'label' => 'Selectable Carrier',
+                'input' => 'select',
+                'source' => SelectableCarrier::class,
                 'backend' => ArrayBackend::class,
                 'required' => false,
                 'sort_order' => 25,

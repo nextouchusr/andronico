@@ -12,7 +12,7 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const ALTERNATIVE_CODE = 'alternative_code';
     public const BRAND = 'brand';
     public const FAST_EST_TYPE = 'fast_est_type';
-    public const SELECTABLE_COURIERS = 'selectable_couriers';
+    public const SELECTABLE_CARRIER = 'selectable_carrier';
     public const ECO_CHOICE = 'eco_choice';
     public const ECO_CHOICE_LEVEL = 'eco_choice_level';
     public const EASE_OF_USE = 'ease_of_use';
@@ -74,15 +74,15 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public function setFastEstType(int $fastEstType): self;
 
     /**
-     * @return string[]
+     * @return string
      */
-    public function getSelectableCouriers(): array;
+    public function getSelectableCarrier(): string;
 
     /**
-     * @param string[] $selectableCouriers
+     * @param string $selectableCarrier
      * @return ProductInterface
      */
-    public function setSelectableCouriers(array $selectableCouriers): self;
+    public function setSelectableCarrier(string $selectableCarrier): self;
 
     /**
      * @return string

@@ -58,14 +58,14 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
         return $this;
     }
 
-    public function getSelectableCouriers(): array
+    public function getSelectableCarrier(): string
     {
-        return (array) $this->getData(self::SELECTABLE_COURIERS);
+        return (string) $this->getData(self::SELECTABLE_CARRIER);
     }
 
-    public function setSelectableCouriers(array $selectableCouriers): self
+    public function setSelectableCarrier(string $selectableCarrier): self
     {
-        $this->setData(self::SELECTABLE_COURIERS, $selectableCouriers);
+        $this->setData(self::SELECTABLE_CARRIER, $selectableCarrier);
 
         return $this;
     }
