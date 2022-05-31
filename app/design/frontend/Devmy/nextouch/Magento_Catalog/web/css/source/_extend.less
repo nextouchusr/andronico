@@ -205,6 +205,36 @@
             &.product-easeofuse {
                 width: 100%;
                 box-shadow: none;
+                .more-less-content {
+                    .more-less-wrapper {
+                        max-height: 160px;
+                        overflow: hidden;
+                    }
+
+                    &.active {
+                        .more-less-wrapper {
+                            max-height: inherit;
+                        }
+                        .more-less {
+                            .less {
+                                display: block;
+                            }
+                            .more {
+                                display: none;
+                            }
+                        }
+                    }
+                    .more-less {
+                        display: block;
+                        text-align: center;
+                        .more {
+                            display: block;
+                        }
+                        .less {
+                            display: none;
+                        }
+                    }
+                }
             }
             &.product-attributes {
                 background: @theme__color__secondary;
@@ -289,6 +319,14 @@
 
     .product-media-wrapper {
         .product-addto-links {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            &:before,
+            &:after {
+                display: inline-block;
+                content: "";
+            }
             > a {
                 display: block;
                 margin: 50px 0;
@@ -643,6 +681,12 @@
             &.product-easeofuse {
                 width: 100%;
                 clear: both;
+                .more-less-content .more-less-wrapper {
+                    max-height: inherit!important;
+                    + .more-less {
+                        display: none;
+                    }
+                }
             }
         }
         .more-less {
@@ -681,6 +725,15 @@
 
             .product-add-form {
                 width: 100%;
+                .product-info-price {
+                    .price-final_price {
+                        color: @theme__color__secondary;
+                        font-weight: 700;
+                        .price {
+                            font-weight: 700;
+                        }
+                    }
+                }
             }
         }
     }

@@ -57,12 +57,16 @@ $layout = $block->getLayout();
             $(".more-less-content .more-less").on('click', function() {
               //   $(this).closest('.more-less-content').toggleClass('active');
                 var parentMoreLess = $(this).closest('.more-less-content');
+
                 if(parentMoreLess.hasClass('active')) {
                     $('.product-details-boxes-columns').addClass('active');
                 }
                 else {
                     $('.product-details-boxes-columns').removeClass('active');
                     $('html,body').animate({scrollTop: $(this).parent().offset().top - 200},400);
+                    if($(parentMoreLess).hasClass('more-less-content-easeofuse')) {
+                        $(this).toggleClass('active');
+                    }
                 }
             });
 

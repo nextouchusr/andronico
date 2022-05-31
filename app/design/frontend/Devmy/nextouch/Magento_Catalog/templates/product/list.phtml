@@ -211,15 +211,17 @@ $_helper = $block->getData('outputHelper');
 <script type="text/javascript">
     require(['jquery'], function ($) {
         $(document).ready(function () {
-            $('.open-filter-mobile').on('click', function() {
-                document.body.scrollTop = document.documentElement.scrollTop = 0;
-                $('#layered-filter-block').addClass('active').addClass('show');
-                $('body').addClass('filter-mobile-opened');
-            });
-            $('.close-filter-mobile').on('click', function() {
-                $('#layered-filter-block').removeClass('active').removeClass('show');
-                $('body').removeClass('filter-mobile-opened');
-            })
+            if($('#layered-filter-block').length) {
+                $('.open-filter-mobile').addClass('visible').on('click', function () {
+                    document.body.scrollTop = document.documentElement.scrollTop = 0;
+                    $('#layered-filter-block').addClass('active').addClass('show');
+                    $('body').addClass('filter-mobile-opened');
+                });
+                $('.close-filter-mobile').on('click', function () {
+                    $('#layered-filter-block').removeClass('active').removeClass('show');
+                    $('body').removeClass('filter-mobile-opened');
+                });
+            }
         });
     });
 </script>

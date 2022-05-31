@@ -438,6 +438,8 @@
             .action.tocart {
                 &:extend(.abs-button-l all);
                 margin-bottom: 50px;
+                color: @theme__color__primary;
+                padding: 20px 30px;
             }
         }
 
@@ -887,7 +889,23 @@
             justify-content: space-between;
             .product-info-main {
                 width: 73%;
-                order: 5
+                order: 5;
+                .product-add-form .product-info-price {
+                    .price-final_price .price {
+                        font-size: 4.5rem;
+                    }
+                    .old-price  {
+                        color: @theme__color__primary;
+                        .price-final_price .price {
+                            font-size: 2.3rem;
+                            font-weight: 300;
+                            color: @theme__color__primary;
+                        }
+                    }
+                }
+                .box-tocart .action.tocart, .product-options-bottom .box-tocart .action.tocart {
+                    font-size: 2rem;
+                }
             }
             .product.attribute.shortdescription-mobile {
                 display: none;
