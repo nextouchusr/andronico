@@ -20,10 +20,12 @@
         <move element="page.main.title" destination="content.top" before="-"/>
         <move element="customer-account-name" destination="content.top" after="page.main.title"/>
 
-
         <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true" />
         <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true" />
         <referenceBlock name="customer-account-navigation-giftregistry-link" remove="true" />
+        <referenceBlock name="customer-account-navigation-gift-card-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-billing-agreements-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-my-credit-cards-link" remove="true"/>
 
         <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-title-account" template="Magento_Customer::account/navigation-title.phtml">
             <arguments>
@@ -33,7 +35,6 @@
         </block>
         <block class="Magento\Customer\Block\Account\Delimiter" name="customer-account-navigation-title-perte" template="Magento_Customer::account/navigation-title.phtml">
             <arguments>
-                <argument name="title" translate="true" xsi:type="string">For you</argument>
                 <argument name="sortOrder" xsi:type="number">10</argument>
             </arguments>
         </block>
@@ -52,9 +53,6 @@
             </arguments>
         </block>
 
-        <referenceBlock name="customer-account-navigation-return-history-link">
-            <arguments><argument name="sortOrder" xsi:type="number">180</argument></arguments>
-        </referenceBlock>
         <referenceBlock name="customer-account-navigation-gift-card-link">
             <arguments><argument name="sortOrder" xsi:type="number">8</argument></arguments>
         </referenceBlock>
@@ -81,8 +79,6 @@
         <move element="customer-account-navigation-title-account" destination="customer_account_navigation" before="customer-account-navigation-account-link" />
         <move element="customer-account-navigation-title-lists" destination="customer_account_navigation" before="customer-account-navigation-wish-list-link" />
         <move element="customer-account-navigation-title-perte" destination="customer_account_navigation" after="customer-account-navigation-title-account" />
-        <move element="customer-account-navigation-return-history-link" destination="customer_account_navigation" />
-
-
+        <move element="customer-account-navigation-return-history-link" destination="customer_account_navigation" before="customer-account-navigation-address-link"/>
     </body>
 </page>
