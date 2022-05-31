@@ -7,10 +7,16 @@ use Nextouch\Catalog\Api\Data\ProductInterface;
 <div data-role="title">
     <h2><?= __('Easy to Use') ?></h2>
 </div>
-<div data-role="content">
+<div data-role="content" class="more-less-content more-less-content-easeofuse">
+    <div class="more-less-wrapper">
     <?= $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
         $block->getProduct(),
         $block->getProduct()->getEaseOfUse(),
         ProductInterface::EASE_OF_USE
     ); ?>
+    </div>
+    <div class="more-less">
+        <span class="more"> <?= __('Show more') ?></span>
+        <span class="less"> <?= __('Show less') ?></span>
+    </div>
 </div>

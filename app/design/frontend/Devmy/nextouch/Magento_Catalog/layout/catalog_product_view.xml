@@ -121,5 +121,6 @@
         <move element="product.info.addto" destination="product.info.media" after="product.info.stock.sku"/>
         <move element="product.info.social" destination="product.info.media" after="product.info.addto"/>
         <move element="product.info.price" destination="product.info" />
+        <move element="product.info.upsell" destination="page.wrapper" after="main.content" />
     </body>
 </page>
