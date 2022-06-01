@@ -10,39 +10,55 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class ServiceList implements InputInterface, OutputInterface
 {
-    private bool $productInstall;
-    private bool $usedPick;
-    private bool $assembly;
-    private bool $disassembly;
-    private bool $atFloor;
-    private bool $unpack;
-    private bool $deliveryByAppointment;
-    private bool $productPickup;
-    private bool $productDelivery;
-    private bool $noticeCall;
+    private bool $productInstall; // Installazione prodotto
+    private bool $usedPick; // Ritiro usato RAEE
+    private bool $assembly; // Incasso
+    private bool $disassembly; // Disincasso
+    private bool $roadside; // Consegna bordo strada
+    private bool $atFloor; // Consegna al piano
+    private bool $wallmount; // Montaggio a muro
+    private bool $axa; // Consegna in giornata
+    private bool $appointment; // Consegna su appuntamento
+    private bool $pickup; // Ritiro prodotto
+    private bool $delivery; // Consegna prodotto (default)
+    private bool $evening; // Consegna serale
+    private bool $festive; // Consegna festivo
+    private bool $gasvert; // Certificazione gas
+    private bool $bigtv; // Installazione TV di grandi dimensioni
 
     private function __construct(
+
         bool $productInstall,
         bool $usedPick,
         bool $assembly,
         bool $disassembly,
+        bool $roadside,
         bool $atFloor,
-        bool $unpack,
-        bool $deliveryByAppointment,
-        bool $productPickup,
-        bool $productDelivery,
-        bool $noticeCall
+        bool $wallmount,
+        bool $axa,
+        bool $appointment,
+        bool $pickup,
+        bool $delivery,
+        bool $evening,
+        bool $festive,
+        bool $gasvert,
+        bool $bigtv
     ) {
         $this->productInstall = $productInstall;
         $this->usedPick = $usedPick;
         $this->assembly = $assembly;
         $this->disassembly = $disassembly;
+        $this->roadside = $roadside;
         $this->atFloor = $atFloor;
-        $this->unpack = $unpack;
-        $this->deliveryByAppointment = $deliveryByAppointment;
-        $this->productPickup = $productPickup;
-        $this->productDelivery = $productDelivery;
-        $this->noticeCall = $noticeCall;
+        $this->wallmount = $wallmount;
+        $this->axa = $axa;
+        $this->appointment = $appointment;
+        $this->pickup = $pickup;
+        $this->delivery = $delivery;
+        $this->evening = $evening;
+        $this->festive = $festive;
+        $this->gasvert = $gasvert;
+        $this->bigtv = $bigtv;
     }
 
     public function hasProductInstall(): bool
@@ -65,49 +81,79 @@ class ServiceList implements InputInterface, OutputInterface
         return $this->disassembly;
     }
 
+    public function hasRoadside(): bool
+    {
+        return $this->roadside;
+    }
+
     public function hasAtFloor(): bool
     {
         return $this->atFloor;
     }
 
-    public function hasUnpack(): bool
+    public function hasWallmount(): bool
     {
-        return $this->unpack;
+        return $this->wallmount;
     }
 
-    public function hasDeliveryByAppointment(): bool
+    public function hasAxa(): bool
     {
-        return $this->deliveryByAppointment;
+        return $this->axa;
     }
 
-    public function hasProductPickup(): bool
+    public function hasAppointment(): bool
     {
-        return $this->productPickup;
+        return $this->appointment;
     }
 
-    public function hasProductDelivery(): bool
+    public function hasPickup(): bool
     {
-        return $this->productDelivery;
+        return $this->pickup;
     }
 
-    public function hasNoticeCall(): bool
+    public function hasDelivery(): bool
     {
-        return $this->noticeCall;
+        return $this->delivery;
+    }
+
+    public function hasEvening(): bool
+    {
+        return $this->evening;
+    }
+
+    public function hasFestive(): bool
+    {
+        return $this->festive;
+    }
+
+    public function hasGasvert(): bool
+    {
+        return $this->gasvert;
+    }
+
+    public function hasBigtv(): bool
+    {
+        return $this->bigtv;
     }
 
     public static function fromDomain(OrderItemInterface $orderItem): self
     {
         return new self(
-            $orderItem->hasProductInstallService(),
-            $orderItem->hasUsedPickService(),
-            $orderItem->hasAssemblyService(),
-            $orderItem->hasDisassemblyService(),
-            $orderItem->hasAtFloorService(),
-            $orderItem->hasUnpackService(),
-            $orderItem->hasDeliveryByAppointmentService(),
-            $orderItem->hasProductPickupService(),
-            $orderItem->hasProductDeliveryService(),
-            $orderItem->hasNoticeCallService()
+            $orderItem->hasProductInstall(),
+            false, // TODO: replace with real data
+            false, // TODO: replace with real data
+            false, // TODO: replace with real data
+            $orderItem->hasStreetLineDelivery(),
+            $orderItem->hasFloorDelivery(),
+            $orderItem->hasTvWallMounting(),
+            $orderItem->hasUrgentDelivery(),
+            $orderItem->hasAppointmentDelivery(),
+            false, // TODO: replace with real data
+            true,
+            $orderItem->hasEveningDelivery(),
+            $orderItem->hasSaturdayDelivery(),
+            $orderItem->hasHookupForCertifiedGas(),
+            false, // TODO: replace with real data
         );
     }
 
@@ -119,24 +165,34 @@ class ServiceList implements InputInterface, OutputInterface
         $usedPick = (bool) $propertyAccessor->getValue($object, 'used_pick');
         $assembly = (bool) $propertyAccessor->getValue($object, 'incasso');
         $disassembly = (bool) $propertyAccessor->getValue($object, 'disincasso');
+        $roadside = (bool) $propertyAccessor->getValue($object, 'service_roadside');
         $atFloor = (bool) $propertyAccessor->getValue($object, 'service_atfloor');
-        $unpack = (bool) $propertyAccessor->getValue($object, 'service_unpack');
-        $deliveryByAppointment = (bool) $propertyAccessor->getValue($object, 'service_appointment');
-        $productPickup = (bool) $propertyAccessor->getValue($object, 'service_pickup');
-        $productDelivery = (bool) $propertyAccessor->getValue($object, 'service_delivery');
-        $noticeCall = (bool) $propertyAccessor->getValue($object, 'service_call');
+        $wallmount = (bool) $propertyAccessor->getValue($object, 'service_wallmount');
+        $axa = (bool) $propertyAccessor->getValue($object, 'service_axa');
+        $appointment = (bool) $propertyAccessor->getValue($object, 'service_appointment');
+        $pickup = (bool) $propertyAccessor->getValue($object, 'service_pickup');
+        $delivery = (bool) $propertyAccessor->getValue($object, 'service_delivery');
+        $evening = (bool) $propertyAccessor->getValue($object, 'service_evening');
+        $festive = (bool) $propertyAccessor->getValue($object, 'service_festive');
+        $gasvert = (bool) $propertyAccessor->getValue($object, 'service_gasvert');
+        $bigtv = (bool) $propertyAccessor->getValue($object, 'service_bigtv');
 
         return new self(
             $productInstall,
             $usedPick,
             $assembly,
             $disassembly,
+            $roadside,
             $atFloor,
-            $unpack,
-            $deliveryByAppointment,
-            $productPickup,
-            $productDelivery,
-            $noticeCall
+            $wallmount,
+            $axa,
+            $appointment,
+            $pickup,
+            $delivery,
+            $evening,
+            $festive,
+            $gasvert,
+            $bigtv
         );
     }
 
@@ -147,12 +203,17 @@ class ServiceList implements InputInterface, OutputInterface
         $object->used_pick = (int) $this->hasUsedPick();
         $object->incasso = (int) $this->hasAssembly();
         $object->disincasso = (int) $this->hasDisassembly();
+        $object->service_roadside = (int) $this->hasRoadside();
         $object->service_atfloor = (int) $this->hasAtFloor();
-        $object->service_unpack = (int) $this->hasUnpack();
-        $object->service_appointment = (int) $this->hasDeliveryByAppointment();
-        $object->service_pickup = (int) $this->hasProductPickup();
-        $object->service_delivery = (int) $this->hasProductDelivery();
-        $object->service_call = (int) $this->hasNoticeCall();
+        $object->service_wallmount = (int) $this->hasWallmount();
+        $object->service_axa = (int) $this->hasAxa();
+        $object->service_appointment = (int) $this->hasAppointment();
+        $object->service_pickup = (int) $this->hasPickup();
+        $object->service_delivery = (int) $this->hasDelivery();
+        $object->service_evening = (int) $this->hasEvening();
+        $object->service_festive = (int) $this->hasFestive();
+        $object->service_gasvert = (int) $this->hasGasvert();
+        $object->service_bigtv = (int) $this->hasBigtv();
 
         return $object;
     }
