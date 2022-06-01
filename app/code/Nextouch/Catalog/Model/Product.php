@@ -117,4 +117,40 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
 
         return $this;
     }
+
+    public function isPickupable(): bool
+    {
+        return (bool) $this->getData(self::IS_PICKUPABLE);
+    }
+
+    public function setIsPickupable(bool $isPickupable): self
+    {
+        $this->setData(self::IS_PICKUPABLE, $isPickupable);
+
+        return $this;
+    }
+
+    public function getStreetLineDeliveryPrice(): float
+    {
+        return (float) $this->getData(self::STREET_LINE_DELIVERY_PRICE);
+    }
+
+    public function setStreetLineDeliveryPrice(float $streetLineDeliveryPrice): self
+    {
+        $this->setData(self::STREET_LINE_DELIVERY_PRICE, $streetLineDeliveryPrice);
+
+        return $this;
+    }
+
+    public function getFloorDeliveryPrice(): float
+    {
+        return (float) $this->getData(self::FLOOR_DELIVERY_PRICE);
+    }
+
+    public function setFloorDeliveryPrice(float $floorDeliveryPrice): self
+    {
+        $this->setData(self::FLOOR_DELIVERY_PRICE, $floorDeliveryPrice);
+
+        return $this;
+    }
 }

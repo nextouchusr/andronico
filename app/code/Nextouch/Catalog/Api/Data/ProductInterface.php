@@ -17,6 +17,9 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const ECO_CHOICE_LEVEL = 'eco_choice_level';
     public const EASE_OF_USE = 'ease_of_use';
     public const IS_RECOMMENDED = 'is_recommended';
+    public const IS_PICKUPABLE = 'is_pickupable';
+    public const STREET_LINE_DELIVERY_PRICE = 'street_line_delivery_price';
+    public const FLOOR_DELIVERY_PRICE = 'floor_delivery_price';
 
     // Customizable Options
     public const SERVICES_OPTION = 'services';
@@ -127,4 +130,37 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
      * @return ProductInterface
      */
     public function setIsRecommended(bool $isRecommended): self;
+
+    /**
+     * @return bool
+     */
+    public function isPickupable(): bool;
+
+    /**
+     * @param bool $isPickupable
+     * @return ProductInterface
+     */
+    public function setIsPickupable(bool $isPickupable): self;
+
+    /**
+     * @return float
+     */
+    public function getStreetLineDeliveryPrice(): float;
+
+    /**
+     * @param float $streetLineDeliveryPrice
+     * @return ProductInterface
+     */
+    public function setStreetLineDeliveryPrice(float $streetLineDeliveryPrice): self;
+
+    /**
+     * @return float
+     */
+    public function getFloorDeliveryPrice(): float;
+
+    /**
+     * @param float $floorDeliveryPrice
+     * @return ProductInterface
+     */
+    public function setFloorDeliveryPrice(float $floorDeliveryPrice): self;
 }
