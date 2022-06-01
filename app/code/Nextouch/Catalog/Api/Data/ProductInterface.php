@@ -21,21 +21,6 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const STREET_LINE_DELIVERY_PRICE = 'street_line_delivery_price';
     public const FLOOR_DELIVERY_PRICE = 'floor_delivery_price';
 
-    // Customizable Options
-    public const SERVICES_OPTION = 'services';
-
-    // Service Option Values
-    public const PRODUCT_INSTALL_SERVICE = 'product_install';
-    public const USED_PICK_SERVICE = 'used_pick';
-    public const ASSEMBLY_SERVICE = 'assembly';
-    public const DISASSEMBLY_SERVICE = 'disassembly';
-    public const AT_FLOOR_SERVICE = 'at_floor';
-    public const UNPACK_SERVICE = 'unpack';
-    public const DELIVERY_BY_APPOINTMENT_SERVICE = 'delivery_by_appointment';
-    public const PRODUCT_PICKUP_SERVICE = 'product_pickup';
-    public const PRODUCT_DELIVERY_SERVICE = 'product_delivery';
-    public const NOTICE_CALL_SERVICE = 'notice_call';
-
     public const DEFAULT_FAST_EST_TYPE = 20; // Altro
 
     /**
