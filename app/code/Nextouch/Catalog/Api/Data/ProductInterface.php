@@ -18,6 +18,8 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const EASE_OF_USE = 'ease_of_use';
     public const IS_RECOMMENDED = 'is_recommended';
     public const IS_PICKUPABLE = 'is_pickupable';
+    public const IS_RETURNABLE = 'is_returnable';
+    public const IS_RETURNABLE_IN_STORE = 'is_returnable_in_store';
     public const STREET_LINE_DELIVERY_PRICE = 'street_line_delivery_price';
     public const FLOOR_DELIVERY_PRICE = 'floor_delivery_price';
 
@@ -126,6 +128,17 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
      * @return ProductInterface
      */
     public function setIsPickupable(bool $isPickupable): self;
+
+    /**
+     * @return bool
+     */
+    public function isReturnableInStore(): bool;
+
+    /**
+     * @param bool $isReturnableInStore
+     * @return ProductInterface
+     */
+    public function setIsReturnableInStore(bool $isReturnableInStore): self;
 
     /**
      * @return float

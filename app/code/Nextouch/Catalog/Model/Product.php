@@ -130,6 +130,18 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
         return $this;
     }
 
+    public function isReturnableInStore(): bool
+    {
+        return (bool) $this->getData(self::IS_RETURNABLE_IN_STORE);
+    }
+
+    public function setIsReturnableInStore(bool $isReturnableInStore): self
+    {
+        $this->setData(self::IS_RETURNABLE_IN_STORE, $isReturnableInStore);
+
+        return $this;
+    }
+
     public function getStreetLineDeliveryPrice(): float
     {
         return (float) $this->getData(self::STREET_LINE_DELIVERY_PRICE);
