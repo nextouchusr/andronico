@@ -142,6 +142,11 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
         return $this;
     }
 
+    public function getDeliveryPrice(): float
+    {
+        return $this->getStreetLineDeliveryPrice() ?: $this->getFloorDeliveryPrice();
+    }
+
     public function getStreetLineDeliveryPrice(): float
     {
         return (float) $this->getData(self::STREET_LINE_DELIVERY_PRICE);

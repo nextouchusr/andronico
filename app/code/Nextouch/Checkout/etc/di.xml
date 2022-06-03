@@ -5,4 +5,9 @@
         <plugin name="filter_shipping_methods_based_on_cart"
                 type="Nextouch\Checkout\Plugin\Model\FilterShippingMethodsBasedOnCart"/>
     </type>
+
+    <type name="Magento\Quote\Model\Quote\Address\RateResult\Method">
+        <plugin name="calculate_shipping_method_price"
+                type="Nextouch\Checkout\Plugin\Model\Quote\Address\RateResult\CalculateShippingMethodPrice"/>
+    </type>
 </config>
