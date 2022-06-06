@@ -50,7 +50,8 @@ class Dhl extends AbstractCarrier implements CarrierInterface
         $method->setMethod($this->_code);
         $method->setMethodTitle($this->getConfigData('name'));
 
-        $shippingCost = 10; // TODO: replace mock shipping cost with calculated one
+        // The shipping cost will be calculated using CalculateShippingMethodPrice.php
+        $shippingCost = 0;
 
         $method->setPrice($shippingCost);
         $method->setCost($shippingCost);

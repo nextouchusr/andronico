@@ -41,7 +41,7 @@ class OrderRepository implements OrderRepositoryInterface
         /** @var OrderInterface $order */
         $order = $this->collectionFactory
             ->create()
-            ->addFieldToFilter('increment_id', $incrementId)
+            ->addFieldToFilter(OrderInterface::INCREMENT_ID, $incrementId)
             ->getFirstItem();
 
         if (!$order->getId()) {
