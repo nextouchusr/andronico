@@ -143,6 +143,11 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     /**
      * @return float
      */
+    public function getDeliveryPrice(): float;
+
+    /**
+     * @return float
+     */
     public function getStreetLineDeliveryPrice(): float;
 
     /**

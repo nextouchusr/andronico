@@ -6,7 +6,9 @@ namespace Nextouch\Quote\Model;
 use Magento\Framework\App\ObjectManager;
 use Nextouch\Quote\Api\Data\AddressInterface;
 use Nextouch\Quote\Api\Data\CartInterface;
+use Nextouch\Quote\Api\Data\CartItemInterface;
 use Nextouch\Quote\Model\ResourceModel\Quote\Address\CollectionFactory as AddressCollectionFactory;
+use Nextouch\Quote\Model\ResourceModel\Quote\Item\CollectionFactory as ItemCollectionFactory;
 
 class Quote extends \Magento\Quote\Model\Quote implements CartInterface
 {
@@ -52,5 +54,20 @@ class Quote extends \Magento\Quote\Model\Quote implements CartInterface
         $this->setData(self::FINDOMESTIC_ISSUER_INSTALLMENT_ID, $issuerInstallmentId);
 
         return $this;
+    }
+
+    public function getItems(): array
+    {
+        if (!$this->getData(self::KEY_ITEMS)) {
+            $collectionFactory = ObjectManager::getInstance()->get(ItemCollectionFactory::class);
+            $items = $collectionFactory
+                ->create()
+                ->addFilter(CartItemInterface::KEY_QUOTE_ID, $this->getId())
+                ->getItems();
+
+            $this->setData(self::KEY_ITEMS, $items);
+        }
+
+        return $this->getData(self::KEY_ITEMS);
     }
 }

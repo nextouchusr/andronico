@@ -42,4 +42,9 @@ interface CartInterface extends \Magento\Quote\Api\Data\CartInterface
      * @return \Nextouch\Quote\Api\Data\CartInterface
      */
     public function setFindomesticIssuerInstallmentId(string $issuerInstallmentId): self;
+
+    /**
+     * @return \Nextouch\Quote\Api\Data\CartItemInterface[]
+     */
+    public function getItems(): array;
 }

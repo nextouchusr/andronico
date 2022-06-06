@@ -12,9 +12,9 @@ class SelectableCarrier extends AbstractSource implements SourceInterface, Optio
     public function getAllOptions(): array
     {
         $this->_options = [
-            ['label' => 'Fast-Est', 'value' => 'fast_est_fast_est'],
-            ['label' => 'DHL', 'value' => 'dhl_dhl'],
-            ['label' => 'GLS', 'value' => 'gls_gls'],
+            ['label' => 'Fast-Est', 'value' => 'fast_est'],
+            ['label' => 'DHL', 'value' => 'dhl'],
+            ['label' => 'GLS', 'value' => 'gls'],
         ];
 
         return $this->_options;
