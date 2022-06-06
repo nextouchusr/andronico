@@ -36,6 +36,10 @@ class FilterShippingMethodsBasedOnCart
     public function afterEstimateByAddressId(ShippingMethodManagementInterface $subject, array $result): array
     {
         return reduce(function (array $acc, ShippingMethodInterface $curr) {
+            if ($this->isShippableWithInStorePickup() && $curr->getCarrierCode() === 'instore') {
+                return [$curr, ...$acc];
+            }
+
             if ($this->isShippableWithFastEst() && $curr->getCarrierCode() === FastEst::CODE) {
                 return [$curr, ...$acc];
             }
@@ -50,6 +54,16 @@ class FilterShippingMethodsBasedOnCart
 
             return $acc;
         }, $result, []);
+    }
+
+    /**
+     * @throws LocalizedException
+     */
+    private function isShippableWithInStorePickup(): bool
+    {
+        return all(function (CartItemInterface $item) {
+            return $item->getProduct()->isPickupable();
+        }, $this->getQuote()->getItems());
     }
 
     /**
