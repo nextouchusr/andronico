@@ -6,6 +6,7 @@ namespace Nextouch\Checkout\Plugin\Model;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\ShippingMethodInterface;
+use Magento\Quote\Api\ShipmentEstimationInterface;
 use Magento\Quote\Api\ShippingMethodManagementInterface;
 use Nextouch\Dhl\Model\Carrier\Dhl;
 use Nextouch\FastEst\Model\Carrier\FastEst;
@@ -32,8 +33,26 @@ class FilterShippingMethodsBasedOnCart
 
     /**
      * @throws LocalizedException
+     * @noinspection PhpUnusedParameterInspection
      */
     public function afterEstimateByAddressId(ShippingMethodManagementInterface $subject, array $result): array
+    {
+        return $this->filterShippingMethods($result);
+    }
+
+    /**
+     * @throws LocalizedException
+     * @noinspection PhpUnusedParameterInspection
+     */
+    public function afterEstimateByExtendedAddress(ShipmentEstimationInterface $subject, array $result): array
+    {
+        return $this->filterShippingMethods($result);
+    }
+
+    /**
+     * @throws LocalizedException
+     */
+    private function filterShippingMethods(array $shippingMethods): array
     {
         return reduce(function (array $acc, ShippingMethodInterface $curr) {
             if ($curr->getCarrierCode() === 'instore' && $this->isShippableWithInStorePickup()) {
@@ -53,7 +72,7 @@ class FilterShippingMethodsBasedOnCart
             }
 
             return $acc;
-        }, $result, []);
+        }, $shippingMethods, []);
     }
 
     /**
