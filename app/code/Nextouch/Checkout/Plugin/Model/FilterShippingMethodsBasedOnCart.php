@@ -36,19 +36,19 @@ class FilterShippingMethodsBasedOnCart
     public function afterEstimateByAddressId(ShippingMethodManagementInterface $subject, array $result): array
     {
         return reduce(function (array $acc, ShippingMethodInterface $curr) {
-            if ($this->isShippableWithInStorePickup() && $curr->getCarrierCode() === 'instore') {
+            if ($curr->getCarrierCode() === 'instore' && $this->isShippableWithInStorePickup()) {
                 return [$curr, ...$acc];
             }
 
-            if ($this->isShippableWithFastEst() && $curr->getCarrierCode() === FastEst::CODE) {
+            if ($curr->getCarrierCode() === FastEst::CODE && $this->isShippableWithFastEst()) {
                 return [$curr, ...$acc];
             }
 
-            if ($this->isShippableWithDhl() && $curr->getCarrierCode() === Dhl::CODE) {
+            if ($curr->getCarrierCode() === Dhl::CODE && $this->isShippableWithDhl()) {
                 return [$curr, ...$acc];
             }
 
-            if ($this->isShippableWithGls() && $curr->getCarrierCode() === Gls::CODE) {
+            if ($curr->getCarrierCode() === Gls::CODE && $this->isShippableWithGls()) {
                 return [$curr, ...$acc];
             }
 
