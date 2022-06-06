@@ -76,8 +76,8 @@ class CalculateShippingMethodPrice
      */
     private function getItemWithMostExpensiveShipping(): CartItemInterface
     {
-        $itemsSortedByShippingPrice = \Lambdish\Phunctional\sort(function (CartItemInterface $item) {
-            return $item->getProduct()->getDeliveryPrice();
+        $itemsSortedByShippingPrice = \Lambdish\Phunctional\sort(function (CartItemInterface $a, CartItemInterface $b) {
+            return $b->getProduct()->getDeliveryPrice() - $a->getProduct()->getDeliveryPrice();
         }, $this->getQuote()->getItems());
 
         return first($itemsSortedByShippingPrice);
