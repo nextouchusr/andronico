@@ -79,9 +79,6 @@ class DeliveryBase implements InputInterface
         return $this->isParked;
     }
 
-    /**
-     * TODO: replace mock data
-     */
     public static function fromDomain(ShipmentInterface $shipment): self
     {
         return new self(
@@ -92,7 +89,7 @@ class DeliveryBase implements InputInterface
             $shipment->getOrder()->getDeliveryComment(),
             $shipment->getOrder()->getDeliveryDate(),
             $shipment->getOrder()->getDeliveryTime(),
-            false
+            true
         );
     }
 

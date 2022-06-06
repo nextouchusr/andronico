@@ -85,7 +85,7 @@ class SlotRequest implements InputInterface
             TimeSlotRange::fromToday(),
             $cart->getCustomerPostCode(),
             $cart->getQuantity(),
-            Place::STORE
+            Place::HYPOTENUSE
         );
     }
 

@@ -8,7 +8,9 @@ use Nextouch\FastEst\Model\Common\Login;
 use Nextouch\FastEst\Model\Delivery\Customer;
 use Nextouch\FastEst\Model\Delivery\DeliveryBase;
 use Nextouch\FastEst\Model\Delivery\Product;
+use Nextouch\FastEst\Model\Request\Delivery\ConfirmParkedDelivery as ConfirmParkedDeliveryRequest;
 use Nextouch\FastEst\Model\Request\Delivery\InsertNewDelivery as InsertNewDeliveryRequest;
+use Nextouch\FastEst\Model\Response\Delivery\ConfirmParkedDelivery as ConfirmParkedDeliveryResponse;
 use Nextouch\FastEst\Model\Response\Delivery\InsertNewDelivery as InsertNewDeliveryResponse;
 use Nextouch\Sales\Api\Data\ShipmentInterface;
 use Nextouch\Sales\Api\Data\ShipmentItemInterface;
@@ -30,5 +32,19 @@ class DeliveryRepository extends AbstractBaseRepository implements DeliveryRepos
         $result = $this->doRequest('insert_new_delivery', $request);
 
         return InsertNewDeliveryResponse::fromObject($result);
+    }
+
+    public function confirmParked(ShipmentInterface $shipment): ConfirmParkedDeliveryResponse
+    {
+        $username = $this->config->getUsername($this->scopeCode);
+        $password = $this->config->getPassword($this->scopeCode);
+
+        $login = new Login($username, $password);
+        $storeOrder = $shipment->getOrder()->getIncrementId();
+        $request = new ConfirmParkedDeliveryRequest($login, $storeOrder);
+
+        $result = $this->doRequest('confirm_parked_delivery', $request);
+
+        return ConfirmParkedDeliveryResponse::fromObject($result);
     }
 }

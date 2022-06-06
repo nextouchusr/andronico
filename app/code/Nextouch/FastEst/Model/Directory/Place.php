@@ -8,7 +8,6 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class Place implements OutputInterface
 {
-    public const STORE = 2;
     public const HYPOTENUSE = 11;
 
     private int $placeId;
