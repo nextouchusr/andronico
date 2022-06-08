@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\Sales\Model;
 
+use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -15,13 +16,16 @@ class OrderManagement implements OrderManagementInterface
 {
     private CollectionFactory $collectionFactory;
     private OrderRepositoryInterface $orderRepository;
+    private ManagerInterface $eventManager;
 
     public function __construct(
         CollectionFactory $collectionFactory,
-        OrderRepositoryInterface $orderRepository
+        OrderRepositoryInterface $orderRepository,
+        ManagerInterface $eventManager
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->orderRepository = $orderRepository;
+        $this->eventManager = $eventManager;
     }
 
     public function inDelivery(int $id): bool
@@ -38,14 +42,14 @@ class OrderManagement implements OrderManagementInterface
 
     public function deliver(int $id): bool
     {
-        return $this->changeStatus($id, Status::DELIVERED);
+        return $this->changeStatus($id, Status::COMPLETE);
     }
 
     public function deliverByIncrementId(string $incrementId): bool
     {
         $order = $this->orderRepository->getByIncrementId($incrementId);
 
-        return $this->changeStatus((int) $order->getId(), Status::DELIVERED);
+        return $this->changeStatus((int) $order->getId(), Status::COMPLETE);
     }
 
     /**
@@ -60,6 +64,10 @@ class OrderManagement implements OrderManagementInterface
         $order->setState($status['state']);
 
         $this->orderRepository->save($order);
+
+        $this->eventManager->dispatch('sales_order_status_change_to_' . $status['status'], [
+            'order' => $order,
+        ]);
 
         return true;
     }

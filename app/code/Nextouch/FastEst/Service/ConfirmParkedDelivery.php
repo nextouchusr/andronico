@@ -3,14 +3,13 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Service;
 
-use Collections\Exceptions\InvalidArgumentException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\OrderInterface;
 use Nextouch\FastEst\Api\DeliveryRepositoryInterface;
 use Nextouch\FastEst\Model\Carrier\FastEst;
 use Nextouch\Sales\Api\OrderRepositoryInterface;
 
-class CreateNewDelivery
+class ConfirmParkedDelivery
 {
     private OrderRepositoryInterface $orderRepository;
     private DeliveryRepositoryInterface $deliveryRepository;
@@ -24,10 +23,9 @@ class CreateNewDelivery
     }
 
     /**
-     * @throws InvalidArgumentException
      * @throws LocalizedException
      */
-    public function create(OrderInterface $order): void
+    public function confirm(OrderInterface $order): void
     {
         $fastEstOrder = $this->orderRepository->get((int) $order->getEntityId());
 
@@ -35,12 +33,12 @@ class CreateNewDelivery
             return;
         }
 
-        $response = $this->deliveryRepository->create($fastEstOrder);
+        $response = $this->deliveryRepository->confirmParked($fastEstOrder);
         $statusReturn = $response->getStatusReturn();
 
         if ($statusReturn->isOk()) {
             $fastEstOrder->resetShippingSyncFailures();
-            $fastEstOrder->setIsParked(true);
+            $fastEstOrder->setIsParked(false);
         } else {
             $fastEstOrder->increaseShippingSyncFailures();
         }

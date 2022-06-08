@@ -85,11 +85,6 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
         return $this->hasSelectedService(self::HOOKUP_AND_BUILD_IN);
     }
 
-    public function hasHookupForCertifiedGas(): bool
-    {
-        return $this->hasSelectedService(self::HOOKUP_FOR_CERTIFIED_GAS);
-    }
-
     public function hasStandardTvInstallation(): bool
     {
         return $this->hasSelectedService(self::STANDARD_TV_INSTALLATION);

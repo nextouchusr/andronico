@@ -20,7 +20,6 @@ interface OrderItemInterface extends \Magento\Sales\Api\Data\OrderItemInterface
     public const SATURDAY_DELIVERY = 'saturday_delivery';
     public const HOOKUP_TO_ELECTRICAL_GRID = 'hookup_to_electrical_grid';
     public const HOOKUP_AND_BUILD_IN = 'hookup_and_build_in';
-    public const HOOKUP_FOR_CERTIFIED_GAS = 'hookup_for_certified_gas';
     public const STANDARD_TV_INSTALLATION = 'standard_tv_installation';
     public const CONNECTIVITY_AND_TV_DEMONSTRATION = 'connectivity_and_tv_demonstration';
     public const PERIPHERAL_INSTALLATION_TO_TV = 'peripheral_installation_to_tv';
@@ -87,11 +86,6 @@ interface OrderItemInterface extends \Magento\Sales\Api\Data\OrderItemInterface
      * @return bool
      */
     public function hasHookupAndBuildIn(): bool;
-
-    /**
-     * @return bool
-     */
-    public function hasHookupForCertifiedGas(): bool;
 
     /**
      * @return bool

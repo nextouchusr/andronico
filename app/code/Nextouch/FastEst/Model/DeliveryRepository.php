@@ -12,21 +12,21 @@ use Nextouch\FastEst\Model\Request\Delivery\ConfirmParkedDelivery as ConfirmPark
 use Nextouch\FastEst\Model\Request\Delivery\InsertNewDelivery as InsertNewDeliveryRequest;
 use Nextouch\FastEst\Model\Response\Delivery\ConfirmParkedDelivery as ConfirmParkedDeliveryResponse;
 use Nextouch\FastEst\Model\Response\Delivery\InsertNewDelivery as InsertNewDeliveryResponse;
-use Nextouch\Sales\Api\Data\ShipmentInterface;
-use Nextouch\Sales\Api\Data\ShipmentItemInterface;
+use Nextouch\Sales\Api\Data\OrderInterface;
+use Nextouch\Sales\Api\Data\OrderItemInterface;
 use function Lambdish\Phunctional\map;
 
 class DeliveryRepository extends AbstractBaseRepository implements DeliveryRepositoryInterface
 {
-    public function create(ShipmentInterface $shipment): InsertNewDeliveryResponse
+    public function create(OrderInterface $order): InsertNewDeliveryResponse
     {
         $username = $this->config->getUsername($this->scopeCode);
         $password = $this->config->getPassword($this->scopeCode);
 
         $login = new Login($username, $password);
-        $customer = Customer::fromDomain($shipment->getShippingAddress());
-        $deliveryBase = DeliveryBase::fromDomain($shipment);
-        $products = map(fn(ShipmentItemInterface $item) => Product::fromDomain($item), $shipment->getItems());
+        $customer = Customer::fromDomain($order->getShippingAddress());
+        $deliveryBase = DeliveryBase::fromDomain($order);
+        $products = map(fn(OrderItemInterface $item) => Product::fromDomain($item), $order->getItems());
         $request = new InsertNewDeliveryRequest($login, $customer, $deliveryBase, $products);
 
         $result = $this->doRequest('insert_new_delivery', $request);
@@ -34,13 +34,13 @@ class DeliveryRepository extends AbstractBaseRepository implements DeliveryRepos
         return InsertNewDeliveryResponse::fromObject($result);
     }
 
-    public function confirmParked(ShipmentInterface $shipment): ConfirmParkedDeliveryResponse
+    public function confirmParked(OrderInterface $order): ConfirmParkedDeliveryResponse
     {
         $username = $this->config->getUsername($this->scopeCode);
         $password = $this->config->getPassword($this->scopeCode);
 
         $login = new Login($username, $password);
-        $storeOrder = $shipment->getOrder()->getIncrementId();
+        $storeOrder = $order->getIncrementId();
         $request = new ConfirmParkedDeliveryRequest($login, $storeOrder);
 
         $result = $this->doRequest('confirm_parked_delivery', $request);

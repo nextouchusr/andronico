@@ -9,13 +9,15 @@ class Status
     private const PAID_ORDER_STATUS = 'paid';
     private const SHIPPED_ORDER_STATUS = 'shipped';
     private const IN_DELIVERY_ORDER_STATUS = 'in_delivery';
-    private const DELIVERED_ORDER_STATUS = 'delivered';
+    private const COMPLETE_ORDER_STATUS = 'complete';
+    private const CANCELED_ORDER_STATUS = 'canceled';
 
     private const PROCESSING_ORDER_STATE = 'processing';
     private const PAID_ORDER_STATE = 'processing';
     private const SHIPPED_ORDER_STATE = 'complete';
     private const IN_DELIVERY_ORDER_STATE = 'complete';
-    private const DELIVERED_ORDER_STATE = 'complete';
+    private const COMPLETE_ORDER_STATE = 'complete';
+    private const CANCELED_ORDER_STATE = 'canceled';
 
     public const PROCESSING = [
         'status' => self::PROCESSING_ORDER_STATUS,
@@ -37,8 +39,13 @@ class Status
         'state' => self::IN_DELIVERY_ORDER_STATE,
     ];
 
-    public const DELIVERED = [
-        'status' => self::DELIVERED_ORDER_STATUS,
-        'state' => self::DELIVERED_ORDER_STATE,
+    public const COMPLETE = [
+        'status' => self::COMPLETE_ORDER_STATUS,
+        'state' => self::COMPLETE_ORDER_STATE,
+    ];
+
+    public const CANCELED = [
+        'status' => self::CANCELED_ORDER_STATUS,
+        'state' => self::CANCELED_ORDER_STATE,
     ];
 }

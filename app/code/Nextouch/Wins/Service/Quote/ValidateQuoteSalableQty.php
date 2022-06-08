@@ -1,12 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Nextouch\Wins\Plugin\Quote\Model;
+namespace Nextouch\Wins\Service\Quote;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\Quote\Item as QuoteItem;
-use Magento\Quote\Model\QuoteManagement;
 use Nextouch\Wins\Api\AuthManagementInterface;
 use Nextouch\Wins\Api\ProductSalableQtyManagementInterface;
 use Nextouch\Wins\Helper\WinsConfig;
@@ -18,7 +17,7 @@ use Nextouch\Wins\Model\Response\Inventory\GetProductAvailability as GetProductA
 use function Lambdish\Phunctional\each;
 use function Lambdish\Phunctional\some;
 
-class CheckProductSalableQty
+class ValidateQuoteSalableQty
 {
     private ProductSalableQtyManagementInterface $productSalableQtyManagement;
     private AuthManagementInterface $authManagement;
@@ -36,33 +35,18 @@ class CheckProductSalableQty
 
     /**
      * @throws LocalizedException
-     * @noinspection PhpUnusedParameterInspection
      */
-    public function beforeSubmit(QuoteManagement $subject, Quote $quote, array $orderData = []): array
-    {
-        try {
-            $this->validateQuoteBeforeSubmit($quote);
-        } catch (LocalizedException $e) {
-            throw new LocalizedException(__('Impossible to place order: %1', $e->getLogMessage()));
-        }
-
-        return [$quote, $orderData];
-    }
-
-    /**
-     * @throws LocalizedException
-     */
-    private function validateQuoteBeforeSubmit(Quote $quote): void
+    public function validate(Quote $quote): void
     {
         $items = $quote->getItems() ?? [];
 
-        each(fn(QuoteItem $item) => $this->validateProductSalableQty($item), $items);
+        each(fn(QuoteItem $item) => $this->validateItem($item), $items);
     }
 
     /**
      * @throws LocalizedException
      */
-    private function validateProductSalableQty(QuoteItem $quoteItem): void
+    private function validateItem(QuoteItem $quoteItem): void
     {
         $getProductAvailability = $this->getProductAvailability($quoteItem);
 
@@ -98,8 +82,13 @@ class CheckProductSalableQty
 
     private function getSpinCode(QuoteItem $quoteItem): string
     {
-        $spinCode = $quoteItem
-            ->getQuote()
+        $quote = $quoteItem->getQuote();
+
+        if (!$quote) {
+            return GetProductAvailabilityRequest::DEFAULT_SPIN_CODE;
+        }
+
+        $spinCode = $quote
             ->getShippingAddress()
             ->getExtensionAttributes()
             ->getPickupLocationCode();

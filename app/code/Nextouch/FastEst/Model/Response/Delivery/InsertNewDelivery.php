@@ -43,7 +43,8 @@ class InsertNewDelivery implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $deliveryReturns = $propertyAccessor->getValue($object, 'delivery_return');
+        $hasDeliveryReturns = $propertyAccessor->isReadable($object, 'delivery_return');
+        $deliveryReturns = $hasDeliveryReturns ? $propertyAccessor->getValue($object, 'delivery_return') : [];
         $deliveryReturns = is_array($deliveryReturns) ? $deliveryReturns : [$deliveryReturns];
 
         return new self(
