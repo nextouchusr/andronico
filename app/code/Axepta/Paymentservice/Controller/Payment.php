@@ -10,6 +10,7 @@ use Magento\Customer\Api\Data\GroupInterfaceFactory;
 use Magento\Payment\Block\Transparent\Iframe;
 use Magento\Sales\Model\Order;
 use Magento\Setup\Exception;
+use Nextouch\Sales\Model\Order\Status;
 
 /*
 **
@@ -257,13 +258,8 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
             case 'authorize_capture':
                 $order->addStatusHistoryComment(__('Payment processing.'));
                 $payment->setAdditionalInformation('state', 'processing');
-
-                // Axepta code commented, because the order status that we need is PAID[PROCESSING]
-                // $orderState = Order::STATE_PROCESSING;
-                // $order->setState($orderState)->setStatus(Order::STATE_PROCESSING);
-
                 $orderState = Order::STATE_PROCESSING;
-                $order->setState($orderState)->setStatus('paid');
+                $order->setState($orderState)->setStatus(Order::STATE_PROCESSING);
 
                 $totalDue = $order->getTotalDue();
                 $baseTotalDue = $order->getBaseTotalDue();
@@ -285,6 +281,9 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
         $payment->setAdditionalInformation('transaction_id', $response['tranID']);
         $payment->setAdditionalInformation('return_code', $response['returnCode']);
         $payment->save();
+
+        $orderState = Order::STATE_PROCESSING;
+        $order->setState($orderState)->setStatus(Status::PAID['status']);
         $order->save();
 
         $lastQuoteId = $this->getCheckout()->getLastQuoteId();
