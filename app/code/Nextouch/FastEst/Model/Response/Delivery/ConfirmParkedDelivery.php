@@ -11,10 +11,12 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class ConfirmParkedDelivery implements OutputInterface
 {
     private StatusReturn $statusReturn;
-    private DeliveryReturn $deliveryReturn;
+    private ?DeliveryReturn $deliveryReturn;
 
-    private function __construct(StatusReturn $statusReturn, DeliveryReturn $deliveryReturn)
-    {
+    private function __construct(
+        StatusReturn $statusReturn,
+        ?DeliveryReturn $deliveryReturn = null
+    ) {
         $this->statusReturn = $statusReturn;
         $this->deliveryReturn = $deliveryReturn;
     }
@@ -24,7 +26,7 @@ class ConfirmParkedDelivery implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getDeliveryReturn(): DeliveryReturn
+    public function getDeliveryReturn(): ?DeliveryReturn
     {
         return $this->deliveryReturn;
     }
@@ -34,11 +36,17 @@ class ConfirmParkedDelivery implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $deliveryReturn = $propertyAccessor->getValue($object, 'delivery_return');
+        $hasDeliveryReturn = $propertyAccessor->isReadable($object, 'delivery_return');
 
-        return new self(
-            StatusReturn::fromObject($statusReturn),
-            DeliveryReturn::fromObject($deliveryReturn)
-        );
+        if ($hasDeliveryReturn) {
+            $deliveryReturn = $propertyAccessor->getValue($object, 'delivery_return');
+
+            return new self(
+                StatusReturn::fromObject($statusReturn),
+                DeliveryReturn::fromObject($deliveryReturn)
+            );
+        }
+
+        return new self(StatusReturn::fromObject($statusReturn));
     }
 }

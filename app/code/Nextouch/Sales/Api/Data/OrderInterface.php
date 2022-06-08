@@ -12,6 +12,8 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
 {
     public const DELIVERY_INFORMATION = 'delivery_information';
     public const ORDER_SYNC_FAILURES = 'order_sync_failures';
+    public const SHIPPING_SYNC_FAILURES = 'shipping_sync_failures';
+    public const IS_PARKED = 'is_parked';
     public const INVOICE_PDF_FILE = 'invoice_pdf_file';
     public const FINDOMESTIC_APPLICATION_ID = 'findomestic_application_id';
     public const FINDOMESTIC_ISSUER_INSTALLMENT_ID = 'findomestic_issuer_installment_id';
@@ -21,6 +23,7 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public const FINDOMESTIC_APPLICATION_STATUS_TO_ACTIVATE = 1;
     public const FINDOMESTIC_APPLICATION_STATUS_ACTIVE = 2;
     public const FINDOMESTIC_APPLICATION_STATUS_CANCEL = 3;
+    public const FINDOMESTIC_APPLICATION_STATUS_DECLINE = 4;
 
     /**
      * @param string $shippingMethod
@@ -90,6 +93,42 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public function resetOrderSyncFailures(): self;
 
     /**
+     * @return int
+     */
+    public function getShippingSyncFailures(): int;
+
+    /**
+     * @return OrderInterface
+     */
+    public function increaseShippingSyncFailures(): self;
+
+    /**
+     * @return OrderInterface
+     */
+    public function decreaseShippingSyncFailures(): self;
+
+    /**
+     * @return OrderInterface
+     */
+    public function resetShippingSyncFailures(): self;
+
+    /**
+     * @return bool
+     */
+    public function getIsParked(): bool;
+
+    /**
+     * @param bool $isParked
+     * @return OrderInterface
+     */
+    public function setIsParked(bool $isParked): self;
+
+    /**
+     * @return bool
+     */
+    public function isPaid(): bool;
+
+    /**
      * @return string
      */
     public function getFindomesticApplicationId(): string;
@@ -150,6 +189,16 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
      * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function setFindomesticApplicationCancel(): self;
+
+    /**
+     * @return bool
+     */
+    public function isFindomesticApplicationDecline(): bool;
+
+    /**
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setFindomesticApplicationDecline(): self;
 
     /**
      * @return bool

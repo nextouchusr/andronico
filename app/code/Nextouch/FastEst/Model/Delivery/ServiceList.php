@@ -23,11 +23,9 @@ class ServiceList implements InputInterface, OutputInterface
     private bool $delivery; // Consegna prodotto (default)
     private bool $evening; // Consegna serale
     private bool $festive; // Consegna festivo
-    private bool $gasvert; // Certificazione gas
     private bool $bigtv; // Installazione TV di grandi dimensioni
 
     private function __construct(
-
         bool $productInstall,
         bool $usedPick,
         bool $assembly,
@@ -41,7 +39,6 @@ class ServiceList implements InputInterface, OutputInterface
         bool $delivery,
         bool $evening,
         bool $festive,
-        bool $gasvert,
         bool $bigtv
     ) {
         $this->productInstall = $productInstall;
@@ -57,7 +54,6 @@ class ServiceList implements InputInterface, OutputInterface
         $this->delivery = $delivery;
         $this->evening = $evening;
         $this->festive = $festive;
-        $this->gasvert = $gasvert;
         $this->bigtv = $bigtv;
     }
 
@@ -126,11 +122,6 @@ class ServiceList implements InputInterface, OutputInterface
         return $this->festive;
     }
 
-    public function hasGasvert(): bool
-    {
-        return $this->gasvert;
-    }
-
     public function hasBigtv(): bool
     {
         return $this->bigtv;
@@ -152,7 +143,6 @@ class ServiceList implements InputInterface, OutputInterface
             true,
             $orderItem->hasEveningDelivery(),
             $orderItem->hasSaturdayDelivery(),
-            $orderItem->hasHookupForCertifiedGas(),
             false, // TODO: replace with real data
         );
     }
@@ -174,7 +164,6 @@ class ServiceList implements InputInterface, OutputInterface
         $delivery = (bool) $propertyAccessor->getValue($object, 'service_delivery');
         $evening = (bool) $propertyAccessor->getValue($object, 'service_evening');
         $festive = (bool) $propertyAccessor->getValue($object, 'service_festive');
-        $gasvert = (bool) $propertyAccessor->getValue($object, 'service_gasvert');
         $bigtv = (bool) $propertyAccessor->getValue($object, 'service_bigtv');
 
         return new self(
@@ -191,7 +180,6 @@ class ServiceList implements InputInterface, OutputInterface
             $delivery,
             $evening,
             $festive,
-            $gasvert,
             $bigtv
         );
     }
@@ -212,7 +200,6 @@ class ServiceList implements InputInterface, OutputInterface
         $object->service_delivery = (int) $this->hasDelivery();
         $object->service_evening = (int) $this->hasEvening();
         $object->service_festive = (int) $this->hasFestive();
-        $object->service_gasvert = (int) $this->hasGasvert();
         $object->service_bigtv = (int) $this->hasBigtv();
 
         return $object;

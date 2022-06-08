@@ -4,7 +4,8 @@ define([
         'Magento_Checkout/js/model/url-builder',
         'Magento_Checkout/js/model/error-processor',
         'Magento_Checkout/js/model/quote',
-    ], function ($, storage, urlBuilder, errorProcessor, quote) {
+        'uiRegistry',
+    ], function ($, storage, urlBuilder, errorProcessor, quote, registry) {
         'use strict';
 
         var availableSlots = [];
@@ -13,12 +14,19 @@ define([
             return target.extend({
                 initConfig: function () {
                     this._super();
+                    var self = this;
+
+                    registry.async('checkoutProvider')(function (checkoutProvider) {
+                        checkoutProvider.on('shippingAddress', function (shippingAddress) {
+                            self.fetchAvailableSlots(shippingAddress);
+                        });
+                    });
 
                     quote.shippingAddress.subscribe(this.fetchAvailableSlots, this);
                 },
 
-                fetchAvailableSlots: function () {
-                    if (!this.canFetchAvailableSlots()) {
+                fetchAvailableSlots: function (shippingAddress) {
+                    if (!this.canFetchAvailableSlots(shippingAddress)) {
                         return;
                     }
 
@@ -26,7 +34,7 @@ define([
                         urlBuilder.createUrl('/carriers/fast_est/appointments/available-slots', {}),
                         JSON.stringify({
                             cart: {
-                                customerPostCode: quote.shippingAddress().postcode,
+                                customerPostCode: shippingAddress.postcode,
                                 quantity: parseInt(window.checkoutConfig.quoteData.items_qty, 10)
                             }
                         })
@@ -37,8 +45,8 @@ define([
                     });
                 },
 
-                canFetchAvailableSlots: function () {
-                    return quote.shippingAddress() && quote.shippingAddress().postcode;
+                canFetchAvailableSlots: function (shippingAddress) {
+                    return shippingAddress && shippingAddress.postcode;
                 },
 
                 restrictDates: function (d) {
@@ -64,8 +72,33 @@ define([
                     return !isAvailable;
                 },
 
+                onShiftedValueChange: function (value) {
+                    this._super(value);
+
+                    var selectedDate = new Date(value);
+
+                    this.disableNotAvailableIntervals(selectedDate);
+                },
+
+                disableNotAvailableIntervals: function (d) {
+                    $('select[name="amdeliverydate_time"] > option:not(:first)').each(function () {
+                        var deliveryInterval = this.text.replace(/\s/g, '');
+                        var isAvailable = availableSlots.some(function (item) {
+                            var availableDate = new Date(item['date']);
+
+                            return availableDate.getYear() === d.getYear()
+                                && availableDate.getMonth() === d.getMonth()
+                                && availableDate.getDate() === d.getDate()
+                                && item['time_slot'] === deliveryInterval
+                                && item['slots_number'] > 0;
+                        });
+
+                        $(this).toggle(isAvailable);
+                    });
+                },
+
                 isFastEstSelected: function () {
-                    return $('input[type="radio"][name="shipping_method"]:checked').val() === 'fast_est_fast_est';
+                    return $('#checkout-step-shipping_method').find('input[type="radio"]:checked').val() === 'fast_est_fast_est';
                 }
             });
         };
