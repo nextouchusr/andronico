@@ -257,8 +257,13 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
             case 'authorize_capture':
                 $order->addStatusHistoryComment(__('Payment processing.'));
                 $payment->setAdditionalInformation('state', 'processing');
+
+                // Axepta code commented, because the order status that we need is PAID[PROCESSING]
+                // $orderState = Order::STATE_PROCESSING;
+                // $order->setState($orderState)->setStatus(Order::STATE_PROCESSING);
+
                 $orderState = Order::STATE_PROCESSING;
-                $order->setState($orderState)->setStatus(Order::STATE_PROCESSING);
+                $order->setState($orderState)->setStatus('paid');
 
                 $totalDue = $order->getTotalDue();
                 $baseTotalDue = $order->getBaseTotalDue();
