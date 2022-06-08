@@ -197,7 +197,7 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
         }
 
         $modelOrder = $this->_objectManager->create('Magento\Sales\Api\Data\OrderInterface')->loadByIncrementId($orderId);
-        
+
         $order = $this->_objectManager->create('Magento\Sales\Api\OrderRepositoryInterface')->get($modelOrder->getId());
         $this->saveOrderCallbackAction($order, $postData);
     }
@@ -209,7 +209,7 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
      */
     private function saveOrderCallbackAction($order, $postData)
     {
-   
+
         $order->set($postData);
 
         try {
@@ -258,8 +258,6 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
             case 'authorize_capture':
                 $order->addStatusHistoryComment(__('Payment processing.'));
                 $payment->setAdditionalInformation('state', 'processing');
-                $orderState = Order::STATE_PROCESSING;
-                $order->setState($orderState)->setStatus(Order::STATE_PROCESSING);
 
                 $totalDue = $order->getTotalDue();
                 $baseTotalDue = $order->getBaseTotalDue();
@@ -272,6 +270,9 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
                     $result = $orderSender->send($order);
                 }
 
+                $order->setState(Status::PAID['state']);
+                $order->setStatus(Status::PAID['status']);
+
                 break;
             default:
                 $order->setState(Order::STATE_HOLDED)->setStatus(Order::STATE_HOLDED);
@@ -281,9 +282,6 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
         $payment->setAdditionalInformation('transaction_id', $response['tranID']);
         $payment->setAdditionalInformation('return_code', $response['returnCode']);
         $payment->save();
-
-        $orderState = Order::STATE_PROCESSING;
-        $order->setState($orderState)->setStatus(Status::PAID['status']);
         $order->save();
 
         $lastQuoteId = $this->getCheckout()->getLastQuoteId();
