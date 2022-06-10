@@ -11,7 +11,11 @@
                 sortOrder="10"/>
 
         <plugin name="prepare_product_brand_value"
-                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\PrepareProductBrandValue"
+                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\PrepareIsReturnableValue"
+                sortOrder="10"/>
+
+        <plugin name="prepare_is_returnable_value"
+                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\PrepareIsReturnableValue"
                 sortOrder="10"/>
     </type>
 

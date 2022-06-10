@@ -7,7 +7,7 @@ use Collections\Exceptions\InvalidArgumentException;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Sales\Api\Data\ShipmentInterface;
+use Magento\Sales\Api\Data\OrderInterface;
 use Nextouch\FastEst\Service\CreateNewDelivery as CreateNewDeliveryService;
 
 class CreateNewDelivery implements ObserverInterface
@@ -25,9 +25,9 @@ class CreateNewDelivery implements ObserverInterface
      */
     public function execute(Observer $observer): void
     {
-        /** @var ShipmentInterface $shipment */
-        $shipment = $observer->getData('shipment');
+        /** @var OrderInterface $order */
+        $order = $observer->getData('order');
 
-        $this->createNewDeliveryService->create($shipment);
+        $this->createNewDeliveryService->create($order);
     }
 }

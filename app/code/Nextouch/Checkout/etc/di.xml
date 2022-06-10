@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Api\ShippingMethodManagementInterface">
+        <plugin name="filter_shipping_methods_based_on_cart"
+                type="Nextouch\Checkout\Plugin\Model\FilterShippingMethodsBasedOnCart"/>
+    </type>
+
+    <type name="Magento\Quote\Api\GuestShipmentEstimationInterface">
+        <plugin name="filter_shipping_methods_based_on_cart"
+                type="Nextouch\Checkout\Plugin\Model\FilterShippingMethodsBasedOnCart"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Address\RateResult\Method">
+        <plugin name="calculate_shipping_method_price"
+                type="Nextouch\Checkout\Plugin\Model\Quote\Address\RateResult\CalculateShippingMethodPrice"/>
+    </type>
+</config>

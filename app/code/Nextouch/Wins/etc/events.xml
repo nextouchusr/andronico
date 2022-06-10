@@ -2,12 +2,28 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="findomestic_application_preapprove_end">
+        <observer name="create_new_delivery"
+                  instance="Nextouch\Wins\Observer\FastEst\CreateNewDelivery"/>
+
         <observer name="create_new_order"
                   instance="Nextouch\Wins\Observer\Findomestic\CreateNewOrder"/>
     </event>
 
     <event name="findomestic_application_complete_end">
+        <observer name="confirm_parked_delivery"
+                  instance="Nextouch\Wins\Observer\FastEst\ConfirmParkedDelivery"/>
+
         <observer name="change_order_status_to_paid"
                   instance="Nextouch\Wins\Observer\Findomestic\ChangeOrderStatusToPaid"/>
+    </event>
+
+    <event name="findomestic_application_declined_end">
+        <observer name="change_order_status_to_canceled"
+                  instance="Nextouch\Wins\Observer\Findomestic\ChangeOrderStatusToCanceled"/>
+    </event>
+
+    <event name="sales_order_status_change_to_complete">
+        <observer name="change_order_status_to_complete"
+                  instance="Nextouch\Wins\Observer\ChangeOrderStatusToComplete"/>
     </event>
 </config>

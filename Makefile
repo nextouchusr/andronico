@@ -49,6 +49,9 @@ resize_images: ## Resize images
 wins_import_job: ## Run Wins entity data import job
 	php ./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_entity_data_import_job
 
+wins_attach_order_invoice: ## Run Wins attach order invoice job
+	php ./n98-magerun2.phar sys:cron:run nextouch_wins_attach_order_invoice
+
 # Static & Quality Tools
 phpcs: ## Run phpcs to analyze code
 	php vendor/bin/phpcs --standard=Magento2 app/code/Nextouch

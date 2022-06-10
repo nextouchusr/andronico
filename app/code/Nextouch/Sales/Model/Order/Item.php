@@ -34,54 +34,110 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
         return (array) $this->getProductOptionByCode(self::SELECTED_OPTIONS);
     }
 
-    public function hasProductInstallService(): bool
+    public function hasProductInstall(): bool
     {
-        return $this->hasSelectedService(self::PRODUCT_INSTALL_SERVICE);
+        return (
+            $this->hasStandardTvInstallation() ||
+            $this->hasPeripheralInstallationToTv() ||
+            $this->hasAirConditioningInstallationMono() ||
+            $this->hasAirConditioningInstallationDual() ||
+            $this->hasAirConditioningInstallationTrial()
+        );
     }
 
-    public function hasUsedPickService(): bool
+    public function hasStreetLineDelivery(): bool
     {
-        return $this->hasSelectedService(self::USED_PICK_SERVICE);
+        return $this->getProduct()->getStreetLineDeliveryPrice() > 0;
     }
 
-    public function hasAssemblyService(): bool
+    public function hasFloorDelivery(): bool
     {
-        return $this->hasSelectedService(self::ASSEMBLY_SERVICE);
+        return $this->getProduct()->getFloorDeliveryPrice() > 0;
     }
 
-    public function hasDisassemblyService(): bool
+    public function hasEveningDelivery(): bool
     {
-        return $this->hasSelectedService(self::DISASSEMBLY_SERVICE);
+        return $this->hasSelectedService(self::EVENING_DELIVERY);
     }
 
-    public function hasAtFloorService(): bool
+    public function hasAppointmentDelivery(): bool
     {
-        return $this->hasSelectedService(self::AT_FLOOR_SERVICE);
+        return $this->hasSelectedService(self::APPOINTMENT_DELIVERY);
     }
 
-    public function hasUnpackService(): bool
+    public function hasUrgentDelivery(): bool
     {
-        return $this->hasSelectedService(self::UNPACK_SERVICE);
+        return $this->hasSelectedService(self::URGENT_DELIVERY);
     }
 
-    public function hasDeliveryByAppointmentService(): bool
+    public function hasSaturdayDelivery(): bool
     {
-        return $this->hasSelectedService(self::DELIVERY_BY_APPOINTMENT_SERVICE);
+        return $this->hasSelectedService(self::SATURDAY_DELIVERY);
     }
 
-    public function hasProductPickupService(): bool
+    public function hasHookupToElectricalGrid(): bool
     {
-        return $this->hasSelectedService(self::PRODUCT_PICKUP_SERVICE);
+        return $this->hasSelectedService(self::HOOKUP_TO_ELECTRICAL_GRID);
     }
 
-    public function hasProductDeliveryService(): bool
+    public function hasHookupAndBuildIn(): bool
     {
-        return $this->hasSelectedService(self::PRODUCT_DELIVERY_SERVICE);
+        return $this->hasSelectedService(self::HOOKUP_AND_BUILD_IN);
     }
 
-    public function hasNoticeCallService(): bool
+    public function hasStandardTvInstallation(): bool
     {
-        return $this->hasSelectedService(self::NOTICE_CALL_SERVICE);
+        return $this->hasSelectedService(self::STANDARD_TV_INSTALLATION);
+    }
+
+    public function hasConnectivityAndTvDemonstration(): bool
+    {
+        return $this->hasSelectedService(self::CONNECTIVITY_AND_TV_DEMONSTRATION);
+    }
+
+    public function hasPeripheralInstallationToTv(): bool
+    {
+        return $this->hasSelectedService(self::PERIPHERAL_INSTALLATION_TO_TV);
+    }
+
+    public function hasTvWallMounting(): bool
+    {
+        return $this->hasSelectedService(self::TV_WALL_MOUNTING);
+    }
+
+    public function hasAirConditioningInstallationMono(): bool
+    {
+        return $this->hasSelectedService(self::AIR_CONDITIONING_INSTALLATION_MONO);
+    }
+
+    public function hasAirConditioningInstallationDual(): bool
+    {
+        return $this->hasSelectedService(self::AIR_CONDITIONING_INSTALLATION_DUAL);
+    }
+
+    public function hasAirConditioningInstallationTrial(): bool
+    {
+        return $this->hasSelectedService(self::AIR_CONDITIONING_INSTALLATION_TRIAL);
+    }
+
+    public function hasSmartphoneFileTransfer(): bool
+    {
+        return $this->hasSelectedService(self::SMARTPHONE_FILE_TRANSFER);
+    }
+
+    public function hasSmartphoneReadyForYou(): bool
+    {
+        return $this->hasSelectedService(self::SMARTPHONE_READY_FOR_YOU);
+    }
+
+    public function hasPcReadyForYou(): bool
+    {
+        return $this->hasSelectedService(self::PC_READY_FOR_YOU);
+    }
+
+    public function hasPcReadyForYouPremium(): bool
+    {
+        return $this->hasSelectedService(self::PC_READY_FOR_YOU_PREMIUM);
     }
 
     private function hasSelectedService(string $code): bool

@@ -3,7 +3,10 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Nextouch_Wins" setup_version="1.0.0">
         <sequence>
+            <module name="Nextouch_Dhl"/>
+            <module name="Nextouch_FastEst"/>
             <module name="Nextouch_Findomestic"/>
+            <module name="Nextouch_GLS"/>
             <module name="Nextouch_Sales"/>
             <module name="Nextouch_ImportExport"/>
         </sequence>

@@ -119,6 +119,51 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         return $this;
     }
 
+    public function getShippingSyncFailures(): int
+    {
+        return (int) $this->getData(self::SHIPPING_SYNC_FAILURES);
+    }
+
+    public function increaseShippingSyncFailures(): self
+    {
+        $failures = $this->getShippingSyncFailures();
+        $this->setData(self::SHIPPING_SYNC_FAILURES, ++$failures);
+
+        return $this;
+    }
+
+    public function decreaseShippingSyncFailures(): self
+    {
+        $failures = $this->getShippingSyncFailures();
+        $this->setData(self::SHIPPING_SYNC_FAILURES, --$failures);
+
+        return $this;
+    }
+
+    public function resetShippingSyncFailures(): self
+    {
+        $this->setData(self::SHIPPING_SYNC_FAILURES, 0);
+
+        return $this;
+    }
+
+    public function getIsParked(): bool
+    {
+        return (bool) $this->getData(self::IS_PARKED);
+    }
+
+    public function setIsParked(bool $isParked): self
+    {
+        $this->setData(self::IS_PARKED, $isParked);
+
+        return $this;
+    }
+
+    public function isPaid(): bool
+    {
+        return $this->getBaseTotalDue() <= 0;
+    }
+
     public function getFindomesticApplicationId(): string
     {
         return (string) $this->getData(self::FINDOMESTIC_APPLICATION_ID);
@@ -199,6 +244,20 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         return $this;
     }
 
+    public function isFindomesticApplicationDecline(): bool
+    {
+        $status = (int) $this->getData(self::FINDOMESTIC_APPLICATION_STATUS);
+
+        return $status === self::FINDOMESTIC_APPLICATION_STATUS_DECLINE;
+    }
+
+    public function setFindomesticApplicationDecline(): OrderInterface
+    {
+        $this->setData(self::FINDOMESTIC_APPLICATION_STATUS, self::FINDOMESTIC_APPLICATION_STATUS_DECLINE);
+
+        return $this;
+    }
+
     public function hasFindomesticPayment(): bool
     {
         return $this->getPayment()->getMethod() === 'findomestic_paymentservice';
@@ -219,6 +278,8 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         return (
             $this->isCanceled() &&
             $this->hasFindomesticPayment() &&
-            !$this->isFindomesticApplicationCancel());
+            !$this->isFindomesticApplicationCancel() &&
+            !$this->isFindomesticApplicationDecline()
+        );
     }
 }

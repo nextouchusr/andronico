@@ -44,7 +44,7 @@ abstract class Payment extends Action
     /**
      * @throws LocalizedException
      */
-    protected function getQuote(): CartInterface
+    public function getQuote(): CartInterface
     {
         $quote = $this->getCheckout()->getQuote();
 

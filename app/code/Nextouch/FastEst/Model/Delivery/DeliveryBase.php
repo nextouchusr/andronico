@@ -6,7 +6,7 @@ namespace Nextouch\FastEst\Model\Delivery;
 use Nextouch\FastEst\Api\Data\InputInterface;
 use Nextouch\FastEst\Model\Directory\Hour;
 use Nextouch\FastEst\Model\Directory\Store;
-use Nextouch\Sales\Api\Data\ShipmentInterface;
+use Nextouch\Sales\Api\Data\OrderInterface;
 
 class DeliveryBase implements InputInterface
 {
@@ -79,20 +79,19 @@ class DeliveryBase implements InputInterface
         return $this->isParked;
     }
 
-    /**
-     * TODO: replace mock data
-     */
-    public static function fromDomain(ShipmentInterface $shipment): self
+    public static function fromDomain(OrderInterface $order): self
     {
+        $deliveryTime = preg_replace('/\s+/', '', $order->getDeliveryTime());
+
         return new self(
             Hour::ANY,
             Store::WEB,
-            $shipment->getOrder()->getIncrementId(),
+            $order->getIncrementId(),
             0,
-            $shipment->getOrder()->getDeliveryComment(),
-            $shipment->getOrder()->getDeliveryDate(),
-            $shipment->getOrder()->getDeliveryTime(),
-            false
+            $order->getDeliveryComment(),
+            $order->getDeliveryDate(),
+            $deliveryTime,
+            !$order->isPaid()
         );
     }
 

@@ -5,43 +5,46 @@ namespace Nextouch\FastEst\Service;
 
 use Collections\Exceptions\InvalidArgumentException;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Sales\Api\Data\ShipmentInterface;
+use Magento\Sales\Api\Data\OrderInterface;
 use Nextouch\FastEst\Api\DeliveryRepositoryInterface;
 use Nextouch\FastEst\Model\Carrier\FastEst;
-use Nextouch\Sales\Api\Data\ShipmentInterface as FastEstShipmentInterface;
-use Nextouch\Sales\Model\ResourceModel\Order\Shipment\CollectionFactory as ShipmentCollectionFactory;
+use Nextouch\Sales\Api\OrderRepositoryInterface;
 
 class CreateNewDelivery
 {
+    private OrderRepositoryInterface $orderRepository;
     private DeliveryRepositoryInterface $deliveryRepository;
-    private ShipmentCollectionFactory $shipmentCollectionFactory;
 
     public function __construct(
-        DeliveryRepositoryInterface $deliveryRepository,
-        ShipmentCollectionFactory $shipmentCollectionFactory
+        OrderRepositoryInterface $orderRepository,
+        DeliveryRepositoryInterface $deliveryRepository
     ) {
+        $this->orderRepository = $orderRepository;
         $this->deliveryRepository = $deliveryRepository;
-        $this->shipmentCollectionFactory = $shipmentCollectionFactory;
     }
 
     /**
      * @throws InvalidArgumentException
      * @throws LocalizedException
      */
-    public function create(ShipmentInterface $shipment): void
+    public function create(OrderInterface $order): void
     {
-        /** @var FastEstShipmentInterface $fastEstShipment */
-        $fastEstShipment = $this->shipmentCollectionFactory->create()->getItemById($shipment->getEntityId());
+        $fastEstOrder = $this->orderRepository->get((int) $order->getEntityId());
 
-        if (!$fastEstShipment->getOrder()->isShippedBy(FastEst::SHIPPING_METHOD)) {
+        if (!$fastEstOrder->isShippedBy(FastEst::SHIPPING_METHOD)) {
             return;
         }
 
-        $response = $this->deliveryRepository->create($fastEstShipment);
+        $response = $this->deliveryRepository->create($fastEstOrder);
         $statusReturn = $response->getStatusReturn();
 
-        if (!$statusReturn->isOk()) {
-            throw new LocalizedException(__($statusReturn->getErrorDescription()));
+        if ($statusReturn->isOk()) {
+            $fastEstOrder->resetShippingSyncFailures();
+            $fastEstOrder->setIsParked(true);
+        } else {
+            $fastEstOrder->increaseShippingSyncFailures();
         }
+
+        $this->orderRepository->save($fastEstOrder);
     }
 }

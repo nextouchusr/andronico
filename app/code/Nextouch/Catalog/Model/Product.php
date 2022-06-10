@@ -58,14 +58,14 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
         return $this;
     }
 
-    public function getSelectableCouriers(): array
+    public function getSelectableCarrier(): string
     {
-        return (array) $this->getData(self::SELECTABLE_COURIERS);
+        return (string) $this->getData(self::SELECTABLE_CARRIER);
     }
 
-    public function setSelectableCouriers(array $selectableCouriers): self
+    public function setSelectableCarrier(string $selectableCarrier): self
     {
-        $this->setData(self::SELECTABLE_COURIERS, $selectableCouriers);
+        $this->setData(self::SELECTABLE_CARRIER, $selectableCarrier);
 
         return $this;
     }
@@ -114,6 +114,59 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
     public function setIsRecommended(bool $isRecommended): self
     {
         $this->setData(self::IS_RECOMMENDED, $isRecommended);
+
+        return $this;
+    }
+
+    public function isPickupable(): bool
+    {
+        return (bool) $this->getData(self::IS_PICKUPABLE);
+    }
+
+    public function setIsPickupable(bool $isPickupable): self
+    {
+        $this->setData(self::IS_PICKUPABLE, $isPickupable);
+
+        return $this;
+    }
+
+    public function isReturnableInStore(): bool
+    {
+        return (bool) $this->getData(self::IS_RETURNABLE_IN_STORE);
+    }
+
+    public function setIsReturnableInStore(bool $isReturnableInStore): self
+    {
+        $this->setData(self::IS_RETURNABLE_IN_STORE, $isReturnableInStore);
+
+        return $this;
+    }
+
+    public function getDeliveryPrice(): float
+    {
+        return $this->getStreetLineDeliveryPrice() ?: $this->getFloorDeliveryPrice();
+    }
+
+    public function getStreetLineDeliveryPrice(): float
+    {
+        return (float) $this->getData(self::STREET_LINE_DELIVERY_PRICE);
+    }
+
+    public function setStreetLineDeliveryPrice(float $streetLineDeliveryPrice): self
+    {
+        $this->setData(self::STREET_LINE_DELIVERY_PRICE, $streetLineDeliveryPrice);
+
+        return $this;
+    }
+
+    public function getFloorDeliveryPrice(): float
+    {
+        return (float) $this->getData(self::FLOOR_DELIVERY_PRICE);
+    }
+
+    public function setFloorDeliveryPrice(float $floorDeliveryPrice): self
+    {
+        $this->setData(self::FLOOR_DELIVERY_PRICE, $floorDeliveryPrice);
 
         return $this;
     }

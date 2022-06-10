@@ -30,4 +30,9 @@
 
     <preference for="Nextouch\FastEst\Api\DeliveryRepositoryInterface"
                 type="Nextouch\FastEst\Model\DeliveryRepository"/>
+
+    <type name="Magento\Sales\Api\InvoiceOrderInterface">
+        <plugin name="confirm_parked_delivery"
+                type="Nextouch\FastEst\Plugin\Model\ConfirmParkedDelivery"/>
+    </type>
 </config>

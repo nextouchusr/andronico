@@ -7,14 +7,14 @@ use Magento\Eav\Model\Entity\Attribute\Source\AbstractSource;
 use Magento\Eav\Model\Entity\Attribute\Source\SourceInterface;
 use Magento\Framework\Data\OptionSourceInterface;
 
-class SelectableCouriers extends AbstractSource implements SourceInterface, OptionSourceInterface
+class SelectableCarrier extends AbstractSource implements SourceInterface, OptionSourceInterface
 {
     public function getAllOptions(): array
     {
         $this->_options = [
             ['label' => 'Fast-Est', 'value' => 'fast_est'],
-            ['label' => 'Free Shipping', 'value' => 'freeshipping'],
             ['label' => 'DHL', 'value' => 'dhl'],
+            ['label' => 'GLS', 'value' => 'gls'],
         ];
 
         return $this->_options;
