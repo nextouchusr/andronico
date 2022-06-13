@@ -13,9 +13,6 @@
                 <argument name="block_css" xsi:type="string">block-collapsible-nav</argument>
             </arguments>
         </referenceBlock>
-        <referenceContainer name="main">
-            <block class="Magento\Customer\Block\Account\Dashboard\Info" name="customer-account-name" after="page.main.title" template="Magento_Customer::customername.phtml"/>
-        </referenceContainer>
 
         <move element="page.main.title" destination="content.top" before="-"/>
         <move element="customer-account-name" destination="content.top" after="page.main.title"/>
