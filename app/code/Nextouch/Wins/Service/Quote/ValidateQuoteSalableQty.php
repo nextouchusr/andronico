@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace Nextouch\Wins\Service\Quote;
 
 use Magento\Framework\Exception\LocalizedException;
+use Magento\InventoryInStorePickupShippingApi\Model\Carrier\InStorePickup;
+use Magento\OfflinePayments\Model\Checkmo;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\Quote\Item as QuoteItem;
 use Nextouch\Wins\Api\AuthManagementInterface;
@@ -14,7 +16,8 @@ use Nextouch\Wins\Model\Inventory\ProductStock;
 use Nextouch\Wins\Model\Request\Auth\Authorize;
 use Nextouch\Wins\Model\Request\Inventory\GetProductAvailability as GetProductAvailabilityRequest;
 use Nextouch\Wins\Model\Response\Inventory\GetProductAvailability as GetProductAvailabilityResponse;
-use function Lambdish\Phunctional\each;
+use function Lambdish\Phunctional\all;
+use function Lambdish\Phunctional\first;
 use function Lambdish\Phunctional\some;
 
 class ValidateQuoteSalableQty
@@ -22,6 +25,7 @@ class ValidateQuoteSalableQty
     private ProductSalableQtyManagementInterface $productSalableQtyManagement;
     private AuthManagementInterface $authManagement;
     private WinsConfig $config;
+    private array $validationErrors = [];
 
     public function __construct(
         ProductSalableQtyManagementInterface $productSalableQtyManagement,
@@ -33,6 +37,27 @@ class ValidateQuoteSalableQty
         $this->config = $config;
     }
 
+    private function getSpinCodeList(Quote $quote): array
+    {
+        $shippingAddress = $quote->getShippingAddress();
+        $shippingMethod = $shippingAddress->getShippingMethod();
+
+        // Pick&Pay or Pickup@Store
+        if ($shippingMethod === InStorePickup::DELIVERY_METHOD) {
+            $pickupLocationCode = $shippingAddress->getExtensionAttributes()->getPickupLocationCode();
+            $paymentMethod = $quote->getPayment()->getMethod();
+
+            // Pick&Pay
+            if ($paymentMethod === Checkmo::PAYMENT_METHOD_CHECKMO_CODE) {
+                return [$pickupLocationCode, GetProductAvailabilityRequest::DEFAULT_SPIN_CODE];
+            }
+
+            return [$pickupLocationCode]; // Pickup@Store
+        }
+
+        return [GetProductAvailabilityRequest::DEFAULT_SPIN_CODE];
+    }
+
     /**
      * @throws LocalizedException
      */
@@ -40,15 +65,18 @@ class ValidateQuoteSalableQty
     {
         $items = $quote->getItems() ?? [];
 
-        each(fn(QuoteItem $item) => $this->validateItem($item), $items);
+        $isValid = some(function (string $spinCode) use ($items) {
+            return all(fn(QuoteItem $item) => $this->validateItem($item, $spinCode), $items);
+        }, $this->getSpinCodeList($quote));
+
+        if (!$isValid) {
+            throw new LocalizedException(first($this->validationErrors));
+        }
     }
 
-    /**
-     * @throws LocalizedException
-     */
-    private function validateItem(QuoteItem $quoteItem): void
+    private function validateItem(QuoteItem $quoteItem, string $spinCode): bool
     {
-        $getProductAvailability = $this->getProductAvailability($quoteItem);
+        $getProductAvailability = $this->getProductAvailability($quoteItem, $spinCode);
 
         $isAvailable = some(
             fn(ProductStock $item) => $item->getAvailability() >= (int) $quoteItem->getQty(),
@@ -56,11 +84,13 @@ class ValidateQuoteSalableQty
         );
 
         if (!$isAvailable) {
-            throw new LocalizedException(__('The product %1 is no longer available', $quoteItem->getName()));
+            $this->validationErrors[] = __('The product %1 is no longer available', $quoteItem->getName());
         }
+
+        return $isAvailable;
     }
 
-    private function getProductAvailability(QuoteItem $quoteItem): GetProductAvailabilityResponse
+    private function getProductAvailability(QuoteItem $quoteItem, string $spinCode): GetProductAvailabilityResponse
     {
         $authorizeReq = new Authorize($this->config->getAuthUsername(), $this->config->getAuthPassword());
         $authorizeRes = $this->authManagement->authorize($authorizeReq);
@@ -74,25 +104,9 @@ class ValidateQuoteSalableQty
             $authorizeRes->getAccessToken(),
             $loginInfo,
             $quoteItem->getSku(),
-            $this->getSpinCode($quoteItem)
+            $spinCode
         );
 
         return $this->productSalableQtyManagement->getProductAvailability($getProductAvailability);
-    }
-
-    private function getSpinCode(QuoteItem $quoteItem): string
-    {
-        $quote = $quoteItem->getQuote();
-
-        if (!$quote) {
-            return GetProductAvailabilityRequest::DEFAULT_SPIN_CODE;
-        }
-
-        $spinCode = $quote
-            ->getShippingAddress()
-            ->getExtensionAttributes()
-            ->getPickupLocationCode();
-
-        return $spinCode ?? GetProductAvailabilityRequest::DEFAULT_SPIN_CODE;
     }
 }

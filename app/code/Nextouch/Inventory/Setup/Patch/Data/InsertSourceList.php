@@ -50,6 +50,7 @@ class InsertSourceList implements DataPatchInterface
             $source->setPhone($data['phone']);
             $source->setFax($data['fax']);
             $source->setCountryId($data['country_id']);
+            $source->setRegion($data['region']);
             $source->setRegionId($data['region_id']);
             $source->setCity($data['city']);
             $source->setStreet($data['street']);
@@ -76,6 +77,7 @@ class InsertSourceList implements DataPatchInterface
                 'phone' => '+39 348 6037050',
                 'fax' => '',
                 'country_id' => 'IT',
+                'region' => 'Milano',
                 'region_id' => 739,
                 'city' => 'Milano',
                 'street' => 'Via Fabio Filzi 27',
@@ -93,6 +95,7 @@ class InsertSourceList implements DataPatchInterface
                 'phone' => '',
                 'fax' => '',
                 'country_id' => 'IT',
+                'region' => 'Milano',
                 'region_id' => 739,
                 'city' => 'Milano',
                 'street' => 'Via Roma 15',

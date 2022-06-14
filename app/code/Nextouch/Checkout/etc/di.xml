@@ -11,6 +11,16 @@
                 type="Nextouch\Checkout\Plugin\Model\FilterShippingMethodsBasedOnCart"/>
     </type>
 
+    <type name="Magento\Checkout\Api\ShippingInformationManagementInterface">
+        <plugin name="filter_payment_methods_based_on_cart"
+                type="Nextouch\Checkout\Plugin\Model\FilterPaymentMethodsBasedOnCart"/>
+    </type>
+
+    <type name="Magento\Checkout\Api\PaymentInformationManagementInterface">
+        <plugin name="filter_payment_methods_based_on_cart"
+                type="Nextouch\Checkout\Plugin\Model\FilterPaymentMethodsBasedOnCart"/>
+    </type>
+
     <type name="Magento\Quote\Model\Quote\Address\RateResult\Method">
         <plugin name="calculate_shipping_method_price"
                 type="Nextouch\Checkout\Plugin\Model\Quote\Address\RateResult\CalculateShippingMethodPrice"/>
