@@ -20,7 +20,7 @@ define([
         },
 
         getFiscalCode: function () {
-            var attribute = quote.shippingAddress().customAttributes.find(function (item) {
+            var attribute = quote.billingAddress().customAttributes.find(function (item) {
                 return item.attribute_code === 'fiscal_code';
             });
 
@@ -29,7 +29,7 @@ define([
 
         shouldCheckFiscalCode: function () {
             var fiscalCode = this.getFiscalCode();
-            var attribute = quote.shippingAddress().customAttributes.find(function (item) {
+            var attribute = quote.billingAddress().customAttributes.find(function (item) {
                 return item.attribute_code === 'invoice_type';
             });
 

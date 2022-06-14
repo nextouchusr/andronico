@@ -24,6 +24,6 @@ class OrderRepository extends AbstractBaseRestApi implements OrderRepositoryInte
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        return $response->getStatusCode() === self::HTTP_OK;
+        return in_array($response->getStatusCode(), self::SUCCESS_STATUSES);
     }
 }

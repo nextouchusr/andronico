@@ -17,6 +17,7 @@ abstract class AbstractBaseRestApi
     protected const HTTP_OK = 200;
     protected const HTTP_CREATED = 201;
     protected const HTTP_NO_CONTENT = 204;
+    protected const SUCCESS_STATUSES = [self::HTTP_OK, self::HTTP_CREATED, self::HTTP_NO_CONTENT];
 
     protected ResponseFactory $responseFactory;
     protected ClientFactory $clientFactory;
