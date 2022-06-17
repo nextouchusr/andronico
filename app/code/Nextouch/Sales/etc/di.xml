@@ -21,4 +21,12 @@
 
     <preference for="Nextouch\Sales\Api\OrderManagementInterface"
                 type="Nextouch\Sales\Model\OrderManagement"/>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="save_order_completion_date"
+                type="Nextouch\Sales\Plugin\Model\SaveOrderCompletionDate"/>
+
+        <plugin name="dispatch_complete_order_event"
+                type="Nextouch\Sales\Plugin\Model\DispatchCompleteOrderEvent"/>
+    </type>
 </config>

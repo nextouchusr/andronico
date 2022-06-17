@@ -61,6 +61,18 @@ class Order extends \Magento\Sales\Model\Order implements OrderInterface
         return $items[$itemId] ?? null;
     }
 
+    public function getCompletedAt(): ?string
+    {
+        return $this->getData(self::COMPLETED_AT);
+    }
+
+    public function setCompletedAt(string $completedAt): self
+    {
+        $this->setData(self::COMPLETED_AT, $completedAt);
+
+        return $this;
+    }
+
     public function getDeliveryInformation(): DeliverydateInterface
     {
         if (!$this->getData(self::DELIVERY_INFORMATION)) {

@@ -2,6 +2,11 @@
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="sales_order">
+        <column xsi:type="timestamp"
+                name="completed_at"
+                on_update="false"
+                nullable="true"
+                comment="Completed Date"/>
         <column xsi:type="int"
                 name="order_sync_failures"
                 padding="11"

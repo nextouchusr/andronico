@@ -10,6 +10,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\User\Api\Data\UserInterface;
 use Magento\User\Model\ResourceModel\User\CollectionFactory;
 use Nextouch\Dhl\Model\Carrier\Dhl;
+use Nextouch\Sales\Model\Order\Status;
 
 class FilterDhlOrderList
 {
@@ -37,6 +38,8 @@ class FilterDhlOrderList
         if ($this->canFilter()) {
             $searchCriteria = $this->searchCriteriaBuilder
                 ->addFilter('shipping_method', Dhl::SHIPPING_METHOD)
+                ->addFilter('status', Status::PAID['status'])
+                ->addFilter('state', Status::PAID['state'])
                 ->create();
         }
 
