@@ -7,10 +7,12 @@ use Nextouch\Findomestic\Model\Request\Installment\Activate as ActivateRequest;
 use Nextouch\Findomestic\Model\Request\Installment\Cancel as CancelRequest;
 use Nextouch\Findomestic\Model\Request\Installment\Create as CreateRequest;
 use Nextouch\Findomestic\Model\Request\Installment\Refresh as RefreshRequest;
+use Nextouch\Findomestic\Model\Request\Installment\Refund as RefundRequest;
 use Nextouch\Findomestic\Model\Response\Installment\Activate as ActivateResponse;
 use Nextouch\Findomestic\Model\Response\Installment\Cancel as CancelResponse;
 use Nextouch\Findomestic\Model\Response\Installment\Create as CreateResponse;
 use Nextouch\Findomestic\Model\Response\Installment\Refresh as RefreshResponse;
+use Nextouch\Findomestic\Model\Response\Installment\Refund as RefundResponse;
 
 /**
  * @api
@@ -40,4 +42,10 @@ interface InstallmentManagementInterface
      * @return \Nextouch\Findomestic\Model\Response\Installment\Cancel
      */
     public function cancel(CancelRequest $request): CancelResponse;
+
+    /**
+     * @param \Nextouch\Findomestic\Model\Request\Installment\Refund $request
+     * @return \Nextouch\Findomestic\Model\Response\Installment\Refund
+     */
+    public function refund(RefundRequest $request): RefundResponse;
 }

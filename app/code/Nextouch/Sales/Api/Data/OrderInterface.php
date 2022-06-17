@@ -10,6 +10,7 @@ use Amasty\Deliverydate\Api\Data\DeliverydateInterface;
  */
 interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
 {
+    public const COMPLETED_AT = 'completed_at';
     public const DELIVERY_INFORMATION = 'delivery_information';
     public const ORDER_SYNC_FAILURES = 'order_sync_failures';
     public const SHIPPING_SYNC_FAILURES = 'shipping_sync_failures';
@@ -51,6 +52,17 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
      * @return \Nextouch\Sales\Api\Data\OrderItemInterface|null
      */
     public function getItemById($itemId): ?OrderItemInterface;
+
+    /**
+     * @return string
+     */
+    public function getCompletedAt(): ?string;
+
+    /**
+     * @param string $completedAt
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
+     */
+    public function setCompletedAt(string $completedAt): self;
 
     /**
      * @return \Amasty\Deliverydate\Api\Data\DeliverydateInterface

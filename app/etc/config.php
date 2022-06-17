@@ -493,6 +493,7 @@ return [
         'Nextouch_ImportExport' => 1,
         'Nextouch_Inventory' => 1,
         'Nextouch_Dhl' => 1,
+        'Nextouch_Rma' => 1,
         'Nextouch_Checkout' => 1,
         'Nextouch_FastEst' => 1,
         'Nextouch_Tax' => 1,
