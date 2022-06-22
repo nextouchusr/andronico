@@ -9,7 +9,7 @@
                 <order_status>pending</order_status>
                 <title>In-Store Payment</title>
                 <allowspecific>0</allowspecific>
-                <instructions>Pay your order in the selected store.</instructions>
+                <instructions>Pay the order directly in the store when you will go to pick the products</instructions>
                 <sort_order>10</sort_order>
             </instore_payment>
         </payment>
