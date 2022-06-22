@@ -10,12 +10,12 @@ use Magento\Checkout\Api\ShippingInformationManagementInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\InventoryInStorePickupShippingApi\Model\Carrier\InStorePickup;
 use Magento\OfflinePayments\Model\Banktransfer;
-use Magento\OfflinePayments\Model\Checkmo;
 use Magento\Payment\Model\MethodInterface as PaymentMethodInterface;
 use Magento\Paypal\Model\Config;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Quote\Model\Quote;
 use Nextouch\Findomestic\Model\Findomestic;
+use Nextouch\InStorePayment\Model\InStorePayment;
 use function Lambdish\Phunctional\filter;
 
 class FilterPaymentMethodsBasedOnCart
@@ -91,7 +91,7 @@ class FilterPaymentMethodsBasedOnCart
     {
         $isInStorePickupMethod = $shippingMethod === InStorePickup::DELIVERY_METHOD;
         $canUseAsInStorePayment = in_array($paymentMethod->getCode(), [
-            Checkmo::PAYMENT_METHOD_CHECKMO_CODE,
+            InStorePayment::METHOD_CODE,
             Config::METHOD_EXPRESS,
             Axepta::METHOD_CODE,
         ]);

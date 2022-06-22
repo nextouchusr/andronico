@@ -491,6 +491,7 @@ return [
         'Nextouch_Findomestic' => 1,
         'Nextouch_Gls' => 1,
         'Nextouch_ImportExport' => 1,
+        'Nextouch_InStorePayment' => 1,
         'Nextouch_Inventory' => 1,
         'Nextouch_Dhl' => 1,
         'Nextouch_Rma' => 1,
