@@ -13,5 +13,11 @@
              method="execute">
             <schedule>0 */1 * * *</schedule>
         </job>
+
+        <job name="nextouch_wins_retry_customer_upsert"
+             instance="Nextouch\Wins\Cron\RetryCustomerUpsert"
+             method="execute">
+            <schedule>*/30 * * * *</schedule>
+        </job>
     </group>
 </config>

@@ -13,6 +13,15 @@
     <preference for="Nextouch\Wins\Api\ProductSalableQtyManagementInterface"
                 type="Nextouch\Wins\Model\ProductSalableQtyManagement"/>
 
+    <preference for="Nextouch\Wins\Api\CustomerRepositoryInterface"
+                type="Nextouch\Wins\Model\CustomerRepository"/>
+
+    <preference for="Magento\Customer\Controller\Address\FormPost"
+                type="Nextouch\Wins\Controller\Customer\Address\FormPost"/>
+
+    <preference for="Magento\Newsletter\Controller\Manage\Save"
+                type="Nextouch\Wins\Controller\Newsletter\Manage\Save"/>
+
     <type name="Nextouch\Wins\Cron\AttachInvoiceToOrder">
         <arguments>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
