@@ -14,4 +14,10 @@ interface ProductAttributeManagementInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getUserDefinedAttributes(string $attributeSetId): array;
+
+    /**
+     * @param string $attributeSetId
+     * @return \Magento\Catalog\Api\Data\ProductAttributeInterface[]
+     */
+    public function getFilterableAttributes(): array;
 }

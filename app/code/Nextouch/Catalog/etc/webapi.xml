@@ -45,6 +45,12 @@
             <resource ref="Magento_Catalog::sets"/>
         </resources>
     </route>
+    <route url="/V1/products/filterable-attributes" method="GET">
+        <service class="Nextouch\Catalog\Api\ProductAttributeManagementInterface" method="getFilterableAttributes"/>
+        <resources>
+            <resource ref="Magento_Catalog::attributes_attributes"/>
+        </resources>
+    </route>
 
     <!-- Product Website Links -->
     <route url="/V1/products/:sku/websites" method="POST">
