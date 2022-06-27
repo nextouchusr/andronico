@@ -14,6 +14,8 @@ class FastEstConfig extends AbstractHelper
     private const XML_PATH_FAST_EST_WSDL = 'carriers/fast_est/wsdl';
     private const XML_PATH_FAST_EST_USERNAME = 'carriers/fast_est/username';
     private const XML_PATH_FAST_EST_PASSWORD = 'carriers/fast_est/password';
+    private const XML_PATH_FAST_EST_TRACKING_BASE_URL = 'carriers/fast_est/tracking_base_url';
+    private const XML_PATH_FAST_EST_CHAIN_ID = 'carriers/fast_est/chain_id';
     private const XML_PATH_FAST_EST_SALLOWSPECIFIC = 'carriers/fast_est/sallowspecific';
     private const XML_PATH_FAST_EST_SPECIFICCOUNTRY = 'carriers/fast_est/specificcountry';
     private const XML_PATH_FAST_EST_SHOWMETHOD = 'carriers/fast_est/showmethod';
@@ -71,6 +73,32 @@ class FastEstConfig extends AbstractHelper
             ScopeInterface::SCOPE_STORE,
             $scopeCode
         );
+    }
+
+    public function getTrackingBaseUrl(string $scopeCode = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::XML_PATH_FAST_EST_TRACKING_BASE_URL,
+            ScopeInterface::SCOPE_STORE,
+            $scopeCode
+        );
+    }
+
+    public function getChainId(string $scopeCode = null): int
+    {
+        return (int) $this->scopeConfig->getValue(
+            self::XML_PATH_FAST_EST_CHAIN_ID,
+            ScopeInterface::SCOPE_STORE,
+            $scopeCode
+        );
+    }
+
+    public function getTrackingLink(string $storeOrder, string $scopeCode = null): string
+    {
+        $trackingBaseUrl = $this->getTrackingBaseUrl($scopeCode);
+        $chainId = $this->getChainId($scopeCode);
+
+        return sprintf('%s/%s/%s', $trackingBaseUrl, $chainId, $storeOrder);
     }
 
     public function allowsSpecificCountries(string $scopeCode = null): bool
