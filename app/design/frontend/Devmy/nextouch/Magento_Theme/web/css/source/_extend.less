@@ -88,11 +88,12 @@
         }
 
         .modal-header {
+            padding-top: 80px;
             border: 0;
         }
 
         .modal-content {
-            height: calc(100vh - 42px);
+            height: auto;
             width: 100vw;
             padding: 0;
             background-color: transparent;
@@ -116,7 +117,7 @@
         }
 
         iframe {
-            height: calc(100vh - 50px);
+            height: calc(100vh - 80px - 3rem);
             border: 0;
         }
     }
@@ -161,6 +162,14 @@
                 width: 18px;
                 height: 18px;
             }
+        }
+    }
+
+    .decision-tree-popup {
+        left: 0;
+
+        .modal-inner-wrap {
+            background: transparent !important;
         }
     }
 }
