@@ -143,6 +143,7 @@
                     width: 76px;
                     height: 76px;
                     display: inline-block;
+                    vertical-align: top;
                 }
             }
         }
@@ -509,6 +510,16 @@
             box-sizing: border-box;
             width: 100%;
         }
+
+        .account-wrapper {
+            .showaccount {
+                border-radius: 50px;
+
+                &:hover {
+                    box-shadow: 0 7px 4px @theme__color__secondary;
+                }
+            }
+        }
     }
 
     .overlay-megamenu {
@@ -598,7 +609,7 @@
         }
 
         .account-wrapper {
-            margin-left: 13px;
+            margin-left: @indent__base;
         }
 
     }

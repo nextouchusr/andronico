@@ -459,6 +459,7 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .minicart-wrapper {
+        margin-right: @indent__base;
 
         div.block-minicart {
             right: -15px;
@@ -480,6 +481,14 @@
                         padding: 15px 30px;
                     }
                 }
+            }
+        }
+
+        .showcart {
+            border-radius: 50px;
+
+            &:hover {
+                box-shadow: 0 7px 4px @theme__color__secondary;
             }
         }
     }

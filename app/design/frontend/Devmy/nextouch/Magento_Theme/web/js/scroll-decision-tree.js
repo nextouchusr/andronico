@@ -12,10 +12,14 @@ define([
                     $(element).css('height',$(element).innerHeight());
                     $(window).on('scroll', function() {
                         var initialPos = $(element).offset().top;
-                        if($(window).scrollTop() > (initialPos + $('.decision-tree-btn').height())) {
+                        var footerHeight = $('.page-footer').height();
+                        var decisionTreeHeight = $('.decision-tree-btn').height();
+                        var hasReachHalfPage = $(window).scrollTop() > (initialPos + decisionTreeHeight);
+                        var hasReachFooter = ($('body').height() - footerHeight) < ($(window).scrollTop() + $(window).height());
+
+                        if (hasReachHalfPage && !hasReachFooter) {
                             $(element).find('.decision-tree-btn').addClass('stickyTree');
-                        }
-                        else {
+                        } else {
                             $(element).find('.decision-tree-btn').removeClass('stickyTree');
                         }
                     });
