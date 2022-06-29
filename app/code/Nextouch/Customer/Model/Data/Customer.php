@@ -9,7 +9,7 @@ class Customer extends \Magento\Customer\Model\Data\Customer implements Customer
 {
     public function getCustomerSyncFailures(): int
     {
-        return (int) $this->getCustomAttribute(self::CUSTOMER_SYNC_FAILURES);
+        return (int) $this->getCustomAttribute(self::CUSTOMER_SYNC_FAILURES)->getValue();
     }
 
     public function increaseCustomerSyncFailures(): self
