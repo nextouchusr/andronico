@@ -165,7 +165,7 @@
     .decision-tree-popup {
         padding: 20px;
         border-radius: 0;
-        height: ~'calc(100vh - 20px * 2)';
+        height: ~'calc(100% - 20px * 2)';
         left: 0 !important;
         background-color: rgba(66, 156, 134, 0.4);
         backdrop-filter: brightness(0.5) opacity(0.8) !important;
@@ -184,13 +184,19 @@
 
         .modal-content {
             width: 100%;
+            height: inherit !important;
+        }
+
+        #decision-tree-modal {
+            height: inherit !important;
         }
 
         #decision-tree-iframe {
-            height: ~'calc(100vh - (40px + 80px))';
+            height: 100%;
         }
 
         &.modal-slide .modal-inner-wrap {
+            height: inherit !important;
             background-color: rgba(0, 241, 162, 0.2) !important;
             border-radius: 50px !important;
             box-shadow: none;
