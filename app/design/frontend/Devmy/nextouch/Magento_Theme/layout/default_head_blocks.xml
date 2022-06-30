@@ -1,5 +1,8 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"/>
+    </head>
     <body>
         <referenceBlock name="head.additional">
             <block name="google-font" as="google-font" template="Magento_Theme::html/google-fonts.phtml"/>
