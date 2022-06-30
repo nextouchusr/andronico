@@ -37,4 +37,9 @@
         <plugin name="validate_quote_salable_qty"
                 type="Nextouch\Wins\Plugin\Findomestic\Controller\Payment\ValidateQuoteSalableQty"/>
     </type>
+
+    <type name="Magento\InventoryInStorePickupApi\Api\GetPickupLocationsInterface">
+        <plugin name="filter_pickup_locations"
+                type="Nextouch\Wins\Plugin\InventoryInStorePickup\Model\FilterPickupLocations"/>
+    </type>
 </config>

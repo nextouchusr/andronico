@@ -5,11 +5,10 @@ namespace Nextouch\Wins\Model\Request\Inventory;
 
 use Nextouch\Wins\Api\Data\InputInterface;
 use Nextouch\Wins\Model\Auth\LoginInfo;
+use Nextouch\Wins\Model\Order\PickAndPayInfo;
 
 class GetProductAvailability implements InputInterface
 {
-    public const DEFAULT_SPIN_CODE = 'ESL';
-
     private string $accessToken;
     private LoginInfo $loginInfo;
     private string $productCode;
@@ -19,7 +18,7 @@ class GetProductAvailability implements InputInterface
         string $accessToken,
         LoginInfo $loginInfo,
         string $productCode,
-        string $spinCode = self::DEFAULT_SPIN_CODE
+        string $spinCode = PickAndPayInfo::DEFAULT_PICKUP_LOCATION
     ) {
         $this->accessToken = $accessToken;
         $this->loginInfo = $loginInfo;
