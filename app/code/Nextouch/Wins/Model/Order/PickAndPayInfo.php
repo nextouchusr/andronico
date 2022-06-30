@@ -8,9 +8,11 @@ use Nextouch\Wins\Api\Data\ArrayableInterface;
 
 class PickAndPayInfo implements ArrayableInterface
 {
-    private const DEFAULT_PICKUP_LOCATION = 'ESL';
-    private const STANDARD_TYPE = 'standard';
-    private const EXTENDED_TYPE = 'extended';
+    public const DEFAULT_PICKUP_LOCATION = 'ESL';
+    public const STANDARD_TYPE = 'standard';
+    public const STANDARD_TYPE_DAYS = 3;
+    public const EXTENDED_TYPE = 'extended';
+    public const EXTENDED_TYPE_DAYS = 5;
 
     private bool $isPickAndPay;
     private string $pickAndPaySellPoint;

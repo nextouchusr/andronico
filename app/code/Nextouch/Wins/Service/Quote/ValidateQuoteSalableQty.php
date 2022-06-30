@@ -5,14 +5,15 @@ namespace Nextouch\Wins\Service\Quote;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\InventoryInStorePickupShippingApi\Model\Carrier\InStorePickup;
-use Magento\OfflinePayments\Model\Checkmo;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\Quote\Item as QuoteItem;
+use Nextouch\InStorePayment\Model\InStorePayment;
 use Nextouch\Wins\Api\AuthManagementInterface;
 use Nextouch\Wins\Api\ProductSalableQtyManagementInterface;
 use Nextouch\Wins\Helper\WinsConfig;
 use Nextouch\Wins\Model\Auth\LoginInfo;
 use Nextouch\Wins\Model\Inventory\ProductStock;
+use Nextouch\Wins\Model\Order\PickAndPayInfo;
 use Nextouch\Wins\Model\Request\Auth\Authorize;
 use Nextouch\Wins\Model\Request\Inventory\GetProductAvailability as GetProductAvailabilityRequest;
 use Nextouch\Wins\Model\Response\Inventory\GetProductAvailability as GetProductAvailabilityResponse;
@@ -37,7 +38,12 @@ class ValidateQuoteSalableQty
         $this->config = $config;
     }
 
-    private function getSpinCodeList(Quote $quote): array
+    public function getValidationErrors(): array
+    {
+        return $this->validationErrors;
+    }
+
+    public function getSpinCodeList(Quote $quote): array
     {
         $shippingAddress = $quote->getShippingAddress();
         $shippingMethod = $shippingAddress->getShippingMethod();
@@ -48,14 +54,14 @@ class ValidateQuoteSalableQty
             $paymentMethod = $quote->getPayment()->getMethod();
 
             // Pick&Pay
-            if ($paymentMethod === Checkmo::PAYMENT_METHOD_CHECKMO_CODE) {
-                return [$pickupLocationCode, GetProductAvailabilityRequest::DEFAULT_SPIN_CODE];
+            if ($paymentMethod === InStorePayment::METHOD_CODE) {
+                return [$pickupLocationCode, PickAndPayInfo::DEFAULT_PICKUP_LOCATION];
             }
 
             return [$pickupLocationCode]; // Pickup@Store
         }
 
-        return [GetProductAvailabilityRequest::DEFAULT_SPIN_CODE];
+        return [PickAndPayInfo::DEFAULT_PICKUP_LOCATION];
     }
 
     /**
@@ -70,11 +76,11 @@ class ValidateQuoteSalableQty
         }, $this->getSpinCodeList($quote));
 
         if (!$isValid) {
-            throw new LocalizedException(first($this->validationErrors));
+            throw new LocalizedException(first($this->getValidationErrors()));
         }
     }
 
-    private function validateItem(QuoteItem $quoteItem, string $spinCode): bool
+    public function validateItem(QuoteItem $quoteItem, string $spinCode): bool
     {
         $getProductAvailability = $this->getProductAvailability($quoteItem, $spinCode);
 

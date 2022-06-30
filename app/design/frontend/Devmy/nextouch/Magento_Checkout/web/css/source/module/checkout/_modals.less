@@ -65,9 +65,10 @@
     .checkout-index-index {
         .modal-popup {
             .modal-inner-wrap {
-                .lib-css(margin-left, -(@checkout-modal-popup__width/2));
                 .lib-css(width, @checkout-modal-popup__width);
+                transform: translate(-50%, 0%);
                 left: 50%;
+                right: unset;
             }
         }
     }
