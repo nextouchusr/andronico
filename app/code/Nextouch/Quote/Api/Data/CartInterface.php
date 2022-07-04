@@ -47,4 +47,24 @@ interface CartInterface extends \Magento\Quote\Api\Data\CartInterface
      * @return \Nextouch\Quote\Api\Data\CartItemInterface[]
      */
     public function getItems(): array;
+
+    /**
+     * @return bool
+     */
+    public function isShippableWithInStorePickup(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isShippableWithFastEst(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isShippableWithDhl(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isShippableWithGls(): bool;
 }
