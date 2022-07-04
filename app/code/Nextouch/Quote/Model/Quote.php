@@ -4,11 +4,16 @@ declare(strict_types=1);
 namespace Nextouch\Quote\Model;
 
 use Magento\Framework\App\ObjectManager;
+use Nextouch\Dhl\Model\Carrier\Dhl;
+use Nextouch\FastEst\Model\Carrier\FastEst;
+use Nextouch\Gls\Model\Carrier\Gls;
 use Nextouch\Quote\Api\Data\AddressInterface;
 use Nextouch\Quote\Api\Data\CartInterface;
 use Nextouch\Quote\Api\Data\CartItemInterface;
 use Nextouch\Quote\Model\ResourceModel\Quote\Address\CollectionFactory as AddressCollectionFactory;
 use Nextouch\Quote\Model\ResourceModel\Quote\Item\CollectionFactory as ItemCollectionFactory;
+use function Lambdish\Phunctional\all;
+use function Lambdish\Phunctional\some;
 
 class Quote extends \Magento\Quote\Model\Quote implements CartInterface
 {
@@ -69,5 +74,41 @@ class Quote extends \Magento\Quote\Model\Quote implements CartInterface
         }
 
         return $this->getData(self::KEY_ITEMS);
+    }
+
+    public function isShippableWithInStorePickup(): bool
+    {
+        return all(function (CartItemInterface $item) {
+            return $item->getProduct()->isPickupable();
+        }, $this->getItems());
+    }
+
+    public function isShippableWithFastEst(): bool
+    {
+        return some(function (CartItemInterface $item) {
+            $selectableCarrier = $item->getProduct()->getSelectableCarrier();
+
+            return $selectableCarrier === FastEst::CODE;
+        }, $this->getItems());
+    }
+
+    public function isShippableWithDhl(): bool
+    {
+        $isShippableWithDhl = some(function (CartItemInterface $item) {
+            $selectableCarrier = $item->getProduct()->getSelectableCarrier();
+
+            return $selectableCarrier === Dhl::CODE;
+        }, $this->getItems());
+
+        return $isShippableWithDhl && !$this->isShippableWithFastEst();
+    }
+
+    public function isShippableWithGls(): bool
+    {
+        return all(function (CartItemInterface $item) {
+            $selectableCarrier = $item->getProduct()->getSelectableCarrier();
+
+            return $selectableCarrier === Gls::CODE;
+        }, $this->getItems());
     }
 }

@@ -12,11 +12,8 @@ use Nextouch\Dhl\Model\Carrier\Dhl;
 use Nextouch\FastEst\Model\Carrier\FastEst;
 use Nextouch\Gls\Model\Carrier\Gls;
 use Nextouch\Quote\Api\Data\CartInterface;
-use Nextouch\Quote\Api\Data\CartItemInterface;
 use Nextouch\Quote\Model\ResourceModel\Quote\CollectionFactory as QuoteCollectionFactory;
-use function Lambdish\Phunctional\all;
 use function Lambdish\Phunctional\reduce;
-use function Lambdish\Phunctional\some;
 
 class FilterShippingMethodsBasedOnCart
 {
@@ -54,73 +51,27 @@ class FilterShippingMethodsBasedOnCart
      */
     private function filterShippingMethods(array $shippingMethods): array
     {
-        return reduce(function (array $acc, ShippingMethodInterface $curr) {
-            if ($curr->getCarrierCode() === 'instore' && $this->isShippableWithInStorePickup()) {
+        $quote = $this->getQuote();
+
+        return reduce(function (array $acc, ShippingMethodInterface $curr) use ($quote) {
+            if ($curr->getCarrierCode() === 'instore' && $quote->isShippableWithInStorePickup()) {
                 return [$curr, ...$acc];
             }
 
-            if ($curr->getCarrierCode() === FastEst::CODE && $this->isShippableWithFastEst()) {
+            if ($curr->getCarrierCode() === FastEst::CODE && $quote->isShippableWithFastEst()) {
                 return [$curr, ...$acc];
             }
 
-            if ($curr->getCarrierCode() === Dhl::CODE && $this->isShippableWithDhl()) {
+            if ($curr->getCarrierCode() === Dhl::CODE && $quote->isShippableWithDhl()) {
                 return [$curr, ...$acc];
             }
 
-            if ($curr->getCarrierCode() === Gls::CODE && $this->isShippableWithGls()) {
+            if ($curr->getCarrierCode() === Gls::CODE && $quote->isShippableWithGls()) {
                 return [$curr, ...$acc];
             }
 
             return $acc;
         }, $shippingMethods, []);
-    }
-
-    /**
-     * @throws LocalizedException
-     */
-    private function isShippableWithInStorePickup(): bool
-    {
-        return all(function (CartItemInterface $item) {
-            return $item->getProduct()->isPickupable();
-        }, $this->getQuote()->getItems());
-    }
-
-    /**
-     * @throws LocalizedException
-     */
-    private function isShippableWithFastEst(): bool
-    {
-        return some(function (CartItemInterface $item) {
-            $selectableCarrier = $item->getProduct()->getSelectableCarrier();
-
-            return $selectableCarrier === FastEst::CODE;
-        }, $this->getQuote()->getItems());
-    }
-
-    /**
-     * @throws LocalizedException
-     */
-    private function isShippableWithDhl(): bool
-    {
-        $isShippableWithDhl = some(function (CartItemInterface $item) {
-            $selectableCarrier = $item->getProduct()->getSelectableCarrier();
-
-            return $selectableCarrier === Dhl::CODE;
-        }, $this->getQuote()->getItems());
-
-        return $isShippableWithDhl && !$this->isShippableWithFastEst();
-    }
-
-    /**
-     * @throws LocalizedException
-     */
-    private function isShippableWithGls(): bool
-    {
-        return all(function (CartItemInterface $item) {
-            $selectableCarrier = $item->getProduct()->getSelectableCarrier();
-
-            return $selectableCarrier === Gls::CODE;
-        }, $this->getQuote()->getItems());
     }
 
     /**
