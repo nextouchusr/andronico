@@ -89,7 +89,7 @@ class Data implements InputInterface
             $customer->getFirstname(),
             $customer->getLastname(),
             (int) $quoteItem->getQty(),
-            (float) $quoteItem->getPrice(),
+            $quoteItem->getRowTotal(),
             (string) $quoteItem->getName(),
         );
     }
