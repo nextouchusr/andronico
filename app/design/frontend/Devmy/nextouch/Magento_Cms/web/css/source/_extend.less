@@ -25,11 +25,6 @@
             width: 100vw;
         }
     }
-    .cms-page-view {
-        .force-fullscreen {
-            width: 100vw;
-        }
-    }
     .force-fullscreen {
         overflow: hidden;
     }
@@ -340,6 +335,11 @@
 //  ----------------------------------------------
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cms-page-view {
+        .tns-outer, .force-fullscreen {
+            width: 100vw;
+        }
+    }
 
     .hide-desktop {
         display: none;
