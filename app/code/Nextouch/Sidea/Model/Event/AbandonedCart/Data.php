@@ -77,19 +77,22 @@ class Data implements InputInterface
         return $this->itemsName;
     }
 
+    /**
+     * @noinspection PhpCastIsUnnecessaryInspection
+     */
     public static function fromDomain(QuoteItem $quoteItem): self
     {
         $quote = $quoteItem->getQuote();
         $customer = $quote->getCustomer();
 
         return new self(
-            $customer->getEmail(),
-            $customer->getEmail(),
+            (string) $customer->getEmail(),
+            (string) $customer->getEmail(),
             (string) $quote->getEntityId(),
-            $customer->getFirstname(),
-            $customer->getLastname(),
+            (string) $customer->getFirstname(),
+            (string) $customer->getLastname(),
             (int) $quoteItem->getQty(),
-            $quoteItem->getRowTotal(),
+            (float) $quoteItem->getRowTotal(),
             (string) $quoteItem->getName(),
         );
     }
