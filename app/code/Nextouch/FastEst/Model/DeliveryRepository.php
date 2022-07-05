@@ -9,8 +9,10 @@ use Nextouch\FastEst\Model\Delivery\Customer;
 use Nextouch\FastEst\Model\Delivery\DeliveryBase;
 use Nextouch\FastEst\Model\Delivery\Product;
 use Nextouch\FastEst\Model\Request\Delivery\ConfirmParkedDelivery as ConfirmParkedDeliveryRequest;
+use Nextouch\FastEst\Model\Request\Delivery\GetOrderLabels as GetOrderLabelsRequest;
 use Nextouch\FastEst\Model\Request\Delivery\InsertNewDelivery as InsertNewDeliveryRequest;
 use Nextouch\FastEst\Model\Response\Delivery\ConfirmParkedDelivery as ConfirmParkedDeliveryResponse;
+use Nextouch\FastEst\Model\Response\Delivery\GetOrderLabels as GetOrderLabelsResponse;
 use Nextouch\FastEst\Model\Response\Delivery\InsertNewDelivery as InsertNewDeliveryResponse;
 use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
@@ -46,5 +48,19 @@ class DeliveryRepository extends AbstractBaseRepository implements DeliveryRepos
         $result = $this->doRequest('confirm_parked_delivery', $request);
 
         return ConfirmParkedDeliveryResponse::fromObject($result);
+    }
+
+    public function getOrderLabels(OrderInterface $order): GetOrderLabelsResponse
+    {
+        $username = $this->config->getUsername($this->scopeCode);
+        $password = $this->config->getPassword($this->scopeCode);
+
+        $login = new Login($username, $password);
+        $storeOrder = $order->getIncrementId();
+        $request = new GetOrderLabelsRequest($login, $storeOrder);
+
+        $result = $this->doRequest('get_labels_by_storeorder', $request);
+
+        return GetOrderLabelsResponse::fromObject($result);
     }
 }

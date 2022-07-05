@@ -5,6 +5,7 @@ namespace Nextouch\FastEst\Api;
 
 use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Model\Response\Delivery\ConfirmParkedDelivery;
+use Nextouch\FastEst\Model\Response\Delivery\GetOrderLabels;
 use Nextouch\FastEst\Model\Response\Delivery\InsertNewDelivery;
 use Nextouch\Sales\Api\Data\OrderInterface;
 
@@ -19,4 +20,6 @@ interface DeliveryRepositoryInterface
     public function create(OrderInterface $order): InsertNewDelivery;
 
     public function confirmParked(OrderInterface $order): ConfirmParkedDelivery;
+
+    public function getOrderLabels(OrderInterface $order): GetOrderLabels;
 }

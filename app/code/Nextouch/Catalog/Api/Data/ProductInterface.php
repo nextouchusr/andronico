@@ -25,6 +25,23 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
 
     public const DEFAULT_FAST_EST_TYPE = 20; // Altro
 
+    // Product Service Options
+    public const EVENING_DELIVERY = 'consegna_serale';
+    public const APPOINTMENT_DELIVERY = 'consegna_su_appuntamento';
+    public const URGENT_DELIVERY = 'consegna_in_giornata';
+    public const SATURDAY_DELIVERY = 'consegna_sabato';
+    public const PRODUCT_INSTALLATION = 'installazione_prodotto';
+    public const BUILT_IN_PRODUCT = 'incasso_prodotto';
+    public const GAS_CERTIFICATION = 'certificazione_gas';
+    public const STANDARD_TV_INSTALLATION = 'installazione_standard_tv';
+    public const CONNECTIVITY_AND_TV_DEMONSTRATION = 'connettivita_e_dimostrazione_tv';
+    public const PERIPHERAL_INSTALLATION_TO_TV = 'installazione_periferiche_alla_tv';
+    public const TV_WALL_MOUNTING = 'montaggio_a_muro';
+    public const RAEE_RETURN = 'ritiro_raee';
+    public const AIR_CONDITIONING_INSTALLATION_MONO = 'installazione_base_clima_mono';
+    public const AIR_CONDITIONING_INSTALLATION_DUAL = 'installazione_base_clima_dual';
+    public const AIR_CONDITIONING_INSTALLATION_TRIAL = 'installazione_base_clima_trial_o_superiore';
+
     /**
      * @return string
      */
