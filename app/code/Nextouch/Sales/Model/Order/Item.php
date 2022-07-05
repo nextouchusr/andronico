@@ -7,11 +7,32 @@ use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Nextouch\Catalog\Api\Data\ProductInterface;
 use Nextouch\Catalog\Api\ProductRepositoryInterface;
+use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
+use Nextouch\Sales\Api\OrderRepositoryInterface;
 use function Lambdish\Phunctional\search;
+use function Lambdish\Phunctional\some;
+use function Symfony\Component\String\u;
 
 class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
 {
+    public function getOrder(): ?OrderInterface
+    {
+        if ($this->getData(self::ORDER)) {
+            return $this->getData(self::ORDER);
+        }
+
+        try {
+            $orderRepository = ObjectManager::getInstance()->get(OrderRepositoryInterface::class);
+            $order = $orderRepository->get((int) $this->getOrderId());
+            $this->setData(self::ORDER, $order);
+
+            return $order;
+        } catch (NoSuchEntityException $e) {
+            return null;
+        }
+    }
+
     public function getProduct(): ?ProductInterface
     {
         if ($this->getData(self::PRODUCT)) {
@@ -34,17 +55,6 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
         return (array) $this->getProductOptionByCode(self::SELECTED_OPTIONS);
     }
 
-    public function hasProductInstall(): bool
-    {
-        return (
-            $this->hasStandardTvInstallation() ||
-            $this->hasPeripheralInstallationToTv() ||
-            $this->hasAirConditioningInstallationMono() ||
-            $this->hasAirConditioningInstallationDual() ||
-            $this->hasAirConditioningInstallationTrial()
-        );
-    }
-
     public function hasStreetLineDelivery(): bool
     {
         return $this->getProduct()->getStreetLineDeliveryPrice() > 0;
@@ -57,95 +67,93 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
 
     public function hasEveningDelivery(): bool
     {
-        return $this->hasSelectedService(self::EVENING_DELIVERY);
+        return $this->hasSelectedService(ProductInterface::EVENING_DELIVERY);
     }
 
     public function hasAppointmentDelivery(): bool
     {
-        return $this->hasSelectedService(self::APPOINTMENT_DELIVERY);
+        return $this->hasSelectedService(ProductInterface::APPOINTMENT_DELIVERY);
     }
 
     public function hasUrgentDelivery(): bool
     {
-        return $this->hasSelectedService(self::URGENT_DELIVERY);
+        return $this->hasSelectedService(ProductInterface::URGENT_DELIVERY);
     }
 
     public function hasSaturdayDelivery(): bool
     {
-        return $this->hasSelectedService(self::SATURDAY_DELIVERY);
+        return $this->hasSelectedService(ProductInterface::SATURDAY_DELIVERY);
     }
 
-    public function hasHookupToElectricalGrid(): bool
+    public function hasProductInstall(): bool
     {
-        return $this->hasSelectedService(self::HOOKUP_TO_ELECTRICAL_GRID);
+        return $this->hasSelectedService(ProductInterface::PRODUCT_INSTALLATION);
     }
 
-    public function hasHookupAndBuildIn(): bool
+    public function hasBuiltInProduct(): bool
     {
-        return $this->hasSelectedService(self::HOOKUP_AND_BUILD_IN);
+        return $this->hasSelectedService(ProductInterface::BUILT_IN_PRODUCT);
+    }
+
+    public function hasGasCertification(): bool
+    {
+        return $this->hasSelectedService(ProductInterface::GAS_CERTIFICATION);
     }
 
     public function hasStandardTvInstallation(): bool
     {
-        return $this->hasSelectedService(self::STANDARD_TV_INSTALLATION);
+        return $this->hasSelectedService(ProductInterface::STANDARD_TV_INSTALLATION);
     }
 
     public function hasConnectivityAndTvDemonstration(): bool
     {
-        return $this->hasSelectedService(self::CONNECTIVITY_AND_TV_DEMONSTRATION);
+        return $this->hasSelectedService(ProductInterface::CONNECTIVITY_AND_TV_DEMONSTRATION);
     }
 
     public function hasPeripheralInstallationToTv(): bool
     {
-        return $this->hasSelectedService(self::PERIPHERAL_INSTALLATION_TO_TV);
+        return $this->hasSelectedService(ProductInterface::PERIPHERAL_INSTALLATION_TO_TV);
     }
 
     public function hasTvWallMounting(): bool
     {
-        return $this->hasSelectedService(self::TV_WALL_MOUNTING);
+        return $this->hasSelectedService(ProductInterface::TV_WALL_MOUNTING);
+    }
+
+    public function hasRaeeReturn(): bool
+    {
+        return $this->hasSelectedService(ProductInterface::RAEE_RETURN);
     }
 
     public function hasAirConditioningInstallationMono(): bool
     {
-        return $this->hasSelectedService(self::AIR_CONDITIONING_INSTALLATION_MONO);
+        return $this->hasSelectedService(ProductInterface::AIR_CONDITIONING_INSTALLATION_MONO);
     }
 
     public function hasAirConditioningInstallationDual(): bool
     {
-        return $this->hasSelectedService(self::AIR_CONDITIONING_INSTALLATION_DUAL);
+        return $this->hasSelectedService(ProductInterface::AIR_CONDITIONING_INSTALLATION_DUAL);
     }
 
     public function hasAirConditioningInstallationTrial(): bool
     {
-        return $this->hasSelectedService(self::AIR_CONDITIONING_INSTALLATION_TRIAL);
-    }
-
-    public function hasSmartphoneFileTransfer(): bool
-    {
-        return $this->hasSelectedService(self::SMARTPHONE_FILE_TRANSFER);
-    }
-
-    public function hasSmartphoneReadyForYou(): bool
-    {
-        return $this->hasSelectedService(self::SMARTPHONE_READY_FOR_YOU);
-    }
-
-    public function hasPcReadyForYou(): bool
-    {
-        return $this->hasSelectedService(self::PC_READY_FOR_YOU);
-    }
-
-    public function hasPcReadyForYouPremium(): bool
-    {
-        return $this->hasSelectedService(self::PC_READY_FOR_YOU_PREMIUM);
+        return $this->hasSelectedService(ProductInterface::AIR_CONDITIONING_INSTALLATION_TRIAL);
     }
 
     private function hasSelectedService(string $code): bool
     {
         $options = $this->getSelectedOptions();
 
-        $service = search(fn(array $item) => $item['value'] === $code, $options);
+        return some(function (array $option) use ($code) {
+            $values = explode(self::OPTION_SEPARATOR, $option['value']);
 
-        return $service !== null;
+            $service = search(function (string $value) use ($code) {
+                $formattedValue = u($value)->snake()->lower()->toString();
+
+                return $formattedValue === $code;
+            }, $values);
+
+            return $service !== null;
+        }, $options);
     }
 }
