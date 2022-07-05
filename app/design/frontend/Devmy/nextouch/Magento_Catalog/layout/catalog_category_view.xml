@@ -23,6 +23,6 @@
             </block>
         </referenceBlock>
 
-        <move element="catalog.compare.sidebar" destination="product_list_toolbar" after="-"/>
+        <move element="catalog.compare.sidebar" destination="main" before="-"/>
     </body>
 </page>

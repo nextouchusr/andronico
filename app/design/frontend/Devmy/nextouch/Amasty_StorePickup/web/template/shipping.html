@@ -90,6 +90,8 @@
                                                     'id': 's_method_' + method.method_code,
                                                     'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code
                                                  }" />
+
+                                <label data-bind="attr: {'for': 's_method_' + method.method_code}"></label>
                                 <!-- /ko -->
                                 <!--ko ifnot: ($parent.rates().length == 1)-->
                                 <input name="shipping_method" type="radio"
@@ -102,7 +104,7 @@
                                                 },
                                                 click: $parent.selectShippingMethod"
                                        class="radio"/>
-                                <label></label>
+                                <label data-bind="attr: {'for': 's_method_' + method.method_code}"></label>
                                 <!--/ko-->
                                 <!-- /ko -->
                             </td>

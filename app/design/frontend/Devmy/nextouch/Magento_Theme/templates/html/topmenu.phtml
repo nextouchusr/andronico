@@ -30,7 +30,7 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 
             $(megamenu).find('.category-item.parent').prepend('<span class="openChild"></div>');
 
-            $(megamenu).on('mouseover', function() {
+            /* $(megamenu).on('mouseover', function() {
                $('body').addClass('overmenu');
                 mediaCheck({
                     media: '(min-width: 768px)',
@@ -43,9 +43,13 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                 });
 
             });
+
+
             $(megamenu).on('mouseleave', function() {
                $('body').removeClass('overmenu');
             });
+
+             */
 
             $('body').on('click', function(event) {
                 var target = $(event.target);
@@ -56,12 +60,27 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
             });
 
             $(megamenu).on('click', '.openChild', function() {
-                $(window).scrollTop(0);
                 $(this).parent().toggleClass('open').parent().toggleClass('childOpened');
                 if($(this).parent().hasClass('level0')) {
                     $('body').addClass('openMenuLv0');
                 }
                 $('#mobile-bottom-menu-links').appendTo($(this).parent().children('ul'));
+            });
+
+
+            $(megamenu).on('click', 'li.level0.parent a.level-top', function(event) {
+                if(window.matchMedia('(min-width: 768px)').matches) {
+                    event.preventDefault();
+                    if($(this).parent().hasClass('openclick')) {
+                        $(this).parent().removeClass('openclick');
+                        $('body').removeClass('overmenu');
+                    }
+                    else {
+                        $(megamenu).find('li.level0').removeClass('openclick');
+                        $(this).parent().addClass('openclick');
+                        $('body').addClass('overmenu');
+                    }
+                }
             });
 
             $(megamenu).on('click', '.level-back', function() {
@@ -76,7 +95,9 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 
 
             $('body').on('click', '.nav-toggle', function() {
-                $(window).scrollTop(0);
+                if(window.matchMedia('(max-width: 767px)').matches) {
+                    $(window).scrollTop(0);
+                }
                 $(megamenu).closest('.nav-sections').toggleClass('show');
                 $('body').toggleClass('openMenu');
             });

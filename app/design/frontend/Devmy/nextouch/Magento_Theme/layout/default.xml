@@ -21,6 +21,7 @@
         </referenceContainer>
 
 
+
         <referenceBlock name="catalog.topnav">
             <block class="Magento\Cms\Block\Block" name="mobile-bottom-static-link">
                 <arguments>
