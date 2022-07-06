@@ -26,6 +26,11 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public const FINDOMESTIC_APPLICATION_STATUS_CANCEL = 3;
     public const FINDOMESTIC_APPLICATION_STATUS_DECLINE = 4;
 
+    public const IN_STORE_ORDER_ACCEPTED = 'E';
+    public const IN_STORE_ORDER_REJECTED = 'R';
+    public const IN_STORE_ORDER_PICKED_UP = 'S';
+    public const IN_STORE_ORDER_NOT_PICKED_UP = 'N';
+
     /**
      * @param string $shippingMethod
      * @return bool

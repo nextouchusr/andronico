@@ -58,7 +58,7 @@ class ValidateQuoteSalableQty
                 return [$pickupLocationCode, PickAndPayInfo::DEFAULT_PICKUP_LOCATION];
             }
 
-            return [$pickupLocationCode]; // Pickup@Store
+            return [$pickupLocationCode, PickAndPayInfo::DEFAULT_PICKUP_LOCATION]; // Pickup@Store
         }
 
         return [PickAndPayInfo::DEFAULT_PICKUP_LOCATION];

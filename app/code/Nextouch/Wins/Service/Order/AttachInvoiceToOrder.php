@@ -42,7 +42,7 @@ class AttachInvoiceToOrder
         $this->logger = $logger;
     }
 
-    public function execute(array $invoice): void
+    public function execute(array $invoice): bool
     {
         try {
             $this->logger->info(__('Starting to attach Wins invoice %1 to order', $invoice['filename']));
@@ -61,12 +61,16 @@ class AttachInvoiceToOrder
             $form->restoreData($data);
 
             $this->saveHandler->execute($entity);
+
+            return true;
         } catch (LocalizedException $e) {
             $message = __('Failed to attach invoice %1 to order: Error: %2', $invoice['filename'], $e->getMessage());
             $this->logger->error($message);
         } finally {
             $this->logger->info(__('Finishing to attach Wins invoice %1 to order', $invoice['filename']));
         }
+
+        return false;
     }
 
     /**

@@ -28,6 +28,12 @@
         </arguments>
     </type>
 
+    <type name="Nextouch\Wins\Cron\UpdateInStoreOrder">
+        <arguments>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </type>
+
     <type name="Magento\Quote\Model\QuoteManagement">
         <plugin name="validate_quote_salable_qty"
                 type="Nextouch\Wins\Plugin\Quote\Model\ValidateQuoteSalableQty"/>
