@@ -5,8 +5,8 @@ namespace Nextouch\Rma\Plugin\Helper;
 
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Rma\Helper\Data;
+use Magento\Sales\Model\Order;
 use Nextouch\Rma\Helper\RmaConfig;
-use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\OrderRepositoryInterface;
 
 class CanRequestRma
@@ -28,8 +28,8 @@ class CanRequestRma
      */
     public function afterCanCreateRma(Data $subject, bool $result, $maybeOrder): bool
     {
-        /** @var OrderInterface $order */
-        $order = is_numeric($maybeOrder) ? $this->orderRepository->get($maybeOrder) : $maybeOrder;
+        $orderId = ($maybeOrder instanceof Order) ? $maybeOrder->getEntityId() : $maybeOrder;
+        $order = $this->orderRepository->get((int) $orderId);
 
         $canRequestRma = false;
         if ($order->getCompletedAt()) {
