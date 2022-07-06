@@ -46,6 +46,9 @@ config_export: ## Export Magento configuration
 resize_images: ## Resize images
 	bash dev/scripts/resize_images.sh
 
+sidea_send_abandoned_carts: ## Run Sidea send abandoned carts job
+	php ./n98-magerun2.phar sys:cron:run nextouch_sidea_send_abandoned_carts
+
 wins_import_job: ## Run Wins entity data import job
 	php ./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_entity_data_import_job
 
