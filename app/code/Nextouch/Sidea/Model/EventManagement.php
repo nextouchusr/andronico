@@ -14,7 +14,7 @@ class EventManagement extends AbstractBaseRestApi implements EventManagementInte
 
     public function sendAbandonedCart(AbandonedCartRequest $request): bool
     {
-        $this->logger->info(__('Send abandoned cart: %1', $request->getData()->getId()));
+        $this->logger->info(__('Send abandoned cart: %1', $request->getData()->getCartId()));
 
         $uriEndpoint = self::REQUEST_ENDPOINT . self::SEND_EVENT_ACTION;
         $params = [
