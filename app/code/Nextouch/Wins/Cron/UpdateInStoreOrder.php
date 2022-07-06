@@ -5,22 +5,22 @@ namespace Nextouch\Wins\Cron;
 
 use Magento\Framework\Filesystem\Io\IoInterface;
 use Nextouch\ImportExport\Helper\ImportExportConfig;
-use Nextouch\Wins\Service\Order\AttachInvoiceToOrder as AttachInvoiceToOrderService;
+use Nextouch\Wins\Service\Order\UpdateInStoreOrder as UpdateInStoreOrderService;
 use function Lambdish\Phunctional\each;
 use function Lambdish\Phunctional\map;
 
-class AttachInvoiceToOrder
+class UpdateInStoreOrder
 {
-    private AttachInvoiceToOrderService $attachInvoiceService;
+    private UpdateInStoreOrderService $inStoreOrderService;
     private IoInterface $client;
     private ImportExportConfig $config;
 
     public function __construct(
-        AttachInvoiceToOrderService $attachInvoiceService,
+        UpdateInStoreOrderService $inStoreOrderService,
         IoInterface $client,
         ImportExportConfig $config
     ) {
-        $this->attachInvoiceService = $attachInvoiceService;
+        $this->inStoreOrderService = $inStoreOrderService;
         $this->client = $client;
         $this->config = $config;
     }
@@ -30,12 +30,12 @@ class AttachInvoiceToOrder
         $this->openConnection();
 
         each(function (array $item) {
-            $isSuccess = $this->attachInvoiceService->execute($item);
+            $isSuccess = $this->inStoreOrderService->execute($item);
 
             if ($isSuccess) {
                 $this->client->rm($item['filepath']);
             }
-        }, $this->fetchInvoices());
+        }, $this->fetchInStoreOrders());
 
         $this->client->close();
     }
@@ -46,10 +46,10 @@ class AttachInvoiceToOrder
         $this->client->open($config);
     }
 
-    private function fetchInvoices(): array
+    private function fetchInStoreOrders(): array
     {
         $location = $this->config->getWinsLocation();
-        $this->client->cd("$location/invoices");
+        $this->client->cd("$location/in_store_delivery");
 
         return map(function (array $data) {
             return [

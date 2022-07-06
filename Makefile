@@ -52,6 +52,9 @@ wins_import_job: ## Run Wins entity data import job
 wins_attach_order_invoice: ## Run Wins attach order invoice job
 	php ./n98-magerun2.phar sys:cron:run nextouch_wins_attach_order_invoice
 
+wins_update_in_store_order: ## Run Wins update in-store order job
+	php ./n98-magerun2.phar sys:cron:run nextouch_wins_update_in_store_order
+
 # Static & Quality Tools
 phpcs: ## Run phpcs to analyze code
 	php vendor/bin/phpcs --standard=Magento2 app/code/Nextouch

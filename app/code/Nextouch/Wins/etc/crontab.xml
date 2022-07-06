@@ -19,5 +19,11 @@
              method="execute">
             <schedule>*/30 * * * *</schedule>
         </job>
+
+        <job name="nextouch_wins_update_in_store_order"
+             instance="Nextouch\Wins\Cron\UpdateInStoreOrder"
+             method="execute">
+            <schedule>*/30 * * * *</schedule>
+        </job>
     </group>
 </config>
