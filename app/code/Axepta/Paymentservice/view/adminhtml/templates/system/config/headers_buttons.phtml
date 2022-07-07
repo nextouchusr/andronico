@@ -1,0 +1,17 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\HeadersButtons
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\HeadersButtons $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+?>
+<button
+    id="payment_axepta_paymentservice_assistancedatabutton"
+    type="button"
+    class="button"
+    onclick="window.location = '<?php echo $block->getUrl('axepta/assistance/index') ?>'"
+    style="width: 280px; margin-bottom: 5px;">
+    <span><?php echo $block->escapeHtml(__('Request technical assistance')); ?></span>
+</button>
+<input type="hidden" name="locale" value="<?php echo $helper->getLocale() ?>" id="store_locale">

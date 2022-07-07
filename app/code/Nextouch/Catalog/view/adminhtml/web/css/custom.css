@@ -1,0 +1,4 @@
+/* Forms */
+input[name*="wins_"] + .admin__addon-prefix span {
+    display: none;
+}

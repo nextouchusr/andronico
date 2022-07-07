@@ -1,0 +1,25 @@
+<?php /** @var \Magento\Catalog\Block\Product\View\Description $block */ ?>
+
+<div id="product-information-collapsible">
+    <div data-role="title">
+        <h2 class="text-center text-sm-start"><?= __('Information'); ?></h2>
+    </div>
+
+    <div data-role="content">
+        <?= $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
+            $block->getProduct(),
+            $block->getProduct()->getDescription(),
+            'description'
+        ); ?>
+    </div>
+</div>
+
+<script>
+    require(['jquery', 'collapsible'], function ($) {
+        $("#product-information-collapsible").collapsible({
+            collapsible: true,
+            openedState: 'active',
+            animate: {duration: 1000, easing: 'linear'}
+        });
+    });
+</script>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 10 10">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #00f1a2;
+        stroke-width: 0.5px;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="Ellisse_401" data-name="Ellisse 401" class="cls-1">
+    <circle class="cls-2" cx="3.5" cy="3.5" r="3.5"/>
+    <circle class="cls-3" cx="3.5" cy="3.5" r="3.25"/>
+  </g>
+</svg>

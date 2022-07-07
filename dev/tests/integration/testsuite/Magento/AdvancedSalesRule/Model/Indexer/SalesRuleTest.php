@@ -52,6 +52,12 @@ class SalesRuleTest extends \PHPUnit\Framework\TestCase
             ->where('rule_id in (?)', [$rule1->getRuleId(), $rule2->getRuleId()]);
         $items = $filtersSelect->query()->fetchAll();
 
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $this->assertEquals(
             [
                 [
@@ -117,6 +123,13 @@ class SalesRuleTest extends \PHPUnit\Framework\TestCase
             ->from(['e' => $filter->getMainTable()])
             ->where('rule_id in (?)', [$rule1->getRuleId(), $rule2->getRuleId()]);
         $items = $filtersSelect->query()->fetchAll();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $this->assertEquals(
             [
                 [
@@ -182,6 +195,13 @@ class SalesRuleTest extends \PHPUnit\Framework\TestCase
             ->from(['e' => $filter->getMainTable()])
             ->where('rule_id in (?)', [$rule1->getRuleId(), $rule2->getRuleId()]);
         $items = $filtersSelect->query()->fetchAll();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $this->assertEquals(
             [
                 [
@@ -247,6 +267,13 @@ class SalesRuleTest extends \PHPUnit\Framework\TestCase
             ->from(['e' => $filter->getMainTable()])
             ->where('rule_id in (?)', [$rule1->getRuleId(), $rule2->getRuleId()]);
         $items = $filtersSelect->query()->fetchAll();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $this->assertEquals(
             [
                 [

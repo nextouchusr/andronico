@@ -1,0 +1,14 @@
+<?php /** @var \Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare $block */ ?>
+
+<div class="compare-link">
+    <a href="#"
+       class="action tocompare"
+       title="<?= $block->escapeHtml(__('Compare')) ?>"
+       aria-label="<?= $block->escapeHtml(__('Compare')) ?>"
+       data-post='<?= /* @noEscape */ $block->getCompareHelper()->getPostDataParams($block->getProduct()) ?>'
+       role="button">
+        <?= $block->escapeHtml(__('Compare')) ?>
+        <span class="radio"></span>
+    </a>
+
+</div>

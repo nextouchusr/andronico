@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Block\Product\View"
+                type="Nextouch\Theme\Block\Catalog\Product\View"/>
+
+    <preference for="Magento\Catalog\Block\Product\ListProduct"
+                type="Nextouch\Theme\Block\Catalog\Product\ListProduct"/>
+
+    <preference for="Magento\CatalogSearch\Block\SearchResult\ListProduct"
+                type="Nextouch\Theme\Block\Catalog\Product\ListProduct"/>
+
+    <preference for="Magento\Checkout\Block\Cart\Item\Renderer"
+                type="Nextouch\Theme\Block\Checkout\Cart\Item\Renderer"/>
+
+    <preference for="Magento\Theme\Block\Html\Topmenu"
+                type="Nextouch\Theme\Block\Html\Topmenu"/>
+
+    <preference for="Magento\Catalog\Block\Product\View\Attributes"
+                type="Nextouch\Theme\Block\Catalog\Product\View\Attributes"/>
+
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="edit_available_sort_options"
+                type="Nextouch\Theme\Plugin\Block\Catalog\Product\ProductList\Toolbar\EditAvailableSortOptions"/>
+    </type>
+
+    <type name="Magento\CatalogSearch\Block\Result">
+        <plugin name="edit_available_sort_options"
+                type="Nextouch\Theme\Plugin\Block\CatalogSearch\Result\EditAvailableSortOptions"/>
+    </type>
+
+    <type name="Magento\Catalog\Block\Adminhtml\Product\Attribute\Edit\Tab\Advanced">
+        <plugin name="add_attribute_explanation_field"
+                type="Nextouch\Theme\Plugin\Block\Adminhtml\Catalog\Product\Attribute\Edit\Tab\Advanced\AddAttributeExplanationField"/>
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\View\Attributes">
+        <plugin name="Amasty_Shopby::productViewAttributes" disabled="true"/>
+    </type>
+
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="add_grand_total_data"
+                type="Nextouch\Theme\Plugin\CustomerData\Checkout\AddGrandTotalData"/>
+    </type>
+</config>

@@ -44,4 +44,10 @@ foreach ($userRoles as $role) {
         ->setRoleId($role->getId())
         ->setPermission('allow');
     $userResource->save($user);
+
+    /** @var \Magento\Authorization\Model\Rules $rule */
+    $rule = $objectManager->create(\Magento\Authorization\Model\Rules::class);
+    $rule->setRoleId($role->getId())
+        ->setResources(['Magento_Backend::all'])
+        ->saveRel();
 }

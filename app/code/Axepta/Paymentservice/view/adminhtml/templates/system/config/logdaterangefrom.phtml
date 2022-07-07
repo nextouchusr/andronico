@@ -1,0 +1,8 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\LogDateRangeFrom
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\LogDateRangeFrom $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+$format = $helper->getLocale()->getDateFormat(\IntlDateFormatter::SHORT);

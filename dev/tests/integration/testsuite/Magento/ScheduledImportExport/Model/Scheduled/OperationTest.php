@@ -141,15 +141,55 @@ class OperationTest extends \Magento\TestFramework\Indexer\TestCase
     /**
      * Test scheduled operation with not valid file format.
      *
+     * @param array $data
+     * @dataProvider beforeSaveDataProvider
      * @throws LocalizedException
      */
-    public function testBeforeSaveWithException(): void
+    public function testBeforeSaveWithException(array $data): void
+    {
+        $this->model->setData($data);
+        $this->expectException(LocalizedException::class);
+        $this->expectExceptionMessage('Please correct the file format.');
+        $this->model->save();
+    }
+
+    /**
+     * @return array
+     */
+    public function beforeSaveDataProvider(): array
+    {
+        return [
+            [
+                [
+                    'operation_type' => 'export',
+                    'name' => 'Test Export ' . microtime(),
+                    'entity_type' => 'catalog_product',
+                    'file_info' => ['file_format' => 'not_valid', 'server_type' => 'file', 'file_path' => 'export'],
+                ],
+            ],
+            [
+                [
+                    'operation_type' => 'export',
+                    'name' => 'Test Export ' . microtime(),
+                    'entity_type' => 'catalog_product',
+                    'file_info' => '{"file_format": "not_valid", "server_type": "file", "file_path": "/"}',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Test scheduled operation with not valid file format.
+     *
+     * @throws LocalizedException
+     */
+    public function testBeforeSaveWithExceptionJson(): void
     {
         $data = [
             'operation_type' => 'export',
             'name' => 'Test Export ' . microtime(),
             'entity_type' => 'catalog_product',
-            'file_info' => ['file_format' => 'not_valid', 'server_type' => 'file', 'file_path' => 'export'],
+            'file_info' => '{"file_format":"not_valid","server_type":"file","file_path":"export"}',
         ];
         $this->model->setData($data);
         $this->expectException(LocalizedException::class);

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\Catalog\Api\Data\CategoryInterface"
+                type="Nextouch\Catalog\Model\Category"/>
+
+    <preference for="Nextouch\Catalog\Api\Data\ProductInterface"
+                type="Nextouch\Catalog\Model\Product"/>
+
+    <preference for="Nextouch\Catalog\Api\ProductRepositoryInterface"
+                type="Nextouch\Catalog\Model\ProductRepository"/>
+
+    <preference for="Nextouch\Catalog\Api\ProductAttributeManagementInterface"
+                type="Nextouch\Catalog\Model\Product\Attribute\Management"/>
+
+    <preference for="Nextouch\Catalog\Api\CategoryManagementInterface"
+                type="Nextouch\Catalog\Model\CategoryManagement"/>
+
+    <preference for="Nextouch\Catalog\Api\CustomOptionExtraInfoProcessorInterface"
+                type="Nextouch\Catalog\Model\CustomOptionExtraInfoProcessor"/>
+
+    <type name="Magento\Catalog\Model\Product\Type\AbstractType">
+        <plugin name="remove_sku_appended_by_custom_options"
+                type="Nextouch\Catalog\Plugin\Model\Product\Type\RemoveSkuAppendedByCustomOptions"/>
+
+        <plugin name="prepare_additional_order_options"
+                type="Nextouch\Catalog\Plugin\Model\Product\Type\PrepareAdditionalOrderOptions"/>
+    </type>
+
+    <type name="Magento\Catalog\CustomerData\CompareProducts">
+        <plugin name="addImageToCompareProducts" type="Nextouch\Catalog\Plugin\AddImageToCompareProductsPlugin" />
+    </type>
+
+    <type name="Magento\Catalog\Controller\Product\Compare\Add">
+        <plugin name="limit_products_to_compare"
+                type="Nextouch\Catalog\Plugin\Controller\Product\Compare\LimitProductsToCompare"/>
+    </type>
+</config>

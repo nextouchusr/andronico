@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <findomestic_paymentservice>
+                <active>0</active>
+                <model>Nextouch\Findomestic\Model\Findomestic</model>
+                <order_status>pending_payment</order_status>
+                <title>Findomestic Payment</title>
+                <allowspecific>0</allowspecific>
+                <instructions>Take advantage of our Findomestic service and pay your products in installments.</instructions>
+                <sort_order>10</sort_order>
+            </findomestic_paymentservice>
+        </payment>
+    </default>
+</config>

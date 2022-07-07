@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- Eav Attributes -->
+    <route url="/V1/eav/:entityTypeCode/attributes" method="GET">
+        <service class="Magento\Eav\Api\AttributeRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+    <route url="/V1/eav/:entityTypeCode/attributes/:attributeCode" method="GET">
+        <service class="Magento\Eav\Api\AttributeRepositoryInterface" method="get"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+    <route url="/V1/eav/attributes" method="POST">
+        <service class="Magento\Eav\Api\AttributeRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+    <route url="/V1/eav/attributes/:attributeCode" method="PUT">
+        <service class="Magento\Eav\Api\AttributeRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+    <route url="/V1/eav/attributes/:attributeId" method="DELETE">
+        <service class="Magento\Eav\Api\AttributeRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+
+    <!-- Eav Attribute Options -->
+    <route url="/V1/eav/:entityTypeCode/attributes/:attributeCode/options" method="GET">
+        <service class="Nextouch\Eav\Api\AttributeOptionManagementInterface" method="getItems"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+    <route url="/V1/eav/:entityTypeCode/attributes/:attributeCode/options/:externalOptionId" method="GET">
+        <service class="Nextouch\Eav\Api\AttributeOptionManagementInterface" method="getByExternalOptionId"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+    <route url="/V1/eav/:entityTypeCode/attributes/:attributeCode/options" method="POST">
+        <service class="Nextouch\Eav\Api\AttributeOptionManagementInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+    <route url="/V1/eav/:entityTypeCode/attributes/:attributeCode/options" method="PUT">
+        <service class="Nextouch\Eav\Api\AttributeOptionManagementInterface" method="save"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+    <route url="/V1/eav/:entityTypeCode/attributes/:attributeCode/options/:optionId" method="DELETE">
+        <service class="Nextouch\Eav\Api\AttributeOptionManagementInterface" method="delete"/>
+        <resources>
+            <resource ref="Magento_Eav::attributes"/>
+        </resources>
+    </route>
+</routes>

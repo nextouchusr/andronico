@@ -7,10 +7,14 @@ declare(strict_types=1);
 
 namespace Magento\GiftCard\Model\Catalog\Product\Type;
 
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Customer\Api\Data\CustomerInterfaceFactory;
+use Magento\Framework\DataObject;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Quote\Model\Quote;
 use Magento\TestFramework\Helper\Bootstrap;
+use Magento\GiftCard\Api\Data\GiftcardAmountInterfaceFactory;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -24,7 +28,7 @@ class GiftCardTest extends \PHPUnit\Framework\TestCase
      */
     public function testCollectTotalsWithPhysicalGiftCards()
     {
-        $buyRequest = new \Magento\Framework\DataObject(
+        $buyRequest = new DataObject(
             [
                 'giftcard_sender_name' => 'test sender name',
                 'giftcard_recipient_name' => 'test recipient name',
@@ -32,12 +36,12 @@ class GiftCardTest extends \PHPUnit\Framework\TestCase
                 'qty' => 1,
             ]
         );
-        /** @var \Magento\Quote\Model\Quote $quote */
-        $quote = Bootstrap::getObjectManager()->create(\Magento\Quote\Model\Quote::class);
+        /** @var Quote $quote */
+        $quote = Bootstrap::getObjectManager()->create(Quote::class);
         $quote->load('test01', 'reserved_order_id');
 
         $productRepository = Bootstrap::getObjectManager()->create(
-            \Magento\Catalog\Api\ProductRepositoryInterface::class
+            ProductRepositoryInterface::class
         );
         $productOne = $productRepository->get('gift-card-with-fixed-amount-10', false, null, true);
         $productTwo = $productRepository->get('gift-card-with-fixed-amount-50', false, null, true);
@@ -58,7 +62,7 @@ class GiftCardTest extends \PHPUnit\Framework\TestCase
      */
     public function testFixedGiftCardAmountAddedToBuyRequest()
     {
-        $buyRequest = new \Magento\Framework\DataObject(
+        $buyRequest = new DataObject(
             [
                 'giftcard_sender_name' => 'Sender Name',
                 'giftcard_sender_email' => 'sender@example.com',
@@ -68,16 +72,57 @@ class GiftCardTest extends \PHPUnit\Framework\TestCase
                 'qty' => 1,
             ]
         );
-        /** @var \Magento\Quote\Model\Quote $quote */
-        $quote = Bootstrap::getObjectManager()->create(\Magento\Quote\Model\Quote::class);
+        /** @var Quote $quote */
+        $quote = Bootstrap::getObjectManager()->create(Quote::class);
         $quote->load('test01', 'reserved_order_id');
 
         $productRepository = Bootstrap::getObjectManager()->create(
-            \Magento\Catalog\Api\ProductRepositoryInterface::class
+            ProductRepositoryInterface::class
         );
         $giftCardProduct = $productRepository->get('gift-card-with-fixed-amount-50', false, null, true);
         $quoteItem = $quote->addProduct($giftCardProduct, $buyRequest);
         $quoteItemBuyRequest = $quoteItem->getOptionByCode('info_buyRequest');
         $this->assertStringContainsString('"giftcard_amount":50', $quoteItemBuyRequest->getValue());
+    }
+
+    /**
+     * @magentoDataFixture Magento/GiftCard/_files/gift_card_physical_with_fixed_amount_10.php
+     * @magentoDataFixture Magento/GiftCard/_files/quote.php
+     */
+    public function testCollectTotalsAfterGiftCardsAmountChanged()
+    {
+        $amountData = [
+            'value' => 20,
+            'website_id' => 0,
+            'attribute_id' => 132,
+        ];
+        $giftCardAmountFactory = Bootstrap::getObjectManager()->create(GiftcardAmountInterfaceFactory::class);
+        $amount = $giftCardAmountFactory->create(['data' => $amountData]);
+        $buyRequest = new DataObject(
+            [
+                'giftcard_sender_name' => 'test sender name',
+                'giftcard_recipient_name' => 'test recipient name',
+                'giftcard_message' => '',
+                'qty' => 1,
+            ]
+        );
+        /** @var Quote $quote */
+        $quote = Bootstrap::getObjectManager()->create(Quote::class);
+        $quote->load('test01', 'reserved_order_id');
+
+        $productRepository = Bootstrap::getObjectManager()->create(
+            ProductRepositoryInterface::class
+        );
+        $productOne = $productRepository->get('gift-card-with-fixed-amount-10', true);
+
+        $quote->addProduct($productOne, $buyRequest);
+
+        $productOne->setGiftcardAmounts([$amount]);
+        $productRepository->save($productOne);
+        $quote->collectTotals();
+
+        $this->assertEquals(1, $quote->getItemsQty());
+        $this->assertEquals(20, $quote->getGrandTotal());
+        $this->assertEquals(20, $quote->getBaseGrandTotal());
     }
 }

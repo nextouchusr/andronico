@@ -1,0 +1,33 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\URLConfig
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\URLConfig $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+
+?>
+<tr id="row_payment_axepta_paymentservice_information_heading">
+    <td class="label"><label for="payment_axepta_paymentservice_information_heading"><span
+                    data-config-scope="[STORE VIEW]">Callback Url</span></label></td>
+    <td class="value"><label for="heading"><span
+                    data-config-scope="[STORE VIEW]"><?php echo $block->getBaseUrl() . 'axepta/payment/callback'  ?></span></label>
+    </td>
+    <td class=""></td>
+</tr>
+<tr id="row_payment_axepta_paymentservice_information_heading">
+    <td class="label"><label for="payment_axepta_paymentservice_information_heading"><span
+                    data-config-scope="[STORE VIEW]">Notify Url</span></label></td>
+    <td class="value"><label for="heading"><span
+                    data-config-scope="[STORE VIEW]"><?php echo $block->getBaseUrl() . 'axepta/payment/success'  ?></span></label>
+    </td>
+    <td class=""></td>
+</tr>
+<tr id="row_payment_axepta_paymentservice_information_heading">
+    <td class="label"><label for="payment_axepta_paymentservice_information_heading"><span
+                    data-config-scope="[STORE VIEW]">Error Url</span></label></td>
+    <td class="value"><label for="heading"><span
+                    data-config-scope="[STORE VIEW]"><?php echo $block->getBaseUrl() . 'axepta/payment/error'  ?></span></label>
+    </td>
+    <td class=""></td>
+</tr>

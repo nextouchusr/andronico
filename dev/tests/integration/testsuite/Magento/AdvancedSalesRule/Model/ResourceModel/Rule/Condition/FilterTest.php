@@ -42,6 +42,13 @@ class FilterTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($filter->insertFilters($data));
 
         $items = $filtersSelect->query()->fetchAll();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $this->assertEquals($origCount + count($data), count($items));
         $this->assertEquals($data[0], $items[count($items) - 2]);
         $this->assertEquals($data[1], $items[count($items) - 1]);

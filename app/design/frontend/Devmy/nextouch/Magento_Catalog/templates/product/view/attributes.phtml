@@ -1,0 +1,48 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View\Attributes $block */
+
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+?>
+
+<?php if ($_additional = $block->getAdditionalData()) : ?>
+    <div id="product-attributes-collapsible">
+        <div data-role="title">
+            <h2 class="text-center text-sm-start"><?= __('Features'); ?></h2>
+        </div>
+
+        <div data-role="content" class="more-less-content">
+            <div class="more-less-wrapper">
+                <div class="additional-attributes-wrapper table-wrapper">
+                    <table class="data table additional-attributes" id="product-attribute-specs-table">
+                        <tbody>
+                        <?php foreach ($_additional as $_data) : ?>
+                            <tr>
+                                <th class="col label group" scope="row">
+                                    <?= $block->escapeHtml($_data['label']); ?>
+                                </th>
+                            </tr>
+
+                            <?php foreach ($_data['attributes'] as $_attribute) : ?>
+                                <tr>
+                                    <th class="col label" scope="row">
+                                        <?= $block->escapeHtml($_attribute['label']); ?>
+                                    </th>
+                                    <td class="col data" data-th="<?= $block->escapeHtmlAttr($_attribute['label']); ?>">
+                                        <?= $_helper->productAttribute($_product, $_attribute['value'], $_attribute['code']); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="more-less">
+                <span class="more"> <?= __('Show more') ?></span>
+                <span class="less"> <?= __('Show less') ?></span>
+            </div>
+        </div>
+    </div>
+
+<?php endif; ?>

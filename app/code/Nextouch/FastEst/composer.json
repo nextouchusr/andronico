@@ -1,0 +1,30 @@
+{
+  "name": "nextouch/fast-est",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "magento/module-backend": "102.0.*",
+    "magento/module-catalog": "104.0.*",
+    "magento/module-config": "101.2.*",
+    "magento/module-directory": "100.4.*",
+    "magento/module-quote": "101.2.*",
+    "magento/module-sales": "103.0.*",
+    "magento/module-sales-rule": "101.2.*",
+    "magento/module-shipping": "100.4.*",
+    "magento/module-store": "101.1.*",
+    "webmozart/assert": "^1.10"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Nextouch\\FastEst\\": ""
+    }
+  }
+}

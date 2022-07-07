@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <body>
+        <referenceContainer name="main">
+            <block class="Nextouch\Theme\Block\Checkout\Cart\Offers"
+                   name="checkout.cart.offers"
+                   template="Magento_Catalog::product/list/items.phtml" after="checkout.cart.methods.bottom">
+                <arguments>
+                    <argument name="type" xsi:type="string">offers</argument>
+                    <argument name="view_model" xsi:type="object">Magento\Catalog\ViewModel\Product\Listing\PreparePostData</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Checkout\Block\Cart\Crosssell" name="checkout.cart.crosssell.modal" template="Magento_Catalog::product/list/items.phtml" after="checkout.cart.methods.bottom" ifconfig="checkout/cart/crosssell_enabled">
+                <arguments>
+                    <argument name="type" xsi:type="string">crosssell-modal</argument>
+                    <argument name="ismodal" xsi:type="boolean">true</argument>
+                    <argument name="view_model" xsi:type="object">Magento\Catalog\ViewModel\Product\Listing\PreparePostData</argument>
+                </arguments>
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="crosssell.modal.product.addto" as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="crosssell.modal.product.addto.compare" as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+            </block>
+
+
+        </referenceContainer>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="tax" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="checkout.cart.giftcardaccount" remove="true" />
+
+        <move element="cart.summary" destination="checkout.cart.container" after="checkout.cart.form" />
+        <move element="checkout.cart.methods.bottom" destination="main" after="-" />
+        <move element="checkout.cart.coupons" destination="checkout.cart.container" after="-" />
+        <move element="checkout.cart.giftcardaccount" destination="checkout.cart.container" after="checkout.cart.coupons" />
+
+        <move element="checkout.cart.crosssell" destination="page.wrapper" after="main.content" />
+        <move element="checkout.cart.offers" destination="page.wrapper" after="main.content" />
+
+    </body>
+</page>

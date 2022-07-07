@@ -2,6 +2,7 @@ version: "3.5"
 services:
   php:
     ports:
+      - "9001:9000"
       - "8080:80"
     networks:
       nextouch:
@@ -31,6 +32,20 @@ services:
     networks:
       nextouch:
         ipv4_address: 172.50.0.14
+
+  sftp:
+    ports:
+      - "22:22"
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.15
+
+  ftpd:
+    ports:
+      - "21:21"
+    networks:
+      nextouch:
+        ipv4_address: 172.50.0.16
 
 networks:
   nextouch:

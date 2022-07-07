@@ -60,7 +60,7 @@ class PreviewCategoryTest extends GraphQlAbstract
     /**
      * Preview CategoryList with name change on schedule update
      *
-     * @magentoApiDataFixture Magento/CatalogStaging/_files/category_staged_changes.php
+     * @magentoApiDataFixture Magento/CatalogStaging/_files/category_staged_preview_disabled.php
      * @magentoApiDataFixture Magento/Store/_files/second_store.php
      * @magentoApiDataFixture Magento/User/_files/user_with_custom_role.php
      */
@@ -146,7 +146,7 @@ QUERY;
     /**
      * Preview Category with name change on schedule update
      *
-     * @magentoApiDataFixture Magento/CatalogStaging/_files/category_staged_changes.php
+     * @magentoApiDataFixture Magento/CatalogStaging/_files/category_staged_preview_disabled.php
      * @magentoApiDataFixture Magento/Store/_files/second_store.php
      * @magentoApiDataFixture Magento/User/_files/user_with_custom_role.php
      */
@@ -231,7 +231,7 @@ QUERY;
     /**
      * Preview CategoryList with disabled category on schedule update
      *
-     * @magentoApiDataFixture Magento/CatalogStaging/_files/category_staged_changes.php
+     * @magentoApiDataFixture Magento/CatalogStaging/_files/category_staged_preview_disabled.php
      * @magentoApiDataFixture Magento/User/_files/user_with_custom_role.php
      */
     public function testPreviewDisabledCategory()

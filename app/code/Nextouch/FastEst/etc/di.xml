@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\FastEst\Api\HeadquarterRepositoryInterface"
+                type="Nextouch\FastEst\Model\HeadquarterRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\HourRepositoryInterface"
+                type="Nextouch\FastEst\Model\HourRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\PlaceRepositoryInterface"
+                type="Nextouch\FastEst\Model\PlaceRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\ProductRepositoryInterface"
+                type="Nextouch\FastEst\Model\ProductRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\SourceRepositoryInterface"
+                type="Nextouch\FastEst\Model\SourceRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\StatusRepositoryInterface"
+                type="Nextouch\FastEst\Model\StatusRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\StoreRepositoryInterface"
+                type="Nextouch\FastEst\Model\StoreRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\VanRepositoryInterface"
+                type="Nextouch\FastEst\Model\VanRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\AppointmentRepositoryInterface"
+                type="Nextouch\FastEst\Model\AppointmentRepository"/>
+
+    <preference for="Nextouch\FastEst\Api\DeliveryRepositoryInterface"
+                type="Nextouch\FastEst\Model\DeliveryRepository"/>
+
+    <type name="Magento\Sales\Api\InvoiceOrderInterface">
+        <plugin name="confirm_parked_delivery"
+                type="Nextouch\FastEst\Plugin\Model\ConfirmParkedDelivery"/>
+    </type>
+</config>

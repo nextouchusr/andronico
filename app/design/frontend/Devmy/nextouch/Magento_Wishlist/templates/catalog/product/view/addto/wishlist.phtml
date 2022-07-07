@@ -1,0 +1,30 @@
+<?php /** @var \Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist $block */ ?>
+
+<?php if ($block->isWishListAllowed()) : ?>
+    <a href="#"
+       class="action towishlist"
+       data-post='<?= $block->getAddToWishlistParams($block->getProduct()); ?>'
+       data-action="add-to-wishlist">
+        <span class="material-icons text-primary">
+
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" width="47" height="39" viewBox="0 0 47 39">
+              <defs>
+                <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 940 775">
+                  <image width="940" height="775" xlink:href="<?= $block->getViewFileUrl('images/ico-heart.png'); ?>"/>
+                </pattern>
+              </defs>
+              <rect id="cuorevuoto_icon7" width="47" height="39" fill="url(#pattern)"/>
+            </svg>
+
+
+        </span>
+    </a>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "addToWishlist": <?= $block->getWishlistOptionsJson(); ?>
+        }
+    }
+</script>

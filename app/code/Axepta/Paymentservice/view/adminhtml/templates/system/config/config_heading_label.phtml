@@ -1,0 +1,11 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\ConfigHeading
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\ConfigHeading $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+
+?>
+<label for="payment_axepta_paymentservice_custom_heading"><span data-config-scope="[STORE VIEW]"><strong><?php echo $block->escapeHtml(__('Configurazioni tecniche'))?></strong></span></label>
+<hr>

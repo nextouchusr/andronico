@@ -1,0 +1,133 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .cms-delivery-service {
+    .title-crumbs-container {
+      display: none;
+    }
+  }
+}
+
+//
+//  Mobile
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .cms-delivery-service {
+    .page-background {
+      margin-top: -165px;
+      min-height: 580px;
+
+      h1 {
+        position: absolute;
+        top: 165px;
+        left: 50%;
+        transform: translate(-50%);
+      }
+    }
+
+    .standard-delivery {
+      margin-top: -165px;
+      border-radius: 20px !important;
+
+      .pagebuilder-column:nth-child(1) {
+        order: 2;
+      }
+    }
+
+    .standard-delivery,
+    .custom-delivery,
+    .floor-delivery,
+    .premium-delivery,
+    .special-delivery,
+    .pickup-store-delivery {
+      margin: @indent__l;
+
+      h1 {
+        text-align: center;
+      }
+
+      p > span {
+        font-size: 1.5rem !important;
+        line-height: 2rem;
+      }
+
+      img {
+        border-radius: 20px !important;
+      }
+    }
+
+    .custom-delivery {
+      margin-right: 0;
+
+      > div:first-child {
+        margin-right: @indent__l;
+      }
+    }
+
+    .pickup-store-delivery {
+      padding: @indent__base;
+      border: 2px solid @primary__color;
+      border-radius: 20px;
+
+      .pagebuilder-button-primary {
+        padding: @indent__s @indent__base;
+      }
+    }
+  }
+}
+
+//
+//  Desktop
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .cms-delivery-service {
+    .page-background {
+      margin-top: -185px;
+      min-height: 1280px;
+
+      h1 {
+        position: absolute;
+        top: 185px;
+        left: 50px;
+      }
+    }
+
+    .standard-delivery {
+      margin-top: -185px;
+    }
+
+    .standard-delivery,
+    .custom-delivery,
+    .floor-delivery {
+      padding: 50px 100px;
+    }
+
+    .premium-delivery,
+    .special-delivery,
+    .pickup-store-delivery {
+      padding: 50px 200px;
+    }
+
+    .pick-and-pay-delivery {
+      margin-top: 100px;
+      margin-bottom: 50px;
+    }
+
+    .standard-delivery,
+    .floor-delivery {
+      .pagebuilder-column-group {
+        gap: 100px;
+      }
+    }
+
+    .premium-delivery {
+      .pagebuilder-column-group {
+        gap: 50px;
+      }
+    }
+  }
+}

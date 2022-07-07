@@ -115,7 +115,6 @@ class CartTest extends TestCase
      */
     public function testCheckItemLimitExceeded(): void
     {
-        $this->markTestSkipped('Blocked by MC-34991');
         $result = $this->cart->checkItem('product-with-xss', 2);
         $this->assertEquals(Data::ADD_ITEM_STATUS_FAILED_QTY_ALLOWED_IN_CART, $result['code']);
     }
@@ -170,7 +169,6 @@ class CartTest extends TestCase
      */
     public function testGetQtyStatusMinAllowed(): void
     {
-        $this->markTestSkipped('Blocked by MC-34994');
         $product = $this->productRepository->get('product-with-xss');
         $result = $this->cart->getQtyStatus($product, 1);
         $this->assertNotTrue($result);
@@ -188,7 +186,6 @@ class CartTest extends TestCase
      */
     public function testGetQtyStatusQtyIncrement(): void
     {
-        $this->markTestSkipped('Blocked by MC-34997');
         $product = $this->productRepository->get('product-with-xss');
         $result = $this->cart->getQtyStatus($product, 1);
         $this->assertNotTrue($result);

@@ -1,0 +1,20 @@
+stages:
+  - deploy
+
+deploy-staging:
+  stage: deploy
+  image: alpine:latest
+  environment:
+    name: staging
+    url: https://staging.nextouch.it/
+  before_script:
+    - apk update
+    - apk add openssh
+    - if [ -z "$SSH_PRIVATE_KEY" ] || [ -z "$VM_IPADDRESS" ] || [ -z "$SSH_PORT" ] || [ -z "$SSH_USER" ]; then exit 1;  fi
+    - mkdir -p ~/.ssh && echo "${SSH_PRIVATE_KEY}" >> ~/.ssh/id_rsa && chmod 400 ~/.ssh/id_rsa
+  script:
+    - ssh -o ConnectTimeout=60 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -n -q -T -l $SSH_USER -p $SSH_PORT $VM_IPADDRESS "~/deploy.sh"
+  allow_failure: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'develop'
+      when: manual

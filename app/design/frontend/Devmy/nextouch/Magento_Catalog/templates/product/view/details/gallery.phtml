@@ -1,0 +1,65 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View\Gallery $block */
+
+$images = $block->getGalleryImages()->getItems();
+$hasImages = count($images) > 0;
+?>
+
+<?php if ($hasImages): ?>
+    <div class="gallery-photo-video">
+        <div class="col-12">
+            <h2><?= __('Photo & Video'); ?></h2>
+
+            <div class="tns-inner">
+                <div class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="product-gallery">
+                    <?php foreach ($images as $image): ?>
+                        <?php if (!$block->isMainImage($image)): ?>
+                            <div class="item tns-item tns-slide-cloned">
+                                <a href="javascript:void(0)" class="product-media-link" data-media-url="<?= $image->getVideoUrl() ?: $image->getData('medium_image_url'); ?>">
+                                    <img src="<?= $image->getData('medium_image_url'); ?>" alt=""/>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        require(['jquery', 'Magento_Ui/js/modal/modal', 'tinySlider'], function ($, modal) {
+            $(document).ready(function () {
+                var detailsGalleryDragMove = false;
+
+                var sliderGallery = tns({
+                    container: '#product-gallery',
+                    items: 2,
+                    mouseDrag: true,
+                    swipeAngle: false,
+                    controls: false,
+                    nav: false,
+                    edgePadding: 40,
+                    gutter: 10,
+                    lazyload: true,
+                    loop: false,
+                    "responsive": {
+                        "250": {
+                            "items": 2,
+                        },
+                        "780": {
+                            "items": 2
+                        }
+                    }
+                });
+
+                sliderGallery.events.on('dragEnd', function () {
+                    detailsGalleryDragMove = false;
+                });
+
+                sliderGallery.events.on('dragMove', function () {
+                    detailsGalleryDragMove = true;
+                });
+            });
+        });
+    </script>
+<?php endif; ?>

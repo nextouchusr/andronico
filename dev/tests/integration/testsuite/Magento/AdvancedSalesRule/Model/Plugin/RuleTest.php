@@ -33,6 +33,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
 
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $expected = [
             [
                 'rule_id' => $rule->getRuleId(),
@@ -78,6 +84,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $connection = $filter->getConnection();
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
 
         $expected = [
             [
@@ -133,6 +145,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $connection = $filter->getConnection();
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
 
         $expected = [
             [
@@ -207,6 +225,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
 
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $expected = [
             [
                 'rule_id' => $rule->getRuleId(),
@@ -262,6 +286,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
 
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $expected = [
             [
                 'rule_id' => $rule->getRuleId(),
@@ -316,6 +346,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $connection = $filter->getConnection();
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
 
         $expected = [
             [
@@ -381,6 +417,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
 
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $expected = [
             [
                 'rule_id' => $rule->getRuleId(),
@@ -417,6 +459,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
 
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
+
         $expected = [
             [
                 'rule_id' => $rule->getRuleId(),
@@ -452,6 +500,12 @@ class RuleTest extends \PHPUnit\Framework\TestCase
         $connection = $filter->getConnection();
         $filtersSelect = $connection->select()->where('rule_id = ?', $rule->getRuleId())->from($filter->getMainTable());
         $items = $filtersSelect->query()->fetchAll();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $items
+        foreach ($items as $index => $item) {
+            $this->assertArrayHasKey('rule_filter_id', $items[$index]);
+            unset($items[$index]['rule_filter_id']);
+        }
 
         $expected = [
             [

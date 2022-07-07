@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="nextouch" translate="label" sortOrder="500">
+            <label>Nextouch</label>
+        </tab>
+
+        <section id="sidea"
+                 translate="label"
+                 type="text"
+                 sortOrder="1"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Sidea</label>
+            <tab>nextouch</tab>
+            <resource>Nextouch_Sidea::config_sidea</resource>
+
+            <group id="authentication"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Authentication</label>
+
+                <field id="base_url"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Base URL</label>
+                    <comment>Base URL for Sidea Auth APIs</comment>
+                    <validate>required-entry validate-url</validate>
+                </field>
+
+                <field id="grant_type"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Grant Type</label>
+                    <comment>Grant Type Used to Generate Access Token</comment>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="client_id"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Client ID</label>
+                    <comment>Client ID Used to Generate Access Token</comment>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="client_secret"
+                       translate="label comment"
+                       type="password"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Client Secret</label>
+                    <comment>Client Secret Used to Generate Access Token</comment>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="account_id"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Account ID</label>
+                    <comment>Account ID Used to Generate Access Token</comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+
+            <group id="events"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Events</label>
+
+                <field id="base_url"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Base URL</label>
+                    <comment>Base URL for Sidea Event APIs</comment>
+                    <validate>required-entry validate-url</validate>
+                </field>
+
+                <field id="abandoned_cart_event_key"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Abandoned Cart Event Key</label>
+                    <comment>Event Definition Key to Send Abandoned Cart</comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

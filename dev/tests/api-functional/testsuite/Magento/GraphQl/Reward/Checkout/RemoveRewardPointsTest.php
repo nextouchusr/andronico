@@ -8,16 +8,15 @@ declare(strict_types=1);
 namespace Magento\GraphQl\Reward\Checkout;
 
 use Magento\Framework\Exception\AuthenticationException;
-use Magento\GraphQl\Reward\AccessibilityTest;
 use Magento\GraphQl\GetCustomerAuthenticationHeader;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\QuoteFactory;
 use Magento\Quote\Model\QuoteIdMask;
 use Magento\Quote\Model\QuoteIdMaskFactory;
+use Magento\Reward\Model\RewardManagement;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\TestFramework\ObjectManager;
 use Magento\TestFramework\TestCase\GraphQlAbstract;
-use Magento\Reward\Model\RewardManagement;
 
 /**
  * Test removal reward points from cart
@@ -147,18 +146,15 @@ MUTATION;
      */
     public function testRemoveRewardPoints()
     {
-        $this->markTestSkipped();
-
         /** @var Quote $quote */
         $quote = $this->quoteFactory->create()->load('test_order_item_with_items', 'reserved_order_id');
         /** @var string $quoteMaskedId */
         $quoteMaskedId = $this->getQuoteMaskedId($quote);
         /** Apply available points */
-        if ($this->rewardManagement->set($quote->getId())) {
-            $reloadedQuote = $this->quoteFactory->create()->load($quote->getId());
-            /** @var float $grandTotalBeforePointsRemoved */
-            $grandTotalBeforePointsRemoved = $reloadedQuote->getGrandTotal();
-        };
+        $this->rewardManagement->set($quote->getId());
+        $reloadedQuote = $this->quoteFactory->create()->load($quote->getId());
+        /** @var float $grandTotalBeforePointsRemoved */
+        $grandTotalBeforePointsRemoved = $reloadedQuote->getGrandTotal();
 
         $mutation = <<<MUTATION
 mutation {
@@ -185,10 +181,8 @@ MUTATION;
         /** @var float $grandTotalAfterPointsRemoved */
         $grandTotalAfterPointsRemoved
             = $response['removeRewardPointsFromCart']['cart']['prices']['grand_total']['value'];
-        $this->assertNotNull($grandTotalBeforePointsRemoved);
-        if ($grandTotalBeforePointsRemoved) {
-            $this->assertEquals(-20, $grandTotalBeforePointsRemoved - $grandTotalAfterPointsRemoved);
-        }
+        $this->assertEquals(2, $grandTotalBeforePointsRemoved);
+        $this->assertEquals(30, $grandTotalAfterPointsRemoved);
     }
 
     /**

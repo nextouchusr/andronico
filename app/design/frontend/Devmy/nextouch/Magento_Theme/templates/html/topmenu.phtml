@@ -1,0 +1,142 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+?>
+<nav class="megamenu" data-action="navigation">
+    <div class="megamenu-inner">
+        <ul>
+            <?= /* @noEscape */ $_menuHtml?>
+        </ul>
+        <div id="mobile-bottom-menu-links" class="mobile-bottom-static-link"><?= $block->getChildHtml('mobile-bottom-static-link') ?></div>
+    </div>
+</nav>
+<span class="overlay-megamenu"></span>
+
+<script type="text/javascript">
+    require(['jquery','matchMedia'], function ($,mediaCheck) {
+        $(document).ready(function () {
+            var megamenu = $('.megamenu');
+
+            $(megamenu).find('.category-item.parent').prepend('<span class="openChild"></div>');
+
+            /* $(megamenu).on('mouseover', function() {
+               $('body').addClass('overmenu');
+                mediaCheck({
+                    media: '(min-width: 768px)',
+                    entry: $.proxy(function () {
+                        $(megamenu).find('ul.level0').css('top',($(megamenu).offset().top + $(megamenu).outerHeight() - $(window).scrollTop()));
+                    }, this),
+                    exit: $.proxy(function () {
+                        $('megamenu').css('top',($('.header').offset().top + $('.header').outerHeight() - $(window).scrollTop()));
+                    }, this)
+                });
+
+            });
+
+
+            $(megamenu).on('mouseleave', function() {
+               $('body').removeClass('overmenu');
+            });
+
+             */
+
+            $('body').on('click', function(event) {
+                var target = $(event.target);
+                if(!target.closest('.nav-sections').length &&
+                    $('.nav-sections').hasClass("show")) {
+                    $('body').removeClass('openMenu');
+                }
+            });
+
+            $(megamenu).on('click', '.openChild', function() {
+                $(this).parent().toggleClass('open').parent().toggleClass('childOpened');
+                if($(this).parent().hasClass('level0')) {
+                    $('body').addClass('openMenuLv0');
+                }
+                $('#mobile-bottom-menu-links').appendTo($(this).parent().children('ul'));
+            });
+
+
+            $(megamenu).on('click', 'li.level0.parent a.level-top', function(event) {
+                if(window.matchMedia('(min-width: 768px)').matches) {
+                    event.preventDefault();
+                    if($(this).parent().hasClass('openclick')) {
+                        $(this).parent().removeClass('openclick');
+                        $('body').removeClass('overmenu');
+                    }
+                    else {
+                        $(megamenu).find('li.level0').removeClass('openclick');
+                        $(this).parent().addClass('openclick');
+                        $('body').addClass('overmenu');
+                    }
+                }
+            });
+
+            $(megamenu).on('click', '.level-back', function() {
+                $(window).scrollTop(0);
+                $(this).parent().parent().toggleClass('open').parent().toggleClass('childOpened');
+                $('#mobile-bottom-menu-links').appendTo($(this).parent().parent().children('ul'));
+                if($(this).parent().hasClass('level0')) {
+                    $('body').removeClass('openMenuLv0');
+                }
+            });
+
+
+
+            $('body').on('click', '.nav-toggle', function() {
+                if(window.matchMedia('(max-width: 767px)').matches) {
+                    $(window).scrollTop(0);
+                }
+                $(megamenu).closest('.nav-sections').toggleClass('show');
+                $('body').toggleClass('openMenu');
+            });
+
+
+            document.addEventListener('resize', function(e) {
+                $('.page-header').height('auto');
+                $('body').removeClass('stickyMenu').removeClass('overmenu');
+                if($('body').hasClass('overmenu')) {
+                    $(megamenu).find('ul.level0').css('top',($(megamenu).offset().top + $(megamenu).outerHeight() - $(window).scrollTop()));
+                }
+            });
+
+            $('.page-header').height($('.page-header').outerHeight());
+            document.addEventListener('scroll', function(e) {
+                mediaCheck({
+                    media: '(min-width: 768px)',
+                    entry: $.proxy(function () {
+                        var menuContainer = $('.nav-sections');
+                        var header = $('.page-header');
+                        var windowScrollTop = $(window).scrollTop();
+                        var headerHeight = $(header).outerHeight();
+                        if (windowScrollTop >= headerHeight + $(menuContainer).outerHeight()) {
+                            $('body').addClass('stickyMenu');
+                            $('.page-wrapper').css('padding-top', headerHeight + $(menuContainer).outerHeight());
+                        } else {
+                            $('body').removeClass('stickyMenu');
+                            $('.page-wrapper').css('padding-top', 'inherit');
+                        }
+                        if($('body').hasClass('overmenu')) {
+                            $(megamenu).find('ul.level0').css('top',($(megamenu).offset().top + $(megamenu).outerHeight() - $(window).scrollTop()));
+                        }
+                    }, this),
+                    exit: $.proxy(function () {
+
+                    }, this)
+                });
+
+            });
+        });
+    });
+</script>

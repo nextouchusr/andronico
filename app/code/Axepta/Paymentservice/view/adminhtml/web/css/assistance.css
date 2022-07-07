@@ -1,0 +1,28 @@
+.axepta-form-panel{
+    width: 100%;
+    border: 1px solid #d6d6d6;
+    background: #fafafa;
+    padding: 10px 15px;
+}
+.axepta-form-panel label{
+    display: block;
+    margin-bottom: 5px;
+}
+.axepta-form-panel input,
+.axepta-form-panel textarea{
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 10px;
+}
+.paymentservice-assistance-container{
+    display: table;
+    margin: 0 auto;
+}
+.paymentservice-assistance-container .entry-edit{
+    width: 100%
+}
+.paymentservice-assistance-container button[type="submit"]{
+    width: 100%;
+}
