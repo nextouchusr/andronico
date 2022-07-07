@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+      <move element="page.main.title" destination="title-breadcrumbs-container" before="-"/>
+      <move element="title-breadcrumbs-container" destination="main" before="-"/>
+
+        <move element="category.view.container" destination="content" after="page.main.title"/>
+
+        <referenceContainer name="content">
+            <block class="Magento\Cms\Block\Block" name="catalog.useful.links">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">catalog_useful_links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="product_list_toolbar">
+            <block class="Magento\Cms\Block\Block" name="category.info.top">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">category-info-top</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <move element="catalog.compare.sidebar" destination="main" before="-"/>
+    </body>
+</page>

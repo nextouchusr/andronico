@@ -14,6 +14,7 @@ php bin/magento setup:install \
     --cleanup-database \
     --search-engine="$ELASTICSEARCH_ENGINE" \
     --elasticsearch-host="$ELASTICSEARCH_HOST" \
+    --elasticsearch-port="$ELASTICSEARCH_PORT" \
     --backend-frontname="$APP_BACKEND_FRONTNAME" \
     --admin-firstname="$ADMIN_FIRSTNAME" \
     --admin-lastname="$ADMIN_LASTNAME" \

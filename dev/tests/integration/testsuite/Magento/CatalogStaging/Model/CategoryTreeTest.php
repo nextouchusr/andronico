@@ -147,7 +147,31 @@ class CategoryTreeTest extends TestCase
 {
     category(id: {$subCategoryId}) {
         id
+        products {
+      page_info {
+        total_pages
+      }
+      total_count
+      items {
+        __typename
+        sku
+        name
+        url_key
+      }
+    }
         children {
+        products {
+      page_info {
+        total_pages
+      }
+      total_count
+      items {
+        __typename
+        sku
+        name
+        url_key
+      }
+    }
             id
             name
             url_key

@@ -1,0 +1,26 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+?>
+<div class="paymentservice-assistance-container">
+    <h1><?= $block->escapeHtml(__('Request technical asssitance')) ?></h1>
+    <p><?php echo $block->escapeHtml(__('Questo form apre un ticket di assistenza')); ?></p>
+    <br>
+    <div class="axepta-form-panel">
+        <form method="post" id="assistance-form">
+            <?php echo $this->getBlockHtml('formkey')?>
+
+            <label for="cc"><?php echo $block->escapeHtml(__('Cc')); ?></label>
+            <input id="cc" name="cc" value="" title="<?php echo $block->escapeHtml(__('Cc')); ?>" type="email" class="input-text">
+
+            <label for="message">
+                <?php echo $block->escapeHtml(__('Message')); ?> <span class="required">*</span>
+            </label>
+            <textarea id="message" name="message" required title="<?php echo $block->escapeHtml(__('Message')); ?>" rows="8" class="textarea required-entry"></textarea>
+
+            <button type="submit" class="button">
+                <span><?php echo $block->escapeHtml(__('Send')); ?></span>
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/vendors/:vendorId/installments/notification" method="POST">
+        <service class="Nextouch\Findomestic\Api\NotificationProcessorInterface" method="notify"/>
+        <resources>
+            <resource ref="Nextouch_Findomestic::notification"/>
+        </resources>
+    </route>
+</routes>

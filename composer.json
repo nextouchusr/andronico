@@ -7,12 +7,46 @@
     ],
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "laminas/laminas-dependency-plugin": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "magento/magento-composer-installer": true,
+            "magento/inventory-composer-installer": true,
+            "magento/composer-dependency-version-audit-plugin": true,
+            "magento/composer-root-update-plugin": true
+        }
     },
     "version": "2.4.2-p1",
     "require": {
-        "magento/product-enterprise-edition": "2.4.2-p1",
-        "magento/composer-root-update-plugin": "~1.1"
+        "ext-json": "*",
+        "amasty/advanced-review": "^1.14",
+        "amasty/advanced-reviews-page-builder": "^1.0",
+        "amasty/delivery-date": "^1.6",
+        "amasty/geoipredirect": "^1.3",
+        "amasty/module-elastic-search": "^1.13",
+        "amasty/module-shipping-calculator": "^1.0",
+        "amasty/module-shop-by-brand-graphql": "^1.0",
+        "amasty/module-special-promo-pro": "^2.8",
+        "amasty/module-store-pickup": "^1.0",
+        "amasty/orderattr": "^3.7",
+        "amasty/promo": "^2.11",
+        "amasty/shiprestriction": "^2.5",
+        "amasty/shopby": "^2.17",
+        "avada/module-proofo": "^1.0",
+        "community-engineering/language-it_it": "^0.0.17",
+        "danielgsims/php-collections": "^2.2",
+        "lambdish/phunctional": "^2.1",
+        "laminas/laminas-form": "^3.0",
+        "league/csv": "^9.0",
+        "magefan/module-wysiwyg-advanced": "^2.0",
+        "magenio/magento2-tinyslider": "^1.0",
+        "magento/composer-dependency-version-audit-plugin": "~0.1",
+        "magento/composer-root-update-plugin": "~2.0",
+        "magento/product-enterprise-edition": "2.4.3-p1",
+        "msp/cmsimportexport": "^1.1",
+        "splashlab/magento-2-cors-requests": "^100.0",
+        "webmozart/assert": "^1.10"
     },
     "autoload": {
         "exclude-from-classmap": [
@@ -33,23 +67,26 @@
             "Magento\\": "app/code/Magento/",
             "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\Setup\\": "setup/src/Magento/Setup/",
-            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
+            "Axepta\\Payment\\": "app/code/Axepta/Paymentservice/lib/src/",
+            "Payment\\": "app/code/Axepta/Paymentservice/lib/src/Payment/"
         }
     },
     "require-dev": {
-        "allure-framework/allure-phpunit": "~1.2.0",
+        "allure-framework/allure-phpunit": "~1.4",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-        "friendsofphp/php-cs-fixer": "~2.16.0",
+        "friendsofphp/php-cs-fixer": "~2.18.1",
         "lusitanian/oauth": "~0.8.10",
         "magento/magento-coding-standard": "^6.0",
         "magento/magento2-functional-testing-framework": "^3.0",
         "pdepend/pdepend": "~2.7.1",
         "phpcompatibility/php-compatibility": "^9.3",
         "phpmd/phpmd": "^2.8.0",
-        "phpstan/phpstan": ">=0.12.3 <=0.12.23",
+        "phpstan/phpstan": "^0.12.77",
         "phpunit/phpunit": "^9",
-        "sebastian/phpcpd": "~5.0.0",
-        "squizlabs/php_codesniffer": "~3.5.4"
+        "sebastian/phpcpd": "^6.0.3",
+        "squizlabs/php_codesniffer": "~3.5.4",
+        "msp/devtools": "^1.2",
+        "symfony/finder": "^5.2"
     },
     "conflict": {
         "gene/bluefoot": "*"
@@ -66,12 +103,20 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "repositories": [
-        {
+    "repositories": {
+        "amasty": {
+            "type": "composer",
+            "url": "https://composer.amasty.com/enterprise/"
+        },
+        "splashlab": {
+            "type": "vcs",
+            "url": "https://github.com/splashlab/magento-2-cors-requests"
+        },
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
         }
-    ],
+    },
     "extra": {
         "magento-force": "override"
     },

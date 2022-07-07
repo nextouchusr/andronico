@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Magento\GraphQl\Staging;
 
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Integration\Api\AdminTokenServiceInterface;
 use Magento\Staging\Model\ResourceModel\Update;
 use Magento\Staging\Model\UpdateFactory;
@@ -27,6 +28,9 @@ class PreviewSimpleProductTest extends GraphQlAbstract
     /** @var Update */
     private $updateResourceModel;
 
+    /** @var ProductRepositoryInterface */
+    private $productRepository;
+
     /**
      * @inheritdoc
      */
@@ -36,6 +40,7 @@ class PreviewSimpleProductTest extends GraphQlAbstract
         $this->tokenService = $objectManager->get(AdminTokenServiceInterface::class);
         $this->updateFactory = $objectManager->get(UpdateFactory::class);
         $this->updateResourceModel = $objectManager->get(Update::class);
+        $this->productRepository = $objectManager->get(ProductRepositoryInterface::class);
     }
 
     /**
@@ -336,9 +341,6 @@ QUERY;
      */
     public function testPreviewDisabledStagedSimpleProduct()
     {
-        $this->markTestSkipped(
-            'This test will stay skipped until MC-29898 and or MC-29862 is resolved'
-        );
         $update = $this->updateFactory->create();
         $this->updateResourceModel->load($update, 'Disabled Product Staging Test', 'name');
         $version = $update->getId();
@@ -359,7 +361,6 @@ QUERY;
       items{
         sku
         name
-        stock_status
         price_range{
           maximum_price{
             final_price{value}
@@ -383,7 +384,71 @@ QUERY;
         $this->assertEquals('Enabled Simple Product 1', $product['name']);
         $this->assertEquals(45, $product['price_range']['maximum_price']['final_price']['value']);
         $this->assertEquals(45, $product['price_range']['minimum_price']['regular_price']['value']);
-        $this->assertEquals('IN_STOCK', $product['stock_status']);
+    }
+
+    /**
+     * Preview a disabled product that gets enabled in a future update
+     *
+     * @magentoApiDataFixture Magento/CatalogStaging/_files/disabled_simple_product_staged_for_changes.php
+     * @magentoApiDataFixture Magento/User/_files/user_with_custom_role.php
+     */
+    public function testPreviewCategoryWithDisabledStagedSimpleProduct()
+    {
+        $update = $this->updateFactory->create();
+        $this->updateResourceModel->load($update, 'Disabled Product Staging Test', 'name');
+        $version = $update->getId();
+
+        $headerMap = $this->getHeaderMapWithAdminToken(
+            'customRoleUser',
+            \Magento\TestFramework\Bootstrap::ADMIN_PASSWORD
+        );
+
+        //preview version header
+        $headerMap['Preview-Version'] = $version;
+
+        $product = $this->productRepository->get('disabled-simple');
+        $categoryId = current($product->getCategoryIds());
+
+        $query = <<<QUERY
+{
+ categoryList(filters: {ids: {eq: "$categoryId"}}) {
+    image
+    id
+    name
+    url_key
+    children {
+      image
+      id
+      name
+      url_key
+      children_count
+      product_count
+    }
+    products {
+      page_info {
+        total_pages
+      }
+      total_count
+      items {
+        sku
+        name
+        url_key
+      }
+    }
+  }
+}
+QUERY;
+        $response = $this->graphQlQuery($query, [], '', $headerMap);
+
+        $this->assertArrayNotHasKey('errors', $response, 'Response has errors');
+        $this->assertNotEmpty($response['categoryList']);
+        $category = current($response['categoryList']);
+        $this->assertEquals('Category For Disabled Product', $category['name']);
+        $this->assertArrayHasKey('products', $category);
+        $this->assertNotEmpty($category['products']['items'], 'No products returned');
+        $product = current($category['products']['items']);
+        $this->assertEquals('Enabled Simple Product 1', $product['name']);
+        $this->assertEquals('disabled-simple', $product['sku']);
     }
 
     /**

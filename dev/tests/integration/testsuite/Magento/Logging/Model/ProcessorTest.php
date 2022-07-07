@@ -85,18 +85,13 @@ class ProcessorTest extends \Magento\TestFramework\TestCase\AbstractController
         /** @var \Magento\Sales\Model\Order $order */
         $order = Bootstrap::getObjectManager()->create(\Magento\Sales\Model\Order::class);
         $order->loadByIncrementId('100000001');
-        $orderItemId = 1;
         $shipmentId = 1;
-        foreach ($order->getItemsCollection() as $item) {
-            $orderItemId = $item->getId();
-        }
         foreach ($order->getShipmentsCollection() as $item) {
             $shipmentId = $item->getId();
         }
-        $url = 'backend/admin/order_shipment/view/shipment_id/'. $shipmentId .'/order_id/' . $order->getId();
+        $url = 'backend/admin/order_shipment/view/shipment_id/' . $shipmentId . '/order_id/' . $order->getId();
         $action = 'view';
-        $post['shipment']['items'] = [$orderItemId => 1];
-        $this->loggingProcessorLogsAction($url, $action, $post);
+        $this->loggingProcessorLogsAction($url, $action, [], 'GET');
     }
 
     /**

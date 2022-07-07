@@ -1,0 +1,23 @@
+{
+  "name": "nextouch/findomestic",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "magento/module-checkout": "100.4.*",
+    "magento/module-quote": "101.2.*",
+    "magento/module-sales": "103.0.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Nextouch\\Findomestic\\": ""
+    }
+  }
+}

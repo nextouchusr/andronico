@@ -1,0 +1,170 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+// phpcs:disable PSR2.ControlStructures.SwitchDeclaration
+// phpcs:disable Generic.WhiteSpace.ScopeIndent
+
+/* @var $block \Magento\Catalog\Block\Product\Compare\ListCompare */
+?>
+<?php $total = $block->getItems()->getSize() ?>
+<?php if ($total) :?>
+
+        <div class="table-wrapper comparison">
+            <table class="data table table-comparison-head table-mobile">
+                <tr>
+                    <?php $index = 0; ?>
+                    <?php $helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
+                    <?php /** @var $item \Magento\Catalog\Model\Product */ ?>
+                    <?php foreach ($block->getItems() as $item) :?>
+                        <?php if ($index++ == 0) :?>
+                            <th scope="row" class="cell label show-difference remove"><div id="show-difference"><span class="label"><?= __('Show Only difference') ?></span> <span class="icon"></span> </div></th>
+                        <?php endif; ?>
+                        <td class="cell remove product hidden-print">
+                            <div class="infos">
+                                <?php $compareHelper = $this->helper(Magento\Catalog\Helper\Product\Compare::class);?>
+                                <a href="#" data-post='<?= /* @noEscape */ $compareHelper->getPostDataRemove($item) ?>'
+                                   class="action delete" title="<?= $block->escapeHtmlAttr(__('Remove Product')) ?>">
+                                    <span class="label"><?= $block->escapeHtml(__('Remove Product')) ?></span>
+                                </a>
+                                <a class="product-item-photo"
+                                   href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>"
+                                   title="<?= /* @noEscape */ $block->stripTags($item->getName(), null, true) ?>">
+                                    <?= $block->getImage($item, 'product_comparison_list')->toHtml() ?>
+                                </a>
+                                <strong class="product-item-name">
+                                    <a href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>"
+                                       title="<?= /* @noEscape */ $block->stripTags($item->getName(), null, true) ?>">
+                                        <?= /* @noEscape */ $helper->productAttribute($item, $item->getName(), 'name') ?>
+                                    </a>
+                                </strong>
+                                <span class="price price-compared">
+                                    <?=
+                                    /* @noEscape */ $block->getProductPrice(
+                                        $item,
+                                        '-compare-list-price'
+                                    )
+                                    ?>
+                                </span>
+                            </div>
+                        </td>
+                    <?php endforeach; ?>
+                </tr>
+            </table>
+            <div class="table-comparison-container">
+                <div class="head-title"> <span class="label"><?= $block->escapeHtml(__('Specs')) ?></span></div>
+                <table class="data table table-comparison table-mobile" id="product-comparison"
+                    data-mage-init='{"compareList":{
+                        "windowPrintSelector":".action.print",
+                        "productsInRow":"5",
+                        "selectors":{
+                            "productAddToCartSelector":"button.action.tocart"}
+                    }}'>
+                    <caption class="table-caption"><?= $block->escapeHtml(__('Compare Products')) ?></caption>
+
+                    <tbody>
+                    <tr>
+                        <?php $index = 0; ?>
+                        <?php $helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
+                        <?php /** @var $item \Magento\Catalog\Model\Product */ ?>
+                        <?php foreach ($block->getItems() as $item) :?>
+                            <?php if ($index++ == 0) :?>
+                                <th scope="row" class="cell label product">
+                                    <span><?= $block->escapeHtml(__('Product')) ?></span>
+                                </th>
+                            <?php endif; ?>
+                            <td data-th="<?= $block->escapeHtmlAttr(__('Product')) ?>" class="cell product info">
+
+                                <?= $block->getReviewsSummaryHtml($item, 'short') ?>
+                            </td>
+                        <?php endforeach; ?>
+                    </tr>
+                    </tbody>
+                    <tbody>
+                    <?php foreach ($block->getAttributes() as $attribute) :?>
+                        <?php $index = 0; ?>
+                        <?php if ($block->hasAttributeValueForProducts($attribute)) :?>
+                             <tr>
+                                <?php foreach ($block->getItems() as $item) :?>
+                                    <?php if ($index++ == 0) :?>
+                                        <th scope="row" class="cell label">
+                                            <span class="attribute label">
+                                                <?= $block->escapeHtml($attribute->getStoreLabel() ? $attribute->getStoreLabel() : __($attribute->getFrontendLabel())) ?>
+                                            </span>
+                                        </th>
+                                    <?php endif; ?>
+                                    <td class="cell product attribute">
+                                        <div class="attribute value">
+                                            <?php switch ($attribute->getAttributeCode()) {
+                                                case "price": ?>
+
+                                                    <?php break;
+                                                case "small_image": ?>
+                                                    <?php $block->getImage($item, 'product_small_image')->toHtml(); ?>
+                                                    <?php break;
+                                                default :?>
+                                                    <?php if (is_string($block->getProductAttributeValue($item, $attribute))) :?>
+                                                        <?= /* @noEscape */ $helper->productAttribute($item, $block->getProductAttributeValue($item, $attribute), $attribute->getAttributeCode()) ?>
+                                                    <?php else : ?>
+                                                        <?=  $block->escapeHtml($helper->productAttribute($item, $block->getProductAttributeValue($item, $attribute), $attribute->getAttributeCode())) ?>
+                                                    <?php endif; ?>
+                                                    <?php break;
+                                            } ?>
+                                        </div>
+                                    </td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form]": {
+                "catalogAddToCart": {}
+            }
+        }
+        </script>
+<script type="text/javascript">
+    require(['jquery', 'matchMedia'], function ($, mediaCheck) {
+        $(document).ready(function () {
+            var firstRowWidth = $($('#product-comparison').find('tbody th')[0]).innerWidth();
+            $('.table-comparison-head').find('tbody tr th').css('width', firstRowWidth);
+            $('.table-comparison-container').on('click','.head-title', function() {
+               $(this).parent().toggleClass('active');
+            });
+            $(window).on('resize', function() {
+                setTimeout(function() {
+                    var firstRowWidth = $($('#product-comparison').find('tbody th')[0]).innerWidth();
+                    $('.table-comparison-head').find('tbody tr th').css('width', firstRowWidth);
+                },100);
+            });
+            $('#show-difference').on('click', function () {
+                $('.table-comparison').toggleClass('showdifference');
+                $(this).toggleClass('active');
+            });
+            $('.table-comparison tbody tr').each(function () {
+                var row = $(this);
+                var cols = $(this).find('td');
+                var tdValue = '';
+                $(cols).each(function () {
+                    if(tdValue && tdValue !== $(this).text()) {
+                        $(row).addClass('different');
+                    }
+                    else {
+                        tdValue = $(this).text();
+                    }
+                })
+            });
+        });
+
+    });
+</script>
+<?php else :?>
+    <div class="message info empty"><div><?= $block->escapeHtml(__('You have no items to compare.')) ?></div></div>
+<?php endif; ?>

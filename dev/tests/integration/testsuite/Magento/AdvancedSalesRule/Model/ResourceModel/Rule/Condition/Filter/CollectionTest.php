@@ -30,6 +30,12 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $filterCollection = $filterCollection->addFilter('rule_id', $rule->getRuleId())->loadWithFilter();
 
         //based on rules_categories fixture
+        $itemData = current($filterCollection->getItems())->getData();
+
+        // verify rule_filter_id exists and remove rule_filter_id from $itemData
+        $this->assertArrayHasKey('rule_filter_id', $itemData);
+        unset($itemData['rule_filter_id']);
+
         $this->assertEquals(
             [
                 'rule_id' => $rule->getRuleId(),
@@ -40,7 +46,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
                     \Magento\AdvancedSalesRule\Model\Rule\Condition\FilterTextGenerator\Product\Category::class,
                 'filter_text_generator_arguments' => '[]'
             ],
-            current($filterCollection->getItems())->getData()
+            $itemData
         );
     }
 }

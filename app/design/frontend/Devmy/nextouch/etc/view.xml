@@ -8,24 +8,24 @@
                 <height>140</height>
             </image>
             <image id="cart_cross_sell_products" type="small_image">
-                <width>240</width>
-                <height>300</height>
+                <width>350</width>
+                <height>350</height>
             </image>
             <image id="cart_page_product_thumbnail" type="small_image">
                 <width>165</width>
                 <height>165</height>
             </image>
             <image id="category_page_grid" type="small_image">
-                <width>240</width>
-                <height>300</height>
+                <width>300</width>
+                <height>270</height>
             </image>
             <image id="category_page_grid-1" type="small_image">
-                <width>240</width>
-                <height>300</height>
+                <width>300</width>
+                <height>270</height>
             </image>
             <image id="category_page_list" type="small_image">
-                <width>240</width>
-                <height>300</height>
+                <width>300</width>
+                <height>270</height>
             </image>
             <image id="customer_account_my_tags_tag_view" type="small_image">
                 <width>100</width>
@@ -48,8 +48,8 @@
                 <height>100</height>
             </image>
             <image id="mini_cart_product_thumbnail" type="thumbnail">
-                <width>150</width>
-                <height>150</height>
+                <width>120</width>
+                <height>120</height>
             </image>
             <image id="new_products_content_widget_grid" type="small_image">
                 <width>240</width>
@@ -267,6 +267,84 @@
 
     <vars module="Js_Bundle">
         <var name="bundle_size">1MB</var>
+    </vars>
+    <vars module="Magento_PageBuilder">
+        <var name="breakpoints">
+            <var name="desktop">
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">4</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+            <var name="tablet">
+                <var name="conditions">
+                    <var name="max-width">1024px</var>
+                    <var name="min-width">768px</var>
+                </var>
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">3</var>
+                        </var>
+                        <var name="continuous">
+                            <var name="slidesToShow">3</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+            <var name="little_desktop">
+                <var name="conditions">
+                    <var name="max-width">1440px</var>
+                    <var name="min-width">1025</var>
+                </var>
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">3</var>
+                        </var>
+                        <var name="continuous">
+                            <var name="slidesToShow">3</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+            <var name="mobile">
+                <var name="label">Mobile</var>
+                <var name="stage">true</var>
+                <var name="class">mobile-switcher</var>
+                <var name="icon">Magento_PageBuilder::css/images/switcher/switcher-mobile.svg</var>
+                <var name="media">only screen and (max-width: 768px)</var>
+                <var name="conditions">
+                    <var name="max-width">768px</var>
+                    <var name="min-width">640px</var>
+                </var>
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">2</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+            <var name="mobile-small">
+                <var name="conditions">
+                    <var name="max-width">640px</var>
+                </var>
+                <var name="options">
+                    <var name="products">
+                        <var name="default">
+                            <var name="slidesToShow">2</var>
+                        </var>
+                        <var name="continuous">
+                            <var name="slidesToShow">2</var>
+                        </var>
+                    </var>
+                </var>
+            </var>
+        </var>
     </vars>
     <exclude>
         <item type="file">Lib::chartjs/Chart.min.js</item>

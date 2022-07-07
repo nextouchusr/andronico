@@ -1,0 +1,10 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\DisabledTextDescription
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\DisabledTextDescription $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+
+?>
+<textarea id="disabled_text_description" name="" class=" textarea admin__control-textarea" rows="2" cols="15" disabled="disabled"><?php echo $block->escapeHtml(__('Paga con carta di credito o di debito VISA, Mastercard o Maestro')) ?></textarea>

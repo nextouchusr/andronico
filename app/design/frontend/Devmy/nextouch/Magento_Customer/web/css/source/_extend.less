@@ -1,0 +1,530 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .modals-overlay {
+        background: transparent;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 898!important;
+    }
+    .modal-popup {
+        &._inner-scroll {
+            .modal-inner-wrap {
+                border-radius: 100px;
+                background: #fff;
+            }
+        }
+        &.popup-authentication {
+            .modal-header {
+                border: 0;
+            }
+            .block-title {
+                font-weight: 700;
+                text-align: center;
+                font-size: 3.6rem;
+                strong {
+                    font-weight: 700;
+                }
+            }
+            .modal-content {
+                padding: 6rem 14rem;
+            }
+            .block-authentication {
+                border: 0;
+            }
+            .label {
+                display: none;
+            }
+            .action-close {
+                &:before {
+                    font-size: 12rem;
+                    font-weight: 200;
+                    line-height: 50px;
+                    width: 100px;
+                    color: @theme__color__primary;
+                    margin-top: 30px;
+                    margin-right: 30px;
+                }
+            }
+            .block-content {
+                input.input-text {
+                    height: 54px;
+                    border-radius: 50px;
+                    border-color: @theme__color__primary;
+                    padding: 0 20px;
+                    font-size: 2rem;
+                    &::placeholder {
+                        font-size: 2rem;
+                        color: @theme__color__primary;
+                        font-weight: 100;
+                    }
+                }
+                .register-link {
+                    font-size: 2rem;
+                    padding: 10px 0;
+                    display: inline-block;
+                }
+                .primary {
+                    .action-login {
+                        padding: 15px 30px;
+                        font-size: 2rem;
+                        color: @theme__color__primary;
+                    }
+                }
+                .forgot {
+                    margin: 15px 0;
+                    float: right;
+                    clear: both;
+                    a {
+                        font-size: 1.4rem;
+                        color: @theme__color__primary_gray;
+                    }
+                }
+            }
+            .continue-url {
+                margin: 50px 0 0 0;
+                font-size: 1.8rem;
+                text-align: center;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .customername {
+        margin-top: -10px;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    .block-collapsible-nav {
+        .block-collapsible-nav-content {
+            width: 100%;
+            &:before {
+                display: block;
+                content: "";
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                top:-10px;
+                left: 70px;
+                transform: rotate(-45deg);
+                box-shadow: 0 0px 10px #ccc;
+                background: #fff;
+                z-index: 2;
+            }
+            &:after {
+                display: block;
+                content:"";
+                position: absolute;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                height: 40px;
+                z-index: 10;
+                top:0;
+            }
+            /*
+            &:before {
+                width: 0;
+                height: 0;
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                border-bottom: 20px solid #fff;
+                position: absolute;
+                top:-20px;
+                left: 65px;
+                content: "";
+                display: block;
+                z-index: 10;
+            }
+            &:after {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                z-index: -1;
+                display: block;
+                content: '';
+                background: #fff;
+                border-radius: 50px;
+                box-shadow: 0 -8px 15px #999;
+                top: -16px;
+                left: 86px;
+            }
+
+             */
+        }
+    }
+
+    .account {
+        .main {
+            textarea {
+                padding: 25px;
+            }
+            .block {
+                box-shadow: @theme__box-shadow__primary;
+                padding: 15px;
+                border-radius: 20px;
+                .block-title {
+                    font-weight: 200;
+                    text-align: center;
+                    strong {
+                        font-size: 1.8rem!important;
+                        font-weight: 200!important;
+                    }
+                }
+                .box {
+                    margin-bottom: 25px;
+                }
+                .box-title {
+                    margin: 0 auto 5px auto!important;
+                    text-align: center;
+                    display: block!important;
+                    color: @theme__color__primary_gray;
+                    span {
+                        font-weight: 200!important;
+                        margin-bottom: 10px;
+                        font-size: 1.4rem!important;
+                        color: @theme__color__primary_gray;
+                    }
+                }
+                .box-content {
+                    border: 1px solid @theme__color__primary;
+                    padding: 5px 10px;
+                    border-radius: 10px;
+                    margin-bottom: 5px;
+                    font-size: 1.1rem;
+                    background: #fff;
+                }
+                .action {
+                    border-radius: 30px;
+                    padding: 10px 20px;
+                    font-weight: 600;
+                    &.order {
+                        display: none;
+                    }
+                }
+            }
+            .box-actions {
+                text-align: center;
+                > * {
+                    margin: 10px;
+                }
+            }
+            .reviews,
+            .box-actions,
+            .block-title {
+
+                .action {
+                    background: none;
+                    padding: 0;
+                    min-width: inherit;
+                    text-decoration: underline;
+                    margin: 15px;
+                }
+            }
+            .action {
+                &.order {
+                    font-size: 1.2rem;
+                    text-align: center;
+                    opacity: 0.8;
+                    box-sizing: border-box;
+                    background: @theme__color__secondary;
+                    color: @theme__color__primary;
+                    line-height: 1rem;
+                    padding: 15px 30px;
+                    width: auto;
+                    min-width: 220px;
+                    border-radius: 100px;
+                    margin-bottom: 10px;
+                    display: inline-block;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                &.previous, &.next {
+                    border-radius: 100%;
+
+                    &:before {
+                        color: @primary__color;
+                    }
+                }
+            }
+            .secondary {
+                margin-bottom: 20px;
+                .action {
+                    background: @theme__color__primary;
+                    color: @theme__color__primary_contr;
+                    &.order {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .additional_info {
+            margin-top: @indent__m;
+
+            .checkout-agreement.field {
+                justify-content: center;
+            }
+        }
+    }
+    .table-order-items {
+        thead > tr,
+        tbody > tr {
+            border-bottom: 2px solid @primary__color;
+        }
+
+        tbody > tr > td {
+            padding: 20px 10px;
+
+            .sub-col.actions {
+                margin-top: @indent__s;
+                font-weight: @font-weight__bold;
+                text-decoration: underline;
+            }
+        }
+    }
+    #invitations-options {
+        .secondary {
+            display: block;
+            width: 100%;
+            .action.remove {
+                margin-top: 15px;
+                padding: 10px;
+                border-radius: 50px;
+            }
+        }
+    }
+    #invitationForm {
+        .field > label {
+            display: none;
+        }
+        .actions-toolbar {
+            > .primary {
+                text-align: left;
+            }
+        }
+        textarea {
+            padding: 25px;
+        }
+    }
+    .wishlist-toolbar {
+        .pager {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+        }
+        .toolbar-amount {
+            margin: 0;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .modal-popup {
+        &._inner-scroll {
+            .modal-inner-wrap {
+                background: #fff!important;
+                border-radius: 5px!important;
+            }
+        }
+    }
+    .modal-popup.modal-popup.popup-authentication {
+        left: 0!important;
+        padding-top: 25%;
+        padding-left: 40px;
+        padding-right: 40px;
+        .modal-inner-wrap {
+            min-height: auto;
+        }
+
+        .block-title {
+            font-size: 1rem;
+        }
+        .action-close:before {
+            font-size: 6rem;
+            display: none;
+        }
+        .modal-content {
+            padding: 4rem 5rem;
+            font-size: 1rem;
+            input.input-text {
+                height: 38px;
+                font-size: 1rem;
+                &::placeholder {
+                    font-size: 1rem;
+                }
+            }
+        }
+        .block-content {
+            .continue-url {
+                font-size: 1rem;
+            }
+            .primary {
+                .action-login {
+                    font-size: 1rem;
+                    padding: 6px 30px;
+                }
+            }
+            .register-link {
+                font-size: 1rem;
+            }
+            .actions-toolbar > .primary {
+                display: inline-block;
+                float: right;
+            }
+            .forgot {
+                float: none;
+                text-align: center;
+                margin-bottom: 50px;
+                a {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .account  {
+        .columns {
+            padding-top: 60px;
+        }
+        .page-main {
+            background: url('@{baseDir}images/texture.jpg') no-repeat center 5%;
+            background-size: 120%;
+        }
+        .main  {
+            .page-title {
+                font-size: 3rem;
+                color: @theme__color__primary_gray;
+            }
+            .block {
+                box-shadow: none;
+                padding: 15px 0;
+                .block-title {
+                    text-align: left;
+                    strong {
+                        font-size: 3rem !important;
+                    }
+                }
+                .block-content {
+                    font-size: 1.8rem;
+                    color: @theme__color__primary_gray;
+                    min-height: 60px;
+                }
+                .box-title {
+                    text-align: left;
+                    span {
+                        font-size: 2rem !important;
+                    }
+                }
+                .box-content {
+                    min-height: 50px;
+                    padding: 25px;
+                    border-radius: 30px;
+                    font-size: 1.6rem;
+                }
+                .action {
+                    font-size: 1.6rem;
+                    font-weight: 200;
+                    white-space: nowrap;
+                    &.order {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .fieldset {
+            .legend {
+                margin: 0 0 20px 0;
+            }
+            .field:not(.choice) > {
+                .label {
+                    font-weight: 200;
+                }
+                input[type="text"],
+                input[type="password"],
+                input[type="url"],
+                input[type="tel"],
+                input[type="search"],
+                input[type="number"],
+                input[type*="date"],
+                input[type="email"],
+                select {
+                    height: 60px;
+                    padding: 10px 30px;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+        .actions-toolbar {
+            margin-left: 0!important;
+            .primary {
+                .action.primary {
+                    font-size: 1.8rem;
+                    font-weight: 200;
+                    height: 68px;
+                    padding: 30px 50px;
+                    min-width: 260px;
+                    box-sizing: border-box;
+                    line-height: 1rem;
+                }
+            }
+        }
+
+        .secondary {
+            margin-bottom: 20px;
+            justify-content: center;
+            .action {
+                height: 68px;
+                line-height: 1rem;
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    .customername {
+        margin-top: -40px;
+        font-size: 4.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+
+    #invitations-options {
+        .secondary {
+            .action.remove {
+                margin-top: -12px;
+                padding: 10px;
+                border-radius: 50px;
+                height: 60px;
+            }
+        }
+    }
+
+}

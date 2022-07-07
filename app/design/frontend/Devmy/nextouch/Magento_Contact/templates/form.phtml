@@ -1,0 +1,104 @@
+<?php
+/** @var \Magento\Contact\Block\ContactForm $block */
+/** @var \Magento\Contact\ViewModel\UserDataProvider $viewModel */
+
+$viewModel = $block->getViewModel();
+$contactFrequentQuestions = $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('contact_frequent_questions');
+$aboutServicesSlider = $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('about_services_slider');
+$aboutBanners = $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('about_banners');
+?>
+<form class="form contact"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <?= $contactFrequentQuestions->toHtml() ?>
+
+    <h2><?= $block->escapeHtml(__('Contact Us')) ?></h2>
+    <fieldset class="fieldset">
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <input name="name"
+                       id="name"
+                       title="<?= $block->escapeHtmlAttr(__('Name')) ?>"
+                       value="<?= $block->escapeHtmlAttr($viewModel->getUserName()) ?>"
+                       class="input-text"
+                       type="text"
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email"
+                       id="email"
+                       title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                       value="<?= $block->escapeHtmlAttr($viewModel->getUserEmail()) ?>"
+                       class="input-text"
+                       type="email"
+                       data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <div class="field telephone">
+            <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+            <div class="control">
+                <input name="telephone"
+                       id="telephone"
+                       title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
+                       value="<?= $block->escapeHtmlAttr($viewModel->getUserTelephone()) ?>"
+                       class="input-text"
+                       type="tel" />
+            </div>
+        </div>
+        <div class="field comment required">
+            <label class="label" for="comment">
+                <span><?= $block->escapeHtml(__('What are you contacting us for?')) ?></span>
+            </label>
+            <div class="control">
+                <textarea name="comment"
+                          id="comment"
+                          title="<?= $block->escapeHtmlAttr(__('What are you contacting us for?')) ?>"
+                          class="input-text"
+                          cols="5"
+                          rows="8"
+                          data-validate="{required:true}"
+                          style="resize: none;"
+                ><?= $block->escapeHtml($viewModel->getUserComment()) ?></textarea>
+            </div>
+        </div>
+        <?= $block->getChildHtml('form.additional.info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <p>
+            <?= $block->escapeHtml('The assistance service is active from Monday to Friday from 00:00 to 00:00.') ?><br>
+            <?= $block->escapeHtml('Our operators will reply as soon as possible.') ?>
+        </p>
+
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+
+<div style="margin-top: 100px">
+    <?= $aboutServicesSlider->toHtml() ?>
+</div>
+
+<div style="margin-top: 100px">
+    <?= $aboutBanners->toHtml() ?>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "contact-form"
+            }
+        }
+    }
+</script>

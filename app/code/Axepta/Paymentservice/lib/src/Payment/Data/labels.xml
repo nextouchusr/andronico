@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<labels>
+	<label>
+		<code>CHECK_OUT_TYPE_1</code>
+		<text_en>Easy Checkout (redirect on payment page)</text_en>
+		<text_it>Easy Checkout (reindirizzamento sulla pagina di pagamento)</text_it>
+	</label>
+	<label>
+		<code>CHECK_OUT_TYPE_2</code>
+		<text_en>Reindirizzamento sulla pagina di pagamento con sintesi disponibilità strumenti di pagamento</text_en>
+		<text_it>Reindirizzamento sulla pagina di pagamento con sintesi disponibilità strumenti di pagamento</text_it>
+	</label>
+	<label>
+		<code>CHECK_OUT_TYPE_3</code>
+		<text_en>Smart Checkout (payment on site)</text_en>
+		<text_it>Smart Checkout (pagamento on site)</text_it>
+	</label>
+	<label>
+		<code>TRANSACTION_TYPE_AUTO</code>
+		<text_en>Purchase</text_en>
+		<text_it>Acquisto</text_it>
+	</label>
+	<label>
+		<code>TRANSACTION_TYPE_MANUAL</code>
+		<text_en>Preauth</text_en>
+		<text_it>Preautorizzazione</text_it>
+	</label>
+	<label>
+		<code>TRANSACTION_TYPE_PURCHASE</code>
+		<text_en>Purchase</text_en>
+		<text_it>Acquisto</text_it>
+	</label>
+	<label>
+		<code>TRANSACTION_TYPE_AUTH</code>
+		<text_en>Preauth</text_en>
+		<text_it>Preautorizzazione</text_it>
+	</label>
+	<label>
+		<code>TRANSACTION_TYPE_VERIFY</code>
+		<text_en>Verify</text_en>
+		<text_it>Verifica</text_it>
+	</label>
+	<label>
+		<code>ACQUIRER_POSITIVI</code>
+		<text_en>Axepta 1</text_en>
+		<text_it>Axepta 1</text_it>
+	</label>
+	<label>
+		<code>ACQUIRER_PARIBAS</code>
+		<text_en>Prossime gestioni</text_en>
+		<text_it>Prossime gestioni</text_it>
+	</label>
+	<label>
+		<code>PAYMENT_TYPE_IGFS</code>
+		<text_en>Axepta 1</text_en>
+		<text_it>Axepta 1</text_it>
+	</label>
+	<label>
+		<code>PAYMENT_TYPE_CMPT</code>
+		<text_en>Axepta 2</text_en>
+		<text_it>Axepta 2</text_it>
+	</label>
+</labels>

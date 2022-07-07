@@ -1,0 +1,105 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/* @var $block \Magento\Framework\View\Element\Template */
+?>
+<div class="block-compare-container" data-bind="scope: 'compareProducts'">
+
+    <!-- ko if: compareProducts().count -->
+<div class="block block-compare" data-bind="css: {visible: compareProducts().count}" data-role="compare-products-sidebar">
+    <div class="block-title  block-compare-title">
+        <strong id="block-compare-heading" role="heading" aria-level="2">
+            <span class="current"> <?= $block->escapeHtml(__('Compare')) ?></span>
+            <span class="opened"><?= $block->escapeHtml(__('Close')) ?></span>
+        </strong>
+    </div>
+    <div class="block-content no-display" aria-labelledby="block-compare-heading" data-bind="css: {'no-display': !compareProducts().count}">
+        <ol id="compare-items" class="product-items product-items-names" data-bind="foreach: compareProducts().items">
+                <li class="product-item">
+                    <input type="hidden" class="compare-item-id" data-bind="value: id"/>
+                    <a href="#"
+                       data-bind="attr: {'data-post': remove_url}"
+                       title="<?= $block->escapeHtmlAttr(__('Remove This Item')) ?>"
+                       class="action delete">
+                        <span><?= $block->escapeHtml(__('Remove This Item')) ?></span>
+                    </a>
+                    <strong class="product-item-image">
+                        <img data-bind="attr: {src: image_src, alt: name}" class="product-item-link"></img>
+                    </strong>
+                    <strong class="product-item-name">
+                        <a data-bind="attr: {href: product_url}, html: name" class="product-item-link"></a>
+                    </strong>
+
+                </li>
+        </ol>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <a data-bind="attr: {'href': compareProducts().listUrl}" class="action compare primary"><span><?= $block->escapeHtml(__('Compare')) ?></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+{"[data-role=compare-products-sidebar]": {"Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>}}
+</script>
+
+<script type="text/javascript">
+    require(['jquery', 'matchMedia'], function ($, mediaCheck) {
+        $(document).ready(function () {
+            $('body').on('click', '.block-compare-title', function() {
+                $('.block-compare').toggleClass('active');
+            });
+            $('body').on('click', function(e) {
+                var target = $(e.target);
+                if(!target.closest('.block-compare').length &&
+                    $('.block-compare').is(":visible") && !$(target).is('.open-compare-mobile')) {
+                    $('.block-compare').removeClass('active');
+                    $('.open-compare-mobile').removeClass('active');
+                }
+            });
+
+            $('body').on('click', '.open-compare-mobile', function() {
+                $('.block-compare').toggleClass('active').toggleClass('show');
+                if($('.block-compare').is(':visible')) {
+                    $('.open-compare-mobile').addClass('active');
+                }
+                else {
+                    $('.open-compare-mobile').removeClass('active');
+                }
+                var posTop = $(this).offset().top;
+                var scrollTop = $(window).scrollTop();
+                $('.block-compare').css('top', posTop - scrollTop + $(this).innerHeight() + 30 );
+            });
+
+            $('.close-compare-mobile').on('click', function() {
+                $('.block-compare').removeClass('active').removeClass('show');
+                $('.open-compare-mobile').removeClass('active');
+            });
+            $(window).on('scroll', function() {
+                mediaCheck({
+                    media: '(min-width: 768px)',
+                    entry: $.proxy(function () {
+
+                    }, this),
+                    exit: $.proxy(function () {
+                        var openCompareMobile = $('body').find('.open-compare-mobile');
+                        if(openCompareMobile && $('.block-compare.visible')) {
+                            $('.block-compare').css('top', $(openCompareMobile).offset().top - $(window).scrollTop() + $(openCompareMobile).innerHeight() + 30);
+                        }
+                    },this)
+                });
+            });
+
+
+
+        });
+    });
+
+</script>

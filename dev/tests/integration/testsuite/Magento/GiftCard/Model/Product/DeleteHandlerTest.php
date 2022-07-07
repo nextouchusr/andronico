@@ -65,6 +65,7 @@ class DeleteHandlerTest extends \PHPUnit\Framework\TestCase
 
         // Verify after delete
         $this->assertEmpty($amount2->getData());
+        $this->assertEmpty($giftCard10->getGiftcardAmounts());
         $registry->unregister('isSecureArea');
         $registry->register('isSecureArea', false);
 

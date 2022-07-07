@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\Eav\Api\Data\AttributeSetInterface"
+                type="Nextouch\Eav\Model\AttributeSet"/>
+
+    <preference for="Nextouch\Eav\Api\Data\AttributeOptionInterface"
+                type="Nextouch\Eav\Model\AttributeOption"/>
+
+    <preference for="Nextouch\Eav\Api\AttributeSetRepositoryInterface"
+                type="Nextouch\Eav\Model\AttributeSetRepository"/>
+
+    <preference for="Nextouch\Eav\Api\AttributeGroupRepositoryInterface"
+                type="Nextouch\Eav\Model\AttributeGroupRepository"/>
+
+    <preference for="Nextouch\Eav\Api\AttributeManagementInterface"
+                type="Nextouch\Eav\Model\AttributeManagement"/>
+
+    <preference for="Nextouch\Eav\Api\AttributeOptionManagementInterface"
+                type="Nextouch\Eav\Model\AttributeOptionManagement"/>
+</config>

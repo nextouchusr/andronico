@@ -1,0 +1,21 @@
+{
+  "name": "nextouch/module-sidea",
+  "version": "1.0.0",
+  "description": "N/A",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*",
+    "nextouch/quote": "1.0.*"
+  },
+  "license": [
+    "Proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Nextouch\\Sidea\\": ""
+    }
+  }
+}

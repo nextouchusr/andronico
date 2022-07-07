@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\Wins\Api\AuthManagementInterface"
+                type="Nextouch\Wins\Model\AuthManagement"/>
+
+    <preference for="Nextouch\Wins\Api\OrderRepositoryInterface"
+                type="Nextouch\Wins\Model\OrderRepository"/>
+
+    <preference for="Nextouch\Wins\Api\OrderManagementInterface"
+                type="Nextouch\Wins\Model\OrderManagement"/>
+
+    <preference for="Nextouch\Wins\Api\ProductSalableQtyManagementInterface"
+                type="Nextouch\Wins\Model\ProductSalableQtyManagement"/>
+
+    <preference for="Nextouch\Wins\Api\CustomerRepositoryInterface"
+                type="Nextouch\Wins\Model\CustomerRepository"/>
+
+    <preference for="Magento\Customer\Controller\Address\FormPost"
+                type="Nextouch\Wins\Controller\Customer\Address\FormPost"/>
+
+    <preference for="Magento\Newsletter\Controller\Manage\Save"
+                type="Nextouch\Wins\Controller\Newsletter\Manage\Save"/>
+
+    <type name="Nextouch\Wins\Cron\AttachInvoiceToOrder">
+        <arguments>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </type>
+
+    <type name="Nextouch\Wins\Cron\UpdateInStoreOrder">
+        <arguments>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="validate_quote_salable_qty"
+                type="Nextouch\Wins\Plugin\Quote\Model\ValidateQuoteSalableQty"/>
+    </type>
+
+    <type name="Nextouch\Findomestic\Controller\Payment\Redirect">
+        <plugin name="validate_quote_salable_qty"
+                type="Nextouch\Wins\Plugin\Findomestic\Controller\Payment\ValidateQuoteSalableQty"/>
+    </type>
+
+    <type name="Magento\InventoryInStorePickupApi\Api\GetPickupLocationsInterface">
+        <plugin name="filter_pickup_locations"
+                type="Nextouch\Wins\Plugin\InventoryInStorePickup\Model\FilterPickupLocations"/>
+    </type>
+</config>

@@ -129,6 +129,7 @@ class SaveTest extends AbstractBackendController
             ['pl'],
             ['py'],
             ['asp'],
+            ['aspx'],
             ['sh'],
             ['cgi'],
             ['htm'],

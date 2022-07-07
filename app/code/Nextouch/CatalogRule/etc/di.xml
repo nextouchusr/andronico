@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogRule\Model\Rule">
+        <plugin name="catalogRuleDateResolver" disabled="true"/>
+    </type>
+
+    <type name="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface">
+        <plugin name="add_website_ids_extension_attribute"
+                type="Nextouch\CatalogRule\Plugin\Model\CatalogRule\AddWebsiteIdsExtensionAttribute"/>
+
+        <plugin name="add_customer_group_ids_extension_attribute"
+                type="Nextouch\CatalogRule\Plugin\Model\CatalogRule\AddCustomerGroupIdsExtensionAttribute"/>
+
+        <plugin name="add_from_date_extension_attribute"
+                type="Nextouch\CatalogRule\Plugin\Model\CatalogRule\AddFromDateExtensionAttribute"/>
+
+        <plugin name="add_to_date_extension_attribute"
+                type="Nextouch\CatalogRule\Plugin\Model\CatalogRule\AddToDateExtensionAttribute"/>
+    </type>
+</config>

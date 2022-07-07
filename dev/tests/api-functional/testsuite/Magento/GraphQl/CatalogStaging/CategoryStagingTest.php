@@ -34,6 +34,19 @@ use Magento\TestFramework\TestCase\GraphQlAbstract;
  *     meta_title
  *     meta_keywords
  *     meta_description
+ *     products {
+ *       page_info {
+ *       total_pages
+ *       }
+ *       total_count
+ *       items {
+ *       __typename
+ *       sku
+ *       name
+ *       url_key
+ *       updated_at
+ *       }
+ *     }
  *  }
  * }
  * Expected response:
@@ -55,7 +68,17 @@ use Magento\TestFramework\TestCase\GraphQlAbstract;
  *       "url_key": "category-en-Updated",
  *       "meta_title": "Category_en Meta Title Updated",
  *       "meta_keywords": "Category_en Meta Keywords Updated",
- *       "meta_description": "Category_en Meta Description Updated"
+ *       "meta_description": "Category_en Meta Description Updated",
+ *       "products": {
+ *          "page_info": { total_pages: 1 },
+ *          "total_count": 1
+ *           "items": [
+ *           {
+ *               "sku": "prod2",
+ *               "name": "prod2 st"
+ *           }
+ *         ]
+ *      }
  *     }
  *   }
  * }
@@ -113,7 +136,7 @@ class CategoryStagingTest extends GraphQlAbstract
                         'id' => 15,
                         'include_in_menu' => 1,
                         'name' => 'Category_en Updated',
-                        'image' => '',
+                        'image' => null,
                         'description' => '<p>Category_en Description Updated</p>',
                         'display_mode' => 'PAGE',
                         'is_anchor' => 1,
@@ -123,6 +146,13 @@ class CategoryStagingTest extends GraphQlAbstract
                         'meta_title' => 'Category_en Meta Title Updated',
                         'meta_keywords' => 'Category_en Meta Keywords Updated',
                         'meta_description' => 'Category_en Meta Description Updated',
+                        'products' => [
+                            'page_info' => [
+                                'total_pages' => 0
+                            ],
+                            'total_count' => 0,
+                            'items' => []
+                        ]
                     ],
                 ],
             ],
@@ -138,21 +168,33 @@ class CategoryStagingTest extends GraphQlAbstract
     {
         return <<<QUERY
 {
-    category(id: {$categoryId}){
-        id
-        include_in_menu
+ category(id: {$categoryId}){
+    id
+    include_in_menu
+    name
+    image
+    description
+    display_mode
+    is_anchor
+    available_sort_by
+    default_sort_by
+    url_key
+    meta_title
+    meta_keywords
+    meta_description
+    products {
+      page_info {
+        total_pages
+      }
+      total_count
+      items {
+        __typename
+        sku
         name
-        image
-        description
-        display_mode
-        is_anchor
-        available_sort_by
-        default_sort_by
         url_key
-        meta_title
-        meta_keywords
-        meta_description
+      }
     }
+  }
 }
 QUERY;
     }

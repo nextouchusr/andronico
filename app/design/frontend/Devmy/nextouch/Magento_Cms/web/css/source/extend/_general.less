@@ -1,0 +1,99 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .cms-page-view {
+    .left-navbar {
+      margin-bottom: @indent__xl;
+
+      &-item {
+        border-bottom: 1px solid @primary__color;
+
+        &-title {
+          cursor: pointer;
+          margin: 0;
+          padding: @indent__base 0;
+          overflow: hidden;
+          position: relative;
+          word-break: break-word;
+          font-weight: 600;
+          font-size: 1.6rem;
+
+          .lib-icon-font(
+            @_icon-font-content: @icon-up,
+            @_icon-font-size: 42px,
+            @_icon-font-position: after,
+            @_icon-font-display: block
+          );
+
+          &:after {
+            position: absolute;
+            top: 5px;
+            right: 0;
+          }
+
+          &.active > & {
+            .lib-icon-font-symbol(
+              @_icon-font-content: @icon-down,
+              @_icon-font-position: after
+            );
+          }
+        }
+
+        &-list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+
+          li {
+            margin-bottom: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .cms-page-view {
+    .left-navbar {
+      &-item {
+        &-title {
+          padding-right: 30px;
+          margin-bottom: 0;
+
+          &:after {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 5rem;
+            line-height: 4rem;
+            content: "";
+            background: url('@{baseDir}images/arrow-right.svg') 100% 50% no-repeat;
+            vertical-align: middle;
+            font-weight: normal;
+            overflow: hidden;
+            speak: none;
+            text-align: center;
+          }
+        }
+
+        &.active {
+          .left-navbar-item-title {
+            &:after {
+              background-position: 50% 0;
+              transform: rotate(90deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/orders/:id/inDelivery" method="POST">
+        <service class="Nextouch\Sales\Api\OrderManagementInterface" method="inDelivery"/>
+        <resources>
+            <resource ref="Magento_Sales::in_delivery"/>
+        </resources>
+    </route>
+    <route url="/V1/orders/:incrementId/inDeliveryByIncrementId" method="POST">
+        <service class="Nextouch\Sales\Api\OrderManagementInterface" method="inDeliveryByIncrementId"/>
+        <resources>
+            <resource ref="Magento_Sales::in_delivery"/>
+        </resources>
+    </route>
+
+    <route url="/V1/orders/:id/deliver" method="POST">
+        <service class="Nextouch\Sales\Api\OrderManagementInterface" method="deliver"/>
+        <resources>
+            <resource ref="Magento_Sales::deliver"/>
+        </resources>
+    </route>
+    <route url="/V1/orders/:incrementId/deliverByIncrementId" method="POST">
+        <service class="Nextouch\Sales\Api\OrderManagementInterface" method="deliverByIncrementId"/>
+        <resources>
+            <resource ref="Magento_Sales::deliver"/>
+        </resources>
+    </route>
+</routes>

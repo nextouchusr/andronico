@@ -1,0 +1,32 @@
+
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+}
+
+//
+//  Mobile (style-m.css)
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    [data-content-type='products'][data-appearance='carousel'] li.product-item {
+        box-shadow: 0 6px 15px #999;
+        padding: 30px;
+        margin: 10px;
+        border-radius: 30px;
+        position: relative;
+        text-align: center;
+    }
+}
+
+//
+//  Desktop (style-l.css)
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+
+}

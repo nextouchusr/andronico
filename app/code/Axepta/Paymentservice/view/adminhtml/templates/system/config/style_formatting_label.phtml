@@ -1,0 +1,11 @@
+<?php
+/**
+ * @see \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\StyleFormattingLabel
+ * @var \Axepta\Paymentservice\Block\Adminhtml\System\Config\Source\StyleFormattingLabel $block
+ */
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('\Axepta\Paymentservice\Helper\Data');
+
+?>
+<label for="heading"><span data-config-scope="[STORE VIEW]"><strong><?php echo $block->escapeHtml(__('Formattazione stile'))?></strong></span></label>
+<hr>

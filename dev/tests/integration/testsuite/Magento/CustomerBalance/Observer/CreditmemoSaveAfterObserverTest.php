@@ -11,15 +11,22 @@ use Magento\CustomerBalance\Model\Balance;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\DataObject;
 use Magento\Framework\Event\Observer;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Sales\Api\CreditmemoRepositoryInterface;
 use Magento\Sales\Api\Data\CreditmemoInterface;
+use Magento\Sales\Api\Data\OrderInterface;
+use Magento\Sales\Model\OrderFactory;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * Test for \Magento\CustomerBalance\Observer\CreditmemoSaveAfterObserver.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ *
  * @magentoDataFixture Magento/Reward/_files/rate.php
- * @magentoDataFixture  Magento/CustomerBalance/_files/creditmemo_with_customer_balance.php
+ * @magentoDataFixture Magento/CustomerBalance/_files/creditmemo_with_customer_balance.php
  */
 class CreditmemoSaveAfterObserverTest extends TestCase
 {
@@ -34,22 +41,25 @@ class CreditmemoSaveAfterObserverTest extends TestCase
     private $observer;
 
     /**
+     * @var OrderFactory
+     */
+    private $orderFactory;
+
+    /**
      * @inheritdoc
      */
     protected function setUp(): void
     {
         $this->objectManager = Bootstrap::getObjectManager();
         $this->observer = $this->objectManager->create(CreditmemoSaveAfterObserver::class);
+        $this->orderFactory = $this->objectManager->create(OrderFactory::class);
     }
 
     /**
      * Checks a case when entered balance is allowed to perform refund.
      *
-     * @param float $maxAllowedBalance
-     * @param float $customerBalance
-     * @param int $rewardPoints
      * @return void
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     public function testExecute(): void
     {
@@ -60,12 +70,18 @@ class CreditmemoSaveAfterObserverTest extends TestCase
         $creditMemo->setBaseCustomerBalanceReturnMax($maxAllowedBalance)
             ->setBsCustomerBalTotalRefunded($customerBalance)
             ->setRewardPointsBalanceRefund($rewardPoints)
+            ->setBaseCustomerBalanceRefunded($customerBalance)
+            ->setCustomerBalanceRefunded($customerBalance)
             ->setCustomerBalanceRefundFlag(true);
         $observer = $this->getObserver($creditMemo);
         $this->observer->execute($observer);
 
         $balance = $this->getCustomerBalance((int)$creditMemo->getOrder()->getCustomerId());
-        self::assertEquals($customerBalance, $balance->getAmount());
+        $this->assertEquals($customerBalance, $balance->getAmount());
+
+        $order = $this->getOrder('100000001');
+        $this->assertEquals($customerBalance, $order->getBaseCustomerBalanceRefunded());
+        $this->assertEquals($customerBalance, $order->getCustomerBalanceRefunded());
     }
 
     /**
@@ -75,7 +91,7 @@ class CreditmemoSaveAfterObserverTest extends TestCase
      */
     public function testExecuteWithNotAllowedBalance(): void
     {
-        $this->expectException(\Magento\Framework\Exception\LocalizedException::class);
+        $this->expectException(LocalizedException::class);
         $this->expectExceptionMessage('You can\'t use more store credit than the order amount.');
 
         $maxAllowedBalance = 66.48;
@@ -90,11 +106,25 @@ class CreditmemoSaveAfterObserverTest extends TestCase
     }
 
     /**
+     * Returns order by increment id
+     *
+     * @param string $incrementId
+     * @return OrderInterface
+     */
+    private function getOrder(string $incrementId): OrderInterface
+    {
+        $order = $this->orderFactory->create();
+        $order->loadByIncrementId($incrementId);
+
+        return $order;
+    }
+
+    /**
      * Creates stub for observer.
      *
      * @param CreditmemoInterface $creditMemo
      * @return Observer
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     private function getObserver(CreditmemoInterface $creditMemo): Observer
     {

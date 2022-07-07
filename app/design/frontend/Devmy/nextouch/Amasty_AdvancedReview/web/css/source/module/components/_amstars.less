@@ -1,0 +1,74 @@
+//
+//  Amasty Rating Stars Component
+//  ____________________________________________
+
+//
+//  Variables
+//  --------------------------------------------
+
+@amstars-star__l__height: 50px;
+@amstars-star__s__height: 50px;
+@amstars-star__background: url('@{baseDir}images/circle.svg');
+@amstars-star__hover__background: url('@{baseDir}images/circle.svg');
+@amstars-star__active__background: url('@{baseDir}images/circle-sel.svg');
+@amstars-star-small__background: url('@{baseDir}images/circle.svg');
+@amstars-star-small__active__background: url('@{baseDir}images/circle-sel.svg');
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .amstars-rating-container {
+        & {
+            background-image: @amstars-star__background;
+            background-size: 20px;
+            height: 20px;
+            margin: 0 0 5px 0;
+            overflow: hidden;
+            width: 100px;
+        }
+
+        &.-small {
+            background-image: @amstars-star-small__background;
+            height: 20px;
+            width: 100px;
+        }
+
+        &.-small .amstars-stars {
+            background-image: @amstars-star-small__active__background;
+            background-repeat: repeat-x;
+        }
+
+        .amstars-stars {
+            background-image: @amstars-star__active__background;
+            background-repeat: no-repeat;
+            background-position:0 0;
+            height: 100%;
+            background-size: 20px;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amstars-rating-container {
+        & {
+            background-size: 50px;
+            width: 250px;
+            height: 50px;
+        }
+        &.-small {
+            background-size: 50px;
+            width: 250px;
+            height: 50px;
+        }
+        .amstars-stars {
+
+            background-size: 50px;
+        }
+    }
+
+}

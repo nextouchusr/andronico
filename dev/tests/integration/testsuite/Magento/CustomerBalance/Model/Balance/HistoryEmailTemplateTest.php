@@ -132,6 +132,44 @@ class HistoryEmailTemplateTest extends TestCase
     }
 
     /**
+     * @magentoDataFixture Magento/Customer/_files/customer_for_second_website.php
+     *
+     * @return void
+     */
+    public function testCustomerBalanceEmailSenderForSecondWebsite(): void
+    {
+        $storeCode = 'fixture_third_store';
+        $supportEmail = 'support2@example.com';
+        $this->setEmailTemplateConfig($storeCode);
+        $this->mutableScopeConfig->setValue(
+            'customer/magento_customerbalance/email_identity',
+            'support',
+            ScopeInterface::SCOPE_STORE,
+            $storeCode
+        );
+        $this->mutableScopeConfig->setValue(
+            'trans_email/ident_support/email',
+            $supportEmail,
+            ScopeInterface::SCOPE_STORE,
+            $storeCode
+        );
+        $store = $this->storeManager->getStore($storeCode);
+        $customer = $this->customerRepository->get('customer@example.com', $store->getWebsiteId());
+        $balance = $this->balanceFactory->create();
+        $balance->setCustomer($customer);
+        $balance->setStoreId($store->getId());
+        $balance->setNotifyByEmail(true, $store->getId());
+        $history = $this->historyFactory->create();
+        $history->setBalanceModel($balance);
+        $history->afterSave();
+        $this->assertTrue($history->getIsCustomerNotified());
+        $expectedData = [
+            'sender' => ['name' => 'CustomerSupport', 'email' => $supportEmail]
+        ];
+        $this->assertMessage($expectedData);
+    }
+
+    /**
      * Assert message.
      *
      * @param array $expectedData
@@ -142,10 +180,12 @@ class HistoryEmailTemplateTest extends TestCase
         $message = $this->transportBuilder->getSentMessage();
         $this->assertNotNull($message);
         $this->assertMessageSender($message, $expectedData['sender']);
-        $this->assertStringContainsString(
-            $expectedData['text'],
-            $message->getBody()->getParts()[0]->getRawContent()
-        );
+        if (isset($expectedData['text'])) {
+            $this->assertStringContainsString(
+                $expectedData['text'],
+                $message->getBody()->getParts()[0]->getRawContent()
+            );
+        }
     }
 
     /**
@@ -167,9 +207,9 @@ class HistoryEmailTemplateTest extends TestCase
     /**
      * Set email template config.
      *
-     * @return void
+     * @param null|string $storeCode
      */
-    private function setEmailTemplateConfig(): void
+    private function setEmailTemplateConfig($storeCode = null): void
     {
         $templateText = '{{template config_path="design/email/header_template"}}'
             . '<p>Text specially for check in test.</p>{{template config_path="design/email/footer_template"}}';
@@ -182,7 +222,7 @@ class HistoryEmailTemplateTest extends TestCase
             'customer/magento_customerbalance/email_template',
             $template->getId(),
             ScopeInterface::SCOPE_STORE,
-            'default'
+            $storeCode ?? 'default'
         );
     }
 }

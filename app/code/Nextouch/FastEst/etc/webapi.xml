@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/carriers/fast_est/appointments/available-slots" method="POST">
+        <service class="Nextouch\FastEst\Api\AppointmentRepositoryInterface" method="getAvailableSlots"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carriers/fast_est/headquarters" method="GET">
+        <service class="Nextouch\FastEst\Api\HeadquarterRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carriers/fast_est/hours" method="GET">
+        <service class="Nextouch\FastEst\Api\HourRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carriers/fast_est/places" method="GET">
+        <service class="Nextouch\FastEst\Api\PlaceRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carriers/fast_est/products" method="GET">
+        <service class="Nextouch\FastEst\Api\ProductRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carriers/fast_est/sources" method="GET">
+        <service class="Nextouch\FastEst\Api\SourceRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carriers/fast_est/statuses" method="GET">
+        <service class="Nextouch\FastEst\Api\StatusRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carriers/fast_est/stores" method="GET">
+        <service class="Nextouch\FastEst\Api\StoreRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carriers/fast_est/vans" method="GET">
+        <service class="Nextouch\FastEst\Api\VanRepositoryInterface" method="getAll"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

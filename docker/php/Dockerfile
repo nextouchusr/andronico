@@ -4,6 +4,8 @@ FROM php:7.4-apache AS nextouch_base
 RUN apt-get update && apt-get install -y \
   git \
   gzip \
+  imagemagick \
+  jpegoptim \
   libbz2-dev \
   libcurl4-openssl-dev \
   libfreetype6-dev \
@@ -17,6 +19,7 @@ RUN apt-get update && apt-get install -y \
   libxslt1-dev \
   libzip-dev \
   lsof \
+  optipng \
   procps \
   vim \
   zip \
@@ -64,7 +67,9 @@ RUN apt-get install -y gnupg \
   && apt-get install -y nodejs \
   && mkdir /var/www/.config /var/www/.npm \
   && chown magento:magento /var/www/.config /var/www/.npm \
-  && npm install -g grunt-cli
+  && npm install -g grunt-cli \
+  && npm install -g requirejs \
+  && npm install -g terser
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | \

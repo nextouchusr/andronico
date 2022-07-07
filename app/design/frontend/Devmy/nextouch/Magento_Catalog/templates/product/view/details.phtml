@@ -1,0 +1,82 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View\Details $block */
+
+$layout = $block->getLayout();
+
+?>
+
+<div class="product info detailed">
+    <?= $block->getChildHtml('product.info.details.gallery'); ?>
+
+    <div class="product-details-boxes-columns">
+
+        <div class="product-details-boxes details-box-col1">
+            <div class="product-attributes">
+                <?= $layout->renderElement('product.attributes'); //TODO: add dynamic attribute label ?>
+            </div>
+
+            <?= $layout->renderElement('product.info.ecoChoice'); ?>
+        </div>
+        <div class="product-details-boxes details-box-col2">
+            <div id="product-description-collapsible" class="product-description">
+                <div data-role="title">
+                    <h2><?= __('Description') ?></h2>
+                </div>
+                <div data-role="content" class="more-less-content">
+                     <div class="more-less-wrapper">
+                        <?= $layout->renderElement('product.info.description'); //TODO: add dynamic attribute label ?>
+                    </div>
+                    <div class="more-less">
+                        <span class="more"> <?= __('Show more') ?></span>
+                        <span class="less"> <?= __('Show less') ?></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="product-details-boxes product-details-box-easeofuse">
+        <div id="product-easeofuse-collapsible" class="product-easeofuse active-mobile">
+            <?= $layout->renderElement('product.info.easeOfUse'); ?>
+        </div>
+    </div>
+
+
+    <script>
+        require(['jquery'], function ($) {
+            var moreLessContainers = $('.more-less-content');
+            $(moreLessContainers).each(function(i) {
+                if (this && $(this).find('.more-less-wrapper').outerHeight() >= $(this).find('.more-less-wrapper > div').outerHeight()) {
+                    $(this).addClass('no-moreless');
+                }
+            });
+            $(".more-less-content .more-less").on('click', function() {
+              //   $(this).closest('.more-less-content').toggleClass('active');
+                var parentMoreLess = $(this).closest('.more-less-content');
+
+                if(parentMoreLess.hasClass('active')) {
+                    $('.product-details-boxes-columns').addClass('active');
+                }
+                else {
+                    $('.product-details-boxes-columns').removeClass('active');
+                    $('html,body').animate({scrollTop: $(this).parent().offset().top - 200},400);
+                    if($(parentMoreLess).hasClass('more-less-content-easeofuse')) {
+                        $(this).toggleClass('active');
+                    }
+                }
+            });
+
+            $('.product-details-boxes div[data-role="title"').on('click', function() {
+                $(this).parent().toggleClass('active-mobile');
+            });
+
+
+
+        });
+    </script>
+
+</div>

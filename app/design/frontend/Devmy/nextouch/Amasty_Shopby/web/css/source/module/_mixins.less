@@ -1,0 +1,58 @@
+//
+//  Mixins
+//  ____________________________________________
+
+.transition(@del: .3) {
+    transition: ~'@{del}s all ease-in';
+}
+
+.am-flex(
+    @horiz-pos: none,
+    @vert-pos: none,
+    @wrap: none,
+    @inline: none
+) {
+
+    & when (@inline = none) {
+        display: flex;
+    }
+
+    & when not (@inline = none) {
+        display: @inline;
+    }
+
+    & when not (@horiz-pos = none) {
+        justify-content: @horiz-pos;
+    }
+
+    & when not (@vert-pos = none) {
+        align-items: @vert-pos;
+    }
+
+    & when not (@wrap = none) {
+        flex-wrap: @wrap;
+    }
+}
+
+.am-visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+    width: 0;
+    height: 0;
+    border: 0;
+    opacity: 0;
+}
+
+.am-word-break {
+    & {
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .ie11 & {
+        word-break: break-all;
+    }
+}

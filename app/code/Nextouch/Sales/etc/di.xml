@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\Sales\Api\Data\OrderInterface"
+                type="Nextouch\Sales\Model\Order"/>
+
+    <preference for="Nextouch\Sales\Api\Data\OrderAddressInterface"
+                type="Nextouch\Sales\Model\Order\Address"/>
+
+    <preference for="Nextouch\Sales\Api\Data\OrderItemInterface"
+                type="Nextouch\Sales\Model\Order\Item"/>
+
+    <preference for="Nextouch\Sales\Api\Data\ShipmentInterface"
+                type="Nextouch\Sales\Model\Order\Shipment"/>
+
+    <preference for="Nextouch\Sales\Api\Data\ShipmentItemInterface"
+                type="Nextouch\Sales\Model\Order\Shipment\Item"/>
+
+    <preference for="Nextouch\Sales\Api\OrderRepositoryInterface"
+                type="Nextouch\Sales\Model\OrderRepository"/>
+
+    <preference for="Nextouch\Sales\Api\OrderManagementInterface"
+                type="Nextouch\Sales\Model\OrderManagement"/>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="save_order_completion_date"
+                type="Nextouch\Sales\Plugin\Model\SaveOrderCompletionDate"/>
+
+        <plugin name="dispatch_complete_order_event"
+                type="Nextouch\Sales\Plugin\Model\DispatchCompleteOrderEvent"/>
+    </type>
+</config>

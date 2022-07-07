@@ -1,0 +1,12 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View $block */
+
+$_product = $block->getProduct();
+$body = __('I%20want%20to%20recommend%20this%20product%20on%20Nextouch%0A%0AMore%20information%3A%20');
+?>
+
+<?php if ($block->canEmailToFriend()) : ?>
+    <a href="mailto:?body=<?= $body . $_product->getProductUrl(); ?>" class="action toshare">
+        <img src="<?= $block->getViewFileUrl('images/ico-share.png'); ?>" width="48" height="48" alt="<?= __('Share') ?>"/>
+    </a>
+<?php endif; ?>

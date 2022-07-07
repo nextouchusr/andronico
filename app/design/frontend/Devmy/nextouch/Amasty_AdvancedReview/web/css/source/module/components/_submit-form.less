@@ -1,0 +1,398 @@
+//
+//  Magento Submit Form Restyle
+//  ____________________________________________
+
+//
+//  Variables
+//  --------------------------------------------
+
+@amrev-submit-form__max-width: 575px;
+@amrev-submit-form__background: @amreview-placeholder__color;
+@amrev-submit-form__active__color: #007bdb;
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    #product-review-container {
+        padding: 0 20px;
+    }
+    .review-field-image {
+        & {
+            .am-flex(none, center, wrap);
+
+            margin: 0;
+            color: @amreview-input-text__color;
+        }
+
+        > .label {
+            margin: 0 0 @amrev__indent__xl 0;
+            width: 190px;
+            font-weight: 600;
+        }
+    }
+
+    .review-field-rating {
+        & {
+            .am-flex(none, center);
+        }
+
+        > .label {
+            & {
+                margin: 0;
+                min-width: 70px;
+                color: @amreview-input-text__color;
+            }
+
+            &:after {
+                margin-left: 3px;
+                color: #e02b27;
+                content: '*';
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    .amreview-submit-form {
+
+        > .block-content {
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .review-fieldset {
+            display: block;
+            margin: 0 0 35px;
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            > * {
+                padding-right: 100px;
+                box-sizing: border-box;
+            }
+            .row.align-items-center {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                > .col {
+                    flex-grow: 5;
+                }
+            }
+        }
+
+        .review-fieldset .field:last-child {
+            margin: 0;
+        }
+
+        .review-form {
+            max-width: 100%;
+            position: relative;
+        }
+
+        .review-form .action.submit.primary {
+            & {
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                right: 0;
+                top: 40px;
+                margin:0;
+                padding: 0;
+                background: none;
+                box-shadow: none;
+                color: @theme__color__primary;
+                span {
+                    text-indent: -99999px;
+                    overflow: hidden;
+                    display: none;
+                }
+                &:before {
+                    content:"+";
+                    font-size: 6rem;
+                    font-weight: 200;
+                    background: none;
+                    box-shadow: none;
+                }
+            }
+
+            &:hover,
+            &:active,
+            &.-active {
+                color: @theme__color__primary;
+                margin:0;
+                padding: 0;
+                background: none;
+            }
+        }
+
+        .review-fieldset .field {
+            margin: 0 0 @amrev__indent__xl 0;
+        }
+
+        .review-fieldset .review-legend.legend {
+            & {
+                .am-flex();
+
+                float: none;
+                margin: 0 0 @amrev__indent 0;
+                font-size: 16px;
+            }
+
+            > span {
+                float: left;
+                margin: 0 @amrev__indent / 2 0 0;
+            }
+        }
+
+        .review-control-vote.control {
+            &:before {
+                display: none;
+            }
+            input:checked {
+                ~  label:before {
+                    background-image: url('@{baseDir}images/circle.svg');
+                }
+                + label:before {
+                    background-image: url('@{baseDir}images/circle-sel.svg') ;
+                }
+            }
+        }
+
+        .review-control-vote.control label {
+            position: relative;
+            display: inline-block;
+            &:hover:before {
+                color: @amreview-stars__filtering__color;
+            }
+
+            &:before {
+                .transition(.1);
+
+                position: initial;
+                margin: 0;
+                letter-spacing: @amrev__indent / 2;
+                font-weight: 600;
+                font-size: 22px;
+                line-height: normal;
+                content: "";
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                border: 0;
+                border-radius: 0;
+                background: url('@{baseDir}images/circle-sel.svg') 0 0;
+                background-size: 20px;
+                opacity: 1;
+            }
+        }
+    }
+    .amreview-title-review {
+        .nickname {
+            font-weight: 300;
+        }
+    }
+
+    .amreview-submit-form .field {
+        > .label {
+            margin: 0 0 2px;
+            font-weight: normal;
+        }
+
+        &.required > .label:after {
+            margin-left: 3px;
+        }
+
+        .review-field-rating > .label,
+        &.review-field-image > .label {
+            font-weight: 600;
+        }
+
+        .mage-error[generated] {
+            margin: 0;
+        }
+
+        &.review-field-nickname.-half {
+            float: left;
+        }
+        &.review-field-nickname {
+            padding-top: 3px;
+            padding-right: 10px;
+        }
+
+        &.review-field-email {
+            float: right;
+        }
+
+        &.review-field-nickname,
+        &.review-field-email {
+            width: 100%;
+        }
+
+        .review-field-summary {
+            float: none;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .review-field-nickname {
+            min-width: 30%;
+
+        }
+        .input-text {
+            & {
+                height: 34px;
+                border: 1px solid #d4d4d4;
+                border-radius: 10px;
+                color: @amreview-input-text__color;
+                margin-bottom: 10px;
+            }
+
+            &.mage-error {
+                border-color: #ff2149;
+            }
+
+            ::placeholder {
+                color: @amrev-checkbox__border-color;
+            }
+        }
+        textarea {
+            border: 1px solid #d4d4d4;
+            border-radius: 10px;
+        }
+    }
+
+    .review-field-summary > .label {
+        width: 100%;
+    }
+
+    .amreview-recommend-wrap {
+        position: relative;
+        margin: 0 0 @amrev__indent 0;
+    }
+
+    .amreview-recommend-wrap,
+    .amreview-gdpr-wrap {
+        > .amreview-checkbox {
+            & {
+                position: absolute;
+                right: 0;
+                left: 0;
+                z-index: 1;
+                margin: 0;
+                width: 100%;
+                opacity: 0; //element should be visible for working require validation
+            }
+
+            &:not(.valid) + .mage-error[generated] + .amreview-checkboxlabel:before {
+                border: 1px solid #e02b27;
+            }
+
+            &:checked ~ .amreview-checkboxlabel:after {
+                position: absolute;
+                top: 5px;
+                right: 2px;
+                display: inline-block;
+                width: 10px;
+                height: 9px;
+                background: @amreview-form-check__background no-repeat center;
+                content: '';
+            }
+
+            &:checked ~ .amreview-checkboxlabel:before {
+                border-color: @amrev-submit-form__active__color;
+            }
+        }
+
+        > .amreview-checkboxlabel {
+            & {
+                position: relative;
+                display: inline-block;
+                padding-right: 30px;
+                color: @amreview-input-text__color;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            &:before {
+                position: absolute;
+                top: 2px;
+                right: 0;
+                display: inline-block;
+                box-sizing: border-box;
+                width: @amrev__indent__l;
+                height: @amrev__indent__l;
+                border: 1px solid #dadada;
+                border-radius: 2px;
+                background: #fff;
+                content: '';
+            }
+
+            .asterix {
+                margin-left: 3px;
+                color: #e02b27;
+                font-size: 1.2rem;
+            }
+
+            &:hover:before {
+                border-color: @amrev-submit-form__active__color;
+                box-shadow: 0 1px 2px rgba(37, 83, 119, .25);
+            }
+        }
+    }
+}
+
+//
+//  Tablet +
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .amreview-submit-form {
+        .field.review-field-nickname.-half,
+        .field.review-field-email {
+            width: 48%;
+        }
+
+        .review-form .action.submit.primary {
+            padding: 11px 22px;
+        }
+
+        > .block-content {
+            padding: 0;
+        }
+
+        .review-fieldset {
+            margin: 0 0 @amrev__indent__xl * 2;
+
+        }
+
+        .review-fieldset .field {
+            margin: 0 0 @amrev__indent__l 0;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .amreview-submit-form  {
+        .review-field-nickname {
+            font-size: 3rem;
+            margin-top: -10px!important;
+        }
+        .review-control-vote.control {
+            label:before {
+                width: 50px;
+                height: 50px;
+                background-size: 50px;
+            }
+        }
+    }
+    .amrev-items-block {
+        font-size: 3rem;
+    }
+
+}
