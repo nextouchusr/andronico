@@ -15,6 +15,7 @@ use Magento\Rma\Model\Rma\Status\HistoryFactory;
 use Magento\Rma\Model\RmaFactory;
 use Magento\Sales\Model\Order;
 use Magento\Sales\Model\OrderRepository;
+use Nextouch\Rma\Api\RmaRepositoryInterface;
 use Psr\Log\LoggerInterface;
 
 class Submit extends Returns
@@ -24,6 +25,7 @@ class Submit extends Returns
     private LoggerInterface $logger;
     private DateTime $dateTime;
     private HistoryFactory $statusHistoryFactory;
+    private RmaRepositoryInterface $rmaRepository;
     private Data $rmaHelper;
 
     public function __construct(
@@ -34,6 +36,7 @@ class Submit extends Returns
         LoggerInterface $logger,
         DateTime $dateTime,
         HistoryFactory $statusHistoryFactory,
+        RmaRepositoryInterface $rmaRepository,
         ?Data $rmaHelper = null
     ) {
         $this->rmaModelFactory = $rmaModelFactory;
@@ -42,6 +45,7 @@ class Submit extends Returns
         $this->dateTime = $dateTime;
         $this->statusHistoryFactory = $statusHistoryFactory;
         parent::__construct($context, $coreRegistry);
+        $this->rmaRepository = $rmaRepository;
         $this->rmaHelper = $rmaHelper ?: $this->_objectManager->create(Data::class);
     }
 
@@ -87,7 +91,9 @@ class Submit extends Returns
 
                 $this->messageManager->addSuccessMessage($successMessage);
 
-                $this->_eventManager->dispatch('return_submit_success', ['return' => $rmaObject]);
+                $return = $this->rmaRepository->get((int) $rmaObject->getEntityId());
+
+                $this->_eventManager->dispatch('return_submit_success', ['return' => $return]);
 
                 return $this->getResponse()->setRedirect($successUrl);
             } catch (\Exception $e) {

@@ -17,4 +17,9 @@
         <plugin name="change_return_submit_url"
                 type="Nextouch\Rma\Plugin\Helper\ChangeReturnSubmitUrl"/>
     </type>
+
+    <type name="Nextouch\Rma\Api\RmaRepositoryInterface">
+        <plugin name="add_rma_extension_attributes"
+                type="Nextouch\Rma\Plugin\Model\AddRmaExtensionAttributes"/>
+    </type>
 </config>

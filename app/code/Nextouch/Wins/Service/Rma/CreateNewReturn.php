@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Nextouch\Wins\Service\Rma;
 
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Rma\Api\RmaRepositoryInterface;
-use Magento\Rma\Model\Rma;
+use Nextouch\Rma\Api\RmaRepositoryInterface;
+use Nextouch\Rma\Model\Rma;
 use Nextouch\Rma\Api\Data\RmaInterface;
 use Nextouch\Wins\Api\AuthManagementInterface;
 use Nextouch\Wins\Api\RmaRepositoryInterface as WinsRmaRepositoryInterface;
