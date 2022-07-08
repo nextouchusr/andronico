@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\Rma\Api;
 
+use Magento\Framework\Api\SearchCriteriaInterface;
 use Nextouch\Rma\Api\Data\RmaInterface;
 
 /**
@@ -10,6 +11,12 @@ use Nextouch\Rma\Api\Data\RmaInterface;
  */
 interface RmaRepositoryInterface
 {
+    /**
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+     * @return \Nextouch\Rma\Api\Data\RmaInterface[]
+     */
+    public function getList(SearchCriteriaInterface $searchCriteria): array;
+
     /**
      * @param int $id
      * @return \Nextouch\Rma\Api\Data\RmaInterface

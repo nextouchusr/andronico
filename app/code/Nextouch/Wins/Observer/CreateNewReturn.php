@@ -5,7 +5,7 @@ namespace Nextouch\Wins\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Rma\Model\Rma;
+use Nextouch\Rma\Model\Rma;
 use Nextouch\Wins\Service\Rma\CreateNewReturn as CreateNewReturnService;
 
 class CreateNewReturn implements ObserverInterface

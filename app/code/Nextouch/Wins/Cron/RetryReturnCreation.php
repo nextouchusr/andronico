@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Nextouch\Wins\Cron;
 
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Rma\Api\RmaRepositoryInterface;
-use Magento\Rma\Model\Rma;
 use Nextouch\Rma\Api\Data\RmaInterface;
+use Nextouch\Rma\Api\RmaRepositoryInterface;
+use Nextouch\Rma\Model\Rma;
 use Nextouch\Wins\Service\Rma\CreateNewReturn as CreateNewReturnService;
 use function Lambdish\Phunctional\each;
 
@@ -32,7 +32,7 @@ class RetryReturnCreation
             ->addFilter(RmaInterface::RETURN_SYNC_FAILURES, 0, 'gt')
             ->create();
 
-        $returns = $this->rmaRepository->getList($criteria)->getItems();
+        $returns = $this->rmaRepository->getList($criteria);
 
         each(fn(Rma $item) => $this->createNewReturnService->create($item), $returns);
     }
