@@ -1,0 +1,16 @@
+<!--@subject {{trans "Findomestic refund for return %return_id has been approved" return_id=$return.increment_id}} @-->
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Dear Admin,"}}</p>
+            <p>
+                {{trans "The Findomestic refund for the return %return_id has been approved." return_id=$return.increment_id}}
+                {{trans "Go to the Magento admin panel to manually proceed with the credit memo."}}
+            </p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

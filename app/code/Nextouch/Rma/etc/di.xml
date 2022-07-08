@@ -1,7 +1,20 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Nextouch\Rma\Api\Data\RmaInterface"
+                type="Nextouch\Rma\Model\Rma"/>
+
+    <preference for="Nextouch\Rma\Api\RmaRepositoryInterface"
+                type="Nextouch\Rma\Model\RmaRepository"/>
+
+    <preference for="Magento\Rma\Block\Adminhtml\Rma\Edit"
+                type="Nextouch\Rma\Block\Adminhtml\Rma\Edit"/>
+
     <type name="Magento\Rma\Helper\Data">
-        <plugin name="can_request_rma" type="Nextouch\Rma\Plugin\Helper\CanRequestRma"/>
+        <plugin name="can_request_rma"
+                type="Nextouch\Rma\Plugin\Helper\CanRequestRma"/>
+
+        <plugin name="change_return_submit_url"
+                type="Nextouch\Rma\Plugin\Helper\ChangeReturnSubmitUrl"/>
     </type>
 </config>

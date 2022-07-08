@@ -13,6 +13,8 @@ use Nextouch\Findomestic\Model\Request\Installment\Notification as NotificationR
 use Nextouch\Findomestic\Service\Notification\ApplicationCompletedNotifier;
 use Nextouch\Findomestic\Service\Notification\ApplicationDeclinedNotifier;
 use Nextouch\Findomestic\Service\Notification\ApplicationPreApprovedNotifier;
+use Nextouch\Findomestic\Service\Notification\ApplicationRefundApprovedNotifier;
+use Nextouch\Findomestic\Service\Notification\ApplicationRefundDeclinedNotifier;
 use Psr\Log\LoggerInterface;
 
 class NotificationProcessor extends AbstractBaseRestApi implements NotificationProcessorInterface
@@ -20,11 +22,15 @@ class NotificationProcessor extends AbstractBaseRestApi implements NotificationP
     private ApplicationPreApprovedNotifier $applicationPreApprovedNotifier;
     private ApplicationCompletedNotifier $applicationCompletedNotifier;
     private ApplicationDeclinedNotifier $applicationDeclinedNotifier;
+    private ApplicationRefundApprovedNotifier $applicationRefundApprovedNotifier;
+    private ApplicationRefundDeclinedNotifier $applicationRefundDeclinedNotifier;
 
     public function __construct(
         ApplicationPreApprovedNotifier $applicationPreApprovedNotifier,
         ApplicationCompletedNotifier $applicationCompletedNotifier,
         ApplicationDeclinedNotifier $applicationDeclinedNotifier,
+        ApplicationRefundApprovedNotifier $applicationRefundApprovedNotifier,
+        ApplicationRefundDeclinedNotifier $applicationRefundDeclinedNotifier,
         ResponseFactory $responseFactory,
         ClientFactory $clientFactory,
         JsonSerializer $jsonSerializer,
@@ -41,6 +47,8 @@ class NotificationProcessor extends AbstractBaseRestApi implements NotificationP
         $this->applicationPreApprovedNotifier = $applicationPreApprovedNotifier;
         $this->applicationCompletedNotifier = $applicationCompletedNotifier;
         $this->applicationDeclinedNotifier = $applicationDeclinedNotifier;
+        $this->applicationRefundApprovedNotifier = $applicationRefundApprovedNotifier;
+        $this->applicationRefundDeclinedNotifier = $applicationRefundDeclinedNotifier;
     }
 
     /**
@@ -57,6 +65,12 @@ class NotificationProcessor extends AbstractBaseRestApi implements NotificationP
                 break;
             case $request->isApplicationDeclined():
                 $this->applicationDeclinedNotifier->execute($request);
+                break;
+            case $request->isRefundApproved():
+                $this->applicationRefundApprovedNotifier->execute($request);
+                break;
+            case $request->isRefundDeclined():
+                $this->applicationRefundDeclinedNotifier->execute($request);
                 break;
             default:
                 throw new LocalizedException(__('Findomestic notification not recognized'));

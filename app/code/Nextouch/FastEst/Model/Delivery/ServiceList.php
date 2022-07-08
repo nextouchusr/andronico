@@ -166,8 +166,7 @@ class ServiceList implements InputInterface, OutputInterface
         $delivery = (bool) $propertyAccessor->getValue($object, 'service_delivery');
         $evening = (bool) $propertyAccessor->getValue($object, 'service_evening');
         $others = (string) $propertyAccessor->getValue($object, 'service_others');
-        // This property is never returned in response, even if specified
-        $gasCert = false;
+        $gasCert = (bool) $propertyAccessor->getValue($object, 'service_gascert');
 
         return new self(
             $productInstall,
@@ -199,7 +198,7 @@ class ServiceList implements InputInterface, OutputInterface
         $object->service_delivery = (int) $this->hasDelivery();
         $object->service_evening = (int) $this->hasEvening();
         $object->service_others = $this->getOthers();
-        $object->service_gasvert = (int) $this->hasGasCert();
+        $object->service_gascert = (int) $this->hasGasCert();
 
         return $object;
     }
