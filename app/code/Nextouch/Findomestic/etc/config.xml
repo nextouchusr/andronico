@@ -13,5 +13,14 @@
                 <sort_order>10</sort_order>
             </findomestic_paymentservice>
         </payment>
+
+        <sales_email>
+            <findomestic>
+                <sender_email>support</sender_email>
+                <recipient_email>support@nextouch.it</recipient_email>
+                <refund_approved>sales_email_findomestic_refund_approved</refund_approved>
+                <refund_declined>sales_email_findomestic_refund_declined</refund_declined>
+            </findomestic>
+        </sales_email>
     </default>
 </config>

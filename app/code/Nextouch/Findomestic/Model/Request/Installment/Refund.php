@@ -102,7 +102,7 @@ class Refund implements InputInterface
 
     public function toArray(): array
     {
-        $arr = [
+        return [
             'orderNumber' => $this->getOrderNumber(),
             'amount' => $this->getAmount(),
             'financedAmount' => $this->getFinancedAmount(),
@@ -111,7 +111,5 @@ class Refund implements InputInterface
             'payerId' => $this->getPayerId(),
             'reason' => $this->getReason(),
         ];
-
-        return array_filter($arr);
     }
 }

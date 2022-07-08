@@ -24,6 +24,11 @@ class FindomesticConfig extends AbstractHelper
     private const XML_PATH_FINDOMESTIC_INSTRUCTIONS = 'payment/findomestic_paymentservice/instructions';
     private const XML_PATH_FINDOMESTIC_SORT_ORDER = 'payment/findomestic_paymentservice/sort_order';
 
+    private const XML_PATH_FINDOMESTIC_SENDER_EMAIL = 'sales_email/findomestic/sender_email';
+    private const XML_PATH_FINDOMESTIC_RECIPIENT_EMAIL = 'sales_email/findomestic/recipient_email';
+    private const XML_PATH_FINDOMESTIC_REFUND_APPROVED = 'sales_email/findomestic/refund_approved';
+    private const XML_PATH_FINDOMESTIC_REFUND_DECLINED = 'sales_email/findomestic/refund_declined';
+
     private DirectoryList $directoryList;
 
     public function __construct(Context $context, DirectoryList $directoryList)
@@ -140,6 +145,42 @@ class FindomesticConfig extends AbstractHelper
         return (int) $this->scopeConfig->getValue(
             self::XML_PATH_FINDOMESTIC_SORT_ORDER,
             ScopeInterface::SCOPE_WEBSITE,
+            $scopeCode
+        );
+    }
+
+    public function getSenderEmail(string $scopeCode = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::XML_PATH_FINDOMESTIC_SENDER_EMAIL,
+            ScopeInterface::SCOPE_STORE,
+            $scopeCode
+        );
+    }
+
+    public function getRecipientEmail(string $scopeCode = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::XML_PATH_FINDOMESTIC_RECIPIENT_EMAIL,
+            ScopeInterface::SCOPE_STORE,
+            $scopeCode
+        );
+    }
+
+    public function getRefundApprovedSalesEmail(string $scopeCode = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::XML_PATH_FINDOMESTIC_REFUND_APPROVED,
+            ScopeInterface::SCOPE_STORE,
+            $scopeCode
+        );
+    }
+
+    public function getRefundDeclinedSalesEmail(string $scopeCode = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::XML_PATH_FINDOMESTIC_REFUND_DECLINED,
+            ScopeInterface::SCOPE_STORE,
             $scopeCode
         );
     }

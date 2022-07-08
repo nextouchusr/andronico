@@ -5,4 +5,9 @@
         <observer name="create_new_wins_order"
                   instance="Nextouch\Wins\Observer\CreateNewOrder"/>
     </event>
+
+    <event name="return_submit_success">
+        <observer name="create_new_wins_return"
+                  instance="Nextouch\Wins\Observer\CreateNewReturn"/>
+    </event>
 </config>
