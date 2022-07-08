@@ -112,7 +112,7 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
             });
 
             $('.page-header').height($('.page-header').outerHeight());
-            document.addEventListener('scroll', function(e) {
+            document.addEventListener('scroll, resize', function(e) {
                 mediaCheck({
                     media: '(min-width: 768px)',
                     entry: $.proxy(function () {
