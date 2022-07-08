@@ -25,6 +25,7 @@ class ServiceList implements InputInterface, OutputInterface
     private bool $evening; // Consegna serale
     private string $others; // Servizi committente (separati da virgola)
     private bool $gasCert; // Certificazione gas
+    private string $sourceServices; // Servizi originali del committente (separati da virgola)
 
     private function __construct(
         bool $productInstall,
@@ -38,7 +39,8 @@ class ServiceList implements InputInterface, OutputInterface
         bool $delivery,
         bool $evening,
         string $others,
-        bool $gasCert
+        bool $gasCert,
+        string $sourceServices
     ) {
         $this->productInstall = $productInstall;
         $this->usedPick = $usedPick;
@@ -52,6 +54,7 @@ class ServiceList implements InputInterface, OutputInterface
         $this->evening = $evening;
         $this->others = $others;
         $this->gasCert = $gasCert;
+        $this->sourceServices = $sourceServices;
     }
 
     public function hasProductInstall(): bool
@@ -114,6 +117,11 @@ class ServiceList implements InputInterface, OutputInterface
         return $this->gasCert;
     }
 
+    public function getSourceServices(): string
+    {
+        return $this->sourceServices;
+    }
+
     public static function fromDomain(OrderItemInterface $orderItem): self
     {
         $productInstall = (
@@ -127,12 +135,13 @@ class ServiceList implements InputInterface, OutputInterface
             $orderItem->hasAirConditioningInstallationTrial()
         );
 
-        $others = '';
-
+        $others = [];
         if ($orderItem->hasConnectivityAndTvDemonstration()) {
-            $others = self::SMARTTV_SERVICE;
-        } elseif ($orderItem->hasPeripheralInstallationToTv()) {
-            $others = self::SBARWIFI_SERVICE;
+            $others[] = self::SMARTTV_SERVICE;
+        }
+
+        if ($orderItem->hasPeripheralInstallationToTv()) {
+            $others[] = self::SBARWIFI_SERVICE;
         }
 
         return new self(
@@ -146,8 +155,9 @@ class ServiceList implements InputInterface, OutputInterface
             (bool) $orderItem->getOrder()->getDeliveryDate(),
             true,
             $orderItem->hasEveningDelivery(),
-            $others,
+            implode(',', $others),
             $orderItem->hasGasCertification(),
+            $orderItem->getSelectedOptionLabels()
         );
     }
 
@@ -167,6 +177,7 @@ class ServiceList implements InputInterface, OutputInterface
         $evening = (bool) $propertyAccessor->getValue($object, 'service_evening');
         $others = (string) $propertyAccessor->getValue($object, 'service_others');
         $gasCert = (bool) $propertyAccessor->getValue($object, 'service_gascert');
+        $sourceServices = (string) $propertyAccessor->getValue($object, 'src_services');
 
         return new self(
             $productInstall,
@@ -180,7 +191,8 @@ class ServiceList implements InputInterface, OutputInterface
             $delivery,
             $evening,
             $others,
-            $gasCert
+            $gasCert,
+            $sourceServices
         );
     }
 
@@ -199,6 +211,7 @@ class ServiceList implements InputInterface, OutputInterface
         $object->service_evening = (int) $this->hasEvening();
         $object->service_others = $this->getOthers();
         $object->service_gascert = (int) $this->hasGasCert();
+        $object->src_services = $this->getSourceServices();
 
         return $object;
     }

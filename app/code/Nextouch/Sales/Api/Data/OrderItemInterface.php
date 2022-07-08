@@ -31,6 +31,11 @@ interface OrderItemInterface extends \Magento\Sales\Api\Data\OrderItemInterface
     public function getSelectedOptions(): array;
 
     /**
+     * @return string
+     */
+    public function getSelectedOptionLabels(): string;
+
+    /**
      * @return bool
      */
     public function hasStreetLineDelivery(): bool;
