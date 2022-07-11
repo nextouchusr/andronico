@@ -58,11 +58,6 @@ interface OrderItemInterface extends \Magento\Sales\Api\Data\OrderItemInterface
     /**
      * @return bool
      */
-    public function hasUrgentDelivery(): bool;
-
-    /**
-     * @return bool
-     */
     public function hasSaturdayDelivery(): bool;
 
     /**

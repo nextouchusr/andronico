@@ -19,7 +19,6 @@ class ServiceList implements InputInterface, OutputInterface
     private bool $roadside; // Consegna bordo strada
     private bool $atFloor; // Consegna al piano
     private bool $wallmount; // Montaggio a muro
-    private bool $axa; // Consegna in giornata
     private bool $appointment; // Consegna su appuntamento
     private bool $delivery; // Consegna prodotto (default)
     private bool $evening; // Consegna serale
@@ -34,7 +33,6 @@ class ServiceList implements InputInterface, OutputInterface
         bool $roadside,
         bool $atFloor,
         bool $wallmount,
-        bool $axa,
         bool $appointment,
         bool $delivery,
         bool $evening,
@@ -48,7 +46,6 @@ class ServiceList implements InputInterface, OutputInterface
         $this->roadside = $roadside;
         $this->atFloor = $atFloor;
         $this->wallmount = $wallmount;
-        $this->axa = $axa;
         $this->appointment = $appointment;
         $this->delivery = $delivery;
         $this->evening = $evening;
@@ -85,11 +82,6 @@ class ServiceList implements InputInterface, OutputInterface
     public function hasWallmount(): bool
     {
         return $this->wallmount;
-    }
-
-    public function hasAxa(): bool
-    {
-        return $this->axa;
     }
 
     public function hasAppointment(): bool
@@ -151,7 +143,6 @@ class ServiceList implements InputInterface, OutputInterface
             $orderItem->hasStreetLineDelivery(),
             $orderItem->hasFloorDelivery(),
             $orderItem->hasTvWallMounting(),
-            $orderItem->hasUrgentDelivery(),
             (bool) $orderItem->getOrder()->getDeliveryDate(),
             true,
             $orderItem->hasEveningDelivery(),
@@ -171,7 +162,6 @@ class ServiceList implements InputInterface, OutputInterface
         $roadside = (bool) $propertyAccessor->getValue($object, 'service_roadside');
         $atFloor = (bool) $propertyAccessor->getValue($object, 'service_atfloor');
         $wallmount = (bool) $propertyAccessor->getValue($object, 'service_wallmount');
-        $axa = (bool) $propertyAccessor->getValue($object, 'service_axa');
         $appointment = (bool) $propertyAccessor->getValue($object, 'service_appointment');
         $delivery = (bool) $propertyAccessor->getValue($object, 'service_delivery');
         $evening = (bool) $propertyAccessor->getValue($object, 'service_evening');
@@ -186,7 +176,6 @@ class ServiceList implements InputInterface, OutputInterface
             $roadside,
             $atFloor,
             $wallmount,
-            $axa,
             $appointment,
             $delivery,
             $evening,
@@ -205,7 +194,6 @@ class ServiceList implements InputInterface, OutputInterface
         $object->service_roadside = (int) $this->hasRoadside();
         $object->service_atfloor = (int) $this->hasAtFloor();
         $object->service_wallmount = (int) $this->hasWallmount();
-        $object->service_axa = (int) $this->hasAxa();
         $object->service_appointment = (int) $this->hasAppointment();
         $object->service_delivery = (int) $this->hasDelivery();
         $object->service_evening = (int) $this->hasEvening();
