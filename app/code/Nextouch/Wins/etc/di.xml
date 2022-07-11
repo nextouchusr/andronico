@@ -13,6 +13,9 @@
     <preference for="Nextouch\Wins\Api\ProductSalableQtyManagementInterface"
                 type="Nextouch\Wins\Model\ProductSalableQtyManagement"/>
 
+    <preference for="Nextouch\Wins\Api\RmaRepositoryInterface"
+                type="Nextouch\Wins\Model\RmaRepository"/>
+
     <preference for="Nextouch\Wins\Api\CustomerRepositoryInterface"
                 type="Nextouch\Wins\Model\CustomerRepository"/>
 

@@ -10,6 +10,7 @@ use Nextouch\Catalog\Api\ProductRepositoryInterface;
 use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
 use Nextouch\Sales\Api\OrderRepositoryInterface;
+use function Lambdish\Phunctional\reduce;
 use function Lambdish\Phunctional\search;
 use function Lambdish\Phunctional\some;
 use function Symfony\Component\String\u;
@@ -53,6 +54,15 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
     public function getSelectedOptions(): array
     {
         return (array) $this->getProductOptionByCode(self::SELECTED_OPTIONS);
+    }
+
+    public function getSelectedOptionLabels(): string
+    {
+        $labels = reduce(function (array $acc, array $option) {
+            return [$option['value'], ...$acc];
+        }, $this->getSelectedOptions(), []);
+
+        return implode(',', $labels);
     }
 
     public function hasStreetLineDelivery(): bool

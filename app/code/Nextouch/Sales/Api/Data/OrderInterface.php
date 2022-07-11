@@ -26,7 +26,7 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public const FINDOMESTIC_APPLICATION_STATUS_CANCEL = 3;
     public const FINDOMESTIC_APPLICATION_STATUS_DECLINE = 4;
 
-    public const IN_STORE_ORDER_ACCEPTED = 'E';
+    public const IN_STORE_ORDER_ACCEPTED = 'A';
     public const IN_STORE_ORDER_REJECTED = 'R';
     public const IN_STORE_ORDER_PICKED_UP = 'S';
     public const IN_STORE_ORDER_NOT_PICKED_UP = 'N';
@@ -95,17 +95,17 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public function getOrderSyncFailures(): int;
 
     /**
-     * @return OrderInterface
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function increaseOrderSyncFailures(): self;
 
     /**
-     * @return OrderInterface
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function decreaseOrderSyncFailures(): self;
 
     /**
-     * @return OrderInterface
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function resetOrderSyncFailures(): self;
 
@@ -115,17 +115,17 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public function getShippingSyncFailures(): int;
 
     /**
-     * @return OrderInterface
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function increaseShippingSyncFailures(): self;
 
     /**
-     * @return OrderInterface
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function decreaseShippingSyncFailures(): self;
 
     /**
-     * @return OrderInterface
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function resetShippingSyncFailures(): self;
 
@@ -136,7 +136,7 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
 
     /**
      * @param bool $isParked
-     * @return OrderInterface
+     * @return \Nextouch\Sales\Api\Data\OrderInterface
      */
     public function setIsParked(bool $isParked): self;
 

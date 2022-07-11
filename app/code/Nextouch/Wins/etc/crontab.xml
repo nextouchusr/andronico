@@ -20,6 +20,12 @@
             <schedule>*/30 * * * *</schedule>
         </job>
 
+        <job name="nextouch_wins_retry_return_creation"
+             instance="Nextouch\Wins\Cron\RetryReturnCreation"
+             method="execute">
+            <schedule>*/30 * * * *</schedule>
+        </job>
+
         <job name="nextouch_wins_update_in_store_order"
              instance="Nextouch\Wins\Cron\UpdateInStoreOrder"
              method="execute">
