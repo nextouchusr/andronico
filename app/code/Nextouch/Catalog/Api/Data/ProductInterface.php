@@ -26,21 +26,20 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const DEFAULT_FAST_EST_TYPE = 20; // Altro
 
     // Product Service Options
-    public const EVENING_DELIVERY = 'consegna_serale';
-    public const APPOINTMENT_DELIVERY = 'consegna_su_appuntamento';
-    public const URGENT_DELIVERY = 'consegna_in_giornata';
-    public const SATURDAY_DELIVERY = 'consegna_sabato';
-    public const PRODUCT_INSTALLATION = 'installazione_prodotto';
-    public const BUILT_IN_PRODUCT = 'incasso_prodotto';
-    public const GAS_CERTIFICATION = 'certificazione_gas';
-    public const STANDARD_TV_INSTALLATION = 'installazione_standard_tv';
-    public const CONNECTIVITY_AND_TV_DEMONSTRATION = 'connettivita_e_dimostrazione_tv';
-    public const PERIPHERAL_INSTALLATION_TO_TV = 'installazione_periferiche_alla_tv';
-    public const TV_WALL_MOUNTING = 'montaggio_a_muro';
-    public const RAEE_RETURN = 'ritiro_raee';
-    public const AIR_CONDITIONING_INSTALLATION_MONO = 'installazione_base_clima_mono';
-    public const AIR_CONDITIONING_INSTALLATION_DUAL = 'installazione_base_clima_dual';
-    public const AIR_CONDITIONING_INSTALLATION_TRIAL = 'installazione_base_clima_trial_o_superiore';
+    public const EVENING_DELIVERY = '0005';
+    public const APPOINTMENT_DELIVERY = '0010';
+    public const SATURDAY_DELIVERY = '0013';
+    public const PRODUCT_INSTALLATION = '0029';
+    public const BUILT_IN_PRODUCT = '0031';
+    public const GAS_CERTIFICATION = '0017';
+    public const STANDARD_TV_INSTALLATION = '0018';
+    public const CONNECTIVITY_AND_TV_DEMONSTRATION = '0019';
+    public const PERIPHERAL_INSTALLATION_TO_TV = '0020';
+    public const TV_WALL_MOUNTING = '0021';
+    public const RAEE_RETURN = '0031';
+    public const AIR_CONDITIONING_INSTALLATION_MONO = '0022';
+    public const AIR_CONDITIONING_INSTALLATION_DUAL = '0023';
+    public const AIR_CONDITIONING_INSTALLATION_TRIAL = '0024';
 
     /**
      * @return string
