@@ -37,11 +37,8 @@ cache_reset: ## Flush Magento cache and restart php container
 cache_flush: ## Cache flush
 	php bin/magento cache:flush
 
-config_import: ## Import Magento configuration
-	php bin/magento app:config:import
-
-config_export: ## Export Magento configuration
-	php bin/magento app:config:dump
+config_install: ## Install Magento configuration
+	bash dev/scripts/install/config.sh
 
 resize_images: ## Resize images
 	bash dev/scripts/resize_images.sh
