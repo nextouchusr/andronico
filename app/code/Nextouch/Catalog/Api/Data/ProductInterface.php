@@ -30,7 +30,7 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const APPOINTMENT_DELIVERY = '0010';
     public const SATURDAY_DELIVERY = '0013';
     public const PRODUCT_INSTALLATION = '0029';
-    public const BUILT_IN_PRODUCT = '0031';
+    public const BUILT_IN_PRODUCT = '0030';
     public const GAS_CERTIFICATION = '0017';
     public const STANDARD_TV_INSTALLATION = '0018';
     public const CONNECTIVITY_AND_TV_DEMONSTRATION = '0019';
