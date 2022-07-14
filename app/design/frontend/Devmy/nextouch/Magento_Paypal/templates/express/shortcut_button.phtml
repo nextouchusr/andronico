@@ -3,20 +3,16 @@
 <button
         type="button"
         id="paypal-express-btn"
-        class="button button-paypal action paypal checkout primary"
-        data-role="proceed-to-checkout"
-        data-mage-init='{
-            "Magento_Checkout/js/proceed-to-checkout":{
-                "checkoutUrl":"<?= $block->getUrl('checkout') ?>"
-            }
-        }'>
+        class="button button-paypal action paypal checkout primary">
     <span><?= __('Express Checkout Paypal') ?></span>
 </button>
 
 <script>
     require(['jquery', 'jquery/jquery.cookie'], function ($) {
         $('#paypal-express-btn').click(function () {
+            $('#product_addtocart_form').trigger('submit');
             $.cookie('default_payment_method', 'paypal_express');
-        })
+            location.href = "<?= $block->getUrl('checkout') ?>";
+        });
     });
 </script>
