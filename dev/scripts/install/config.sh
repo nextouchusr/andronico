@@ -141,6 +141,7 @@ php bin/magento config:set system/security/max_session_size_admin 0
 php bin/magento config:set dev/css/merge_css_files 1
 php bin/magento config:set dev/css/minify_files 1
 php bin/magento config:set dev/static/sign 0
+php bin/magento config:set amasty_xsearch/general/popup_width 800
 php bin/magento config:set amasty_xsearch/product/enabled 1
 php bin/magento config:set amasty_xsearch/product/reviews 1
 php bin/magento config:set amasty_xsearch/product/add_to_cart 1
