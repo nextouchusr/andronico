@@ -4,12 +4,14 @@
         type="button"
         id="paypal-express-btn"
         class="button button-paypal action paypal checkout primary">
-    <span><?= __('Express Checkout Paypal') ?></span>
+    <span><?= __('Fast checkout') ?></span>
 </button>
 
 <script>
     require(['jquery', 'jquery/jquery.cookie'], function ($) {
-        $('#paypal-express-btn').click(function () {
+        $('#paypal-express-btn').click(addToCartAndPay);
+
+        function addToCartAndPay() {
             $('#product_addtocart_form').trigger('submit');
             $.cookie('default_payment_method', 'paypal_express');
             location.href = "<?= $block->getUrl('checkout') ?>";
