@@ -13,8 +13,11 @@
 
         function addToCartAndPay() {
             $('#product_addtocart_form').trigger('submit');
-            $.cookie('default_payment_method', 'paypal_express');
-            location.href = "<?= $block->getUrl('checkout') ?>";
-        });
+
+            setTimeout(function () {
+                $.cookie('default_payment_method', 'paypal_express');
+                location.href = "<?= $block->getUrl('checkout') ?>";
+            }, 1000);
+        }
     });
 </script>
