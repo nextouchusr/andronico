@@ -35,12 +35,14 @@
     .slick-dots.slick-dots {
         margin: 10px 0;
         li {
-            button:before {
+            button {
                 border-radius: 100%;
-                background-color: @theme__color__primary;
+                background-color: @color-dark-blue1;
+                opacity: .6;
             }
-            &.slick-active button:before {
-                background-color: @theme__color__primary-alt;
+            &.slick-active button {
+                background-color: @color-dark-blue1;
+                opacity: 1;
             }
         }
     }
