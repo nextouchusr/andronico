@@ -97,7 +97,7 @@
                     <block class="Magento\Framework\View\Element\Html\Link\Current" name="track-order-link">
                         <arguments>
                             <argument name="label" xsi:type="string" translate="true">Track your Order</argument>
-                            <argument name="path" xsi:type="string">track-order</argument>
+                            <argument name="path" xsi:type="string">sales/guest/form</argument>
                         </arguments>
                     </block>
                 </block>
