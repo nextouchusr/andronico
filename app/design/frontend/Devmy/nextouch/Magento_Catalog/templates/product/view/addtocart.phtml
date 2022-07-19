@@ -1,4 +1,6 @@
-<?php /** @var $block \Magento\Catalog\Block\Product\View */ ?>
+<?php /** @var $block \Magento\Catalog\Block\Product\View */
+
+use Nextouch\Catalog\Api\Data\ProductInterface; ?>
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
 <?php if ($_product->isSaleable()) :?>
@@ -28,7 +30,10 @@
                 <span><?= $block->escapeHtml($buttonTitle) ?></span>
             </button>
             <?= $block->getChildHtml('', true) ?>
-            <?= $block->getBlockHtml('product.info.addtocart.instore') ?>
+
+            <?php if ($_product->getData(ProductInterface::IS_PICKUPABLE)): ?>
+                <?= $block->getBlockHtml('product.info.addtocart.instore') ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>
