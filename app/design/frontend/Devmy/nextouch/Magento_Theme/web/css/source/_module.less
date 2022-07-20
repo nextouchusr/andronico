@@ -63,6 +63,10 @@
         }
     }
 
+    .rounded {
+        border-radius: 50px !important;
+    }
+
     .page-wrapper {
         .lib-vendor-prefix-display(flex);
         .lib-vendor-prefix-flex-direction(column);
@@ -400,6 +404,10 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .rounded {
+        border-radius: 10px !important;
+    }
 
     .page-header .header.content  {
         flex-flow: row wrap;
