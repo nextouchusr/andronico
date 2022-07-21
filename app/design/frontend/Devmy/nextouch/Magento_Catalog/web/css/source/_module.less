@@ -698,14 +698,14 @@
                     text-align: left;
                     .stock {
                         padding: 0;
-                        margin: 0;
+                        margin: 0 0 10px 0;
                         text-align: left;
                         font-size: 1rem;
                         span {
-                            &:before {
+                            &:after {
                                 display: none;
                             }
-                            &:after {
+                            &:before {
                                 display: inline-block;
                                 content: "";
                                 width: 15px;
@@ -801,6 +801,7 @@
         .actions {
             .action.tocart {
                 &:extend(.abs-button-responsive-smaller all);
+                margin-bottom: 20px;
             }
         }
     }

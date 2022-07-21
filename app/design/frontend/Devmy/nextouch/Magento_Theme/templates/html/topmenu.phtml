@@ -122,7 +122,8 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
             });
 
             $('.page-header').height($('.page-header').outerHeight());
-            document.addEventListener('scroll, resize', function(e) {
+
+            setStickyAndOver = function() {
                 mediaCheck({
                     media: '(min-width: 768px)',
                     entry: $.proxy(function () {
@@ -145,7 +146,12 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 
                     }, this)
                 });
-
+            }
+            document.addEventListener('resize', function(e) {
+                setStickyAndOver();
+            });
+            document.addEventListener('scroll', function(e) {
+                setStickyAndOver();
             });
         });
     });

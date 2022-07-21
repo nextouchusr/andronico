@@ -238,6 +238,32 @@
         position: relative;
     }
 
+    .primary.checkout {
+        &.button-paypal,
+        &.button-paypal:hover,
+        &.button-paypal:focus {
+            background: @color-paypal;
+            color: @theme__color__primary;
+            padding: 10px 30px;
+            line-height: 1.3rem;
+            font-size: 1.4rem;
+            min-width: 180px;
+            margin-bottom: 20px;
+        }
+
+        &.button-pick-instore,
+        &.button-pick-instore:hover,
+        &.button-pick-instore:focus {
+            background: @theme__color__primary;
+            color: @theme__color__primary_contr;
+            padding: 10px 30px;
+            line-height: 1.3rem;
+            font-size: 1.4rem;
+            min-width: 180px;
+            margin-bottom: 20px;
+        }
+    }
+
     //
     //  Global notice
     //  ---------------------------------------------
@@ -529,6 +555,20 @@
                     box-shadow: 0 7px 4px @theme__color__secondary;
                 }
             }
+        }
+    }
+
+    .primary.checkout {
+        &.button-paypal,
+        &.button-paypal:hover,
+        &.button-paypal:focus,
+        &.button-pick-instore,
+        &.button-pick-instore:hover,
+        &.button-pick-instore:focus {
+            padding: 20px 30px;
+            line-height: 2.2rem;
+            font-size: 2rem;
+            min-width: 250px;
         }
     }
 
