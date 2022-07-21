@@ -84,7 +84,7 @@
     .block.upsell {
         box-shadow: @theme__box-shadow__primary;
         padding: 25px 10%;
-        border-radius: 50px;
+        border-radius: 100px;
         background: #fff;
         .block-title {
             border-bottom: 2px solid @theme__color__secondary;
@@ -684,6 +684,12 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .block.offers,
+    .block.crosssell:not(.crosssell-modal),
+    .block.upsell {
+        border-radius: 10px;
+    }
+
     .cart {
         &.table-wrapper {
             overflow: inherit;
