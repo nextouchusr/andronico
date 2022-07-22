@@ -834,6 +834,23 @@
         .overview {
             font-size: 1.6rem;
         }
+        .block.crosssell {
+            .block-title strong {
+                font-size: 4.5rem;
+            }
+            .products-grid {
+                .product-item-actions .actions-primary .action.primary {
+                    padding: 8px 25px;
+                    bottom: 0px;
+                }
+                .product-item-info {
+                    padding: 0;
+                }
+                .price-box .price {
+                    font-size: 2.3rem;
+                }
+            }
+        }
     }
 
     .product-info-main {
@@ -1493,6 +1510,11 @@
     .open-compare-mobile {
         display: none;
     }
+    .catalog-category-view {
+        .block-compare {
+            display: block;
+        }
+    }
     .block-compare {
         position: fixed;
         right: 0;
@@ -1506,7 +1528,7 @@
         background: #fff;
         width: 650px;
         max-width: 90vw;
-        display: block;
+        display: none;
         min-height: 320px;
 
         &:before,
