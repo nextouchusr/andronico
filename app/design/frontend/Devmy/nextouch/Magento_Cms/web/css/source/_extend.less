@@ -482,8 +482,8 @@
         font-size: 2.8rem;
     }
     .home-offers {
-        h2[data-content-type="heading"] {
-            font-size: 4rem;
+        h1[data-content-type="heading"] {
+            font-size: @text__xl;
             color: #791B2B;
             text-align: center!important;
         }
@@ -521,7 +521,7 @@
                     background: none;
                     color: @theme__color__primary;
                     font-weight: 300;
-                    font-size: 2.2rem;
+                    font-size: @text__lg;
                 }
             }
         }
@@ -541,9 +541,14 @@
     .cms-index-index {
         .home-slick-slider {
             .slick-slide {
-                font-size: 3rem;
+                font-size: @text__lg;
+
+                h1 {
+                    font-size: @text__xl;
+                }
+
                 h2 {
-                    font-size: 4rem;
+                    font-size: @text__lg;
                 }
             }
         }
