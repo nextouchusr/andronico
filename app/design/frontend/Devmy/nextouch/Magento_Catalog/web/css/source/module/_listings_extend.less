@@ -41,7 +41,7 @@
       .support-box,
       .store-locator-box {
           padding-left: 80px;
-          font-size: 1.4rem;
+          font-size: @text__sm;
           margin-bottom: 20px;
           text-align: left;
           min-height: 50px;
@@ -176,6 +176,11 @@
       .products.wrapper ~ .toolbar .pages {
           float: none;
           margin: 0 auto;
+
+          strong.page,
+          .item {
+            font-size: @text__xs;
+          }
       }
       .products.wrapper ~ .toolbar .pages .action {
           border-radius: 100%;
@@ -258,9 +263,15 @@
             width: 100%;
 
             h1 {
-                font-weight: 700;
+                font-weight: @font-weight__bold;
+                font-size: @text__sm;
             }
         }
+
+      .support-box,
+      .store-locator-box {
+        font-size: 1.2rem !important;
+      }
 
         .tax-included {
             font-size: 1.2rem;
