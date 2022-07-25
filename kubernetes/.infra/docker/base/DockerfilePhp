@@ -31,7 +31,7 @@ RUN apk add --no-cache --virtual .build-deps freetype \
 && pecl install imagick amqplib \
 && docker-php-ext-enable imagick \
 && docker-php-ext-configure \
-    gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    gd --with-freetype --with-jpeg \
 && docker-php-ext-install \
     dom \
     sockets \
