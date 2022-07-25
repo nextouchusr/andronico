@@ -11,6 +11,27 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    .text {
+        &-light {
+            font-weight: @font-weight__light;
+        }
+
+        &-regular {
+            font-weight: @font-weight__regular;
+        }
+
+        &-heavier {
+            font-weight: @font-weight__heavier;
+        }
+
+        &-semibold {
+            font-weight: @font-weight__semibold;
+        }
+
+        &-bold {
+            font-weight: @font-weight__bold;
+        }
+    }
 
     .columns {
         #lib-layout-columns();
