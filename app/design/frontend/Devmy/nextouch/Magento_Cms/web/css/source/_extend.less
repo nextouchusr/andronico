@@ -30,9 +30,6 @@
     }
 
     .cms-index-index {
-        h2 {
-            font-size: 1.5rem;
-        }
         .home-slick-slider {
             padding: 0;
             .item {
@@ -93,13 +90,24 @@
         background-size: 120%;
     }
 
+    body.decisiontree-enabled {
+        .decision-tree {
+            display: none!important;
+        }
+    }
+
     .decision-tree {
         margin-bottom: 50px;
         margin-top: -3%;
-        h2 {
+        h1 {
             color: @theme__color__secondary;
-            font-weight: 700;
-            font-size: 2.2rem;
+            font-weight: @font-weight__bold;
+            font-size: @text__xl;
+        }
+        h2 {
+            color: @theme__color__primary;
+            font-weight: @font-weight__heavier;
+            font-size: @text__lg;
         }
         h3 {
             font-size: 1.6rem;
@@ -146,7 +154,7 @@
         .content-assistenza {
             max-width: 60%;
             h2 {
-                font-size: 2rem;
+                font-size: @text__lg;
                 font-weight: 400;
                 margin-bottom: 30px;
             }
@@ -226,10 +234,33 @@
             }
 
         }
+
+        h1 {
+            display: none;
+        }
+        h2 {
+            font-size: @text__xs;
+            font-weight: @font-weight__heavier;
+        }
     }
     .cms-index-index {
+        h2 {
+            font-size: @text__sm;
+        }
+
         .decision-tree {
             margin-top: -150px!important;
+
+            h1 {
+                color: @theme__color__secondary;
+                font-weight: @font-weight__bold;
+                font-size: @text__sm;
+            }
+            h2 {
+                color: @theme__color__primary;
+                font-weight: @font-weight__heavier;
+                font-size: @text__xs;
+            }
         }
 
         .force-fullscreen {
@@ -242,8 +273,8 @@
     }
     .home-helpdesk {
         h2 {
-            font-size: 1.4rem;
-            font-weight: 400;
+            font-size: @text__xs;
+            font-weight: @font-weight__heavier;
         }
     }
     .home-news-slider {
@@ -260,16 +291,21 @@
     }
     .block-services-slider {
         width: 360px;
+
+        .pagebuilder-overlay {
+            min-height: 350px;
+        }
+
         h2 {
-            font-size: 3rem;
+            font-size: @text__xs;
             margin-bottom: 1rem;
         }
         h3 {
-            font-size: 1.3rem;
+            font-size: @text__base;
             margin-bottom: 3rem;
         }
         p,p span {
-            font-size: 1.2rem;
+            font-size: @text__base;
             line-height: 1.1rem;
         }
     }
@@ -287,8 +323,12 @@
             &.content-assistenza {
                 max-width: 100%;
 
+                h1 {
+                    font-size: @text__sm;
+                    line-height: 1.8rem;
+                }
                 h2 {
-                    font-size: 1.5rem;
+                    font-size: @text__xs;
                     line-height: 1.8rem;
                 }
                 p {
@@ -303,6 +343,12 @@
             }
         }
     }
+
+    .indent-heading-desktop {
+        font-size: @text__sm;
+        font-weight: @font-weight__bold;
+    }
+
     div.pagebuilder-slide-wrapper {
         min-height: 180px!important;
         border-radius: 10px!important;
@@ -403,12 +449,6 @@
             z-index: 99;
         }
 
-        h2 {
-            color: @theme__color__secondary;
-            font-weight: 700;
-            font-size: 4rem;
-        }
-
         h3 {
             font-size: 2.8rem;
             text-align: center;
@@ -417,6 +457,8 @@
         }
     }
     .indent-heading-desktop {
+        font-size: @text__xl;
+        font-weight: @font-weight__bold;
         padding-left: 100px;
     }
     .main-banner-content {
@@ -441,15 +483,25 @@
                     }
                 }
 
+                h1 {
+                    font-weight: @font-weight__bold;
+                    font-size: @text__xl;
+                }
+
                 h2 {
-                    font-weight: 700;
-                    font-size: 4rem;
+                    font-weight: @font-weight__heavier;
+                    font-size: @text__lg;
                 }
             }
         }
     }
     .promotions-block {
         margin-bottom: 50px;
+
+        h1 {
+            font-size: @text__xl;
+            font-weight: @font-weight__bold;
+        }
     }
     .home-news-slider {
         p,p span {
@@ -465,27 +517,35 @@
     .block-services-slider {
         width: 450px;
         h2 {
-            font-size: 4rem;
+            font-size: @text__lg;
             margin-bottom: 1rem;
         }
         h3 {
-            font-size: 1.5rem;
+            font-size: @text__sm;
             margin-bottom: 3rem;
         }
         p,p span {
-            font-size: 1.4rem;
+            font-size: @text__sm;
             line-height: 2rem;
         }
     }
 
     .home-helpdesk {
-        font-size: 2.8rem;
+        h2 {
+            font-size: 2.8rem;
+            font-weight: @font-weight__heavier;
+        }
     }
     .home-offers {
-        h1[data-content-type="heading"] {
+        h1 {
             font-size: @text__xl;
+            font-weight: @font-weight__bold;
             color: #791B2B;
             text-align: center!important;
+        }
+        h2 {
+            font-size: @text__lg;
+            font-weight: @font-weight__heavier;
         }
         div[data-content-type="banner"] {
             .pagebuilder-banner-wrapper {
@@ -493,6 +553,10 @@
                 min-height: 0;
                 padding-bottom: 50%;
                 border-radius: 50px;
+
+                .pagebuilder-overlay {
+                    transform: translateY(50%);
+                }
             }
         }
         div[data-element="content"] {
@@ -545,10 +609,12 @@
 
                 h1 {
                     font-size: @text__xl;
+                    font-weight: @font-weight__bold;
                 }
 
                 h2 {
                     font-size: @text__lg;
+                    font-weight: @font-weight__heavier;
                 }
             }
         }
