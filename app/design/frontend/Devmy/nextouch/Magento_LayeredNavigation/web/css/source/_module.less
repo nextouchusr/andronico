@@ -109,7 +109,7 @@
             }
             .item {
                 margin-bottom: 10px;
-                font-size: 2rem;
+                font-size: @text__sm;
                 &:before {
                     content: "";
                     float: left;
@@ -220,6 +220,10 @@
 
                 &::-webkit-scrollbar {
                     display: none;
+                }
+
+                p, span {
+                    font-size: 1.2rem;
                 }
             }
         }

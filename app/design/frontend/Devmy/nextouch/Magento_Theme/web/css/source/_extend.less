@@ -215,14 +215,17 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
     .cms-index-index {
+        h1 {
+            font-size: @text__xl;
+        }
         h2 {
-            font-size: @h2__font-size-desktop;
+            font-size: @text__lg;
         }
         h3 {
-            font-size: @h3__font-size-desktop;
+            font-size: @text__md;
         }
         h4 {
-            font-size: @h4__font-size-desktop;
+            font-size: @text__sm;
         }
     }
 
@@ -262,6 +265,10 @@
                     display: inline-block;
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
+                }
+
+                &.home {
+                    display: none;
                 }
             }
         }
