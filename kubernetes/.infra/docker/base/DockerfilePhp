@@ -57,6 +57,5 @@ ADD kubernetes/.infra/docker/php-cli/custom-configs.ini /usr/local/etc/php/conf.
 COPY kubernetes/.infra/docker/php-cli/docker-php-cli-entrypoint /docker-php-cli-entrypoint
 COPY kubernetes/ kubernetes
 RUN chown -R www-data:www-data /var/www/deploy
-RUN su www-data -s /bin/bash -c "kubernetes/tools/composer global require hirak/prestissimo"
 RUN su www-data -s /bin/bash -c "kubernetes/tools/composer install --prefer-dist --no-dev --ignore-platform-reqs -vvv"
 RUN rm -rf vendor auth.json
