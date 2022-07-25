@@ -16,8 +16,8 @@ if [[ ! $3 ]]; then
     exit 2
 fi
 
-echo "Switching to aws k8s-prd-eu context..."
-kubectl config use-context arn:aws:eks:eu-central-1:560985267959:cluster/k8s-prd-eu
+echo "Switching to aws k8s-prd context..."
+kubectl config use-context arn:aws:eks:eu-central-1:560985267959:cluster/k8s-prd
 echo "Deploy with SKIP_SETTINGS_AND_SETUP_UPGRADE = 1 ..."
 
 [ -f ./kubernetes/answers/production/helm-answer-m2-$2.compiled.yml ] && rm ./kubernetes/answers/production/helm-answer-m2-$2.compiled.yml

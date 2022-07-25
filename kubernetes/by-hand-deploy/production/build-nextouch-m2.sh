@@ -17,8 +17,8 @@ BRAND="nextouch"
 IMAGE=$2
 
 aws --profile=nextouch ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-./kubernetes/build/build-images.sh $BRAND $IMAGE production $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd-eu $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/utils
-docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd-eu/$BRAND-code:$BRAND-$IMAGE
-docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd-eu/$BRAND-nginxws:$BRAND-$IMAGE
-docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd-eu/$BRAND-php-fpm:$BRAND-$IMAGE
-docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd-eu/$BRAND-php-cli:$BRAND-$IMAGE
+./kubernetes/build/build-images.sh $BRAND $IMAGE production $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/utils
+docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd/$BRAND-code:$BRAND-$IMAGE
+docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd/$BRAND-nginxws:$BRAND-$IMAGE
+docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd/$BRAND-php-fpm:$BRAND-$IMAGE
+docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd/$BRAND-php-cli:$BRAND-$IMAGE
