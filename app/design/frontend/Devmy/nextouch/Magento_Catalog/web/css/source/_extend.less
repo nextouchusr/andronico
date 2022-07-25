@@ -41,7 +41,7 @@
                 text-align: center;
 
                 h4 {
-                    font-size: 3rem;
+                    font-size: @text__lg;
                     font-weight: 200;
                     padding-left: 0;
                 }
@@ -423,6 +423,7 @@
 
         h1, h2, h3 {
             font-size: 1.8rem;
+            text-align: center;
         }
 
         [data-content-type="heading"] {
@@ -438,6 +439,10 @@
         .simple-boxes {
             .small-box {
                 border-radius: 20px;
+
+                h4 {
+                    font-size: @text__xs;
+                }
             }
         }
 
@@ -481,14 +486,17 @@
             font-size: 1.2rem;
             margin-bottom: 20px;
             padding-bottom: 50px;
-            h2,h3 {
+            h2 {
                 font-size: 2rem;
+            }
+            h3 {
+                font-size: @text__xs;
             }
             a.pagebuilder-button-link {
                 padding: 10px 20px;
                 bottom: 5px;
                 font-weight: 400;
-                font-size: 1.8rem;
+                font-size: 1.2rem;
             }
         }
 
