@@ -51,6 +51,11 @@
                     &.note {
                         font-size: @font-size__s;
                     }
+
+                    .control {
+                        display: flex;
+                        justify-content: center;
+                    }
                 }
 
                 .methods {
@@ -684,6 +689,12 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-cart-index {
+        .page-title {
+            font-size: @text__sm;
+        }
+    }
+
     .block.offers,
     .block.crosssell:not(.crosssell-modal),
     .block.upsell {
