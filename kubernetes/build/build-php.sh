@@ -51,5 +51,5 @@ else
     # cp -r ${SOURCE_DIR}/.config/pub/* ${SOURCE_DIR}/pub/
     cp ${SOURCE_DIR}/kubernetes/.config/env.template.php ${SOURCE_DIR}/app/etc/env.php
 
-    cd ${SOURCE_DIR} && ${SOURCE_DIR}/vendor/bin/zettr apply --groups=db,session,page_cache,cache,varnish $STAGE ${SOURCE_DIR}/kubernetes/.config/${BRAND}/settings.csv || (echo "Zettr db failed"; exit 1)
+    cd ${SOURCE_DIR} && ${PHP_BIN} kubernetes/tools/zettr.phar apply --groups=db,session,page_cache,cache,varnish $STAGE ${SOURCE_DIR}/kubernetes/.config/${BRAND}/settings.csv || (echo "Zettr db failed"; exit 1)
 fi
