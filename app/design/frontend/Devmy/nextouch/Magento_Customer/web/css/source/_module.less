@@ -155,7 +155,7 @@
             margin: 50px 0;
             text-align: center;
             font-weight: 200;
-            font-size: 1.6rem;
+            font-size: @text__sm;
         }
     }
 
@@ -466,6 +466,16 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    #block-customer-login-heading {
+        font-size: @text__sm;
+    }
+
+    .customer-login-left-block {
+        h2 {
+            font-size: @text__sm;
+        }
+    }
+
     .login-container {
         padding: 50px 10%;
         .fieldset {
@@ -502,6 +512,7 @@
             border-radius: 10px;
             h2 {
                 text-align: center;
+                font-size: @text__sm;
             }
             ul li {
                 font-size: 1rem;
