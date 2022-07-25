@@ -20,6 +20,6 @@ elif [[ ${NO_INTERACTION_SETUP_UPGRADE} == '1' ]]; then
     cd ${SOURCE_DIR}/../../ && php bin/magento setup:upgrade --keep-generated -n -vvv
 else
     echo "running settings.csv apply and setup:upgrade"
-    cd ${SOURCE_DIR}/../../ && ./vendor/bin/zettr apply --excludeGroups=db,session,page_cache,cache,varnish $STAGE kubernetes/.config/${BRAND}/settings.csv
+    cd ${SOURCE_DIR}/../../ && ${PHP_BIN} ./kubernetes/tools/zettr.phar apply --excludeGroups=db,session,page_cache,cache,varnish $STAGE kubernetes/.config/${BRAND}/settings.csv
     cd ${SOURCE_DIR}/../../ && ${PHP_BIN} bin/magento setup:upgrade --keep-generated -vvv
 fi
