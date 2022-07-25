@@ -1,0 +1,21 @@
+version: 0.2
+phases:
+    pre_build:
+        commands:
+            - echo Logging in to Amazon ECR...
+            - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+            - aws eks update-kubeconfig --name k8s-prd-eu
+    build:
+        commands:
+            - echo Build started on `date`
+            - ./kubernetes/build/codebuild-package.sh
+            - sed s/"%TAG_VERSION%"/$CODEBUILD_RESOLVED_SOURCE_VERSION/ ./kubernetes/answers/production/helm-answer-m2-nextouch.yml > ./kubernetes/answers/production/helm-answer-m2-nextouch.compiled.yml
+            - sed s/"%SKIP_SETTINGS_AND_SETUP_UPGRADE%"/$SKIP_SETTINGS_AND_SETUP_UPGRADE/ ./kubernetes/answers/production/helm-answer-m2-nextouch.compiled.yml > ./kubernetes/answers/production/helm-answer-m2-nextouch.2.compiled.yml
+            - sed s/"%NO_INTERACTION_SETUP_UPGRADE%"/$NO_INTERACTION_SETUP_UPGRADE/ ./kubernetes/answers/production/helm-answer-m2-nextouch.2.compiled.yml > ./kubernetes/answers/production/helm-answer-m2-nextouch.3.compiled.yml
+            - /root/bin/helm upgrade --timeout $HELM_TIMEOUT --install nextouch-m2 -f ./kubernetes/answers/production/helm-answer-m2-nextouch.3.compiled.yml --debug --create-namespace --namespace nextouch ./kubernetes/charts/magento2-11.0.50.tgz
+    post_build:
+        commands:
+            - echo Build completed on `date`
+cache:
+    paths:
+        - '/root/bin/*'

@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+    pre_build:
+        commands:
+            - echo Logging in to Amazon ECR...
+            - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+    build:
+        commands:
+            - echo Build started on `date`
+            - ./kubernetes/build/base/build-image-php.sh $CODEBUILD_RESOLVED_SOURCE_VERSION production $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/utils
+            - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php:$CODEBUILD_RESOLVED_SOURCE_VERSION
+            - docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php:$CODEBUILD_RESOLVED_SOURCE_VERSION $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php:latest
+            - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php:latest
+    post_build:
+        commands:
+            - echo Build completed on `date`
+cache:
+    paths:
+        - '/root/bin/*'

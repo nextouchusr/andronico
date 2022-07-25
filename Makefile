@@ -1,112 +1,175 @@
-#!make
+BUILD_SERVICES := nginx fpm devtools
 
-help:
-	@awk -F ':|##' '/^[^\t].+?:.*?##/ {printf "\033[36m%-30s\033[0m %s\n", $$1, $$NF}' $(MAKEFILE_LIST)
+-include common-makefile/Makefile
 
-magento_install: ## Install Magento
-	bash dev/scripts/install/install.sh
+# Variables
+current_dir := $(shell pwd)
+docker_compose:= cd ${DOCKER_DIR} && docker-compose -f ${dockerfile}
+run_devtools := ${docker_compose} run --rm devtools
 
-magento_upgrade: ## Upgrade Magento
-	make build_backend
-	make build_frontend
-	make refresh
+#@todo aggiungere composer-install update-devbox dopo start-devbox quando installato magento.
+init-project: get-common-makefile ## init project files
+	make dist-files build-devbox start-devbox composer-install update-devbox \
+	|| printf "\n\033[0;31mIMPORT DATABASE AND RE-RUN make update-devbox\033[0m\n"
 
-build_backend: ## Build project backend
-	bash dev/scripts/build_backend.sh
+composer-install:   			## run composer install
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'cd /var/www/deploy && tools/composer install'"
 
-build_frontend: ## Build project frontend
-	bash dev/scripts/build_frontend.sh
+composer-remove:   			## run composer install
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'cd /var/www/deploy && tools/composer remove $(packages)'"
 
-change_permissions: ## Change permissions
-	bash dev/scripts/change_permissions.sh
+composer-require:   			##  Update packages inserted in "packages" param (ex. packages='hevelop/common-makefile')
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'cd /var/www/deploy && php -dmemory_limit=5G tools/composer require $(packages) -vvv'"
 
-refresh: ## Refresh index and cache
-	bash dev/scripts/refresh.sh
+composer-update:			## Update packages inserted in "packages" param (ex. packages='hevelop/common-makefile')
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'cd /var/www/deploy && php -dmemory_limit=5G tools/composer update $(packages) $(param1) $(param2) -vvv'"
 
-compile_di: ## Compile generated classes
-	php bin/magento setup:di:compile
+get-common-makefile:
+	git submodule update --init
 
-clean_static: ## Clean generated static view files
-	rm -r pub/static/*/*
-	rm -r var/view_preprocessed/*
+git-pre-commit-hook: phpcs-pre-commit
 
-cache_reset: ## Flush Magento cache and restart php container
-	cd docker && docker-compose exec php make cache_flush
-	cd docker && docker-compose restart php
+cghooks-update:				## Update git hooks
+	${run_devtools} bash -c \
+	"su www-data -s /bin/bash -c \
+	'vendor/bin/cghooks update --git-dir=.git'"
 
-cache_flush: ## Cache flush
-	php bin/magento cache:flush
+cghooks-list:				## list hooks
+	${run_devtools} bash -c \
+	"su www-data -s /bin/bash -c \
+	'vendor/bin/cghooks list-hooks --git-dir=.git'"
 
-config_import: ## Import Magento configuration
-	php bin/magento app:config:import
+phpcs-pre-commit:			## run phpcs on committing files in pre-commit git hook
+	[ -z "$(shell git diff --cached --name-only --diff-filter=ACMRTUXB -- '*.php' '*.phtml' )" ] || \
+	(${run_devtools} bash -c "\
+	su www-data -s /bin/bash -c '\
+		vendor/bin/phpcs -q -s \
+		--runtime-set installed_paths vendor/magento/magento-coding-standard \
+		--standard=Standards \
+		--extensions=php,phtml \
+		--error-severity=1 \
+		--warning-severity=3 \
+		--report=code \
+		$(shell git diff --cached --name-only --diff-filter=ACMRTUXB -- '*.php' '*.phtml')'")
 
-config_export: ## Export Magento configuration
-	php bin/magento app:config:dump
+phpcs-pre-push:				## run phpcs on pughing files in pre-push git hook
+	[ -z "$(shell git diff --cached --name-only --diff-filter=ACMRTUXB @{upstream} -- '*.php' '*.phtml' )" ] || \
+	(${run_devtools} bash -c "\
+	su www-data -s /bin/bash -c '\
+		vendor/bin/phpcs -q -s \
+		--runtime-set installed_paths vendor/magento/magento-coding-standard \
+		--standard=Standards \
+		--extensions=php,phtml \
+		--error-severity=1 \
+		--warning-severity=3 \
+		--report=code \
+		$(shell git diff --cached --name-only --diff-filter=ACMRTUXB @{upstream})'")
 
-resize_images: ## Resize images
-	bash dev/scripts/resize_images.sh
+phpcs-project:				## run phpcs on hevelop files in the project
+	${run_devtools} bash -c "\
+	su www-data -s /bin/bash -c '\
+		vendor/bin/phpcs -q -s \
+		--runtime-set installed_paths vendor/magento/magento-coding-standard \
+		--standard=Standards \
+		--extensions=php,phtml \
+		--error-severity=1 \
+		--warning-severity=3 \
+		--report=code \
+		app/code/Hevelop app/design'"
 
-sidea_send_abandoned_carts: ## Run Sidea send abandoned carts job
-	php ./n98-magerun2.phar sys:cron:run nextouch_sidea_send_abandoned_carts
+phpcbf-file: 				## run phpcbf on the file ex. make phpcbf-file file="path/to/file.php"
+	${run_devtools} bash -c "\
+	su www-data -s /bin/bash -c '\
+		vendor/bin/phpcbf -q -s \
+		--runtime-set installed_paths vendor/magento/magento-coding-standard \
+		--standard=Standards \
+		--extensions=php,phtml \
+		--error-severity=1 \
+		--warning-severity=3 \
+		--report=code \
+		$(file)'"
 
-wins_import_job: ## Run Wins entity data import job
-	php ./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_entity_data_import_job
+update-devbox: 				## Update devbox env
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'tools/update.sh'"
 
-wins_attach_order_invoice: ## Run Wins attach order invoice job
-	php ./n98-magerun2.phar sys:cron:run nextouch_wins_attach_order_invoice
+setup-upgrade: 				## Setup upgrade
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'php bin/magento setup:upgrade'"
 
-wins_update_in_store_order: ## Run Wins update in-store order job
-	php ./n98-magerun2.phar sys:cron:run nextouch_wins_update_in_store_order
+setup-di-compile: 				## Setup di compile
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'php bin/magento setup:di:compile'"
 
-# Static & Quality Tools
-phpcs: ## Run phpcs to analyze code
-	php vendor/bin/phpcs --standard=Magento2 app/code/Nextouch
+dist-files:
+	cd ${DOCKER_DIR} \
+	&& [ -f .env ] || cp .env.dist .env \
+	&& [ -f docker-compose-linux.yml ] || cp docker-compose-linux.yml.dist docker-compose-linux.yml \
+	&& [ -f docker-compose-osx.yml ] || cp docker-compose-osx.yml.dist docker-compose-osx.yml 2>/dev/null \
+	&& cd -
 
-phpcbf: ## Run phpcbf to fix code
-	php vendor/bin/phpcbf --standard=Magento2 app/code/Nextouch
+devtools:				## enter devtools
+	${run_devtools} bash
 
-static: ## Run static tests on custom files
-	php ./vendor/bin/phpunit --testsuite="Local Test Suite" -c dev/tests/static/phpunit.xml
+devtools-www-data:				## enter devtools as www-data user
+	${run_devtools} bash -c "su www-data -s /bin/bash"
 
-# Debugging
-template_hints_enable: ## Enable template hints
-	php bin/magento dev:template-hints:enable
-	make cache_flush
+cache-flush:				## Redis flushall
+	${docker_compose} exec redis redis-cli flushall
 
-template_hints_disable: ## Disable template hints
-	php bin/magento dev:template-hints:disable
-	make cache_flush
+n98:					## run n98-magerun22 [command] [additional]
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'php tools/n98-magerun2 $(command) $(additional)'"
 
-# Docker
-run: ## Start containers
-	cd docker && docker-compose up -d
+urn-generate:				## generate magento urn-catalog [catalog]
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'php bin/magento dev:urn-catalog:generate $(catalog)'"
 
-stop: ## Stop containers
-	cd docker && docker-compose stop
+cert:
+	mkdir -p $(HOME)/nginx/certs
+	docker run -it --rm --init \
+	-e UID=$(uid) \
+	-e GID=$(gid) \
+	-w="/certs" \
+	--mount type=bind,source=$(current_dir)/.config/ssl,target=/cert_config/ \
+	--mount type=bind,source=$(HOME)/nginx/certs,target=/certs \
+	--mount type=bind,source=$(current_dir)/tools/create_certificates.sh,target=/usr/local/bin/create_certificates \
+	alpine:latest create_certificates
 
-restart: ## Restart containers
-	cd docker && docker-compose restart
+db-console:   				## Open a db console
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'php tools/n98-magerun2 db:console'"
 
-remove: ## Stop containers and completely remove everything
-	cd docker && docker-compose rm -sf
+cache-clean:   				## Clean all magento cache
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'rm -rf /tmp/magento && php -d memory_limit=1G tools/n98-magerun2 cache:clean'"
 
-php_container: ## Connect to php container
-	cd docker && docker-compose exec php bash
+cache-clean-fe:				## Clean layout block_html full_page magento cache
+	${run_devtools} -c "su www-data -s /bin/bash -c 'rm -rf /tmp/magento && rm -rf var/view_preprocessed && php tools/n98-magerun2 cache:clean block_html layout full_page'"
 
-db_container: ## Connect to db container
-	cd docker && docker-compose exec db bash
+clean:
+	cd docker && docker-compose -f ${dockerfile} run --rm devtools sudo -u www-data bash -c "rm -rf /tmp/magento && cd ${CONTAINER_ROOT_DIR} && php -d memory_limit=1G tools/n98-magerun2 cache:flush && php -d memory_limit=1G tools/n98-magerun2 dev:asset:clear"
 
-cache_container: ## Connect to cache container
-	cd docker && docker-compose exec cache bash
+bin/magento:
+	${run_devtools} bash -c "su www-data -s /bin/bash -c 'php -dmemory_limit=3G bin/magento $(command)'"
 
-search_container: ## Connect to search container
-	cd docker && docker-compose exec search bash
+enable-fpm-xdebug: ## enable fpm xdebug
+	cd docker && docker-compose -f ${dockerfile} exec fpm bash -c "docker-php-ext-enable xdebug"
+	cd docker && docker-compose -f ${dockerfile} restart fpm
 
-cron_container: ## Connect to cron container
-	cd docker && docker-compose exec cron bash
+disable-fpm-xdebug: ## disable fpm xdebug
+	cd docker && docker-compose -f ${dockerfile} stop fpm
+	cd docker && docker-compose -f ${dockerfile} rm fpm
+	cd docker && docker-compose -f ${dockerfile} up -d
 
-sftp_container: ## Connect to sftp container
-	cd docker && docker-compose exec sftp bash
+critical:
+	npx mix -p
 
-ftpd_container: ## Connect to ftpd container
-	cd docker && docker-compose exec ftpd bash
+critical-watch:
+	npx mix watch
+
+critical-dev:
+	npx mix
+
+build-prod-fe:
+	rm -rf pub/static/frontend && rm -rf pub/static/_cache && rm -rf var/view_preprocessed/pub
+	make setup-upgrade
+	make setup-di-compile
+	make bin/magento command="setup:static-content:deploy -f --area=frontend --exclude-theme=luma -j6 --language=it_IT"
+
+static-content:
+	rm -rf pub/static/frontend && rm -rf pub/static/_cache && rm -rf var/view_preprocessed/pub
+	make bin/magento command="setup:static-content:deploy -f --area=frontend --exclude-theme=luma -j6 --language=it_IT"

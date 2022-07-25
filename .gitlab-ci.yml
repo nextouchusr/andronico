@@ -18,3 +18,14 @@ deploy-staging:
   rules:
     - if: $CI_COMMIT_BRANCH == 'develop'
       when: manual
+
+upload to s3:
+  image:
+    name: banst/awscli
+    entrypoint:
+  environment:
+    name: production
+    url: https://prelive.nextouch.it
+  script:
+    - aws configure set region eu-central-1
+    - aws s3 cp -R ./ s3://nextouch-magento/
