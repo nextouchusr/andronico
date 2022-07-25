@@ -137,7 +137,7 @@
         .assistence {
             text-align: center;
             padding: 45px 15px;
-            font-size: 1.8rem;
+            font-size: @text__sm;
             a {
                 display: block;
                 text-decoration: underline;
@@ -245,6 +245,7 @@
 
         .terms-and-conditions {
             background: transparent;
+            min-height: 200px;
 
             a {
                 font-weight: 600;
@@ -324,14 +325,33 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .opc-block-summary {
+        z-index: 999;
 
-    .opc-block-summary .heading {
-        width: 450px;
-        .title {
-            height: 33px;
-            font-size: 1.4rem;
-            padding: 5px 10px;
-            width: 220px;
+        .table-totals {
+            .mark {
+                font-size: 1.2rem;
+
+                strong {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        .heading {
+            width: 450px;
+
+            .title {
+                height: 33px;
+                font-size: 1.4rem;
+                padding: 5px 10px;
+                width: 220px;
+            }
+        }
+
+        .terms-and-conditions,
+        .assistence {
+            font-size: 1.2rem;
         }
     }
 }
