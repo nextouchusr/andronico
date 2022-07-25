@@ -21,7 +21,7 @@ SOURCE_DIR=`dirname "${SOURCE_DIR}"`
 echo ${SOURCE_DIR};
 
 # MAGENTO
-docker build --build-arg BASE_IMAGE=$UTILS_REGISTRY:php-7.4-fpm-buster -t $CODE_REGISTRY:$RELEASE -f kubernetes/.infra/docker/base/DockerfilePhp $SOURCE_DIR
+docker build --build-arg BASE_IMAGE=$UTILS_REGISTRY:php-7.4-fpm-alpine3.15 -t $CODE_REGISTRY:$RELEASE -f kubernetes/.infra/docker/base/DockerfilePhp $SOURCE_DIR
 if [ ! $? -eq 0 ]; then
     echo "Unable to complete the magento code build :("
     exit 1

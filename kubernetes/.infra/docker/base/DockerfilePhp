@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=php-7.4-fpm-buster
+ARG BASE_IMAGE=php-7.4-fpm-alpine3.15
 
 FROM ${BASE_IMAGE}
 
