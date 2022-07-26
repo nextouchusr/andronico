@@ -78,15 +78,7 @@ Magento\CoreConfigData,websites,1,web/unsecure/base_static_url,,,https://www.nex
 Magento\CoreConfigData,websites,1,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/media/
 Magento\CoreConfigData,websites,1,web/secure/base_static_url,,,https://www.nextouch.loc/static/,,https://prelive.nextouch.it/static/
 Magento\CoreConfigData,websites,1,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/media/
-Magento\CoreConfigData,websites,2,web/unsecure/base_static_url,,,https://www.nextouch.loc/static/,,https://prelive.nextouch.it/static/
-Magento\CoreConfigData,websites,2,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/media/
-Magento\CoreConfigData,websites,2,web/secure/base_static_url,,,https://www.nextouch.loc/static/,,https://prelive.nextouch.it/static/
-Magento\CoreConfigData,websites,2,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/media/
 Magento\CoreConfigData,stores,1,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
 Magento\CoreConfigData,stores,1,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
 Magento\CoreConfigData,stores,2,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
 Magento\CoreConfigData,stores,2,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
-Magento\CoreConfigData,stores,3,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
-Magento\CoreConfigData,stores,3,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
-Magento\CoreConfigData,stores,4,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
-Magento\CoreConfigData,stores,4,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
