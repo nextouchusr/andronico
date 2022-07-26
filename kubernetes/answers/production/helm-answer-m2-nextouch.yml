@@ -239,7 +239,7 @@ efs:
     - "/var/cronchecker"
 loadBalancer:
   annotations:
-    'alb.ingress.kubernetes.io/certificate-arn': "arn:aws:acm:eu-central-1:452103867664:certificate/6285cd4f-e27f-4239-8b1a-9135af07d3be,arn:aws:acm:eu-central-1:452103867664:certificate/45b6661e-8c4d-4807-a8e4-65bd863c0ff2"
+    'alb.ingress.kubernetes.io/certificate-arn': "arn:aws:acm:eu-central-1:452103867664:certificate/2d037e19-eba3-4ca9-a674-545c3468dc29"
     'alb.ingress.kubernetes.io/healthcheck-path': "/pub/static/deployed_version.txt"
     'alb.ingress.kubernetes.io/healthcheck-port': "traffic-port"
     'alb.ingress.kubernetes.io/healthcheck-protocol': "HTTP"
