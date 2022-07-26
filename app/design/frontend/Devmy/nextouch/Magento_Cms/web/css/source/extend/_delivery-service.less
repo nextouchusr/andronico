@@ -38,7 +38,6 @@
     }
 
     .standard-delivery,
-    .custom-delivery,
     .floor-delivery,
     .premium-delivery,
     .special-delivery,
@@ -47,11 +46,11 @@
 
       h1 {
         text-align: center;
+        font-size: @text__sm !important;
       }
 
-      p > span {
-        font-size: 1.5rem !important;
-        line-height: 2rem;
+      p, p > span {
+        font-size: @text__sm !important;
       }
     }
 
@@ -124,6 +123,20 @@
     .premium-delivery {
       .pagebuilder-column-group {
         gap: 50px;
+      }
+    }
+
+    .standard-delivery,
+    .floor-delivery,
+    .premium-delivery,
+    .special-delivery,
+    .pickup-store-delivery {
+      h1 {
+        font-size: @text__xl !important;
+      }
+
+      p, p > span {
+        font-size: @text__sm !important;
       }
     }
   }
