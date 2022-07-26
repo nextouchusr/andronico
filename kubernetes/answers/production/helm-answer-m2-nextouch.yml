@@ -286,6 +286,8 @@ queue:
   repository: "k8s-prd/nextouch-php-cli"
   registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
   tag: *tag_magento
+  baseFolder: /var/www/deploy
+  replicaCount: 0
   resources:
     requests:
       memory: 180Mi
