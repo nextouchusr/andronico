@@ -60,12 +60,18 @@
     .installation-content-block {
       margin: @indent__l;
 
+      h1 {
+        text-align: center;
+        font-size: @text__sm;
+      }
+
       h2 {
         text-align: center;
+        font-size: @text__xs;
       }
 
       p, p > span {
-        font-size: 1.5rem !important;
+        font-size: @text__base;
       }
 
       img {
@@ -109,6 +115,10 @@
     .installation-slider-block {
       margin-top: -185px;
       border-radius: 100px;
+
+      p, p > span {
+        font-size: @text__md;
+      }
     }
 
     .installation-slider-block,
@@ -143,6 +153,14 @@
     .installation-content-block {
       .pagebuilder-column-group {
         gap: 50px;
+      }
+
+      h2 {
+        font-size: @text__lg;
+      }
+
+      p, p > span {
+        font-size: @text__sm;
       }
     }
   }
