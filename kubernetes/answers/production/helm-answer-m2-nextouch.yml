@@ -287,7 +287,7 @@ queue:
   registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
   tag: *tag_magento
   baseFolder: /var/www/deploy
-  replicaCount: 0
+  replicaCount: 1
   resources:
     requests:
       memory: 180Mi
