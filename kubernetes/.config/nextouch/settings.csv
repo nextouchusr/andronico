@@ -85,3 +85,9 @@ Magento\CoreConfigData,stores,2,web/secure/base_media_url,,,https://www.nextouch
 # Elasticsearch,,,,,,,,
 Magento\CoreConfigData,default,0,amasty_elastic/connection/server_hostname,,,elasticsearch,,https://search-m2-production-s34rkm27s4jjsgeg4suzjaddfq.eu-central-1.es.amazonaws.com
 Magento\CoreConfigData,default,0,amasty_elastic/connection/server_port,,,9200,,443
+# CRON,,,,,,,,
+Magento\CoreConfigData,default,0,system/cron/index/use_separate_process,,,0,,0
+Magento\CoreConfigData,default,0,system/cron/staging/use_separate_process,,,0,,0
+Magento\CoreConfigData,default,0,system/cron/catalog_event/use_separate_process,,,0,,0
+Magento\CoreConfigData,default,0,system/cron/consumers/use_separate_process,,,0,,0
+Magento\CoreConfigData,default,0,system/cron/amasty_base/use_separate_process,,,0,,0

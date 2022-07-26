@@ -579,5 +579,28 @@ return [
                 'is_active' => '0'
             ]
         ]
+    ],
+    'system' => [
+        'default' => [
+            'system' => [
+                'cron' => [
+                    'index' => [
+                        'use_separate_process' => 0
+                    ],
+                    'staging' => [
+                        'use_separate_process' => 0
+                    ],
+                    'catalog_event' => [
+                        'use_separate_process' => 0
+                    ],
+                    'consumers' => [
+                        'use_separate_process' => 0
+                    ],
+                    'amasty_base' => [
+                        'use_separate_process' => 0
+                    ],
+                ]
+            ]
+        ]
     ]
 ];
