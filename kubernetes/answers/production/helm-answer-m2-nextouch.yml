@@ -43,7 +43,7 @@ nginxws:
     - SCRIPT_FILENAME  $document_root$fastcgi_script_name
   hpa:
     enabled: true
-    minReplicas: 4
+    minReplicas: 3
     maxReplicas: 10
     metrics:
       - name: cpu
@@ -88,8 +88,8 @@ phpfpm:
     enabled: true
   hpa:
     enabled: true
-    minReplicas: 8
-    maxReplicas: 40
+    minReplicas: 4
+    maxReplicas: 20
     metrics:
       - name: cpu
         type: Resource
@@ -110,13 +110,13 @@ logs:
   enabled: true
   image: "452103867664.dkr.ecr.eu-central-1.amazonaws.com/prd/utils:logs-0.1.0"
   containerMountPaths:
-    - /htdocs/var/log
+    - /var/log
   containerFilesToTail:
-    - /htdocs/var/log/system.log
-    - /htdocs/var/log/exception.log
-    - /htdocs/var/log/debug.log
-    - /htdocs/var/log/cron.log
-    - /htdocs/var/log/support_report.log
+    - /var/log/system.log
+    - /var/log/exception.log
+    - /var/log/debug.log
+    - /var/log/cron.log
+    - /var/log/support_report.log
 customVolumePermissionsImage:
   enabled: true
   registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
@@ -222,21 +222,21 @@ efs:
   storage: 20Gi
   existingPvcName: "efs-nextouch-production"
   containerMountPaths:
-    - "/htdocs/pub/media"
-    - "/htdocs/pub/static/_cache"
-    - "/htdocs/pub/sitemaps"
-    - "/htdocs/var/backups"
-    - "/htdocs/var/composer_home"
-    - "/htdocs/var/importexport"
-    - "/htdocs/var/import_history"
-    - "/htdocs/var/session"
-    - "/htdocs/var/tmp"
-    - "/htdocs/var/export"
-    - "/htdocs/var/import"
-    - "/htdocs/var/cron"
-    - "/htdocs/var/report"
-    - "/htdocs/var/amasty"
-    - "/htdocs/var/cronchecker"
+    - "/pub/media"
+    - "/pub/static/_cache"
+    - "/pub/sitemaps"
+    - "/var/backups"
+    - "/var/composer_home"
+    - "/var/importexport"
+    - "/var/import_history"
+    - "/var/session"
+    - "/var/tmp"
+    - "/var/export"
+    - "/var/import"
+    - "/var/cron"
+    - "/var/report"
+    - "/var/amasty"
+    - "/var/cronchecker"
 loadBalancer:
   annotations:
     'alb.ingress.kubernetes.io/certificate-arn': "arn:aws:acm:eu-central-1:452103867664:certificate/6285cd4f-e27f-4239-8b1a-9135af07d3be,arn:aws:acm:eu-central-1:452103867664:certificate/45b6661e-8c4d-4807-a8e4-65bd863c0ff2"
@@ -298,13 +298,13 @@ queue:
       cpu: 500m
   consumers:
     - name: product-action-attribute-update
-      command: "php htdocs/bin/magento queue:consumers:start product_action_attribute.update --single-thread --max-messages=10000"
+      command: "php bin/magento queue:consumers:start product_action_attribute.update --single-thread --max-messages=10000"
     - name: product-action-attribute-website-update
-      command: "php htdocs/bin/magento queue:consumers:start product_action_attribute.website.update --single-thread --max-messages=10000"
+      command: "php bin/magento queue:consumers:start product_action_attribute.website.update --single-thread --max-messages=10000"
     - name: export-processor
-      command: "php htdocs/bin/magento queue:consumers:start exportProcessor --single-thread --max-messages=10000"
+      command: "php bin/magento queue:consumers:start exportProcessor --single-thread --max-messages=10000"
     - name: codegenerator-processor
-      command: "php htdocs/bin/magento queue:consumers:start codegeneratorProcessor --single-thread --max-messages=10000"
+      command: "php bin/magento queue:consumers:start codegeneratorProcessor --single-thread --max-messages=10000"
 ####################################
 ############# CRON #################
 ####################################
@@ -315,7 +315,7 @@ jobs:
     repository: "k8s-prd/nextouch-php-cli"
     tag: *tag_magento
     pullPolicy: IfNotPresent
-    command: "sleep 10 && php -d memory_limit=-1 /var/www/deploy/htdocs/bin/magento cron:run --group=default"
+    command: "sleep 10 && php -d memory_limit=-1 /var/www/deploy/bin/magento cron:run --group=default"
     schedule: "*/1 * * * *"
     failedJobsHistoryLimit: 1
     successfulJobsHistoryLimit: 0
@@ -345,7 +345,7 @@ jobs:
     repository: "k8s-prd/nextouch-php-cli"
     tag: *tag_magento
     pullPolicy: IfNotPresent
-    command: "sleep 10 && php -d memory_limit=2G /var/www/deploy/htdocs/bin/magento cron:run --group=index"
+    command: "sleep 10 && php -d memory_limit=2G /var/www/deploy/bin/magento cron:run --group=index"
     schedule: "* * * * *"
     failedJobsHistoryLimit: 1
     successfulJobsHistoryLimit: 0
@@ -365,7 +365,7 @@ jobs:
     repository: "k8s-prd/nextouch-php-cli"
     tag: *tag_magento
     pullPolicy: IfNotPresent
-    command: "sleep 10 && php -d memory_limit=2G /var/www/deploy/htdocs/bin/magento cron:run --group=amasty_base"
+    command: "sleep 10 && php -d memory_limit=2G /var/www/deploy/bin/magento cron:run --group=amasty_base"
     schedule: "*/10 * * * *"
     failedJobsHistoryLimit: 1
     successfulJobsHistoryLimit: 0
