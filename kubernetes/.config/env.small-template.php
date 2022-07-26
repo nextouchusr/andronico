@@ -13,11 +13,11 @@ return [
                     'minify_files' => 0,
                 ],
                 'css' => [
-                    'merge_css_files' => 0,
-                    'minify_files' => 0,
+                    'merge_css_files' => 1,
+                    'minify_files' => 1,
                 ],
                 'template' => [
-                    'minify_html' => 0,
+                    'minify_html' => 1,
                 ],
             ],
         ]

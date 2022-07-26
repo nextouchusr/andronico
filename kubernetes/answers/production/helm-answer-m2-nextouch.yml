@@ -321,21 +321,11 @@ jobs:
     startingDeadlineSeconds: 60
     resources:
       requests:
-        memory: 8000Mi
-        cpu: 1000m
+        memory: 2000Mi
+        cpu: 500m
       limits:
-        memory: 8000Mi
-        cpu: 2000m
-    affinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: node.kubernetes.io/instance-type
-                  operator: In
-                  values:
-                    - m5.xlarge
-                    - m5a.xlarge
+        memory: 2000Mi
+        cpu: 1000m
   - name: index
     enabled: true
     registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
