@@ -60,12 +60,18 @@
     .raee-returns-slider {
       padding: @indent__l;
 
+      h1 {
+        text-align: center;
+        font-size: @text__sm;
+      }
+
       h2 {
         text-align: center;
+        font-size: @text__xs;
       }
 
       p, p > span {
-        font-size: 1.5rem !important;
+        font-size: @text__base;
       }
 
       img {
@@ -142,6 +148,17 @@
       img {
         min-height: 160px;
         border-radius: 50px;
+      }
+    }
+
+    .second-hand-returns,
+    .raee-returns-slider {
+      h2 {
+        font-size: @text__md;
+      }
+
+      p, p > span {
+        font-size: @text__md;
       }
     }
   }
