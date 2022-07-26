@@ -67,13 +67,18 @@
     .assistance-service-contact-form {
       padding: @indent__l;
 
-      h1, h2 {
+      h1 {
         text-align: center;
-        font-size: 2rem;
+        font-size: @text__xs !important;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: @text__base !important;
       }
 
       p, p > span {
-        font-size: 1.5rem !important;
+        font-size: @text__base !important;
       }
     }
 
@@ -81,7 +86,7 @@
       .pagebuilder-button-primary {
         width: 100vw;
         padding: @indent__base;
-        font-size: 3rem;
+        font-size: @text__base;
         font-weight: @font-weight__bold;
         background: @color-gray92;
         color: @primary__color;
@@ -124,11 +129,30 @@
       .pagebuilder-button-primary {
         width: 25vw;
         padding: @indent__l;
-        font-size: 3rem;
+        font-size: @text__xl;
         font-weight: @font-weight__bold;
         background: @color-gray92;
         color: @primary__color;
         box-shadow: @theme__box-shadow__primary;
+      }
+    }
+
+    .select-and-choose,
+    .assistance-service,
+    .assistance-service-contact,
+    .assistance-service-contact-form {
+      h1 {
+        text-align: center;
+        font-size: @text__xl !important;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: @text__lg !important;
+      }
+
+      p, p > span {
+        font-size: @text__sm !important;
       }
     }
   }
