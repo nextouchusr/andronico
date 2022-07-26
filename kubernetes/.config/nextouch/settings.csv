@@ -82,3 +82,6 @@ Magento\CoreConfigData,stores,1,web/unsecure/base_media_url,,,https://www.nextou
 Magento\CoreConfigData,stores,1,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
 Magento\CoreConfigData,stores,2,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
 Magento\CoreConfigData,stores,2,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
+# Elasticsearch,,,,,,,,
+Magento\CoreConfigData,default,0,amasty_elastic/connection/server_hostname,,,elasticsearch,,https://search-m2-production-s34rkm27s4jjsgeg4suzjaddfq.eu-central-1.es.amazonaws.com
+Magento\CoreConfigData,default,0,amasty_elastic/connection/server_port,,,9200,,443

@@ -104,7 +104,8 @@ return [
         'target_rule' => 1,
         'translate' => 1,
         'vertex' => 1,
-        'google_product' => 1
+        'google_product' => 1,
+        'amasty_shopby' => 1
     ],
     'http_cache_hosts' => [
         [
