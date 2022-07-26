@@ -29,7 +29,7 @@
     .select-our-services {
       .small-box {
         box-shadow: @theme__box-shadow__primary;
-        padding: @indent__l;
+        padding: 0;
         margin: @indent__base;
         border-radius: 10px;
         position: relative;
@@ -37,6 +37,12 @@
         h2 {
           font-weight: 200;
         }
+      }
+    }
+
+    .select-our-services {
+      h2 {
+        font-weight: @font-weight__semibold;
       }
     }
 
@@ -65,7 +71,7 @@
     .assistance-service-contact {
       .pagebuilder-button-primary {
         width: 100vw;
-        padding: @indent__base;
+        padding: @indent__s;
         font-size: @text__xs;
         font-weight: @font-weight__bold;
         background: @color-gray92;
