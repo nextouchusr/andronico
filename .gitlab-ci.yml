@@ -28,4 +28,4 @@ upload to s3:
     name: production
     url: https://prelive.nextouch.it
   script:
-    - aws --region $REGION s3 sync --delete . s3://$BUCKET_NAME
+    - aws --region $REGION s3 sync --exclude '.git' --delete . s3://$BUCKET_NAME/release
