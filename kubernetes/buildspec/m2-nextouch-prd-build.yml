@@ -7,7 +7,7 @@ phases:
     build:
         commands:
             - echo Build started on `date`
-            - ./kubernetes/build/build-images.sh nextouch $CODEBUILD_RESOLVED_SOURCE_VERSION production $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+            - bash kubernetes/build/build-images.sh nextouch $CODEBUILD_RESOLVED_SOURCE_VERSION production $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
             - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd/nextouch-code:nextouch-$CODEBUILD_RESOLVED_SOURCE_VERSION
             - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd/nextouch-nginxws:nextouch-$CODEBUILD_RESOLVED_SOURCE_VERSION
             - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/k8s-prd/nextouch-php-fpm:nextouch-$CODEBUILD_RESOLVED_SOURCE_VERSION
