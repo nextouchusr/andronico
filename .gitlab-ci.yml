@@ -1,5 +1,6 @@
 stages:
   - deploy
+  - prelive
 
 deploy-staging:
   stage: deploy
@@ -20,12 +21,11 @@ deploy-staging:
       when: manual
 
 upload to s3:
+  stage: prelive
   image:
-    name: banst/awscli
-    entrypoint:
+    name: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
   environment:
     name: production
     url: https://prelive.nextouch.it
   script:
-    - aws configure set region eu-central-1
-    - aws s3 cp -R ./ s3://nextouch-magento/
+    - aws --region $REGION s3 sync --delete . s3://$BUCKET_NAME
