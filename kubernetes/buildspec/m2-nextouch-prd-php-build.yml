@@ -7,7 +7,7 @@ phases:
     build:
         commands:
             - echo Build started on `date`
-            - ./kubernetes/build/base/build-image-php.sh $CODEBUILD_RESOLVED_SOURCE_VERSION production $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/utils
+            - bash kubernetes/build/base/build-image-php.sh $CODEBUILD_RESOLVED_SOURCE_VERSION production $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/utils
             - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php:$CODEBUILD_RESOLVED_SOURCE_VERSION
             - docker tag $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php:$CODEBUILD_RESOLVED_SOURCE_VERSION $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php:latest
             - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/prd/base-php:latest
