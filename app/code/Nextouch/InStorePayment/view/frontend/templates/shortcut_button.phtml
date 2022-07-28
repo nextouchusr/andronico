@@ -1,0 +1,39 @@
+<?php /** @var \Magento\Backend\Block\Template $block */ ?>
+
+<button
+        type="button"
+        id="pick-instore-btn"
+        class="button button-pick-instore action pick-instore checkout primary">
+    <span><?= __('Pick and pay') ?></span>
+</button>
+
+<script>
+    require([
+        'jquery',
+        'jquery/jquery.cookie',
+        'mage/url',
+        'Magento_Customer/js/customer-data',
+        'Magento_Checkout/js/checkout-data',
+    ], function ($, _, url, customerData, checkoutData) {
+        $('#pick-instore-btn').click(addToCartAndPick);
+
+        function addToCartAndPick() {
+            $.post(url.build('checkout/cart/clear')).done(function (isSuccess) {
+                if (!isSuccess) {
+                    return;
+                }
+
+                $('#product_addtocart_form').trigger('submit');
+
+                setTimeout(function () {
+                    if (customerData.get('customer')) {
+                        checkoutData.setSelectedShippingRate('instore_pickup');
+                        $.cookie('default_payment_method', 'instore_payment');
+                    }
+
+                    location.href = "<?= $block->getUrl('checkout') ?>";
+                }, 1000);
+            });
+        }
+    });
+</script>

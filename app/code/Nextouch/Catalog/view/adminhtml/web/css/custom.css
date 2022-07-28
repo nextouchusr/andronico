@@ -1,4 +1,5 @@
 /* Forms */
-input[name*="wins_"] + .admin__addon-prefix span {
+input[name*="wins_"] + .admin__addon-prefix span,
+input[name*="c_"] + .admin__addon-prefix span {
     display: none;
 }

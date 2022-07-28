@@ -17,6 +17,42 @@
             <tab>nextouch</tab>
             <resource>Nextouch_Sidea::config_sidea</resource>
 
+            <group id="contact"
+                   translate="label"
+                   type="text"
+                   sortOrder="1"
+                   showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Contact Us</label>
+
+                <field id="action_url"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Action URL</label>
+                    <comment>Action URL for Sidea Contact Us Form</comment>
+                    <validate>required-entry validate-url</validate>
+                </field>
+
+                <field id="origin_id"
+                       translate="label comment"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>Origin ID</label>
+                    <comment>Origin ID Used for Contact Us Form</comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+
             <group id="authentication"
                    translate="label"
                    type="text"

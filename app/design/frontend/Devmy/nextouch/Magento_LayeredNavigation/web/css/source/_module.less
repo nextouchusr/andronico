@@ -109,7 +109,7 @@
             }
             .item {
                 margin-bottom: 10px;
-                font-size: 2rem;
+                font-size: @text__sm;
                 &:before {
                     content: "";
                     float: left;
@@ -194,6 +194,13 @@
 
     .modalfilter.modal-popup {
         > .modal-inner-wrap {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
             .modal-header {
                 .action-close {
                     top: 20px;
@@ -204,6 +211,19 @@
                         font-size: 4rem;
                         color: @theme__color__primary_gray;
                     }
+                }
+            }
+
+            .modal-content {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                p, span {
+                    font-size: 1.2rem;
                 }
             }
         }

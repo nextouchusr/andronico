@@ -28,11 +28,16 @@
     </type>
 
     <type name="Magento\Catalog\CustomerData\CompareProducts">
-        <plugin name="addImageToCompareProducts" type="Nextouch\Catalog\Plugin\AddImageToCompareProductsPlugin" />
+        <plugin name="addImageToCompareProducts" type="Nextouch\Catalog\Plugin\AddImageToCompareProductsPlugin"/>
     </type>
 
     <type name="Magento\Catalog\Controller\Product\Compare\Add">
         <plugin name="limit_products_to_compare"
                 type="Nextouch\Catalog\Plugin\Controller\Product\Compare\LimitProductsToCompare"/>
+    </type>
+
+    <type name="Magento\Catalog\Helper\Product\Configuration">
+        <plugin name="add_product_sku_to_options"
+                type="Nextouch\Catalog\Plugin\Helper\Product\AddProductSkuToOptions"/>
     </type>
 </config>

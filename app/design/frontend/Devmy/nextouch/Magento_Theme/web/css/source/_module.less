@@ -63,6 +63,11 @@
         }
     }
 
+    .rounded,
+    .pagebuilder-banner-wrapper {
+        border-radius: 50px !important;
+    }
+
     .page-wrapper {
         .lib-vendor-prefix-display(flex);
         .lib-vendor-prefix-flex-direction(column);
@@ -233,6 +238,32 @@
         position: relative;
     }
 
+    .primary.checkout {
+        &.button-paypal,
+        &.button-paypal:hover,
+        &.button-paypal:focus {
+            background: @color-paypal;
+            color: @theme__color__primary;
+            padding: 10px 30px;
+            line-height: 1.3rem;
+            font-size: 1.4rem;
+            min-width: 180px;
+            margin-bottom: 20px;
+        }
+
+        &.button-pick-instore,
+        &.button-pick-instore:hover,
+        &.button-pick-instore:focus {
+            background: @theme__color__primary;
+            color: @theme__color__primary_contr;
+            padding: 10px 30px;
+            line-height: 1.3rem;
+            font-size: 1.4rem;
+            min-width: 180px;
+            margin-bottom: 20px;
+        }
+    }
+
     //
     //  Global notice
     //  ---------------------------------------------
@@ -401,6 +432,11 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
+    .rounded,
+    .pagebuilder-banner-wrapper {
+        border-radius: 10px !important;
+    }
+
     .page-header .header.content  {
         flex-flow: row wrap;
         justify-content: flex-start;
@@ -522,11 +558,27 @@
         }
     }
 
+    .primary.checkout {
+        &.button-paypal,
+        &.button-paypal:hover,
+        &.button-paypal:focus,
+        &.button-pick-instore,
+        &.button-pick-instore:hover,
+        &.button-pick-instore:focus {
+            padding: 20px 30px;
+            line-height: 2.2rem;
+            font-size: 2rem;
+            min-width: 250px;
+        }
+    }
+
     .overlay-megamenu {
         z-index: 50;
     }
 
     .overmenu {
+        height: 100%;
+        overflow-y: hidden;
         .overlay-megamenu {
             display: block!important;
         }

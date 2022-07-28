@@ -7,6 +7,9 @@ use Magento\Framework\App\Helper\AbstractHelper;
 
 class SideaConfig extends AbstractHelper
 {
+    private const XML_PATH_CONTACT_ACTION_URL = 'sidea/contact/action_url';
+    private const XML_PATH_CONTACT_ORIGIN_ID = 'sidea/contact/origin_id';
+
     private const XML_PATH_AUTHENTICATION_BASE_URL = 'sidea/authentication/base_url';
     private const XML_PATH_AUTHENTICATION_GRANT_TYPE = 'sidea/authentication/grant_type';
     private const XML_PATH_AUTHENTICATION_CLIENT_ID = 'sidea/authentication/client_id';
@@ -15,6 +18,16 @@ class SideaConfig extends AbstractHelper
 
     private const XML_PATH_EVENTS_BASE_URL = 'sidea/events/base_url';
     private const XML_PATH_EVENTS_ABANDONED_CART_EVENT_KEY = 'sidea/events/abandoned_cart_event_key';
+
+    public function getContactActionUrl(): string
+    {
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_CONTACT_ACTION_URL);
+    }
+
+    public function getContactOriginId(): string
+    {
+        return (string) $this->scopeConfig->getValue(self::XML_PATH_CONTACT_ORIGIN_ID);
+    }
 
     public function getAuthBaseUrl(): string
     {

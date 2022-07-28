@@ -42,4 +42,9 @@
         <plugin name="add_grand_total_data"
                 type="Nextouch\Theme\Plugin\CustomerData\Checkout\AddGrandTotalData"/>
     </type>
+
+    <type name="Nextouch\Theme\Block\Catalog\Product\View\Attributes">
+        <plugin name="append_attribute_units_label"
+                type="Nextouch\Theme\Plugin\Block\Catalog\Product\View\AppendAttributeUnitsLabel"/>
+    </type>
 </config>

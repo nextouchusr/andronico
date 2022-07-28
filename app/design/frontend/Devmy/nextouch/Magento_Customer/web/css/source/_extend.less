@@ -19,6 +19,21 @@
             .modal-inner-wrap {
                 border-radius: 100px;
                 background: #fff;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .modal-content {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
             }
         }
         &.popup-authentication {
@@ -28,7 +43,7 @@
             .block-title {
                 font-weight: 700;
                 text-align: center;
-                font-size: 3.6rem;
+                font-size: @text__xl;
                 strong {
                     font-weight: 700;
                 }
@@ -67,7 +82,7 @@
                     }
                 }
                 .register-link {
-                    font-size: 2rem;
+                    font-size: @text__md;
                     padding: 10px 0;
                     display: inline-block;
                 }
@@ -92,7 +107,6 @@
                 margin: 50px 0 0 0;
                 font-size: 1.8rem;
                 text-align: center;
-                text-decoration: underline;
             }
         }
     }
@@ -171,7 +185,7 @@
             .block {
                 box-shadow: @theme__box-shadow__primary;
                 padding: 15px;
-                border-radius: 20px;
+                border-radius: 10px;
                 .block-title {
                     font-weight: 200;
                     text-align: center;
@@ -226,7 +240,6 @@
                     background: none;
                     padding: 0;
                     min-width: inherit;
-                    text-decoration: underline;
                     margin: 15px;
                 }
             }
@@ -291,7 +304,6 @@
             .sub-col.actions {
                 margin-top: @indent__s;
                 font-weight: @font-weight__bold;
-                text-decoration: underline;
             }
         }
     }
@@ -343,8 +355,8 @@
     .modal-popup {
         &._inner-scroll {
             .modal-inner-wrap {
-                background: #fff!important;
-                border-radius: 5px!important;
+                background: #fff !important;
+                border-radius: 10px !important;
             }
         }
     }
@@ -446,7 +458,7 @@
                 .box-content {
                     min-height: 50px;
                     padding: 25px;
-                    border-radius: 30px;
+                    border-radius: 50px;
                     font-size: 1.6rem;
                 }
                 .action {
