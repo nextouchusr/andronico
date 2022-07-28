@@ -432,12 +432,12 @@
             }
 
             .actions {
-                text-align: center;
+                text-align: left;
             }
 
             .action.tocart {
                 &:extend(.abs-button-l all);
-                margin-bottom: 50px;
+                margin-bottom: 25px;
                 color: @theme__color__primary;
                 padding: 20px 30px;
             }
@@ -627,6 +627,9 @@
             background: url('@{baseDir}images/texture.jpg') no-repeat center 1800px;
             background-size: 120%;
         }
+        .block.crosssell:not(.crosssell-modal) {
+            margin-bottom: -30px;
+        }
     }
 }
 
@@ -643,6 +646,9 @@
 
         .product.media {
             .lib-vendor-prefix-order(-1);
+        }
+        .page-main {
+            background: none!important;
         }
     }
 
@@ -664,6 +670,12 @@
                             font-size: 1rem;
                         }
                     }
+                    .price-final_price {
+                        .price {
+                            font-weight: 700;
+                            color: @secondary__color;
+                        }
+                    }
                     .price-container {
                         .lib-font-size(12);
                     }
@@ -671,9 +683,6 @@
                         .lib-font-size(12);
                         color: @theme__color__secondary;
                     }
-                }
-                .box-tocart .actions, .product-options-bottom .box-tocart .actions {
-                    margin-left: -25%;
                 }
             }
 
@@ -799,10 +808,14 @@
     }
 
     .product-info-main .box-tocart {
+        #instant-purchase {
+            display: inline-block;
+        }
         .actions {
             .action.tocart {
                 &:extend(.abs-button-responsive-smaller all);
                 margin-bottom: 20px;
+                margin-right: 20px;
             }
         }
     }
@@ -834,6 +847,23 @@
         }
         .overview {
             font-size: @text__sm;
+        }
+        .block.crosssell {
+            .block-title strong {
+                font-size: 4.5rem;
+            }
+            .products-grid {
+                .product-item-actions .actions-primary .action.primary {
+                    padding: 8px 25px;
+                    bottom: 0px;
+                }
+                .product-item-info {
+                    padding: 0;
+                }
+                .price-box .price {
+                    font-size: 2.3rem;
+                }
+            }
         }
         .block.crosssell {
             .block-title strong {
@@ -966,12 +996,21 @@
             .field.qty {
                 display: table-cell;
             }
+            #paypal-express-btn {
+                margin-bottom: 25px;
+            }
 
             .actions {
-                display: table-cell;
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-start;
                 padding-top: @indent__m;
-                text-align: center;
+                text-align: left;
                 vertical-align: bottom;
+                > button {
+                    margin-right: 20px;
+                    height: 62px;
+                }
             }
         }
     }
