@@ -9,9 +9,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Nextouch\Catalog\Api\Data\ProductInterface;
 use Nextouch\Catalog\Api\ProductRepositoryInterface;
 use Nextouch\Quote\Api\Data\CartItemInterface;
-use function Lambdish\Phunctional\search;
 use function Lambdish\Phunctional\some;
-use function Symfony\Component\String\u;
 
 class Item extends \Magento\Quote\Model\Quote\Item implements CartItemInterface
 {
@@ -34,15 +32,9 @@ class Item extends \Magento\Quote\Model\Quote\Item implements CartItemInterface
         $options = $helper->getCustomOptions($this);
 
         return some(function (array $option) use ($code) {
-            $values = explode(self::OPTION_SEPARATOR, $option['value']);
+            $services = explode(self::OPTION_SEPARATOR, $option['sku']);
 
-            $service = search(function (string $value) use ($code) {
-                $formattedValue = u($value)->snake()->lower()->toString();
-
-                return $formattedValue === $code;
-            }, $values);
-
-            return $service !== null;
+            return in_array($code, $services);
         }, $options);
     }
 }

@@ -59,6 +59,14 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                 }
             });
 
+            $('.page-header').on('click', function () {
+                if($('.openclick').length) {
+                    $(megamenu).find('li.level0').removeClass('openclick');
+                    $('body').removeClass('overmenu');
+                    $('html').css('overflow-y', 'auto').css('height', 'auto');
+                }
+            });
+
             $(megamenu).on('click', '.openChild', function() {
                 $(this).parent().toggleClass('open').parent().toggleClass('childOpened');
                 if($(this).parent().hasClass('level0')) {
@@ -74,11 +82,13 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                     if($(this).parent().hasClass('openclick')) {
                         $(this).parent().removeClass('openclick');
                         $('body').removeClass('overmenu');
+                        $('html').css('overflow-y', 'auto').css('height', 'auto');
                     }
                     else {
                         $(megamenu).find('li.level0').removeClass('openclick');
                         $(this).parent().addClass('openclick');
                         $('body').addClass('overmenu');
+                        $('html').css('overflow-y', 'hidden').css('height', '100%');
                     }
                 }
             });
@@ -102,6 +112,14 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                 $('body').toggleClass('openMenu');
             });
 
+            $('.showcart').on('click', function() {
+                console.log('lorg');
+                if(window.matchMedia('(max-width: 767px)').matches) {
+                    $(megamenu).closest('.nav-sections').removeClass('show');
+                    $('body').removeClass('openMenu');
+                }
+            });
+
 
             document.addEventListener('resize', function(e) {
                 $('.page-header').height('auto');
@@ -112,7 +130,8 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
             });
 
             $('.page-header').height($('.page-header').outerHeight());
-            document.addEventListener('scroll, resize', function(e) {
+
+            setStickyAndOver = function() {
                 mediaCheck({
                     media: '(min-width: 768px)',
                     entry: $.proxy(function () {
@@ -135,7 +154,12 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 
                     }, this)
                 });
-
+            }
+            document.addEventListener('resize', function(e) {
+                setStickyAndOver();
+            });
+            document.addEventListener('scroll', function(e) {
+                setStickyAndOver();
             });
         });
     });

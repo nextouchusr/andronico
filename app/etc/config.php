@@ -481,6 +481,8 @@ return [
         'Magefan_Community' => 1,
         'Magefan_WysiwygAdvanced' => 1,
         'Magenio_TinySlider' => 1,
+        'Mageplaza_Core' => 1,
+        'Mageplaza_DeleteOrders' => 1,
         'Nextouch_Eav' => 1,
         'Nextouch_Customer' => 1,
         'Nextouch_Catalog' => 1,

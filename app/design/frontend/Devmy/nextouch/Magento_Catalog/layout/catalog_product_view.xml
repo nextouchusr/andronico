@@ -122,5 +122,7 @@
         <move element="product.info.social" destination="product.info.media" after="product.info.addto"/>
         <move element="product.info.price" destination="product.info" />
         <move element="product.info.upsell" destination="page.wrapper" after="main.content" />
+
+        <move element="catalog.product.crosssell" destination="page.wrapper" after="main.content" />
     </body>
 </page>

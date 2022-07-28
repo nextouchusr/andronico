@@ -35,3 +35,9 @@
         </div>
     </div>
 <?php endif; ?>
+
+<script>
+    require(['jquery', 'jquery/jquery.cookie'], function ($) {
+        $.cookie('default_payment_method', null, {path: '/'});
+    });
+</script>

@@ -14,6 +14,7 @@
                ko-value="method.carrier_code + '_' + method.method_code"
                attr="'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code,
                     'checked': element.rates().length == 1 || element.isSelected" />
+        <label></label>
     </td>
     <!-- ko ifnot: (method.error_message) -->
     <td class="col col-price">
