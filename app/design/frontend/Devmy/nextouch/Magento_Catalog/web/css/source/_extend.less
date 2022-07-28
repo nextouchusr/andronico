@@ -655,7 +655,7 @@
                 }
                 .more-less-content {
                     .more-less-wrapper {
-                        max-height: 395px;
+                        max-height: 475px;
                         overflow: hidden;
                     }
                     &.active {
@@ -803,6 +803,7 @@
             > div {
                 &.image {
                     width: 10%;
+                    max-width: 80px;
                 }
                 &.product-buttons {
                     width: 30%;
@@ -860,7 +861,7 @@
         > .container {
             > div {
                 &.product-title {
-                    font-size: 2.5rem;
+                    font-size: @text__md;
                 }
                 &.product-buttons {
                     .action.primary {
@@ -868,6 +869,15 @@
                         padding: 30px 50px;
                     }
                 }
+            }
+        }
+    }
+    .product-details-boxes {
+        > div.product-description,
+        > div.product-ecochoice.product-ecochoice,
+        > div.product-easeofuse {
+            .more-less-content {
+                font-size: @text__sm;
             }
         }
     }
