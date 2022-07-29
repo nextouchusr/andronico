@@ -64,7 +64,7 @@ SOURCE_DIR=`dirname "${SOURCE_DIR}"`
 SOURCE_DIR=`dirname "${SOURCE_DIR}"`
 
 # MAGENTO
-docker build --build-arg BASE_IMAGE="${BASE_PHP_REGISTRY}:latest" --build-arg STAGE=$STAGE --build-arg BRAND=$BRAND -t "${CODE_REGISTRY}/${CODE_REPO}-code:${CODE_TAG}" -f kubernetes/.infra/docker/Dockerfile $SOURCE_DIR
+docker build --build-arg BASE_IMAGE="${BASE_PHP_REGISTRY}:latest" --build-arg STAGE=$STAGE --build-arg BRAND=$BRAND -t "${CODE_TAG}" -f kubernetes/.infra/docker/Dockerfile $SOURCE_DIR
 if [ ! $? -eq 0 ]; then
     echo "Unable to complete the magento code build :("
     exit 1
