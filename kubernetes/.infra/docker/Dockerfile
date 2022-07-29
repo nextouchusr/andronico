@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=452103867664.dkr.ecr.eu-central-1.amazonaws.com/stg/base-php:latest
+ARG BASE_IMAGE=452103867664.dkr.ecr.eu-central-1.amazonaws.com/prd/base-php:latest
 
 FROM ${BASE_IMAGE}
 
