@@ -8,8 +8,6 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class Store implements OutputInterface
 {
-    public const WEB = 1306;
-
     private int $storeId;
     private int $chainId;
     private int $headquarterId;

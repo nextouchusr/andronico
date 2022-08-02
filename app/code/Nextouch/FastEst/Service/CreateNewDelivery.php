@@ -14,16 +14,13 @@ class CreateNewDelivery
 {
     private OrderRepositoryInterface $orderRepository;
     private DeliveryRepositoryInterface $deliveryRepository;
-    private SendTrackingLink $sendTrackingLinkService;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
-        DeliveryRepositoryInterface $deliveryRepository,
-        SendTrackingLink $sendTrackingLinkService
+        DeliveryRepositoryInterface $deliveryRepository
     ) {
         $this->orderRepository = $orderRepository;
         $this->deliveryRepository = $deliveryRepository;
-        $this->sendTrackingLinkService = $sendTrackingLinkService;
     }
 
     /**
@@ -44,8 +41,6 @@ class CreateNewDelivery
         if ($statusReturn->isOk()) {
             $fastEstOrder->resetShippingSyncFailures();
             $fastEstOrder->setIsParked(!$fastEstOrder->isPaid());
-
-            $this->sendTrackingLinkService->execute($fastEstOrder);
         } else {
             $fastEstOrder->increaseShippingSyncFailures();
         }

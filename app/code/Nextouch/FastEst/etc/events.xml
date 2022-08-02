@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="create_wins_order_success">
+        <observer name="send_fast_est_tracking_link"
+                  instance="Nextouch\FastEst\Observer\SendFastEstTrackingLink"/>
+    </event>
+</config>

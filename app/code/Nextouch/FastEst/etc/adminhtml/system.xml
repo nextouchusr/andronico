@@ -106,6 +106,18 @@
                     <validate>required-entry validate-number</validate>
                 </field>
 
+                <field id="store_id"
+                       translate="label"
+                       type="text"
+                       sortOrder="1"
+                       showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="0"
+                       canRestore="1">
+                    <label>ID Store</label>
+                    <validate>required-entry validate-number</validate>
+                </field>
+
                 <field id="sallowspecific"
                        translate="label"
                        type="select"

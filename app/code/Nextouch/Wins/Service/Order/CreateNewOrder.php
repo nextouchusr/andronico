@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Nextouch\Wins\Service\Order;
 
+use Magento\Framework\Event\ManagerInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order;
 use Nextouch\Sales\Api\Data\OrderInterface;
@@ -20,6 +21,7 @@ class CreateNewOrder
     private AuthManagementInterface $authManagement;
     private WinsOrderRepositoryInterface $winsOrderRepository;
     private CustomOptionsProcessor $customOptionsProcessor;
+    private ManagerInterface $eventManager;
     private WinsConfig $config;
 
     public function __construct(
@@ -27,12 +29,14 @@ class CreateNewOrder
         AuthManagementInterface $authManagement,
         WinsOrderRepositoryInterface $winsOrderRepository,
         CustomOptionsProcessor $customOptionsProcessor,
+        ManagerInterface $eventManager,
         WinsConfig $config
     ) {
         $this->orderRepository = $orderRepository;
         $this->authManagement = $authManagement;
         $this->winsOrderRepository = $winsOrderRepository;
         $this->customOptionsProcessor = $customOptionsProcessor;
+        $this->eventManager = $eventManager;
         $this->config = $config;
     }
 
@@ -42,6 +46,7 @@ class CreateNewOrder
 
         if ($isSuccess) {
             $order->setData(OrderInterface::ORDER_SYNC_FAILURES, 0);
+            $this->eventManager->dispatch('create_wins_order_success', ['order' => $order]);
         } else {
             $failures = (int) $order->getData(OrderInterface::ORDER_SYNC_FAILURES);
             $order->setData(OrderInterface::ORDER_SYNC_FAILURES, ++$failures);
