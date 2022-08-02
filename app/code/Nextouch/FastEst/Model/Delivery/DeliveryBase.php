@@ -3,9 +3,10 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Model\Delivery;
 
+use Magento\Framework\App\ObjectManager;
 use Nextouch\FastEst\Api\Data\InputInterface;
+use Nextouch\FastEst\Helper\FastEstConfig;
 use Nextouch\FastEst\Model\Directory\Hour;
-use Nextouch\FastEst\Model\Directory\Store;
 use Nextouch\Sales\Api\Data\OrderInterface;
 
 class DeliveryBase implements InputInterface
@@ -82,10 +83,11 @@ class DeliveryBase implements InputInterface
     public static function fromDomain(OrderInterface $order): self
     {
         $deliveryTime = preg_replace('/\s+/', '', $order->getDeliveryTime());
+        $fastEstConfig = ObjectManager::getInstance()->get(FastEstConfig::class);
 
         return new self(
             Hour::ANY,
-            Store::WEB,
+            $fastEstConfig->getStoreId(),
             $order->getIncrementId(),
             0,
             $order->getDeliveryComment(),
