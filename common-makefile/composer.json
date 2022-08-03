@@ -1,0 +1,17 @@
+{
+  "name": "hevelop/common-makefile",
+  "description": "Common makefile for projects",
+  "type": "library",
+  "license": [
+    "AGPL-3"
+  ],
+  "require": {
+
+  },
+  "require-dev": {
+
+  },
+  "autoload": {
+
+  }
+}
