@@ -1,0 +1,93 @@
+Handler,Param1,Param2,Param3,GROUPS,DEFAULT,devbox,staging,production
+,,,,,,,,
+#### Database parameters first (as Magento\CoreConfigData relies on this):,,,,,,,,
+MarkerReplace,app/etc/env.php,##b_frontName##,,db,admin,,,adm_nextouch
+MarkerReplace,app/etc/env.php,##date##,,db,"Tue, 04 Jun 2019 10:06:13 +0000",,,
+MarkerReplace,app/etc/env.php,##key##,,db,d113b854d4ff35154c058196e0fe0777,,,
+,,,,,,,,
+#DB default connection,,,,,,,,
+MarkerReplace,app/etc/env.php,##host##,,db,,mysqlhost,,magento-production-main.cluster-cnyembiimmzk.eu-central-1.rds.amazonaws.com
+MarkerReplace,app/etc/env.php,##dbname##,,db,nextouch_mage,,stage,main
+MarkerReplace,app/etc/env.php,##username##,,db,,root,m2stg,m2prd
+MarkerReplace,app/etc/env.php,##password##,,db,,sqladm,,gwhMOpYO9XMMULE4XBxr
+MarkerReplace,app/etc/env.php,##model##,,db,mysql4,,,
+MarkerReplace,app/etc/env.php,##engine##,,db,innodb,,,
+MarkerReplace,app/etc/env.php,##initStatements##,,db,SET NAMES utf8;,,,
+MarkerReplace,app/etc/env.php,##active##,,db,1,,,
+MarkerReplace,app/etc/env.php,##MAGE_MODE##,,db,developer,developer,production,production
+,,,,,,,,
+#CACHE,,,,,,,,
+MarkerReplace,app/etc/env.php,##cache_frontend_default_id_prefix##,,cache,nex_,,,
+MarkerReplace,app/etc/env.php,##cache_frontend_default_backend##,,cache,Cm_Cache_Backend_Redis,,,
+MarkerReplace,app/etc/env.php,##cache_frontend_default_backend_options_server##,,cache,,redishost,,magento-production-cache.kjnim8.0001.euc1.cache.amazonaws.com
+MarkerReplace,app/etc/env.php,##cache_frontend_default_backend_options_port##,,cache,6379,,,
+MarkerReplace,app/etc/env.php,##cache_frontend_default_backend_options_database##,,cache,1,2,1,1
+,,,,,,,,
+#PAGE CACHE,,,,,,,,
+MarkerReplace,app/etc/env.php,##page_cache_frontend_default_id_prefix##,,page_cache,nex_,,,
+MarkerReplace,app/etc/env.php,##page_cache_frontend_default_backend##,,page_cache,Cm_Cache_Backend_Redis,,,
+MarkerReplace,app/etc/env.php,##page_cache_frontend_default_backend_options_server##,,page_cache,,redishost,,magento-production-cache.kjnim8.0001.euc1.cache.amazonaws.com
+MarkerReplace,app/etc/env.php,##page_cache_frontend_default_backend_options_port##,,page_cache,6379,,,
+MarkerReplace,app/etc/env.php,##page_cache_frontend_default_backend_options_database##,,page_cache,2,9,10,10
+MarkerReplace,app/etc/env.php,##page_cache_frontend_default_backend_options_compress##,,page_cache,1,1,1,1
+,,,,,,,,
+#SESSION,,,,,,,,
+MarkerReplace,app/etc/env.php,##session##,,session,redis,,,
+MarkerReplace,app/etc/env.php,##session_redis_host##,,session,,redishost,,magento-production-cache.kjnim8.0001.euc1.cache.amazonaws.com
+MarkerReplace,app/etc/env.php,##session_redis_port##,,session,6379,,,
+MarkerReplace,app/etc/env.php,##session_redis_password##,,session,,,,
+MarkerReplace,app/etc/env.php,##session_redis_timeout##,,session,2.5,,,
+MarkerReplace,app/etc/env.php,##session_redis_persistent_identifier##,,session,nextouch-db0,,,
+MarkerReplace,app/etc/env.php,##session_redis_database##,,session,0,,,
+MarkerReplace,app/etc/env.php,##session_redis_compression_threshold##,,session,2048,,,
+MarkerReplace,app/etc/env.php,##session_redis_compression_library##,,session,gzip,,,
+MarkerReplace,app/etc/env.php,##session_redis_log_level##,,session,1,,,
+MarkerReplace,app/etc/env.php,##session_redis_max_concurrency##,,session,60,,,
+MarkerReplace,app/etc/env.php,##session_redis_break_after_frontend##,,session,5,,,
+MarkerReplace,app/etc/env.php,##session_redis_break_after_adminhtml##,,session,30,,,
+MarkerReplace,app/etc/env.php,##session_redis_first_lifetime##,,session,600,,,
+MarkerReplace,app/etc/env.php,##session_redis_bot_first_lifetime##,,session,60,,,
+MarkerReplace,app/etc/env.php,##session_redis_bot_lifetime##,,session,7200,,,
+MarkerReplace,app/etc/env.php,##session_redis_disable_locking##,,session,0,,,
+MarkerReplace,app/etc/env.php,##session_redis_min_lifetime##,,session,60,,,
+MarkerReplace,app/etc/env.php,##session_redis_max_lifetime##,,session,2592000,,,
+MarkerReplace,app/etc/env.php,##sentinel_master##,,session,,,,
+MarkerReplace,app/etc/env.php,##sentinel_servers##,,session,,,,
+MarkerReplace,app/etc/env.php,##sentinel_connect_retries##,,session,5,,,
+MarkerReplace,app/etc/env.php,##sentinel_verify_master##,,session,,,,
+,,,,,,,,
+# VARNISH,,,,,,,,
+MarkerReplace,app/etc/env.php,##full_page##,,db,1,1,1,1
+MarkerReplace,app/etc/env.php,##cache_host##,,varnish,varnish,,,nextouch-m2-nextouch-varnish
+MarkerReplace,app/etc/env.php,##cache_port##,,varnish,80,,8090,8090
+Magento\CoreConfigData,default,0,system/full_page_cache/caching_application,,2,,2,2
+Magento\CoreConfigData,default,0,system/full_page_cache/varnish/access_list,,localhost,,,
+Magento\CoreConfigData,default,0,system/full_page_cache/varnish/backend_host,,nginx,,,
+Magento\CoreConfigData,default,0,system/full_page_cache/varnish/backend_port,,80,80,80,80
+Magento\CoreConfigData,default,0,web/unsecure/base_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/
+Magento\CoreConfigData,default,0,web/secure/base_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/
+Magento\CoreConfigData,stores,1,web/unsecure/base_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/
+Magento\CoreConfigData,stores,1,web/secure/base_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/
+Magento\CoreConfigData,stores,0,web/unsecure/base_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/
+# CDN,,,,,,,,
+Magento\CoreConfigData,default,0,web/unsecure/base_static_url,,,https://www.nextouch.loc/static/,,https://prelive.nextouch.it/static/
+Magento\CoreConfigData,default,0,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/media/
+Magento\CoreConfigData,default,0,web/secure/base_static_url,,,https://www.nextouch.loc/static/,,https://prelive.nextouch.it/static/
+Magento\CoreConfigData,default,0,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/media/
+Magento\CoreConfigData,websites,1,web/unsecure/base_static_url,,,https://www.nextouch.loc/static/,,https://prelive.nextouch.it/static/
+Magento\CoreConfigData,websites,1,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/media/
+Magento\CoreConfigData,websites,1,web/secure/base_static_url,,,https://www.nextouch.loc/static/,,https://prelive.nextouch.it/static/
+Magento\CoreConfigData,websites,1,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://prelive.nextouch.it/media/
+Magento\CoreConfigData,stores,1,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
+Magento\CoreConfigData,stores,1,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
+Magento\CoreConfigData,stores,2,web/unsecure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
+Magento\CoreConfigData,stores,2,web/secure/base_media_url,,,https://www.nextouch.loc/,,https://cdn.nextouch.it/media/
+# Elasticsearch,,,,,,,,
+Magento\CoreConfigData,default,0,amasty_elastic/connection/server_hostname,,,elasticsearch,,https://search-m2-production-s34rkm27s4jjsgeg4suzjaddfq.eu-central-1.es.amazonaws.com
+Magento\CoreConfigData,default,0,amasty_elastic/connection/server_port,,,9200,,443
+# CRON,,,,,,,,
+Magento\CoreConfigData,default,0,system/cron/index/use_separate_process,,,0,,0
+Magento\CoreConfigData,default,0,system/cron/staging/use_separate_process,,,0,,0
+Magento\CoreConfigData,default,0,system/cron/catalog_event/use_separate_process,,,0,,0
+Magento\CoreConfigData,default,0,system/cron/consumers/use_separate_process,,,0,,0
+Magento\CoreConfigData,default,0,system/cron/amasty_base/use_separate_process,,,0,,0

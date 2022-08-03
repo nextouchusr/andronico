@@ -1,0 +1,65 @@
+ARG BASE_IMAGE=php-7.4-fpm-alpine3.15
+
+FROM ${BASE_IMAGE}
+
+#ARG STAGE=devbox
+#ARG BRAND
+#ARG COMPOSER_HOME
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# SET ADDITIONAL DOCKER SETTINGS
+RUN apk add --no-cache --virtual .build-deps freetype \
+    $PHPIZE_DEPS \
+    libpng \
+    libjpeg-turbo \
+    freetype-dev \
+    libpng-dev \
+    zlib-dev \
+    libzip-dev \
+    libjpeg-turbo-dev \
+    libxml2-dev icu-dev \
+    gettext-dev \
+    libxslt-dev \
+    libmcrypt-dev \
+    imagemagick imagemagick-dev \
+    tini \
+    libsodium libsodium-dev \
+    oniguruma-dev \
+    bash coreutils bash-completion patch git rsync \
+    fcgi \
+&& set -xe && echo "pm.status_path = /status" >> /usr/local/etc/php-fpm.d/zz-docker.conf \
+&& pecl install imagick amqplib \
+&& docker-php-ext-enable imagick \
+&& docker-php-ext-configure \
+    gd --with-freetype --with-jpeg \
+&& docker-php-ext-install \
+    dom \
+    sockets \
+    gd \
+    intl \
+    mbstring \
+    pdo_mysql \
+    xsl \
+    zip \
+    soap \
+    bcmath \
+    sodium \
+    pcntl \
+    mysqli \
+&& mkdir /var/www/deploy \
+&& chown www-data:www-data /var/www/deploy
+WORKDIR /var/www/deploy
+ENTRYPOINT ["/docker-php-cli-entrypoint"]
+CMD ["php", "-a"]
+
+# GENERATE COMPOSER CACHE IN /home/www-data/.composer/cache
+ADD kubernetes/.infra/docker/php-cli/custom-configs.ini /usr/local/etc/php/conf.d/custom-configs.ini
+COPY kubernetes/.infra/docker/php-cli/docker-php-cli-entrypoint /docker-php-cli-entrypoint
+COPY kubernetes/ kubernetes
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+COPY auth.json auth.json
+COPY kubernetes/tools/composer kubernetes/tools/composer
+RUN chown -R www-data:www-data /var/www/deploy
+RUN su www-data -s /bin/bash -c "kubernetes/tools/composer install --prefer-dist --no-dev --ignore-platform-reqs -vvv"
+RUN rm -rf composer.json composer.lock auth.json kubernetes/tools/composer ./vendor

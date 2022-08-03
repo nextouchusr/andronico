@@ -1,5 +1,6 @@
 stages:
   - deploy
+  - prelive
 
 deploy-staging:
   stage: deploy
@@ -18,3 +19,15 @@ deploy-staging:
   rules:
     - if: $CI_COMMIT_BRANCH == 'develop'
       when: manual
+
+upload to s3:
+  stage: prelive
+  image:
+    name: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  environment:
+    name: production
+    url: https://prelive.nextouch.it
+  script:
+    - aws --region $REGION s3 sync . s3://$BUCKET_NAME/release --exclude ".git/*" --delete
+  rules:
+    - if: $CI_COMMIT_BRANCH == 'release/hvlp-infrastructure'

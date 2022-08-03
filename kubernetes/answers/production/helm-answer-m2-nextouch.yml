@@ -1,0 +1,410 @@
+aliases:
+  &tag_magento "nextouch-8618e604bee29cbd9739dedd6d57d34f9b86815c"
+stage: "production"
+nameOverride: "nextouch"
+global:
+  host: "prelive.nextouch.it"
+  secondaryHost: "adminprelive.nextouch.it"
+  thirdHost: "cdn.nextouch.it"
+httpd:
+  enabled: false
+nginxws:
+  enabled: true
+  applicationRootFolder: /var/www/deploy
+  applicationSubFolder: ""
+  configVersion: "magento-2.3"
+  replicaCount: 1
+  readinessProbe:
+    path: "/health_check.php"
+    enabled: false
+  registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+  repository: "k8s-prd/nextouch-nginxws"
+  tag: *tag_magento
+  useProjectMagentoConf: true
+  resources:
+    limits:
+      cpu: "400m"
+      memory: "256Mi"
+    requests:
+      cpu: "150m"
+      memory: "128Mi"
+  clientMaxBodySize: "5m"
+  clientBodyBufferSize: "5m"
+  largeClientHeaderBuffers: "16 5120k"
+  fastcgi:
+    fastcgi_buffers: "1024 16k"
+    fastcgi_buffer_size: "32k"
+    fastcgi_read_timeout: "30s"
+    fastcgi_connect_timeout: "30s"
+    fastcgi_index: "index.php"
+  fastcgiParams:
+    - PHP_FLAG  "session.auto_start=off \n suhosin.session.cryptua=off"
+    - PHP_VALUE "memory_limit=756M \n max_execution_time=18000"
+    - SCRIPT_FILENAME  $document_root$fastcgi_script_name
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 10
+    metrics:
+      - name: cpu
+        type: Resource
+        target:
+          averageUtilization: 60
+          type: Utilization
+  magentoLocationDirs:
+    - /
+  cors:
+    enabled: false
+    allowedOrigin: "*"
+phpcli:
+  enabled: true
+  memoryLimit: 768M
+  maxExecutionTime: 60
+  configEnv: production
+phpfpm:
+  enabled: true
+  replicaCount: 2
+  registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+  repository: "k8s-prd/nextouch-php-fpm"
+  resources:
+    requests:
+      memory: 750Mi
+      cpu: 400m
+    limits:
+      memory: 4608Mi # 756M [opcache] + ( 756M [memory_limit] * 5 [number of processes] ) = 4536M
+      cpu: 2
+  rollingUpdate:
+    maxSurge: "100%"
+    maxUnavailable: "25%"
+  tag: *tag_magento
+  memoryLimit: 756M
+  maxExecutionTime: 60
+  RequestTerminateTimeout: 60
+  annotations:
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "9253"
+    prometheus.io/scrape: "true"
+  exporter:
+    enabled: true
+  hpa:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 20
+    metrics:
+      - name: cpu
+        type: Resource
+        target:
+          averageUtilization: 85
+          type: Utilization
+      - name: phpfpm_active_processes_percentage
+        type: Pods
+        target:
+          averageValue: 61 # % of active processes over total processes
+          type: AverageValue
+      - name: phpfpm_listen_queue_metric
+        type: Pods
+        target:
+          averageValue: 1 # 1 pending connections on queue
+          type: AverageValue
+logs:
+  enabled: true
+  image: "452103867664.dkr.ecr.eu-central-1.amazonaws.com/prd/utils:logs-0.1.0"
+  containerMountPaths:
+    - /var/log
+  containerFilesToTail:
+    - /var/log/system.log
+    - /var/log/exception.log
+    - /var/log/debug.log
+    - /var/log/cron.log
+    - /var/log/support_report.log
+customVolumePermissionsImage:
+  enabled: true
+  registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+  repository: "prd/utils"
+  tag: "alpine"
+customJwilderDockerize:
+  enabled: true
+  registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+  repository: "prd/utils"
+  tag: "dockerize"
+varnish:
+  enabled: true
+  replicaCount: 2
+  registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+  repository: "prd/utils"
+  tag: "varnish-0.6.1-hevelop-4"
+  configVersion: '6.0'
+  customConfigMap:
+    enabled: true
+    name: "varnish-custom-configs"
+  retryVclApply:
+    enabled: true
+    retries: 10
+    backoff: 10s
+  useDnsBE:
+    enabled: true
+    dnsHost: nextouch-m2-nextouch-nginxws
+    port: 80
+  enablePhpsessidPass: true
+  serviceName: true
+  customAllowedToPurge:
+  malloc: 1024m
+  readinessProbe:
+    enabled: false
+    path: '/favicon.ico'
+  resources:
+    requests:
+      memory: 1600Mi
+      cpu: 200m
+    limits:
+      memory: 1600Mi
+      cpu: 1
+  hpa:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 3
+    metrics:
+      - name: memory
+        type: Resource
+        target:
+          averageUtilization: 80
+          type: Utilization
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: node.kubernetes.io/lifecycle
+                operator: NotIn
+                values:
+                  - spot
+additionalWebPools:
+  admin:
+    phpfpm:
+      enabled: true
+      resources:
+        limits:
+          memory: 4608Mi # 756M [opcache] + ( 756M [memory_limit] * 5 [number of processes] ) = 4536M
+          cpu: 1
+      memoryLimit: 512M
+      maxExecutionTime: 600
+      uploadMaxFilesize: 2G
+      RequestTerminateTimeout: 90
+      hpa:
+        enabled: true
+        minReplicas: 1
+        maxReplicas: 4
+    nginxws:
+      enabled: true
+      additionalHostConf:
+        enabled: false
+        path: []
+      fastcgi:
+        fastcgi_read_timeout: "90s"
+        fastcgi_connect_timeout: "90s"
+      hpa:
+        enabled: true
+        minReplicas: 1
+        maxReplicas: 2
+    varnish:
+      enabled: false
+      hpa:
+        enabled: false
+hostAliases:
+  enabled: false
+  aliases:
+    - ip: "185.249.12.153"
+      hostnames:
+        - "adminprelive.nextouch.it"
+efs:
+  enabled: false
+  forceVolumePermissions: false
+  storage: 20Gi
+  existingPvcName: "efs-nextouch-production"
+  containerMountPaths:
+    - "/pub/media"
+    - "/pub/static/_cache"
+    - "/pub/sitemaps"
+    - "/var/backups"
+    - "/var/composer_home"
+    - "/var/importexport"
+    - "/var/import_history"
+    - "/var/session"
+    - "/var/tmp"
+    - "/var/export"
+    - "/var/import"
+    - "/var/cron"
+    - "/var/report"
+    - "/var/amasty"
+    - "/var/cronchecker"
+loadBalancer:
+  annotations:
+    'alb.ingress.kubernetes.io/certificate-arn': "arn:aws:acm:eu-central-1:452103867664:certificate/2d037e19-eba3-4ca9-a674-545c3468dc29"
+    'alb.ingress.kubernetes.io/healthcheck-path': "/pub/static/deployed_version.txt"
+    'alb.ingress.kubernetes.io/healthcheck-port': "traffic-port"
+    'alb.ingress.kubernetes.io/healthcheck-protocol': "HTTP"
+    'alb.ingress.kubernetes.io/healthcheck-interval-seconds': "15"
+    'alb.ingress.kubernetes.io/healthcheck-timeout-seconds': "5"
+    'alb.ingress.kubernetes.io/unhealthy-threshold-count': "10"
+    'alb.ingress.kubernetes.io/listen-ports': "[{\"HTTP\": 80}, {\"HTTPS\":443}]"
+    'alb.ingress.kubernetes.io/scheme': "internet-facing"
+    'alb.ingress.kubernetes.io/success-codes': "200-399"
+    'kubernetes.io/ingress.class': "alb"
+    'alb.ingress.kubernetes.io/load-balancer-attributes': "idle_timeout.timeout_seconds=300"
+  automaticHostRules:
+    enabled: false
+  rules:
+    - host: adminprelive.nextouch.it
+      path: /adm_nextouch/*
+      service: admin-nginxws
+    - host: adminprelive.nextouch.it
+      path: /rest/*
+      service: admin-nginxws
+    - host: adminprelive.nextouch.it
+      path: /*/rest/V1/*
+      service: admin-nginxws
+    - host: prelive.nextouch.it
+      path: /*/rest/V1/static-content/*
+      service: admin-nginxws
+    - host: cdn.nextouch.it
+      path: /*
+      service: nginxws
+    - host: prelive.nextouch.it
+      path: /*
+      service: varnish
+prehook:
+  command: "sh kubernetes/build/pre-hook.sh nextouch production %SKIP_SETTINGS_AND_SETUP_UPGRADE% %NO_INTERACTION_SETUP_UPGRADE%"
+  enabled: true
+  registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+  repository: "k8s-prd/nextouch-php-cli"
+  tag: *tag_magento
+####################################
+############ QUEUE #################
+####################################
+queue:
+  enabled: true
+  repository: "k8s-prd/nextouch-php-cli"
+  registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+  tag: *tag_magento
+  baseFolder: /var/www/deploy
+  replicaCount: 1
+  resources:
+    requests:
+      memory: 180Mi
+      cpu: 150m
+    limits:
+      memory: 512Mi
+      cpu: 500m
+  consumers:
+    - name: product-action-attribute-update
+      command: "php bin/magento queue:consumers:start product_action_attribute.update --single-thread --max-messages=10000"
+    - name: product-action-attribute-website-update
+      command: "php bin/magento queue:consumers:start product_action_attribute.website.update --single-thread --max-messages=10000"
+    - name: export-processor
+      command: "php bin/magento queue:consumers:start exportProcessor --single-thread --max-messages=10000"
+    - name: codegenerator-processor
+      command: "php bin/magento queue:consumers:start codegeneratorProcessor --single-thread --max-messages=10000"
+####################################
+############# CRON #################
+####################################
+jobs:
+  - name: default
+    enabled: true
+    registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+    repository: "k8s-prd/nextouch-php-cli"
+    tag: *tag_magento
+    pullPolicy: IfNotPresent
+    command: "sleep 10 && php -d memory_limit=-1 /var/www/deploy/bin/magento cron:run --group=default"
+    schedule: "*/1 * * * *"
+    failedJobsHistoryLimit: 1
+    successfulJobsHistoryLimit: 0
+    concurrencyPolicy: Forbid
+    restartPolicy: Never
+    startingDeadlineSeconds: 60
+    resources:
+      requests:
+        memory: 1024Mi
+        cpu: 500m
+      limits:
+        memory: 1024Mi
+        cpu: 1000m
+  - name: index
+    enabled: true
+    registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+    repository: "k8s-prd/nextouch-php-cli"
+    tag: *tag_magento
+    pullPolicy: IfNotPresent
+    command: "sleep 10 && php -d memory_limit=2G /var/www/deploy/bin/magento cron:run --group=index"
+    schedule: "* * * * *"
+    failedJobsHistoryLimit: 1
+    successfulJobsHistoryLimit: 0
+    concurrencyPolicy: Forbid
+    restartPolicy: Never
+    startingDeadlineSeconds: 60
+    resources:
+      requests:
+        memory: 1024Mi
+        cpu: 500m
+      limits:
+        memory: 2048Mi
+        cpu: 1000m
+  - name: catalogevent
+    enabled: true
+    registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+    repository: "k8s-prd/nextouch-php-cli"
+    tag: *tag_magento
+    pullPolicy: IfNotPresent
+    command: "sleep 10 && php -d memory_limit=2G /var/www/deploy/bin/magento cron:run --group=catalog_event"
+    schedule: "* * * * *"
+    failedJobsHistoryLimit: 1
+    successfulJobsHistoryLimit: 0
+    concurrencyPolicy: Forbid
+    restartPolicy: Never
+    startingDeadlineSeconds: 60
+    resources:
+      requests:
+        memory: 756Mi
+        cpu: 200m
+      limits:
+        memory: 756Mi
+        cpu: 500m
+  - name: staging
+    enabled: true
+    registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+    repository: "k8s-prd/nextouch-php-cli"
+    tag: *tag_magento
+    pullPolicy: IfNotPresent
+    command: "sleep 10 && php -d memory_limit=2G /var/www/deploy/bin/magento cron:run --group=staging"
+    schedule: "* * * * *"
+    failedJobsHistoryLimit: 1
+    successfulJobsHistoryLimit: 0
+    concurrencyPolicy: Forbid
+    restartPolicy: Never
+    startingDeadlineSeconds: 60
+    resources:
+      requests:
+        memory: 756Mi
+        cpu: 200m
+      limits:
+        memory: 756Mi
+        cpu: 500m
+  - name: amasty
+    enabled: true
+    registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+    repository: "k8s-prd/nextouch-php-cli"
+    tag: *tag_magento
+    pullPolicy: IfNotPresent
+    command: "sleep 10 && php -d memory_limit=2G /var/www/deploy/bin/magento cron:run --group=amasty_base"
+    schedule: "*/10 * * * *"
+    failedJobsHistoryLimit: 1
+    successfulJobsHistoryLimit: 0
+    concurrencyPolicy: Forbid
+    restartPolicy: Never
+    startingDeadlineSeconds: 60
+    resources:
+      requests:
+        memory: 756Mi
+        cpu: 200m
+      limits:
+        memory: 1024Mi
+        cpu: 400m
