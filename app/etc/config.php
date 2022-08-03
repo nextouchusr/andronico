@@ -469,6 +469,8 @@ return [
         'Dotdigitalgroup_EmailGraphQl' => 0,
         'Dotdigitalgroup_Enterprise' => 0,
         'Dotdigitalgroup_Sms' => 0,
+        'Experius_FormSelectChosen' => 1,
+        'Experius_MissingTranslations' => 1,
         'Klarna_Core' => 0,
         'Klarna_Ordermanagement' => 0,
         'Klarna_Kp' => 0,

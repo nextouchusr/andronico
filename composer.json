@@ -36,6 +36,7 @@
         "avada/module-proofo": "^1.0",
         "community-engineering/language-it_it": "^0.0.17",
         "danielgsims/php-collections": "^2.2",
+        "experius/module-missingtranslations": "^3.2",
         "lambdish/phunctional": "^2.1",
         "laminas/laminas-form": "^3.0",
         "league/csv": "^9.0",
