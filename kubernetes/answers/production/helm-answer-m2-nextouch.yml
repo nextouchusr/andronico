@@ -3,8 +3,8 @@ aliases:
 stage: "production"
 nameOverride: "nextouch"
 global:
-  host: "prelive.nextouch.it"
-  secondaryHost: "adminprelive.nextouch.it"
+  host: "nextouch.it"
+  secondaryHost: "admin.nextouch.it"
   thirdHost: "cdn.nextouch.it"
 httpd:
   enabled: false
@@ -215,7 +215,7 @@ hostAliases:
   aliases:
     - ip: "185.249.12.153"
       hostnames:
-        - "adminprelive.nextouch.it"
+        - "admin.nextouch.it"
 efs:
   enabled: false
   forceVolumePermissions: false
@@ -254,22 +254,22 @@ loadBalancer:
   automaticHostRules:
     enabled: false
   rules:
-    - host: adminprelive.nextouch.it
+    - host: admin.nextouch.it
       path: /adm_nextouch/*
       service: admin-nginxws
-    - host: adminprelive.nextouch.it
+    - host: admin.nextouch.it
       path: /rest/*
       service: admin-nginxws
-    - host: adminprelive.nextouch.it
+    - host: admin.nextouch.it
       path: /*/rest/V1/*
       service: admin-nginxws
-    - host: prelive.nextouch.it
+    - host: nextouch.it
       path: /*/rest/V1/static-content/*
       service: admin-nginxws
     - host: cdn.nextouch.it
       path: /*
       service: nginxws
-    - host: prelive.nextouch.it
+    - host: nextouch.it
       path: /*
       service: varnish
 prehook:
