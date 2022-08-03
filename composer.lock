@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "50e9fb7a52a38feefb2cdfa380a712b2",
+    "content-hash": "7cc55cb9dafd05d86907e159655c09cc",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -2837,6 +2837,102 @@
                 }
             ],
             "time": "2021-04-20T19:10:54+00:00"
+        },
+        {
+            "name": "experius/module-formselectchosen",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/experius/Magento-2-Module-Experius-Form-Select-Chosen.git",
+                "reference": "6895cb863be00f0770b702d0d8dd79bca64128f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/experius/Magento-2-Module-Experius-Form-Select-Chosen/zipball/6895cb863be00f0770b702d0d8dd79bca64128f9",
+                "reference": "6895cb863be00f0770b702d0d8dd79bca64128f9",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Experius\\FormSelectChosen\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Experius",
+                    "email": "info@experius.nl"
+                }
+            ],
+            "description": "A module that enabled you to define select and multiselect jQuery chosen fields.",
+            "support": {
+                "issues": "https://github.com/experius/Magento-2-Module-Experius-Form-Select-Chosen/issues",
+                "source": "https://github.com/experius/Magento-2-Module-Experius-Form-Select-Chosen/tree/1.0.1"
+            },
+            "time": "2016-11-16T15:39:53+00:00"
+        },
+        {
+            "name": "experius/module-missingtranslations",
+            "version": "3.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/experius/Magento-2-Module-Experius-MissingTranslations.git",
+                "reference": "a4afe6faba7c43464ba31683e749461d2b630b72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/experius/Magento-2-Module-Experius-MissingTranslations/zipball/a4afe6faba7c43464ba31683e749461d2b630b72",
+                "reference": "a4afe6faba7c43464ba31683e749461d2b630b72",
+                "shasum": ""
+            },
+            "require": {
+                "experius/module-formselectchosen": "1.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Experius\\MissingTranslations\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mage2Gen",
+                    "email": "info@mage2gen.com"
+                },
+                {
+                    "name": "Mr. Lewis",
+                    "email": "lewis@experius.nl"
+                },
+                {
+                    "name": "Ruben Panis",
+                    "email": "ruben@experius.nl"
+                },
+                {
+                    "name": "Boris van Katwijk",
+                    "email": "boris@experius.nl"
+                }
+            ],
+            "description": "Collect missing translations in specified folder or the entire Magento 2 Root. Adds database editing and management of translations.",
+            "support": {
+                "issues": "https://github.com/experius/Magento-2-Module-Experius-MissingTranslations/issues",
+                "source": "https://github.com/experius/Magento-2-Module-Experius-MissingTranslations/tree/3.2.3"
+            },
+            "time": "2021-09-27T11:34:29+00:00"
         },
         {
             "name": "ezimuel/guzzlestreams",

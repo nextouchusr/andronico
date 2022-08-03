@@ -37,6 +37,9 @@ cache_reset: ## Flush Magento cache and restart php container
 cache_flush: ## Cache flush
 	php bin/magento cache:flush
 
+import_translations: ## Import translations
+	bash dev/scripts/import_translations.sh
+
 config_install: ## Install Magento configuration
 	bash dev/scripts/install/config.sh
 
