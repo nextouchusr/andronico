@@ -20,7 +20,7 @@ class AuthManagement extends AbstractBaseRestApi implements AuthManagementInterf
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        if ($response->getStatusCode() !== self::HTTP_OK) {
+        if (!in_array($response->getStatusCode(), self::SUCCESS_STATUSES)) {
             return AuthorizeResponse::fromError([
                 'errorCode' => $response->getStatusCode(),
                 'errorDescription' => $response->getReasonPhrase(),

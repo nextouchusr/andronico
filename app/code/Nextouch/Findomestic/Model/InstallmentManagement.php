@@ -32,7 +32,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        if ($response->getStatusCode() !== self::HTTP_CREATED) {
+        if (!in_array($response->getStatusCode(), self::SUCCESS_STATUSES)) {
             return CreateResponse::fromError([
                 'errorCode' => $response->getStatusCode(),
                 'errorDescription' => $response->getReasonPhrase(),
@@ -53,7 +53,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        if ($response->getStatusCode() !== self::HTTP_CREATED) {
+        if (!in_array($response->getStatusCode(), self::SUCCESS_STATUSES)) {
             return RefreshResponse::fromError([
                 'errorCode' => $response->getStatusCode(),
                 'errorDescription' => $response->getReasonPhrase(),
@@ -79,7 +79,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        if ($response->getStatusCode() !== self::HTTP_CREATED) {
+        if (!in_array($response->getStatusCode(), self::SUCCESS_STATUSES)) {
             return ActivateResponse::fromError([
                 'errorCode' => $response->getStatusCode(),
                 'errorDescription' => $response->getReasonPhrase(),
@@ -105,7 +105,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        if ($response->getStatusCode() !== self::HTTP_CREATED) {
+        if (!in_array($response->getStatusCode(), self::SUCCESS_STATUSES)) {
             return CancelResponse::fromError([
                 'errorCode' => $response->getStatusCode(),
                 'errorDescription' => $response->getReasonPhrase(),
@@ -131,7 +131,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        if ($response->getStatusCode() !== self::HTTP_CREATED) {
+        if (!in_array($response->getStatusCode(), self::SUCCESS_STATUSES)) {
             return RefundResponse::fromError([
                 'errorCode' => $response->getStatusCode(),
                 'errorDescription' => $response->getReasonPhrase(),
