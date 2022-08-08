@@ -327,7 +327,7 @@ jobs:
         cpu: 500m
       limits:
         memory: 1024Mi
-        cpu: 1000m
+        cpu: 800m
   - name: index
     enabled: true
     registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
