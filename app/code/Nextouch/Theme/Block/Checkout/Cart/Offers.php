@@ -105,7 +105,8 @@ class Offers extends Crosssell
             $this->onSaleHelper->addOnSaleFilter($itemCollection);
 
             $itemCollection->load();
-            $itemCollection->setDataToAll('related_product', $product);
+            $relatedProduct = $this->productRepository->getById($product->getData('_linked_to_product_id'));
+            $itemCollection->setDataToAll('related_product', $relatedProduct);
 
             return $itemCollection->getItems();
         }, parent::getItemCollection());
