@@ -255,7 +255,7 @@ loadBalancer:
     enabled: false
   rules:
     - host: admin.nextouch.it
-      path: /adm_nextouch/*
+      path: /*
       service: admin-nginxws
     - host: admin.nextouch.it
       path: /rest/*
