@@ -26,7 +26,7 @@
                                     </arguments>
                                 </block> -->
                                 <!-- Todo: suggest to change graphics for print single attribute on page -->
-                                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.overview.mobile" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="product.info.subtitle">
+                                <!-- <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.overview.mobile" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="product.info.subtitle">
                                     <arguments>
                                         <argument name="at_call" xsi:type="string">getShortDescription</argument>
                                         <argument name="at_code" xsi:type="string">short_description</argument>
@@ -34,7 +34,7 @@
                                         <argument name="at_label" xsi:type="string">none</argument>
                                         <argument name="title" translate="true" xsi:type="string">Short Description</argument>
                                     </arguments>
-                                </block>
+                                </block> -->
                             </block>
                             <container name="product.info.secondary.wrapper" htmlTag="div" htmlClass="product-secondary-wrapper"/>
                         </referenceBlock>
@@ -92,6 +92,8 @@
             <block class="Magento\Catalog\Block\Product\View" name="view.addto.share"
                    template="Magento_Catalog::product/view/addto/share.phtml" />
         </referenceBlock>
+
+        <referenceBlock name="product.info.overview" template="Magento_Catalog::product/view/attribute-overview.phtml"/>
 
         <!-- Remove -->
         <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
