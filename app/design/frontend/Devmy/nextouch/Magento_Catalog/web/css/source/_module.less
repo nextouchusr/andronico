@@ -198,6 +198,9 @@
             }
         }
 
+        .heading-overview {
+            font-weight: 400;
+        }
         .product {
             &.attribute {
                 &.sku {
@@ -218,6 +221,33 @@
 
                 &.overview {
                     margin: @indent__base 0;
+                    font-size: 1.2rem;
+                    .value {
+                        max-height: 36px;
+                        overflow: hidden;
+                    }
+                    .more-less {
+                        padding: 10px 0;
+                        span {
+                            text-decoration: underline;
+                        }
+                        .less {
+                            display: none;
+                        }
+                    }
+                    &.active {
+                        .value {
+                            max-height: inherit;
+                        }
+                        .more-less {
+                            .more {
+                                display: none;
+                            }
+                            .less {
+                                display: block;
+                            }
+                        }
+                    }
                 }
             }
 
@@ -440,6 +470,7 @@
                 margin-bottom: 25px;
                 color: @theme__color__primary;
                 padding: 20px 30px;
+                min-width: 260px;
             }
         }
 
@@ -628,7 +659,8 @@
             background-size: 120%;
         }
         .block.crosssell:not(.crosssell-modal) {
-            margin-bottom: -30px;
+            margin-bottom: -110px;
+            padding-bottom: 110px;
         }
     }
 }
@@ -688,11 +720,8 @@
 
 
             .product-secondary-wrapper {
-                width: 74%;
+                width: 100%;
                 order: 10;
-                .product.attribute.overview {
-                    display: none;
-                }
             }
 
             .product-media-wrapper {
@@ -816,6 +845,7 @@
                 &:extend(.abs-button-responsive-smaller all);
                 margin-bottom: 20px;
                 margin-right: 20px;
+                min-width: 180px;
             }
         }
     }
@@ -845,8 +875,19 @@
             font-weight: 700;
             font-size: 3.8rem;
         }
-        .overview {
-            font-size: @text__sm;
+        .heading-overview {
+            display: none;
+        }
+        .product.attribute.overview {
+            &.overview {
+                font-size: @text__sm;
+                .value {
+                    max-height: inherit!important;
+                }
+            }
+            .more-less {
+                display: none;
+            }
         }
         .block.crosssell {
             .block-title strong {
@@ -1010,6 +1051,7 @@
                 > button {
                     margin-right: 20px;
                     height: 62px;
+                    min-width: 260px;
                 }
             }
         }
@@ -1133,6 +1175,16 @@
         .action.print {
             float: right;
             margin: 15px 0;
+        }
+    }
+    .compare-opened {
+        &.stickyMenu {
+            .page-header.page-header {
+                z-index: 9998;
+            }
+        }
+        .page-main {
+            z-index: 9996;
         }
     }
 

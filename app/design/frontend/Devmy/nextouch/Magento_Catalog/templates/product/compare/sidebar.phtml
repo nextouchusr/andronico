@@ -11,7 +11,7 @@
 <div class="block-compare-container" data-bind="scope: 'compareProducts'">
 
     <!-- ko if: compareProducts().count -->
-<div class="block block-compare" data-bind="css: {visible: compareProducts().count}" data-role="compare-products-sidebar">
+<div class="block block-compare" style="display: none" data-bind="css: {visible: compareProducts().count}" data-role="compare-products-sidebar">
     <div class="block-title  block-compare-title">
         <strong id="block-compare-heading" role="heading" aria-level="2">
             <span class="current"> <?= $block->escapeHtml(__('Compare')) ?></span>
@@ -53,13 +53,19 @@
 <script type="text/javascript">
     require(['jquery', 'matchMedia'], function ($, mediaCheck) {
         $(document).ready(function () {
+            setTimeout(function() {
+                $('.block-compare').css('display', 'block');
+            },2000);
             $('body').on('click', '.block-compare-title', function() {
                 $('.block-compare').toggleClass('active');
+                $('body').toggleClass('compare-opened');
             });
             $('body').on('click', function(e) {
                 var target = $(e.target);
                 if(!target.closest('.block-compare').length &&
                     $('.block-compare').is(":visible") && !$(target).is('.open-compare-mobile')) {
+
+                    $('body').removeClass('compare-opened');
                     $('.block-compare').removeClass('active');
                     $('.open-compare-mobile').removeClass('active');
                 }
@@ -67,6 +73,7 @@
 
             $('body').on('click', '.open-compare-mobile', function() {
                 $('.block-compare').toggleClass('active').toggleClass('show');
+                $('body').toggleClass('compare-opened');
                 if($('.block-compare').is(':visible')) {
                     $('.open-compare-mobile').addClass('active');
                 }
@@ -81,6 +88,8 @@
             $('.close-compare-mobile').on('click', function() {
                 $('.block-compare').removeClass('active').removeClass('show');
                 $('.open-compare-mobile').removeClass('active');
+
+                $('body').removeClass('compare-opened');
             });
             $(window).on('scroll', function() {
                 mediaCheck({
