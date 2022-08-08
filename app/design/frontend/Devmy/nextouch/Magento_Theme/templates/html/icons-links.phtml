@@ -1,0 +1,85 @@
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<div class="d-flex flex-sm-column justify-content-space-between m-b-sm">
+    <div class="d-flex flex-column">
+        <div class="m-t-xs order-sm-2">
+            <label class="text-h4"><?= $block->escapeHtml(__('We ship with')) ?></label>
+            <ul>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/shippings/dhl.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/shippings/gls.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/shippings/fastest.png'); ?>" alt=""/>
+                </li>
+            </ul>
+        </div>
+
+        <div class="m-t-xs">
+            <label class="text-h4"><?= $block->escapeHtml(__('Social network')) ?></label>
+            <ul>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/linkedin.png'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/instagram.png'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/youtube.png'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/facebook.png'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/twitter.png'); ?>" alt=""/>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column">
+        <div class="m-t-xs">
+            <label class="text-h4"><?= $block->escapeHtml(__('Payment methods')) ?></label>
+            <ul>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/mastercard.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/visa.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/paypal.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/findomestic.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/maestro.svg'); ?>" alt=""/>
+                </li>
+            </ul>
+        </div>
+
+        <div class="m-t-xs">
+            <label class="text-h4 pagebuilder-mobile-hidden">&nbsp;</label>
+            <ul>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/mastercard-secure.svg'); ?>"
+                         alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/verified-visa.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/postepay.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/visa-electron.svg'); ?>" alt=""/>
+                </li>
+                <li>
+                    <img src="<?= $block->getViewFileUrl('Magento_Theme::images/payments/american-express.svg'); ?>" alt=""/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
