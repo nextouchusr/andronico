@@ -3,7 +3,7 @@ aliases:
 stage: "production"
 nameOverride: "nextouch"
 global:
-  host: "nextouch.it"
+  host: "www.nextouch.it"
   secondaryHost: "admin.nextouch.it"
   thirdHost: "cdn.nextouch.it"
 httpd:
@@ -263,13 +263,13 @@ loadBalancer:
     - host: admin.nextouch.it
       path: /*/rest/V1/*
       service: admin-nginxws
-    - host: nextouch.it
+    - host: www.nextouch.it
       path: /*/rest/V1/static-content/*
       service: admin-nginxws
     - host: cdn.nextouch.it
       path: /*
       service: nginxws
-    - host: nextouch.it
+    - host: www.nextouch.it
       path: /*
       service: varnish
 prehook:
