@@ -725,18 +725,30 @@
         box-sizing: border-box;
         text-align: center;
     }
-    .customer-login-right-block {
-        box-shadow: @theme__box-shadow__primary;
-        margin-left: 10%;
-        padding: 5%;
-        width:40%;
-        box-sizing: border-box;
-        ul li {
-            font-size: 3rem;
+    .login-container {
+        #block-customer-login-heading {
+            margin-bottom: 100px;
         }
+        .customer-login-right-block {
+            box-shadow: @theme__box-shadow__primary;
+            margin-left: 10%;
+            padding: 5%;
+            width: 40%;
+            box-sizing: border-box;
 
+            ul li {
+                font-size: 3rem;
+                margin: 25px 0;
+            }
+
+        }
+        .fieldset > .field {
+            margin-bottom: 50px;
+        }
+        div.primary {
+            margin-bottom:  50px;
+        }
     }
-
     .columns-customer-login {
         display: flex;
         flex-flow: row nowrap;

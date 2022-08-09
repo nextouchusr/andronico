@@ -462,7 +462,7 @@
         font-size: 2.5rem;
         padding-left: 50px;
         padding-right: 50px;
-        min-height: 450px;
+       // min-height: 450px;
         .pagebuilder-banner-wrapper {
             box-shadow: 0 6px 15px #999;
         }
@@ -598,6 +598,21 @@
 //  Desktop
 //  ----------------------------------------------
 
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .cms-index-index [data-content-type=row][data-appearance=contained] {
+        box-sizing: border-box;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: ~"calc(100% - 220px)";
+
+
+    }
+}
+
+//
+//  Desktop
+//  ----------------------------------------------
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     .cms-index-index {
         .home-slick-slider {
@@ -615,6 +630,24 @@
                 }
             }
         }
+    }
+
+
+}
+
+
+
+//
+//  Desktop ultra large
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__4xl) {
+
+    .cms-index-index [data-content-type=row][data-appearance=contained] {
+        box-sizing: border-box;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        max-width: 1680px;
     }
 }
 
