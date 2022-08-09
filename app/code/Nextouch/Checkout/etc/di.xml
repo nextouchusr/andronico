@@ -32,6 +32,9 @@
     </type>
 
     <type name="Magento\Checkout\Block\Checkout\AttributeMerger">
+        <plugin name="fiscal_code_validation"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\FiscalCodeValidation"/>
+
         <plugin name="phone_validation"
                 type="Nextouch\Checkout\Plugin\Block\Checkout\PhoneValidation"/>
     </type>
