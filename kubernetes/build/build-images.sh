@@ -64,23 +64,23 @@ SOURCE_DIR=`dirname "${SOURCE_DIR}"`
 SOURCE_DIR=`dirname "${SOURCE_DIR}"`
 
 # MAGENTO
-docker build --build-arg BASE_IMAGE="${BASE_PHP_REGISTRY}:latest" --build-arg STAGE=$STAGE --build-arg BRAND=$BRAND -t "${CODE_TAG}" -f kubernetes/.infra/docker/Dockerfile $SOURCE_DIR
+docker build --build-arg BASE_IMAGE=$BASE_PHP_REGISTRY:latest --build-arg STAGE=$STAGE --build-arg BRAND=$BRAND -t $CODE_REGISTRY/$CODE_REPO-code:$CODE_TAG -f kubernetes/.infra/docker/Dockerfile $SOURCE_DIR
 if [ ! $? -eq 0 ]; then
     echo "Unable to complete the magento code build :("
     exit 1
 fi
 
-docker build --build-arg BASE_IMAGE="${UTILS_REGISTRY}:nginx-1.20-alpine" --build-arg STAGE=$STAGE --build-arg CODE_REGISTRY=$CODE_REGISTRY --build-arg CODE_REPO="${CODE_REPO}-code" --build-arg CODE_TAG=$CODE_TAG -t "${CODE_REGISTRY}/${CODE_REPO}-nginxws:${CODE_TAG}" -f kubernetes/.infra/docker/nginxws/Dockerfile kubernetes/.infra/docker/nginxws/
+docker build --build-arg BASE_IMAGE=$UTILS_REGISTRY:nginx-1.20-alpine --build-arg STAGE=$STAGE --build-arg CODE_REGISTRY=$CODE_REGISTRY --build-arg CODE_REPO=$CODE_REPO-code --build-arg CODE_TAG=$CODE_TAG -t $CODE_REGISTRY/$CODE_REPO-nginxws:$CODE_TAG -f kubernetes/.infra/docker/nginxws/Dockerfile kubernetes/.infra/docker/nginxws/
 if [ ! $? -eq 0 ]; then
     echo "Unable to complete the magento nginx build :("
     exit 1
 fi
-docker build --build-arg STAGE=$STAGE --build-arg CODE_REGISTRY=$CODE_REGISTRY --build-arg CODE_REPO="${CODE_REPO}-code" --build-arg CODE_TAG=$CODE_TAG -t "${CODE_REGISTRY}/${CODE_REPO}-php-cli:${CODE_TAG}" -f kubernetes/.infra/docker/php-cli/Dockerfile kubernetes/.infra/docker/php-cli/
+docker build --build-arg STAGE=$STAGE --build-arg CODE_REGISTRY=$CODE_REGISTRY --build-arg CODE_REPO=$CODE_REPO-code --build-arg CODE_TAG=$CODE_TAG -t $CODE_REGISTRY/$CODE_REPO-php-cli:$CODE_TAG -f kubernetes/.infra/docker/php-cli/Dockerfile kubernetes/.infra/docker/php-cli/
 if [ ! $? -eq 0 ]; then
     echo "Unable to complete the magento php-cli build :("
     exit 1
 fi
-docker build --build-arg STAGE=$STAGE --build-arg CODE_REGISTRY=$CODE_REGISTRY --build-arg CODE_REPO=$CODE_REPO-code --build-arg CODE_TAG=$CODE_TAG -t "${CODE_REGISTRY}/${CODE_REPO}-php-fpm:${CODE_TAG}" -f kubernetes/.infra/docker/php-fpm/Dockerfile kubernetes/.infra/docker/php-fpm/
+docker build --build-arg STAGE=$STAGE --build-arg CODE_REGISTRY=$CODE_REGISTRY --build-arg CODE_REPO=$CODE_REPO-code --build-arg CODE_TAG=$CODE_TAG -t $CODE_REGISTRY/$CODE_REPO-php-fpm:$CODE_TAG -f kubernetes/.infra/docker/php-fpm/Dockerfile kubernetes/.infra/docker/php-fpm/
 if [ ! $? -eq 0 ]; then
     echo "Unable to complete the magento php-fpm build :("
     exit 1
