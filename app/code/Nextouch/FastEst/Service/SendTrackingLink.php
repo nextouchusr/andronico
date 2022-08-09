@@ -47,6 +47,7 @@ class SendTrackingLink
             $loginInfo,
             $order->getIncrementId(),
             $order->getStatus(),
+            null,
             $this->fastEstConfig->getTrackingLink($order->getIncrementId())
         );
 
