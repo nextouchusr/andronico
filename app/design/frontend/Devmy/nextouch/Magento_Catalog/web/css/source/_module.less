@@ -925,6 +925,15 @@
         }
     }
 
+
+    .gallery-photo-video {
+        margin-bottom: 50px;
+    }
+
+    .product-info-stock-sku {
+        margin-top: 50px;
+    }
+
     .product-info-main {
         float: right;
 
@@ -1898,4 +1907,11 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
 
+    .catalog-product-view {
+        .product.attribute.overview {
+            &.overview {
+                margin: 0 0 @indent__base 0 ;
+            }
+        }
+    }
 }
