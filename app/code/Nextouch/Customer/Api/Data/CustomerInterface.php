@@ -8,7 +8,7 @@ namespace Nextouch\Customer\Api\Data;
  */
 interface CustomerInterface
 {
-    public const PRIVACY_POLICY_ACCEPTED = 'privacy_policy_accepted';
+    public const IS_PRIVACY_POLICY_ACCEPTED = 'is_privacy_policy_accepted';
     public const CUSTOMER_SYNC_FAILURES = 'customer_sync_failures';
 
     /**
