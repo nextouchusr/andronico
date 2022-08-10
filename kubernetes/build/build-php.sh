@@ -42,6 +42,7 @@ else
     # Magento operations on files
     cp ${SOURCE_DIR}/kubernetes/.config/env.small-template.php ${SOURCE_DIR}/app/etc/env.php
     cd ${SOURCE_DIR} && ${PHP_BIN} -d memory_limit=-1 bin/magento setup:di:compile || (echo "magento setup:di:compile failed"; exit 1)
+    cd ${SOURCE_DIR} && rm -rf var/view_preprocessed/
     cd ${SOURCE_DIR} && ${PHP_BIN} -d memory_limit=-1 bin/magento setup:static-content:deploy en_US --area=adminhtml || (echo "magento setup:static-content:deploy failed"; exit 1)
     cd ${SOURCE_DIR} && ${PHP_BIN} -d memory_limit=-1 bin/magento setup:static-content:deploy it_IT --area=adminhtml || (echo "magento setup:static-content:deploy failed"; exit 1)
     cd ${SOURCE_DIR} && ${PHP_BIN} -d memory_limit=-1 bin/magento setup:static-content:deploy it_IT --area=frontend  --exclude-theme Magento/luma || (echo "magento setup:static-content:deploy failed"; exit 1)

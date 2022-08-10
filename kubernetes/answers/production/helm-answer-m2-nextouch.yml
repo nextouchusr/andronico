@@ -272,6 +272,9 @@ loadBalancer:
     - host: www.nextouch.it
       path: /*
       service: varnish
+    - host: nextouch.it
+      path: /*
+      service: varnish
 prehook:
   command: "sh kubernetes/build/pre-hook.sh nextouch production %SKIP_SETTINGS_AND_SETUP_UPGRADE% %NO_INTERACTION_SETUP_UPGRADE%"
   enabled: false
