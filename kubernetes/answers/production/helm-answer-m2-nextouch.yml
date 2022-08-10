@@ -1,5 +1,5 @@
 aliases:
-  &tag_magento "nextouch-51159d40b33579091a71a8e063db947d9309a492"
+  &tag_magento "nextouch-0e70f82a293c0164eb75a660bd840bc6637842af"
 stage: "production"
 nameOverride: "nextouch"
 global:
@@ -274,7 +274,7 @@ loadBalancer:
       service: varnish
 prehook:
   command: "sh kubernetes/build/pre-hook.sh nextouch production %SKIP_SETTINGS_AND_SETUP_UPGRADE% %NO_INTERACTION_SETUP_UPGRADE%"
-  enabled: true
+  enabled: false
   registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
   repository: "k8s-prd/nextouch-php-cli"
   tag: *tag_magento
