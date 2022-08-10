@@ -15,6 +15,7 @@
 
 & when (@media-common = true) {
     .modal-popup.confirm {
+        z-index: 9999!important;
        .modal-footer {
            .action-dismiss,
            .action-accept {
@@ -24,6 +25,24 @@
                margin-bottom: 10px;
            }
        }
+    }
+    .modal-popup.agreements-modal {
+        .modal-header {
+            .action-close {
+                display: none;
+            }
+        }
+
+        .modal-footer {
+            .action.secondary {
+                font-size: 2.4rem;
+                padding: 30px 50px;
+                box-sizing: border-box;
+                max-height: 80px;
+                line-height: 2.6rem;
+                color: #0b4966;
+            }
+        }
     }
     .checkout-index-index {
         .modal-popup {

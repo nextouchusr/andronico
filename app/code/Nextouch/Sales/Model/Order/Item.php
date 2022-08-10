@@ -11,9 +11,7 @@ use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
 use Nextouch\Sales\Api\OrderRepositoryInterface;
 use function Lambdish\Phunctional\reduce;
-use function Lambdish\Phunctional\search;
 use function Lambdish\Phunctional\some;
-use function Symfony\Component\String\u;
 
 class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
 {
@@ -85,11 +83,6 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
         return $this->hasSelectedService(ProductInterface::APPOINTMENT_DELIVERY);
     }
 
-    public function hasUrgentDelivery(): bool
-    {
-        return $this->hasSelectedService(ProductInterface::URGENT_DELIVERY);
-    }
-
     public function hasSaturdayDelivery(): bool
     {
         return $this->hasSelectedService(ProductInterface::SATURDAY_DELIVERY);
@@ -155,15 +148,9 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
         $options = $this->getSelectedOptions();
 
         return some(function (array $option) use ($code) {
-            $values = explode(self::OPTION_SEPARATOR, $option['value']);
+            $services = explode(self::OPTION_SEPARATOR, $option['option_sku']);
 
-            $service = search(function (string $value) use ($code) {
-                $formattedValue = u($value)->snake()->lower()->toString();
-
-                return $formattedValue === $code;
-            }, $values);
-
-            return $service !== null;
+            return in_array($code, $services);
         }, $options);
     }
 }

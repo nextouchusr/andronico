@@ -40,6 +40,10 @@
             padding: 0;
             list-style: none;
         }
+        #opc-sidebar {
+            position: relative;
+            z-index: 999;
+        }
         #maincontent {
             padding-top: 50px;
             padding-left: 30px;
@@ -159,7 +163,7 @@
             > li {
                 box-shadow: @theme__box-shadow__primary;
                 padding: 25px;
-                border-radius: 15px;
+                border-radius: 10px;
                 margin-bottom: 50px;
                 list-style: none;
                 font-size: 1rem;
@@ -297,7 +301,7 @@
         }
 
         .popup-authentication,
-        .modal-popup {
+        .modal-popup:not(.confirm):not(.agreements-modal) {
             .modal-inner-wrap {
                 padding-left: 3%;
                 padding-right: 3%;

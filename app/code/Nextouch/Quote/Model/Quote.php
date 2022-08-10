@@ -17,6 +17,8 @@ use function Lambdish\Phunctional\some;
 
 class Quote extends \Magento\Quote\Model\Quote implements CartInterface
 {
+    private const MAX_PICKUPABLE_ITEMS = 1;
+
     public function getShippingAddress(): ?AddressInterface
     {
         $address = parent::getShippingAddress();
@@ -78,9 +80,12 @@ class Quote extends \Magento\Quote\Model\Quote implements CartInterface
 
     public function isShippableWithInStorePickup(): bool
     {
-        return all(function (CartItemInterface $item) {
+        $hasOnlyOneItem = (int) $this->getItemsQty() === self::MAX_PICKUPABLE_ITEMS;
+        $isAllPickupable = all(function (CartItemInterface $item) {
             return $item->getProduct()->isPickupable();
         }, $this->getItems());
+
+        return $isAllPickupable && $hasOnlyOneItem;
     }
 
     public function isShippableWithFastEst(): bool

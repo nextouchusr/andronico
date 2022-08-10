@@ -45,15 +45,17 @@ class Attributes extends \Magento\Catalog\Block\Product\View\Attributes
                     }
 
                     if (is_string($value) && strlen(trim($value))) {
+                        $attributesGroup = $data[$attributeGroup->getAttributeGroupId()]['attributes'] ?? [];
+
                         $data[$attributeGroup->getAttributeGroupId()] = [
                             'label' => $attributeGroup->getAttributeGroupName(),
-                            'attributes' => [
+                            'attributes' => array_merge($attributesGroup, [
                                 $attribute->getAttributeCode() => [
                                     'label' => $attribute->getStoreLabel(),
                                     'value' => $value,
                                     'code' => $attribute->getAttributeCode(),
                                 ],
-                            ],
+                            ]),
                         ];
                     }
                 }

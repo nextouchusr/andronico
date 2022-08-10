@@ -1,6 +1,10 @@
-<?php /** @var \Magento\Contact\Block\ContactForm $block */ ?>
+<?php
+/** @var \Magento\Contact\Block\ContactForm $block */
+
+$sideaConfig = $this->helper(Nextouch\Sidea\Helper\SideaConfig::class);
+?>
 <form class="form contact"
-      action="<?= $block->escapeUrl($block->getUrl('theme/contact/post', ['_secure' => true])) ?>"
+      action="<?= $block->escapeUrl($sideaConfig->getContactActionUrl()) ?>"
       id="contact-form"
       method="post"
       data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
@@ -8,6 +12,8 @@
 
     <h2><?= $block->escapeHtml(__('Contact Us')) ?></h2>
     <fieldset class="fieldset">
+        <input type=hidden name="orgid" value="<?= $block->escapeHtml($block->getContactOriginId()) ?>">
+        <input type=hidden name="retURL" value="<?= $block->escapeUrl($block->getUrl('contact')) ?>">
         <div class="field name required">
             <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
             <div class="control">
@@ -30,23 +36,35 @@
                        data-validate="{required:true, 'validate-email':true}"/>
             </div>
         </div>
-        <div class="field telephone">
+        <div class="field phone required">
             <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
             <div class="control">
-                <input name="telephone"
-                       id="telephone"
+                <input name="phone"
+                       id="phone"
                        title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>"
                        class="input-text"
-                       type="tel" />
+                       type="tel"
+                       data-validate="{required:true}"/>
             </div>
         </div>
-        <div class="field comment required">
-            <label class="label" for="comment">
+        <div class="field subject required">
+            <label class="label" for="subject"><span><?= $block->escapeHtml(__('Subject')) ?></span></label>
+            <div class="control">
+                <input name="subject"
+                       id="subject"
+                       title="<?= $block->escapeHtmlAttr(__('Subject')) ?>"
+                       class="input-text"
+                       type="text"
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field description required">
+            <label class="label" for="description">
                 <span><?= $block->escapeHtml(__('What are you contacting us for?')) ?></span>
             </label>
             <div class="control">
-                <textarea name="comment"
-                          id="comment"
+                <textarea name="description"
+                          id="description"
                           title="<?= $block->escapeHtmlAttr(__('What are you contacting us for?')) ?>"
                           class="input-text"
                           cols="5"
@@ -56,12 +74,47 @@
                 ></textarea>
             </div>
         </div>
+        <div class="field choice required">
+            <input id="00N3N00000KBGOq"
+                   name="00N3N00000KBGOq"
+                   type="checkbox"
+                   value="1"
+                   data-validate="{required:true}"
+                   checked>
+            <label class="label" for="00N3N00000KBGOq">
+                <?= $block->escapeHtml(
+                    __("Dichiaro di accettare i Termini e Condizioni e di aver preso visione dell'Informativa Privacy resa ai sensi dell'art. 13 Reg. UE 679/2016 (GDPR).")
+                ) ?>
+            </label>
+        </div>
+        <div class="field choice">
+            <input id="00N3N00000KBGLS"
+                   name="00N3N00000KBGLS"
+                   type="checkbox"
+                   value="1">
+            <label class="label" for="00N3N00000KBGLS">
+                <?= $block->escapeHtml(
+                    __("Acconsento al trattamento dei miei dati personali per l'invio di comunicazioni commerciali e pubblicitare da parte di NexTouch S.p.A. via e-mail e SMS.")
+                ) ?>
+            </label>
+        </div>
+        <div class="field choice">
+            <input id="00N3N00000KBZat"
+                   name="00N3N00000KBZat"
+                   type="checkbox"
+                   value="1">
+            <label class="label" for="00N3N00000KBZat">
+                <?= $block->escapeHtml(
+                    __("Acconsento al trattamento dei miei dati personali per scopi di profilazione mediante la creazione di un profilo utente al fine di inviare comunicazioni personalizzate in linea con i miei interessi esclusivamente da parte di NexTouch S.p.A. anche attraverso l'uso di strumento elettronici e automatizzati.")
+                ) ?>
+            </label>
+        </div>
         <?= $block->getChildHtml('form.additional.info') ?>
     </fieldset>
     <div class="actions-toolbar">
         <p>
-            <?= $block->escapeHtml('The assistance service is active from Monday to Friday from 00:00 to 00:00.') ?><br>
-            <?= $block->escapeHtml('Our operators will reply as soon as possible.') ?>
+            <?= $block->escapeHtml(__('The assistance service is active from Monday to Friday from 00:00 to 00:00.')) ?><br>
+            <?= $block->escapeHtml(__('Our operators will reply as soon as possible.')) ?>
         </p>
 
         <div class="primary">

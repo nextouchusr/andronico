@@ -4,4 +4,17 @@
     <extension_attributes for="Magento\Sales\Api\Data\OrderItemInterface">
         <attribute code="reference_item_id" type="int"/>
     </extension_attributes>
+
+    <extension_attributes for="Magento\Sales\Api\Data\ShipmentCreationArgumentsInterface">
+        <attribute code="shipping_label" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\ShipmentCreationArgumentsInterface">
+        <attribute code="ext_shipment_id" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\ShipmentCreationArgumentsInterface">
+        <attribute code="ext_return_shipment_id" type="string" />
+    </extension_attributes>
+    <extension_attributes for="Magento\Sales\Api\Data\ShipmentCreationArgumentsInterface">
+        <attribute code="ext_location_id" type="string" />
+    </extension_attributes>
 </config>

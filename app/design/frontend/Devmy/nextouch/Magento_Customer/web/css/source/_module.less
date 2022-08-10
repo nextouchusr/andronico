@@ -155,7 +155,7 @@
             margin: 50px 0;
             text-align: center;
             font-weight: 200;
-            font-size: 1.6rem;
+            font-size: @text__sm;
         }
     }
 
@@ -466,6 +466,16 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    #block-customer-login-heading {
+        font-size: @text__sm;
+    }
+
+    .customer-login-left-block {
+        h2 {
+            font-size: @text__sm;
+        }
+    }
+
     .login-container {
         padding: 50px 10%;
         .fieldset {
@@ -488,7 +498,7 @@
             input.input-text,
             .control select {
                 height: 30px;
-                padding: 15px 20px;
+                padding: 0 20px;
                 font-size: 1rem;
             }
         }
@@ -499,8 +509,10 @@
 
         .customer-login-right-block {
             padding: 25px;
+            border-radius: 10px;
             h2 {
                 text-align: center;
+                font-size: @text__sm;
             }
             ul li {
                 font-size: 1rem;
@@ -713,18 +725,30 @@
         box-sizing: border-box;
         text-align: center;
     }
-    .customer-login-right-block {
-        box-shadow: @theme__box-shadow__primary;
-        margin-left: 10%;
-        padding: 5%;
-        width:40%;
-        box-sizing: border-box;
-        ul li {
-            font-size: 3rem;
+    .login-container {
+        #block-customer-login-heading {
+            margin-bottom: 100px;
         }
+        .customer-login-right-block {
+            box-shadow: @theme__box-shadow__primary;
+            margin-left: 10%;
+            padding: 5%;
+            width: 40%;
+            box-sizing: border-box;
 
+            ul li {
+                font-size: 3rem;
+                margin: 25px 0;
+            }
+
+        }
+        .fieldset > .field {
+            margin-bottom: 50px;
+        }
+        div.primary {
+            margin-bottom:  50px;
+        }
     }
-
     .columns-customer-login {
         display: flex;
         flex-flow: row nowrap;

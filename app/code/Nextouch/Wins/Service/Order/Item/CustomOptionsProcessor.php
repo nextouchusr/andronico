@@ -38,8 +38,9 @@ class CustomOptionsProcessor
             }
 
             $customOptions = $productOption['options'] ?? [];
+            $orderItems = $this->transformOptionsToOrderItems((int) $item->getItemId(), $customOptions);
 
-            return $this->transformOptionsToOrderItems((int) $item->getItemId(), $customOptions);
+            return array_merge($acc, $orderItems);
         }, $order->getItems(), []);
     }
 

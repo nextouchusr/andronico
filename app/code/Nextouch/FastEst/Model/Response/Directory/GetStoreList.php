@@ -49,7 +49,8 @@ class GetStoreList implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $stores = $propertyAccessor->getValue($object, 'store_ids');
+        $hasStores = $propertyAccessor->isReadable($object, 'store_ids');
+        $stores = $hasStores ? $propertyAccessor->getValue($object, 'store_ids') : [];
         $stores = is_array($stores) ? $stores : [$stores];
 
         return new self(

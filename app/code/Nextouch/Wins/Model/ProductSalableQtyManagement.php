@@ -26,7 +26,7 @@ class ProductSalableQtyManagement extends AbstractBaseRestApi implements Product
 
         $response = $this->doRequest($uriEndpoint, $params);
 
-        if ($response->getStatusCode() !== self::HTTP_OK) {
+        if (!in_array($response->getStatusCode(), self::SUCCESS_STATUSES)) {
             return GetProductAvailabilityResponse::fromError([
                 'errorCode' => $response->getStatusCode(),
                 'errorDescription' => $response->getReasonPhrase(),

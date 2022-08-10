@@ -72,6 +72,36 @@
           background: @theme__color__primary;
           padding: @indent__base @indent__xl;
         }
+
+        p {
+          font-size: @text__sm;
+        }
+      }
+    }
+  }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .contact-index-index {
+    .frequent-questions {
+      &-title {
+        font-size: @text__xs;
+      }
+
+      &-content {
+        font-size: @text__xs;
+      }
+    }
+
+    .form.contact {
+      .actions-toolbar {
+        p {
+          font-size: @text__base;
+        }
       }
     }
   }
@@ -87,6 +117,7 @@
       &-title {
         padding-right: 30px;
         margin-bottom: 0;
+        font-size: @text__sm;
 
         &:after {
           display: inline-block;
@@ -104,6 +135,10 @@
           speak: none;
           text-align: center;
         }
+      }
+
+      &-content {
+        font-size: @text__sm;
       }
 
       .active {

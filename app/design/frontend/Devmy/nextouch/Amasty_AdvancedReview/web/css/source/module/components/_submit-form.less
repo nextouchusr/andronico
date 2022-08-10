@@ -188,9 +188,15 @@
         }
     }
     .amreview-title-review {
+        font-size: @text__lg !important;
+
         .nickname {
-            font-weight: 300;
+            font-weight: @font-weight__heavier;
         }
+    }
+
+    .amreview-description {
+        font-size: @text__sm;
     }
 
     .amreview-submit-form .field {
@@ -369,6 +375,17 @@
         .review-fieldset .field {
             margin: 0 0 @amrev__indent__l 0;
         }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .amreview-title-review,
+    .amreview-description {
+        font-size: @text__base !important;
     }
 }
 

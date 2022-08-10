@@ -26,7 +26,7 @@ class OrderManagement extends AbstractBaseRestApi implements OrderManagementInte
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        return $response->getStatusCode() === self::HTTP_NO_CONTENT;
+        return in_array($response->getStatusCode(), self::SUCCESS_STATUSES);
     }
 
     public function updateState(UpdateOrderState $request): bool
@@ -41,6 +41,6 @@ class OrderManagement extends AbstractBaseRestApi implements OrderManagementInte
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
-        return $response->getStatusCode() === self::HTTP_NO_CONTENT;
+        return in_array($response->getStatusCode(), self::SUCCESS_STATUSES);
     }
 }

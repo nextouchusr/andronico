@@ -30,7 +30,7 @@
 
     .installation-slider-block {
       margin-top: -165px;
-      border-radius: 20px !important;
+      border-radius: 10px;
     }
 
     .tns-slider {
@@ -41,7 +41,7 @@
     .tns-item {
       padding: 20px 20px 40px 20px;
       background-color: @primary__color;
-      border-radius: 20px;
+      border-radius: 10px;
 
       &:first-child {
         margin-left: 0;
@@ -52,7 +52,7 @@
       }
 
       img {
-        border-radius: 20px;
+        border-radius: 10px;
       }
     }
 
@@ -60,16 +60,22 @@
     .installation-content-block {
       margin: @indent__l;
 
+      h1 {
+        text-align: center;
+        font-size: @text__sm;
+      }
+
       h2 {
         text-align: center;
+        font-size: @text__xs;
       }
 
       p, p > span {
-        font-size: 1.5rem !important;
+        font-size: @text__base;
       }
 
       img {
-        border-radius: 20px !important;
+        border-radius: 10px !important;
       }
     }
 
@@ -108,11 +114,20 @@
 
     .installation-slider-block {
       margin-top: -185px;
+      border-radius: 100px;
     }
 
     .installation-slider-block,
     .installation-content-block {
       padding: 50px 100px;
+
+      h2 {
+        font-size: @text__md;
+      }
+
+      p, p > span {
+        font-size: @text__md;
+      }
     }
 
     .tns-slider {

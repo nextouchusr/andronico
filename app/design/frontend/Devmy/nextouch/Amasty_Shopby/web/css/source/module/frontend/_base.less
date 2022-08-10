@@ -41,7 +41,7 @@
             box-shadow: 0 3px 8px #999;
             padding: @indent__s;
             margin: @indent__s;
-            border-radius: 30px;
+            border-radius: 50px;
             min-width: 425px;
 
             img {
@@ -726,6 +726,7 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
     .amslider.ambrands-slider {
         .swiper-slide {
+            border-radius: 10px;
             max-width: 300px;
             min-width: auto;
         }

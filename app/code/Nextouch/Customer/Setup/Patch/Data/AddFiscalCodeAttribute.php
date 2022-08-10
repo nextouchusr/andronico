@@ -62,7 +62,7 @@ class AddFiscalCodeAttribute implements DataPatchInterface
                 'type' => 'varchar',
                 'label' => 'Fiscal Code',
                 'input' => 'text',
-                'required' => false,
+                'required' => true,
                 'sort_order' => 140,
                 'position' => 140,
                 'visible' => true,

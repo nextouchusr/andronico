@@ -36,6 +36,7 @@
         "avada/module-proofo": "^1.0",
         "community-engineering/language-it_it": "^0.0.17",
         "danielgsims/php-collections": "^2.2",
+        "experius/module-missingtranslations": "^3.2",
         "lambdish/phunctional": "^2.1",
         "laminas/laminas-form": "^3.0",
         "league/csv": "^9.0",
@@ -44,6 +45,7 @@
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
         "magento/product-enterprise-edition": "2.4.3-p1",
+        "mageplaza/module-delete-orders": "^4.0",
         "msp/cmsimportexport": "^1.1",
         "splashlab/magento-2-cors-requests": "^100.0",
         "webmozart/assert": "^1.10"

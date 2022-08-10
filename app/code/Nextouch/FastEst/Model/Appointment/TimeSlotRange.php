@@ -7,7 +7,7 @@ class TimeSlotRange
 {
     private const DAYS_TO_SPEND_BEFORE_SHIPPING_STARTS = '3 days';
     private const DAYS_TO_SPEND_BEFORE_SHIPPING_STOPS = '15 days';
-    private const DEFAULT_TIMESLOTS = ['09-13', '15-18'];
+    private const DEFAULT_TIMESLOTS = ['07-09', '09-11', '11-13', '12-14', '14-16', '16-18'];
 
     private \DateTimeImmutable $dateStart;
     private \DateTimeImmutable $dateStop;
