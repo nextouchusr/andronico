@@ -13,7 +13,7 @@ class DeliveryReturn implements OutputInterface
     private string $errorDescription;
     private string $storeOrder;
     private int $changeId;
-    private Product $product;
+    private ?Product $product;
 
     private function __construct(
         int $deliveryId,
@@ -21,7 +21,7 @@ class DeliveryReturn implements OutputInterface
         string $errorDescription,
         string $storeOrder,
         int $changeId,
-        Product $product
+        ?Product $product = null
     ) {
         $this->deliveryId = $deliveryId;
         $this->errorCode = $errorCode;
@@ -56,7 +56,7 @@ class DeliveryReturn implements OutputInterface
         return $this->changeId;
     }
 
-    public function getProduct(): Product
+    public function getProduct(): ?Product
     {
         return $this->product;
     }
@@ -70,15 +70,28 @@ class DeliveryReturn implements OutputInterface
         $errorDescription = (string) $propertyAccessor->getValue($object, 'error_descr');
         $storeOrder = (string) $propertyAccessor->getValue($object, 'store_order');
         $changeId = (int) $propertyAccessor->getValue($object, 'change_id');
-        $product = $propertyAccessor->getValue($object, 'product');
+        $hasProduct = $propertyAccessor->isReadable($object, 'product');
+
+        if ($hasProduct) {
+            $product = $propertyAccessor->getValue($object, 'product');
+
+            return new self(
+                $deliveryId,
+                $errorCode,
+                $errorDescription,
+                $storeOrder,
+                $changeId,
+                Product::fromObject($product)
+            );
+        }
+
 
         return new self(
             $deliveryId,
             $errorCode,
             $errorDescription,
             $storeOrder,
-            $changeId,
-            Product::fromObject($product)
+            $changeId
         );
     }
 }
