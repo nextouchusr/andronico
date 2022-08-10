@@ -258,6 +258,20 @@ $formData = $block->getFormData();
             <div class="field choice" data-bind="scope: 'showPassword'">
                 <!-- ko template: getTemplate() --><!-- /ko -->
             </div>
+
+            <div class="field is_privacy_policy_accepted required">
+                <div class="control">
+                    <input type="checkbox"
+                           id="is_privacy_policy_accepted"
+                           name="is_privacy_policy_accepted"
+                           class="input-checkbox checkbox"
+                           value="1"
+                           data-validate="{required:true, 'validate-one-required-by-name':true}">
+                    <label for="is_privacy_policy_accepted" class="label">
+                        <?= __("Dichiaro di accettare i Termini e Condizioni e di aver preso visione dell'Informativa Privacy resa ai sensi dell'art. 13 Reg. UE 679/2016 (GDPR).") ?>
+                    </label>
+                </div>
+            </div>
         </fieldset>
 
         <fieldset class="fieldset additional_info">
