@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nextouch\Findomestic\Model\Plan;
 
+use Magento\Framework\App\ObjectManager;
 use Nextouch\Findomestic\Api\Data\ArrayableInterface;
+use Nextouch\Findomestic\Helper\FindomesticConfig;
 
 class Program implements ArrayableInterface
 {
-    private const DEFAULT_PROGRAM_ID = '7593';
-
     private string $programId;
     private ?int $duration;
 
@@ -36,7 +36,9 @@ class Program implements ArrayableInterface
 
     public static function asDefault(): self
     {
-        return new self(self::DEFAULT_PROGRAM_ID);
+        $findomesticConfig = ObjectManager::getInstance()->get(FindomesticConfig::class);
+
+        return new self($findomesticConfig->getProgramId());
     }
 
     public static function fromArray(array $data): self
