@@ -17,6 +17,7 @@ class FindomesticConfig extends AbstractHelper
     private const XML_PATH_FINDOMESTIC_BASE_URL = 'payment/findomestic_paymentservice/base_url';
     private const XML_PATH_FINDOMESTIC_PARTNER_ID = 'payment/findomestic_paymentservice/partner_id';
     private const XML_PATH_FINDOMESTIC_VENDOR_ID = 'payment/findomestic_paymentservice/vendor_id';
+    private const XML_PATH_FINDOMESTIC_PROGRAM_ID = 'payment/findomestic_paymentservice/program_id';
     private const XML_PATH_FINDOMESTIC_TITLE = 'payment/findomestic_paymentservice/title';
     private const XML_PATH_FINDOMESTIC_ORDER_STATUS = 'payment/findomestic_paymentservice/order_status';
     private const XML_PATH_FINDOMESTIC_ALLOWSPECIFIC = 'payment/findomestic_paymentservice/allowspecific';
@@ -88,6 +89,15 @@ class FindomesticConfig extends AbstractHelper
     {
         return (string) $this->scopeConfig->getValue(
             self::XML_PATH_FINDOMESTIC_VENDOR_ID,
+            ScopeInterface::SCOPE_WEBSITE,
+            $scopeCode
+        );
+    }
+
+    public function getProgramId(string $scopeCode = null): string
+    {
+        return (string) $this->scopeConfig->getValue(
+            self::XML_PATH_FINDOMESTIC_PROGRAM_ID,
             ScopeInterface::SCOPE_WEBSITE,
             $scopeCode
         );
