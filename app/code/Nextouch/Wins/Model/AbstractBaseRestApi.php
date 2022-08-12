@@ -63,7 +63,7 @@ abstract class AbstractBaseRestApi
                 $params
             );
         } catch (GuzzleException $e) {
-            $this->logger->error($e->getMessage());
+            $this->logger->error($e->getResponse()->getBody()->getContents());
 
             $response = $this->responseFactory->create([
                 'status' => $e->getCode(),
