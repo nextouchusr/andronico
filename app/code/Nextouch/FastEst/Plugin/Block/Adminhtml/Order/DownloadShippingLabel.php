@@ -23,14 +23,13 @@ class DownloadShippingLabel
     public function beforeSetLayout(View $subject)
     {
         $fastEstOrder = $this->orderRepository->get((int) $subject->getOrderId());
-        $orderLabels = $this->deliveryRepository->getOrderLabels($fastEstOrder);
+        $response = $this->deliveryRepository->getOrderLabels($fastEstOrder);
 
-        $subject->addButton(
-            'download_shipping_label',
-            [
+        if ($response->getStatusReturn()->isOk()) {
+            $subject->addButton('download_shipping_label', [
                 'label' => __('Download Shipping Label'),
-                'onclick' => "setLocation('data:application/octet-stream;base64,{$orderLabels->getBase64PdfLabel()}')",
-            ]
-        );
+                'onclick' => "setLocation('data:application/octet-stream;base64,{$response->getBase64PdfLabel()}')",
+            ]);
+        }
     }
 }
