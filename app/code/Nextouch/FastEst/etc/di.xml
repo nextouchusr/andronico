@@ -35,4 +35,9 @@
         <plugin name="confirm_parked_delivery"
                 type="Nextouch\FastEst\Plugin\Model\ConfirmParkedDelivery"/>
     </type>
+
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="send_fast_est_tracking_link"
+                type="Nextouch\FastEst\Plugin\Model\SendFastEstTrackingLink"/>
+    </type>
 </config>
