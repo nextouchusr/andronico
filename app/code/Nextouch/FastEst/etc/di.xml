@@ -40,4 +40,9 @@
         <plugin name="send_fast_est_tracking_link"
                 type="Nextouch\FastEst\Plugin\Model\SendFastEstTrackingLink"/>
     </type>
+
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+        <plugin name="download_shipping_label"
+                type="Nextouch\FastEst\Plugin\Block\Adminhtml\Order\DownloadShippingLabel"/>
+    </type>
 </config>
