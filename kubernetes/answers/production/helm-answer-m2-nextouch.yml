@@ -132,7 +132,7 @@ varnish:
   replicaCount: 2
   registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
   repository: "prd/utils"
-  tag: "varnish-0.6.1-hevelop-4"
+  tag: "varnish-0.6.1-hevelop-5"
   configVersion: '6.0'
   customConfigMap:
     enabled: true
