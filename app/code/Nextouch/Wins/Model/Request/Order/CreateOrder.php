@@ -5,6 +5,7 @@ namespace Nextouch\Wins\Model\Request\Order;
 
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
 use Magento\Framework\App\ObjectManager;
+use Magento\Paypal\Model\Config;
 use Magento\Sales\Api\Data\OrderInterface;
 use Nextouch\Wins\Api\Data\InputInterface;
 use Nextouch\Wins\Model\Auth\LoginInfo;
@@ -46,6 +47,13 @@ class CreateOrder implements InputInterface
 
         $dataObjectConverter = ObjectManager::getInstance()->create(ExtensibleDataObjectConverter::class);
         $order = $dataObjectConverter->toNestedArray($this->getOrder(), [], OrderInterface::class);
+
+        if ($order['payment']['method'] === Config::METHOD_EXPRESS) {
+            $order['payment_additional_info'][] = ['key' => 'transaction_id', 'value' => $order['payment']['last_trans_id']];
+            $order['payment_additional_info'][] = ['key' => 'payment_id', 'value' => $order['payment']['last_trans_id']];
+            $order['payment_additional_info'][] = ['key' => 'method', 'value' => $order['payment']['method']];
+        }
+
         $order['extension_attributes'] = [
             'shipping_assignments' => $order['shipping_assignments'] ?? null,
             'payment_additional_info' => $order['payment_additional_info'] ?? null,
