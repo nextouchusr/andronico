@@ -4,21 +4,21 @@ declare(strict_types=1);
 namespace Nextouch\FastEst\Plugin\Axepta\Controller\Payment;
 
 use Collections\Exceptions\InvalidArgumentException;
-use Magento\Checkout\Model\Session as CheckoutSession;
+use Magento\Checkout\Model\Type\Onepage as OnepageCheckout;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\OrderInterface;
 use Nextouch\FastEst\Service\CreateNewDelivery as CreateNewDeliveryService;
 
 class CreateNewDelivery
 {
-    private CheckoutSession $checkoutSession;
+    private OnepageCheckout $onepageCheckout;
     private CreateNewDeliveryService $createNewDeliveryService;
 
     public function __construct(
-        CheckoutSession $checkoutSession,
+        OnepageCheckout $onepageCheckout,
         CreateNewDeliveryService $createNewDeliveryService
     ) {
-        $this->checkoutSession = $checkoutSession;
+        $this->onepageCheckout = $onepageCheckout;
         $this->createNewDeliveryService = $createNewDeliveryService;
     }
 
@@ -28,9 +28,13 @@ class CreateNewDelivery
      */
     public function afterExecute(): void
     {
-        /** @var OrderInterface $order */
-        $order = $this->checkoutSession->getLastRealOrder();
+        $order = $this->getLastRealOrder();
 
         $this->createNewDeliveryService->create($order);
+    }
+
+    private function getLastRealOrder(): OrderInterface
+    {
+        return $this->onepageCheckout->getCheckout()->getLastRealOrder();
     }
 }
