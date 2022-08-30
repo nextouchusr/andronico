@@ -38,11 +38,6 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
      */
     protected $quoteRepository;
 
-    /**
-     * @var \Magento\Sales\Api\OrderRepositoryInterface
-     */
-    protected $orderRepository;
-
     private $orderCollectionFactory;
 
     private $storeManager;
@@ -58,14 +53,12 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
-        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
         \Axepta\Paymentservice\Helper\Data $helper
     ) {
         parent::__construct($context);
 
         $this->coreRegistry = $coreRegistry;
         $this->quoteRepository = $quoteRepository;
-        $this->orderRepository = $orderRepository;
         $this->helper = $helper;
         $this->storeManager = $this->_objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
         $this->scopeConfig = $this->_objectManager->get(\Magento\Framework\App\Config\ScopeConfigInterface::class);
@@ -289,7 +282,7 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
         $payment->setAdditionalInformation('transaction_id', $response['tranID']);
         $payment->setAdditionalInformation('return_code', $response['returnCode']);
         $payment->save();
-        $order = $this->orderRepository->save($order);
+        $order->save();
 
         $lastQuoteId = $this->getCheckout()->getLastQuoteId();
         if ($lastQuoteId) {

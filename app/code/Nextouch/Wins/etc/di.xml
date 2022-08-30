@@ -51,4 +51,9 @@
         <plugin name="filter_pickup_locations"
                 type="Nextouch\Wins\Plugin\InventoryInStorePickup\Model\FilterPickupLocations"/>
     </type>
+
+    <type name="Axepta\Paymentservice\Controller\Payment\Callback">
+        <plugin name="create_new_wins_order"
+                type="Nextouch\Wins\Plugin\Axepta\Controller\Payment\CreateNewWinsOrder"/>
+    </type>
 </config>
