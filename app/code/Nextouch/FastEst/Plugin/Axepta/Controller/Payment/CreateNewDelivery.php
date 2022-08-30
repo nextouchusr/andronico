@@ -1,21 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace Nextouch\FastEst\Observer;
+namespace Nextouch\FastEst\Plugin\Axepta\Controller\Payment;
 
 use Collections\Exceptions\InvalidArgumentException;
-use Magento\Framework\Event\Observer;
-use Magento\Framework\Event\ObserverInterface;
+use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\OrderInterface;
 use Nextouch\FastEst\Service\CreateNewDelivery as CreateNewDeliveryService;
 
-class CreateNewDelivery implements ObserverInterface
+class CreateNewDelivery
 {
+    private CheckoutSession $checkoutSession;
     private CreateNewDeliveryService $createNewDeliveryService;
 
-    public function __construct(CreateNewDeliveryService $createNewDeliveryService)
-    {
+    public function __construct(
+        CheckoutSession $checkoutSession,
+        CreateNewDeliveryService $createNewDeliveryService
+    ) {
+        $this->checkoutSession = $checkoutSession;
         $this->createNewDeliveryService = $createNewDeliveryService;
     }
 
@@ -23,15 +26,10 @@ class CreateNewDelivery implements ObserverInterface
      * @throws LocalizedException
      * @throws InvalidArgumentException
      */
-    public function execute(Observer $observer): void
+    public function afterExecute(): void
     {
         /** @var OrderInterface $order */
-        $order = $observer->getData('order');
-        $hasCreditCardPayment = $order->getPayment()->getMethod() === 'axepta_paymentservice';
-
-        if ($hasCreditCardPayment) {
-            return;
-        }
+        $order = $this->checkoutSession->getLastRealOrder();
 
         $this->createNewDeliveryService->create($order);
     }
