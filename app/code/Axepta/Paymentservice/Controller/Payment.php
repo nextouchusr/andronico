@@ -296,6 +296,8 @@ abstract class Payment extends \Magento\Framework\App\Action\Action
         $checkout->clearStorage();
         $checkout->restoreQuote();
 
+        $this->_eventManager->dispatch('axepta_paymentservice_success', ['order' => $order]);
+
         return $order;
     }
 

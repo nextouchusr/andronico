@@ -45,9 +45,4 @@
         <plugin name="download_shipping_label"
                 type="Nextouch\FastEst\Plugin\Block\Adminhtml\Order\DownloadShippingLabel"/>
     </type>
-
-    <type name="Axepta\Paymentservice\Controller\Payment\Callback">
-        <plugin name="create_new_delivery"
-                type="Nextouch\FastEst\Plugin\Axepta\Controller\Payment\CreateNewDelivery"/>
-    </type>
 </config>
