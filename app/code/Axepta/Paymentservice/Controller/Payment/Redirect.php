@@ -41,9 +41,10 @@ class Redirect extends \Axepta\Paymentservice\Controller\Payment
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
         \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
         \Axepta\Paymentservice\Helper\Data $helper
     ) {
-        parent::__construct($context, $coreRegistry, $quoteRepository, $helper);
+        parent::__construct($context, $coreRegistry, $quoteRepository, $orderRepository, $helper);
     }
 
     /**
