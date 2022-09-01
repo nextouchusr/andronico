@@ -653,6 +653,7 @@
         .page-title {
             font-weight: 700;
             font-size: 1.4rem;
+            word-break: break-word;
         }
         .page-main {
             background: url('@{baseDir}images/texture.jpg') no-repeat center 1800px;
@@ -861,6 +862,20 @@
     .product-addto-links .action.tocompare,
     .product-item-actions .actions-secondary > .action.tocompare {
         display: none;
+    }
+
+    .catalog-product_compare-index {
+        .product-image-container {
+            width: 80px !important;
+        }
+
+        .table-comparison {
+            .cell {
+                .attribute.value {
+                    max-width: 110px;
+                }
+            }
+        }
     }
 }
 
@@ -1378,6 +1393,10 @@
                     height: auto;
                     max-width: 100%;
                 }
+
+                .value {
+                    word-break: break-word;
+                }
             }
         }
 
@@ -1494,6 +1513,7 @@
                 width: 25%;
                 .product-item-name {
                     font-size: 1rem;
+                    word-break: break-word;
                 }
                 .action.delete {
                     position: absolute;
@@ -1523,7 +1543,7 @@
                     border-radius: 30px;
                     height: 27px;
                     width: 53px;
-                    margin: 10px auto;
+                    margin: 10px auto 25px;
                     cursor: pointer;
                     position: relative;
                     background: #efefef;
@@ -1773,8 +1793,8 @@
                 }
             }
             td .action.delete {
-                top: 20px;
-                right: 30px;
+                top: 30px;
+                right: 50px;
                 &:before {
                     font-size: 4rem;
                     font-weight: 200;
