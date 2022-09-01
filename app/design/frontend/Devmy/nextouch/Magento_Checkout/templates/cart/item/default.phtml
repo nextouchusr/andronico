@@ -95,7 +95,9 @@ $_services = $block->getFormattedServiceList();
                     <div class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
                         <div class="field qty">
                             <div class="control qty">
-                                <span class="more-less less-button"></span>
+                                <?php if ($block->getQty() > 1): ?>
+                                    <span class="more-less less-button"></span>
+                                <?php endif; ?>
                                 <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
                                     <span class="label"><?= $block->escapeHtml(__('Qty')) ?></span>
                                     <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
@@ -159,3 +161,11 @@ $_services = $block->getFormattedServiceList();
         </div>
     </div>
 </div>
+
+<script>
+    require(['jquery'], function ($) {
+        $('.more-less').click(function () {
+            $('#form-validate').submit();
+        })
+    });
+</script>

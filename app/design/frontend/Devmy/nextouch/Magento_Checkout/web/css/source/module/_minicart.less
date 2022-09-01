@@ -248,9 +248,6 @@
         .product-item {
             padding: @indent__base 0;
             box-shadow: none;
-            &:not(:first-child) {
-                .lib-css(border-top, 1px solid @minicart__border-color);
-            }
 
             &:first-child {
                 padding-top: 0;
@@ -425,6 +422,11 @@
         }
         .block-minicart {
             width: 290px;
+
+            .action.primary {
+                height: 50px;
+                padding: 15px;
+            }
         }
     }
 }

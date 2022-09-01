@@ -37,5 +37,14 @@
 
         <plugin name="phone_validation"
                 type="Nextouch\Checkout\Plugin\Block\Checkout\PhoneValidation"/>
+
+        <plugin name="stair_validation"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\StairValidation"/>
+
+        <plugin name="limited_traffic_zone_validation"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\LimitedTrafficZoneValidation"/>
+
+        <plugin name="lift_validation"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\LiftValidation"/>
     </type>
 </config>

@@ -14,7 +14,7 @@
 @checkout-payment-method-content__padding__xl: 22px;
 
 @checkout-billing-address-details__line-height: 27px;
-@checkout-billing-address-details__padding: 0 0 0 23px;
+@checkout-billing-address-details__padding: 0 0 0 55px;
 @checkout-billing-address-form__max-width: @checkout-shipping-address__max-width;
 
 //
@@ -77,7 +77,7 @@
 
         .payment-method-content {
             display: none;
-            .lib-css(padding, 0 0 @indent__base @checkout-payment-method-content__padding__xl);
+            .lib-css(padding, 0 0 @indent__base 0);
             .fieldset {
                 &:not(:last-child) {
                     margin: 0 0 @indent__base;
