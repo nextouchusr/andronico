@@ -18,4 +18,11 @@ var config = {
             'deps': ['jquery']
         }
     },
+    config: {
+        mixins: {
+            'mage/collapsible': {
+                'Magento_Theme/js/mage/collapsible-mixin': true
+            }
+        }
+    }
 };

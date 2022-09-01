@@ -18,6 +18,7 @@ define([
             event.preventDefault();
 
             if (!customer().firstname) {
+                $('.minicart-wrapper .ui-dialog').hide()
                 authenticationPopup.showModal();
 
                 return false;

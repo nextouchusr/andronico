@@ -55,6 +55,7 @@
         $(document).ready(function () {
             setTimeout(function() {
                 $('.block-compare').css('display', 'block');
+                $('.open-compare-mobile').addClass('active');
             },2000);
             $('body').on('click', '.block-compare-title', function() {
                 $('.block-compare').toggleClass('active');
@@ -74,11 +75,12 @@
             $('body').on('click', '.open-compare-mobile', function() {
                 $('.block-compare').toggleClass('active').toggleClass('show');
                 $('body').toggleClass('compare-opened');
-                if($('.block-compare').is(':visible')) {
-                    $('.open-compare-mobile').addClass('active');
-                }
-                else {
+                if($('.open-compare-mobile').hasClass('active')) {
+                    $('.block-compare').css('display', 'none');
                     $('.open-compare-mobile').removeClass('active');
+                } else {
+                    $('.block-compare').css('display', 'block');
+                    $('.open-compare-mobile').addClass('active');
                 }
                 var posTop = $(this).offset().top;
                 var scrollTop = $(window).scrollTop();
