@@ -663,6 +663,10 @@ define([
                 }
             });
 
+            $('#search').focus(function () {
+                $('.sections.nav-sections').removeClass('show');
+            });
+
             $('body').on('click', function (e) {
                 var target = $(e.target);
                 if (target.hasClass('amsearch-close')
