@@ -75,7 +75,6 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                 $('#mobile-bottom-menu-links').appendTo($(this).parent().children('ul'));
             });
 
-
             $(megamenu).on('click', 'li.level0.parent a.level-top', function(event) {
                 if(window.matchMedia('(min-width: 768px)').matches) {
                     event.preventDefault();
@@ -96,13 +95,15 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
             $(megamenu).on('click', '.level-back', function() {
                 $(window).scrollTop(0);
                 $(this).parent().parent().toggleClass('open').parent().toggleClass('childOpened');
-                $('#mobile-bottom-menu-links').appendTo($(this).parent().parent().parent());
+
+                if (!$(this).hasClass('level0')) {
+                    $('#mobile-bottom-menu-links').appendTo($(this).parent().parent().parent());
+                }
+
                 if($(this).parent().hasClass('level0')) {
                     $('body').removeClass('openMenuLv0');
                 }
             });
-
-
 
             $('body').on('click', '.nav-toggle', function() {
                 if(window.matchMedia('(max-width: 767px)').matches) {
