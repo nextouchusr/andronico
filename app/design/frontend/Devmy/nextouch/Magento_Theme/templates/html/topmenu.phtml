@@ -111,12 +111,6 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                 }
                 $(megamenu).closest('.nav-sections').toggleClass('show');
                 $('body').toggleClass('openMenu');
-
-                if ($('body').hasClass('openMenu')) {
-                    document.body.style.overscrollBehavior = 'contain';
-                } else {
-                    document.body.style.overscrollBehavior = '';
-                }
             });
 
             $('.showcart').on('click', function() {
