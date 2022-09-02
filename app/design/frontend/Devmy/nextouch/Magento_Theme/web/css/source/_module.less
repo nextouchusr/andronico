@@ -735,7 +735,8 @@
         margin: 0;
         img {
             max-height: inherit;
-            width: 86%;
+            width: 100%;
+            max-width: 258px;
         }
     }
 
@@ -761,16 +762,6 @@
 
         .copyright {
             &:extend(.abs-add-clearfix all);
-        }
-    }
-}
-
-@media not all and (min-resolution: .001dpcm) {
-    @supports (-webkit-appearance:none) and (stroke-color:transparent) {
-        .logo {
-            img {
-                max-width: 258px;
-            }
         }
     }
 }
