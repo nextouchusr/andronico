@@ -764,3 +764,23 @@
         }
     }
 }
+
+@media not all and (min-resolution: .001dpcm) {
+    @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+        .logo {
+            img {
+                min-width: 258px;
+            }
+        }
+    }
+}
+
+@media not all and (min-resolution: .001dpcm) {
+    @supports (-webkit-appearance:none) and (not (stroke-color:transparent)) {
+        .logo {
+            img {
+                min-width: 258px;
+            }
+        }
+    }
+}
