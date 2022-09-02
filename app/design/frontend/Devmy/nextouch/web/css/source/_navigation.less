@@ -809,4 +809,22 @@
     }
 }
 
+@media not all and (min-resolution: .001dpcm) {
+    @height-header: 130px;
+    @height-items-level0: 20px;
 
+    @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+        .nav-sections {
+            .megamenu.megamenu {
+                .megamenu-inner {
+                    li.level0 {
+                        > .submenu {
+                            padding-top: @indent__l;
+                            top: calc((@padding-items-level0 * 2) + @height-items-level0 + @height-header);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
