@@ -212,6 +212,22 @@ $formData = $block->getFormData();
                 </div>
             </div>
 
+            <div class="field fiscal_code required">
+                <label for="fiscal_code" class="label">
+                    <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('fiscal_code') ?></span>
+                </label>
+                <div class="control">
+                    <?php $fiscalCodeValidationClass = $addressHelper->getAttributeValidationClass('fiscal_code'); ?>
+                    <input type="text"
+                           name="fiscal_code"
+                           value="<?= $block->escapeHtml($formData->getFiscalCode()) ?>"
+                           title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('fiscal_code') ?>"
+                           id="fiscal_code"
+                           class="input-text <?= /* @noEscape */ $fiscalCodeValidationClass ?>"
+                           data-validate="{'required':true, 'pattern':'^([A-Z]{6}[0-9LMNPQRSTUV]{2}[ABCDEHLMPRST]{1}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{3}[A-Z]{1})$|([0-9]{11})$'}"/>
+                </div>
+            </div>
+
             <input type="hidden" name="default_billing" value="1"/>
             <input type="hidden" name="default_shipping" value="1"/>
         </fieldset>
