@@ -869,10 +869,19 @@
             width: 80px !important;
         }
 
-        .table-comparison {
-            .cell {
-                .attribute.value {
-                    max-width: 110px;
+        #show-difference {
+            position: relative;
+            width: 110px;
+        }
+
+        .table-comparison-container {
+            width: 420px;
+
+            .table-comparison {
+                .cell {
+                    .attribute.value {
+                        max-width: 110px;
+                    }
                 }
             }
         }
@@ -1536,7 +1545,7 @@
             #show-difference {
                 position: absolute;
                 left: 0;
-                top: 0px;
+                top: 0;
                 font-weight: 300;
                 span.icon {
                     display: block;
