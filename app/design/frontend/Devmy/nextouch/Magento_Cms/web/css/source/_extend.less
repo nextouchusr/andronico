@@ -34,7 +34,6 @@
     .cms-index-index {
         .home-slick-slider {
             padding: 0;
-            height: 100vh;
 
             .item {
                 overflow: hidden;
@@ -46,11 +45,6 @@
             &.loaded {
                 .item {
                     display: block;
-                }
-            }
-            .slick-slide {
-                img {
-                    height: 100vh;
                 }
             }
             .slick-dots {
@@ -254,6 +248,16 @@
         }
     }
     .cms-index-index {
+        .home-slick-slider {
+            height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+            height: calc(var(--vh, 1vh) * 100);
+
+            .slick-slide img {
+                height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+                height: calc(var(--vh, 1vh) * 100);
+            }
+        }
+
         h2 {
             font-size: @text__sm;
         }
@@ -423,6 +427,7 @@
     }
     .cms-index-index {
         .home-slick-slider {
+            height: 100vh;
 
             .slick-slide {
                 position: relative;
@@ -431,6 +436,10 @@
                 h2 {
                     font-size: 2.4rem;
                     font-weight: 700;
+                }
+
+                img {
+                    height: 100vh;
                 }
             }
             .slick-dots {
