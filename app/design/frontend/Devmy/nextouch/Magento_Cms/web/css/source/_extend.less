@@ -34,6 +34,8 @@
     .cms-index-index {
         .home-slick-slider {
             padding: 0;
+            height: 100vh;
+
             .item {
                 overflow: hidden;
                 display: none;
@@ -44,6 +46,11 @@
             &.loaded {
                 .item {
                     display: block;
+                }
+            }
+            .slick-slide {
+                img {
+                    height: 100vh;
                 }
             }
             .slick-dots {
@@ -252,7 +259,17 @@
         }
 
         .decision-tree {
-            margin-top: -150px!important;
+            margin-top: -170px !important;
+            margin-bottom: 150px;
+
+            .start-your-search {
+                z-index: 10;
+            }
+
+            .follow-our-indications {
+                margin-top: -220px;
+                z-index: 10;
+            }
 
             h1 {
                 color: @theme__color__secondary;
@@ -406,7 +423,6 @@
     }
     .cms-index-index {
         .home-slick-slider {
-            height: 100vh;
 
             .slick-slide {
                 position: relative;
@@ -665,10 +681,6 @@
                 h2 {
                     font-size: @text__lg;
                     font-weight: @font-weight__heavier;
-                }
-
-                img {
-                    height: 100vh;
                 }
             }
         }
