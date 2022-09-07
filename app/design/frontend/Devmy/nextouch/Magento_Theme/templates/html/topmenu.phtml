@@ -51,13 +51,13 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
 
              */
 
-            $('body').on('click', function(event) {
+            /*$('body').on('click', function(event) {
                 var target = $(event.target);
                 if(!target.closest('.nav-sections').length &&
                     $('.nav-sections').hasClass("show")) {
                     $('body').removeClass('openMenu');
                 }
-            });
+            });*/
 
             $('.page-header').on('click', function () {
                 if($('.openclick').length) {
