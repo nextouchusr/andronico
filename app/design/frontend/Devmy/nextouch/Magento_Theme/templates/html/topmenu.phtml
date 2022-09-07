@@ -120,7 +120,6 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
             });
 
             $('.showcart').on('click', function() {
-                console.log('lorg');
                 if(window.matchMedia('(max-width: 767px)').matches) {
                     $(megamenu).closest('.nav-sections').removeClass('show');
                     $('body').removeClass('openMenu');
@@ -148,7 +147,6 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                         var headerHeight = $(header).outerHeight();
                         if (windowScrollTop >= headerHeight + $(menuContainer).outerHeight()) {
                             $('body').addClass('stickyMenu');
-                            $('.page-wrapper').css('padding-top', headerHeight + $(menuContainer).outerHeight());
                         } else {
                             $('body').removeClass('stickyMenu');
                             $('.page-wrapper').css('padding-top', 'inherit');
