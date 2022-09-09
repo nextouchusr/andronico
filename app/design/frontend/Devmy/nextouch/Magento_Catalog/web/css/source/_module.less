@@ -871,12 +871,14 @@
 
         .show-difference {
             position: relative !important;
-            width: 110px;
+        }
+
+        .table-comparison-container,
+        .table-comparison-head-container {
+            width: 420px;
         }
 
         .table-comparison-container {
-            width: 420px;
-
             .table-comparison {
                 .cell {
                     .attribute.value {
@@ -1368,6 +1370,12 @@
         max-width: 100%;
     }
 
+    .table-comparison-head {
+        .cell {
+            width: 25% !important;
+        }
+    }
+
     .table-comparison {
         table-layout: fixed;
 
@@ -1380,7 +1388,7 @@
 
         .cell {
             padding: 15px;
-            width: 140px;
+            width: 25%;
 
             &.product.attribute {
                 border-right: 1px solid @theme__color__primary;
