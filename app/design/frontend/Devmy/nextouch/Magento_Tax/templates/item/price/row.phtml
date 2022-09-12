@@ -1,0 +1,32 @@
+<?php
+/** @var \Nextouch\Theme\Block\Tax\Item\Price\Renderer $block */
+
+$_item = $block->getItem();
+?>
+<?php if (($block->displayPriceInclTax() || $block->displayBothPrices()) && !$_item->getNoSubtotal()) : ?>
+    <span class="price-including-tax" data-label="<?= $block->escapeHtmlAttr(__('Incl. Tax')) ?>">
+        <span class="cart-price">
+            <?= /* @noEscape */ $block->formatPrice($_item->getRowTotalInclTax()) ?>
+
+            <?php if ($block->hasSpecialPrice()): ?>
+                <span class="old-price">
+                    <?= /* @noEscape */ $block->renderRowTotalFullPrice(); ?>
+                </span>
+            <?php endif; ?>
+        </span>
+    </span>
+<?php endif; ?>
+
+<?php if (($block->displayPriceExclTax() || $block->displayBothPrices()) && !$_item->getNoSubtotal()) : ?>
+    <span class="price-excluding-tax" data-label="<?= $block->escapeHtmlAttr(__('Excl. Tax')) ?>">
+        <span class="cart-price">
+            <?= /* @noEscape */ $block->formatPrice($_item->getRowTotal()) ?>
+
+            <?php if ($block->hasSpecialPrice()): ?>
+                <span class="old-price">
+                    <?= /* @noEscape */ $block->renderRowTotalFullPrice(); ?>
+                </span>
+            <?php endif; ?>
+        </span>
+    </span>
+<?php endif; ?>
