@@ -502,6 +502,7 @@ return [
         'Nextouch_Rma' => 1,
         'Nextouch_Checkout' => 1,
         'Nextouch_FastEst' => 1,
+        'Nextouch_Shopby' => 1,
         'Nextouch_Sidea' => 1,
         'Nextouch_Tax' => 1,
         'Nextouch_Theme' => 1,
