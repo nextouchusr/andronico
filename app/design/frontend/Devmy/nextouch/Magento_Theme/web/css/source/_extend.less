@@ -22,12 +22,16 @@
         position: relative;
     }
 
-    button:not(.lg-prev),
-    button:not(.lg-next) {
+    button {
         border-radius: 100px;
         box-shadow: 3px 3px 3px @color-gray_light;
     }
 
+    button.lg-prev,
+    button.lg-next {
+        border-radius: 0;
+        box-shadow: none;
+    }
 
     [data-content-type='products'][data-appearance='carousel'] .slick-slide  {
         padding: 12px;
