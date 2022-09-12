@@ -29,9 +29,4 @@
         <plugin name="dispatch_complete_order_event"
                 type="Nextouch\Sales\Plugin\Model\DispatchCompleteOrderEvent"/>
     </type>
-
-    <type name="Magento\Sales\Model\OrderRepository">
-        <plugin name="log_saving_order"
-                type="Nextouch\Sales\Plugin\Model\LogSavingOrder"/>
-    </type>
 </config>
