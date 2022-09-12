@@ -67,6 +67,14 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                 }
             });
 
+            $('.submenu').on('click', function () {
+                if($('.openclick').length) {
+                    $(megamenu).find('li.level0').removeClass('openclick');
+                    $('body').removeClass('overmenu');
+                    $('html').css('overflow-y', 'auto').css('height', 'auto');
+                }
+            });
+
             $(megamenu).on('click', '.openChild', function() {
                 $(this).parent().toggleClass('open').parent().toggleClass('childOpened');
                 if($(this).parent().hasClass('level0')) {
