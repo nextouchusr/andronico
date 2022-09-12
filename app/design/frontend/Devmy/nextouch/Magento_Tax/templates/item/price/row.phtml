@@ -1,16 +1,23 @@
 <?php
-/** @var \Nextouch\Theme\Block\Tax\Item\Price\Renderer $block */
+/** @var \Magento\Tax\Block\Item\Price\Renderer $block */
+
+use Magento\Catalog\Pricing\Price\FinalPrice;
+use Magento\Catalog\Pricing\Price\RegularPrice;
 
 $_item = $block->getItem();
+$_product = $_item->getProduct();
+$displayRegularPrice = $_product->getPriceInfo()->getPrice(RegularPrice::PRICE_CODE)->getAmount()->getValue();
+$displayFinalPrice = $_product->getPriceInfo()->getPrice(FinalPrice::PRICE_CODE)->getAmount()->getValue();
+$hasSpecialPrice = $displayFinalPrice < $displayRegularPrice;
 ?>
 <?php if (($block->displayPriceInclTax() || $block->displayBothPrices()) && !$_item->getNoSubtotal()) : ?>
     <span class="price-including-tax" data-label="<?= $block->escapeHtmlAttr(__('Incl. Tax')) ?>">
         <span class="cart-price">
             <?= /* @noEscape */ $block->formatPrice($_item->getRowTotalInclTax()) ?>
 
-            <?php if ($block->hasSpecialPrice()): ?>
+            <?php if ($hasSpecialPrice): ?>
                 <span class="old-price">
-                    <?= /* @noEscape */ $block->renderRowTotalFullPrice(); ?>
+                    <?= /* @noEscape */ $block->formatPrice($displayRegularPrice * $_item->getQty()); ?>
                 </span>
             <?php endif; ?>
         </span>
@@ -22,9 +29,9 @@ $_item = $block->getItem();
         <span class="cart-price">
             <?= /* @noEscape */ $block->formatPrice($_item->getRowTotal()) ?>
 
-            <?php if ($block->hasSpecialPrice()): ?>
+            <?php if ($hasSpecialPrice): ?>
                 <span class="old-price">
-                    <?= /* @noEscape */ $block->renderRowTotalFullPrice(); ?>
+                    <?= /* @noEscape */ $block->formatPrice($displayRegularPrice * $_item->getQty()); ?>
                 </span>
             <?php endif; ?>
         </span>
