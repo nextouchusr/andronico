@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="css/vendor/lightgallery.min.css"/>
+        <css src="css/lightgallery.min.css"/>
     </head>
     <body>
         <referenceContainer name="columns.top">
