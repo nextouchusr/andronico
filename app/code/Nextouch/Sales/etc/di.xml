@@ -23,6 +23,9 @@
                 type="Nextouch\Sales\Model\OrderManagement"/>
 
     <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="force_in_delivery_order_state"
+                type="Nextouch\Sales\Plugin\Model\ForceInDeliveryOrderState"/>
+
         <plugin name="save_order_completion_date"
                 type="Nextouch\Sales\Plugin\Model\SaveOrderCompletionDate"/>
 
