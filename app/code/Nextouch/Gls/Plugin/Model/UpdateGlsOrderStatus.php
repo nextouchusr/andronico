@@ -5,14 +5,15 @@ namespace Nextouch\Gls\Plugin\Model;
 
 use Magento\Authorization\Model\UserContextInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\User\Api\Data\UserInterface;
 use Magento\User\Model\ResourceModel\User\CollectionFactory;
 use Nextouch\Gls\Model\Carrier\Gls;
-use Nextouch\Sales\Model\Order\Status;
+use function Lambdish\Phunctional\first;
 
-class FilterGlsOrderList
+class UpdateGlsOrderStatus
 {
     private UserContextInterface $userContext;
     private CollectionFactory $collectionFactory;
@@ -29,22 +30,20 @@ class FilterGlsOrderList
     }
 
     /**
-     * @noinspection PhpUnusedParameterInspection
+     * @throws NoSuchEntityException
      */
-    public function beforeGetList(OrderRepositoryInterface $subject, SearchCriteriaInterface $searchCriteria): array
+    public function beforeSave(OrderRepositoryInterface $subject, OrderInterface $entity): array
     {
-        if ($this->canFilter()) {
-            $searchCriteria = $this->searchCriteriaBuilder
-                ->addFilter('shipping_method', Gls::SHIPPING_METHOD)
-                ->addFilter('status', Status::PAID['status'])
-                ->addFilter('state', Status::PAID['state'])
-                ->create();
+        if ($this->canUpdate()) {
+            $order = $this->updateFields($subject, $entity);
+
+            return [$order];
         }
 
-        return [$searchCriteria];
+        return [$entity];
     }
 
-    private function canFilter(): bool
+    private function canUpdate(): bool
     {
         return (
             $this->userContext->getUserType() === UserContextInterface::USER_TYPE_ADMIN &&
@@ -60,5 +59,27 @@ class FilterGlsOrderList
         $user = $this->collectionFactory->create()->getItemById($userId);
 
         return $user;
+    }
+
+    /**
+     * @throws NoSuchEntityException
+     */
+    private function updateFields(OrderRepositoryInterface $orderRepository, OrderInterface $entity): OrderInterface
+    {
+        $searchCriteria = $this->searchCriteriaBuilder
+            ->addFilter(OrderInterface::INCREMENT_ID, $entity->getIncrementId())
+            ->create();
+
+        /** @var OrderInterface $order */
+        $order = first($orderRepository->getList($searchCriteria)->getItems());
+
+        if (!$order) {
+            throw new NoSuchEntityException(__('The order that was requested does not exist.'));
+        }
+
+        $order->setStatus($entity->getStatus());
+        $order->setState($entity->getState());
+
+        return $order;
     }
 }

@@ -14,6 +14,8 @@ use Psr\Log\LoggerInterface;
 
 class Gls extends AbstractCarrier implements CarrierInterface
 {
+    public const ADMIN_USERNAME = 'gls-sellandsend';
+
     public const CODE = 'gls';
     public const SHIPPING_METHOD = 'gls_gls';
 
