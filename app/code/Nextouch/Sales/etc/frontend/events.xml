@@ -5,4 +5,8 @@
         <observer name="change_order_status_to_paid"
                   instance="Nextouch\Sales\Observer\ChangeOrderStatusToPaid"/>
     </event>
+    <event name="paypal_checkout_success">
+        <observer name="change_order_status_to_paid"
+                  instance="Nextouch\Sales\Observer\Paypal\ChangeOrderStatusToPaid"/>
+    </event>
 </config>
