@@ -26,12 +26,12 @@ class ForceEcommerceSourceCode
         ShipOrderInterface $subject,
         $orderId,
         array $items,
-        bool $notify,
-        bool $appendComment,
-        ShipmentCommentCreationInterface $comment,
-        array $tracks,
-        array $packages,
-        ShipmentCreationArgumentsInterface $arguments
+        bool $notify = false,
+        bool $appendComment = false,
+        ShipmentCommentCreationInterface $comment = null,
+        array $tracks = [],
+        array $packages = [],
+        ShipmentCreationArgumentsInterface $arguments = null
     ): array {
         $extensionAttributes = $arguments->getExtensionAttributes();
         $extensionAttributes = $extensionAttributes ?: $this->argumentsExtensionFactory->create();
