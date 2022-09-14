@@ -458,10 +458,16 @@
     }
 
     .control.captcha-image {
-        .lib-css(margin-top, @indent__s);
+        .lib-css(margin-top, @indent__m);
 
         .captcha-img {
             vertical-align: middle;
+        }
+    }
+
+    .password.forget {
+        .actions-toolbar {
+            margin-left: 0 !important;
         }
     }
 }
@@ -556,9 +562,15 @@
     }
 
     .control.captcha-image {
+        .captcha-reload {
+            .lib-css(margin-top, @indent__s);
+            width: 100%;
+        }
+
         .captcha-img {
             .lib-css(margin-bottom, @indent__s);
             display: block;
+            width: 100%;
         }
     }
 
