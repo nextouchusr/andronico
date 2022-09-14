@@ -32,4 +32,9 @@
         <plugin name="dispatch_complete_order_event"
                 type="Nextouch\Sales\Plugin\Model\DispatchCompleteOrderEvent"/>
     </type>
+
+    <type name="Magento\Sales\Api\ShipOrderInterface">
+        <plugin name="force_ecommerce_source_code"
+                type="Nextouch\Sales\Plugin\Model\ForceEcommerceSourceCode"/>
+    </type>
 </config>
