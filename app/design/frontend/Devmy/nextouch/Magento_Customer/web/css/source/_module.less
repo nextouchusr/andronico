@@ -20,10 +20,10 @@
 @account-nav-item-hover: @color-gray91;
 
 @_password-default: @color-gray-light01;
-@_password-weak: #ffafae;
-@_password-medium: #ffd6b3;
-@_password-strong: #c5eeac;
-@_password-very-strong: #81b562;
+@_password-weak: @error__color;
+@_password-medium: @warning__color;
+@_password-strong: @theme__color__secondary;
+@_password-very-strong: @theme__color__secondary;
 
 //
 //  Common
@@ -76,7 +76,7 @@
                     font-size: 3rem;
                     list-style: none;
                     background: url('@{baseDir}images/circle-check.svg') 0 50% no-repeat;
-                    background-size: 45px;
+                    background-size: 30px;
                     font-weight: 200;
                     line-height: 3.2rem;
                 }
@@ -178,6 +178,17 @@
 
         .actions-toolbar .action.primary {
             &:extend(.abs-button-l all);
+        }
+
+        .message.info {
+            color: @theme__color__primary;
+            border: none;
+
+            span:before {
+                background: transparent;
+                color: @theme__color__primary;
+                content: @icon-flag;
+            }
         }
     }
 
@@ -391,10 +402,10 @@
     }
 
     .password-strength-meter {
-        background-color: @_password-default;
+        background-color: transparent;
+        font-weight: @font-weight__bold;
         height: @form-element-input__height;
         line-height: @form-element-input__height;
-        padding: @form-element-input__padding;
         position: relative;
         z-index: 1;
 
@@ -409,45 +420,54 @@
 
         .password-none & {
             &:before {
-                background-color: @_password-default;
                 width: 100%;
             }
         }
 
         .password-weak & {
+            color: @_password-weak;
+
             &:before {
-                background-color: @_password-weak;
-                width: 25%;
+                color: @_password-weak;
             }
         }
 
         .password-medium & {
+            color: @_password-medium;
+
             &:before {
-                background-color: @_password-medium;
-                width: 50%;
+                color: @_password-medium;
             }
         }
 
         .password-strong & {
+            color: @_password-strong;
+
             &:before {
-                background-color: @_password-strong;
-                width: 75%;
+                color: @_password-strong;
             }
         }
 
         .password-very-strong & {
+            color: @_password-very-strong;
+
             &:before {
-                background-color: @_password-very-strong;
-                width: 100%;
+                color: @_password-very-strong;
             }
         }
     }
 
     .control.captcha-image {
-        .lib-css(margin-top, @indent__s);
+        .lib-css(margin-top, @indent__m);
 
         .captcha-img {
             vertical-align: middle;
+        }
+    }
+
+    .password.forget {
+        .actions-toolbar {
+            margin-left: 0 !important;
         }
     }
 }
@@ -542,9 +562,15 @@
     }
 
     .control.captcha-image {
+        .captcha-reload {
+            .lib-css(margin-top, @indent__s);
+            width: 100%;
+        }
+
         .captcha-img {
             .lib-css(margin-bottom, @indent__s);
             display: block;
+            width: 100%;
         }
     }
 

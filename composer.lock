@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7cc55cb9dafd05d86907e159655c09cc",
+    "content-hash": "af2d33a2495c9b9c93a4b8cb966396fb",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -28315,6 +28315,49 @@
                 "proprietary"
             ],
             "description": "Tools for communicating with Vertex Cloud and Vertex O-Series"
+        },
+        {
+            "name": "vladflonta/magento2-webapi-log",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vladflonta/magento2-webapi-log.git",
+                "reference": "09785b3dc197a97b442baa3800c712abf708eac6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vladflonta/magento2-webapi-log/zipball/09785b3dc197a97b442baa3800c712abf708eac6",
+                "reference": "09785b3dc197a97b442baa3800c712abf708eac6",
+                "shasum": ""
+            },
+            "require": {
+                "magento/module-webapi": ">=100.0.2"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "VladFlonta\\WebApiLog\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Vlad Flonta",
+                    "homepage": "https://github.com/vladflonta"
+                }
+            ],
+            "description": "Logger for webapi REST requests.",
+            "support": {
+                "issues": "https://github.com/vladflonta/magento2-webapi-log/issues",
+                "source": "https://github.com/vladflonta/magento2-webapi-log/tree/v0.0.1"
+            },
+            "time": "2018-04-12T21:26:33+00:00"
         },
         {
             "name": "web-token/jwt-framework",

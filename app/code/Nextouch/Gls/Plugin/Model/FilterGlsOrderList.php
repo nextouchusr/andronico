@@ -14,8 +14,6 @@ use Nextouch\Sales\Model\Order\Status;
 
 class FilterGlsOrderList
 {
-    private const ADMIN_USERNAME = 'gls-sellandsend';
-
     private UserContextInterface $userContext;
     private CollectionFactory $collectionFactory;
     private SearchCriteriaBuilder $searchCriteriaBuilder;
@@ -50,7 +48,7 @@ class FilterGlsOrderList
     {
         return (
             $this->userContext->getUserType() === UserContextInterface::USER_TYPE_ADMIN &&
-            $this->getUser()->getUserName() === self::ADMIN_USERNAME
+            $this->getUser()->getUserName() === Gls::ADMIN_USERNAME
         );
     }
 

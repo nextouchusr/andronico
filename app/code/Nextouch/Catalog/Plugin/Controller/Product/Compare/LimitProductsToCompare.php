@@ -34,7 +34,9 @@ class LimitProductsToCompare
         $count = $this->compareHelper->getItemCount();
 
         if ($count >= self::LIMIT_TO_COMPARE_PRODUCTS) {
-            $this->messageManager->addErrorMessage(__('You can compare up to a maximum of 3 products'));
+            $this->messageManager->addErrorMessage(
+                __('You can compare up to a maximum of %1 products', self::LIMIT_TO_COMPARE_PRODUCTS)
+            );
 
             return $this->resultRedirectFactory->create()->setRefererOrBaseUrl();
         }

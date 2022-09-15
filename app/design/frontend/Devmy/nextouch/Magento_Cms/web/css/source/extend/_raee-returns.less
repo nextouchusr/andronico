@@ -99,14 +99,17 @@
       min-height: 885px;
 
       h1 {
-        position: absolute;
-        top: 185px;
-        left: 50px;
+        box-sizing: border-box;
+        max-width: @layout__max-width;
+        padding-left: @layout__width-md-indent;
+        padding-right: @layout__width-md-indent;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
 
     .second-hand-returns {
-      margin-top: -85px;
+      margin-top: -130px;
       border-radius: 100px;
 
       .pagebuilder-column {
@@ -116,6 +119,7 @@
 
         &:nth-child(2) {
           img {
+            float: right;
             border-top-right-radius: 50px;
             border-bottom-left-radius: 50px;
           }

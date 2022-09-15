@@ -231,6 +231,14 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
     .opc-wrapper {
+        .opc {
+            > li {
+                &:first-child {
+                    padding-bottom: 0;
+                }
+            }
+        }
+
         .step-title {
             .lib-css(font-size, @checkout-step-title-mobile__font-size);
             border-bottom: 0;
@@ -247,6 +255,14 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
     .checkout-index-index {
+        #maincontent {
+            padding-top: 0;
+        }
+
+        .title-crumbs-container {
+            margin-bottom: 0;
+        }
+
         .page-title {
             font-weight: 700;
             font-size: 1.8rem;
@@ -330,6 +346,14 @@
                     font-size: 2rem;
                     padding: 10px;
                     box-sizing: border-box;
+                }
+
+                .control select {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    background: @color-white url('@{baseDir}images/arrow-down.svg') no-repeat right 2rem center;
+                    background-size: 1em;
                 }
             }
         }

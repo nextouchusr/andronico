@@ -33,7 +33,9 @@
 
     .cms-index-index {
         .home-slick-slider {
+            position: relative;
             padding: 0;
+
             .item {
                 overflow: hidden;
                 display: none;
@@ -252,7 +254,17 @@
         }
 
         .decision-tree {
-            margin-top: -150px!important;
+            margin-top: -170px !important;
+            margin-bottom: 10px;
+
+            .start-your-search {
+                z-index: 10;
+            }
+
+            .follow-our-indications {
+                margin-top: -220px;
+                z-index: 10;
+            }
 
             h1 {
                 color: @theme__color__secondary;
@@ -311,11 +323,12 @@
         }
         p,p span {
             font-size: @text__base;
-            line-height: 1.1rem;
+            line-height: 1.2;
         }
     }
     .decision-tree-btn {
-        width: 90px;
+        width: 100px;
+        height: 100px;
         z-index: 99;
         margin: 0 auto;
     }
@@ -324,6 +337,7 @@
         font-size: 1.1rem;
         line-height: 1rem;
         min-height: 140px;
+        margin-bottom: 20px;
         .content-banner {
             &.content-assistenza {
                 max-width: 100%;
@@ -347,6 +361,10 @@
                 }
             }
         }
+    }
+
+    .promotions-block {
+        margin-bottom: 20px;
     }
 
     .indent-heading-desktop {
@@ -400,6 +418,8 @@
     }
     .cms-index-index {
         .home-slick-slider {
+            height: 100vh;
+
             .slick-slide {
                 position: relative;
                 font-size: 2rem;
@@ -408,8 +428,14 @@
                     font-size: 2.4rem;
                     font-weight: 700;
                 }
+
+                img {
+                    height: 100vh;
+                }
             }
             .slick-dots {
+                margin-top: -210px;
+
                 li {
                     width: 20px;
                     height: 20px;
@@ -425,12 +451,18 @@
             }
         }
 
-
+        .decision-tree {
+            margin-top: -145px !important;
+        }
     }
     .decision-tree {
         margin-bottom: 50px;
         position: relative;
         margin-top: 0 !important;
+
+        h1 {
+            margin: 0 auto;
+        }
 
         h2 {
             font-size: 4rem;
@@ -531,7 +563,7 @@
         }
         p,p span {
             font-size: @text__sm;
-            line-height: 2rem;
+            line-height: 1.2;
         }
     }
 
@@ -623,6 +655,20 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     .cms-index-index {
+        .page-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .nav-sections {
+            position: fixed;
+            top: 106px;
+            width: 100%;
+            z-index: 5;
+        }
+
         .home-slick-slider {
             .slick-slide {
                 font-size: @text__lg;

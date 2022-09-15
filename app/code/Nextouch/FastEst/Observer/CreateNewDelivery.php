@@ -27,6 +27,11 @@ class CreateNewDelivery implements ObserverInterface
     {
         /** @var OrderInterface $order */
         $order = $observer->getData('order');
+        $hasCreditCardPayment = $order->getPayment()->getMethod() === 'axepta_paymentservice';
+
+        if ($hasCreditCardPayment) {
+            return;
+        }
 
         $this->createNewDeliveryService->create($order);
     }
