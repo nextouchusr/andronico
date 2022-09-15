@@ -75,7 +75,6 @@ $layout = $block->getLayout();
             });
 
             let overviewBlock = $('.product-secondary-wrapper .overview');
-            console.log(overviewBlock);
             overviewBlock.append('<div class="more-less"><span class="more"><?= __('Show more') ?></span><span class="less"><?= __('Show less') ?></span></div>');
             overviewBlock.find('.more-less span').on('click', function () {
                 overviewBlock.toggleClass('active');

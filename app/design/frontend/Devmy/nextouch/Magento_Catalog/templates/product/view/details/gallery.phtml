@@ -14,7 +14,7 @@ $hasImages = count($images) > 0;
                 <div class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="product-gallery">
                     <?php foreach ($images as $image): ?>
                         <?php if (!$block->isMainImage($image)): ?>
-                            <div class="item tns-item tns-slide-cloned">
+                            <div class="item tns-item tns-slide-cloned" data-src="<?= $image->getVideoUrl() ?: $image->getData('medium_image_url'); ?>">
                                 <a href="javascript:void(0)" class="product-media-link" data-media-url="<?= $image->getVideoUrl() ?: $image->getData('medium_image_url'); ?>">
                                     <img src="<?= $image->getData('medium_image_url'); ?>" alt=""/>
                                 </a>
@@ -27,7 +27,7 @@ $hasImages = count($images) > 0;
     </div>
 
     <script>
-        require(['jquery', 'Magento_Ui/js/modal/modal', 'tinySlider'], function ($, modal) {
+        require(['jquery', 'Magento_Ui/js/modal/modal', 'tinySlider', 'lightGallery'], function ($, modal, tinySlider, lightGallery) {
             $(document).ready(function () {
                 var detailsGalleryDragMove = false;
 
@@ -58,6 +58,10 @@ $hasImages = count($images) > 0;
 
                 sliderGallery.events.on('dragMove', function () {
                     detailsGalleryDragMove = true;
+                });
+
+                lightGallery(document.getElementById('product-gallery'), {
+                    speed: 500,
                 });
             });
         });

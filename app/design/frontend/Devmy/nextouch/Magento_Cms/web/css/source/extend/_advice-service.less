@@ -105,15 +105,28 @@
       min-height: 768px;
 
       h1 {
-        position: absolute;
-        top: 185px;
-        left: 50px;
+        box-sizing: border-box;
+        max-width: @layout__max-width;
+        padding-left: @layout__width-md-indent;
+        padding-right: @layout__width-md-indent;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 200px;
       }
     }
 
     .we-are-omnichannel {
       margin-top: -50px;
       border-radius: 100px;
+
+      .omnichannel-text {
+        box-sizing: border-box;
+        max-width: @layout__max-width;
+        padding-left: @layout__width-md-indent;
+        padding-right: @layout__width-md-indent;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
 
     .ask-for-advice,

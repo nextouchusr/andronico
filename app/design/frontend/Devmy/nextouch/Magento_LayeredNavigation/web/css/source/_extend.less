@@ -90,10 +90,19 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
-    .block.filter .filter-title {
+    .block.filter {
+      .filter-title {
         font-size: 3rem;
+      }
+
+      .filter-actions {
+        margin-bottom: 10px;
+      }
     }
+    .catalog-topnav .filter-title {
+        display: none;
+    }
+
     .open-filter-mobile {
         display: none;
     }

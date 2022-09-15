@@ -132,7 +132,11 @@
             margin-right: -20px;
         }
         + .actions-toolbar {
+            text-align: center;
+
             .primary {
+                float: none;
+
                 .action {
                     padding: 10px 30px;
                     color: @theme__color__primary;
@@ -141,6 +145,15 @@
                     &:hover {
                         background-color: @theme__color__secondary;
                         opacity: 1;
+                    }
+
+                    &.share {
+                        background-color: transparent;
+                        box-shadow: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
                     }
                 }
             }

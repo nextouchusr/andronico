@@ -45,8 +45,11 @@
         }
 
         .amsearch-item-container:not(.recent_searches) .amsearch-item .item-name {
-            text-decoration: underline;
             cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
         .actions-secondary {
@@ -480,7 +483,7 @@
 
     .amsearch-item .product-item-description,
     .amsearch-item .item-description {
-        word-break: keep-all;
+        display: none;
     }
 
     .amsearch-clone-position {
@@ -647,10 +650,10 @@
         right: 0!important;
         left: inherit;
         .product-item  {
-            text-align: center;
-            .product-item-actions {
-                margin: 0 auto;
-            }
+            margin: @indent__s;
+            box-shadow: none;
+            border: 1px solid @secondary__color;
+
             .tocart {
                 padding: 12px 30px;
                 font-size: 1rem;

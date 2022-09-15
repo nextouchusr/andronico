@@ -5,4 +5,9 @@
         <observer name="create_new_delivery"
                   instance="Nextouch\FastEst\Observer\CreateNewDelivery"/>
     </event>
+
+    <event name="axepta_paymentservice_success">
+        <observer name="create_new_delivery"
+                  instance="Nextouch\FastEst\Observer\Axepta\CreateNewDelivery"/>
+    </event>
 </config>
