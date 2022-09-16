@@ -36,8 +36,6 @@ class FilterGlsOrderList
         if ($this->canFilter()) {
             $searchCriteria = $this->searchCriteriaBuilder
                 ->addFilter('shipping_method', Gls::SHIPPING_METHOD)
-                ->addFilter('status', Status::PAID['status'])
-                ->addFilter('state', Status::PAID['state'])
                 ->create();
         }
 
