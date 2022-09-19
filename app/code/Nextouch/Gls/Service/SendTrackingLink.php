@@ -5,6 +5,7 @@ namespace Nextouch\Gls\Service;
 
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\Data\ShipmentTrackCreationInterface;
+use Nextouch\Gls\Helper\GlsConfig;
 use Nextouch\Wins\Api\AuthManagementInterface;
 use Nextouch\Wins\Api\OrderManagementInterface;
 use Nextouch\Wins\Helper\WinsConfig;
@@ -18,15 +19,18 @@ class SendTrackingLink
     private OrderManagementInterface $orderManagement;
     private AuthManagementInterface $authManagement;
     private WinsConfig $winsConfig;
+    private GlsConfig $glsConfig;
 
     public function __construct(
         OrderManagementInterface $orderManagement,
         AuthManagementInterface $authManagement,
-        WinsConfig $winsConfig
+        WinsConfig $winsConfig,
+        GlsConfig $glsConfig
     ) {
         $this->orderManagement = $orderManagement;
         $this->authManagement = $authManagement;
         $this->winsConfig = $winsConfig;
+        $this->glsConfig = $glsConfig;
     }
 
     public function execute(OrderInterface $order, ShipmentTrackCreationInterface $track): void
@@ -45,7 +49,7 @@ class SendTrackingLink
             $order->getIncrementId(),
             $order->getStatus(),
             null,
-            $track->getTrackNumber()
+            $this->glsConfig->getTrackingLink($track->getTrackNumber())
         );
 
         $updateOrderState = new UpdateOrderState(
