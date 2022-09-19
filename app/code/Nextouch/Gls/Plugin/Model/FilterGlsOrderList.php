@@ -33,7 +33,7 @@ class FilterGlsOrderList
      */
     public function beforeGetList(OrderRepositoryInterface $subject, SearchCriteriaInterface $searchCriteria): array
     {
-        if ($this->canFilter()) {
+        if ($this->isGlsUser()) {
             $glsSearchCriteria = $this->searchCriteriaBuilder
                 ->addFilter('shipping_method', Gls::SHIPPING_METHOD)
                 ->create();
@@ -45,7 +45,7 @@ class FilterGlsOrderList
         return [$searchCriteria];
     }
 
-    private function canFilter(): bool
+    private function isGlsUser(): bool
     {
         return (
             $this->userContext->getUserType() === UserContextInterface::USER_TYPE_ADMIN &&
