@@ -13,8 +13,6 @@ use Nextouch\Dhl\Model\Carrier\Dhl;
 
 class FilterDhlOrderList
 {
-    private const ADMIN_USERNAME = 'dhl-ecom4you';
-
     private UserContextInterface $userContext;
     private CollectionFactory $collectionFactory;
     private SearchCriteriaBuilder $searchCriteriaBuilder;
@@ -34,7 +32,7 @@ class FilterDhlOrderList
      */
     public function beforeGetList(OrderRepositoryInterface $subject, SearchCriteriaInterface $searchCriteria): array
     {
-        if ($this->canFilter()) {
+        if ($this->isDhlUser()) {
             $dhlSearchCriteria = $this->searchCriteriaBuilder
                 ->addFilter('shipping_method', Dhl::SHIPPING_METHOD)
                 ->create();
@@ -46,11 +44,11 @@ class FilterDhlOrderList
         return [$searchCriteria];
     }
 
-    private function canFilter(): bool
+    private function isDhlUser(): bool
     {
         return (
             $this->userContext->getUserType() === UserContextInterface::USER_TYPE_ADMIN &&
-            $this->getUser()->getUserName() === self::ADMIN_USERNAME
+            $this->getUser()->getUserName() === Dhl::ADMIN_USERNAME
         );
     }
 

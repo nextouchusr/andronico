@@ -14,6 +14,8 @@ use Psr\Log\LoggerInterface;
 
 class Dhl extends AbstractCarrier implements CarrierInterface
 {
+    public const ADMIN_USERNAME = 'dhl-ecom4you';
+
     public const CODE = 'dhl';
     public const SHIPPING_METHOD = 'dhl_dhl';
 
