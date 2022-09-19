@@ -10,12 +10,9 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\User\Api\Data\UserInterface;
 use Magento\User\Model\ResourceModel\User\CollectionFactory;
 use Nextouch\Dhl\Model\Carrier\Dhl;
-use Nextouch\Sales\Model\Order\Status;
 
 class FilterDhlOrderList
 {
-    private const ADMIN_USERNAME = 'dhl-ecom4you';
-
     private UserContextInterface $userContext;
     private CollectionFactory $collectionFactory;
     private SearchCriteriaBuilder $searchCriteriaBuilder;
@@ -35,22 +32,23 @@ class FilterDhlOrderList
      */
     public function beforeGetList(OrderRepositoryInterface $subject, SearchCriteriaInterface $searchCriteria): array
     {
-        if ($this->canFilter()) {
-            $searchCriteria = $this->searchCriteriaBuilder
+        if ($this->isDhlUser()) {
+            $dhlSearchCriteria = $this->searchCriteriaBuilder
                 ->addFilter('shipping_method', Dhl::SHIPPING_METHOD)
-                ->addFilter('status', Status::PAID['status'])
-                ->addFilter('state', Status::PAID['state'])
                 ->create();
+
+            $filterGroups = array_merge($searchCriteria->getFilterGroups(), $dhlSearchCriteria->getFilterGroups());
+            $searchCriteria->setFilterGroups($filterGroups);
         }
 
         return [$searchCriteria];
     }
 
-    private function canFilter(): bool
+    private function isDhlUser(): bool
     {
         return (
             $this->userContext->getUserType() === UserContextInterface::USER_TYPE_ADMIN &&
-            $this->getUser()->getUserName() === self::ADMIN_USERNAME
+            $this->getUser()->getUserName() === Dhl::ADMIN_USERNAME
         );
     }
 

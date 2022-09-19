@@ -33,18 +33,19 @@ class FilterGlsOrderList
      */
     public function beforeGetList(OrderRepositoryInterface $subject, SearchCriteriaInterface $searchCriteria): array
     {
-        if ($this->canFilter()) {
-            $searchCriteria = $this->searchCriteriaBuilder
+        if ($this->isGlsUser()) {
+            $glsSearchCriteria = $this->searchCriteriaBuilder
                 ->addFilter('shipping_method', Gls::SHIPPING_METHOD)
-                ->addFilter('status', Status::PAID['status'])
-                ->addFilter('state', Status::PAID['state'])
                 ->create();
+
+            $filterGroups = array_merge($searchCriteria->getFilterGroups(), $glsSearchCriteria->getFilterGroups());
+            $searchCriteria->setFilterGroups($filterGroups);
         }
 
         return [$searchCriteria];
     }
 
-    private function canFilter(): bool
+    private function isGlsUser(): bool
     {
         return (
             $this->userContext->getUserType() === UserContextInterface::USER_TYPE_ADMIN &&
