@@ -66,7 +66,7 @@ class CategoryLinkManagement implements CategoryLinkManagementInterface
 
         each(function (FilterGroup $filterGroup) use ($products) {
             each(function (Filter $filter) use ($products) {
-                $products->addFilter($filter->getField(), $filter->getValue(), $filter->getConditionType());
+                $products->addAttributeToFilter($filter->getField(), $filter->getValue(), $filter->getConditionType());
             }, $filterGroup->getFilters());
         }, $searchCriteria->getFilterGroups());
 
