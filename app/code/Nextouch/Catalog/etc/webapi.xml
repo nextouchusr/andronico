@@ -124,7 +124,7 @@
 
     <!-- Category Product Links -->
     <route url="/V1/categories/:categoryId/products" method="GET">
-        <service class="Magento\Catalog\Api\CategoryLinkManagementInterface" method="getAssignedProducts"/>
+        <service class="Nextouch\Catalog\Api\CategoryLinkManagementInterface" method="getAssignedProducts"/>
         <resources>
             <resource ref="Magento_Catalog::read_categories"/>
         </resources>

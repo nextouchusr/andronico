@@ -13,11 +13,17 @@
     <preference for="Nextouch\Catalog\Api\ProductAttributeManagementInterface"
                 type="Nextouch\Catalog\Model\Product\Attribute\Management"/>
 
+    <preference for="Nextouch\Catalog\Api\CategoryLinkManagementInterface"
+                type="Nextouch\Catalog\Model\CategoryLinkManagement"/>
+
     <preference for="Nextouch\Catalog\Api\CategoryManagementInterface"
                 type="Nextouch\Catalog\Model\CategoryManagement"/>
 
     <preference for="Nextouch\Catalog\Api\CustomOptionExtraInfoProcessorInterface"
                 type="Nextouch\Catalog\Model\CustomOptionExtraInfoProcessor"/>
+
+    <preference for="Nextouch\Catalog\Api\Data\CategoryProductLinkSearchResultsInterface"
+                type="Nextouch\Catalog\Model\CategoryProductLinkSearchResults"/>
 
     <type name="Magento\Catalog\Model\Product\Type\AbstractType">
         <plugin name="remove_sku_appended_by_custom_options"

@@ -22,22 +22,13 @@ class PrepareCategoryUrlPathsValue
             return [$rowData, $withDefaultValue];
         }
 
-        $categoryUrlPaths = implode(CategoryInterface::CATEGORY_SEPARATOR, $this->extractCategoryUrlPaths($rowData));
+        $categories = explode(CategoryInterface::PATH_SEPARATOR, $rowData['categories']);
+        $slugifyCategories = map(fn(string $item) => $this->slugifyCategory($item), $categories);
+        $categoryUrlPaths = implode(CategoryInterface::PATH_SEPARATOR, $slugifyCategories);
+
         $rowData['category_url_paths'] = $categoryUrlPaths;
 
         return [$rowData, $withDefaultValue];
-    }
-
-    private function extractCategoryUrlPaths(array $rowData): array
-    {
-        $categories = explode(CategoryInterface::CATEGORY_SEPARATOR, $rowData['categories']);
-
-        return map(function (string $category) {
-            $categoryPaths = explode(CategoryInterface::PATH_SEPARATOR, $category);
-            $slugifyCategories = map(fn(string $item) => $this->slugifyCategory($item), $categoryPaths);
-
-            return implode(CategoryInterface::PATH_SEPARATOR, $slugifyCategories);
-        }, $categories);
     }
 
     private function slugifyCategory(string $category): string
