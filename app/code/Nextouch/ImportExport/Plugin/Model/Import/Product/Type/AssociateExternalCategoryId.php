@@ -10,7 +10,6 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Nextouch\Catalog\Api\Data\CategoryInterface;
 use Nextouch\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 use Psr\Log\LoggerInterface;
-use function Lambdish\Phunctional\each;
 use function Lambdish\Phunctional\reduce;
 
 class AssociateExternalCategoryId
@@ -41,11 +40,9 @@ class AssociateExternalCategoryId
             return $result;
         }
 
-        foreach ($this->explodeRowData($rowData) as $data) {
-            $categories = $this->extractCategoryRawData($data);
+        $categories = $this->extractCategoryRawData($rowData);
 
-            each(fn(array $item) => $this->associateExternalCategoryId($item), $categories);
-        }
+        \Lambdish\Phunctional\each(fn(array $item) => $this->associateExternalCategoryId($item), $categories);
 
         return $result;
     }
@@ -53,22 +50,6 @@ class AssociateExternalCategoryId
     private function canExtractCategoryRawData(array $rowData): bool
     {
         return isset($rowData['category_paths']) && isset($rowData['category_url_paths']);
-    }
-
-    private function explodeRowData(array $rowData): array
-    {
-        $categories = explode(CategoryInterface::CATEGORY_SEPARATOR, $rowData['categories']);
-        $categoryPaths = explode(CategoryInterface::CATEGORY_SEPARATOR, $rowData['category_paths']);
-        $categoryUrlPaths = explode(CategoryInterface::CATEGORY_SEPARATOR, $rowData['category_url_paths']);
-
-        return reduce(function (array $acc, string $category, int $index) use ($categoryPaths, $categoryUrlPaths) {
-            $rowData = [
-                'category_paths' => $categoryPaths[$index],
-                'category_url_paths' => $categoryUrlPaths[$index],
-            ];
-
-            return [...$acc, $rowData];
-        }, $categories, []);
     }
 
     private function extractCategoryRawData(array $rowData): array
