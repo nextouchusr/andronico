@@ -14,8 +14,12 @@ $hasImages = count($images) > 0;
                 <div class="tns-slider tns-carousel tns-subpixel tns-calc tns-horizontal" id="product-gallery">
                     <?php foreach ($images as $image): ?>
                         <?php if (!$block->isMainImage($image)): ?>
-                            <div class="item tns-item tns-slide-cloned" data-src="<?= $image->getVideoUrl() ?: $image->getData('medium_image_url'); ?>">
-                                <a href="javascript:void(0)" class="product-media-link" data-media-url="<?= $image->getVideoUrl() ?: $image->getData('medium_image_url'); ?>">
+                            <div class="item tns-item tns-slide-cloned"
+                                 data-src="<?= $image->getVideoUrl() ?: $image->getData('medium_image_url'); ?>">
+                                <a href="javascript:void(0)" class="product-media-link"
+                                   data-media-url="<?= $image->getVideoUrl() ?: $image->getData(
+                                       'medium_image_url'
+                                   ); ?>">
                                     <img src="<?= $image->getData('medium_image_url'); ?>" alt=""/>
                                 </a>
                             </div>
@@ -36,7 +40,7 @@ $hasImages = count($images) > 0;
                     items: 2.5,
                     mouseDrag: true,
                     swipeAngle: false,
-                    controls: false,
+                    controls: true,
                     nav: false,
                     edgePadding: 50,
                     gutter: 10,
@@ -62,6 +66,29 @@ $hasImages = count($images) > 0;
 
                 lightGallery(document.getElementById('product-gallery'), {
                     speed: 500,
+                });
+
+                var canScroll = true;
+                $('#product-gallery').on('wheel', function (event) {
+                    var eo = event.originalEvent;
+                    var xy = eo.wheelDelta || -eo.detail;
+                    var x = eo.wheelDeltaX || (eo.axis === 2 ? xy : 0);
+                    var y = eo.wheelDeltaY || (eo.axis === 2 ? xy : 0);
+
+                    if (!canScroll || y !== 0) {
+                        return;
+                    }
+
+                    canScroll = false;
+                    setTimeout(function () {
+                        if (x > 50) {
+                            $('[data-controls="prev"]').click();
+                        } else {
+                            $('[data-controls="next"]').click();
+                        }
+
+                        canScroll = true;
+                    }, 250);
                 });
             });
         });
