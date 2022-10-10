@@ -16,4 +16,12 @@
                 nullable="true"
                 comment="External Option ID"/>
     </table>
+
+    <table name="eav_attribute_option_value">
+        <column xsi:type="varchar"
+                name="value"
+                nullable="true"
+                length="500"
+                comment="Value"/>
+    </table>
 </schema>

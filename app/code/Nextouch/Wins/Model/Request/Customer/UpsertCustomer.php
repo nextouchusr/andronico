@@ -41,6 +41,8 @@ class UpsertCustomer implements InputInterface
     {
         $dataObjectConverter = ObjectManager::getInstance()->create(ExtensibleDataObjectConverter::class);
         $customer = $dataObjectConverter->toNestedArray($this->getCustomer(), [], CustomerInterface::class);
+        $customer['is_privacy_policy_accepted'] = (bool) ($customer['is_privacy_policy_accepted'] ?? false);
+        $customer['is_web_profiling_accepted'] = (bool) ($customer['is_web_profiling_accepted'] ?? false);
 
         return array_merge(
             $customer,

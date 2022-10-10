@@ -3,14 +3,17 @@ declare(strict_types=1);
 
 namespace Nextouch\Wins\Model\Request\Order;
 
+use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
 use Magento\Framework\App\ObjectManager;
+use Magento\Newsletter\Model\Subscriber;
 use Magento\Paypal\Model\Config;
 use Magento\Sales\Api\Data\OrderInterface;
 use Nextouch\Wins\Api\Data\InputInterface;
 use Nextouch\Wins\Model\Auth\LoginInfo;
 use Nextouch\Wins\Model\Order\InvoiceInfo;
 use Nextouch\Wins\Model\Order\PickAndPayInfo;
+use function Lambdish\Phunctional\any;
 
 class CreateOrder implements InputInterface
 {
@@ -47,11 +50,58 @@ class CreateOrder implements InputInterface
 
         $dataObjectConverter = ObjectManager::getInstance()->create(ExtensibleDataObjectConverter::class);
         $order = $dataObjectConverter->toNestedArray($this->getOrder(), [], OrderInterface::class);
+        $order = $this->prepareOrder($order);
+
+        return array_merge(
+            $order,
+            ['invoice_info' => $invoiceInfo->toArray()],
+            ['pick_and_pay_information' => $pickAndPayInfo->toArray()],
+            ['login_info' => $this->getLoginInfo()->toArray()]
+        );
+    }
+
+    private function prepareOrder(array $order): array
+    {
+        if ($order['customer_is_guest']) {
+            $attributes = $order['amasty_order_attributes'] ?? [];
+            $hasAmastyAttribute = function (string $code, array $attributes): bool {
+                return any(fn(array $attr) => $attr['attribute_code'] === $code, $attributes);
+            };
+
+            $isPrivacyPolicyAccepted = $hasAmastyAttribute('is_privacy_policy_accepted', $attributes);
+            $isSubscribed = $hasAmastyAttribute('is_subscribed', $attributes);
+            $isWebProfilingAccepted = $hasAmastyAttribute('is_web_profiling_accepted', $attributes);
+        } else {
+            $customerRepository = ObjectManager::getInstance()->create(CustomerRepositoryInterface::class);
+            $subscriber = ObjectManager::getInstance()->create(Subscriber::class);
+
+            $customer = $customerRepository->getById($order['customer_id']);
+            $checkSubscriber = $subscriber->loadByCustomerId($order['customer_id']);
+
+            $isPrivacyPolicyAccepted = (bool) $customer->getCustomAttribute('is_privacy_policy_accepted');
+            $isSubscribed = $checkSubscriber->isSubscribed();
+            $isWebProfilingAccepted = (bool) $customer->getCustomAttribute('is_web_profiling_accepted');
+        }
+
+        $order['customer_is_privacy_policy_accepted'] = $isPrivacyPolicyAccepted;
+        $order['customer_is_subscribed'] = $isSubscribed;
+        $order['customer_is_web_profiling_accepted'] = $isWebProfilingAccepted;
 
         if ($order['payment']['method'] === Config::METHOD_EXPRESS) {
-            $order['payment_additional_info'][] = ['key' => 'transaction_id', 'value' => $order['payment']['last_trans_id']];
-            $order['payment_additional_info'][] = ['key' => 'payment_id', 'value' => $order['payment']['last_trans_id']];
-            $order['payment_additional_info'][] = ['key' => 'method', 'value' => $order['payment']['method']];
+            $order['payment_additional_info'][] = [
+                'key' => 'transaction_id',
+                'value' => $order['payment']['last_trans_id'],
+            ];
+
+            $order['payment_additional_info'][] = [
+                'key' => 'payment_id',
+                'value' => $order['payment']['last_trans_id'],
+            ];
+
+            $order['payment_additional_info'][] = [
+                'key' => 'method',
+                'value' => $order['payment']['method'],
+            ];
         }
 
         $order['extension_attributes'] = [
@@ -71,11 +121,6 @@ class CreateOrder implements InputInterface
             'gw_card_price' => $order['gw_card_price'] ?? null,
         ];
 
-        return array_merge(
-            $order,
-            ['invoice_info' => $invoiceInfo->toArray()],
-            ['pick_and_pay_information' => $pickAndPayInfo->toArray()],
-            ['login_info' => $this->getLoginInfo()->toArray()]
-        );
+        return $order;
     }
 }
