@@ -148,6 +148,23 @@
                 &:extend(.abs-visually-hidden all);
             }
         }
+
+        #co-payment-form {
+            .fieldset {
+                display: flex;
+                flex-direction: column;
+
+                .order-attributes {
+                    order: 10;
+
+                    div[name^="amastyPaymentAttributes"] {
+                        .label:first-child {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -3,9 +3,4 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Nextouch\Customer\Api\Data\AddressInterface"
                 type="Nextouch\Customer\Model\Data\Address"/>
-
-    <type name="Magento\Customer\Controller\Account\CreatePost">
-        <plugin name="validate_is_privacy_policy_accepted"
-                type="Nextouch\Customer\Plugin\Controller\Account\ValidateIsPrivacyPolicyAccepted"/>
-    </type>
 </config>
