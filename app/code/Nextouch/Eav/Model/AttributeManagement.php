@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace Nextouch\Eav\Model;
 
+use Magento\Eav\Api\Data\AttributeInterface;
 use Nextouch\Eav\Api\AttributeManagementInterface;
+use function Lambdish\Phunctional\filter;
 
 class AttributeManagement implements AttributeManagementInterface
 {
@@ -33,6 +35,6 @@ class AttributeManagement implements AttributeManagementInterface
             }
         }
 
-        return $uniqueAttributes;
+        return filter(fn(AttributeInterface $item) => (bool) $item->getIsUserDefined(), $uniqueAttributes);
     }
 }
