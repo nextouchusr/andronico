@@ -10,9 +10,9 @@ interface AttributeManagementInterface
 {
     /**
      * @param string $entityTypeCode
-     * @param string $attributeSetId
+     * @param string $attributeSetIds
      * @return \Magento\Eav\Api\Data\AttributeInterface[]
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getUserDefinedAttributes(string $entityTypeCode, string $attributeSetId): array;
+    public function getDecisionTreeAttributes(string $entityTypeCode, string $attributeSetIds): array;
 }

@@ -39,16 +39,10 @@
             <resource ref="Magento_Catalog::read_products"/>
         </resources>
     </route>
-    <route url="/V1/products/attribute-sets/:attributeSetId/user-defined-attributes" method="GET">
-        <service class="Nextouch\Catalog\Api\ProductAttributeManagementInterface" method="getUserDefinedAttributes"/>
+    <route url="/V1/products/decision-tree-attributes" method="GET">
+        <service class="Nextouch\Catalog\Api\ProductAttributeManagementInterface" method="getDecisionTreeAttributes"/>
         <resources>
             <resource ref="Magento_Catalog::sets"/>
-        </resources>
-    </route>
-    <route url="/V1/products/filterable-attributes" method="GET">
-        <service class="Nextouch\Catalog\Api\ProductAttributeManagementInterface" method="getFilterableAttributes"/>
-        <resources>
-            <resource ref="Magento_Catalog::attributes_attributes"/>
         </resources>
     </route>
 

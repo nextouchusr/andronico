@@ -9,15 +9,9 @@ namespace Nextouch\Catalog\Api;
 interface ProductAttributeManagementInterface
 {
     /**
-     * @param string $attributeSetId
+     * @param string $attributeSetIds
      * @return \Magento\Catalog\Api\Data\ProductAttributeInterface[]
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getUserDefinedAttributes(string $attributeSetId): array;
-
-    /**
-     * @param string $attributeSetId
-     * @return \Magento\Catalog\Api\Data\ProductAttributeInterface[]
-     */
-    public function getFilterableAttributes(): array;
+    public function getDecisionTreeAttributes(string $attributeSetIds): array;
 }

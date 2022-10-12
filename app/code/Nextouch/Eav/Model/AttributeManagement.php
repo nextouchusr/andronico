@@ -3,12 +3,12 @@ declare(strict_types=1);
 
 namespace Nextouch\Eav\Model;
 
-use Magento\Eav\Api\Data\AttributeInterface;
 use Nextouch\Eav\Api\AttributeManagementInterface;
-use function Lambdish\Phunctional\filter;
 
 class AttributeManagement implements AttributeManagementInterface
 {
+    private const ATTRIBUTE_SET_SEPARATOR = ',';
+
     private \Magento\Eav\Api\AttributeManagementInterface $attributeManagement;
 
     public function __construct(\Magento\Eav\Api\AttributeManagementInterface $attributeManagement)
@@ -16,10 +16,23 @@ class AttributeManagement implements AttributeManagementInterface
         $this->attributeManagement = $attributeManagement;
     }
 
-    public function getUserDefinedAttributes(string $entityTypeCode, string $attributeSetId): array
+    public function getDecisionTreeAttributes(string $entityTypeCode, string $attributeSetIds): array
     {
-        $attributes = $this->attributeManagement->getAttributes($entityTypeCode, $attributeSetId);
+        $attributeSetIds = explode(self::ATTRIBUTE_SET_SEPARATOR, $attributeSetIds);
+        $uniqueAttributes = [];
 
-        return filter(fn(AttributeInterface $item) => (bool) $item->getIsUserDefined(), $attributes);
+        foreach ($attributeSetIds as $attributeSetId) {
+            $attributes = $this->attributeManagement->getAttributes($entityTypeCode, $attributeSetId);
+
+            foreach ($attributes as $attribute) {
+                $attributeCode = $attribute->getAttributeCode();
+
+                if (!in_array($attributeCode, array_keys($uniqueAttributes))) {
+                    $uniqueAttributes[$attributeCode] = $attribute;
+                }
+            }
+        }
+
+        return $uniqueAttributes;
     }
 }
