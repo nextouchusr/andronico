@@ -8,13 +8,10 @@ use Magento\Catalog\Api\Data\CategoryInterface;
 use Magento\Catalog\Api\Data\CategoryProductLinkInterfaceFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
-use Magento\Framework\Api\Filter;
-use Magento\Framework\Api\Search\FilterGroup;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Nextouch\Catalog\Api\CategoryLinkManagementInterface;
 use Nextouch\Catalog\Api\Data\CategoryProductLinkSearchResultsInterface;
 use Nextouch\Catalog\Api\Data\CategoryProductLinkSearchResultsInterfaceFactory;
-use function Lambdish\Phunctional\each;
 use function Lambdish\Phunctional\map;
 
 class CategoryLinkManagement implements CategoryLinkManagementInterface
@@ -64,11 +61,12 @@ class CategoryLinkManagement implements CategoryLinkManagementInterface
         /** @var Collection $products */
         $products = $category->getProductCollection();
 
-        each(function (FilterGroup $filterGroup) use ($products) {
-            each(function (Filter $filter) use ($products) {
-                $products->addAttributeToFilter($filter->getField(), $filter->getValue(), $filter->getConditionType());
-            }, $filterGroup->getFilters());
-        }, $searchCriteria->getFilterGroups());
+        foreach ($searchCriteria->getFilterGroups() as $filterGroup) {
+            foreach ($filterGroup->getFilters() as $filter) {
+                $condition = $filter->getConditionType() ?: 'eq';
+                $products->addFieldToFilter($filter->getField(), [$condition => $filter->getValue()]);
+            }
+        }
 
         $products->addFieldToSelect('position');
         $products->groupByAttribute($products->getProductEntityMetadata()->getIdentifierField());
