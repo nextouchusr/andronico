@@ -7,6 +7,7 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\Data\CategoryInterface;
 use Magento\Catalog\Api\Data\CategoryProductLinkInterfaceFactory;
 use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Catalog\Api\ProductAttributeRepositoryInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Nextouch\Catalog\Api\CategoryLinkManagementInterface;
@@ -16,18 +17,23 @@ use function Lambdish\Phunctional\map;
 
 class CategoryLinkManagement implements CategoryLinkManagementInterface
 {
+    private const PRICE_SEPARATOR = '-';
+
     private CategoryRepositoryInterface $categoryRepository;
     private CategoryProductLinkInterfaceFactory $categoryProductLinkFactory;
     private CategoryProductLinkSearchResultsInterfaceFactory $searchResultsFactory;
+    private ProductAttributeRepositoryInterface $attributeRepository;
 
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
         CategoryProductLinkInterfaceFactory $categoryProductLinkFactory,
-        CategoryProductLinkSearchResultsInterfaceFactory $searchResultsFactory
+        CategoryProductLinkSearchResultsInterfaceFactory $searchResultsFactory,
+        ProductAttributeRepositoryInterface $attributeRepository
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->categoryProductLinkFactory = $categoryProductLinkFactory;
         $this->searchResultsFactory = $searchResultsFactory;
+        $this->attributeRepository = $attributeRepository;
     }
 
     public function getAssignedProducts(
@@ -63,6 +69,15 @@ class CategoryLinkManagement implements CategoryLinkManagementInterface
 
         foreach ($searchCriteria->getFilterGroups() as $filterGroup) {
             foreach ($filterGroup->getFilters() as $filter) {
+                $attribute = $this->attributeRepository->get($filter->getField());
+
+                if ($attribute->getFrontendInput() === 'price' && $filter->getConditionType() === 'eq') {
+                    [$gteq, $lteq] = explode(self::PRICE_SEPARATOR, $filter->getValue());
+                    $products->addFieldToFilter($filter->getField(), ['gteq' => $gteq]);
+                    $products->addFieldToFilter($filter->getField(), ['lteq' => $lteq]);
+                    continue;
+                }
+
                 $condition = $filter->getConditionType() ?: 'eq';
                 $products->addFieldToFilter($filter->getField(), [$condition => $filter->getValue()]);
             }
