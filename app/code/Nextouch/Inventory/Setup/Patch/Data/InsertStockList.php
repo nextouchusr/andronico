@@ -87,7 +87,7 @@ class InsertStockList implements DataPatchInterface
                 'name' => 'Nextouch',
                 'sources' => [
                     ['code' => 'ecommerce', 'priority' => 1],
-                    ['code' => 'MI1', 'priority' => 2],
+                    ['code' => 'MB1', 'priority' => 2],
                 ],
             ],
         ];

@@ -10,7 +10,7 @@ Per gestire l'aggiunta delle source su Magento, è stata creata la Patch
 `InsertSourceList`. Allo stato attuale vengono aggiunti due source:
 
 * `ecommerce`: che corrisponde al negozio online
-* `MI1`: che corrisponde al negozio di Monza
+* `MB1`: che corrisponde al negozio di Monza
 
 #### Aggiunta lista stocks
 L'ecommerce presenta un unico stock (magazzino) composto, allo stato attuale, da due negozi:
