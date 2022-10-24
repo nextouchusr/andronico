@@ -25,6 +25,9 @@
     <preference for="Nextouch\Catalog\Api\Data\CategoryProductLinkSearchResultsInterface"
                 type="Nextouch\Catalog\Model\CategoryProductLinkSearchResults"/>
 
+    <preference for="Magento\Catalog\Block\Adminhtml\Product\Attribute\Grid"
+                type="Nextouch\Catalog\Block\Catalog\Adminhtml\Product\Attribute\Grid"/>
+
     <type name="Magento\Catalog\Model\Product\Type\AbstractType">
         <plugin name="remove_sku_appended_by_custom_options"
                 type="Nextouch\Catalog\Plugin\Model\Product\Type\RemoveSkuAppendedByCustomOptions"/>
