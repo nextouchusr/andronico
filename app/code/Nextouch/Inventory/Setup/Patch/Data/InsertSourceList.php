@@ -86,7 +86,7 @@ class InsertSourceList implements DataPatchInterface
             [
                 'code' => 'MI1',
                 'name' => 'Milano 1',
-                'is_enabled' => true,
+                'is_enabled' => false,
                 'latitude' => 45.466944,
                 'longitude' => 9.19,
                 'is_pickup_location_active' => true,
@@ -100,6 +100,24 @@ class InsertSourceList implements DataPatchInterface
                 'city' => 'Milano',
                 'street' => 'Via Roma 15',
                 'post_code' => '20100',
+            ],
+            [
+                'code' => 'MB1',
+                'name' => 'Monza 1',
+                'is_enabled' => true,
+                'latitude' => 45.580895,
+                'longitude' => 9.273731,
+                'is_pickup_location_active' => true,
+                'contact_name' => '',
+                'email' => 'info@nextouch.it',
+                'phone' => '+39 393 761 1588',
+                'fax' => '',
+                'country_id' => 'IT',
+                'region' => 'Monza-Brianza',
+                'region_id' => 863,
+                'city' => 'Monza',
+                'street' => 'Via Italia 41',
+                'post_code' => '20900',
             ],
         ];
     }
