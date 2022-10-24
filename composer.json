@@ -45,6 +45,7 @@
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
         "magento/product-enterprise-edition": "2.4.3-p1",
+        "mageplaza/module-cron-schedule": "^4.0",
         "mageplaza/module-delete-orders": "^4.0",
         "msp/cmsimportexport": "^1.1",
         "splashlab/magento-2-cors-requests": "^100.0",

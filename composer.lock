@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af2d33a2495c9b9c93a4b8cb966396fb",
+    "content-hash": "b2b200083a08c7804c9e7c0c183bf918",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -23181,6 +23181,51 @@
                 "source": "https://github.com/mageplaza/module-core/tree/v1.4.12"
             },
             "time": "2022-05-30T03:41:05+00:00"
+        },
+        {
+            "name": "mageplaza/module-cron-schedule",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-cron-schedule.git",
+                "reference": "f8d5f7641e6a4c389b7cab671eedf61773e6fd15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-cron-schedule/zipball/f8d5f7641e6a4c389b7cab671eedf61773e6fd15",
+                "reference": "f8d5f7641e6a4c389b7cab671eedf61773e6fd15",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.4.12"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\CronSchedule\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Magento 2 Cron Schedule Extension",
+            "support": {
+                "issues": "https://github.com/mageplaza/magento-2-cron-schedule/issues",
+                "source": "https://github.com/mageplaza/magento-2-cron-schedule/tree/v4.0.1"
+            },
+            "time": "2022-06-22T08:12:05+00:00"
         },
         {
             "name": "mageplaza/module-delete-orders",
