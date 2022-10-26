@@ -26,7 +26,7 @@ class ValidateQuoteSalableQty
             /** @var Quote $quote */
             $quote = $subject->getQuote();
 
-            //$this->validateQuoteSalableQtyService->validate($quote);
+            $this->validateQuoteSalableQtyService->validate($quote);
         } catch (LocalizedException $e) {
             throw new LocalizedException(__('Impossible to create Findomestic application: %1', $e->getLogMessage()));
         }
