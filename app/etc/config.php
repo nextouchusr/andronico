@@ -428,6 +428,8 @@ return [
         'Magento_WishlistGiftCard' => 1,
         'Magento_WishlistGiftCardGraphQl' => 1,
         'Magento_GiftCardGraphQl' => 1,
+        'Aitoc_Core' => 1,
+        'Aitoc_Smtp' => 1,
         'Amasty_AdvancedReview' => 1,
         'Amasty_BannersLite' => 1,
         'Amasty_Base' => 1,

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b2b200083a08c7804c9e7c0c183bf918",
+    "content-hash": "978096cbacb8ecef3379e3a5028a43e9",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -50,6 +50,78 @@
                 "source": "https://github.com/2tvenom/CBOREncode/tree/1.0.2"
             },
             "time": "2020-10-27T07:22:41+00:00"
+        },
+        {
+            "name": "aitoc/core",
+            "version": "1.0.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aitoc/magento-2-core.git",
+                "reference": "6126ba814009c00bbe9d9e936f8fd7f77a4b6ad4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aitoc/magento-2-core/zipball/6126ba814009c00bbe9d9e936f8fd7f77a4b6ad4",
+                "reference": "6126ba814009c00bbe9d9e936f8fd7f77a4b6ad4",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Aitoc\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "description": "Core extension by Aitoc",
+            "support": {
+                "issues": "https://github.com/aitoc/magento-2-core/issues",
+                "source": "https://github.com/aitoc/magento-2-core/tree/1.0.16"
+            },
+            "time": "2022-05-20T16:02:37+00:00"
+        },
+        {
+            "name": "aitoc/smtp",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aitoc/magento-2-smtp.git",
+                "reference": "52cc54f5bacab653429cfa1e33dcaeec609ac4a4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aitoc/magento-2-smtp/zipball/52cc54f5bacab653429cfa1e33dcaeec609ac4a4",
+                "reference": "52cc54f5bacab653429cfa1e33dcaeec609ac4a4",
+                "shasum": ""
+            },
+            "require": {
+                "aitoc/core": ">=1.0.8",
+                "ext-dom": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Aitoc\\Smtp\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "description": "SMTP",
+            "support": {
+                "issues": "https://github.com/aitoc/magento-2-smtp/issues",
+                "source": "https://github.com/aitoc/magento-2-smtp/tree/1.0.4"
+            },
+            "time": "2022-09-23T09:17:04+00:00"
         },
         {
             "name": "amasty/advanced-review",

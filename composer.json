@@ -20,6 +20,7 @@
     "version": "2.4.2-p1",
     "require": {
         "ext-json": "*",
+        "aitoc/smtp": "^1.0",
         "amasty/advanced-review": "^1.14",
         "amasty/advanced-reviews-page-builder": "^1.0",
         "amasty/delivery-date": "^1.6",
