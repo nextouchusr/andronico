@@ -46,6 +46,7 @@
     <type name="Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner">
         <arguments>
             <argument name="operations" xsi:type="array">
+                <item name="winsUnzipProductImagesOperation" xsi:type="object">winsUnzipProductImagesOperation</item>
                 <item name="winsAttributeDataOperation" xsi:type="object">winsAttributeDataOperation</item>
                 <item name="winsBrandDataOperation" xsi:type="object">winsBrandDataOperation</item>
                 <item name="winsProductDataOperation" xsi:type="object">winsProductDataOperation</item>
@@ -57,6 +58,12 @@
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
         </arguments>
     </type>
+
+    <virtualType name="winsUnzipProductImagesOperation" type="Nextouch\ImportExport\Model\WinsUnzipProductImagesOperation">
+        <arguments>
+            <argument name="client" xsi:type="object">Nextouch\Core\Service\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </virtualType>
 
     <virtualType name="winsAttributeDataOperation" type="Nextouch\ImportExport\Model\WinsEntityDataOperation">
         <arguments>

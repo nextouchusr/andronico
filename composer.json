@@ -51,7 +51,8 @@
         "msp/cmsimportexport": "^1.1",
         "splashlab/magento-2-cors-requests": "^100.0",
         "vladflonta/magento2-webapi-log": "~0",
-        "webmozart/assert": "^1.10"
+        "webmozart/assert": "^1.10",
+        "ext-ftp": "*"
     },
     "autoload": {
         "exclude-from-classmap": [
