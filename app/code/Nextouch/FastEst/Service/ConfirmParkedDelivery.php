@@ -29,7 +29,7 @@ class ConfirmParkedDelivery
     {
         $fastEstOrder = $this->orderRepository->get((int) $order->getEntityId());
 
-        if (!$fastEstOrder->isShippedBy(FastEst::SHIPPING_METHOD)) {
+        if (!$fastEstOrder->isShippedByFastEst()) {
             return;
         }
 

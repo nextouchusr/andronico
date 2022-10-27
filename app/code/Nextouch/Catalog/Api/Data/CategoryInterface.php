@@ -9,7 +9,6 @@ namespace Nextouch\Catalog\Api\Data;
 interface CategoryInterface extends \Magento\Catalog\Api\Data\CategoryInterface
 {
     public const ROOT_CATEGORY_PATH = 'default-category';
-    public const CATEGORY_SEPARATOR = ',';
     public const PATH_SEPARATOR = '/';
 
     public const URL_PATH = 'url_path';

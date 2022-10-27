@@ -6,21 +6,25 @@ namespace Nextouch\FastEst\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Sales\Model\Order\Shipment;
+use Nextouch\FastEst\Helper\FastEstConfig;
 use Nextouch\FastEst\Model\Carrier\FastEst;
-use Nextouch\FastEst\Service\SendTrackingLink;
 use Nextouch\Sales\Api\OrderRepositoryInterface;
+use Nextouch\Wins\Service\Order\SendCurrentOrderStatus;
 
 class SendFastEstTrackingLink implements ObserverInterface
 {
     private OrderRepositoryInterface $orderRepository;
-    private SendTrackingLink $sendTrackingLinkService;
+    private SendCurrentOrderStatus $sendCurrentOrderStatus;
+    private FastEstConfig $config;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
-        SendTrackingLink $sendTrackingLinkService
+        SendCurrentOrderStatus $sendCurrentOrderStatus,
+        FastEstConfig $config
     ) {
         $this->orderRepository = $orderRepository;
-        $this->sendTrackingLinkService = $sendTrackingLinkService;
+        $this->sendCurrentOrderStatus = $sendCurrentOrderStatus;
+        $this->config = $config;
     }
 
     public function execute(Observer $observer): void
@@ -30,10 +34,12 @@ class SendFastEstTrackingLink implements ObserverInterface
         $order = $shipment->getOrder();
         $fastEstOrder = $this->orderRepository->get((int) $order->getEntityId());
 
-        if (!$fastEstOrder->isShippedBy(FastEst::SHIPPING_METHOD)) {
+        if (!$fastEstOrder->isShippedByFastEst()) {
             return;
         }
 
-        $this->sendTrackingLinkService->execute($order);
+        $trackingLink = $this->config->getTrackingLink($order->getIncrementId());
+
+        $this->sendCurrentOrderStatus->execute($order, null, $trackingLink);
     }
 }

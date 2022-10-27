@@ -46,18 +46,6 @@
                     <label>Method Name</label>
                 </field>
 
-                <field id="tracking_base_url"
-                       translate="label"
-                       type="text"
-                       sortOrder="1"
-                       showInDefault="1"
-                       showInWebsite="1"
-                       showInStore="0"
-                       canRestore="1">
-                    <label>Tracking Base URL</label>
-                    <validate>required-entry validate-url</validate>
-                </field>
-
                 <field id="sallowspecific"
                        translate="label"
                        type="select"

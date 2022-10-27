@@ -1,11 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Nextouch\Gls\Service;
+namespace Nextouch\Wins\Service\Order;
 
 use Magento\Sales\Api\Data\OrderInterface;
-use Magento\Sales\Api\Data\ShipmentTrackCreationInterface;
-use Nextouch\Gls\Helper\GlsConfig;
 use Nextouch\Wins\Api\AuthManagementInterface;
 use Nextouch\Wins\Api\OrderManagementInterface;
 use Nextouch\Wins\Helper\WinsConfig;
@@ -14,33 +12,30 @@ use Nextouch\Wins\Model\Request\Auth\Authorize;
 use Nextouch\Wins\Model\Request\Order\UpdateOrderState;
 use Nextouch\Wins\Model\Request\Order\UpdateOrderStatus;
 
-class SendTrackingLink
+class SendCurrentOrderStatus
 {
     private OrderManagementInterface $orderManagement;
     private AuthManagementInterface $authManagement;
-    private WinsConfig $winsConfig;
-    private GlsConfig $glsConfig;
+    private WinsConfig $config;
 
     public function __construct(
         OrderManagementInterface $orderManagement,
         AuthManagementInterface $authManagement,
-        WinsConfig $winsConfig,
-        GlsConfig $glsConfig
+        WinsConfig $config
     ) {
         $this->orderManagement = $orderManagement;
         $this->authManagement = $authManagement;
-        $this->winsConfig = $winsConfig;
-        $this->glsConfig = $glsConfig;
+        $this->config = $config;
     }
 
-    public function execute(OrderInterface $order, ShipmentTrackCreationInterface $track): void
+    public function execute(OrderInterface $order, ?string $transactionID = null, ?string $trackingLink = null): void
     {
-        $authorizeReq = new Authorize($this->winsConfig->getAuthUsername(), $this->winsConfig->getAuthPassword());
+        $authorizeReq = new Authorize($this->config->getAuthUsername(), $this->config->getAuthPassword());
         $authorizeRes = $this->authManagement->authorize($authorizeReq);
 
         $loginInfo = LoginInfo::fromArray([
-            'user' => $this->winsConfig->getMagentoUsername(),
-            'password' => $this->winsConfig->getMagentoPassword(),
+            'user' => $this->config->getMagentoUsername(),
+            'password' => $this->config->getMagentoPassword(),
         ]);
 
         $updateOrderStatus = new UpdateOrderStatus(
@@ -48,8 +43,8 @@ class SendTrackingLink
             $loginInfo,
             $order->getIncrementId(),
             $order->getStatus(),
-            null,
-            $this->glsConfig->getTrackingLink($track->getTrackNumber())
+            $transactionID,
+            $trackingLink
         );
 
         $updateOrderState = new UpdateOrderState(

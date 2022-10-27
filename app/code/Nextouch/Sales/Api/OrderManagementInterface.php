@@ -9,38 +9,38 @@ namespace Nextouch\Sales\Api;
 interface OrderManagementInterface
 {
     /**
-     * @param int $id
-     * @return bool
+     * @param string $incrementId
+     * @return int
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      * @throws \Magento\Framework\Exception\InputException
      */
-    public function inDelivery(int $id): bool;
+    public function inCharge(string $incrementId): int;
 
     /**
      * @param string $incrementId
-     * @return bool
+     * @return int
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      * @throws \Magento\Framework\Exception\InputException
      */
-    public function inDeliveryByIncrementId(string $incrementId): bool;
-
-    /**
-     * @param int $id
-     * @return bool
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
-     * @throws \Magento\Framework\Exception\InputException
-     */
-    public function deliver(int $id): bool;
+    public function scheduled(string $incrementId): int;
 
     /**
      * @param string $incrementId
-     * @return bool
+     * @return int
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      * @throws \Magento\Framework\Exception\InputException
      */
-    public function deliverByIncrementId(string $incrementId): bool;
+    public function partiallyComplete(string $incrementId): int;
+
+    /**
+     * @param string $incrementId
+     * @return int
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     * @throws \Magento\Framework\Exception\InputException
+     */
+    public function complete(string $incrementId): int;
 }

@@ -7,10 +7,7 @@ use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Nextouch\Sales\Model\Order\Status;
 
-/**
- * @deprecated
- */
-class AddInDeliveryOrderStatus implements DataPatchInterface
+class AddInChargeOrderStatus implements DataPatchInterface
 {
     private ModuleDataSetupInterface $moduleDataSetup;
 
@@ -44,8 +41,8 @@ class AddInDeliveryOrderStatus implements DataPatchInterface
     public function addOrderStatus(): void
     {
         $status = [
-            'status' => Status::IN_DELIVERY['status'],
-            'label' => __('In Delivery'),
+            'status' => Status::IN_CHARGE['status'],
+            'label' => __('In Charge'),
         ];
 
         $this->moduleDataSetup->getConnection()->insert(
@@ -57,8 +54,8 @@ class AddInDeliveryOrderStatus implements DataPatchInterface
     public function addOrderState(): void
     {
         $state = [
-            'status' => Status::IN_DELIVERY['status'],
-            'state' => Status::IN_DELIVERY['state'],
+            'status' => Status::IN_CHARGE['status'],
+            'state' => Status::IN_CHARGE['state'],
             'visible_on_front' => true,
         ];
 
