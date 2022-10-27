@@ -4,6 +4,12 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
+                <resource id="Nextouch_ImportExport::importexport" title="Nextouch ImportExport" translate="title">
+                    <resource id="Nextouch_ImportExport::import" title="Nextouch Import" translate="title">
+                        <resource id="Nextouch_ImportExport::run" title="Nextouch Import Run" translate="title"/>
+                    </resource>
+                </resource>
+
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">

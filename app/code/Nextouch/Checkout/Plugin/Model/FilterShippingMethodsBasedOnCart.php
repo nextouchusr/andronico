@@ -8,7 +8,6 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Quote\Api\Data\ShippingMethodInterface;
 use Magento\Quote\Api\ShipmentEstimationInterface;
 use Magento\Quote\Api\ShippingMethodManagementInterface;
-use Nextouch\Dhl\Model\Carrier\Dhl;
 use Nextouch\FastEst\Model\Carrier\FastEst;
 use Nextouch\Gls\Model\Carrier\Gls;
 use Nextouch\Quote\Api\Data\CartInterface;
@@ -59,10 +58,6 @@ class FilterShippingMethodsBasedOnCart
             }
 
             if ($curr->getCarrierCode() === FastEst::CODE && $quote->isShippableWithFastEst()) {
-                return [$curr, ...$acc];
-            }
-
-            if ($curr->getCarrierCode() === Dhl::CODE && $quote->isShippableWithDhl()) {
                 return [$curr, ...$acc];
             }
 

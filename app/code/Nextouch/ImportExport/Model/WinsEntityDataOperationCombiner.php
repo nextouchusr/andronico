@@ -32,6 +32,9 @@ class WinsEntityDataOperationCombiner implements EntityDataOperationInterface
         $this->logger = $logger;
     }
 
+    /**
+     * @return void
+     */
     public function run(): void
     {
         $this->logger->info(__('Starting to run Wins entity data operations'));

@@ -36,7 +36,16 @@
                 type="Nextouch\FastEst\Plugin\Model\ConfirmParkedDelivery"/>
     </type>
 
-    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+    <type name="Nextouch\Sales\Api\OrderManagementInterface">
+        <plugin name="change_order_status_to_scheduled"
+                type="Nextouch\FastEst\Plugin\Model\ChangeOrderStatusToScheduled"/>
+
+        <plugin name="change_order_status_to_partially_complete"
+                type="Nextouch\FastEst\Plugin\Model\ChangeOrderStatusToPartiallyComplete"/>
+
+        <plugin name="change_order_status_to_complete"
+                type="Nextouch\FastEst\Plugin\Model\ChangeOrderStatusToComplete"/>
+
         <plugin name="send_fast_est_tracking_link"
                 type="Nextouch\FastEst\Plugin\Model\SendFastEstTrackingLink"/>
     </type>

@@ -55,4 +55,29 @@
             <resource ref="anonymous"/>
         </resources>
     </route>
+
+    <route url="/V1/fastEst/:incrementId/inCharge" method="POST">
+        <service class="Nextouch\Sales\Api\OrderManagementInterface" method="inCharge"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/fastEst/:incrementId/scheduled" method="POST">
+        <service class="Nextouch\Sales\Api\OrderManagementInterface" method="scheduled"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/fastEst/:incrementId/partiallyComplete" method="POST">
+        <service class="Nextouch\Sales\Api\OrderManagementInterface" method="partiallyComplete"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/fastEst/:incrementId/complete" method="POST">
+        <service class="Nextouch\Sales\Api\OrderManagementInterface" method="complete"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
 </routes>
