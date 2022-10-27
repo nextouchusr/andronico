@@ -11,7 +11,6 @@ class GlsConfig extends AbstractHelper
     private const XML_PATH_GLS_ACTIVE = 'carriers/gls/active';
     private const XML_PATH_GLS_TITLE = 'carriers/gls/title';
     private const XML_PATH_GLS_NAME = 'carriers/gls/name';
-    private const XML_PATH_GLS_TRACKING_BASE_URL = 'carriers/gls/tracking_base_url';
     private const XML_PATH_GLS_SALLOWSPECIFIC = 'carriers/gls/sallowspecific';
     private const XML_PATH_GLS_SPECIFICCOUNTRY = 'carriers/gls/specificcountry';
     private const XML_PATH_GLS_SHOWMETHOD = 'carriers/gls/showmethod';
@@ -42,22 +41,6 @@ class GlsConfig extends AbstractHelper
             ScopeInterface::SCOPE_STORE,
             $scopeCode
         );
-    }
-
-    public function getTrackingBaseUrl(string $scopeCode = null): string
-    {
-        return (string) $this->scopeConfig->getValue(
-            self::XML_PATH_GLS_TRACKING_BASE_URL,
-            ScopeInterface::SCOPE_STORE,
-            $scopeCode
-        );
-    }
-
-    public function getTrackingLink(string $trackNumber, string $scopeCode = null): string
-    {
-        $trackingBaseUrl = $this->getTrackingBaseUrl($scopeCode);
-
-        return sprintf('%s&numero_spedizione=%s', $trackingBaseUrl, $trackNumber);
     }
 
     public function allowsSpecificCountries(string $scopeCode = null): bool

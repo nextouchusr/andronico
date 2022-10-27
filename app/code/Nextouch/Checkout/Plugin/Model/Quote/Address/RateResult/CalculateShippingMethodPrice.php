@@ -7,7 +7,6 @@ use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Quote\Model\Quote\Address\RateResult\Method;
-use Nextouch\Dhl\Model\Carrier\Dhl;
 use Nextouch\FastEst\Model\Carrier\FastEst;
 use Nextouch\Gls\Model\Carrier\Gls;
 use Nextouch\Quote\Api\Data\CartInterface;
@@ -48,7 +47,7 @@ class CalculateShippingMethodPrice
 
     private function shouldCalculatePrice(Method $method): bool
     {
-        return in_array($method->getData('carrier'), [FastEst::CODE, Dhl::CODE, Gls::CODE]);
+        return in_array($method->getData('carrier'), [FastEst::CODE, Gls::CODE]);
     }
 
     /**
@@ -67,10 +66,10 @@ class CalculateShippingMethodPrice
 
     /**
      * @throws LocalizedException
-     * Nel caso di prodotto spedito da FastEst accoppiato ad un prodotto spedito da GLS o DHL la consegna verrà effettuata da FastEst
+     * Nel caso di prodotto spedito da FastEst accoppiato ad un prodotto spedito da GLS la consegna verrà effettuata da FastEst
      * Il costo addebitato al cliente sarà esclusivamente quello relativo alla consegna del prodotto spedito da FastEst
-     * (esempio: lavatrice (40€ FastEst) + iphone (7€ DHL) = FastEst a 40€ per il cliente)
-     * Anche nel caso di più di un prodotto a carrello DHL o GLS il costo sarà sempre solo quello della consegna del prodotto spedito da FastEst
+     * (esempio: lavatrice (40€ FastEst) + iphone (7€ GLS) = FastEst a 40€ per il cliente)
+     * Anche nel caso di più di un prodotto a carrello GLS il costo sarà sempre solo quello della consegna del prodotto spedito da FastEst
      *
      * Nel caso di carrello multiplo con due o più prodotti spediti da FastEst il costo addebitato al cliente
      * sarà quello del prodotto che presenta un costo di spedizione più alto più il costo degli altri ad uno ad uno scontati (ognuno di essi) al 50%.
@@ -98,7 +97,7 @@ class CalculateShippingMethodPrice
 
     /**
      * @throws LocalizedException
-     * Nel caso di carrello multiplo con due o più prodotti spediti da DHL o GLS
+     * Nel caso di carrello multiplo con due o più prodotti spediti da GLS
      * il costo addebitato al cliente sarà quello del prodotto che presenta un costo di spedizione più alto e tutti gli altri gratuiti fino ad un massimo di 3 prodotti a carrello.
      * Oltre i 3 ad ogni prodotto verrà addebitato un costo pari al 50% del suo costo di spedizione originario.
      * (esempio caso1: iphone (7€) + cavetto (2€) + cover telefono (2€) = totale costo spedizione 7€).

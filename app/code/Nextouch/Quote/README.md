@@ -16,7 +16,7 @@ Contiene gli stessi campi aggiunti per l'indirizzo cliente
 **CartInterface**
 Contiene i campi per leggere/scrivere le informazioni di "Application ID"
 e "Issuer Installment ID" relative a Findomestic e i metodi per verificare
-quale corriere visualizzare per il carrello (FastEst, Dhl o Gls)
+quale corriere visualizzare per il carrello (FastEst o Gls)
 
 **CartItemInterface**
 Contiene il metodo per verificare se è stato selezionato il servizio

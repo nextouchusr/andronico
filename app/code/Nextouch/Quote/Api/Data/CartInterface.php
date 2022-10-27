@@ -61,10 +61,5 @@ interface CartInterface extends \Magento\Quote\Api\Data\CartInterface
     /**
      * @return bool
      */
-    public function isShippableWithDhl(): bool;
-
-    /**
-     * @return bool
-     */
     public function isShippableWithGls(): bool;
 }

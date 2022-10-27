@@ -32,6 +32,16 @@ interface OrderInterface extends \Magento\Sales\Api\Data\OrderInterface
     public const IN_STORE_ORDER_NOT_PICKED_UP = 'N';
 
     /**
+     * @return bool
+     */
+    public function isShippedByFastEst(): bool;
+
+    /**
+     * @return bool
+     */
+    public function isShippedByGls(): bool;
+
+    /**
      * @param string $shippingMethod
      * @return bool
      */
