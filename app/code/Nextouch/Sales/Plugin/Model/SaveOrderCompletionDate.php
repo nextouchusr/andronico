@@ -16,10 +16,11 @@ class SaveOrderCompletionDate
     public function beforeSave(OrderRepositoryInterface $subject, OrderInterface $entity): array
     {
         /** @var Order $entity */
-        $isCompleteStatus = $entity->getStatus() === Status::COMPLETE['status'];
-        $isCompleteState = $entity->getState() === Status::COMPLETE['state'];
+        $isCompleteStatus = in_array($entity->getStatus(), [Status::PARTIALLY_COMPLETE['status'], Status::COMPLETE['status']]);
+        $isCompleteState = in_array($entity->getState(), [Status::PARTIALLY_COMPLETE['state'], Status::COMPLETE['state']]);
+        $hasCompleteDate = $entity->getData('completed_at');
 
-        if ($isCompleteStatus && $isCompleteState) {
+        if ($isCompleteStatus && $isCompleteState && !$hasCompleteDate) {
             $entity->setData('completed_at', date('Y-m-d H:i:s'));
         }
 

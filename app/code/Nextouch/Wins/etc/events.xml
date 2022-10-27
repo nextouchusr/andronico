@@ -22,11 +22,6 @@
                   instance="Nextouch\Wins\Observer\Findomestic\ChangeOrderStatusToCanceled"/>
     </event>
 
-    <event name="sales_order_status_change_to_complete">
-        <observer name="change_order_status_to_complete"
-                  instance="Nextouch\Wins\Observer\ChangeOrderStatusToComplete"/>
-    </event>
-
     <event name="customer_register_success">
         <observer name="create_customer"
                   instance="Nextouch\Wins\Observer\CreateCustomer"/>

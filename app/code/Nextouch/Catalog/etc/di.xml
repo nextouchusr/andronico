@@ -28,6 +28,9 @@
     <preference for="Magento\Catalog\Block\Adminhtml\Product\Attribute\Grid"
                 type="Nextouch\Catalog\Block\Catalog\Adminhtml\Product\Attribute\Grid"/>
 
+    <preference for="Magento\Catalog\Block\Adminhtml\Product\Attribute\Set\Toolbar\Main"
+                type="Nextouch\Catalog\Block\Adminhtml\Product\Attribute\Set\Toolbar\Main"/>
+
     <type name="Magento\Catalog\Model\Product\Type\AbstractType">
         <plugin name="remove_sku_appended_by_custom_options"
                 type="Nextouch\Catalog\Plugin\Model\Product\Type\RemoveSkuAppendedByCustomOptions"/>

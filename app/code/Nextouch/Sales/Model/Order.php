@@ -6,6 +6,8 @@ namespace Nextouch\Sales\Model;
 use Amasty\Deliverydate\Api\Data\DeliverydateInterface;
 use Amasty\Deliverydate\Model\ResourceModel\Deliverydate\CollectionFactory as DeliveryInformationCollectionFactory;
 use Magento\Framework\App\ObjectManager;
+use Nextouch\FastEst\Model\Carrier\FastEst;
+use Nextouch\Gls\Model\Carrier\Gls;
 use Nextouch\Sales\Api\Data\OrderAddressInterface;
 use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
@@ -14,6 +16,16 @@ use Nextouch\Sales\Model\ResourceModel\Order\Item\CollectionFactory as ItemColle
 
 class Order extends \Magento\Sales\Model\Order implements OrderInterface
 {
+    public function isShippedByFastEst(): bool
+    {
+        return $this->isShippedBy(FastEst::SHIPPING_METHOD);
+    }
+
+    public function isShippedByGls(): bool
+    {
+        return $this->isShippedBy(Gls::SHIPPING_METHOD);
+    }
+
     public function isShippedBy(string $shippingMethod): bool
     {
         return $this->getShippingMethod() === $shippingMethod;

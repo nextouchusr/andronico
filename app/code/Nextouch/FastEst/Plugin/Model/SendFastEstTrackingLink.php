@@ -4,51 +4,71 @@ declare(strict_types=1);
 namespace Nextouch\FastEst\Plugin\Model;
 
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Sales\Api\Data\OrderInterface;
-use Magento\Sales\Api\OrderRepositoryInterface;
-use Nextouch\FastEst\Model\Carrier\FastEst;
-use Nextouch\FastEst\Service\SendTrackingLink;
-use Nextouch\Sales\Api\OrderRepositoryInterface as NextouchOrderRepositoryInterface;
-use Nextouch\Sales\Model\Order\Status;
-use Psr\Log\LoggerInterface;
+use Magento\Sales\Api\Data\ShipmentItemCreationInterfaceFactory;
+use Magento\Sales\Api\ShipOrderInterface;
+use Nextouch\FastEst\Helper\FastEstConfig;
+use Nextouch\Sales\Api\Data\OrderInterface;
+use Nextouch\Sales\Api\Data\OrderItemInterface;
+use Nextouch\Sales\Api\OrderManagementInterface;
+use Nextouch\Sales\Api\OrderRepositoryInterface;
+use Nextouch\Wins\Service\Order\SendCurrentOrderStatus;
+use function Lambdish\Phunctional\map;
 
 class SendFastEstTrackingLink
 {
-    private NextouchOrderRepositoryInterface $nextouchOrderRepository;
-    private SendTrackingLink $sendTrackingLinkService;
-    private LoggerInterface $logger;
+    private OrderRepositoryInterface $orderRepository;
+    private ShipmentItemCreationInterfaceFactory $shipmentItemCreationFactory;
+    private ShipOrderInterface $shipOrder;
+    private SendCurrentOrderStatus $sendCurrentOrderStatus;
+    private FastEstConfig $config;
 
     public function __construct(
-        NextouchOrderRepositoryInterface $nextouchOrderRepository,
-        SendTrackingLink $sendTrackingLinkService,
-        LoggerInterface $logger
+        OrderRepositoryInterface $orderRepository,
+        ShipmentItemCreationInterfaceFactory $shipmentItemCreationFactory,
+        ShipOrderInterface $shipOrder,
+        SendCurrentOrderStatus $sendCurrentOrderStatus,
+        FastEstConfig $config
     ) {
-        $this->nextouchOrderRepository = $nextouchOrderRepository;
-        $this->sendTrackingLinkService = $sendTrackingLinkService;
-        $this->logger = $logger;
+        $this->orderRepository = $orderRepository;
+        $this->shipmentItemCreationFactory = $shipmentItemCreationFactory;
+        $this->shipOrder = $shipOrder;
+        $this->sendCurrentOrderStatus = $sendCurrentOrderStatus;
+        $this->config = $config;
     }
 
     /**
+     * @throws LocalizedException
      * @noinspection PhpUnusedParameterInspection
      */
-    public function afterSave(OrderRepositoryInterface $subject, OrderInterface $result): OrderInterface
+    public function afterInCharge(OrderManagementInterface $subject, int $result): int
     {
-        try {
-            $fastEstOrder = $this->nextouchOrderRepository->get((int) $result->getEntityId());
+        $order = $this->orderRepository->get($result);
 
-            $isShippedByFastEst = $fastEstOrder->isShippedBy(FastEst::SHIPPING_METHOD);
-            $isShippedStatus = $fastEstOrder->getStatus() === Status::SHIPPED['status'];
-            $isShippedState = $fastEstOrder->getState() === Status::SHIPPED['state'];
-
-            if ($isShippedByFastEst && $isShippedStatus && $isShippedState) {
-                $this->sendTrackingLinkService->execute($fastEstOrder);
-            }
-        } catch (LocalizedException $e) {
-            $this->logger->error($e->getMessage());
-        } catch (\Exception $e) {
-            $this->logger->critical($e->getMessage());
+        if ($order->isShippedByFastEst() && $order->canShip()) {
+            $this->shipOrder($order);
+            $this->sendTrackingLink($order);
         }
 
         return $result;
+    }
+
+    private function shipOrder(OrderInterface $order): void
+    {
+        $shipmentItems = map(function (OrderItemInterface $orderItem) {
+            $shipmentItem = $this->shipmentItemCreationFactory->create();
+            $shipmentItem->setOrderItemId($orderItem->getItemId());
+            $shipmentItem->setQty($orderItem->getQtyToShip());
+
+            return $shipmentItem;
+        }, $order->getItems());
+
+        $this->shipOrder->execute($order->getEntityId(), $shipmentItems);
+    }
+
+    private function sendTrackingLink(OrderInterface $order): void
+    {
+        $trackingLink = $this->config->getTrackingLink($order->getIncrementId());
+
+        $this->sendCurrentOrderStatus->execute($order, null, $trackingLink);
     }
 }

@@ -132,9 +132,6 @@ class WinsAttributeDataImport implements EntityDataImportInterface
         \Lambdish\Phunctional\each(fn(Property $item) => $this->saveAttribute($attributeGroup, $item), $properties);
     }
 
-    /**
-     * @throws LocalizedException
-     */
     private function saveAttribute(AttributeGroupInterface $attributeGroup, Property $property): void
     {
         try {
@@ -146,7 +143,7 @@ class WinsAttributeDataImport implements EntityDataImportInterface
                 $attributeMapper = $this->attributeMapperFactory->create($property);
                 $attribute = $attributeMapper->map($property);
                 $attribute = $this->attributeRepository->save($attribute);
-
+            } finally {
                 $this->attributeManagement->assign(
                     $attributeGroup->getAttributeSetId(),
                     $attributeGroup->getAttributeGroupId(),
