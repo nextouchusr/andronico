@@ -6,4 +6,9 @@
 
     <preference for="Nextouch\Sidea\Api\EventManagementInterface"
                 type="Nextouch\Sidea\Model\EventManagement"/>
+
+    <type name="Magento\Webapi\Controller\Rest\InputParamsResolver">
+        <plugin name="wrap_fields_for_customer_profiling"
+                type="Nextouch\Sidea\Plugin\Webapi\Controller\Rest\WrapFieldsForCustomerProfiling"/>
+    </type>
 </config>
