@@ -31,8 +31,9 @@ class WinsUnzipProductImagesOperation implements EntityDataOperationInterface
         try {
             $config = $this->config->getWinsConfig();
             $this->client->open($config);
+            $extractCommand = $this->config->getWinsExtractCommandFilePath();
 
-            $this->client->exec('sh extract_command.sh');
+            $this->client->exec(sprintf('sh %1', $extractCommand));
         } finally {
             $this->logger->info(__('Finishing to unzip Wins product images'));
         }
