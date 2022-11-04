@@ -37,7 +37,7 @@ class Product extends \Magento\Catalog\Model\Product implements ProductInterface
         try {
             $brandId = $this->getBrand();
 
-            return $this->_resource
+            return (string) $this->_resource
                 ->getAttribute(self::BRAND)
                 ->getSource()
                 ->getOptionText($brandId);
