@@ -11,16 +11,32 @@ class Grid extends \Magento\Catalog\Block\Adminhtml\Product\Attribute\Grid
         $this->setMassactionIdFilter('attribute_code');
         $this->setMassactionIdFieldOnlyIndexValue(true);
         $this->getMassactionBlock()->setFormFieldName('attribute_codes');
+        $this->addMassactionBlocks();
 
-        $this->getMassactionBlock()->addItem(
-            'delete',
-            [
+        return $this;
+    }
+
+    private function addMassactionBlocks(): void
+    {
+        $this->getMassactionBlock()->addItem('delete', [
                 'label' => __('Delete'),
                 'url' => $this->getUrl('catalog/product_attribute/massDelete'),
                 'confirm' => __('Delete selected items?'),
             ]
         );
 
-        return $this;
+        $this->getMassactionBlock()->addItem('enable_filterable', [
+                'label' => __('Enable Filterable Option'),
+                'url' => $this->getUrl('catalog/product_attribute/massEnableFilterable'),
+                'confirm' => __('Update selected items?'),
+            ]
+        );
+
+        $this->getMassactionBlock()->addItem('disable_filterable', [
+                'label' => __('Disable Filterable Option'),
+                'url' => $this->getUrl('catalog/product_attribute/massDisableFilterable'),
+                'confirm' => __('Update selected items?'),
+            ]
+        );
     }
 }

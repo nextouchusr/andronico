@@ -22,7 +22,6 @@ class SelectableAttributeMapper extends AbstractAttributeMapper
         $attribute->setIsUserDefined(true);
         $attribute->setIsVisible(true);
         $attribute->setIsComparable(true);
-        $attribute->setIsFilterable(true);
         $attribute->setIsVisibleOnFront(true);
         $attribute->setIsHtmlAllowedOnFront(true);
 

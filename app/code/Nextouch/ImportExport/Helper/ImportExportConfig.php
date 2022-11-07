@@ -61,13 +61,6 @@ class ImportExportConfig extends AbstractHelper
         return "$location/unprocessed/{$now}_$filename";
     }
 
-    public function getWinsExtractCommandFilePath(): string
-    {
-        $location = $this->getWinsLocation();
-
-        return "$location/extract_command.sh";
-    }
-
     public function getWinsLocation(): string
     {
         return (string) $this->scopeConfig->getValue(self::XML_PATH_WINS_LOCATION);

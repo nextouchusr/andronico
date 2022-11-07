@@ -491,7 +491,6 @@ return [
         'Nextouch_Eav' => 1,
         'Nextouch_Customer' => 1,
         'Nextouch_Catalog' => 1,
-        'Nextouch_Core' => 1,
         'Nextouch_CatalogRule' => 1,
         'Nextouch_Quote' => 1,
         'Nextouch_Sales' => 1,

@@ -3,7 +3,6 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Nextouch_ImportExport" setup_version="1.0.0">
         <sequence>
-            <module name="Nextouch_Core"/>
             <module name="Magento_ScheduledImportExport"/>
             <module name="Nextouch_Catalog"/>
         </sequence>
