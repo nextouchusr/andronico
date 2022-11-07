@@ -38,5 +38,19 @@ class Grid extends \Magento\Catalog\Block\Adminhtml\Product\Attribute\Grid
                 'confirm' => __('Update selected items?'),
             ]
         );
+
+        $this->getMassactionBlock()->addItem('allow_multiselect', [
+                'label' => __('Enable Allow Multiselect Option'),
+                'url' => $this->getUrl('catalog/product_attribute/massAllowMultiselect'),
+                'confirm' => __('Update selected items?'),
+            ]
+        );
+
+        $this->getMassactionBlock()->addItem('display_as_slider', [
+                'label' => __('Update Display as Slider'),
+                'url' => $this->getUrl('catalog/product_attribute/massDisplayAsSlider'),
+                'confirm' => __('Update selected items?'),
+            ]
+        );
     }
 }
