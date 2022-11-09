@@ -56,6 +56,7 @@ class GlsConfig extends AbstractHelper
     public function getTrackingLink(string $trackNumber, string $scopeCode = null): string
     {
         $trackingBaseUrl = $this->getTrackingBaseUrl($scopeCode);
+        $trackNumber = str_replace(' ', '/', $trackNumber);
 
         return sprintf('%s/%s', $trackingBaseUrl, $trackNumber);
     }
