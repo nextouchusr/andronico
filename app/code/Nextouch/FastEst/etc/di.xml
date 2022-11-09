@@ -49,4 +49,9 @@
         <plugin name="send_fast_est_tracking_link"
                 type="Nextouch\FastEst\Plugin\Model\SendFastEstTrackingLink"/>
     </type>
+
+    <type name="Magento\Shipping\Helper\Data">
+        <plugin name="get_fast_est_tracking_popup_url"
+                type="Nextouch\FastEst\Plugin\Shipping\Helper\GetShippingTrackingPopupUrl"/>
+    </type>
 </config>

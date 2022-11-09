@@ -6,6 +6,8 @@ namespace Nextouch\Sales\Model;
 use Amasty\Deliverydate\Api\Data\DeliverydateInterface;
 use Amasty\Deliverydate\Model\ResourceModel\Deliverydate\CollectionFactory as DeliveryInformationCollectionFactory;
 use Magento\Framework\App\ObjectManager;
+use Magento\Sales\Api\Data\ShipmentInterface;
+use Magento\Sales\Api\Data\TrackInterface;
 use Nextouch\FastEst\Model\Carrier\FastEst;
 use Nextouch\Gls\Model\Carrier\Gls;
 use Nextouch\Sales\Api\Data\OrderAddressInterface;
@@ -13,9 +15,25 @@ use Nextouch\Sales\Api\Data\OrderInterface;
 use Nextouch\Sales\Api\Data\OrderItemInterface;
 use Nextouch\Sales\Model\ResourceModel\Order\Address\CollectionFactory as AddressCollectionFactory;
 use Nextouch\Sales\Model\ResourceModel\Order\Item\CollectionFactory as ItemCollectionFactory;
+use function Lambdish\Phunctional\first;
 
 class Order extends \Magento\Sales\Model\Order implements OrderInterface
 {
+    public function getTrackNumber(): string
+    {
+        if ($this->hasShipments()) {
+            /** @var ShipmentInterface $shipment */
+            $shipment = $this->getShipmentsCollection()->getFirstItem();
+
+            /** @var TrackInterface $track */
+            $track = first($shipment->getTracks());
+
+            return $track->getTrackNumber();
+        }
+
+        return '';
+    }
+
     public function isShippedByFastEst(): bool
     {
         return $this->isShippedBy(FastEst::SHIPPING_METHOD);
