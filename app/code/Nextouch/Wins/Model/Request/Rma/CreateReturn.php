@@ -8,6 +8,7 @@ use Magento\Framework\App\ObjectManager;
 use Magento\Rma\Api\Data\RmaInterface;
 use Nextouch\Wins\Api\Data\InputInterface;
 use Nextouch\Wins\Model\Auth\LoginInfo;
+use function Lambdish\Phunctional\map;
 
 class CreateReturn implements InputInterface
 {
@@ -44,6 +45,11 @@ class CreateReturn implements InputInterface
     {
         $dataObjectConverter = ObjectManager::getInstance()->create(ExtensibleDataObjectConverter::class);
         $return = $dataObjectConverter->toNestedArray($this->getReturn(), [], RmaInterface::class);
+        $return['comments'] = map(function (array $comment) {
+            $customerNotified = $comment['customer_notified'] ?: false;
+
+            return array_merge($comment, ['customer_notified' => $customerNotified]);
+        }, $return['comments']);
 
         return array_merge(
             $return,
