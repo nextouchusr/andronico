@@ -220,8 +220,11 @@ resize_images: ## Resize images
 sidea_send_abandoned_carts: ## Run Sidea send abandoned carts job
 	php ./n98-magerun2.phar sys:cron:run nextouch_sidea_send_abandoned_carts
 
-wins_import_job: ## Run Wins entity data import job
-	php ./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_entity_data_import_job
+wins_product_data_import_job: ## Run Wins product data import job
+	php ./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_product_data_import_job
+
+wins_catalog_data_import_job: ## Run Wins catalog data import job
+	php ./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_catalog_data_import_job
 
 wins_attach_order_invoice: ## Run Wins attach order invoice job
 	php ./n98-magerun2.phar sys:cron:run nextouch_wins_attach_order_invoice

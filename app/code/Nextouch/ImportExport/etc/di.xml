@@ -43,20 +43,40 @@
         </arguments>
     </type>
 
-    <type name="Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner">
+    <virtualType name="winsProductDataImportJob" type="Nextouch\ImportExport\Cron\WinsEntityDataImportJob">
+        <arguments>
+            <argument name="entityDataOperationCombiner" xsi:type="object">winsProductDataOperationCombiner</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="winsProductDataOperationCombiner" type="Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner">
         <arguments>
             <argument name="operations" xsi:type="array">
                 <item name="winsAttributeDataOperation" xsi:type="object">winsAttributeDataOperation</item>
                 <item name="winsBrandDataOperation" xsi:type="object">winsBrandDataOperation</item>
-                <item name="winsProductDataOperation" xsi:type="object">winsProductDataOperation</item>
                 <item name="winsFeatureSetDataOperation" xsi:type="object">winsFeatureSetDataOperation</item>
-                <item name="winsProductStockDataOperation" xsi:type="object">winsProductStockDataOperation</item>
                 <item name="winsProductImageDataOperation" xsi:type="object">winsProductImageDataOperation</item>
                 <item name="winsVideoDataOperation" xsi:type="object">winsVideoDataOperation</item>
             </argument>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
         </arguments>
-    </type>
+    </virtualType>
+
+    <virtualType name="winsCatalogDataImportJob" type="Nextouch\ImportExport\Cron\WinsEntityDataImportJob">
+        <arguments>
+            <argument name="entityDataOperationCombiner" xsi:type="object">winsCatalogDataOperationCombiner</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="winsCatalogDataOperationCombiner" type="Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner">
+        <arguments>
+            <argument name="operations" xsi:type="array">
+                <item name="winsProductDataOperation" xsi:type="object">winsProductDataOperation</item>
+                <item name="winsProductStockDataOperation" xsi:type="object">winsProductStockDataOperation</item>
+            </argument>
+            <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
+        </arguments>
+    </virtualType>
 
     <virtualType name="winsAttributeDataOperation" type="Nextouch\ImportExport\Model\WinsEntityDataOperation">
         <arguments>
