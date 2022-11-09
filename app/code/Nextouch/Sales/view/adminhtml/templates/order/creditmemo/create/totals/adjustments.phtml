@@ -13,7 +13,7 @@
             <input type="text"
                    name="creditmemo[shipping_amount]"
                    value="<?= $block->escapeHtmlAttr($block->getShippingAmount()) ?>"
-                   class="input-text admin__control-text not-negative-amount"
+                   class="input-text admin__control-text"
                    id="shipping_amount"/>
         </td>
     </tr>
@@ -26,7 +26,7 @@
             <input type="text"
                    name="creditmemo[adjustment_positive]"
                    value="<?= $block->escapeHtmlAttr($_source->getBaseAdjustmentPositive()) ?>"
-                   class="input-text admin__control-text not-negative-amount"
+                   class="input-text admin__control-text"
                    id="adjustment_positive"/>
         </td>
     </tr>
@@ -39,7 +39,7 @@
             <input type="text"
                    name="creditmemo[adjustment_negative]"
                    value="<?= $block->escapeHtmlAttr($_source->getBaseAdjustmentNegative()) ?>"
-                   class="input-text admin__control-text not-negative-amount"
+                   class="input-text admin__control-text"
                    id="adjustment_negative"/>
             <?php $scriptString = <<<script
                 require(['prototype'], function(){
