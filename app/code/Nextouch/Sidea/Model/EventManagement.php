@@ -22,6 +22,8 @@ class EventManagement extends AbstractBaseRestApi implements EventManagementInte
             'json' => $request->toArray(),
         ];
 
+        $this->logger->info(__('Calling [Send abandoned cart] with params: %1', json_encode($params)));
+
         $response = $this->doRequest(
             $this->config->getEventsBaseUrl(),
             $uriEndpoint,

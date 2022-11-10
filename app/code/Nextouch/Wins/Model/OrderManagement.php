@@ -24,6 +24,8 @@ class OrderManagement extends AbstractBaseRestApi implements OrderManagementInte
             'json' => $request->toArray(),
         ];
 
+        $this->logger->info(__('Calling [Update Wins order status] with params: %1', json_encode($params)));
+
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
         return in_array($response->getStatusCode(), self::SUCCESS_STATUSES);
@@ -38,6 +40,8 @@ class OrderManagement extends AbstractBaseRestApi implements OrderManagementInte
             'headers' => ['Authorization' => 'Bearer ' . $request->getAccessToken()],
             'json' => $request->toArray(),
         ];
+
+        $this->logger->info(__('Calling [Update Wins order state] with params: %1', json_encode($params)));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 

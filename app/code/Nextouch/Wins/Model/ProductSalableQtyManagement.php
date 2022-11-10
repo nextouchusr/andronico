@@ -24,6 +24,8 @@ class ProductSalableQtyManagement extends AbstractBaseRestApi implements Product
             'json' => $request->toArray(),
         ];
 
+        $this->logger->info(__('Calling [Get Product Availability] with params: %1', json_encode($params)));
+
         $response = $this->doRequest($uriEndpoint, $params);
 
         if (!in_array($response->getStatusCode(), self::SUCCESS_STATUSES)) {

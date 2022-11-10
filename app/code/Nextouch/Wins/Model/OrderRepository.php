@@ -22,6 +22,8 @@ class OrderRepository extends AbstractBaseRestApi implements OrderRepositoryInte
             'json' => $request->toArray(),
         ];
 
+        $this->logger->info(__('Calling [Create Wins order] with params: %1', json_encode($params)));
+
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
         return in_array($response->getStatusCode(), self::SUCCESS_STATUSES);
