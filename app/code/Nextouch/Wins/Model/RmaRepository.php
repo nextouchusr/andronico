@@ -22,7 +22,7 @@ class RmaRepository extends AbstractBaseRestApi implements RmaRepositoryInterfac
             'json' => $request->toArray(),
         ];
 
-        $this->logger->info(__('Calling [Create Wins return] with params: %1', json_encode($params)));
+        $this->logger->info(__('Calling [Create Wins return] with params: %1', json_encode($params['json'])));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 

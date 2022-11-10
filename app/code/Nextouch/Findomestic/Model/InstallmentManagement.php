@@ -30,7 +30,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
         $uriEndpoint = $this->config->getBasePath() . self::REQUEST_ENDPOINT . self::CREATE_ACTION;
         $params = ['json' => $request->toArray()];
 
-        $this->logger->info(__('Calling [Create Findomestic installment] with params: %1', json_encode($params)));
+        $this->logger->info(__('Calling [Create Findomestic installment] with params: %1', json_encode($params['json'])));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
@@ -53,7 +53,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
         $uriEndpoint = $this->config->getBasePath() . self::REQUEST_ENDPOINT . self::REFRESH_ACTION;
         $params = ['json' => $request->toArray()];
 
-        $this->logger->info(__('Calling [Refresh Findomestic installment] with params: %1', json_encode($params)));
+        $this->logger->info(__('Calling [Refresh Findomestic installment] with params: %1', json_encode($params['json'])));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
@@ -81,7 +81,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
 
         $params = ['json' => $request->toArray()];
 
-        $this->logger->info(__('Calling [Activate Findomestic installment] with params: %1', json_encode($params)));
+        $this->logger->info(__('Calling [Activate Findomestic installment] with params: %1', json_encode($params['json'])));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
@@ -109,7 +109,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
 
         $params = ['json' => $request->toArray()];
 
-        $this->logger->info(__('Calling [Cancel Findomestic installment] with params: %1', json_encode($params)));
+        $this->logger->info(__('Calling [Cancel Findomestic installment] with params: %1', json_encode($params['json'])));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
@@ -137,7 +137,7 @@ class InstallmentManagement extends AbstractBaseRestApi implements InstallmentMa
 
         $params = ['json' => $request->toArray()];
 
-        $this->logger->info(__('Calling [Refund Findomestic installment] with params: %1', json_encode($params)));
+        $this->logger->info(__('Calling [Refund Findomestic installment] with params: %1', json_encode($params['json'])));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 

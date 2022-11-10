@@ -24,7 +24,7 @@ class OrderManagement extends AbstractBaseRestApi implements OrderManagementInte
             'json' => $request->toArray(),
         ];
 
-        $this->logger->info(__('Calling [Update Wins order status] with params: %1', json_encode($params)));
+        $this->logger->info(__('Calling [Update Wins order status] with params: %1', json_encode($params['json'])));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
@@ -41,7 +41,7 @@ class OrderManagement extends AbstractBaseRestApi implements OrderManagementInte
             'json' => $request->toArray(),
         ];
 
-        $this->logger->info(__('Calling [Update Wins order state] with params: %1', json_encode($params)));
+        $this->logger->info(__('Calling [Update Wins order state] with params: %1', json_encode($params['json'])));
 
         $response = $this->doRequest($uriEndpoint, $params, Request::METHOD_POST);
 
