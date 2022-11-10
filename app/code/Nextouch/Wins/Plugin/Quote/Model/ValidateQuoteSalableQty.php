@@ -24,7 +24,7 @@ class ValidateQuoteSalableQty
     public function beforeSubmit(QuoteManagement $subject, Quote $quote, array $orderData = []): array
     {
         try {
-            //$this->validateQuoteSalableQtyService->validate($quote);
+            $this->validateQuoteSalableQtyService->validate($quote);
         } catch (LocalizedException $e) {
             throw new LocalizedException(__('Impossible to place order: %1', $e->getLogMessage()));
         }
