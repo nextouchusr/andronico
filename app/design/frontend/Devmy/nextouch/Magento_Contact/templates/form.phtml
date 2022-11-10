@@ -18,7 +18,7 @@ $aboutBanners = $block->getLayout()->createBlock('Magento\Cms\Block\Block')->set
 
     <h2 class="text-h2"><?= $block->escapeHtml(__('Contact Us')) ?></h2>
     <fieldset class="fieldset">
-        <input type=hidden name="orgid" value="<?= $block->escapeHtml($block->getContactOriginId()) ?>">
+        <input type=hidden name="orgid" value="<?= $block->escapeHtml($sideaConfig->getContactOriginId()) ?>">
         <input type=hidden name="retURL" value="<?= $block->escapeUrl($block->getUrl('contact')) ?>">
         <div class="field name required">
             <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
