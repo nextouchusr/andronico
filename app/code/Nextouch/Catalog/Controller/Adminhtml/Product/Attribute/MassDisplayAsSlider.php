@@ -7,6 +7,7 @@ use Amasty\Shopby\Model\Source\DisplayMode;
 use Amasty\ShopbyBase\Api\Data\FilterSettingRepositoryInterface;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Catalog\Api\ProductAttributeRepositoryInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface as HttpPostActionInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\LocalizedException;
@@ -14,13 +15,16 @@ use Magento\Framework\Exception\LocalizedException;
 class MassDisplayAsSlider extends Action implements HttpPostActionInterface
 {
     private string $redirectUrl = '*/*/index';
+    private ProductAttributeRepositoryInterface $attributeRepository;
     private FilterSettingRepositoryInterface $filterSettingRepository;
 
     public function __construct(
         Context $context,
+        ProductAttributeRepositoryInterface $attributeRepository,
         FilterSettingRepositoryInterface $filterSettingRepository
     ) {
         parent::__construct($context);
+        $this->attributeRepository = $attributeRepository;
         $this->filterSettingRepository = $filterSettingRepository;
     }
 
@@ -45,10 +49,14 @@ class MassDisplayAsSlider extends Action implements HttpPostActionInterface
     {
         $attributesUpdated = 0;
         foreach ($attributeCodes as $attributeCode) {
-            $filterSetting = $this->filterSettingRepository->getByAttributeCode($attributeCode);
-            $filterSetting->setDisplayMode(DisplayMode::MODE_SLIDER);
-            $this->filterSettingRepository->save($filterSetting);
-            $attributesUpdated++;
+            $attribute = $this->attributeRepository->get($attributeCode);
+
+            if ($attribute->getFrontendInput() === 'price') {
+                $filterSetting = $this->filterSettingRepository->getByAttributeCode($attributeCode);
+                $filterSetting->setDisplayMode(DisplayMode::MODE_SLIDER);
+                $this->filterSettingRepository->save($filterSetting);
+                $attributesUpdated++;
+            }
         }
 
         if ($attributesUpdated) {
