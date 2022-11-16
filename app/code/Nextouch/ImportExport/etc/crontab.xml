@@ -11,7 +11,7 @@
         <job name="nextouch_import_export_wins_catalog_data_import_job"
              instance="winsCatalogDataImportJob"
              method="execute">
-            <schedule>*/30 * * * *</schedule>
+            <schedule>30 11 * * *</schedule>
         </job>
     </group>
 </config>
