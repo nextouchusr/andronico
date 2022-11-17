@@ -5,13 +5,13 @@
         <job name="nextouch_import_export_wins_product_data_import_job"
              instance="winsProductDataImportJob"
              method="execute">
-            <schedule>0 1 * * *</schedule>
+            <schedule>0 10 * * *</schedule>
         </job>
 
         <job name="nextouch_import_export_wins_catalog_data_import_job"
              instance="winsCatalogDataImportJob"
              method="execute">
-            <schedule>30 13 * * *</schedule>
+            <schedule>10,40 * * * *</schedule>
         </job>
     </group>
 </config>
