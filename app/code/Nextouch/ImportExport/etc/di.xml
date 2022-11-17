@@ -58,6 +58,9 @@
                 <item name="winsProductImageDataOperation" xsi:type="object">winsProductImageDataOperation</item>
                 <item name="winsVideoDataOperation" xsi:type="object">winsVideoDataOperation</item>
             </argument>
+            <argument name="semaphoreFilename" xsi:type="const">
+                Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner::ECAT_SEMAPHORE_FILENAME
+            </argument>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
         </arguments>
     </virtualType>
@@ -73,6 +76,9 @@
             <argument name="operations" xsi:type="array">
                 <item name="winsProductDataOperation" xsi:type="object">winsProductDataOperation</item>
                 <item name="winsProductStockDataOperation" xsi:type="object">winsProductStockDataOperation</item>
+            </argument>
+            <argument name="semaphoreFilename" xsi:type="const">
+                Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner::AT_SEMAPHORE_FILENAME
             </argument>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
         </arguments>
