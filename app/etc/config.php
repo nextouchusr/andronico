@@ -511,6 +511,7 @@ return [
         'Nextouch_Wins' => 1,
         'PayPal_Braintree' => 0,
         'PayPal_BraintreeGraphQl' => 0,
+        'ShipperHQ_AddressAutocomplete' => 1,
         'SplashLab_CorsRequests' => 1,
         'Temando_ShippingRemover' => 0,
         'Vertex_Tax' => 0,

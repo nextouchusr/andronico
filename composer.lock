@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "978096cbacb8ecef3379e3a5028a43e9",
+    "content-hash": "893d20c50cac2019a8eb993f3d6ba043",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -25155,6 +25155,52 @@
             "time": "2021-12-10T11:20:11+00:00"
         },
         {
+            "name": "shipperhq/module-address-autocomplete",
+            "version": "20.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shipperhq/module-address-autocomplete.git",
+                "reference": "0455b940cb7ffbefea76fcd712ee36fef33dbe54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shipperhq/module-address-autocomplete/zipball/0455b940cb7ffbefea76fcd712ee36fef33dbe54",
+                "reference": "0455b940cb7ffbefea76fcd712ee36fef33dbe54",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "ShipperHQ\\AddressAutocomplete\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "ShipperHQ",
+                    "email": "sales@shipperhq.com",
+                    "homepage": "http://www.Shipperhq.com"
+                },
+                {
+                    "name": "Zowta LLC"
+                }
+            ],
+            "description": "ShipperHQ Address Autocomplete Tool",
+            "support": {
+                "documentation": "http://docs.shipperhq.com",
+                "issues": "https://github.com/shipperhq/module-address-autocomplete/issues",
+                "source": "https://github.com/shipperhq/module-address-autocomplete/tree/20.6.1"
+            },
+            "time": "2022-05-24T10:22:37+00:00"
+        },
+        {
             "name": "splashlab/magento-2-cors-requests",
             "version": "100.0.6",
             "source": {
@@ -33974,6 +34020,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
+        "ext-ftp": "*",
         "ext-json": "*"
     },
     "platform-dev": [],
