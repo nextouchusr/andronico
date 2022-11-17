@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpUnused */
 declare(strict_types=1);
 
 namespace Nextouch\ImportExport\Model;
@@ -11,22 +12,26 @@ use function Lambdish\Phunctional\some;
 
 class WinsEntityDataOperationCombiner implements EntityDataOperationInterface
 {
-    private const AT_SEMAPHORE_FILENAME = 'PROCEDI_AT.txt';
-    private const ECAT_SEMAPHORE_FILENAME = 'PROCEDI_ECAT.txt';
+    /** These constants are used inside di.xml */
+    public const AT_SEMAPHORE_FILENAME = 'PROCEDI_AT.txt';
+    public const ECAT_SEMAPHORE_FILENAME = 'PROCEDI_ECAT.txt';
 
     /** @var EntityDataOperationInterface[] */
     private array $operations;
+    private string $semaphoreFilename;
     private IoInterface $client;
     private ImportExportConfig $config;
     private LoggerInterface $logger;
 
     public function __construct(
         array $operations,
+        string $semaphoreFilename,
         IoInterface $client,
         ImportExportConfig $config,
         LoggerInterface $logger
     ) {
         $this->operations = $operations;
+        $this->semaphoreFilename = $semaphoreFilename;
         $this->client = $client;
         $this->config = $config;
         $this->logger = $logger;
@@ -41,7 +46,7 @@ class WinsEntityDataOperationCombiner implements EntityDataOperationInterface
 
         if ($this->containsSemaphoreFiles()) {
             \Lambdish\Phunctional\each(fn(EntityDataOperationInterface $item) => $item->run(), $this->operations);
-            $this->removeSemaphoreFiles();
+            $this->removeSemaphoreFile();
         } else {
             $this->logger->notice('Impossible to run entity data operations. Wins semaphore files do not exist.');
         }
@@ -59,22 +64,18 @@ class WinsEntityDataOperationCombiner implements EntityDataOperationInterface
         $files = $this->client->ls();
         $this->client->close();
 
-        $containsATSemaphoreFile = fn(array $file) => $file['text'] === self::AT_SEMAPHORE_FILENAME;
-        $containsECATSemaphoreFile = fn(array $file) => $file['text'] === self::ECAT_SEMAPHORE_FILENAME;
+        $containsSemaphoreFile = fn(array $file) => $file['text'] === $this->semaphoreFilename;
 
-        return some($containsATSemaphoreFile, $files) && some($containsECATSemaphoreFile, $files);
+        return some($containsSemaphoreFile, $files);
     }
 
-    private function removeSemaphoreFiles(): void
+    private function removeSemaphoreFile(): void
     {
         $config = $this->config->getWinsConfig();
         $this->client->open($config);
 
-        $ATSemaphoreFilePath = $this->config->getWinsFilePath(self::AT_SEMAPHORE_FILENAME);
-        $this->client->rm($ATSemaphoreFilePath);
-
-        $ECATSemaphoreFilePath = $this->config->getWinsFilePath(self::ECAT_SEMAPHORE_FILENAME);
-        $this->client->rm($ECATSemaphoreFilePath);
+        $semaphoreFilePath = $this->config->getWinsFilePath($this->semaphoreFilename);
+        $this->client->rm($semaphoreFilePath);
 
         $this->client->close();
     }
