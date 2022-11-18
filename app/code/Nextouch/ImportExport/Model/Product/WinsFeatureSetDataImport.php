@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Nextouch\ImportExport\Model\Product;
 
-use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Exception\LocalizedException;
+use Nextouch\Catalog\Api\ProductRepositoryInterface;
 use Nextouch\ImportExport\Api\EntityDataImportInterface;
 use Nextouch\ImportExport\Model\Wins\FeatureSet;
 use Nextouch\ImportExport\Model\Wins\Product\AttributeValue\AttributeValueMapper;
@@ -39,7 +39,7 @@ class WinsFeatureSetDataImport implements EntityDataImportInterface
         try {
             $customAttributes = $this->attributeValueMapper->mapCollection($featureSet->getFeatures());
 
-            $product = $this->productRepository->get($featureSet->getProductCode());
+            $product = $this->productRepository->getByEcatCode($featureSet->getProductCode());
             $product->setCustomAttributes($customAttributes);
             $this->productRepository->save($product);
         } catch (LocalizedException $e) {
