@@ -1,0 +1,39 @@
+<?php
+/** @var \Magento\Tax\Block\Item\Price\Renderer $block */
+
+use Magento\Catalog\Pricing\Price\FinalPrice;
+use Magento\Catalog\Pricing\Price\RegularPrice;
+
+$_item = $block->getItem();
+$_product = $_item->getProduct();
+$displayRegularPrice = $_product->getPriceInfo()->getPrice(RegularPrice::PRICE_CODE)->getAmount()->getValue();
+$displayFinalPrice = $_product->getPriceInfo()->getPrice(FinalPrice::PRICE_CODE)->getAmount()->getValue();
+$hasSpecialPrice = $displayFinalPrice < $displayRegularPrice;
+?>
+<?php if (($block->displayPriceInclTax() || $block->displayBothPrices()) && !$_item->getNoSubtotal()) : ?>
+    <span class="price-including-tax" data-label="<?= $block->escapeHtmlAttr(__('Incl. Tax')) ?>">
+        <span class="cart-price">
+            <?= /* @noEscape */ $block->formatPrice($_item->getRowTotalInclTax()) ?>
+
+            <?php if ($hasSpecialPrice): ?>
+                <span class="old-price">
+                    <?= /* @noEscape */ $block->formatPrice($displayRegularPrice * $_item->getQty()); ?>
+                </span>
+            <?php endif; ?>
+        </span>
+    </span>
+<?php endif; ?>
+
+<?php if (($block->displayPriceExclTax() || $block->displayBothPrices()) && !$_item->getNoSubtotal()) : ?>
+    <span class="price-excluding-tax" data-label="<?= $block->escapeHtmlAttr(__('Excl. Tax')) ?>">
+        <span class="cart-price">
+            <?= /* @noEscape */ $block->formatPrice($_item->getRowTotal()) ?>
+
+            <?php if ($hasSpecialPrice): ?>
+                <span class="old-price">
+                    <?= /* @noEscape */ $block->formatPrice($displayRegularPrice * $_item->getQty()); ?>
+                </span>
+            <?php endif; ?>
+        </span>
+    </span>
+<?php endif; ?>

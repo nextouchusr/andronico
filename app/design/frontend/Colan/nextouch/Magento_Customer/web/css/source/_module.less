@@ -1,0 +1,788 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@account-nav-background: @sidebar__background-color;
+@account-nav-color: false;
+
+@account-nav-current-border: 3px solid transparent;
+@account-nav-current-border-color: @active__color;
+@account-nav-current-color: false;
+@account-nav-current-font-weight: @font-weight__semibold;
+
+@account-nav-delimiter__border-color: @color-gray82;
+
+@account-nav-item-hover: @color-gray91;
+
+@_password-default: @color-gray-light01;
+@_password-weak: @error__color;
+@_password-medium: @warning__color;
+@_password-strong: @theme__color__secondary;
+@_password-very-strong: @theme__color__secondary;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .customer-account-login,
+    .customer-account-create {
+        .page-title-wrapper,
+        .title-crumbs-container {
+            display: none;
+        }
+    }
+
+    .login-container {
+        .block {
+            &-new-customer {
+                .actions-toolbar {
+                    margin-top: 25px;
+                }
+            }
+
+            .block-title {
+                &:extend(.abs-login-block-title all);
+                .lib-font-size(18);
+                text-align: center;
+                border: 0;
+            }
+        }
+        .customer-login-left-block {
+            text-align: center;
+        }
+        .customer-login-right-block {
+            box-shadow: @theme__box-shadow__primary;
+            box-sizing: border-box;
+            border-radius: 50px;
+            padding: 20px 50px;
+            h2 {
+                padding-left: 60px;
+            }
+            ul {
+                padding: 0;
+                margin: 0;
+                li {
+                    padding-left: 60px;
+                    margin: 20px 0;
+                    min-height: 40px;
+                    display: block;
+                    font-size: 3rem;
+                    list-style: none;
+                    background: url('@{baseDir}images/circle-check.svg') 0 50% no-repeat;
+                    background-size: 30px;
+                    font-weight: 200;
+                    line-height: 3.2rem;
+                }
+            }
+        }
+
+        .fieldset {
+            &.hidelabel {
+                .field:not(.choice) {
+                    label.label {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .fieldset {
+            .lib-form-hasrequired(bottom);
+            text-align: center;
+            &:not(.additional_info) {
+                margin: 0;
+            }
+            .field:not(.choice) {
+                text-align: left;
+            }
+            .field-is_privacy_policy_accepted,
+            .field-is_web_profiling_accepted {
+                display: none;
+            }
+            &:after {
+                margin-top: 35px;
+                display: none;
+            }
+            label.label {
+                text-align: left;
+                font-weight: 200;
+                font-size: 1rem;
+                color: @theme__color__primary_gray;
+            }
+            legend.legend {
+                display: none;
+            }
+
+            input.input-text,
+            .control select {
+                border-radius: 50px;
+                border-color: @theme__color__primary;
+                height: 60px;
+                font-size: 2rem;
+                padding: 18px 20px;
+                width: 100%;
+            }
+            .field.choice:before {
+                display: none;
+            }
+        }
+        .action.primary {
+            &.submit,
+            &.login {
+                background-color: @theme__color__primary;
+                color: @theme__color__primary_contr;
+                min-width: 200px;
+                font-weight: 200;
+            }
+        }
+        .no-button {
+            width: 100%;
+            font-size: 3rem;
+            font-weight: 200;
+            text-align: center;
+            display: block;
+            margin: 25px 0;
+            a {
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+        .secondary {
+            margin: 50px 0;
+            text-align: center;
+            font-weight: 200;
+            font-size: @text__sm;
+        }
+    }
+
+    .block-addresses-list {
+        .items.addresses {
+            > .item {
+                margin-bottom: @indent__base;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .form-address-edit {
+        .region_id {
+            display: none;
+        }
+
+        .actions-toolbar .action.primary {
+            &:extend(.abs-button-l all);
+        }
+
+        .message.info {
+            color: @theme__color__primary;
+            border: none;
+
+            span:before {
+                background: transparent;
+                color: @theme__color__primary;
+                content: @icon-flag;
+            }
+        }
+    }
+
+    .form-edit-account {
+        .fieldset.password {
+            display: none;
+        }
+    }
+
+    .box-billing-address,
+    .box-shipping-address,
+    .box-information,
+    .box-newsletter {
+        .box-content {
+            .lib-wrap-words();
+            line-height: 26px;
+        }
+    }
+
+    //  Full name fieldset
+    .fieldset {
+        .fullname {
+            &.field {
+                > .label {
+                    &:extend(.abs-visually-hidden all);
+
+                    + .control {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .field {
+                &:extend(.abs-add-clearfix all);
+            }
+        }
+    }
+
+    //
+    //  My account
+    //  ---------------------------------------------
+
+    .account {
+        .column.main {
+            h2 {
+                margin-top: 0;
+            }
+
+            .toolbar {
+                text-align: center;
+                .limiter-options {
+                    width: auto;
+                }
+            }
+
+            .limiter {
+                >.label {
+                    &:extend(.abs-visually-hidden all);
+                }
+            }
+
+            .block:not(.widget) {
+                &:extend(.abs-account-blocks all);
+            }
+        }
+
+        .sidebar-additional {
+            margin-top: 40px;
+        }
+
+        .table-wrapper {
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .action {
+                margin-right: 15px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        .table-return-items {
+            .qty {
+                .input-text {
+                    &:extend(.abs-input-qty all);
+                }
+            }
+        }
+    }
+
+    //  Checkout address (create shipping address)
+    .field.street {
+        .field {
+            .label {
+                &:extend(.abs-visually-hidden all);
+            }
+        }
+    }
+
+    //
+    //  Account navigation
+    //  ---------------------------------------------
+
+    .account-nav {
+        .title {
+            &:extend(.abs-visually-hidden all);
+        }
+
+        .content {
+            .lib-css(background, @account-nav-background);
+            padding: 15px 0;
+        }
+
+        .item {
+            margin: 3px 0 0;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            a,
+            > strong {
+                .lib-css(color, @account-nav-color);
+                border-left: 3px solid transparent;
+                display: block;
+                padding: @indent__xs 18px @indent__xs 15px;
+            }
+
+            a {
+                text-decoration: none;
+
+                &:hover {
+                    .lib-css(background, @account-nav-item-hover);
+                }
+            }
+
+            &.current {
+                a,
+                strong {
+                    .lib-css(border-color, @account-nav-current-border-color);
+                    .lib-css(color, @account-nav-current-color);
+                    .lib-css(font-weight, @account-nav-current-font-weight);
+                }
+
+                a {
+                    .lib-css(border-color, @account-nav-current-border-color);
+                }
+            }
+
+            .delimiter {
+                border-top: 1px solid @account-nav-delimiter__border-color;
+                display: block;
+                margin: @indent__s 1.8rem;
+            }
+        }
+    }
+
+    //
+    //  Blocks & Widgets
+    //  ---------------------------------------------
+
+    .block {
+        &:extend(.abs-margin-for-blocks-and-widgets all);
+        .column.main & {
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .title {
+            margin-bottom: @indent__s;
+
+            strong {
+                .lib-heading(h4);
+                .column.main & {
+                    font-size: @h3__font-size;
+                }
+            }
+        }
+
+        p:last-child {
+            margin: 0;
+        }
+
+        .box-actions {
+            margin-top: @indent__xs;
+        }
+    }
+
+    //
+    //  Password Strength Meter
+    //  ---------------------------------------------
+
+    .field.password {
+        .control {
+            .lib-vendor-prefix-display();
+            .lib-vendor-prefix-flex-direction();
+
+            .mage-error {
+                .lib-vendor-prefix-order(2);
+            }
+
+            .input-text {
+                .lib-vendor-prefix-order(0);
+                z-index: 2;
+            }
+        }
+    }
+
+    .password-strength-meter {
+        background-color: transparent;
+        font-weight: @font-weight__bold;
+        height: @form-element-input__height;
+        line-height: @form-element-input__height;
+        position: relative;
+        z-index: 1;
+
+        &:before {
+            content: '';
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            z-index: -1;
+        }
+
+        .password-none & {
+            &:before {
+                width: 100%;
+            }
+        }
+
+        .password-weak & {
+            color: @_password-weak;
+
+            &:before {
+                color: @_password-weak;
+            }
+        }
+
+        .password-medium & {
+            color: @_password-medium;
+
+            &:before {
+                color: @_password-medium;
+            }
+        }
+
+        .password-strong & {
+            color: @_password-strong;
+
+            &:before {
+                color: @_password-strong;
+            }
+        }
+
+        .password-very-strong & {
+            color: @_password-very-strong;
+
+            &:before {
+                color: @_password-very-strong;
+            }
+        }
+    }
+
+    .control.captcha-image {
+        .lib-css(margin-top, @indent__m);
+
+        .captcha-img {
+            vertical-align: middle;
+        }
+    }
+
+    .password.forget {
+        .actions-toolbar {
+            margin-left: 0 !important;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .account {
+        .column.main,
+        .sidebar-additional {
+            margin: 0;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    #block-customer-login-heading {
+        font-size: @text__sm;
+    }
+
+    .customer-login-left-block {
+        h2 {
+            font-size: @text__sm;
+        }
+    }
+
+    .login-container {
+        padding: 50px 10%;
+        .fieldset {
+            text-align: center;
+            &:after {
+                text-align: center;
+            }
+            .primary {
+                text-align: center;
+            }
+            .action.login.primary {
+                font-size: 1.1rem;
+                padding: 10px 20px;
+            }
+            .no-button,
+            .secondary {
+                font-size: 1rem;
+                margin: 25px 0;
+            }
+            input.input-text,
+            .control select {
+                height: 30px;
+                padding: 0 20px;
+                font-size: 1rem;
+            }
+        }
+
+        .customer-login-right-block h2 {
+            padding-left: 0;
+        }
+
+        .customer-login-right-block {
+            padding: 25px;
+            border-radius: 10px;
+            h2 {
+                text-align: center;
+                font-size: @text__sm;
+            }
+            ul li {
+                font-size: 1rem;
+                float: left;
+                width: 50%;
+                box-sizing: border-box;
+                padding-left: 30px;
+                background-size: 20px;
+                line-height: 1.2rem;
+                min-height: 15px;
+                &:nth-child(2n + 1) {
+                    clear: left;
+                }
+
+            }
+        }
+    }
+
+    .account {
+        .messages {
+            margin-bottom: 0;
+        }
+
+        .toolbar {
+            &:extend(.abs-pager-toolbar-mobile all);
+        }
+    }
+
+    .control.captcha-image {
+        .captcha-reload {
+            .lib-css(margin-top, @indent__s);
+            width: 100%;
+        }
+
+        .captcha-img {
+            .lib-css(margin-bottom, @indent__s);
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .customer-account-index {
+        .page-title-wrapper {
+            position: relative;
+            h1 {
+                font-size: 1.2rem;
+                color: @theme__color__primary_gray;
+
+            }
+        }
+    }
+
+    .form.search.advanced {
+        .field.price {
+            .with-addon {
+                .input-text {
+                    flex-basis: auto;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+
+
+
+    .login-container {
+        &:extend(.abs-add-clearfix-desktop all);
+        h2 {
+            font-size: 4.5rem;
+        }
+        .customer-login-right-block ul li {
+            font-size: 2rem;
+        }
+        .block {
+            .login {
+                .actions-toolbar {
+                    > .primary {
+                        margin-bottom: 0;
+                        margin-right: @indent__l;
+                    }
+
+                    > .secondary {
+                        float: left;
+                    }
+                }
+            }
+        }
+
+        .action.primary {
+            &.submit,
+            &.login {
+                font-size: 3rem;
+            }
+        }
+
+        .fieldset {
+            label.label {
+                font-size: 2rem;
+            }
+            &:after {
+                &:extend(.abs-margin-for-forms-desktop all);
+            }
+        }
+    }
+
+    //  Full name fieldset
+    .fieldset {
+        .fullname {
+            .field {
+                .label {
+                    .lib-css(margin, @form-field-type-label-inline__margin);
+                    .lib-css(padding, @form-field-type-label-inline__padding);
+                    .lib-css(text-align, @form-field-type-label-inline__align);
+                    .lib-css(width, @form-field-type-label-inline__width);
+                    box-sizing: border-box;
+                    float: left;
+                }
+
+                .control {
+                    .lib-css(width, @form-field-type-control-inline__width);
+                    float: left;
+                }
+            }
+        }
+    }
+
+    //
+    //  My account
+    //  ---------------------------------------------
+
+    .account.page-layout-2columns-left {
+        .sidebar-main,
+        .sidebar-additional {
+            width: 33%;
+        }
+
+        .column.main {
+            width: 66.6%;
+        }
+    }
+
+    .account {
+        .column.main {
+            .block:not(.widget) {
+                .block-content {
+                    &:extend(.abs-add-clearfix-desktop all);
+
+                    .box {
+                        &:extend(.abs-blocks-2columns all);
+                    }
+                }
+            }
+        }
+
+        .toolbar {
+            &:extend(.abs-pager-toolbar all);
+        }
+    }
+
+    .block-addresses-list {
+        .items.addresses {
+            &:extend(.abs-add-clearfix-desktop all);
+            font-size: 0;
+
+            > .item {
+                display: inline-block;
+                font-size: @font-size__base;
+                margin-bottom: @indent__base;
+                vertical-align: top;
+                width: 48.8%;
+
+                &:nth-last-child(1),
+                &:nth-last-child(2) {
+                    margin-bottom: 0;
+                }
+
+                &:nth-child(even) {
+                    margin-left: 2.4%;
+                }
+            }
+        }
+    }
+
+    //
+    //  Welcome block
+    //  ---------------------------------------------
+
+    .dashboard-welcome-toggler {
+        &:extend(.abs-visually-hidden-desktop all);
+    }
+
+    .control.captcha-image {
+        .captcha-img {
+            margin: 0 @indent__s @indent__s 0;
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .customer-login-left-block {
+        width: 50%;
+        padding: 0 5%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    .login-container {
+        #block-customer-login-heading {
+            margin-bottom: 100px;
+        }
+        .customer-login-right-block {
+            box-shadow: @theme__box-shadow__primary;
+            margin-left: 10%;
+            padding: 5%;
+            width: 40%;
+            box-sizing: border-box;
+
+            ul li {
+                font-size: 3rem;
+                margin: 25px 0;
+            }
+
+        }
+        .fieldset > .field {
+            margin-bottom: 50px;
+        }
+        div.primary {
+            margin-bottom:  50px;
+        }
+    }
+    .columns-customer-login {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+    }
+
+}

@@ -1,0 +1,43 @@
+<?php /** @var \Magento\Checkout\Block\Onepage\Success $block */ ?>
+
+<!-- TODO: Change placeholder texts -->
+<?php if ($block->getOrderId()) : ?>
+    <div class="checkout-success">
+        <h2><?= __('Order placed, thank you!') ?></h2>
+
+        <p>
+            <?= __(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                ea commodo consequat.'
+            ) ?>
+        </p>
+        <br>
+
+        <p>
+            <?= __(
+                'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                anim id est laborum.'
+            ) ?>
+        </p>
+
+        <div class="checkout-success__icons">
+            <div class="checkout-success__icon">
+                <img src="<?= $block->getViewFileUrl('Magento_Checkout::images/checkout/echo_choice_icon.png') ?>"/>
+                <p><?= __("The transport and packaging of your item\nis environmentally friendly.") ?></p>
+            </div>
+
+            <div class="checkout-success__icon">
+                <img src="<?= $block->getViewFileUrl('Magento_Checkout::images/checkout/location_icon.png') ?>"/>
+                <p><?= __("Track the location of\nyour parcel at any time.") ?></p>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script>
+    require(['jquery', 'jquery/jquery.cookie'], function ($) {
+        $.cookie('default_payment_method', null, {path: '/'});
+    });
+</script>

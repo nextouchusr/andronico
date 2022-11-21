@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/lightgallery.min.css"/>
+    </head>
+    <body>
+        <referenceContainer name="columns.top">
+            <container name="title-breadcrumbs-container" htmlClass="title-crumbs-container" htmlTag="div" after="page.messages">
+                <block class="Magento\Framework\View\Element\Template" name="static-title" template="Magento_Catalog::product/static-title.phtml"/>
+            </container>
+        </referenceContainer>
+
+
+        <referenceContainer name="main">
+            <referenceContainer name="content">
+                <container name="product.info.wrapper" htmlTag="div" htmlClass="product-main-wrapper" before="product.info.details">
+                    <referenceContainer name="product.info.main">
+                        <referenceBlock name="product.info">
+                            <block class="Magento\Framework\View\Element\Template" name="product.info.main.wrapper" template="Magento_Catalog::product/view.phtml">
+                                <!-- TODO: replace with correct attribute
+                                <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.subtitle" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="page.main.title">
+                                    <arguments>
+                                        <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                                        <argument name="at_code" xsi:type="string">short_description</argument>
+                                        <argument name="css_class" xsi:type="string">placeholder</argument>
+                                        <argument name="at_label" xsi:type="string">none</argument>
+                                        <argument name="title" translate="true" xsi:type="string">Placeholder</argument>
+                                    </arguments>
+                                </block> -->
+                                <!-- Todo: suggest to change graphics for print single attribute on page -->
+                                <!-- <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.overview.mobile" template="Magento_Catalog::product/view/attribute.phtml" group="detailed_info" after="product.info.subtitle">
+                                    <arguments>
+                                        <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                                        <argument name="at_code" xsi:type="string">short_description</argument>
+                                        <argument name="css_class" xsi:type="string">shortdescription-mobile</argument>
+                                        <argument name="at_label" xsi:type="string">none</argument>
+                                        <argument name="title" translate="true" xsi:type="string">Short Description</argument>
+                                    </arguments>
+                                </block> -->
+                            </block>
+                            <container name="product.info.secondary.wrapper" htmlTag="div" htmlClass="product-secondary-wrapper"/>
+                        </referenceBlock>
+
+                    </referenceContainer>
+                    <container name="product.info.media.wrapper" htmlTag="div" htmlClass="product-media-wrapper" before="-"/>
+                </container>
+
+                <referenceBlock name="product.info.details">
+
+                    <block class="Magento\Catalog\Block\Product\View\Gallery" name="product.info.details.gallery" template="Magento_Catalog::product/view/details/gallery.phtml">
+                        <arguments>
+                            <argument name="gallery_options" xsi:type="object">Magento\Catalog\Block\Product\View\GalleryOptions</argument>
+                            <argument name="imageHelper" xsi:type="object">Magento\Catalog\Helper\Image</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Nextouch\Theme\Block\Catalog\Product\View\EcoChoice"
+                           name="product.info.ecoChoice"
+                           template="Magento_Catalog::product/view/details/eco-choice.phtml">
+                        <arguments>
+                            <argument name="at_call" xsi:type="string">getEcoChoice</argument>
+                            <argument name="at_code" xsi:type="string">eco_choice</argument>
+                            <argument name="css_class" xsi:type="string">eco_choice</argument>
+                            <argument name="at_label" xsi:type="string">none</argument>
+                            <argument name="title" translate="true" xsi:type="string">Eco Choice</argument>
+                            <argument name="sort_order" xsi:type="string">10</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Nextouch\Theme\Block\Catalog\Product\View\EaseOfUse" name="product.info.easeOfUse" template="Magento_Catalog::product/view/details/ease-of-use.phtml">
+                        <arguments>
+                            <argument name="at_call" xsi:type="string">getEaseOfUse</argument>
+                            <argument name="at_code" xsi:type="string">ease_of_use</argument>
+                            <argument name="css_class" xsi:type="string">ease_of_use</argument>
+                            <argument name="at_label" xsi:type="string">none</argument>
+                            <argument name="title" translate="true" xsi:type="string">Ease of Use</argument>
+                            <argument name="sort_order" xsi:type="string">10</argument>
+                        </arguments>
+                    </block>
+                </referenceBlock>
+            </referenceContainer>
+
+            <block class="Magento\Catalog\Block\Product\ProductList\Crosssell"
+                   name="catalog.product.crosssell"
+                   template="Magento_Catalog::product/list/items.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">crosssell</argument>
+                    <argument name="view_model" xsi:type="object">Magento\Catalog\ViewModel\Product\Listing\PreparePostData</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.addto">
+            <block class="Magento\Catalog\Block\Product\View" name="view.addto.share"
+                   template="Magento_Catalog::product/view/addto/share.phtml" />
+        </referenceBlock>
+
+        <referenceBlock name="product.info.overview" template="Magento_Catalog::product/view/attribute-overview.phtml"/>
+
+        <!-- Remove -->
+        <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
+        <referenceContainer name="skip_gallery_after.wrapper" remove="true"/>
+        <referenceContainer name="skip_gallery_before.target" remove="true"/>
+        <referenceBlock name="skip_gallery_after.target" remove="true"/>
+        <referenceBlock name="product.info.review" remove="true"/>
+        <referenceBlock name="product.info.sku" remove="true"/>
+        <referenceBlock name="view.addto.compare" remove="true"/>
+        <referenceBlock name="product.info.mailto" remove="true"/>
+
+        <move element="page.main.title" destination="product.info" before="-"/>
+        <move element="product.info.subtitle" destination="page.main.title" after="-"/>
+        <move element="product.info.overview.mobile" destination="page.main.title" after="product.info.subtitle"/>
+
+        <move element="product.info.main" destination="product.info.wrapper" before="-"/>
+
+        <move element="product.info.options.wrapper.bottom" destination="product.info" before="-"/>
+
+
+        <move element="product.info.overview" destination="product.info.secondary.wrapper" before="-" />
+        <move element="product.info.description" destination="product.info.details" before="-" />
+
+        <move element="product.info.media" destination="product.info.media.wrapper"/>
+        <!-- <move element="product.info.stock.sku" destination="product.info.media"/> -->
+
+        <!-- <move element="product.info.addto" destination="product.info.media" after="product.info.stock.sku"/>
+        <move element="product.info.social" destination="product.info.media" after="product.info.addto"/> -->
+        <move element="product.info.social" destination="product.info.options.wrapper.bottom" after="-"/> 
+        <move element="product.info.price" destination="product.info" />
+        <move element="product.info.upsell" destination="page.wrapper" after="main.content" />
+
+        <move element="catalog.product.crosssell" destination="page.wrapper" after="main.content" />
+
+        <move element="breadcrumbs" destination="page.top" after="-"/>
+        <move element="product.info.details.gallery" destination="product.info.media.wrapper" after="product.info.media"/>
+        <move element="product.price.final" destination="page.main.title" />
+    </body>
+</page>

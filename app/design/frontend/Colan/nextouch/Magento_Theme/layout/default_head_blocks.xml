@@ -1,0 +1,22 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1"/>
+		<css src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"  src_type="url" rel="stylesheet" type="text/css"  />
+		<css src="css/dev1san.css" />
+        <css src="css/dev2adriano.css" />
+        <css src="css/andronico-new.css" />
+        <css src="css/fonts.css" order="100" />
+        <css src="css/devj.css" order="200" />
+        <css src="css/devr.css" order="300"/>
+        <css src="css/devra.css" order="400"/>
+        <css src="css/devrav.css" order="500"/>
+		
+    </head>
+    <body>
+        <referenceBlock name="head.additional">
+            <block name="google-font" as="google-font" template="Magento_Theme::html/google-fonts.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

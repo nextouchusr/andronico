@@ -1,0 +1,33 @@
+<?php /** @var \Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist $block */ ?>
+
+<?php if ($block->isWishListAllowed()) : ?>
+    <a href="#"
+       class="action towishlist"
+       data-post='<?= $block->getAddToWishlistParams($block->getProduct()); ?>'
+       data-action="add-to-wishlist">
+        <span class="material-icons text-primary">
+          <span class="for-desktop">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="currentColor" width="47" height="39" viewBox="0 0 47 39">
+              <defs>
+                <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 940 775">
+                  <image width="940" height="775" xlink:href="<?= $block->getViewFileUrl('images/ico-heart.png'); ?>"/>
+                </pattern>
+              </defs>
+              <rect id="cuorevuoto_icon7" width="47" height="39" fill="url(#pattern)"/>
+            </svg>
+          </span>
+            <span class="for-mobile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="translate(-236 -252)"><path d="M9.6,4.8A4.8,4.8,0,1,1,4.8,0,4.8,4.8,0,0,1,9.6,4.8Z" transform="translate(248.4 264.4)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M3.58,0H0" transform="translate(251.41 269.26)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M0,0V3.59" transform="translate(253.2 267.51)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M20,5.59a11.027,11.027,0,0,1-1.31,5.22,4.8,4.8,0,0,0-7.06,6.49,10.246,10.246,0,0,1-1.01.41,2.181,2.181,0,0,1-1.24,0C6.48,16.72,0,12.59,0,5.59A5.552,5.552,0,0,1,10,2.23,5.552,5.552,0,0,1,20,5.59Z" transform="translate(238 255.1)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M0,0H24V24H0Z" transform="translate(260 276) rotate(180)" fill="none" opacity="0"/></g></svg>
+              </span>
+
+        </span>
+    </a>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "addToWishlist": <?= $block->getWishlistOptionsJson(); ?>
+        }
+    }
+</script>

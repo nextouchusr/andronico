@@ -1,0 +1,95 @@
+<?php
+/** @var \Nextouch\Theme\Block\Catalog\Product\View $block */
+
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+?>
+
+<form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
+      action="<?= $block->escapeUrl($block->getSubmitUrl($_product)) ?>" method="post"
+      id="product_addtocart_form"<?php if ($_product->getOptions()) :?> enctype="multipart/form-data"<?php endif; ?>>
+    <input type="hidden" name="product" value="<?= (int)$_product->getId() ?>" />
+    <input type="hidden" name="selected_configurable_option" value="" />
+    <input type="hidden" name="related_product" id="related-products-field" value="" />
+    <input type="hidden" name="item"  value="<?= (int)$block->getRequest()->getParam('id') ?>" />
+    <?= $block->getBlockHtml('formkey') ?>
+    <?= $block->getChildHtml('form_top') ?>
+
+    <div class="product-info-main-cols">
+        <div class="product-info-main-primary">
+            <?php echo $this->getLayout()->createBlock("Magento\Framework\View\Element\Template")->setTemplate("Magento_Catalog::product/static-title.phtml")->toHtml() ?>
+            <div class="product-detail">
+                <?= $block->getChildHtml('page.main.title') ?>
+                <div class="product-sku"><?= $block->escapeHtml($_product->getSku()) ?></div>
+            </div>
+            <?= $block->getChildHtml('product.info.subtitle') ?>
+            <div class="product-info-main-right">
+                <?= $block->getChildHtml('product.info.secondary.wrapper') ?>
+                <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2') : ?>
+                    <?= $block->getChildChildHtml('options_container') ?>
+                <?php endif;?>
+            </div>
+            <div class="product-add-form">
+                <?= $block->getChildHtml('product.info.price') ?>
+                <?= $block->getChildHtml('product_options_wrapper_bottom') ?>
+
+                <?php if (!$block->hasOptions()) :?>
+                    <?= $block->getChildHtml('product_info_form_content') ?>
+                <?php else :?>
+                    <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1') : ?>
+                        <?= $block->getChildChildHtml('options_container') ?>
+                    <?php endif;?>
+                <?php endif; ?>
+
+                <?= $block->getChildHtml('form_bottom') ?>
+            </div>
+
+            <div id="product-sticky-bar" class="product-sticky-bar">
+                <div class="container">
+                    <div class="image">
+                        <img src="<?= $block->getStickyImageUrl() ?>" alt="main product photo"/>
+                    </div>
+                    <div class="product-title">
+                        <?= $block->getChildHtml('page.main.title') ?>
+                    </div>
+                    <div class="product-price">
+                        <?= $block->getChildHtml('product.info.price') ?>
+                    </div>
+                    <div class="product-buttons">
+                        <button type="submit" class="action primary tocart" title="<?= $block->escapeHtml(__('Add to Shopping Cart')) ?>">
+                            <span><?= $block->escapeHtml(__('Add to Shopping Cart')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                require(['jquery'], function ($) {
+                    $(".more-less-content .more-less").on('click', function () {
+                        $(this).closest('.more-less-content').toggleClass('active');
+                    });
+                    $(window).on('scroll', function() {
+                        if($(window).scrollTop() > $('.box-tocart').offset().top) {
+                            $('#product-sticky-bar').addClass('active');
+                        }
+                        else {
+                            $('#product-sticky-bar').removeClass('active');
+                        }
+                    });
+                });
+            </script>
+
+            <script type="text/x-magento-init">
+                {
+                    "[data-role=priceBox][data-price-box=product-id-<?= $block->escapeHtml($_product->getId()) ?>]": {
+                        "priceBox": {
+                            "priceConfig": <?= /* @noEscape */ $block->getJsonConfig() ?>
+                        }
+                    }
+                }
+            </script>
+        </div>
+
+        
+    </div>
+</form>

@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Arista Pro';
+    src: url('fonts/aristapro/AristaPro-SemiBold.woff2') format('woff2'),
+        url('fonts/aristapro/AristaPro-SemiBold.woff') format('woff'),
+        url('fonts/aristapro/AristaPro-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ProximaNova';
+    src: url('fonts/proximanova/ProximaNova-Medium.woff2') format('woff2'),
+        url('fonts/proximanova/ProximaNova-Medium.woff') format('woff'),
+        url('fonts/proximanova/ProximaNova-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ProximaNova';
+    src: url('fonts/proximanova/ProximaNova-Semibold.woff2') format('woff2'),
+        url('fonts/proximanova/ProximaNova-Semibold.woff') format('woff'),
+        url('fonts/proximanova/ProximaNova-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+

@@ -1,0 +1,139 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .cms-assistance-service {
+    .page.messages,
+    .title-crumbs-container {
+      display: none;
+    }
+
+    .form.contact {
+      margin: 0 auto;
+
+      h2 {
+        text-align: center;
+      }
+
+      input, textarea {
+        border-radius: 0;
+        padding: @indent__base @indent__s;
+      }
+
+      .actions-toolbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 0;
+        gap: 15px;
+
+        .action.submit {
+          background: @theme__color__primary;
+          padding: @indent__base @indent__xl;
+        }
+      }
+    }
+  }
+}
+
+//
+//  Mobile
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .cms-assistance-service {
+    .page-background {
+      margin-top: -165px;
+      min-height: 520px;
+
+      h1 {
+        position: absolute;
+        top: 165px;
+        left: 50%;
+        transform: translate(-50%);
+      }
+    }
+
+    .select-and-choose {
+      margin-top: -165px;
+      border-radius: 10px;
+    }
+
+    .select-and-choose,
+    .assistance-service,
+    .assistance-service-contact,
+    .assistance-service-contact-form {
+      padding: @indent__l;
+
+      h1, h2 {
+        text-align: center;
+        font-size: 2rem;
+      }
+
+      p, p > span {
+        font-size: 1.5rem !important;
+      }
+    }
+
+    .assistance-service-contact {
+      .pagebuilder-button-primary {
+        width: 100vw;
+        padding: @indent__base;
+        font-size: 3rem;
+        font-weight: @font-weight__bold;
+        background: @color-gray92;
+        color: @primary__color;
+        box-shadow: @theme__box-shadow__primary;
+      }
+    }
+  }
+}
+
+//
+//  Desktop
+//  ----------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .cms-assistance-service {
+    .page-background {
+      margin-top: -185px;
+      min-height: 1220px;
+
+      h1 {
+        box-sizing: border-box;
+        max-width: @layout__max-width;
+        padding-left: @layout__width-md-indent;
+        padding-right: @layout__width-md-indent;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 200px;
+      }
+    }
+
+    .select-and-choose {
+      margin-top: -185px;
+      border-radius: 100px;
+    }
+
+    .select-and-choose,
+    .assistance-service-contact-form {
+      padding: 100px 200px;
+    }
+
+    .assistance-service {
+      padding-left: 200px;
+
+      .pagebuilder-button-primary {
+        width: 25vw;
+        padding: @indent__l;
+        font-size: 3rem;
+        font-weight: @font-weight__bold;
+        background: @color-gray92;
+        color: @primary__color;
+        box-shadow: @theme__box-shadow__primary;
+      }
+    }
+  }
+}

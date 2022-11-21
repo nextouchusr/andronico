@@ -1,0 +1,23 @@
+<?php /** @var \Magento\Paypal\Block\Express\InContext\SmartButton $block */ ?>
+
+<button
+        type="button"
+        id="paypal-express-btn"
+        class="button button-paypal action paypal checkout primary">
+    <span><?= __('Fast checkout') ?></span>
+</button>
+
+<script>
+    require(['jquery', 'jquery/jquery.cookie'], function ($) {
+        $('#paypal-express-btn').click(addToCartAndPay);
+
+        function addToCartAndPay() {
+            $('#product_addtocart_form').trigger('submit');
+
+            setTimeout(function () {
+                $.cookie('default_payment_method', 'paypal_express');
+                location.href = "<?= $block->getUrl('checkout') ?>";
+            }, 1000);
+        }
+    });
+</script>
