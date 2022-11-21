@@ -1,0 +1,17 @@
+<?php
+/** @var \Magento\Catalog\Block\Product\View $block */
+
+$_product = $block->getProduct();
+$body = __('I%20want%20to%20recommend%20this%20product%20on%20Nextouch%0A%0AMore%20information%3A%20');
+?>
+
+<?php if ($block->canEmailToFriend()) : ?>
+    <a href="mailto:?body=<?= $body . $_product->getProductUrl(); ?>" class="action toshare">
+        <span class="for-desktop">
+            <img src="<?= $block->getViewFileUrl('images/ico-share.png'); ?>" width="48" height="48" alt="<?= __('Share') ?>"/>
+        </span>
+        <span class="for-mobile">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g transform="translate(-300 -508)"><path d="M0,8.2,8.2,0" transform="translate(313 510.8)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M4.8,4.8V0H0" transform="translate(317.2 510)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M9,0H7C2,0,0,2,0,7v6c0,5,2,7,7,7h6c5,0,7-2,7-7V11" transform="translate(302 510)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path d="M0,0H24V24H0Z" transform="translate(324 532) rotate(180)" fill="none" opacity="0"/></g></svg>
+        </span>
+    </a>
+<?php endif; ?>

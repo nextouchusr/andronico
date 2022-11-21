@@ -1,0 +1,48 @@
+#decision-tree-iframe-wrapped {
+    background-color: #ffffff!important;
+}
+.card-with-icon {
+    background: #252A63;
+    border-radius: 20px;
+    height: 200px;
+    width: 280px;
+    margin: 50px auto;
+    color: var(--light) !important;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+}
+.cms-our-services .nav-sections, .cms-about-us .nav-sections {
+    margin-bottom: 0px !important;
+}
+.cms-hero-banner h1  {
+      font-size: 72px;
+    line-height: 72px;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: var(--light) !important;
+    margin-bottom: 5px;
+}
+.cms-hero-banner p {
+    color: var(--light) !important;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 0;
+}
+.timeline-with-cards .pagebuilder-column:not(:first-child):not(:last-child) {
+    border-top: 1px dashed var(--primary-green);
+    height: 1px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.timeline-with-cards .pagebuilder-column:not(:first-child):not(:last-child):after {
+    content: " ";
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-green);;
+    position: absolute;
+    border-radius: 20px;
+    margin-top: -11px;
+    margin-left: -33px;
+}
+

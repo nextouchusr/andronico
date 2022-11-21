@@ -1,0 +1,25 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="opc-block-summary" data-bind="blockLoader: isLoading">
+    <div class="heading opc-summary-heading"> <span data-bind="i18n: 'Summary'" class="title"></span></div>
+    <div class="opc-block-summary-scrolling">
+        <!-- ko foreach: elems() -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+
+        <span class="terms-and-conditions">
+            <span data-bind="i18n: 'By proceeding with the order you confirm that you have read and accept the'" class="text"></span>
+            <a href="/terms-and-conditions" data-bind="i18n: 'General conditions of Sale'"></a>
+        </span>
+
+        <span class="assistence">
+            <span data-bind="i18n: 'Customer Care'" class="text"></span>
+            <a href="#" data-bind="i18n: 'For More information click here'"></a>
+        </span>
+    </div>
+</div>
+

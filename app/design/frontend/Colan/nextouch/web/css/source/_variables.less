@@ -1,0 +1,92 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Luma theme variables
+//  _____________________________________________
+
+//
+//  Typography
+//  ---------------------------------------------
+
+//  Fonts
+@font-family-name__base: 'Montserrat';
+@font-family__base: @font-family-name__base, @font-family__sans-serif;
+
+@h1__font-size: ceil((@font-size__base * 2)); //
+@h1__font-size-desktop: ceil((@font-size__base * 3.2));
+@h2__font-size-desktop: ceil((@font-size__base * 2.85)); // 40px
+@h2__font-weight: @font-weight__bold;
+@h2__line-height: @heading__line-height__base;
+@h3__font-size-desktop: ceil((@font-size__base * 2)); // 30px
+@h3__font-weight: @font-weight__bold;
+@h4__font-size-desktop: ceil((@font-size__base * 1.5)); //
+@h5__font-size-desktop: ceil((@font-size__base)); //
+@h4__font-size-desktop: ceil((@font-size__base * .85));
+
+//  Colors nesting
+@theme__color__primary: #0b4966;
+@theme__color__primary-alt: #0b4966;
+@theme__color__primary-darker: #1F4963;
+
+@theme__color__primary_contr: #fff;
+
+@theme__color__primary_gray: #707070;
+
+
+@theme__color__secondary: #00f1a2;
+@theme__color__secondary_contr: #fff;
+@theme__color__secondary_contr2: @theme__color__primary;
+
+@theme__color__gray: #6C6C6C;
+
+
+@page__background-color: @color-white;
+
+@theme__box-shadow__primary: 0 6px 15px #999;
+@theme__box-shadow__secondary: 0 4px 5px #ccc;
+//
+//  Icons
+//  ---------------------------------------------
+
+@icon-success: '\e60e';
+@icon-error: '\e61f';
+@icon-edit: '\e601';
+@icon-print: '\e624';
+@icon-star-empty: '\e625';
+@icon-download: '\e626';
+@icon-private: '\e629';
+@icon-present: '\e62a';
+@icon-gift-registry: '\e62b';
+
+@icon-calendar__font-size: 23px;
+
+//
+//  Sidebar
+//  ---------------------------------------------
+
+@sidebar__background-color: @color-white-smoke; // Used in cart sidebar, Checkout sidebar, Tier Prices, My account navigation, Rating block background
+
+//
+//  Sidebar blocks
+//  ---------------------------------------------
+
+@block-items__counter__color: @color-gray43;
+
+
+@z-index-5: 5;  // used for negative slider mobile
+@z-index-10: 10; // used for header mobile
+@z-index-100: 100; // used for header mobile
+@overlay__z-index: 898;
+
+//
+//  Edges
+//  ---------------------------------------------
+@edge-xxs: 10px;
+@edge-xs: 20px;
+@edge-sm: 30px;
+@edge-md: 50px;
+@edge-lg: 100px;
+@edge-xl: 150px;

@@ -1,0 +1,102 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .sales-guest-form {
+        .fieldset .legend,
+        .actions-toolbar {
+            margin-left: inherit !important;
+        }
+    }
+
+    .order-items {
+        .table-order-items {
+            tr td {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            td, th {
+                font-size: 1.2rem;
+
+                * {
+                    font-size: 1.2rem;
+                }
+                .price-excluding-tax,
+                .price-including-tax {
+                    line-height: inherit;
+                }
+
+                &.col.price .price {
+                    font-size: 1.2rem;
+                    line-height: 1.4rem;
+                }
+            }
+        }
+    }
+
+    .block-reorder {
+        display: none;
+    }
+
+    .order-actions-toolbar {
+        .action {
+            border-radius: 30px;
+        }
+    }
+    .order-links  {
+        margin-top: 50px;
+        .item {
+            box-shadow: @theme__box-shadow__primary;
+            padding: 5px;
+            font-size: 1rem;
+            margin-right: 10px;
+            font-weight: 300;
+            border-radius: 30px;
+            &.current {
+                background-color: @theme__color__secondary;
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop large
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .order-links .item {
+        font-size: 1.8rem;
+        font-weight: 600;
+        padding: 10px 30px;
+        margin-bottom: 15px;
+    }
+    .table-order-items {
+        td, th {
+            * {
+                font-size: 1.8rem;
+            }
+            .col.price .price {
+                font-size: 1.8rem;
+            }
+        }
+    }
+    .order-actions-toolbar {
+        margin-bottom: 50px;
+        .action.order {
+            font-size: 1.8rem;
+            padding: 15px 30px;
+            margin-bottom: 50px;
+        }
+    }
+    .order-items.table-wrapper .col.price {
+        font-weight: 700;
+    }
+}

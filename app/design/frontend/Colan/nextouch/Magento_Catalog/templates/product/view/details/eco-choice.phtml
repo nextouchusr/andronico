@@ -1,0 +1,38 @@
+<?php
+/** @var \Nextouch\Theme\Block\Catalog\Product\View\EcoChoice $block */
+
+use Nextouch\Catalog\Api\Data\ProductInterface;
+
+$level = $block->getProduct()->getEcoChoiceLevel();
+?>
+
+    <div id="product-eco-choice-collapsible">
+        <div data-role="title">
+            <span class="leaves-icon"><img src="<?= $block->getViewFileUrl('images/leaves.svg'); ?>" width="24" alt="leaves-icon"/></span>
+            <h2 class="text-sm-start">
+                <?= __('Eco-friendly'); ?>
+                <span class="eco-level eco-level-<?= $level; ?>">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </h2>
+        </div>
+
+        <div data-role="content" class="more-less-content">
+            <div class="more-less-wrapper">
+            <?= $this->helper(Magento\Catalog\Helper\Output::class)->productAttribute(
+                $block->getProduct(),
+                $block->getProduct()->getEcoChoice(),
+                ProductInterface::ECO_CHOICE
+            ); ?>
+            </div>
+            <div class="more-less">
+                <span class="more"> <?= __('Show more') ?></span>
+                <span class="less"> <?= __('Show less') ?></span>
+            </div>
+        </div>
+    </div>
+

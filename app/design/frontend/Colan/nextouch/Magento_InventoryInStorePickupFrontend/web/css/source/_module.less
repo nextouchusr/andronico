@@ -1,0 +1,340 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//
+//  ---------------------------------------------
+
+@checkout-source-selector-popup-location_border: @border-width__base solid
+@color-gray80;
+@checkout-delivery-method-selector-action__background: @color-white;
+
+@checkout-pickup-location-name_font-size: 1.2rem;
+@checkout-pickup-location-name_font-weight: @font-weight__bold;
+
+@checkout-pickup-location-name-popup_font-size: 1.2rem;
+
+@checkout-pickup-location-popup-search_padding: 0 0 @indent__s;
+@checkout-pickup-location-popup-search_margin: 0 0 @indent__base;
+@checkout-pickup-location-popup-search_border: @modal-title__border;
+
+@checkout-pickup-location-popup-note_margin: 0 0 @indent__base;
+
+& when (@media-common = true) {
+    /**
+     * @codingStandardsIgnoreStart
+     */
+    #store-pickup {
+        &.selected-shipping {
+            ~ #store-selector {
+                display: none;
+            }
+        }
+
+        &.selected-store-pickup {
+            ~ #shipping,
+            ~ #opc-shipping_method {
+                visibility: hidden;
+                height: 0;
+                overflow: hidden;
+            }
+        }
+    }
+
+
+    #delivery-method-selector {
+        //  @codingStandardsIgnoreEnd
+
+        .action {
+            .lib-button();
+            padding: 15px 50px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            width: 100%;
+            line-height: 3rem;
+            height: 58px;
+            max-height: 58px;
+            background-color: @theme__color__secondary;
+            color: @theme__color__primary;
+            &:hover,
+            &:focus {
+                background-color: @theme__color__secondary;
+                color: @theme__color__secondary_contr;
+            }
+            &:not(.selected):not(:focus) {
+                .lib-css(
+                    background,
+                    @checkout-delivery-method-selector-action__background
+                );
+                color: @theme__color__secondary;
+                border: 2px solid @theme__color__secondary;
+            }
+        }
+    }
+
+    /**
+      * @codingStandardsIgnoreStart
+      */
+    #store-selector {
+        .form-login {
+            display: none;
+            border-bottom: 0;
+            margin-bottom: 0;
+            padding:0;
+        }
+        //  @codingStandardsIgnoreEnd
+        .form-continue {
+            margin: @indent__base 0 0;
+            padding: 0;
+
+            .actions-toolbar {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                width: 100%;
+                &:before,
+                &:after {
+                    display: none;
+                }
+                .action {
+                    &:extend(.abs-button all);
+                    height: 35px;
+                    font-size: 1.2rem;
+                    padding: 12px 30px;
+                    line-height: 1rem;
+
+                }
+            }
+        }
+    }
+
+    .location-details {
+        .location-name {
+            .lib-css(font-size, @checkout-pickup-location-name_font-size);
+            .lib-css(font-weight, @checkout-pickup-location-name_font-weight);
+        }
+    }
+
+    .store-selector-popup.store-selector-popup {
+        .modal-popup._inner-scroll .modal-inner-wrap {
+            min-height: 60vh;
+            border-top-left-radius: 100px!important;
+            border-bottom-left-radius: 100px!important;
+            font-size: 1.2rem;
+        }
+        .modal-header {
+            padding: 0;
+        }
+        .modal-title {
+            border-bottom: 0;
+            padding: 50px 10px;
+            padding-bottom: 10px;
+        }
+
+        .modal-header {
+            padding-bottom: 0;
+        }
+        .modal-content {
+            padding: 50px 15px;
+            padding-top: 10px;
+        }
+        #store-selector-search-input {
+            border-radius: 50px;
+            min-height: 35px;
+            border:1px solid @theme__color__primary;
+        }
+        .action-close {
+            right: 30px;
+            top: 30px;
+            font-size: 1rem;
+            &:before {
+                font-size: 5rem;
+            }
+        }
+        button {
+
+        }
+
+        .store-selector-search,
+        .store-selector-popup-empty-query {
+            display: none;
+        }
+    }
+    /**
+      * @codingStandardsIgnoreStart
+      */
+    #opc-store-selector-popup {
+        //  @codingStandardsIgnoreEnd
+        display: none;
+
+        .block-search {
+            float: none;
+            width: 100%;
+            .lib-css(margin, @checkout-pickup-location-popup-search_margin);
+            .lib-css(padding, @checkout-pickup-location-popup-search_padding);
+        }
+    }
+
+    .modal-content {
+        #opc-store-selector-popup {
+            display: block;
+        }
+    }
+
+    .store-selector-popup-table {
+        thead {
+            th {
+                display: none;
+            }
+        }
+
+        tbody {
+            .location {
+                .location-name {
+                    .lib-css(
+                        font-size,
+                        @checkout-pickup-location-name-popup_font-size
+                    );
+                }
+
+                + .location {
+                    .lib-css(
+                        border-top,
+                        @checkout-source-selector-popup-location_border
+                    );
+                }
+            }
+
+            .col-location-details {
+                padding-left: 0;
+                font-size: 1.1rem;
+
+                p {
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            .col-location-actions {
+                padding-right: 0;
+                vertical-align: middle;
+                text-align: right;
+
+                .action {
+                    color: @theme__color__primary;
+                    line-height: 1rem;
+                    box-sizing: border-box;
+                    height: 35px;
+                    padding: 0 15px;
+
+                }
+            }
+        }
+    }
+
+    .store-selector-popup-empty-query,
+    .store-selector-popup-no-locations {
+        .lib-css(margin, @checkout-pickup-location-popup-note_margin);
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break)
+when
+    (@extremum = 'min')
+and
+    (@break = @screen__m) {
+    /**
+     * @codingStandardsIgnoreStart
+     */
+
+    #delivery-method-selector {
+        //  @codingStandardsIgnoreEnd
+        .lib-vendor-prefix-display(flex);
+        justify-content: space-between;
+        font-size: 1.8rem;
+        width: auto;
+        .action {
+            .lib-button-l();
+            padding: 15px 50px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            height: 65px;
+            width: auto;
+            box-sizing: border-box;
+            max-height: 80px;
+            line-height: 2.6rem;
+            &.primary {
+                font-size: 2.4rem;
+                line-height: 2.6rem;
+            }
+        }
+    }
+
+    .store-selector-popup.store-selector-popup {
+        #store-selector-search-input {
+            border-radius: 50px;
+            min-height: 65px;
+        }
+        .modal-content {
+            padding: 50px;
+            padding-top: 0;
+        }
+        .modal-title {
+            padding: 50px;
+        }
+        tbody {
+            .col-location-details {
+                font-size: 1.4rem;
+
+                .location-name {
+                    font-size: 1.8rem;
+                }
+            }
+            .col-location-actions .action {
+                padding: 15px 50px;
+                font-size: 2.4rem;
+                line-height: 2.6rem;
+                height: 80px;
+                max-height: 80px;
+                box-sizing: border-box;
+            }
+        }
+    }
+
+    #store-selector {
+        //  @codingStandardsIgnoreEnd
+        .form-continue {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            .actions-toolbar {
+                margin: 0!important;
+                > .primary {
+                }
+
+                .action {
+                    padding: 15px 50px;
+                    font-size: 2.4rem;
+                    line-height: 2.6rem;
+                    height: 80px;
+                    max-height: 80px;
+                    box-sizing: border-box;
+                    &.primary {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+        .action-close {
+            font-size: 1.4rem;
+        }
+    }
+}

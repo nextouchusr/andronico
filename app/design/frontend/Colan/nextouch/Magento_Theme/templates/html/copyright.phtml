@@ -1,0 +1,26 @@
+<?php /** @var \Magento\Theme\Block\Html\Footer $block */ ?>
+<div class="footer-copyright">
+    <div class="text-copyright">
+        <span><?= $block->escapeHtml($block->getCopyright()); ?></span>
+    </div>
+    <div class="m-t-xs footer-social">
+        <label class="text-h4"><?= $block->escapeHtml(__('Social network')) ?></label>
+        <ul>
+            <li>
+                <a href="#" target="_blank"><img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/facebook.svg'); ?>" alt=""/></a>
+            </li>
+            <li>
+                <a href="#" target="_blank"><img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/linkedin.svg'); ?>" alt=""/></a>
+            </li>
+            <li>
+                <a href="#" target="_blank"><img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/instagram.svg'); ?>" alt=""/></a>
+            </li>
+            <li>
+                <a href="#" target="_blank"><img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/youtube.svg'); ?>" alt=""/></a>
+            </li>
+            <li>
+                <a href="#" target="_blank"><img src="<?= $block->getViewFileUrl('Magento_Theme::images/social/twitter.svg'); ?>" alt=""/></a>
+            </li>
+        </ul>
+    </div>
+</div>
