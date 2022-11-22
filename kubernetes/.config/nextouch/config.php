@@ -465,7 +465,6 @@ return [
         'Amazon_Payment' => 0,
         'Avada_Proofo' => 1,
         'Axepta_Paymentservice' => 1,
-        'CustomerParadigm_MaintenanceMode' => 1,
         'Dotdigitalgroup_Email' => 0,
         'Dotdigitalgroup_Chat' => 0,
         'Dotdigitalgroup_ChatGraphQl' => 0,
