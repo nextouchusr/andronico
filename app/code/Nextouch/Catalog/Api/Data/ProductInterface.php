@@ -23,7 +23,7 @@ interface ProductInterface extends \Magento\Catalog\Api\Data\ProductInterface
     public const STREET_LINE_DELIVERY_PRICE = 'street_line_delivery_price';
     public const FLOOR_DELIVERY_PRICE = 'floor_delivery_price';
 
-    public const DEFAULT_FAST_EST_TYPE = 20; // Altro
+    public const DEFAULT_FAST_EST_TYPE = ['code' => 20, 'name' => 'Altro'];
 
     // Product Service Options
     public const EVENING_DELIVERY = '0005';

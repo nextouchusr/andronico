@@ -59,7 +59,7 @@ class AddFastEstTypeAttribute implements DataPatchInterface
                 'global' => ScopedAttributeInterface::SCOPE_GLOBAL,
                 'user_defined' => true,
                 'visible' => true,
-                'default' => ProductInterface::DEFAULT_FAST_EST_TYPE,
+                'default' => ProductInterface::DEFAULT_FAST_EST_TYPE['code'],
             ]
         );
 
