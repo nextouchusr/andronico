@@ -1041,7 +1041,7 @@ a {
   margin-bottom: 10px;
 }
 
-.page-footer .footer.content .text-center .footer.links li:first-child a {
+.page-footer .footer.content .text-center .footer.links li:first-child a, .nav.item.current:first-child strong {
   color: var(--primary-green) !important;
   text-transform: uppercase;
   font-size: 12px;
@@ -1438,8 +1438,8 @@ a {
   position: fixed;
   width: 90%;
   margin: 0 auto;
-  top: 60%;
-  left: 50%;
+  top: 50vh;
+  left: 50vw;
   transform: translate3d(-50%, -50%, 0px);
   bottom: unset;
   box-shadow: none !important;
@@ -2279,6 +2279,7 @@ body.filter-mobile-opened .block.filter.active {
   background: var(--primary-green);
   padding-top: 0;
   top: 0;
+  z-index: 2;
 }
 
 

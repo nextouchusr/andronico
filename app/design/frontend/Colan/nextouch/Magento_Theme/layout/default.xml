@@ -74,7 +74,7 @@
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="frequently-questions" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Domande frequenti</argument>
-                                <argument name="path" xsi:type="string">contact</argument>
+                                <argument name="path" xsi:type="string">faq</argument>
                             </arguments>
                         </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="raee-returns" after="-">
@@ -93,6 +93,12 @@
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Prenota e ritira</argument>
                                 <argument name="path" xsi:type="string">delivery-service</argument>
+                            </arguments>
+                        </block>
+			            <block class="Magento\Framework\View\Element\Html\Link\Current" name="assistance-service" after="-">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">Assistenza clienti</argument>
+                                <argument name="path" xsi:type="string">assistance-service</argument>
                             </arguments>
                         </block>
                     </block>
@@ -137,7 +143,7 @@
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="return-rights" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Reso e diritti di recesso</argument>
-                                <argument name="path" xsi:type="string">terms-and-conditions</argument>
+				                <argument name="path" xsi:type="string">returns</argument>
                             </arguments>
                         </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="legal-notice" after="-">
@@ -148,7 +154,7 @@
                         </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="privacy-policy" after="-">
                             <arguments>
-                                <argument name="label" xsi:type="string" translate="true">Privacy policy Assistenza clienti</argument>
+                                <argument name="label" xsi:type="string" translate="true">Privacy policy</argument>
                                 <argument name="path" xsi:type="string">privacy-policy</argument>
                             </arguments>
                         </block>
@@ -219,11 +225,6 @@
                 </container>
                 <container name="footer-links-column-four" htmlTag="div" htmlClass="footer-links-column-four">
                     <container name="footer-links-four-title" htmlTag="div" htmlClass="footer-links-title">
-                         <block class="Magento\Framework\View\Element\Text" name="footer-links-four-title-name">
-                            <arguments>
-                                <argument name="text" xsi:type="string" translate="true">Su di noi</argument>
-                            </arguments>
-                        </block>
                     </container>
                     <block class="Magento\Framework\View\Element\Html\Links" name="footer.links.column4">
                         <arguments>
