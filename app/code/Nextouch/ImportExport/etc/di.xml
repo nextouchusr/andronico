@@ -21,6 +21,10 @@
         <plugin name="set_fast_est_type_default_value"
                 type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\SetFastEstTypeDefaultValue"
                 sortOrder="10"/>
+
+        <plugin name="disable_products_with_no_price"
+                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\DisableProductsWithNoPrice"
+                sortOrder="10"/>
     </type>
 
     <type name="Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataProvider">
