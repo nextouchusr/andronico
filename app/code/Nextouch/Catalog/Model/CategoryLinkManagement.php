@@ -71,14 +71,14 @@ class CategoryLinkManagement implements CategoryLinkManagementInterface
             foreach ($filterGroup->getFilters() as $filter) {
                 $attribute = $this->attributeRepository->get($filter->getField());
 
-                if ($attribute->getFrontendInput() === 'price' && $filter->getConditionType() === 'eq') {
+                if ($attribute->getFrontendInput() === 'price' && $filter->getConditionType() === 'in') {
                     [$gteq, $lteq] = explode(self::PRICE_SEPARATOR, $filter->getValue());
                     $products->addFieldToFilter($filter->getField(), ['gteq' => $gteq]);
                     $products->addFieldToFilter($filter->getField(), ['lteq' => $lteq]);
                     continue;
                 }
 
-                $condition = $filter->getConditionType() ?: 'eq';
+                $condition = $filter->getConditionType() ?: 'in';
                 $products->addFieldToFilter($filter->getField(), [$condition => $filter->getValue()]);
             }
         }
