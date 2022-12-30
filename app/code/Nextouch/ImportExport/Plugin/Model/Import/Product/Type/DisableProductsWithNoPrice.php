@@ -10,16 +10,16 @@ class DisableProductsWithNoPrice
     /**
      * @noinspection PhpUnusedParameterInspection
      */
-    public function afterPrepareAttributesWithDefaultValueForSave(
+    public function beforePrepareAttributesWithDefaultValueForSave(
         AbstractType $subject,
-        array $result,
-        array $rowData
+        array $rowData,
+        bool $withDefaultValue
     ): array {
         if ($this->canDisableProduct($rowData)) {
-            $result['visibility'] = '';
+            $rowData['visibility'] = '';
         }
 
-        return $result;
+        return [$rowData, $withDefaultValue];
     }
 
     private function canDisableProduct(array $rowData): bool
