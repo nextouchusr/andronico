@@ -124,7 +124,7 @@
 
     <virtualType name="winsProductDataOperation" type="Nextouch\ImportExport\Model\WinsScheduledMagentoOperation">
         <arguments>
-            <argument name="filename" xsi:type="string">prodotti.csv</argument>
+            <argument name="filename" xsi:type="string">fixed_prodotti.csv</argument>
             <argument name="operationName" xsi:type="string">wins_product_data_operation</argument>
             <argument name="client" xsi:type="object">Magento\Framework\Filesystem\Io\Ftp</argument>
         </arguments>
