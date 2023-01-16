@@ -3,13 +3,13 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
         <job name="nextouch_import_export_wins_product_data_import_job"
-             instance="winsProductDataImportJob"
+             instance="Nextouch\ImportExport\Cron\WinsProductDataImportJob"
              method="execute">
             <schedule>0 16 * * *</schedule>
         </job>
 
         <job name="nextouch_import_export_wins_catalog_data_import_job"
-             instance="winsCatalogDataImportJob"
+             instance="Nextouch\ImportExport\Cron\WinsCatalogDataImportJob"
              method="execute">
             <schedule>0 */2 * * *</schedule>
         </job>
