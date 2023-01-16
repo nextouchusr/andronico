@@ -21,10 +21,6 @@
         <plugin name="set_fast_est_type_default_value"
                 type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\SetFastEstTypeDefaultValue"
                 sortOrder="10"/>
-
-        <plugin name="disable_products_with_no_price"
-                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\DisableProductsWithNoPrice"
-                sortOrder="10"/>
     </type>
 
     <type name="Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataProvider">
@@ -51,11 +47,11 @@
         </arguments>
     </type>
 
-    <virtualType name="winsProductDataImportJob" type="Nextouch\ImportExport\Cron\WinsEntityDataImportJob">
+    <type name="Nextouch\ImportExport\Cron\WinsProductDataImportJob">
         <arguments>
             <argument name="entityDataOperationCombiner" xsi:type="object">winsProductDataOperationCombiner</argument>
         </arguments>
-    </virtualType>
+    </type>
 
     <virtualType name="winsProductDataOperationCombiner" type="Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner">
         <arguments>
@@ -73,11 +69,11 @@
         </arguments>
     </virtualType>
 
-    <virtualType name="winsCatalogDataImportJob" type="Nextouch\ImportExport\Cron\WinsEntityDataImportJob">
+    <type name="Nextouch\ImportExport\Cron\WinsCatalogDataImportJob">
         <arguments>
             <argument name="entityDataOperationCombiner" xsi:type="object">winsCatalogDataOperationCombiner</argument>
         </arguments>
-    </virtualType>
+    </type>
 
     <virtualType name="winsCatalogDataOperationCombiner" type="Nextouch\ImportExport\Model\WinsEntityDataOperationCombiner">
         <arguments>
