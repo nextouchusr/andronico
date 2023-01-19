@@ -15,6 +15,13 @@ use function Lambdish\Phunctional\some;
 
 class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
 {
+    public function getBarcode(): string
+    {
+        $incrementId = $this->getOrder()->getIncrementId();
+
+        return 'NT' . $incrementId;
+    }
+
     public function getOrder(): ?OrderInterface
     {
         if ($this->getData(self::ORDER)) {

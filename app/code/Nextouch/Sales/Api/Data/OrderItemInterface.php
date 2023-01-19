@@ -114,4 +114,9 @@ interface OrderItemInterface extends \Magento\Sales\Api\Data\OrderItemInterface
      * @return bool
      */
     public function hasAirConditioningInstallationTrial(): bool;
+
+    /**
+     * @return string
+     */
+    public function getBarcode(): string;
 }

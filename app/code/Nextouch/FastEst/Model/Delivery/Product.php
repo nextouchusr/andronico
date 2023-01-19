@@ -14,6 +14,7 @@ class Product implements InputInterface, OutputInterface
 {
     private int $productId;
     private int $quantity;
+    private string $barcode;
     private string $brand;
     private string $model;
     private int $placeId;
@@ -23,6 +24,7 @@ class Product implements InputInterface, OutputInterface
     private function __construct(
         int $productId,
         int $quantity,
+        string $barcode,
         string $brand,
         string $model,
         int $placeId,
@@ -31,6 +33,7 @@ class Product implements InputInterface, OutputInterface
     ) {
         $this->productId = $productId;
         $this->quantity = $quantity;
+        $this->barcode = $barcode;
         $this->brand = $brand;
         $this->model = $model;
         $this->placeId = $placeId;
@@ -46,6 +49,11 @@ class Product implements InputInterface, OutputInterface
     public function getQuantity(): int
     {
         return $this->quantity;
+    }
+
+    public function getBarcode(): string
+    {
+        return $this->barcode;
     }
 
     public function getBrand(): string
@@ -81,6 +89,7 @@ class Product implements InputInterface, OutputInterface
         return new self(
             $product->getFastEstType(),
             (int) $orderItem->getQtyOrdered(),
+            $orderItem->getBarcode(),
             $product->getBrandDescription(),
             $product->getName(),
             Place::HYPOTENUSE,
@@ -95,6 +104,7 @@ class Product implements InputInterface, OutputInterface
 
         $productId = (int) $propertyAccessor->getValue($object, 'product_id');
         $quantity = (int) $propertyAccessor->getValue($object, 'quantity');
+        $barcode = (string) $propertyAccessor->getValue($object, 'barcode1');
         $brand = (string) $propertyAccessor->getValue($object, 'product_brand');
         $model = (string) $propertyAccessor->getValue($object, 'product_model');
         $placeId = (int) $propertyAccessor->getValue($object, 'product_place_id');
@@ -104,6 +114,7 @@ class Product implements InputInterface, OutputInterface
         return new self(
             $productId,
             $quantity,
+            $barcode,
             $brand,
             $model,
             $placeId,
@@ -117,6 +128,7 @@ class Product implements InputInterface, OutputInterface
         $object = new \stdClass();
         $object->product_id = $this->getProductId();
         $object->quantity = $this->getQuantity();
+        $object->barcode1 = $this->getBarcode();
         $object->product_brand = $this->getBrand();
         $object->product_model = $this->getModel();
         $object->product_place_id = $this->getPlaceId();

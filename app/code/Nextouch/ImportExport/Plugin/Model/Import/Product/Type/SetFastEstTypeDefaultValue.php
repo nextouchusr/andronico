@@ -28,7 +28,7 @@ class SetFastEstTypeDefaultValue
     private function getFastEstType(array $rowData): string
     {
         if ($rowData['fast_est_type'] === 'Da verificare') {
-            return ProductInterface::DEFAULT_FAST_EST_TYPE['name'];
+            return ProductInterface::DEFAULT_FAST_EST_TYPE['code'];
         }
 
         return (string) $rowData['fast_est_type'];
