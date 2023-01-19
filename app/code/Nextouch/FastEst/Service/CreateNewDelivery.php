@@ -7,7 +7,6 @@ use Collections\Exceptions\InvalidArgumentException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Sales\Api\Data\OrderInterface;
 use Nextouch\FastEst\Api\DeliveryRepositoryInterface;
-use Nextouch\FastEst\Model\Carrier\FastEst;
 use Nextouch\Sales\Api\OrderRepositoryInterface;
 
 class CreateNewDelivery
