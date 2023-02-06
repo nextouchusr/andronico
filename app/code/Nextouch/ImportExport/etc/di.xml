@@ -17,10 +17,6 @@
         <plugin name="prepare_is_returnable_value"
                 type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\PrepareIsReturnableValue"
                 sortOrder="10"/>
-
-        <plugin name="set_fast_est_type_default_value"
-                type="Nextouch\ImportExport\Plugin\Model\Import\Product\Type\SetFastEstTypeDefaultValue"
-                sortOrder="10"/>
     </type>
 
     <type name="Nextouch\ImportExport\Model\Product\Attribute\WinsAttributeDataProvider">

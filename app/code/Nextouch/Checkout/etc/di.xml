@@ -46,5 +46,22 @@
 
         <plugin name="lift_validation"
                 type="Nextouch\Checkout\Plugin\Block\Checkout\LiftValidation"/>
+
+        <plugin name="vat_id_validation"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\VatIdValidation"/>
+
+        <plugin name="invoice_type_default_setter"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\InvoiceTypeDefaultSetter"/>
+
+        <plugin name="invoice_type_component_setter"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\InvoiceTypeComponentSetter"/>
+    </type>
+
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="city_readonly_setter"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\CityReadOnlySetter"/>
+
+        <plugin name="postcode_readonly_setter"
+                type="Nextouch\Checkout\Plugin\Block\Checkout\PostCodeReadOnlySetter"/>
     </type>
 </config>

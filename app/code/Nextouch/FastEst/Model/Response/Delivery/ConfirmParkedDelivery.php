@@ -3,22 +3,28 @@ declare(strict_types=1);
 
 namespace Nextouch\FastEst\Model\Response\Delivery;
 
+use Collections\Collection;
+use Collections\Exceptions\InvalidArgumentException;
 use Nextouch\FastEst\Api\Data\OutputInterface;
 use Nextouch\FastEst\Model\Common\StatusReturn;
 use Nextouch\FastEst\Model\Delivery\DeliveryReturn;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use function Lambdish\Phunctional\map;
 
 class ConfirmParkedDelivery implements OutputInterface
 {
     private StatusReturn $statusReturn;
-    private ?DeliveryReturn $deliveryReturn;
+    private Collection $deliveryReturns;
 
+    /**
+     * @throws InvalidArgumentException
+     */
     private function __construct(
         StatusReturn $statusReturn,
-        ?DeliveryReturn $deliveryReturn = null
+        array $deliveryReturns = []
     ) {
         $this->statusReturn = $statusReturn;
-        $this->deliveryReturn = $deliveryReturn;
+        $this->deliveryReturns = new Collection(DeliveryReturn::class, $deliveryReturns);
     }
 
     public function getStatusReturn(): StatusReturn
@@ -26,9 +32,9 @@ class ConfirmParkedDelivery implements OutputInterface
         return $this->statusReturn;
     }
 
-    public function getDeliveryReturn(): ?DeliveryReturn
+    public function getDeliveryReturns(): array
     {
-        return $this->deliveryReturn;
+        return $this->deliveryReturns->toArray();
     }
 
     public static function fromObject(\stdClass $object): self
@@ -36,17 +42,13 @@ class ConfirmParkedDelivery implements OutputInterface
         $propertyAccessor = PropertyAccess::createPropertyAccessor();
 
         $statusReturn = $propertyAccessor->getValue($object, 'status_return');
-        $hasDeliveryReturn = $propertyAccessor->isReadable($object, 'delivery_return');
+        $hasDeliveryReturns = $propertyAccessor->isReadable($object, 'delivery_return');
+        $deliveryReturns = $hasDeliveryReturns ? $propertyAccessor->getValue($object, 'delivery_return') : [];
+        $deliveryReturns = is_array($deliveryReturns) ? $deliveryReturns : [$deliveryReturns];
 
-        if ($hasDeliveryReturn) {
-            $deliveryReturn = $propertyAccessor->getValue($object, 'delivery_return');
-
-            return new self(
-                StatusReturn::fromObject($statusReturn),
-                DeliveryReturn::fromObject($deliveryReturn)
-            );
-        }
-
-        return new self(StatusReturn::fromObject($statusReturn));
+        return new self(
+            StatusReturn::fromObject($statusReturn),
+            map(fn(\stdClass $item) => DeliveryReturn::fromObject($item), $deliveryReturns)
+        );
     }
 }

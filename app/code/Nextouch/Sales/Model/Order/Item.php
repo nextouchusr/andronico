@@ -19,7 +19,7 @@ class Item extends \Magento\Sales\Model\Order\Item implements OrderItemInterface
     {
         $incrementId = $this->getOrder()->getIncrementId();
 
-        return 'NT' . $incrementId;
+        return 'NX-' . $incrementId;
     }
 
     public function getOrder(): ?OrderInterface
