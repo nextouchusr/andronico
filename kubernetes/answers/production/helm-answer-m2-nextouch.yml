@@ -1,5 +1,5 @@
 aliases:
-  &tag_magento "nextouch-892cf01c97e19c10f0c5264f1cad5197aaa99236"
+  &tag_magento "nextouch-39b182d3e8f2a5a95aca2700383e030be0fa12c6"
 stage: "production"
 nameOverride: "nextouch"
 global:
