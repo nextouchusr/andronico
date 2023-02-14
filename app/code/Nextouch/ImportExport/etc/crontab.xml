@@ -5,25 +5,13 @@
         <job name="nextouch_import_export_wins_product_data_import_job"
              instance="Nextouch\ImportExport\Cron\WinsProductDataImportJob"
              method="execute">
-            <schedule>0 16 * * *</schedule>
-        </job>
-
-        <job name="nextouch_import_export_wins_catalog_data_import_job"
-             instance="Nextouch\ImportExport\Cron\WinsCatalogDataImportJob"
-             method="execute">
-            <schedule>0 */2 * * *</schedule>
-        </job>
-
-        <!--<job name="nextouch_import_export_wins_product_data_import_job"
-             instance="Nextouch\ImportExport\Cron\WinsProductDataImportJob"
-             method="execute">
             <schedule>0 7 * * *</schedule>
         </job>
 
         <job name="nextouch_import_export_wins_catalog_data_import_job"
              instance="Nextouch\ImportExport\Cron\WinsCatalogDataImportJob"
              method="execute">
-            <schedule>5,35 * * * *</schedule>
-        </job>-->
+            <schedule>10 * * * *</schedule>
+        </job>
     </group>
 </config>
