@@ -1,4 +1,10 @@
 .megamenu .megamenu-inner > ul ul a{
+  color: var(--primary-green) !important;
+}
+.megamenu .megamenu-inner > ul ul ul a{
+  color: #282e72 !important;
+}
+.megamenu .megamenu-inner > ul ul ul ul a{
   color: inherit !important;
 }
 .megamenu .mobile-bottom-static-link ul li{
@@ -714,7 +720,7 @@
 }
 .checkout-cart-index #maincontent:before,
 .checkout-cart-index #maincontent:after {
-  background: var(--primary-green);
+  content: unset;
 }
 .block.discount .field input,
 .block.giftcard .field input {
@@ -1047,6 +1053,7 @@ input[type="radio"] + label:before {
   margin-right: 5px;
   border-color: var(--primary-green);
   cursor: pointer;
+  min-width: 26px;
 }
 .login-container .fieldset label.label span {
   font-size: 16px;

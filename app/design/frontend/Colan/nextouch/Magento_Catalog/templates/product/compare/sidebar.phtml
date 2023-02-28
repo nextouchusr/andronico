@@ -10,7 +10,6 @@
 ?>
 <div class="block-compare-container" data-bind="scope: 'compareProducts'">
 
-    <!-- ko if: compareProducts().count -->
 <div class="block block-compare" style="display: none" data-bind="css: {visible: compareProducts().count}" data-role="compare-products-sidebar">
     <div class="block-title  block-compare-title">
         <strong id="block-compare-heading" role="heading" aria-level="2">
@@ -44,7 +43,6 @@
         </div>
     </div>
 </div>
-    <!-- /ko -->
 </div>
 <script type="text/x-magento-init">
 {"[data-role=compare-products-sidebar]": {"Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>}}
