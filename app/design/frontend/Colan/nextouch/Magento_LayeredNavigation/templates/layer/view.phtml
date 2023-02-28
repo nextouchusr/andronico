@@ -53,7 +53,7 @@
                             <?= $block->escapeHtml(__($filter->getName())); ?>
 
                             <?php if ($isProductAttribute && $filter->getAttributeModel()->getAttributeExplanation()): ?>
-                                <div data-bind="mageInit: {
+                                <div class="filter-popup-content" data-bind="mageInit: {
                                     'Magento_Ui/js/modal/modal':{
                                         'type': 'popup',
                                         'modalClass':'modalfilter',
