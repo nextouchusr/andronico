@@ -1,5 +1,5 @@
 aliases:
-  &tag_magento "nextouch-804bbe786340aefd259f4371bfed73ab224984de"
+  &tag_magento "nextouch-9f50bca210511c63d34e31eb6ea771c2921ea72d"
 stage: "production"
 nameOverride: "nextouch"
 global:
@@ -79,7 +79,7 @@ phpfpm:
   tag: *tag_magento
   memoryLimit: 756M
   maxExecutionTime: 60
-  pmMaxChildren: 6
+  pmMaxChildren: 5
   RequestTerminateTimeout: 60
   annotations:
     prometheus.io/path: "/metrics"
