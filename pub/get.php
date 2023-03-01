@@ -1,7 +1,5 @@
 <?php
 /**
- * Public media files entry point
- *
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
@@ -33,6 +31,14 @@ $request = new \Magento\MediaStorage\Model\File\Storage\Request(
     )
 );
 $relativePath = $request->getPathInfo();
+// Materialize file in application
+$params = $_SERVER;
+if (empty($mediaDirectory)) {
+    $params[ObjectManagerFactory::INIT_PARAM_DEPLOYMENT_CONFIG] = [];
+    $params[Factory::PARAM_CACHE_FORCED_OPTIONS] = ['frontend_options' => ['disable_save' => true]];
+}
+$bootstrap = \Magento\Framework\App\Bootstrap::create(BP, $params);
+
 if (file_exists($configCacheFile) && is_readable($configCacheFile)) {
     $config = json_decode(file_get_contents($configCacheFile), true);
 
@@ -67,13 +73,6 @@ if (file_exists($configCacheFile) && is_readable($configCacheFile)) {
     }
 }
 
-// Materialize file in application
-$params = $_SERVER;
-if (empty($mediaDirectory)) {
-    $params[ObjectManagerFactory::INIT_PARAM_DEPLOYMENT_CONFIG] = [];
-    $params[Factory::PARAM_CACHE_FORCED_OPTIONS] = ['frontend_options' => ['disable_save' => true]];
-}
-$bootstrap = \Magento\Framework\App\Bootstrap::create(BP, $params);
 /** @var \Magento\MediaStorage\App\Media $app */
 $app = $bootstrap->createApplication(
     \Magento\MediaStorage\App\Media::class,
