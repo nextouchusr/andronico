@@ -1,5 +1,5 @@
 aliases:
-  &tag_magento "nextouch-03eac172f45ad21fad020da0a99c3872d7ff339e"
+  &tag_magento "nextouch-804bbe786340aefd259f4371bfed73ab224984de"
 stage: "production"
 nameOverride: "nextouch"
 global:
@@ -13,7 +13,7 @@ nginxws:
   applicationRootFolder: /var/www/deploy
   applicationSubFolder: ""
   configVersion: "magento-2.3"
-  replicaCount: 1
+  replicaCount: 2
   readinessProbe:
     path: "/health_check.php"
     enabled: false
@@ -69,10 +69,10 @@ phpfpm:
   resources:
     requests:
       memory: 750Mi
-      cpu: 400m
+      cpu: 2
     limits:
       memory: 4608Mi # 756M [opcache] + ( 756M [memory_limit] * 5 [number of processes] ) = 4536M
-      cpu: 2
+      cpu: 3
   rollingUpdate:
     maxSurge: "100%"
     maxUnavailable: "25%"
