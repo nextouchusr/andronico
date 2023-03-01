@@ -72,7 +72,7 @@ phpfpm:
       cpu: 1000m
     limits:
       memory: 4608Mi # 756M [opcache] + ( 756M [memory_limit] * 5 [number of processes] ) = 4536M
-      cpu: 2000m
+      cpu: 4000m
   rollingUpdate:
     maxSurge: "100%"
     maxUnavailable: "25%"
