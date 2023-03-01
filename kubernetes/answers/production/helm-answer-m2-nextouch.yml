@@ -309,6 +309,8 @@ queue:
       command: "php bin/magento queue:consumers:start exportProcessor --single-thread --max-messages=10000"
     - name: codegenerator-processor
       command: "php bin/magento queue:consumers:start codegeneratorProcessor --single-thread --max-messages=10000"
+    - name: media-generator
+      command: "php bin/magento queue:consumers:start media.storage.catalog.image.resize --max-messages=10000"
 ####################################
 ############# CRON #################
 ####################################
