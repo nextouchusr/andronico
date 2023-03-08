@@ -431,7 +431,7 @@ jobs:
     resources:
       requests:
         memory: 512Mi
-        cpu: 3000m
+        cpu: 1
       limits:
         memory: 756Mi
-        cpu: 4000m
+        cpu: 1
