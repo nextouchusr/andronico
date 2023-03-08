@@ -173,6 +173,17 @@ class ImageResize
         );
         $images = $config->getMediaEntities('Magento_Catalog', ImageHelper::MEDIA_TYPE_CONFIG_NODE);
         foreach ($images as $imageId => $imageData) {
+            if(!in_array($imageId, [
+                'product_small_image',
+                'product_page_main_image',
+                'product_page_main_image_default',
+                'product_page_image_small',
+                'product_page_image_large',
+                'product_page_image_medium',
+                'product_base_image'
+            ])){
+                continue;
+            }
             foreach ($storeCollection as $store) {
                 $data = $this->paramsBuilder->build($imageData, (int)$store->getId(), $theme);
                 $data['quality'] = $quality;
