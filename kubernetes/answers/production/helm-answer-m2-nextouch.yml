@@ -1,5 +1,5 @@
 aliases:
-  &tag_magento "nextouch-03eac172f45ad21fad020da0a99c3872d7ff339e"
+  &tag_magento "nextouch-9a3852dcd7654d1b9f519bff8240dab71715bd5b"
 stage: "production"
 nameOverride: "nextouch"
 global:
@@ -13,7 +13,7 @@ nginxws:
   applicationRootFolder: /var/www/deploy
   applicationSubFolder: ""
   configVersion: "magento-2.3"
-  replicaCount: 1
+  replicaCount: 2
   readinessProbe:
     path: "/health_check.php"
     enabled: false
@@ -69,16 +69,17 @@ phpfpm:
   resources:
     requests:
       memory: 750Mi
-      cpu: 400m
+      cpu: 1000m
     limits:
       memory: 4608Mi # 756M [opcache] + ( 756M [memory_limit] * 5 [number of processes] ) = 4536M
-      cpu: 2
+      cpu: 4000m
   rollingUpdate:
     maxSurge: "100%"
     maxUnavailable: "25%"
   tag: *tag_magento
   memoryLimit: 756M
   maxExecutionTime: 60
+  pmMaxChildren: 4
   RequestTerminateTimeout: 60
   annotations:
     prometheus.io/path: "/metrics"
@@ -308,6 +309,8 @@ queue:
       command: "php bin/magento queue:consumers:start exportProcessor --single-thread --max-messages=10000"
     - name: codegenerator-processor
       command: "php bin/magento queue:consumers:start codegeneratorProcessor --single-thread --max-messages=10000"
+    - name: media-generator
+      command: "php bin/magento queue:consumers:start media.storage.catalog.image.resize --max-messages=10000"
 ####################################
 ############# CRON #################
 ####################################
@@ -412,3 +415,23 @@ jobs:
       limits:
         memory: 1024Mi
         cpu: 400m
+  - name: image-regenerator
+    enabled: true
+    registry: "452103867664.dkr.ecr.eu-central-1.amazonaws.com"
+    repository: "k8s-prd/nextouch-php-cli"
+    tag: *tag_magento
+    pullPolicy: IfNotPresent
+    command: "php -d memory_limit=-1 /var/www/deploy/bin/magento hevelop:images:resize --theme_path='Colan/nextouch' --quality=80 --overwrite=0 1 2"
+    schedule: "*/5 * * * *"
+    failedJobsHistoryLimit: 1
+    successfulJobsHistoryLimit: 0
+    concurrencyPolicy: Forbid
+    restartPolicy: Never
+    startingDeadlineSeconds: 60
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 1
+      limits:
+        memory: 756Mi
+        cpu: 1

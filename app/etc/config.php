@@ -474,6 +474,7 @@ return [
         'Elightwalk_Core' => 1,
         'Experius_FormSelectChosen' => 1,
         'Experius_MissingTranslations' => 1,
+        'Hevelop_ImageRegenerator' => 1,
         'Klarna_Core' => 0,
         'Klarna_Ordermanagement' => 0,
         'Klarna_Kp' => 0,
