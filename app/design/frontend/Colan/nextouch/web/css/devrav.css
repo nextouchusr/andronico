@@ -2756,10 +2756,6 @@ body.filter-mobile-opened .block.filter.active {
   margin-right: 5px;
   border-color: var(--primary-green);
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
 }
 
 .checkout-index-index .opc-wrapper .step-content input[type="checkbox"]:checked+label:before,
@@ -2779,7 +2775,7 @@ input[type="radio"]:checked+label:before {
 }
 
 .checkout-index-index .opc-wrapper .step-content .choice.field label span {
-  padding-left: 35px;
+  padding-top: 5px;
   display: inline-block;
 }
 
