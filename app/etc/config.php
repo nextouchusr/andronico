@@ -482,7 +482,6 @@ return [
         'Klarna_KpGraphQl' => 0,
         'MSP_Common' => 1,
         'MSP_CmsImportExport' => 1,
-        'MSP_DevTools' => 1,
         'Magefan_AdminUserGuide' => 1,
         'Magefan_Community' => 1,
         'Magefan_WysiwygAdvanced' => 1,
@@ -502,7 +501,7 @@ return [
         'Nextouch_InStorePayment' => 1,
         'Nextouch_Inventory' => 1,
         'Nextouch_InventoryInStorePickupFrontend' => 1,
-        'ShipperHQ_AddressAutocomplete' => 1,
+        'ShipperHQ_AddressAutocomplete' => 0,
         'Nextouch_Rma' => 1,
         'Nextouch_FastEst' => 1,
         'Nextouch_Gls' => 1,
@@ -589,6 +588,29 @@ return [
                 'name' => 'Inglese',
                 'sort_order' => '1',
                 'is_active' => '0'
+            ]
+        ]
+    ],
+    'system' => [
+        'default' => [
+            'system' => [
+                'cron' => [
+                    'index' => [
+                        'use_separate_process' => 0
+                    ],
+                    'staging' => [
+                        'use_separate_process' => 0
+                    ],
+                    'catalog_event' => [
+                        'use_separate_process' => 0
+                    ],
+                    'consumers' => [
+                        'use_separate_process' => 0
+                    ],
+                    'amasty_base' => [
+                        'use_separate_process' => 0
+                    ]
+                ]
             ]
         ]
     ]
