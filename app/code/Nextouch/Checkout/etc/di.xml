@@ -57,6 +57,7 @@
                 type="Nextouch\Checkout\Plugin\Block\Checkout\InvoiceTypeComponentSetter"/>
     </type>
 
+    <!--
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
         <plugin name="city_readonly_setter"
                 type="Nextouch\Checkout\Plugin\Block\Checkout\CityReadOnlySetter"/>
@@ -64,4 +65,5 @@
         <plugin name="postcode_readonly_setter"
                 type="Nextouch\Checkout\Plugin\Block\Checkout\PostCodeReadOnlySetter"/>
     </type>
+    -->
 </config>
