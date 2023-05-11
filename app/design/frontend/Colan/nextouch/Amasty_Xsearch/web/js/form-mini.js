@@ -698,7 +698,7 @@ define([
             });
 
             $(wrapper).prepend('<div class="categories-search">' +
-                '<div class="current">All</div>' +
+                '<div class="current"><div class="dot-icon"><span></span><span></span><span></span></div> All Categories</div>' +
                 '<input type="hidden" name="category_id" value="2"/>' +
                 '<ul class="list"></ul>' +
             '</div>');

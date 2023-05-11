@@ -94,6 +94,9 @@ $_services = $block->getFormattedServiceList();
 
                     <div class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
                         <div class="field qty">
+                            <div class="actions-toolbar">
+                                <?= /* @noEscape */ $block->getActions($_item) ?>
+                            </div>
                             <div class="control qty">
                                 <?php if ($block->getQty() > 1): ?>
                                     <span class="more-less less-button"></span>

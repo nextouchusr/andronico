@@ -544,6 +544,18 @@
 .block-compare .block-title strong{
   background: var(--primary-green);
   color: var(--light);
+  transform: none;
+  left: 0;
+  padding: 15px 30px;
+  border-radius: 60px;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  width: 120px;
+  height: auto;
+  display: inline-block;
+  margin: 0;
+  position: unset;
 }
 
 .block-compare{

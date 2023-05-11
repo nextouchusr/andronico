@@ -48,7 +48,7 @@
         <referenceBlock name="checkout.cart.giftcardaccount" remove="true" />
 
         <move element="cart.summary" destination="checkout.cart.container" after="checkout.cart.form" />
-        <move element="checkout.cart.methods.bottom" destination="main" after="-" />
+        <!-- <move element="checkout.cart.methods.bottom" destination="main" after="-" /> -->
         <move element="checkout.cart.coupons" destination="checkout.cart.container" after="-" />
         <move element="checkout.cart.giftcardaccount" destination="checkout.cart.container" after="checkout.cart.coupons" />
 

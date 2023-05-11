@@ -1,0 +1,301 @@
+.customer-account-create .columns-customer-login {
+  display: flex;
+}
+.customer-account-create .customer-login-left-block {
+  max-width: 735px;
+  width: 100%;
+  padding: 0;
+}
+
+.customer-account-create .login-container .fieldset {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.customer-account-create .customer-login-left-block .form-create-desc {
+  text-align: left;
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  color: var(--primary-blue);
+  margin-bottom: 30px;
+}
+.customer-account-create .login-container .fieldset > .field {
+  margin-bottom: 0;
+}
+.customer-account-create .login-container .fieldset input.input-text,
+.customer-account-create .login-container .fieldset .control select {
+  font-size: 18px !important;
+  line-height: 22px;
+  font-weight: 500;
+}
+.customer-account-create .register-info-col {
+  text-align: start;
+  margin: 30px 0;
+}
+.customer-account-create .register-info-col .field:not(:last-child) {
+  margin-bottom: 15px;
+}
+.form-create-account .field.choice {
+  margin-top: 10px;
+}
+.customer-account-create .register-info-col .field .control .label,
+.form-create-account .field.choice .label {
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--dark-grey);
+  display: inline-flex;
+  width: 100%;
+}
+.form-create-account .choice {
+  text-align: start;
+}
+.customer-account-create .register-info-col .field .control .label::before,
+.form-create-account .field.choice .label::before {
+  max-width: 12px;
+  max-height: 12px;
+  width: 100%;
+  border-color: var(--dark-grey);
+  margin-right: 10px;
+}
+/* .customer-account-create .login-container .fieldset label.label{
+  clip: rect(0,0,0,0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    margin-bottom: 0;
+} */
+.customer-account-create .customer-login-left-block .form-create-desc span {
+  text-decoration: underline;
+  color: var(--primary-blue);
+  cursor: pointer;
+}
+
+.cms-page-view .title-crumbs-container .page-title {
+  font-size: 72px;
+  line-height: 79px;
+  margin-bottom: 10px;
+}
+
+.cms-h3 {
+  margin-top: 120px;
+  margin-bottom: 60px;
+}
+.twocolumns-block .pagebuilder-column-group,
+.blue-blocks-row .pagebuilder-column-group {
+  gap: unset;
+}
+.cms-installation
+  .twocolumns-block
+  .pagebuilder-column-group
+  .pagebuilder-column:first-child {
+  margin-right: 30px;
+}
+
+.cms-installation .blue-blocks-row .pagebuilder-column:first-child {
+  margin-right: 60px;
+}
+.cms-installation .blue-blocks-row .pagebuilder-column {
+  padding: 30px;
+}
+
+.cms-installation .blue-blocks-row .blue-block > div {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+}
+
+.cms-installation .blue-blocks-row .blue-block > div p {
+  margin-bottom: 0;
+}
+
+.cms-installation .blue-blocks-row .blue-block .description {
+  margin-top: auto !important;
+  margin-right: 0 !important;
+}
+
+.cms-installation .blue-blocks-row .blue-block .description p {
+  line-height: 22px;
+}
+
+.apostille-text {
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 60px;
+}
+.blue-blocks-row .pagebuilder-column-group {
+  margin-bottom: 0;
+}
+.readmore-detail .sub-title {
+  margin-bottom: 0;
+}
+
+.customer-account-create .modal-popup .modal-inner-wrap {
+  max-width: 660px;
+  padding: 30px;
+}
+
+.customer-account-create .modal-popup .modal-header {
+  padding: 0;
+}
+
+.customer-account-create .modal-popup .modal-title {
+  font-size: 36px;
+  line-height: 40px;
+  font-weight: 600;
+  color: var(--primary-blue);
+  font-family: var(--heading-font);
+  padding-bottom: 0;
+  border-bottom: unset;
+  margin-bottom: 15px;
+  margin-right: 50px;
+}
+
+.customer-account-create .benefits-content {
+  max-width: 360px;
+  width: 100%;
+}
+
+.customer-account-create .modal-popup .modal-inner-wrap .benefits-content p {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  text-align: start;
+  color: var(--primary-blue);
+  margin-bottom: 0;
+}
+
+.customer-account-create .modal-popup .benefits-points {
+  max-width: max-content;
+  margin: 0 auto;
+  margin-top: 45px;
+  text-align: start;
+}
+.customer-account-create .modal-popup .benefits-points .benefits-item {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--primary-blue);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--light-grey);
+}
+.customer-account-create
+  .modal-popup
+  .benefits-points
+  .benefits-item:last-child {
+  padding-bottom: 0;
+  border-bottom: unset;
+}
+.customer-account-create .modal-popup .benefits-points .benefits-item span {
+  max-width: 24px;
+  width: 100%;
+  height: 24px;
+  margin-right: 15px;
+  display: block;
+}
+.customer-account-create .modal-slide .action-close {
+  padding: 0;
+  max-width: 45px;
+  width: 100%;
+  height: 100%;
+  max-height: 45px;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  color: var(--white);
+  border: 1px solid var(--primary-blue);
+  top: 30px;
+  right: 30px;
+}
+.customer-account-create .modal-slide .action-close:hover {
+  background: var(--light);
+}
+
+.customer-account-create .modal-slide .action-close::before {
+  color: var(--light);
+}
+
+.customer-account-create .modal-slide .action-close:hover::before {
+  color: var(--primary-blue);
+}
+
+@media (max-width: 1024px) {
+  .cms-page-view .title-crumbs-container .page-title {
+    font-size: 52px;
+    line-height: 65px;
+  }
+  .title-crumbs-container {
+    margin-bottom: 20px;
+  }
+  .cms-h3 {
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+  .readmore-detail .title {
+    font-size: 40px;
+    line-height: 42px;
+  }
+  .cms-installation .blue-blocks-row .pagebuilder-column:first-child {
+    margin-right: 30px;
+  }
+  .cms-installation .blue-blocks-row .pagebuilder-column {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cms-page-view .title-crumbs-container .page-title {
+    font-size: 32px;
+    line-height: 43px;
+    text-align: left;
+  }
+
+  .readmore-detail .title {
+    font-size: 28px;
+    line-height: 32px;
+    margin-bottom: 0;
+  }
+  .readmore-detail {
+    min-height: unset;
+  }
+  .cms-installation .blue-blocks-row .pagebuilder-column:first-child {
+    margin-right: unset;
+    margin-bottom: 30px;
+  }
+  .cms-installation
+    .twocolumns-block
+    .pagebuilder-column-group
+    .pagebuilder-column:first-child {
+    margin-right: unset;
+    margin-bottom: 30px;
+    height: 260px;
+  }
+  .customer-account-create .login-container .fieldset {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .customer-account-create .modal-popup .modal-inner-wrap {
+    padding: 20px !important;
+  }
+  .customer-account-create .modal-popup .modal-title {
+    font-size: 28px;
+    line-height: 32px;
+    margin-right: 35px;
+  }
+  .customer-account-create .modal-slide .action-close {
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+  }
+  .customer-account-create .modal-popup .benefits-points {
+    margin-top: 25px;
+  }
+  .customer-account-create .modal-slide .action-close::before {
+    font-size: 30px;
+    line-height: 30px;
+  }
+}

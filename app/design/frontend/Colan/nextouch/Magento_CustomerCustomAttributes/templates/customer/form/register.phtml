@@ -28,7 +28,25 @@ $formData = $block->getFormData();
 
     <div class="col1 customer-login-left-block">
         <h2><?= $block->escapeHtml(__('Create account')) ?></h2>
-
+        <div class="form-create-desc"><span class="createinfo-trigger" data-trigger="createinfo"><?= $block->escapeHtml(__('Scopri i vantaggi')) ?></span>
+            <?= $block->escapeHtml(__(' della registrazione nel mondo Andronico. Sei già cliente? ')) ?><a href="<?= $block->escapeUrl($block->getUrl('customer/account/login')) ?>" class="action login"><span><?= $block->escapeHtml(__('Accedi')) ?></span></a>
+                            </div>
+        <div class="form-create-info-popup" data-bind="mageInit: {
+                'Magento_Ui/js/modal/modal':{
+                    'type': 'popup',
+                    'modalClass':'modalcreateinfo',
+                    'parentModalClass':'modalcreateinfowrapper',
+                    'title': '<?= $block->escapeHtml(__('I vantaggi dei nostri utenti')) ?>',
+                    'trigger': '[data-trigger=createinfo]',
+                    'responsive': true,
+                    'zIndex': '898',
+                    'buttons': false
+                }}">
+                <div class="content">
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('benefits-our-users')->toHtml(); ?>
+                </div>
+            </div>
+            
     <form class="form create account form-create-account"
           action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
           method="post"
@@ -38,7 +56,7 @@ $formData = $block->getFormData();
         <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
         <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
         <fieldset class="fieldset create info">
-            <legend class="legend"><span><?= $block->escapeHtml(__('Personal Information')) ?></span></legend><br>
+            <legend class="legend"><span><?= $block->escapeHtml(__('Personal Information')) ?></span></legend>
             <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>"/>
             <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>"/>
             <?= $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Name::class)
@@ -56,6 +74,7 @@ $formData = $block->getFormData();
                            autocomplete="email"
                            value="<?= $block->escapeHtml($formData->getEmail()) ?>"
                            title="<?= $block->escapeHtml(__('Email')) ?>"
+                           plachholder="<?= $block->escapeHtml(__('Email')) ?>"
                            class="input-text"
                            data-validate="{required:true, 'validate-email':true}"/>
                 </div>
@@ -86,11 +105,11 @@ $formData = $block->getFormData();
             <?php endif;?>
 
             <?= $block->getChildHtml('fieldset_create_info_additional') ?>
-        </fieldset>
+        
 
     <?php if ($block->getShowAddressFields()): ?>
-        <fieldset class="fieldset address">
-            <legend class="legend"><span><?= $block->escapeHtml(__('Address Information')) ?></span></legend><br>
+        <!-- <fieldset class="fieldset address"> -->
+            <legend class="legend"><span><?= $block->escapeHtml(__('Address Information')) ?></span></legend>
             <input type="hidden" name="create_address" value="1"/>
             <div class="field country required">
                 <label for="country" class="label">
@@ -159,6 +178,7 @@ $formData = $block->getFormData();
                            value="<?= $block->escapeHtml($formData->getStreetLine(1)) ?>"
                            title="<?= $block->escapeHtml(__('Street Address')) ?>"
                            id="street_1"
+                           plachholder="<?= $block->escapeHtml(__('Street Address')) ?>"
                            class="input-text <?= /* @noEscape */ $_streetValidationClass ?>"/>
                     <div class="nested">
                     <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
@@ -172,6 +192,7 @@ $formData = $block->getFormData();
                                        name="street[]"
                                        value="<?= $block->escapeHtml($formData->getStreetLine($_i - 1)) ?>"
                                        title="<?= $block->escapeHtml(__('Street Address %1', $_i)) ?>"
+                                       plachholder="<?= $block->escapeHtml(__('Street Address %1', $_i)) ?>"
                                        id="street_<?= /* @noEscape */ $_i ?>"
                                        class="input-text <?= /* @noEscape */ $_streetValidationClass ?>"/>
                             </div>
@@ -192,6 +213,7 @@ $formData = $block->getFormData();
                            value="<?= $block->escapeHtml($formData->getPostcode()) ?>"
                            title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?>"
                            id="zip"
+                           plachholder="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?>"
                            class="input-text validate-zip-international <?= /* @noEscape */ $zipValidationClass ?>"
                            data-validate="{'required':true, 'validate-zip-international':true}"/>
                 </div>
@@ -208,6 +230,7 @@ $formData = $block->getFormData();
                            id="telephone"
                            value="<?= $block->escapeHtml($formData->getTelephone()) ?>"
                            title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('telephone') ?>"
+                           plachholder="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('telephone') ?>"
                            class="input-text <?= /* @noEscape */ $phoneValidationClass ?>"/>
                 </div>
             </div>
@@ -222,6 +245,7 @@ $formData = $block->getFormData();
                            name="address[fiscal_code]"
                            value="<?= $block->escapeHtml($formData->getFiscalCode()) ?>"
                            title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('fiscal_code') ?>"
+                           plachholder="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('fiscal_code') ?>"
                            id="fiscal_code"
                            class="input-text <?= /* @noEscape */ $fiscalCodeValidationClass ?>"
                            data-validate="{'required':true, 'pattern':'^([A-Z]{6}[0-9LMNPQRSTUV]{2}[ABCDEHLMPRST]{1}[0-9LMNPQRSTUV]{2}[A-Z]{1}[0-9LMNPQRSTUV]{3}[A-Z]{1})$|([0-9]{11})$'}"/>
@@ -230,11 +254,11 @@ $formData = $block->getFormData();
 
             <input type="hidden" name="default_billing" value="1"/>
             <input type="hidden" name="default_shipping" value="1"/>
-        </fieldset>
+        <!-- </fieldset> -->
 
     <?php endif; ?>
-        <fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-            <legend class="legend"><span><?= $block->escapeHtml(__('Sign-in Information')) ?></span></legend><br>
+        
+            <legend class="legend"><span><?= $block->escapeHtml(__('Sign-in Information')) ?></span></legend>
             <div class="field password required">
                 <label for="password" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
                 <div class="control">
@@ -243,6 +267,7 @@ $formData = $block->getFormData();
                     ); ?>
                     <input type="password" name="password" id="password"
                            title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                           plachholder="<?= $block->escapeHtmlAttr(__('Password')) ?>"
                            class="input-text"
                            data-password-min-length="<?= $block->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
                            data-password-min-character-sets="<?= /* @noEscape */ $requiredCharacterClassesNumber ?>"
@@ -266,59 +291,63 @@ $formData = $block->getFormData();
                     <input type="password"
                            name="password_confirmation"
                            title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>"
+                           plachholder="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>"
                            id="password-confirmation"
                            class="input-text"
                            data-validate="{required:true, equalTo:'#password'}"/>
                 </div>
             </div>
+            </fieldset>
             <div class="field choice" data-bind="scope: 'showPassword'">
                 <!-- ko template: getTemplate() --><!-- /ko -->
             </div>
+            
+            <div class="register-info-col">
+                <div class="field is_privacy_policy_checked required">
+                    <div class="control">
+                        <input type="checkbox"
+                            id="is_privacy_policy_checked"
+                            name="is_privacy_policy_accepted"
+                            class="input-checkbox checkbox"
+                            value="1"
+                            data-validate="{required:true, 'validate-one-required-by-name':true}">
+                        <label for="is_privacy_policy_checked" class="label">
+                            <?= __("Dichiaro di accettare i Termini e Condizioni e di aver preso visione dell'Informativa Privacy resa ai sensi dell'art. 13 Reg. UE 679/2016 (GDPR).") ?>
+                        </label>
+                    </div>
+                </div>
 
-            <div class="field is_privacy_policy_checked required">
-                <div class="control">
-                    <input type="checkbox"
-                           id="is_privacy_policy_checked"
-                           name="is_privacy_policy_accepted"
-                           class="input-checkbox checkbox"
-                           value="1"
-                           data-validate="{required:true, 'validate-one-required-by-name':true}">
-                    <label for="is_privacy_policy_checked" class="label">
-                        <?= __("Dichiaro di accettare i Termini e Condizioni e di aver preso visione dell'Informativa Privacy resa ai sensi dell'art. 13 Reg. UE 679/2016 (GDPR).") ?>
-                    </label>
+                <div class="field newsletter">
+                    <div class="control">
+                        <input type="checkbox"
+                            id="is_subscribed"
+                            name="is_subscribed"
+                            class="input-checkbox checkbox"
+                            value="1">
+                        <label for="is_subscribed" class="label">
+                            <?= __("Acconsento al trattamento dei miei dati personali per l'invio di comunicazioni commerciali e pubblicitare da parte di NexTouch S.p.A. via e-mail e SMS.") ?>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field is_web_profiling_checked">
+                    <div class="control">
+                        <input type="checkbox"
+                            id="is_web_profiling_checked"
+                            name="is_web_profiling_accepted"
+                            class="input-checkbox checkbox"
+                            value="1">
+                        <label for="is_web_profiling_checked" class="label">
+                            <?= __("Acconsento al trattamento dei miei dati personali per scopi di profilazione mediante la creazione di un profilo utente al fine di inviare comunicazioni personalizzate in linea con i miei interessi esclusivamente da parte di NexTouch S.p.A. anche attraverso l'uso di strumento elettronici e automatizzati.") ?>
+                        </label>
+                    </div>
                 </div>
             </div>
+        <!-- </fieldset> -->
 
-            <div class="field newsletter">
-                <div class="control">
-                    <input type="checkbox"
-                           id="is_subscribed"
-                           name="is_subscribed"
-                           class="input-checkbox checkbox"
-                           value="1">
-                    <label for="is_subscribed" class="label">
-                        <?= __("Acconsento al trattamento dei miei dati personali per l'invio di comunicazioni commerciali e pubblicitare da parte di NexTouch S.p.A. via e-mail e SMS.") ?>
-                    </label>
-                </div>
-            </div>
-
-            <div class="field is_web_profiling_checked">
-                <div class="control">
-                    <input type="checkbox"
-                           id="is_web_profiling_checked"
-                           name="is_web_profiling_accepted"
-                           class="input-checkbox checkbox"
-                           value="1">
-                    <label for="is_web_profiling_checked" class="label">
-                        <?= __("Acconsento al trattamento dei miei dati personali per scopi di profilazione mediante la creazione di un profilo utente al fine di inviare comunicazioni personalizzate in linea con i miei interessi esclusivamente da parte di NexTouch S.p.A. anche attraverso l'uso di strumento elettronici e automatizzati.") ?>
-                    </label>
-                </div>
-            </div>
-        </fieldset>
-
-        <fieldset class="fieldset additional_info">
+        <!-- <fieldset class="fieldset additional_info"> -->
             <?= $block->getChildHtml('form_additional_info') ?>
-        </fieldset>
+        <!-- </fieldset> -->
 
             <div class="primary">
                 <button type="submit"
@@ -333,6 +362,7 @@ $formData = $block->getFormData();
                     <span><?= $block->escapeHtml(__('Back')) ?></span>
                 </a>
             </div>
+            
     </form>
     <?php if ($block->getShowAddressFields()): ?>
         <?php
