@@ -474,7 +474,7 @@ return [
         'Elightwalk_Core' => 1,
         'Experius_FormSelectChosen' => 1,
         'Experius_MissingTranslations' => 1,
-        'Hevelop_ImageRegenerator' => 1,
+        'Hevelop_ImageRegenerator' => 0,
         'Klarna_Core' => 0,
         'Klarna_Ordermanagement' => 0,
         'Klarna_Kp' => 0,
@@ -588,29 +588,6 @@ return [
                 'name' => 'Inglese',
                 'sort_order' => '1',
                 'is_active' => '0'
-            ]
-        ]
-    ],
-    'system' => [
-        'default' => [
-            'system' => [
-                'cron' => [
-                    'index' => [
-                        'use_separate_process' => 0
-                    ],
-                    'staging' => [
-                        'use_separate_process' => 0
-                    ],
-                    'catalog_event' => [
-                        'use_separate_process' => 0
-                    ],
-                    'consumers' => [
-                        'use_separate_process' => 0
-                    ],
-                    'amasty_base' => [
-                        'use_separate_process' => 0
-                    ]
-                ]
             ]
         ]
     ]
