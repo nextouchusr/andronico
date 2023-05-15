@@ -180,7 +180,8 @@ class ImageResize
                 'product_page_image_small',
                 'product_page_image_large',
                 'product_page_image_medium',
-                'product_base_image'
+                'product_base_image',
+                'category_page_grid'
             ])){
                 continue;
             }
