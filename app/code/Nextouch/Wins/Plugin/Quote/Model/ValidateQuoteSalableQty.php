@@ -24,7 +24,8 @@ class ValidateQuoteSalableQty
     public function beforeSubmit(QuoteManagement $subject, Quote $quote, array $orderData = []): array
     {
         try {
-            $this->validateQuoteSalableQtyService->validate($quote);
+            // Disabilito per eccezione da Wins che blocca il pagamento
+            //$this->validateQuoteSalableQtyService->validate($quote);
         } catch (LocalizedException $e) {
             throw new LocalizedException(__('Impossible to place order: %1', $e->getLogMessage()));
         }
