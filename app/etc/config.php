@@ -416,7 +416,7 @@ return [
         'Magento_VersionsCmsUrlRewriteGraphQl' => 1,
         'Magento_BundleStaging' => 1,
         'Magento_InventoryInStorePickupWebapiExtension' => 1,
-        'Magento_WebapiAsync' => 1,
+        'Magento_WebapiAsync' => 0,
         'Magento_WebapiSecurity' => 1,
         'Magento_ConfigurableProductStaging' => 1,
         'Magento_CatalogStagingPageBuilder' => 1,
