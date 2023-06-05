@@ -153,6 +153,7 @@
 .product-details-boxes > div.product-attributes #product-attributes-collapsible .additional-attributes {
   width: 100%;
 }
+
 .product-details-boxes-columns .product-details-boxes > div .additional-attributes tr:first-child {
   border-bottom: none;
   padding-bottom: 0;
@@ -270,7 +271,6 @@
   justify-content: center;
 }
 .modal-popup .modal-inner-wrap .modal-content {
-  text-align: center;
   font-size: 16px;
   line-height: 20px;
   font-weight: 600;
@@ -640,4 +640,10 @@
   margin-left: 10px;
   color: var(--primary-blue);
   vertical-align: unset;
+}
+
+
+
+.product-details-boxes #product-attributes-collapsible .additional-attributes td a {
+  color: var(--primary-green);
 }

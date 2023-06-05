@@ -89,16 +89,21 @@
 .blue-blocks-row .pagebuilder-column-group {
   gap: unset;
 }
-.cms-installation
-  .twocolumns-block
-  .pagebuilder-column-group
-  .pagebuilder-column:first-child {
+.cms-installation .twocolumns-block .pagebuilder-column-group .pagebuilder-column:first-child, .cms-raee-returns .twocolumns-block .pagebuilder-column-group .pagebuilder-column:first-child,
+.cms-advice-service .twocolumns-block .pagebuilder-column-group .pagebuilder-column:first-child, .cms-assistance-service .twocolumns-block .pagebuilder-column-group .pagebuilder-column:first-child,
+.cms-returns .twocolumns-block .pagebuilder-column-group .pagebuilder-column:first-child{
   margin-right: 30px;
 }
 
-.cms-installation .blue-blocks-row .pagebuilder-column:first-child {
-  margin-right: 60px;
+.cms-installation .blue-blocks-row .pagebuilder-column:first-child, .cms-assistance-service .blue-blocks-row .pagebuilder-column:first-child {
+  margin-right: 30px;
+  margin-bottom: 30px;
 }
+.cms-installation .blue-blocks-row .pagebuilder-column:nth-child(2), .cms-assistance-service .blue-blocks-row .pagebuilder-column:nth-child(2) {
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
 .cms-installation .blue-blocks-row .pagebuilder-column {
   padding: 30px;
 }
@@ -120,6 +125,8 @@
 .cms-installation .blue-blocks-row .blue-block .description p {
   line-height: 22px;
 }
+
+.cms-assistance-service 
 
 .apostille-text {
   font-size: 14px;
@@ -239,9 +246,14 @@
     font-size: 40px;
     line-height: 42px;
   }
-  .cms-installation .blue-blocks-row .pagebuilder-column:first-child {
-    margin-right: 30px;
+  
+  .cms-installation .blue-blocks-row .pagebuilder-column:first-child, .cms-assistance-service .blue-blocks-row .pagebuilder-column:first-child {
+    margin-right: 15px;
   }
+  .cms-installation .blue-blocks-row .pagebuilder-column:nth-child(2), .cms-assistance-service .blue-blocks-row .pagebuilder-column:nth-child(2) {
+    margin-left: 15px;
+  }
+
   .cms-installation .blue-blocks-row .pagebuilder-column {
     padding: 20px;
   }
@@ -262,18 +274,26 @@
   .readmore-detail {
     min-height: unset;
   }
-  .cms-installation .blue-blocks-row .pagebuilder-column:first-child {
+  .cms-installation .blue-blocks-row .pagebuilder-column:first-child, .cms-assistance-service .blue-blocks-row .pagebuilder-column:first-child {
+    margin-bottom: 30px;
     margin-right: unset;
+  }
+  .cms-installation .blue-blocks-row .pagebuilder-column:nth-child(2), .cms-assistance-service .blue-blocks-row .pagebuilder-column:nth-child(2) {
+    margin-bottom: 30px;
+    margin-left: unset;
+
+  }
+  .cms-installation .twocolumns-block .pagebuilder-column-group .pagebuilder-column, .cms-raee-returns .twocolumns-block .pagebuilder-column-group .pagebuilder-column, 
+  .cms-advice-service .twocolumns-block .pagebuilder-column-group .pagebuilder-column, .cms-assistance-service .twocolumns-block .pagebuilder-column-group .pagebuilder-column,
+  .cms-returns .twocolumns-block .pagebuilder-column-group .pagebuilder-column  {
+    margin-right: unset !important;
     margin-bottom: 30px;
   }
-  .cms-installation
-    .twocolumns-block
-    .pagebuilder-column-group
-    .pagebuilder-column:first-child {
-    margin-right: unset;
-    margin-bottom: 30px;
+  .cms-installation .twocolumns-block .pagebuilder-column-group .pagebuilder-column.image, .cms-raee-returns .twocolumns-block .pagebuilder-column-group .pagebuilder-column.image, 
+  .cms-advice-service .twocolumns-block .pagebuilder-column-group .pagebuilder-column.image, .cms-assistance-service .twocolumns-block .pagebuilder-column-group .pagebuilder-column.image,
+  .cms-returns .twocolumns-block .pagebuilder-column-group .pagebuilder-column.image{
     height: 260px;
-  }
+  } 
   .customer-account-create .login-container .fieldset {
     grid-template-columns: repeat(1, 1fr);
   }

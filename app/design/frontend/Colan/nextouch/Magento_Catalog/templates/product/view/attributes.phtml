@@ -24,6 +24,10 @@ $_product = $block->getProduct();
                             </tr>
 
                             <?php foreach ($_data['attributes'] as $_attribute) : ?>
+			    <?php if (trim($_attribute['value']) != '0,00' && 
+			              trim($_attribute['value']) != '0,00 lt' &&
+				      trim($_attribute['value']) != '0,00 cm' &&
+			              trim($_attribute['value']) != '0,00 dB' ) : ?>
                                 <tr>
                                     <th class="col label" scope="row">
                                         <?= $block->escapeHtml($_attribute['label']); ?>
@@ -31,7 +35,8 @@ $_product = $block->getProduct();
                                     <td class="col data" data-th="<?= $block->escapeHtmlAttr($_attribute['label']); ?>">
                                         <?= $_helper->productAttribute($_product, $_attribute['value'], $_attribute['code']); ?>
                                     </td>
-                                </tr>
+				</tr>
+                            <?php endif; ?>
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                         </tbody>

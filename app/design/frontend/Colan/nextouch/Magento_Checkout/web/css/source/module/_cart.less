@@ -54,6 +54,7 @@
 
                     .control {
                         display: flex;
+			flex-flow: wrap;
                         justify-content: center;
                     }
                 }
@@ -156,9 +157,31 @@
             }
 
             .actions-toolbar {
-                .apply {
-                    display: none;
+
+                .primary {
+	            width: 100%;
                 }
+
+
+                .apply {
+                    box-shadow: unset;
+                    background: transparent;
+                    color: var(--primary-blue);
+                    border: 0px;
+                    font-size: 14px;
+                    line-height: 17px;
+                    padding: 12px 19px;
+                    font-weight: 600;
+                    text-align: center;
+                    min-width: 180px;
+                    border-radius: 60px;
+                    margin: 0;
+                    width: 100%; 
+                }
+		.apply:hover {
+                    background: transparent;
+		    color: var(--primary-blue);
+		}
             }
 
             .field {

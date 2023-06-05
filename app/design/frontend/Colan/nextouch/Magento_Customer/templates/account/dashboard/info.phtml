@@ -17,7 +17,7 @@
                         <?= $block->escapeHtml(__('Name')) ?>
                     </div>
                     <div class="block-title">
-                        <?= $block->escapeHtml($block->getName()) ?>
+                        <?= $block->escapeHtml($block->getCustomer()->getFirstname()) ?>
                     </div>
                     <div class="block-edit">
                         <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/account/edit')) ?>"><?= $block->escapeHtml(__('Edit')) ?></a>
@@ -61,7 +61,7 @@
                         <?= $block->escapeHtml(__('Date of birth')) ?>
                     </div>
                     <div class="block-title">
-                        <?= $block->escapeHtml($block->getCustomer()->getDob()) ?>
+                        <?= $block->getCustomer()->getDob() ? $block->escapeHtml($block->getCustomer()->getDob()) : '-' ?>
                     </div>
                     <div class="block-edit">
                         <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/account/edit')) ?>"><?= $block->escapeHtml(__('Edit')) ?></a>

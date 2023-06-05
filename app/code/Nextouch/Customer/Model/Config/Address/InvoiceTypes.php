@@ -15,8 +15,8 @@ class InvoiceTypes extends AbstractSource implements SourceInterface, OptionSour
     public function getAllOptions(): array
     {
         $this->_options = [
-            ['label' => __('Invoice'), 'value' => self::INVOICE_TYPE],
             ['label' => __('Receipt'), 'value' => self::RECEIPT_TYPE],
+            ['label' => __('Invoice'), 'value' => self::INVOICE_TYPE],
         ];
 
         return $this->_options;

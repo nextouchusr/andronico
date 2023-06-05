@@ -93,7 +93,7 @@
                                                     <?php echo $this->escapeHtml($itm->getName()) ?>
                                                 </div>
                                                 <div class="order-row-product-content product-discription">
-                                                    <?php echo $_product->getDescription() ?>
+                                                    <?php echo html_entity_decode($_product->getDescription()) ?>
                                                 </div>
                                                 <!-- <div class="order-row-product-content">
                                                     <?php echo $this->escapeHtml('DELIVERED ON:') ?>
@@ -111,6 +111,11 @@
                                                             <span><?= $block->escapeHtml(__('Reorder')) ?></span>
                                                         </a>
                                                     <?php endif ?>
+                                                </div>
+                                                <div class="view-order-detail">
+                                                    <a href="<?= $block->escapeUrl($block->getViewUrl($_order)) ?>">
+                                                        <span><?= $block->escapeHtml(__('View order details')) ?></span>
+                                                    </a>
                                                 </div>
                                                 <!-- <div class="order-button-more">
                                                     <?php echo $this->escapeHtml('FIND OUT MORE') ?>
@@ -134,11 +139,7 @@
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
-                            </div>
-                            <div class="more-less">
-                                <span class="more"> <?= __('Show more') ?></span>
-                                <span class="less"> <?= __('Show less') ?></span>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
                 <?php endforeach; ?>

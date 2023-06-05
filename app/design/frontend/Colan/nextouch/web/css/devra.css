@@ -330,6 +330,10 @@
   font-weight: 600;
   color: var(--primary-blue);
 }
+.product-info-main .price-box .old-price .price {
+  display: inline-block;
+  text-decoration: line-through;
+}
 .gallery-photo-video .tns-controls {
   display: block;
 }
@@ -372,9 +376,9 @@
   width: 100%;
 }
 .amreview-submit-form .review-control-vote.control label:before {
-  width: 10px;
-  height: 10px;
-  background-size: 10px;
+  width: 20px;
+  height: 20px;
+  background-size: 20px;
 }
 .amreview-submit-form .review-control-vote.control label:not(:last-child) {
   margin-right: 10px;
@@ -558,6 +562,7 @@
   .amsearch-leftside {
   border-right: 1px solid var(--light-grey);
 }
+
 .rating-summary .rating-result {
   width: 50px;
   height: 10px;
@@ -566,6 +571,15 @@
 .rating-summary .rating-result > span {
   background-size: 10px;
 }
+.account .rating-summary .rating-result {
+  width: 60px;
+  height: 12px;
+  background-size: 12px;
+}
+.account .rating-summary .rating-result > span {
+  background-size: 12px;
+}
+
 .amsearch-products .amasty-xsearch-block-header {
   font-family: var(--heading-font);
   padding: 15px 0;
@@ -665,7 +679,16 @@
   padding: 0;
   margin-top: 5px;
   margin-bottom: 0;
+  display: flex;
+  flex-direction: column;  
 }
+.cart.table-wrapper .col.price .price-including-tax {
+  order: 2;
+}
+.cart.table-wrapper .col.price .old-price {
+  order: 1;
+}
+
 .cart.table-wrapper .col.price .price, 
 .order-items.table-wrapper .col.price .price {
   font-size: 36px !important;
@@ -1043,6 +1066,8 @@
 .block.offers .products .product-item .price-box .old-price .price {
   font-size: 18px !important;
   line-height: 22px;
+  display: inline-block;
+  text-decoration: line-through;
 }
 .checkout-cart-index
   .modal-popup-crosssell-modal
@@ -2185,14 +2210,31 @@ input[type="radio"]:checked + label:before {
   background-color: var(--light);
   color: var(--primary-green);
 }
-.old-price{
+.catalog-product-view .product-info-main .old-price {
+  text-align: right;
+}
+.cart.table-wrapper .items > .item .old-price .price {
   color: var(--primary-blue);
+  font-size: 18px !important;
+  line-height: 22px !important;
+  font-weight: 400 !important;
+  text-decoration: line-through;
+  display: inline-block !important;
+  font-family: var(--global-font) !important;
+  
 }
 tr.totals.shipping.excl{
   color: var(--primary-blue);
   font-size: 18px;
   line-height: 22px; 
   border-bottom: 1px solid var(--primary-blue);
+}
+
+.cms-delivery-service .blue-blocks-row .pagebuilder-column-group .blue-block:first-child {
+  margin-right: 30px;
+}
+.cms-delivery-service .blue-blocks-row .pagebuilder-column-group .blue-block:nth-child(2) {
+  margin-left: 30px;
 }
 
 @media (max-width: 1280px) {
@@ -2579,6 +2621,7 @@ tr.totals.shipping.excl{
   .customer-account-create .login-container div.primary {
     margin-top: 10px;
   }
+  
   .cms-raee-returns .title-crumbs-container .page-title-wrapper h1 {
     margin-bottom: 30px;
     text-align: start;
@@ -2594,9 +2637,18 @@ tr.totals.shipping.excl{
     width: 1200px;
   }
   .cms-delivery-service .blue-blocks-row .pagebuilder-column-group {
-    gap: 30px;
+    margin-bottom: 0;
+  }
+  .cms-delivery-service .blue-blocks-row .pagebuilder-column-group .blue-block  {
     margin-bottom: 30px;
   }
+  .cms-delivery-service .blue-blocks-row .pagebuilder-column-group .blue-block:first-child {
+    margin-right: 0px;
+  }
+  .cms-delivery-service .blue-blocks-row .pagebuilder-column-group .blue-block:nth-child(2) {
+    margin-left: 0px;
+  }
+
   .cms-our-services .pagebuilder-column .card-with-icon {
     max-width: 100%;
     width: 100%;
@@ -2978,6 +3030,12 @@ tr.totals.shipping.excl{
 
 .checkout-cart-index .cart-container .cart.main.actions {
   display: none;
+}
+.customer-review.view .title{
+  margin-bottom: 5px;
+}
+.customer-review.view .review-details .customer-review-rating .rating-label{
+  margin-bottom: 5px;
 }
 @media (max-width: 1024px) {
   .cart-container {
