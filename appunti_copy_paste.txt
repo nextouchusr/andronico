@@ -1,0 +1,23 @@
+PROCEDI_AT.txt
+PROCEDI_ECAT.txt
+
+./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_catalog_data_import_job
+./n98-magerun2.phar sys:cron:run nextouch_import_export_wins_product_data_import_job
+
+template.csv - WinsAttributeDataProvider    
+marchi.csv - 
+prodotti.csv
+giacenze.csv 
+
+carateritiche.csv 
+
+
+13:23 
+
+Spento flat catalog/category
+
+Import 13/06/2023
+- eliminazione prodotto 
+- marchi.csv
+- prodotti.csv giacenze.csv
+- 
