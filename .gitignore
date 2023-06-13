@@ -70,3 +70,5 @@ atlassian*
 /generated/*
 !/generated/.htaccess
 .DS_Store
+
+magentoprod_11_05_2023.sql 
