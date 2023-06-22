@@ -254,10 +254,10 @@
                                 <argument name="path" xsi:type="string">sales/guest/form</argument>
                             </arguments>
                         </block>
-                        <block class="Magento\Framework\View\Element\Html\Link\Current" name="newsletter" after="-">
+			<block class="Magento\Framework\View\Element\Html\Link\Current" name="newsletter" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Newsletter</argument>
-                                <argument name="path" xsi:type="string">newsletter/manage</argument>
+                                <argument name="path" xsi:type="string">newsletter</argument> <!-- Modifica il percorso qui -->
                             </arguments>
                         </block>
                     </block>

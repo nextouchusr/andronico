@@ -2711,7 +2711,7 @@ tr.totals.shipping.excl{
     line-height: 15px;
   }
   .page.messages{
-    margin-top: 10px;
+    margin-top: 0px;
   }
   .compare-blocks .compare-block .pagebuilder-column-group .pagebuilder-column{
     padding: 20px;
