@@ -57,9 +57,13 @@ class Validate extends Action
     {
         return reduce(function (int $daysForPickup, string $spinCode): int {
             $isSourceSpinCode = $spinCode !== PickAndPayInfo::DEFAULT_PICKUP_LOCATION;
+            //Disabilito validazione 
+            /*
             $allValid = all(function (QuoteItem $item) use ($spinCode) {
                 return $this->validateQuoteSalableQtyService->validateItem($item, $spinCode);
             }, $this->getItems());
+            */
+            $allValid = true;
 
             if ($allValid && $isSourceSpinCode) {
                 return PickAndPayInfo::STANDARD_TYPE_DAYS;
