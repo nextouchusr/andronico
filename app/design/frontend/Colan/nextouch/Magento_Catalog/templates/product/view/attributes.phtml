@@ -17,11 +17,11 @@ $_product = $block->getProduct();
                     <table class="data table additional-attributes" id="product-attribute-specs-table">
                         <tbody>
                         <?php foreach ($_additional as $_data) : ?>
-                            <tr>
+                            <!--<tr>
                                 <th class="col label group" scope="row">
                                     <?= $block->escapeHtml($_data['label']); ?>
                                 </th>
-                            </tr>
+                            </tr>-->
 
                             <?php foreach ($_data['attributes'] as $_attribute) : ?>
 			    <?php if (trim($_attribute['value']) != '0,00' && 

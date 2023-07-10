@@ -7,7 +7,7 @@
     <body>
         <referenceContainer name="columns.top">
             <container name="title-breadcrumbs-container" htmlClass="title-crumbs-container" htmlTag="div" after="page.messages">
-                <block class="Magento\Framework\View\Element\Template" name="static-title" template="Magento_Catalog::product/static-title.phtml"/>
+		    <!--<block class="Magento\Framework\View\Element\Template" name="static-title" template="Magento_Catalog::product/static-title.phtml"/>-->
             </container>
         </referenceContainer>
 
