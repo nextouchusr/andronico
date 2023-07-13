@@ -9,6 +9,7 @@ $_product = $_item->getProduct();
 $displayRegularPrice = $_product->getPriceInfo()->getPrice(RegularPrice::PRICE_CODE)->getAmount()->getValue();
 $displayFinalPrice = $_product->getPriceInfo()->getPrice(FinalPrice::PRICE_CODE)->getAmount()->getValue();
 $hasSpecialPrice = $displayFinalPrice < $displayRegularPrice;
+$hasSpecialPrice = false; // Disabilitio prezzo scontato
 ?>
 <?php if (($block->displayPriceInclTax() || $block->displayBothPrices()) && !$_item->getNoSubtotal()) : ?>
     <span class="price-including-tax" data-label="<?= $block->escapeHtmlAttr(__('Incl. Tax')) ?>">

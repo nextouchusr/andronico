@@ -3063,3 +3063,7 @@ tr.totals.shipping.excl{
   }
 
 }
+/* Disabilitio prezzo scontato */
+.old-price {
+  display: none !important;
+}

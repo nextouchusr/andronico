@@ -78,7 +78,7 @@ $_services = $block->getFormattedServiceList();
                         <div class="col price" data-th="<?= $block->escapeHtml(__('Price')) ?>">
                             <?= $block->getUnitPriceHtml($_item) ?>
 
-                            <?php if ($block->hasSpecialPrice()): ?>
+                            <?php if ($block->hasSpecialPrice() && false ): // Disabilitio prezzo scontato ?>
                                 <span class="old-price">
                                     <?= /* @noEscape */ $block->renderAmount(\Magento\Catalog\Pricing\Price\RegularPrice::PRICE_CODE, [
                                         'price_type'        => 'oldPrice',
