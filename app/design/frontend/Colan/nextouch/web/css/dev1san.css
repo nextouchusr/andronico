@@ -314,3 +314,24 @@ tr.totals, tr.total-rules {
     color: var(--primary-blue);
     border: transparent;
 }
+@media screen and (min-width: 300px) and (max-width: 768px) {
+.caption.hidden-mobile {
+    background: rgba(255, 255, 255, 0.8);
+    padding-bottom: 80px;
+    padding-top: 20px;
+}
+.home-slick-slider .caption.hidden-mobile {
+    bottom: 0px !important;
+}
+}
+.amsearch-item-container:not(.recent_searches) .amsearch-highlight, .amsearch-item-container.page a.item-name {
+    color: var(--primary-green) !important;
+}
+.amsearch-products .amsearch-highlight {
+    background-color: var(--primary-green) !important;
+}
+.material-icons span.for-mobile {
+    margin-top: -7px;
+}
+
+

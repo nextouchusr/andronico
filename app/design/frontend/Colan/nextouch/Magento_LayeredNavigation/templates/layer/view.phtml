@@ -50,8 +50,6 @@
                         endif; ?>
                     <div data-role="collapsible" class="filter-options-item">
                         <div data-role="title" class="filter-options-title">
-                            <?= $block->escapeHtml(__($filter->getName())); ?>
-
                             <?php if ($isProductAttribute && $filter->getAttributeModel()->getAttributeExplanation()): ?>
                                 <div class="filter-popup-content" data-bind="mageInit: {
                                     'Magento_Ui/js/modal/modal':{
@@ -70,6 +68,7 @@
                                 </div>
                                 <span class="info-icon" data-trigger="trigger<?= $i ?>"></span>
                             <?php endif; ?>
+                            <div class="filter-title-text"><?= $block->escapeHtml(__($filter->getName())); ?></div>
                         </div>
                         <div data-role="content" class="filter-options-content">
                             <?= $block->getChildBlock('renderer')->render($filter); ?>

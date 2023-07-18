@@ -164,19 +164,19 @@
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="conditions-of-sale" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Condizioni di vendita</argument>
-                                <argument name="path" xsi:type="string">terms-and-conditions</argument>
+				<argument name="path" xsi:type="string">terms-and-conditions/condizioni-vendita</argument>
                             </arguments>
                         </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="conditions-of-use" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Condizioni d'uso del sito</argument>
-                                <argument name="path" xsi:type="string">terms-and-conditions</argument>
+				<argument name="path" xsi:type="string">terms-and-conditions/condizioni-uso</argument>
                             </arguments>
                         </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="payments-security" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Sicurezza dei pagamenti</argument>
-                                <argument name="path" xsi:type="string">terms-and-conditions</argument>
+				<argument name="path" xsi:type="string">terms-and-conditions/pagamenti</argument>
                             </arguments>
                         </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="return-rights" after="-">
@@ -187,8 +187,8 @@
                         </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="legal-notice" after="-">
                             <arguments>
-                                <argument name="label" xsi:type="string" translate="true">Avvertenza legale</argument>
-                                <argument name="path" xsi:type="string">terms-and-conditions</argument>
+				    <argument name="label" xsi:type="string" translate="true">Avvertenza legale</argument>
+                                <argument name="path" xsi:type="string">terms-and-conditions/legal</argument>
                             </arguments>
                         </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="privacy-policy" after="-">
@@ -200,7 +200,7 @@
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="cookies-policy" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Utilizzo dei cookies</argument>
-                                <argument name="path" xsi:type="string">cookies-policy</argument>
+                                <argument name="path" xsi:type="string">enable-cookies</argument>
                             </arguments>
                         </block>
                     </block>
@@ -282,24 +282,24 @@
                                 <argument name="path" xsi:type="string">about-us</argument>
                             </arguments>
                         </block>
-                        <block class="Magento\Framework\View\Element\Html\Link\Current" name="work-with-us" after="-">
+			<!--<block class="Magento\Framework\View\Element\Html\Link\Current" name="work-with-us" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Lavora con noi</argument>
                                 <argument name="path" xsi:type="string">terms-and-conditions</argument>
                             </arguments>
-                        </block>
+			</block>-->
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="our-brands" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">I nostri brand</argument>
                                 <argument name="path" xsi:type="string">brands</argument>
                             </arguments>
                         </block>
-                        <block class="Magento\Framework\View\Element\Html\Link\Current" name="our-products" after="-">
+			<!--<block class="Magento\Framework\View\Element\Html\Link\Current" name="our-products" after="-">
                             <arguments>
-                                <argument name="label" xsi:type="string" translate="true">Catalogo prodotti</argument>
-                                <argument name="path" xsi:type="string">information-technology/hardware.html</argument>
+                                <argument name="label" xsi:type="string" translate="true">iVolantino offerte</argument>
+                                <argument name="path" xsi:type="string">https://www2.andronico.it/pdfviewer/volantino-metaprezzo/?auto_viewer=true#page=&zoom=auto&pagemode=none</argument>
                             </arguments>
-                        </block>
+			</block>-->
                     </block>
                 </container>
             </container>

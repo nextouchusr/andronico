@@ -3,34 +3,31 @@
 <!-- TODO: Change placeholder texts -->
 <?php if ($block->getOrderId()) : ?>
     <div class="checkout-success">
-        <h2><?= __('Order placed, thank you!') ?></h2>
+
+        <h2><?= __('ORDINE EFFETTUATO, GRAZIE!') ?></h2>
 
         <p>
             <?= __(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                ea commodo consequat.'
+                "Siamo felici di averti come cliente e siamo qui per offrirti un'esperienza di shopping eccezionale. La tua fiducia in noi è molto importante, e ci impegniamo a fornirti prodotti di alta qualità e un servizio clienti impeccabile."
             ) ?>
         </p>
         <br>
 
         <p>
             <?= __(
-                'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                anim id est laborum.'
+                "Se hai bisogno di ulteriori informazioni o hai domande specifiche riguardo al tuo ordine, non esitare a contattarci. Il nostro team di assistenza clienti sarà lieto di fornirti tutto il supporto necessario. Siamo qui per garantire che tu abbia un'esperienza di acquisto piacevole e senza stress."
             ) ?>
         </p>
 
         <div class="checkout-success__icons">
             <div class="checkout-success__icon">
                 <img src="<?= $block->getViewFileUrl('Magento_Checkout::images/checkout/echo_choice_icon.png') ?>"/>
-                <p><?= __("The transport and packaging of your item\nis environmentally friendly.") ?></p>
+                <p><?= __("Il trasporto ed il packaging del tuo ordine sono green.") ?></p>
             </div>
 
             <div class="checkout-success__icon">
                 <img src="<?= $block->getViewFileUrl('Magento_Checkout::images/checkout/location_icon.png') ?>"/>
-                <p><?= __("Track the location of\nyour parcel at any time.") ?></p>
+                <p><?= __("Traccia il tuo ordine in ogni momento.") ?></p>
             </div>
         </div>
     </div>

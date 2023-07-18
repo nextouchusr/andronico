@@ -28,7 +28,7 @@ $formData = $block->getFormData();
 
     <div class="col1 customer-login-left-block">
         <h2><?= $block->escapeHtml(__('Create account')) ?></h2>
-        <div class="form-create-desc"><span class="createinfo-trigger" data-trigger="createinfo"><?= $block->escapeHtml(__('Scopri i vantaggi')) ?></span>
+        <div class="form-create-desc"><?= $block->escapeHtml(__('Scopri i vantaggi')) ?>
             <?= $block->escapeHtml(__(' della registrazione nel mondo Andronico. Sei già cliente? ')) ?><a href="<?= $block->escapeUrl($block->getUrl('customer/account/login')) ?>" class="action login"><span><?= $block->escapeHtml(__('Accedi')) ?></span></a>
                             </div>
         <div class="form-create-info-popup" data-bind="mageInit: {

@@ -2164,7 +2164,7 @@ input[type="radio"]:checked + label:before {
   text-decoration: none;
 }
 .catalog-product_compare-index .table-comparison.showdifference tr.different{
-  display: unset;
+  display: table;
 }
 .catalog-product-view .related-swiper-slider .product-items .product-item .product-item-info .product-item-details{
   gap: 10px;
@@ -3060,6 +3060,9 @@ tr.totals.shipping.excl{
   .block.discount .field label.label, .block.giftcard .field label.label {
     background-position: center left;
     padding: 10px 0 10px 50px!important;
+  }
+  .catalog-product_compare-index .table-comparison-container .table-comparison.showdifference tr.different{
+    display: table-row;
   }
 
 }
