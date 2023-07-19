@@ -2,14 +2,39 @@
 
 namespace Elightwalk\Core\Plugin\Wishlist\Controller\Index;
 
-use Magento\Framework\App\Action\Action;
+use Magento\Wishlist\Controller\Index\Add as MagentoAdd;
+use Magento\Framework\App\Response\RedirectInterface;
+use Magento\Framework\Controller\Result\Redirect;
 
 class Add
 {
-    public function aroundExecute(Action $controller, callable $proceed)
+    /**
+     * @var RedirectInterface
+     */
+    private $_redirectIntrface;
+
+    /**
+     * __construct
+     *
+     * @param RedirectInterface $redirectIntrface
+     */
+    public function __construct(
+        RedirectInterface $redirectIntrface
+    ) {
+        $this->_redirectIntrface = $redirectIntrface;
+    }
+
+    /**
+     * AfterExecute
+     *
+     * @param MagentoAdd $subject
+     * @param Redirect $resultRedirect
+     * @return Redirect
+     */
+    public function afterExecute(MagentoAdd $subject, Redirect $resultRedirect)
     {
-        return $proceed();
-        //$resultRedirect->setUrl($this->_redirect->getRefererUrl());
-        //return $resultRedirect;
+        $resultRedirect->setUrl($this->_redirectIntrface->getRefererUrl());
+
+        return $resultRedirect;
     }
 }

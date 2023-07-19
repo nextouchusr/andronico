@@ -2221,7 +2221,7 @@ a {
 .product-item .actions-secondary .action.towishlist.active:before,
 .product-items .action.towishlist.active:before,
 .products.list.items .action.towishlist.active:before{
-     background: url(../images/ico-check-whiteheart.svg) no-repeat center ;
+     background: url(../images/ico-whiteheart.svg) no-repeat center ;
 }
 
 @media(max-width: 948px) {

@@ -6,6 +6,7 @@
  * phpcs:ignoreFile
  */
 $products = $block->getProducts();
+$helper   = $this->helper(\Elightwalk\Core\Helper\Data::class);
 ?>
 
 <?php if (count($products)): ?>
@@ -82,14 +83,23 @@ $products = $block->getProducts();
 
                                             <div data-role="add-to-links" class="actions-secondary">
                                                 <?php if ($block->isWishlistAllowed()) : ?>
-                                                    <a href="#"
-                                                       class="action towishlist"
-                                                       title="<?= $escaper->escapeHtml(__('Add to Wish List')); ?>"
-                                                       aria-label="<?= $escaper->escapeHtml(__('Add to Wish List')); ?>"
-                                                       data-post='<?= $escaper->escapeHtml($product['wishlist_post_params']); ?>'
-                                                       data-action="add-to-wishlist"
-                                                       role="button">
-                                                    </a>
+                                                    <?php if ($helper->getCustomerWishlist($product['entity_id'], true)) : ?>
+                                                        <a href="javascript:void(0)"
+                                                        class="action towishlist active"
+                                                        title="<?= $escaper->escapeHtml(__('Add to Wish List')); ?>"
+                                                        aria-label="<?= $escaper->escapeHtml(__('Add to Wish List')); ?>"
+                                                        role="button">
+                                                        </a>
+                                                    <?php else : ?>
+                                                        <a href="#"
+                                                        class="action towishlist"
+                                                        title="<?= $escaper->escapeHtml(__('Add to Wish List')); ?>"
+                                                        aria-label="<?= $escaper->escapeHtml(__('Add to Wish List')); ?>"
+                                                        data-post='<?= $escaper->escapeHtml($product['wishlist_post_params']); ?>'
+                                                        data-action="add-to-wishlist"
+                                                        role="button">
+                                                        </a>
+                                                    <?php endif; ?>
                                                 <?php endif; ?>
 
                                                 <a href="#"

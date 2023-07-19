@@ -198,6 +198,17 @@
   background: transparent;
   border: 1px solid var(--primary-blue);
 }
+.product-info-main .action.towishlist.active{
+  background-color: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+}
+.product-info-main .action.towishlist.active .for-desktop{
+  display: none;
+}
+.product-info-main .action.towishlist.active .for-mobile{
+  display: block;
+}
+
 .product-info-main .product-addto-links a img {
   width: 24px;
   height: 24px;
@@ -2898,6 +2909,21 @@ tr.totals.shipping.excl{
     margin-bottom: 15px;
     display: block;
   }
+  .product-info-main .action.towishlist.active{
+    background-color: #fff;
+    border: 1px solid #fff;
+  }
+  .product-info-main .action.towishlist.active .for-mobile{
+    display: none;
+  }
+  .product-info-main .action.towishlist.active .for-desktop{
+    display: block;
+    margin-top: -7px;
+  }
+  
+  
+
+
 }
 @media (max-width: 560px) {
   .cms-our-services .choose-product .choose-item {
