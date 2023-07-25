@@ -6,7 +6,7 @@
 		<css src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"  src_type="url" rel="stylesheet" type="text/css"  />
 		<css src="css/dev1san.css" />
         <css src="css/dev2adriano.css" />
-        <css src="css/andronico-new.css" />
+        <css src="css/andronico-new.css" order="50" />
         <css src="css/fonts.css" order="100" />
         <css src="css/devj.css" order="200" />
         <css src="css/devr.css" order="300"/>

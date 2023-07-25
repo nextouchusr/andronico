@@ -2,12 +2,13 @@ define([
     'jquery',
     'underscore',
     'uiRegistry',
+    'mage/translate',
     'quickSearch-original',
     'mage/cookies',
     'pageCache',
     'amSearchSlick',
     'catalogAddToCart'
-], function ($, _, uiRegistry) {
+], function ($, _, uiRegistry, $t) {
     'use strict';
 
     $.widget('mage.amXsearchFormMini', $.mage.quickSearch, {
@@ -698,7 +699,7 @@ define([
             });
 
             $(wrapper).prepend('<div class="categories-search">' +
-                '<div class="current"><div class="dot-icon"><span></span><span></span><span></span></div> All Categories</div>' +
+                '<div class="current"><div class="dot-icon"><span></span><span></span><span></span></div>' + $t('All Categories') +'</div>' +
                 '<input type="hidden" name="category_id" value="2"/>' +
                 '<ul class="list"></ul>' +
             '</div>');

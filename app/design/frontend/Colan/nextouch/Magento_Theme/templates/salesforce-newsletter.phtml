@@ -1,0 +1,164 @@
+<?php //$ipsToShow = ["93.146.114.18", "103.209.67.172", "188.152.171.247"]; ?>
+<?php //if (in_array($_SERVER['REMOTE_ADDR'], $ipsToShow)) : ?>
+    <?php $sideaConfig = $this->helper(\Nextouch\Sidea\Helper\SideaConfig::class); ?>
+    <div id="salesforce-newsletter-popup">
+        <form class="form contact salesforce-newsletter"
+            action="<?= $block->escapeUrl($sideaConfig->getContactActionUrl()); ?>"
+            id="salesforce-newsletter"
+            method="POST"
+            data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')); ?>"
+            data-mage-init='{"validation":{}}'>
+
+            <div class="form-content">
+                <fieldset class="fieldset">
+
+		    <input type=hidden name="oid" value="<?= $block->escapeHtml($sideaConfig->getContactOriginId()); ?>">
+                    <input type=hidden name="retURL" value="https://www.andronico.it/">
+		    
+                    <div class="promo">
+                        <h3>Per te subito 10€ di sconto sul tuo primo acquisto*</h3>
+                    </div>
+                    <div class="nearest-store-section">
+                        <label><strong><?= __("Dove preferiresti acquistare:"); ?></strong></label>
+                    </div>
+                    <div class="field-choice-group">
+                        <div class="field choice">
+                            <!--<input id="store_brescia" name="nearest_store" type="radio" value="brescia" />-->
+                            <input type="radio" name="Store__c" id="Brescia" value="Brescia">
+                            <label class="label" for="Brescia"><?= $block->escapeHtml(__("Store di Brescia")); ?></label>
+                        </div>
+                        <div class="field choice">
+			    <!--<input id="store_monza" name="nearest_store" type="radio" value="monza" />-->
+                            <input type="radio" name="Store__c" id="Monza" value="Monza">
+                            <label class="label" for="Monza"><?= $block->escapeHtml(__("Store di Monza")); ?></label>
+                        </div>
+                        <div class="field choice">
+			    <!--<input id="store_website" name="nearest_store" type="radio" value="website" />-->
+                            <input type="radio" name="Store__c" id="Ecommerce" value="Ecommerce">
+                            <label class="label" for="Ecommerce"><?= $block->escapeHtml(__("Acquisto dal sito web")); ?></label>
+                        </div>
+                    </div>
+                    <div class="field name required">
+                        <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')); ?></span></label>
+                        <div class="control">
+                            <input name="first_name"
+                                id="nome"
+                                title="<?= $block->escapeHtmlAttr(__('Name')); ?>"
+                                class="input-text"
+                                placeholder="<?= $block->escapeHtmlAttr(__('Name')); ?>"
+                                type="text"
+                                data-validate="{required:true}" />
+                        </div>
+                    </div>
+                    <div class="field subject required">
+                        <label class="label" for="subject"><span><?= $block->escapeHtml(__('Last name')); ?></span></label>
+                        <div class="control">
+                            <input name="last_name"
+                                id="cognome"
+                                title="<?= $block->escapeHtmlAttr(__('Last name')); ?>"
+                                class="input-text"
+                                type="text"
+                                placeholder="<?= $block->escapeHtml(__('Last name')); ?>"
+                                data-validate="{required:true}" />
+                        </div>
+                    </div>
+                    <div class="field email required">
+                        <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')); ?></span></label>
+                        <div class="control">
+                            <input name="email"
+                                id="email"
+                                title="<?= $block->escapeHtmlAttr(__('Email')); ?>"
+                                class="input-text"
+                                type="email"
+                                placeholder="<?= $block->escapeHtml(__('Email')); ?>"
+                                data-validate="{required:true, 'validate-email':true}" />
+                        </div>
+                    </div>
+                    <div class="field phone required">
+                        <label class="label" for="phone"><span><?= $block->escapeHtml(__('Phone')); ?></span></label>
+                        <div class="control">
+                            <input name="phone"
+                                id="phone"
+                                title="<?= $block->escapeHtmlAttr(__('Phone')); ?>"
+                                class="input-text"
+                                type="text"
+                                placeholder="<?= $block->escapeHtml(__('Phone')); ?>"
+                                data-validate="{required:true}" />
+                        </div>
+		    </div>
+        <input type="hidden" id="lead_source" name="lead_source" value="Newsletter">
+        <input  id="CuinAgreeLead__c" name="CuinAgreeLead__c" type="checkbox" value="1" checked hidden/>
+	<input  id="CuinAgreePersonalDataLead__c" name="CuinAgreePersonalDataLead__c" type="checkbox" value="1" checked hidden/>
+	<input  id="Profiling__c" name="Profiling__c" type="checkbox" value="1" checked hidden/>
+                    <div class="field choice required">
+                        <input type="checkbox" class="required" id="salesforce-acceptance" name="salesforce-acceptance" data-validate="{required:true}" required="required" value="test" />
+                        <label for="salesforce-acceptance">
+                            <?= __("AI sensi e per gll effetti degll articol 7, 13 e 23 del DL 196/2003 e dell'articolo 13 del Regolamento (UE) 2016/679 dichiaro di aver preso visione dell'informativa sulla Privacy e acconsento al trattamento del miei dati personal. Letta I'Informativa Privacy che precede dichiaro di voler procedere con I'iscrizione al Servizio gratuito di Newsletter."); ?>
+                        </label>
+                        <span class="salesforce-acceptance-error"></span>
+                    </div>
+                    <div class="field choice">
+                        <input type="checkbox" id="salesforce-open-again" name="salesforce-open-again" />
+                        <label for="salesforce-open-again"><?= __("Non mostrare più questo popup"); ?></label>
+                    </div>
+                </fieldset>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <input type="hidden" name="hideit" id="hideit" value="" />
+                        <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')); ?>" class="action submit primary">
+                            <span><?= $block->escapeHtml(__('Iscriviti')); ?></span>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <p style="font-size: small;">* L'offerta è valida per acquisti superiori a 100€. Da tali condizioni sono esclusi i prodotti in volantino e i prodotti partecipanti alle promozioni "Sottocosto", "Prendi 3 Paghi 2", "Il meno caro lo paghi la metà"</p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        require(['jquery', 'Magento_Ui/js/modal/modal'],
+            function($, modal) {
+                $(document).ready(function() {
+                    var localStorageValue = localStorage.getItem('salesforceNewsletterPopup');
+                    var options = {
+                            type: 'popup',
+                            responsive: true,
+                            innerScroll: true,
+                            modalClass: 'salesforce-popup',
+                            clickableOverlay: false,
+                            title: '<?= __("Iscriviti alla Newsletter"); ?>',
+                            buttons: []
+                    };
+                    var popup = modal(options, $('#salesforce-newsletter-popup'));
+
+
+                    if(localStorageValue != 'shown') {
+//                        var popup = modal(options, $('#salesforce-newsletter-popup'));
+                        $('#salesforce-newsletter-popup').modal('openModal');
+
+                        $("form#salesforce-newsletter").submit(function(e) {
+                            if(!$("#salesforce-acceptance").is(":checked")) {
+                                $(".salesforce-acceptance-error").html("<?= __("Please accept the conditions"); ?>");
+                                $(".salesforce-acceptance-error").css("color", "red");
+                                e.preventDefault();
+                            }
+                        });
+                    } else {
+//                        console.log(localStorage.getItem('salesforceNewsletterPopup'));
+                        $("#salesforce-newsletter-popup").modal('closeModal');
+                    }
+                    $("#salesforce-open-again").on("click", function() {
+                        localStorage.setItem('salesforceNewsletterPopup', 'shown');
+                        $("#salesforce-newsletter-popup").modal('closeModal');
+                    });
+                    $(".block-collapsible-nav .newsletter-subscriptions").on("click", function() {
+                        $('#salesforce-newsletter-popup').modal('openModal');
+                    });
+                    $("#footer-newsletter-link").on("click", function() {
+                        $('#salesforce-newsletter-popup').modal('openModal');
+                    });
+                });
+            });
+    </script>
+<?php //endif; ?>

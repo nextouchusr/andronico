@@ -56,13 +56,15 @@ $hasImages = count($images) > 0;
                     }
                 });
 
-                sliderGallery.events.on('dragEnd', function () {
-                    detailsGalleryDragMove = false;
-                });
+                if(sliderGallery != undefined && sliderGallery != 'undefined') {
+                    sliderGallery.events.on('dragEnd', function () {
+                        detailsGalleryDragMove = false;
+                    });
 
-                sliderGallery.events.on('dragMove', function () {
-                    detailsGalleryDragMove = true;
-                });
+                    sliderGallery.events.on('dragMove', function () {
+                        detailsGalleryDragMove = true;
+                    });
+                }
 
                 lightGallery(document.getElementById('product-gallery'), {
                     speed: 500,

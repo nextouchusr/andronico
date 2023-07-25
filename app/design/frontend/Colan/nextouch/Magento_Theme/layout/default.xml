@@ -18,6 +18,11 @@
                     </arguments>
                 </block>
             </container>
+            <block class="Magento\Cms\Block\Block" name="header-volantino-icon">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header-volantino-icon</argument>
+                </arguments>
+            </block>
         </referenceContainer>
 
         <referenceContainer name="page.top">
@@ -254,16 +259,31 @@
                                 <argument name="path" xsi:type="string">sales/guest/form</argument>
                             </arguments>
                         </block>
-			<block class="Magento\Framework\View\Element\Html\Link\Current" name="newsletter" after="-">
+			            <!-- <block class="Magento\Framework\View\Element\Html\Link\Current" name="newsletter" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Newsletter</argument>
-                                <argument name="path" xsi:type="string">newsletter</argument> <!-- Modifica il percorso qui -->
+                                <argument name="path" xsi:type="string">newsletter</argument>
                             </arguments>
-                        </block>
+			            </block> -->
+                        <block class="Magento\Framework\View\Element\Html\Link\Current" name="newsletter" after="-">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">Newsletter</argument>
+                                <argument name="path" xsi:type="string">newsletter</argument>
+                                <argument name="attributes" xsi:type="array">
+                                    <item name="onclick" xsi:type="string" translate="false">return false</item>
+                                    <item name="id" xsi:type="string">footer-newsletter-link</item>
+                                </argument>
+                            </arguments>
+			            </block>
                     </block>
                 </container>
                 <container name="footer-links-column-four" htmlTag="div" htmlClass="footer-links-column-four">
                     <container name="footer-links-four-title" htmlTag="div" htmlClass="footer-links-title">
+                         <block class="Magento\Framework\View\Element\Text" name="footer-links-four-title-name">
+                            <arguments>
+                                <argument name="text" xsi:type="string" translate="true">Su di noi</argument>
+                            </arguments>
+                        </block>
                     </container>
                     <block class="Magento\Framework\View\Element\Html\Links" name="footer.links.column4">
                         <arguments>
@@ -290,16 +310,16 @@
 			</block>-->
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="our-brands" after="-">
                             <arguments>
-                                <argument name="label" xsi:type="string" translate="true">I nostri brand</argument>
+                                <argument name="label" xsi:type="string" translate="true">Tutti i brand</argument>
                                 <argument name="path" xsi:type="string">brands</argument>
                             </arguments>
                         </block>
-			<!--<block class="Magento\Framework\View\Element\Html\Link\Current" name="our-products" after="-">
+			<block class="Magento\Framework\View\Element\Html\Link\Current" name="our-store" after="-">
                             <arguments>
-                                <argument name="label" xsi:type="string" translate="true">iVolantino offerte</argument>
-                                <argument name="path" xsi:type="string">https://www2.andronico.it/pdfviewer/volantino-metaprezzo/?auto_viewer=true#page=&zoom=auto&pagemode=none</argument>
+                                <argument name="label" xsi:type="string" translate="true">I nostri store</argument>
+				<argument name="path" xsi:type="string">store</argument>
                             </arguments>
-			</block>-->
+			</block>
                     </block>
                 </container>
             </container>
@@ -314,6 +334,7 @@
         <move element="breadcrumbs" destination="title-breadcrumbs-container" after="-"/>
         <referenceContainer name="before.body.end">
             <block class="Magento\Framework\View\Element\Template" name="page_globaljs" template="Magento_Theme::globaljs.phtml" />
+            <block class="Magento\Contact\Block\ContactForm" after="-" name="salesforce-newsletter-popup" template="Magento_Theme::salesforce-newsletter.phtml" />
         </referenceContainer>
     </body>
 </page>

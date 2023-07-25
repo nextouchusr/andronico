@@ -43,8 +43,14 @@ class CreateOrUpdateCustomer
         if ($isSuccess) {
             $customer->setCustomAttribute(CustomerInterface::CUSTOMER_SYNC_FAILURES, 0);
         } else {
-            $failures = (int) $customer->getCustomAttribute(CustomerInterface::CUSTOMER_SYNC_FAILURES)->getValue();
-            $customer->setCustomAttribute(CustomerInterface::CUSTOMER_SYNC_FAILURES, ++$failures);
+            //$failures = (int) $customer->getCustomAttribute(CustomerInterface::CUSTOMER_SYNC_FAILURES)->getValue();
+            //$customer->setCustomAttribute(CustomerInterface::CUSTOMER_SYNC_FAILURES, ++$failures);
+
+            $failures = $customer->getCustomAttribute(CustomerInterface::CUSTOMER_SYNC_FAILURES);
+            if ($failures && $failures->getValue()) {
+                $failures = (int) $failures->getValue();
+                $customer->setCustomAttribute(CustomerInterface::CUSTOMER_SYNC_FAILURES, ++$failures);
+            }
         }
 
         $this->customerRepository->save($customer);

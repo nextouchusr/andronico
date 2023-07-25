@@ -225,8 +225,14 @@
                     </block>
                     <block class="Magento\Framework\View\Element\Html\Link\Current" name="our-brands" after="-">
                         <arguments>
-                            <argument name="label" xsi:type="string" translate="true">I nostri brand</argument>
+                            <argument name="label" xsi:type="string" translate="true">Tutti i Brand</argument>
                             <argument name="path" xsi:type="string">brands</argument>
+                        </arguments>
+                    </block>
+		    <block class="Magento\Framework\View\Element\Html\Link\Current" name="our-brands" after="-">
+                        <arguments>
+                            <argument name="label" xsi:type="string" translate="true">I nostri store</argument>
+                            <argument name="path" xsi:type="string">store</argument>
                         </arguments>
                     </block>
                     <block class="Magento\Framework\View\Element\Html\Link\Current" name="our-products" after="-">

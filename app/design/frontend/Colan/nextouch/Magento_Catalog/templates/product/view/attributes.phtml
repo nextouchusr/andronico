@@ -3,6 +3,11 @@
 
 $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
 $_product = $block->getProduct();
+
+function isURL($string) {
+    return filter_var($string, FILTER_VALIDATE_URL) !== false;
+}
+
 ?>
 
 <?php if ($_additional = $block->getAdditionalData()) : ?>
@@ -33,7 +38,15 @@ $_product = $block->getProduct();
                                         <?= $block->escapeHtml($_attribute['label']); ?>
                                     </th>
                                     <td class="col data" data-th="<?= $block->escapeHtmlAttr($_attribute['label']); ?>">
-                                        <?= $_helper->productAttribute($_product, $_attribute['value'], $_attribute['code']); ?>
+                <?php
+                $attributeValue = $_helper->productAttribute($_product, $_attribute['value'], $_attribute['code']);
+
+                if (isURL($attributeValue)) {
+                    echo '<a href="' . htmlspecialchars($attributeValue) . '">' . __('Visualizza') . '</a>';
+                } else {
+                    echo strip_tags(htmlspecialchars($attributeValue));
+                }
+                ?>
                                     </td>
 				</tr>
                             <?php endif; ?>

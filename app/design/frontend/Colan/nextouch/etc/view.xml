@@ -336,7 +336,7 @@
                 <var name="options">
                     <var name="products">
                         <var name="default">
-                            <var name="slidesToShow">2</var>
+                            <var name="slidesToShow">1</var>
                         </var>
                         <var name="continuous">
                             <var name="slidesToShow">2</var>

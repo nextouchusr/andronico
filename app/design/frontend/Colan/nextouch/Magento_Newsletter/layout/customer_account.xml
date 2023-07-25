@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer-account-navigation-newsletter-subscriptions-link">
+            <arguments>
+                <argument name="attributes" xsi:type="array">
+                    <item name="onclick" xsi:type="string" translate="false">return false</item>
+                    <item name="class" xsi:type="string">newsletter-subscriptions</item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <!-- <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Customer\Block\Account\SortLinkInterface" ifconfig="newsletter/general/active" name="customer-account-navigation-newsletter-subscriptions-popup">
+                <arguments>
+                    <argument name="attributes" xsi:type="array">
+                        <item name="onclick" xsi:type="string" translate="false">return false</item>
+                        <item name="class" xsi:type="string">newsletter-subscriptions</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock> -->
+    </body>
+</page>
