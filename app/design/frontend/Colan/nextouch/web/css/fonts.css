@@ -27,12 +27,12 @@
     font-style: normal;
     font-display: swap;
 }
-
+/*
 @font-face {
     font-family: 'ProximaNova';
-    src: url('fonts/proximanova/ProximaNova-Bold.otf') format('otf')
+    src: url('fonts/proximanova/ProximaNova-Bold.otf') format('opentype'),
+         url('fonts/proximanova/ProximaNova-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-}
-
+} */

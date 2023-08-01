@@ -24,6 +24,7 @@ $_product = $block->getProduct();
             </div>
             <?= $block->getChildHtml('product.info.subtitle') ?>
             <div class="product-info-main-right">
+                <?= $block->getChildHtml('product.price.final.wrapper') ?>
                 <?= $block->getChildHtml('product.info.secondary.wrapper') ?>
                 <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2') : ?>
                     <?= $block->getChildChildHtml('options_container') ?>

@@ -13,7 +13,8 @@ function isURL($string) {
 <?php if ($_additional = $block->getAdditionalData()) : ?>
     <div id="product-attributes-collapsible">
         <div data-role="title">
-            <h2 class="text-center text-sm-start"><?= __('Features'); ?></h2>
+            <span class="chart-icon"><img src="<?= $block->getViewFileUrl('images/devices.svg'); ?>" width="24" alt="chart-icon"/></span>
+            <h2 class="text-center text-sm-start"><?= __('Feature'); ?></h2>
         </div>
 
         <div data-role="content" class="more-less-content">

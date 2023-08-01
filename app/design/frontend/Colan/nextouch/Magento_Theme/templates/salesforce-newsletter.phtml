@@ -3,18 +3,25 @@
     <?php $sideaConfig = $this->helper(\Nextouch\Sidea\Helper\SideaConfig::class); ?>
     <div id="salesforce-newsletter-popup">
         <form class="form contact salesforce-newsletter"
+            action="https://cloud.email.andronico.it/newslettertyp"
+            id="salesforce-newsletter"
+            method="POST"
+            data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')); ?>"
+            data-mage-init='{"validation":{}}'>
+<?php /*
+        <form class="form contact salesforce-newsletter"
             action="<?= $block->escapeUrl($sideaConfig->getContactActionUrl()); ?>"
             id="salesforce-newsletter"
             method="POST"
             data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')); ?>"
             data-mage-init='{"validation":{}}'>
-
+ */ ?>
             <div class="form-content">
                 <fieldset class="fieldset">
 
-		    <input type=hidden name="oid" value="<?= $block->escapeHtml($sideaConfig->getContactOriginId()); ?>">
-                    <input type=hidden name="retURL" value="https://www.andronico.it/">
-		    
+		    <!--<input type=hidden name="oid" value="<?= $block->escapeHtml($sideaConfig->getContactOriginId()); ?>">
+                    <input type=hidden name="retURL" value="https://www.andronico.it/">-->
+		    <input type="hidden" name="submitted" value="true">
                     <div class="promo">
                         <h3>Per te subito 10€ di sconto sul tuo primo acquisto*</h3>
                     </div>
@@ -97,10 +104,6 @@
                         </label>
                         <span class="salesforce-acceptance-error"></span>
                     </div>
-                    <div class="field choice">
-                        <input type="checkbox" id="salesforce-open-again" name="salesforce-open-again" />
-                        <label for="salesforce-open-again"><?= __("Non mostrare più questo popup"); ?></label>
-                    </div>
                 </fieldset>
                 <div class="actions-toolbar">
                     <div class="primary">
@@ -110,6 +113,10 @@
                         </button>
                     </div>
                 </div>
+                    <!--<div class="field choice" style="margin-bottom:12px">
+                        <input type="checkbox" id="salesforce-open-again" name="salesforce-open-again" />
+                        <label for="salesforce-open-again"><?= __("Non mostrare più questo popup"); ?></label>
+                    </div>-->
                 <div>
                     <p style="font-size: small;">* L'offerta è valida per acquisti superiori a 100€. Da tali condizioni sono esclusi i prodotti in volantino e i prodotti partecipanti alle promozioni "Sottocosto", "Prendi 3 Paghi 2", "Il meno caro lo paghi la metà"</p>
                 </div>
@@ -135,14 +142,17 @@
 
                     if(localStorageValue != 'shown') {
 //                        var popup = modal(options, $('#salesforce-newsletter-popup'));
-                        $('#salesforce-newsletter-popup').modal('openModal');
 
+                        $('#salesforce-newsletter-popup').modal('openModal');
+                        localStorage.setItem('salesforceNewsletterPopup', 'shown');
                         $("form#salesforce-newsletter").submit(function(e) {
                             if(!$("#salesforce-acceptance").is(":checked")) {
                                 $(".salesforce-acceptance-error").html("<?= __("Please accept the conditions"); ?>");
                                 $(".salesforce-acceptance-error").css("color", "red");
                                 e.preventDefault();
-                            }
+			    } else {
+                                localStorage.setItem('salesforceNewsletterPopup', 'shown');
+			    }
                         });
                     } else {
 //                        console.log(localStorage.getItem('salesforceNewsletterPopup'));

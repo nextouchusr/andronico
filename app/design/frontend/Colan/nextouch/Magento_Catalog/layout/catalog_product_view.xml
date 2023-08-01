@@ -40,6 +40,13 @@
                                 </block> -->
                             </block>
                             <container name="product.info.secondary.wrapper" htmlTag="div" htmlClass="product-secondary-wrapper"/>
+                             <block class="Magento\Catalog\Pricing\Render" name="product.price.final.wrapper" as="product.price.final.wrapper">
+                                <arguments>
+                                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                                    <argument name="price_type_code" xsi:type="string">final_price</argument>
+                                    <argument name="zone" xsi:type="string">item_view</argument>
+                                </arguments>
+                            </block>
                         </referenceBlock>
 
                     </referenceContainer>
@@ -108,7 +115,8 @@
         <referenceBlock name="view.addto.compare" remove="true"/>
         <referenceBlock name="product.info.mailto" remove="true"/>
 
-        <move element="page.main.title" destination="product.info" before="-"/>
+        <!-- <move element="page.main.title" destination="product.info" before="-"/> -->
+        <move element="page.main.title" destination="content" before="-"/>
         <move element="product.info.subtitle" destination="page.main.title" after="-"/>
         <move element="product.info.overview.mobile" destination="page.main.title" after="product.info.subtitle"/>
 
@@ -133,6 +141,8 @@
 
         <move element="breadcrumbs" destination="page.top" after="-"/>
         <move element="product.info.details.gallery" destination="product.info.media.wrapper" after="product.info.media"/>
-        <move element="product.price.final" destination="page.main.title" />
+        <!-- <move element="product.price.final" destination="page.main.title" /> -->
+        <referenceBlock name="product.price.final" remove="true"/>
+        
     </body>
 </page>
