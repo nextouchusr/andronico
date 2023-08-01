@@ -3,19 +3,4 @@
     <type name="Magento\Wishlist\Controller\Index\Add">
         <plugin name="add_to_wishlist_plugin" type="Elightwalk\Core\Plugin\Wishlist\Controller\Index\Add" sortOrder="20" />
     </type>
-    <!-- <type name="Magento\Catalog\Model\Config">
-        <plugin name="Elightwalk_Core::addCustomOptions" type="Elightwalk\Core\Plugin\Catalog\Model\Config" sortOrder="1" />
-    </type> -->
-    <!-- <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
-        <plugin name="Elightwalk_Core::addPriceDecendingFilterInToolbar" type="Elightwalk\Core\Plugin\Catalog\Block\Product\ProductList\Toolbar" sortOrder="1" />
-    </type> -->
-    <!-- <type name="Magento\Elasticsearch\Model\Adapter\FieldMapperInterface">
-        <plugin name="Elightwalk_Core_sorting_elastic_fieldmapper" type="Elightwalk\Core\Plugin\Elasticsearch\Model\Adapter\FieldMapperInterface" sortOrder="1" />
-    </type> -->
-    <!-- <type name="Magento\Elasticsearch\Model\Adapter\BatchDataMapper\ProductDataMapper">
-        <plugin name="Elightwalk_Core_sorting_elastic_productdatamapper" type="Elightwalk\Core\Plugin\Elasticsearch\Model\Adapter\BatchDataMapper\ProductDataMapper" sortOrder="1" />
-    </type> -->
-    <!-- <type name="Magento\Catalog\Model\Category">
-        <plugin name="Elightwalk_Core_sorting_default_sort_order" type="Elightwalk\Core\Plugin\Catalog\Model\Category" sortOrder="1" />
-    </type> -->
 </config>

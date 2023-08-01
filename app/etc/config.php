@@ -473,6 +473,7 @@ return [
         'Dotdigitalgroup_Enterprise' => 0,
         'Dotdigitalgroup_Sms' => 0,
         'Elightwalk_Core' => 1,
+        'Elightwalk_IsSaleableFirst' => 1,
         'Experius_FormSelectChosen' => 1,
         'Experius_MissingTranslations' => 1,
         'Hevelop_ImageRegenerator' => 1,

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Config">
+        <plugin name="Elightwalk_IsSaleableFirst::addCustomOptions" type="Elightwalk\IsSaleableFirst\Plugin\Model\Config" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="Elightwalk_IsSaleableFirst::addPriceDecendingFilterInToolbar" type="Elightwalk\IsSaleableFirst\Plugin\Product\ProductList\Toolbar" />
+    </type>
+    <type name="Magento\Elasticsearch\Model\Adapter\FieldMapperInterface">
+        <plugin name="Elightwalk_IsSaleableFirst_sorting_elastic_fieldmapper" type="Elightwalk\IsSaleableFirst\Plugin\Frontend\Model\Elastic\Adapter\FieldMapper" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Elasticsearch\Model\Adapter\FieldMapper\ProductFieldMapper">
+        <plugin name="Elightwalk_IsSaleableFirst::AdditionalFieldMapper" type="Elightwalk\IsSaleableFirst\Plugin\Frontend\Model\Elastic\Adapter\FieldMapper"/>
+    </type>
+    <type name="Magento\Elasticsearch\Elasticsearch5\Model\Adapter\FieldMapper\ProductFieldMapperProxy">
+        <plugin name="Elightwalk_IsSaleableFirst::AdditionalFieldMapper5" type="Elightwalk\IsSaleableFirst\Plugin\Frontend\Model\Elastic\Adapter\FieldMapper"/>
+    </type>
+
+    <type name="Amasty\ElasticSearch\Model\Indexer\Structure\EntityBuilder\Product">
+        <plugin name="Elightwalk_IsSaleableFirst_sorting_elastic_elastic" type="Elightwalk\IsSaleableFirst\Plugin\Frontend\Model\Elastic\Adapter\FieldMapper" sortOrder="1" />
+    </type>
+    
+
+
+    <type name="Magento\Elasticsearch\Model\Adapter\BatchDataMapper\ProductDataMapper">
+        <plugin name="Elightwalk_IsSaleableFirst_sorting_elastic_productdatamapper" type="Elightwalk\IsSaleableFirst\Plugin\Frontend\Model\Elastic\ProductDataMapper" sortOrder="1" />
+    </type>
+
+    <type name="Amasty\ElasticSearch\Model\Indexer\Data\Product\ProductDataMapper">
+        <plugin name="Elightwalk_IsSaleableFirst_sorting_amasty_elastic_productdatamapper"
+                type="Elightwalk\IsSaleableFirst\Plugin\Frontend\Model\Elastic\ProductDataMapper"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Category">
+        <plugin name="Elightwalk_IsSaleableFirst_sorting_default_sort_order" type="Elightwalk\IsSaleableFirst\Plugin\Model\Category" sortOrder="1" />
+    </type>
+</config>
