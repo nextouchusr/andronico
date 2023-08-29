@@ -542,6 +542,7 @@
   text-transform: uppercase;
   font-weight: 600;
   margin-left: 20px;
+  display: none;
 }
 .catalog-product-view .primary.checkout.button-pick-instore:hover {
   background: var(--light);

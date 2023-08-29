@@ -12,19 +12,24 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
 {
     private const QUERY_VAR_CATEGORY_ID = 'category_id';
 
+    private $isApplied = false;
+
     protected function _getProductCollection()
     {
         try {
             /** @var Collection $collection */
-            $collection = parent::_getProductCollection();
+            if($this->isApplied == false) {
+                $collection = parent::_getProductCollection();
 
-            $rootCategoryId = $this->_storeManager->getStore()->getRootCategoryId();
-            $categoryId = (int) $this->_request->getParam(self::QUERY_VAR_CATEGORY_ID, $rootCategoryId);
-            $category = $this->categoryRepository->get($categoryId);
-            $categoryIds = explode(',', $category->getChildren(true));
+                $rootCategoryId = $this->_storeManager->getStore()->getRootCategoryId();
+                $categoryId = (int) $this->_request->getParam(self::QUERY_VAR_CATEGORY_ID, $rootCategoryId);
+                $category = $this->categoryRepository->get($categoryId);
+                $categoryIds = explode(',', $category->getChildren(true));
 
-            $collection->addCategoriesFilter(['in' => $categoryIds]);
-            $this->setCollection($collection);
+                $collection->addCategoriesFilter(['in' => $categoryIds]);
+                $this->setCollection($collection);
+                $this->isApplied = true;
+            }
         } catch (LocalizedException $e) {
             $this->_logger->error($e->getMessage());
         }

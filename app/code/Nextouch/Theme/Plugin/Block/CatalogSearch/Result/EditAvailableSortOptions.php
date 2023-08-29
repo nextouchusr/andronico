@@ -21,7 +21,6 @@ class EditAvailableSortOptions
         $category = $this->layer->getCurrentCategory();
         $availableOrders = $category->getAvailableSortByOptions();
         unset($availableOrders['position']);
-
         $subject
             ->getListBlock()
             ->setAvailableOrders($availableOrders)
