@@ -100,18 +100,20 @@ $_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
                 }
             });
 
-            $(megamenu).on('click', '.level-back', function() {
-                $(window).scrollTop(0);
-                $(this).parent().parent().toggleClass('open').parent().toggleClass('childOpened');
+            if($('.level-back').length) {
+                $(megamenu).on('click', '.level-back', function() {
+                    $(window).scrollTop(0);
+                    $(this).parent().parent().toggleClass('open').parent().toggleClass('childOpened');
 
-                if (!$(this).hasClass('level0')) {
-                    $('#mobile-bottom-menu-links').appendTo($(this).parent().parent().parent());
-                }
+                    if (!$(this).hasClass('level0')) {
+                        $('#mobile-bottom-menu-links').appendTo($(this).parent().parent().parent());
+                    }
 
-                if($(this).parent().hasClass('level0')) {
-                    $('body').removeClass('openMenuLv0');
-                }
-            });
+                    if($(this).parent().hasClass('level0')) {
+                        $('body').removeClass('openMenuLv0');
+                    }
+                });
+            }
 
             $('body').on('click', '.nav-toggle', function() {
                 if(window.matchMedia('(max-width: 767px)').matches) {

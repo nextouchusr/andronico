@@ -32,7 +32,7 @@ use Nextouch\Catalog\Api\Data\ProductInterface; ?>
             <?= $block->getChildHtml('', true) ?>
 
             <?php if ($_product->getData(ProductInterface::IS_PICKUPABLE)): ?>
-                <?= $block->getBlockHtml('product.info.addtocart.instore') ?>
+                <?= $this->getLayout()->createBlock("Magento\Backend\Block\Template")->setTemplate("Nextouch_InStorePayment::shortcut_button.phtml")->toHtml() ?>
             <?php endif; ?>
         </div>
     </div>

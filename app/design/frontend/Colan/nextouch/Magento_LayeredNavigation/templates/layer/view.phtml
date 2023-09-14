@@ -33,6 +33,7 @@
             <?php foreach ($block->getFilters() as $filter) : ?>
                 <?php $i++; ?>
                 <?php $isProductAttribute = $filter instanceof \Amasty\Shopby\Model\Layer\Filter\Attribute; ?>
+                <?php $isProductDecimal = $filter instanceof \Amasty\Shopby\Model\Layer\Filter\Decimal; ?>
                 <?php if ($filter->getItemsCount()) : ?>
                     <?php if (!$wrapOptions) : ?>
                         <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= $block->escapeHtml(__('Shopping Options')); ?></strong>
@@ -50,7 +51,7 @@
                         endif; ?>
                     <div data-role="collapsible" class="filter-options-item">
                         <div data-role="title" class="filter-options-title">
-                            <?php if ($isProductAttribute && $filter->getAttributeModel()->getAttributeExplanation()): ?>
+                            <?php if (($isProductAttribute || $isProductDecimal ) && $filter->getAttributeModel()->getAttributeExplanation()): ?>
                                 <div class="filter-popup-content" data-bind="mageInit: {
                                     'Magento_Ui/js/modal/modal':{
                                         'type': 'popup',

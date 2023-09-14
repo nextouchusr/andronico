@@ -318,14 +318,14 @@
 }
 
 .opc-block-summary .table-totals {
-  background: var(--primary-blue);
+/*  background: var(--primary-blue);*/
   color: var(--light);
   font-size: 14px;
   line-height: 16px;
 }
 
 .opc-block-summary .mark .value {
-  color: var(--light);
+  color: var(--primary-blue);
   opacity: 0.5;
 }
 .opc-block-summary .opc-block-summary-scrolling>*{
