@@ -84,42 +84,12 @@ $_helper = $block->getData('outputHelper');
                                 <?=/* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name')?>
                             </a>
                         </strong>
-                        <?php /* <div class="product-short-info"> <?= /* @noEscape * / $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?></div> */?> 
-                       
-                        <?php        
-                            $attributeSetId = $_product->getAttributeSetId(); ?>
-                            <?php if(in_array($attributeSetId, [985, 986, 987])) : ?>
-                                <?php  
-                                    $wins2535 = $_product->getResource()->getAttribute('wins_2535')->getFrontend()->getValue($_product);
-                                    $wins9551 = $_product->getResource()->getAttribute('wins_9551')->getFrontend()->getValue($_product);
-                                    $wins10372 = $_product->getResource()->getAttribute('wins_10372')->getFrontend()->getValue($_product);
-                                    $wins11013 = $_product->getResource()->getAttribute('wins_11013')->getFrontend()->getValue($_product);
-                                    $wins11195 = $_product->getResource()->getAttribute('wins_11195')->getFrontend()->getValue($_product);
-                                ?>
-                                <div class="card-attribute-list"> 
-                                    <?php if($wins2535) : ?> <span class="card-attribute-item"> <?= __('Dimensioni schermo (pollici)') ?> <?= $wins2535 ?></span><?php endif; ?>
-                                    <?php if($wins9551) : ?> <span class="card-attribute-item"> <?= __('Tipologia dello schermo') ?> <?= $wins9551 ?></span><?php endif; ?>
-                                    <?php if($wins10372) : ?> <span class="card-attribute-item"> <?= __('Risoluzione') ?> <?= $wins10372 ?></span><?php endif; ?>
-                                    <?php if($wins11013) : ?> <span class="card-attribute-item"> <?= __('Smart Tv') ?> <?= $wins11013 ?></span><?php endif; ?>
-                                    <?php if($wins11195) : ?> <span class="card-attribute-item"> <?= __('HDR') ?> <?= $wins11195 ?></span><?php endif; ?>
-                                </div>
-                            <?php elseif($attributeSetId == 979): ?>
-                                <?php  
-                                    $wins6115 = $_product->getResource()->getAttribute('wins_6115')->getFrontend()->getValue($_product);
-                                    $wins9427 = $_product->getResource()->getAttribute('wins_9427')->getFrontend()->getValue($_product);
-                                    $wins11028 = $_product->getResource()->getAttribute('wins_11028')->getFrontend()->getValue($_product);
-                                    $wins8160 = $_product->getResource()->getAttribute('wins_8160')->getFrontend()->getValue($_product);
-                                    $wins5315 = $_product->getResource()->getAttribute('wins_5315')->getFrontend()->getValue($_product);
-                                ?>
-                                <div class="attribute-list"> 
-                                    <?php if($wins6115) : ?> <span class="card-attribute-item"> <?= __('Risoluzione') ?> <?= $wins6115 ?></span><?php endif; ?>
-                                    <?php if($wins9427) : ?> <span class="card-attribute-item"> <?= __('Tecnologia') ?> <?= $wins9427 ?></span><?php endif; ?>
-                                    <?php if($wins11028) : ?> <span class="card-attribute-item"> <?= __('3D') ?> <?= $wins11028 ?></span><?php endif; ?>
-                                    <?php if($wins8160) : ?> <span class="card-attribute-item"> <?= __('Wireless') ?> <?= $wins8160 ?></span><?php endif; ?>
-                                    <?php if($wins5315) : ?> <span class="card-attribute-item"> <?= __('Posizionamento apparecchio') ?> <?= $wins5315 ?></span><?php endif; ?>
-                                </div>
-                            <?php endif; ?>
-                    
+                        <?php /* <div class="product-short-info"> <?= /* @noEscape * / $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?></div> */?>
+
+                        <?php $attributeList = $this->getLayout()->createBlock("Magento\Catalog\Block\Product\AbstractProduct")->setTemplate("Magento_Catalog::product/attribute-list.phtml"); ?>
+                        <?php $attributeList->setProduct($_product); ?>
+                        <?= $attributeList->toHtml(); ?>
+
                         <?php $review =  $block->getReviewsSummaryHtml($_product, $templateType) ?>
                         <?php if($review): ?>
                         <?= $review; ?>
@@ -149,8 +119,6 @@ $_helper = $block->getData('outputHelper');
                                 <span class="tax-included"><?= __('Tax included') ?></span>
                             </div>
                         </div>
-
-                        
                         <?= strpos($pos, $viewMode . '-secondary') ?
                             /* @noEscape */ $secureRenderer->renderStyleAsTag(
                                 $position,
@@ -159,7 +127,6 @@ $_helper = $block->getData('outputHelper');
 
 
                         <?= $block->getProductDetailsHtml($_product) ?>
-
                         <div class="product-item-inner">
                             <div data-role="add-to-links" class="actions-secondary">
                                 <?php if ($addToBlock = $block->getChildBlock('addto')): ?>

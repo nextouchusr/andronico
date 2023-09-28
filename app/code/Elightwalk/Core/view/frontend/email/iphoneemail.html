@@ -1,0 +1,20 @@
+<!--@subject Richiesta di prenotazione iPhone Apple @-->
+
+{{template config_path="design/email/header_template"}}
+<table style="width: 100%;">
+    <tr style="border: 1px solid #dddddd;">
+        <th>Modello</th>
+        <th>Nome</th>
+        <th>Cognome</th>
+        <th>Email</th>
+        <th>Telefono</th>
+    </tr>
+    <tr style="border: 1px solid #dddddd;">
+        <td>{{var model}}</td>
+        <td>{{var name}}</td>
+        <td>{{var surname}}</td>
+        <td>{{var email}}</td>
+        <td>{{var phone}}</td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

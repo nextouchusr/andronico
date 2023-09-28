@@ -1,0 +1,518 @@
+<?php $_product = $block->getProduct(); ?>
+<?php if (!$_product instanceof \Magento\Catalog\Model\Product) : ?>
+    <?php return; ?>
+<?php endif; ?>
+
+<?php $attributeSetId = $_product->getAttributeSetId(); ?>
+
+<?php $attributesToPrint = [
+    '931' => [ // Cavi nuova_281
+        'wins_10601',
+        'wins_10605',
+        'wins_9028',
+        'wins_4030'
+    ],
+    '941' => [ // PURIFICATORI NUOVO_348
+        'wins_10088',
+        'wins_5265',
+        'wins_1710',
+        'wins_2925',
+        'wins_7220'
+    ],
+    '951' => [ // Cuffie PC_307
+        'wins_10831',
+        'wins_10832',
+        'wins_9535',
+        'wins_2025',
+        'wins_5325'
+    ],
+    '952' => [ // WEB CAM_266
+        'wins_10384',
+        'wins_10381',
+        'wins_10382',
+        'wins_10386'
+    ],
+    '953' => [ // Tavolette Grafiche_271
+        'wins_10489',
+        'wins_7815',
+        'wins_1465',
+        'wins_10490'
+    ],
+    '954' => [ // Borse-Custodie IT_301
+        'wins_10820',
+        'wins_10854',
+        'wins_2025',
+        'wins_10812'
+    ],
+    '955' => [ // Casse PC_306
+        'wins_10842',
+        'wins_9164',
+        'wins_10847',
+        'wins_4535'
+    ],
+    '958' => [ // DONGLE USB_323
+        'wins_10590',
+        'wins_8000',
+        'wins_7955',
+        'wins_10592',
+        'wins_10593'
+    ],
+    '962' => [ // Stampanti_158
+        'wins_9596',
+        'wins_6785',
+        'wins_7050',
+        'wins_8155',
+        'wins_9609'
+    ],
+    '963' => [ // Fotocamere Digitali_144
+        'wins_5195',
+        'wins_11015',
+        'wins_6775',
+        'wins_9386',
+        'wins_9387'
+    ],
+    '966' => [ // TABLET_265
+        'wins_10167',
+        'wins_10415',
+        'wins_9674',
+        'wins_9647',
+        'wins_10443'
+    ],
+    '967' => [ // SMARTPHONE_333
+        'wins_2535',
+        'wins_11273',
+        'wins_1595',
+        'wins_4225',
+        'wins_11299'
+    ],
+    '968' => [ // Smart Watch_357
+        'wins_11053',
+        'wins_10167',
+        'wins_9569',
+        'wins_9570',
+        'wins_7745'
+    ],
+    '970' => [ // Action camera_325
+        'wins_11111',
+        'wins_9384',
+        'wins_10372',
+        'wins_11112',
+        'wins_3395'
+    ],
+    '975' => [ // Casse Mp3_305
+        'wins_10842',
+        'wins_9164',
+        'wins_10847',
+        'wins_4535'
+    ],
+    '979' => [ // Video Proiettori_249
+        'wins_6115',
+        'wins_9427',
+        'wins_11028',
+        'wins_8160',
+        'wins_5315'
+    ],
+    '980' => [ // Videocamere_250
+        'wins_3015',
+        'wins_9527',
+        'wins_1730',
+        'wins_8585',
+        'wins_10089'
+    ],
+    '981' => [ // Cellulari_237
+        'wins_9711',
+        'wins_7745',
+        'wins_10005',
+        'wins_3085',
+        'wins_8155'
+    ],
+    '984' => [ // TV LCD_243
+        'wins_2535',
+        'wins_9551',
+        'wins_10372',
+        'wins_11013',
+        'wins_11195'
+    ],
+    '985' => [ // TV Plasma_244
+        'wins_2535',
+        'wins_9551',
+        'wins_10372',
+        'wins_11013',
+        'wins_11195'
+    ],
+    '986' => [ // OLED_338
+        'wins_2535',
+        'wins_9551',
+        'wins_10372',
+        'wins_11013',
+        'wins_11195'
+    ],
+    '987' => [ // LED_337
+        'wins_2535',
+        'wins_9551',
+        'wins_10372',
+        'wins_11013',
+        'wins_11195'
+    ],
+    '988' => [ // Lavatrici_132
+        'wins_1364',
+        'wins_1284',
+        'wins_3034',
+        'wins_11305',
+        'wins_9773'
+    ],
+    '989' => [ // Lavatrici Incasso_347
+        'wins_1364',
+        'wins_1284',
+        'wins_3034',
+        'wins_11305',
+        'wins_9773'
+    ],
+    '999' => [ // Hard Disk_161
+        'wins_8250',
+        'wins_1640',
+        'wins_11204',
+        'wins_10148',
+        'wins_11025'
+    ],
+    '1002' => [ // SOUNDBAR_334
+        'wins_8565',
+        'wins_10248',
+        'wins_10350',
+        'wins_9771',
+        'wins_9893'
+    ],
+    '1010' => [ // DIFFUSORI HI-FI_331
+        'wins_9357',
+        'wins_2450',
+        'wins_9164',
+        'wins_6835',
+        'wins_9440'
+    ],
+    '1013' => [ // Deumidificatori_225
+        'wins_10067',
+        'wins_1244',
+        'wins_5430',
+        'wins_7220',
+        'wins_1385'
+    ],
+    '1017' => [ // Purificatori_224
+        'wins_10088',
+        'wins_5265',
+        'wins_1710',
+        'wins_2925',
+        'wins_7220'
+    ],
+    '1020' => [ // Aspirapolvere a Traino_166
+        'wins_11001',
+        'wins_5435',
+        'wins_6190',
+        'wins_6375',
+        'wins_3615'
+    ],
+    '1021' => [ // Scope elettriche_172
+        'wins_11001',
+        'wins_5435',
+        'wins_6190',
+        'wins_6375',
+        'wins_3615'
+    ],
+    '1028' => [ // Regolabarba_223
+        'wins_11011',
+        'wins_7305',
+        'wins_4455',
+        'wins_1040',
+        'wins_1345'
+    ],
+    '1032' => [ // Tagliacapelli_346
+        'wins_4455',
+        'wins_1345',
+        'wins_1040',
+        'wins_10090',
+        'wins_4610'
+    ],
+    '1033' => [ // Auricolari_304
+        'wins_10831',
+        'wins_10832',
+        'wins_9535',
+        'wins_2025',
+        'wins_5325'
+    ],
+    '1035' => [ // Pesa Persone_218
+        'wins_3165',
+        'wins_2605',
+        'wins_5270',
+        'wins_4590',
+        'wins_4140'
+    ],
+    '1044' => [ // Depilatori - Epilatori_211
+        'wins_2884',
+        'wins_9966',
+        'wins_8145',
+        'wins_7305',
+        'wins_9949'
+    ],
+    '1045' => [ // Telefoni_240
+        'wins_9711',
+        'wins_7745',
+        'wins_10005',
+        'wins_3085',
+        'wins_8155'
+    ],
+    '1054' => [ // Cordless_241
+        'wins_9747',
+        'wins_5640',
+        'wins_7600',
+        'wins_3360',
+        'wins_9535'
+    ],
+    '1067' => [ // Altoparlanti_9
+        'wins_5435',
+        'wins_4360',
+        'wins_4675',
+        'wins_2030',
+        'wins_3805'
+    ],
+    '1072' => [ // Cuffie_3
+        'wins_10831',
+        'wins_10832',
+        'wins_9535',
+        'wins_2025',
+        'wins_5325'
+    ],
+    '1073' => [ // DIFFUSORI BLETOOTH_370
+        'wins_9736',
+        'wins_11024',
+        'wins_10976',
+        'wins_5430',
+        'wins_5240'
+    ],
+    '1082' => [ // Robot_267
+        'wins_1345',
+        'wins_9589',
+        'wins_9164',
+        'wins_7240',
+        'wins_1199'
+    ],
+    '1083' => [ // MASSAGGAITORI_282
+        'wins_11016',
+        'wins_10616',
+        'wins_10626',
+        'wins_10622',
+        'wins_1030'
+    ],
+    '1085' => [ // Epilatori luce pulsata_360
+        'wins_9959',
+        'wins_11093',
+        'wins_11096',
+        'wins_11098',
+        'wins_11094'
+    ],
+    '1093' => [ // Forni_135
+        'wins_1364',
+        'wins_3059',
+        'wins_9510',
+        'wins_9066',
+        'wins_1064'
+    ],
+    '1096' => [ // Piani Cottura_137
+        'wins_1104',
+        'wins_9497',
+        'wins_1544',
+        'wins_11008',
+        'wins_1150'
+    ],
+    '1097' => [ // Lavastoviglie_131
+        'wins_9477',
+        'wins_2034',
+        'wins_1364',
+        'wins_11300',
+        'wins_2284'
+    ],
+    '1098' => [ // Frigoriferi_129
+        'wins_11300',
+        'wins_1259',
+        'wins_9432',
+        'wins_2604',
+        'wins_5670'
+    ],
+    '1099' => [ // Lavasciuga_130
+        'wins_11300',
+        'wins_9332',
+        'wins_3034',
+        'wins_1289',
+        'wins_1294'
+    ],
+    '1104' => [ // Asciugatrici_126
+        'wins_1364',
+        'wins_1204',
+        'wins_2779',
+        'wins_6190',
+        'wins_5060'
+    ],
+    '1109' => [ // Mouse_162
+        'wins_2095',
+        'wins_7485',
+        'wins_10214',
+        'wins_2140',
+        'wins_10213'
+    ],
+    '1110' => [ // Tastiere_163
+        'wins_7025',
+        'wins_10188',
+        'wins_4425',
+        'wins_2140',
+        'wins_10213'
+    ],
+    '1113' => [ // Lucidatrici_171
+        'wins_1045',
+        'wins_1410',
+        'wins_5645',
+        'wins_6675'
+    ],
+    '1114' => [ // Aspirapolvere Ricaricabile_167
+        'wins_11001',
+        'wins_5435',
+        'wins_6190',
+        'wins_6375',
+        'wins_3615'
+    ],
+    '1116' => [ // Ferri da stiro_169
+        'wins_7570',
+        'wins_5430',
+        'wins_4165',
+        'wins_9756',
+        'wins_6445'
+    ],
+    '1117' => [ // Ferri da stiro con caldaia_170
+        'wins_7570',
+        'wins_5430',
+        'wins_4165',
+        'wins_9756',
+        'wins_6445'
+    ],
+    '1122' => [ // Fornetti Elettrici_181
+        'wins_1505',
+        'wins_10998',
+        'wins_3955',
+        'wins_9817',
+        'wins_9816'
+    ],
+    '1128' => [ // Macchine da caffè_189
+        'wins_5430',
+        'wins_1715',
+        'wins_1745',
+        'wins_4640',
+        'wins_9736'
+    ],
+    '1132' => [ // Fotocamere Analogiche_143
+        'wins_3180',
+        'wins_7310',
+        'wins_4950',
+        'wins_1390',
+        'wins_9880'
+    ],
+    '1137' => [ // Modem_150
+        'wins_11029',
+        'wins_7475',
+        'wins_1835',
+        'wins_10197',
+        'wins_7815'
+    ],
+    '1141' => [ // Monitor_154
+        'wins_2535',
+        'wins_9384',
+        'wins_7140',
+        'wins_1669',
+        'wins_9658'
+    ],
+    '1142' => [ // Router e Firewall_153
+        'wins_11029',
+        'wins_7535',
+        'wins_6910',
+        'wins_3380',
+        'wins_9535'
+    ],
+    '1143' => [ // PC_155
+        'wins_8270',
+        'wins_9657',
+        'wins_1705',
+        'wins_9671',
+        'wins_9640'
+    ],
+    '1150' => [ // Ventilatori_227
+        'wins_7700',
+        'wins_2440',
+        'wins_5430',
+        'wins_4945',
+        'wins_1150'
+    ],
+    '1151' => [ // DESKTOP_292
+        'wins_10734',
+        'wins_9674',
+        'wins_10415',
+        'wins_9640',
+        'wins_10475'
+    ],
+    '1152' => [ // Spazzole_209
+        'wins_10991',
+        'wins_5430',
+        'wins_2049',
+        'wins_2684',
+        'wins_1040'
+    ],
+    '1153' => [ // Asciuga Capelli_210
+        'wins_5430',
+        'wins_4670',
+        'wins_4650',
+        'wins_1524',
+        'wins_2684'
+    ],
+    '1158' => [ // Rasoi_221
+        'wins_11011',
+        'wins_9739',
+        'wins_7305',
+        'wins_5850',
+        'wins_1345'
+    ],
+    '1159' => [ // Misura Pressione_217
+        'wins_11006',
+        'wins_7355',
+        'wins_4590',
+        'wins_2570',
+        'wins_6685'
+    ],
+    '1174' => [ // Piastre per capelli / Spazzole_208
+        'wins_5110',
+        'wins_3625',
+        'wins_4650',
+        'wins_6685',
+        'wins_5430'
+    ],
+]; ?>
+
+<?php if (array_key_exists($attributeSetId, $attributesToPrint)) : ?>
+    <?php if (isset($attributesToPrint[$attributeSetId]) && $attributesToPrint[$attributeSetId]) : ?>
+        <?php $productResource = $_product->getResource(); ?>
+        <div class="card-attribute-list">
+            <?php foreach ($attributesToPrint[$attributeSetId] as $_attribId => $_attribValue) : ?>
+                <?php $__attribute = $productResource->getAttribute($_attribValue); ?>
+                <?php if ($__attributeValue = $__attribute->getFrontend()->getValue($_product)) : ?>
+                    <span class="card-attribute-item" itemprop="<?= $_attribValue; ?>">
+                        <?php if (preg_match('/^\d+(\.\d+)?$/', $__attributeValue)) : ?>
+                            <?php $number          = floatval($__attributeValue); ?>
+                            <?php $formattedNumber = rtrim(sprintf("%.6f", $number), '0'); ?>
+                            <?php if (substr($formattedNumber, -1) == '.') : ?>
+                                <?php $formattedNumber = rtrim($formattedNumber, '.'); ?>
+                            <?php endif; ?>
+                            <?= __($__attribute->getStoreLabel()); ?> <?= __($formattedNumber); ?>
+                        <?php else : ?>
+                            <?php $__attributeValue = preg_replace('/,0{3}$/', '', $__attributeValue); ?>
+                            <?= __($__attribute->getStoreLabel()); ?> <?= __($__attributeValue); ?>
+                        <?php endif; ?>
+                    </span>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

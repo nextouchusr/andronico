@@ -6680,7 +6680,8 @@ input[type="radio"]:checked + label:before {
   .saving-percent {
   display: none;
 }
-.salesforce-popup.modal-popup .action-close {
+.salesforce-popup.modal-popup .action-close,
+.iphone-popup-content .action-close{
   padding: 0;
   max-width: 45px;
   width: 100%;
@@ -6689,7 +6690,8 @@ input[type="radio"]:checked + label:before {
   top: 30px;
   right: 30px;
 }
-.salesforce-popup.modal-popup .action-close::before {
+.salesforce-popup.modal-popup .action-close::before,
+.iphone-popup-content .action-close::before{
   background: var(--primary-blue);
   color: var(--white) !important;
   border: 1px solid var(--primary-blue);
@@ -6697,7 +6699,8 @@ input[type="radio"]:checked + label:before {
   font-size: 40px !important;
   line-height: 40px !important;
 }
-.salesforce-popup.modal-popup .modal-title {
+.salesforce-popup.modal-popup .modal-title,
+.iphone-popup-content .modal-title{
   font-size: 36px;
   line-height: 40px;
   font-weight: 600;
@@ -6721,7 +6724,8 @@ input[type="radio"]:checked + label:before {
   line-height: 18px;
   color: var(--primary-blue);
 }
-.salesforce-newsletter .fieldset .field:not(.choice) .input-text {
+.salesforce-newsletter .fieldset .field:not(.choice) .input-text,
+.iphone-popup-content #iphone-popup-form .input-text{
   border: none;
   font-size: 18px;
   line-height: 18px;
@@ -6733,7 +6737,8 @@ input[type="radio"]:checked + label:before {
   height: auto;
 }
 .salesforce-newsletter .fieldset .field:not(.choice) .input-text:focus,
-.salesforce-newsletter .fieldset .field:not(.choice) select {
+.salesforce-newsletter .fieldset .field:not(.choice) select,
+.iphone-popup-content #iphone-popup-form .input-text:focus{
   box-shadow: none;
 }
 .salesforce-newsletter .fieldset {
@@ -6744,7 +6749,8 @@ input[type="radio"]:checked + label:before {
   text-align: center;
   margin-bottom: 10px;
 }
-.salesforce-newsletter .actions-toolbar .action.submit {
+.salesforce-newsletter .actions-toolbar .action.submit,
+.iphone-popup-content #iphone-popup-form .primary .action.submit{
   background: var(--primary-blue) !important;
   border: 1px solid var(--primary-blue) !important;
   color: var(--light) !important;
@@ -6758,7 +6764,8 @@ input[type="radio"]:checked + label:before {
   max-height: unset;
 }
 
-.salesforce-newsletter .actions-toolbar .action.submit:hover {
+.salesforce-newsletter .actions-toolbar .action.submit:hover,
+.iphone-popup-content #iphone-popup-form .primary .action.submit{
   background: var(--light) !important;
   color: var(--primary-blue) !important;
 }
@@ -6830,7 +6837,8 @@ input[type="radio"]:checked + label:before {
     margin: 0 !important;
     box-shadow: none !important;
   }
-  .salesforce-popup.modal-popup .modal-title {
+  .salesforce-popup.modal-popup .modal-title,
+  .iphone-popup-content .modal-title{
     font-size: 26px;
     line-height: 30px;
   }
@@ -7664,7 +7672,114 @@ span.product-image-wrapper {
   }
 }
 @media (max-width: 767px) {
-  #customer-email-fieldset .control._with-tooltip .field-tooltip-action::before{
+  #customer-email-fieldset
+    .control._with-tooltip
+    .field-tooltip-action::before {
     line-height: initial;
   }
+  .promotions-block.banner-full {
+    margin-top: 0px;
+  }
+}
+
+/* gift card button css */
+.product-gift-card-andronico
+  .product-media-wrapper
+  .gallery-placeholder
+  .gallery-placeholder__image {
+  visibility: visible !important;
+}
+.product-add-form .amcard-general-container .amcard-button,
+.amgiftcard-modal-container .modal-footer button {
+  padding: 14px 24px;
+  font-weight: 600;
+  min-width: 250px;
+  text-transform: uppercase;
+  background: var(--primary-blue);
+  border-radius: 60px;
+  font-size: 14px;
+  border: 1px solid var(--primary-blue);
+  color: #fff;
+  line-height: 15px;
+  transition: all 0.3s ease;
+}
+
+.product-add-form .amcard-general-container .amcard-button:hover,
+.amgiftcard-modal-container .modal-footer button:hover {
+  color: var(--primary-blue);
+  background: #fff;
+}
+.product-add-form .amcard-preview-container {
+  margin-top: 25px;
+}
+.product-info-main-cols .box-tocart .action.tocart#product-addtocart-button {
+  min-width: 250px;
+  margin-left: 53px;
+}
+.product-gift-card-andronico.amcard-page-product .page-main.page-main-details,
+.product-gift-card-andronico.amcard-page-product .page-main.page-main-details .column.main{
+  min-height: 0px;
+}
+.product-gift-card-andronico.amcard-page-product .page-main.page-main-details .column.main{
+  padding-bottom: 0px;
+}
+@media (max-width: 768px) {
+  .product-add-form .amcard-general-container .amcard-button {
+    padding: 15px 24px;
+  }
+  .giftcard-banner .mobile-hidden-giftcard {
+    margin-top: 40px !important;
+  }
+}
+@media (max-width: 576px) {
+  .product-info-main-cols .box-tocart .action.tocart#product-addtocart-button {
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+}
+
+/* homepage banner full css */
+.promotions-block.banner-full .pagebuilder-column-group .pagebuilder-column {
+  width: 100% !important;
+}
+
+/* gift card popup */
+.amcard-page-product .amcard-preview table.main,
+.amgiftcard-modal-container .modal-footer button {
+  box-shadow: none;
+}
+.amgiftcard-modal-container .modal-footer button {
+  min-width: 130px;
+}
+
+/* checkout cart discount css */
+.checkout-cart-index .cart-container .cart-discount {
+  display: none;
+}
+
+/* giftcard banner */
+.giftcard-banner .mobile-show-giftcard {
+  display: none;
+}
+.giftcard-banner .mobile-hidden-giftcard {
+  margin-top: 80px;
+  display: block;
+}
+
+@media (max-width: 576px) {
+  .giftcard-banner .mobile-show-giftcard {
+    display: block;
+    margin-top: 40px;
+  }
+  .giftcard-banner .mobile-hidden-giftcard {
+    display: none;
+  }
+}
+
+/* iphone-landing-banner pop-up css */
+.iphone-popup-content #iphone-popup-form .actions-toolbar .primary{
+  width: 100% !important;
+}
+.iphone-popup-content #iphone-popup-form .actions-toolbar .primary .action.submit{
+  box-shadow: none;
 }

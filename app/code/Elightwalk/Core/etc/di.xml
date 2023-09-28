@@ -6,4 +6,7 @@
     <type name="Magento\Customer\Block\Widget\Dob">
         <plugin name="after_dob_plugin" type="Elightwalk\Core\Plugin\Customer\Block\Widget\Dob" sortOrder="10" />
     </type>
+    <type name="Magento\Quote\Model\Quote\Address\RateResult\Method">
+        <plugin name="calculate_shipping_method_price" type="Elightwalk\Core\Plugin\Model\Quote\Address\RateResult\CalculateShippingMethodPrice" />
+    </type>
 </config>

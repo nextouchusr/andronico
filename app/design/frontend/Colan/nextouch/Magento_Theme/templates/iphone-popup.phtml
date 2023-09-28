@@ -1,0 +1,75 @@
+<div id="iphone-popup-content">
+    <?php $popupHeaderText = __("Apple Phone Inquiry Form"); ?>
+    <form class="form contact iphone-popup-form" id="iphone-popup-form" action="<?= $block->getUrl('elightwalk/iphonepopup/emailsender'); ?>" method="POST" data-mage-init='{"validation": {"errorClass": "mage-error"}}'>
+        <?= $block->getBlockHtml('formkey'); ?>
+        <div class="form-content">
+            <fieldset class="fieldset">
+                <div class="field model">
+                    <?php $modelText = __("Which model do you prefer?"); ?>
+                    <label class="label" for="model"><span><?= $modelText; ?></span></label>
+                    <div class="control">
+                        <input name="model" id="model" class="input-text" title="<?= $modelText; ?>" type="text" placeholder="15 Pro Max, 15 Pro, 15 Plus, 15, SE 3 gen." />
+                    </div>
+                </div>
+
+                <div class="field name required">
+                    <?php $nameText = __("Name"); ?>
+                    <label class="label" for="name"><span><?= $nameText; ?></span></label>
+                    <div class="control">
+                        <input name="name" id="name" class="input-text" title="<?= $nameText; ?>" type="text" placeholder="<?= $nameText; ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}" />
+                    </div>
+                </div>
+
+                <div class="field surname">
+                    <?php $surnameText = __("Surname"); ?>
+                    <label class="label" for="surname"><span><?= $surnameText; ?></span></label>
+                    <div class="control">
+                        <input name="surname" id="surname" class="input-text" title="<?= $surnameText; ?>" type="text" placeholder="<?= $surnameText; ?>" />
+                    </div>
+                </div>
+
+                <div class="field email required">
+                    <?php $emailText = __("Email"); ?>
+                    <label class="label" for="email1"><span><?= $emailText; ?></span></label>
+                    <div class="control">
+                        <input name="email" id="email1" class="input-text" title="<?= $emailText; ?>" type="email" placeholder="<?= $emailText; ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}" />
+                    </div>
+                </div>
+
+                <div class="field phone">
+                    <?php $phoneText = __("Phone"); ?>
+                    <label class="label" for="phone1"><span><?= $phoneText; ?></span></label>
+                    <div class="control">
+                        <input name="phone" id="phone1" class="input-text" title="<?= __("Mobile Number"); ?>" type="text" placeholder="<?= __("Mobile Number"); ?>" />
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" title="<?= __("Submit"); ?>" class="action submit primary">
+                        <span><?= __("Submit"); ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    require(["jquery", "Magento_Ui/js/modal/modal"],
+        function($, modal) {
+            var options = {
+                type: "popup",
+                responsive: true,
+                innerScroll: true,
+                modalClass: "iphone-popup-content",
+                title: "<?= $popupHeaderText; ?>",
+                buttons: [],
+            };
+
+            $(".iphone-popup-main").on("click", function() {
+                var popup = modal(options, $("#iphone-popup-content"));
+                $("#iphone-popup-content").modal("openModal");
+            });
+        });
+</script>

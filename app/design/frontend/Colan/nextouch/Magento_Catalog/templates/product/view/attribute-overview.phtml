@@ -1,56 +1,49 @@
 <?php
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
-// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis 
 
 /**
- * Product view template
- *
  * @var $block \Magento\Catalog\Block\Product\View\Description
  */
 ?>
-<?php
-$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
-$_product = $block->getProduct();
 
-if (!$_product instanceof \Magento\Catalog\Model\Product) {
-    return;
-}
-
-$_call = $block->getAtCall();
-$_code = $block->getAtCode();
-$_className = $block->getCssClass();
-$_attributeLabel = $block->getAtLabel();
-$_attributeType = $block->getAtType();
-$_attributeAddAttribute = $block->getAddAttribute();
-
-$renderLabel = true;
-// if defined as 'none' in layout, do not render
-if ($_attributeLabel == 'none') {
-    $renderLabel = false;
-}
-
-if ($_attributeLabel && $_attributeLabel == 'default') {
-    $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel();
-}
-if ($_attributeType && $_attributeType == 'text') {
-    $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code))
-        ? $_product->getAttributeText($_code)
-        : '';
-} else {
-    $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
-}
-?>
-
-<?php if ($_attributeValue) :?>
-<h5 class="heading-overview"><?= __('Product View') ?></h5>
-<div class="product attribute <?= $block->escapeHtmlAttr($_className) ?>">
-    <?php if ($renderLabel) :?>
-        <strong class="type"><?= $block->escapeHtml($_attributeLabel) ?></strong>
-    <?php endif; ?>
-    <div class="value" <?= /* @noEscape */ $_attributeAddAttribute ?>><?= /* @noEscape */ $_attributeValue ?></div>
-</div>
+<?php $_product = $block->getProduct(); ?>
+<?php if (!$_product instanceof \Magento\Catalog\Model\Product) : ?>
+    <?php return; ?>
 <?php endif; ?>
+
+<?php /* $_helper                = $this->helper(Magento\Catalog\Helper\Output::class); ?>
+<?php $_call                  = $block->getAtCall(); ?>
+<?php $_code                  = $block->getAtCode(); ?>
+<?php $_className             = $block->getCssClass(); ?>
+<?php $_attributeLabel        = $block->getAtLabel(); ?>
+<?php $_attributeType         = $block->getAtType(); ?>
+<?php $_attributeAddAttribute = $block->getAddAttribute(); ?>
+<?php $renderLabel            = true; */ ?>
+
+<?php /* if ($_attributeLabel == 'none') : ?>
+    <?php $renderLabel = false; ?>
+<?php endif; */ ?>
+
+<?php /* if ($_attributeLabel && $_attributeLabel == 'default') : ?>
+    <?php $_attributeLabel = $_product->getResource()->getAttribute($_code)->getStoreLabel(); ?>
+<?php endif; ?>
+<?php if ($_attributeType && $_attributeType == 'text') : ?>
+    <?php $_attributeValue = ($_helper->productAttribute($_product, $_product->$_call(), $_code)) ? $_product->getAttributeText($_code) : ''; ?>
+<?php else : ?>
+    <?php $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code); ?>
+<?php endif; */ ?>
+
+<?php /* if ($_attributeValue) : ?>
+    <h5 class="heading-overview"><?= __('Product View'); ?></h5>
+    <div class="product attribute <?= $block->escapeHtmlAttr($_className); ?>">
+        <?php if ($renderLabel) : ?>
+            <strong class="type"><?= $block->escapeHtml($_attributeLabel); ?></strong>
+        <?php endif; ?>
+        <div class="value" <?= $_attributeAddAttribute; ?>><?= $_attributeValue; ?></div>
+    </div>
+<?php endif; */ ?>
+
+<?php $attributeList = $this->getLayout()->createBlock("Magento\Catalog\Block\Product\View\Description")->setTemplate("Magento_Catalog::product/attribute-list.phtml")->setProduct($_product); ?>
+<?= $attributeList->toHtml(); ?>
+
+<?php $attributeSetId = $_product->getAttributeSetId(); ?>

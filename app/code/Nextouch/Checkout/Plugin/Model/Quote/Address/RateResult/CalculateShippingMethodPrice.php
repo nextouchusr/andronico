@@ -27,7 +27,7 @@ class CalculateShippingMethodPrice
         CheckoutSession $checkoutSession,
         QuoteCollectionFactory $quoteCollectionFactory,
         PriceCurrencyInterface $priceCurrency
-    ) {
+    ) {		
         $this->checkoutSession = $checkoutSession;
         $this->quoteCollectionFactory = $quoteCollectionFactory;
         $this->priceCurrency = $priceCurrency;
@@ -37,7 +37,7 @@ class CalculateShippingMethodPrice
      * @throws LocalizedException
      */
     public function afterSetPrice(Method $subject, Method $result): Method
-    {
+    {		
         if ($this->shouldCalculatePrice($subject)) {
             $subject->setData('price', $this->priceCurrency->round($this->calculatePrice()));
         }
@@ -46,7 +46,7 @@ class CalculateShippingMethodPrice
     }
 
     private function shouldCalculatePrice(Method $method): bool
-    {
+    {		
         return in_array($method->getData('carrier'), [FastEst::CODE, Gls::CODE]);
     }
 
@@ -108,7 +108,7 @@ class CalculateShippingMethodPrice
         $items = $this->getSortedItems();
         $initial = $items[0]->getProduct()->getDeliveryPrice();
         $itemsForPriceCalculation = array_slice($items, 3);
-
+        
         return reduce(function (float $acc, CartItemInterface $item) {
             $deliveryPrice = $item->getProduct()->getDeliveryPrice();
             $deliveryPrice *= self::STANDARD_DELIVERY_DISCOUNT;

@@ -4,5 +4,8 @@
         <route id="checkout" frontName="checkout">
             <module name="Elightwalk_Core" />
         </route>
+        <route id="elightwalk" frontName="elightwalk">
+            <module name="Elightwalk_Core" />
+        </route>
     </router>
 </config>
