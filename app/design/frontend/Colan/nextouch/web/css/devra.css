@@ -2457,11 +2457,11 @@ tr.totals.shipping.excl{
   }
   .catalog-product-view .primary.checkout.button-pick-instore {
     min-width: unset;
-    padding-top: 2px;
-    padding-bottom: 2px;
     margin: 0;
+    /* padding-top: 2px;
+    padding-bottom: 2px;
     padding-right: 0;
-    padding-left: 0; 
+    padding-left: 0;  */
   }
   .amsearch-form-container.-large .amsearch-wrapper-content > .amsearch-item {
     width: 100%;
@@ -2784,6 +2784,7 @@ tr.totals.shipping.excl{
     z-index: 10;
     gap: 10px;
     margin: 0;
+    align-items: center;
   }
   .product-info-main .box-tocart #paypal-express-btn {
     min-width: unset;
@@ -2925,7 +2926,7 @@ tr.totals.shipping.excl{
     display: block;
     margin-top: -7px;
   }
-  
+
   
 
 

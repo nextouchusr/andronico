@@ -66,7 +66,7 @@ class PickAndPayInfo implements ArrayableInterface
     {
         return [
             'is_pick_and_pay' => $this->isPickAndPay(),
-            'pick_and_pay_sell_point' => $this->isPickAndPay() ? "MB1E" : "", //$this->getPickAndPaySellPoint(),
+            'pick_and_pay_sell_point' => $this->getPickAndPaySellPoint().'E',
             'pick_and_pay_type' => $this->getPickAndPayType(),
         ];
     }

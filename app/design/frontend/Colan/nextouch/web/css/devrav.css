@@ -1330,7 +1330,7 @@ a {
   font-weight: 600;
   color: var(--primary-blue);
   margin-bottom: 5px;
-  max-width: 370px !important;
+  max-width: 400px !important;
 }
 
 .cms-index-index .home-slick-slider .slick-slide h2 {
@@ -1339,7 +1339,7 @@ a {
   font-family: var(--global-font);
   font-weight: 500;
   color: var(--primary-blue);
-  max-width: 370px !important;
+  max-width: 400px !important;
 }
 
 .home-slick-slider .caption.hidden-mobile {
@@ -6656,8 +6656,8 @@ input[type="radio"]:checked + label:before {
 }
 
 .header-volantino-box .header-volantino-link svg {
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
 }
 .header-volantino-box .header-volantino-link:hover {
   background-color: #fff;
@@ -7733,8 +7733,9 @@ span.product-image-wrapper {
 }
 @media (max-width: 576px) {
   .product-info-main-cols .box-tocart .action.tocart#product-addtocart-button {
-    margin-bottom: 20px;
+    margin-bottom: 0;
     padding: 15px;
+    min-width: unset;
   }
 }
 
@@ -7782,4 +7783,282 @@ span.product-image-wrapper {
 }
 .iphone-popup-content #iphone-popup-form .actions-toolbar .primary .action.submit{
   box-shadow: none;
+}
+
+
+.checkout-index-index #checkout .payment-option.opc-payment-additional.giftcardaccount{
+  display: none;
+}
+.checkout-index-index #checkout .amcard-field-container > form{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.checkout-index-index #checkout .amcard-codes-list{
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.checkout-index-index #checkout .amcard-codes-list .amcard-delete{
+  margin-left: 10px;
+}
+.checkout-index-index #checkout .amcard-codes-list table{
+  border: 1px solid #d1d1d1;
+}
+.checkout-index-index #checkout .amcard-codes-list table thead th{
+  font-weight: 700;
+  background: #e6e6e6;
+  font-family: var(--heading-font);
+}
+.checkout-index-index .opc-wrapper .opc button:hover{
+  text-decoration: none;
+}
+
+@media (min-width: 768px){
+  #checkout .amcard-field-container .amcard-check {
+    margin-right: 0;
+  }
+}
+@media only screen and (max-width: 639px){
+  .checkout-index-index #checkout .amcard-codes-list table tbody td{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .checkout-index-index #checkout .amcard-codes-list table>tbody>tr td[data-th]:before{
+    color: #041d28;
+    font-weight: 700;
+    font-family: var(--heading-font);
+  }
+
+}
+.special-video-container{
+  max-width: 1410px;
+  margin: 0 auto;
+  padding: 0 15px;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--dark-grey);
+}
+.special-video-page-content{
+  margin-bottom: 30px;
+}
+.vidoeconference-booking-form .fieldset {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+}
+.vidoeconference-booking-form .fieldset>.field {
+  margin-bottom: 0;
+}
+.vidoeconference-booking-form .fieldset .field:not(.choice) .label {
+  font-weight: 200;
+}
+.vidoeconference-booking-form .fieldset .field:not(.choice) .input-text,
+.vidoeconference-booking-form .fieldset .field:not(.choice) input[type=text] {
+  padding: 19px 15px;
+  border: none;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 500;
+  background-color: var(--light-grey);
+  color: var(--primary-blue);
+  border-radius: 10px;
+  height: auto;
+}
+.vidoeconference-booking-form .fieldset .field.date input{
+  width: 100%;
+  margin-right: 0;
+}
+
+.vidoeconference-booking-form .fieldset .field:not(.choice) select {
+  padding: 19px 40px 19px 15px;
+  border: none;
+  font-size: 16px;
+  line-height: 18px;
+  background-color: var(--light-grey) !important;
+  color: var(--primary-blue);
+  border-radius: 10px;
+  height: auto;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: auto;
+  background: url(../images/blue-arrow-down.svg) no-repeat right 2rem center;
+  background-size: 20px;
+}
+.vidoeconference-booking-form  .actions-toolbar .primary .action{
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 600;
+  background: var(--primary-blue);
+  border: 1px solid var(--primary-blue);
+  color: var(--light);
+  position: relative;
+  padding: 13px 35px;
+  border-radius: 60px;
+  text-decoration: none;
+  box-shadow: unset;
+  min-width: 150px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.vidoeconference-booking-form  .actions-toolbar .primary .action:hover{
+  background: var(--light);
+  color: var(--primary-blue);
+}
+.cms-prenotazione-videoconferenza .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current{
+  display: none;
+}
+.cms-prenotazione-videoconferenza .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-close{
+  padding: 10px 14px;
+  float: none;
+  margin: 0 auto;
+  display: table;
+  border-radius: 10px;
+}
+@media only screen and (max-width: 768px){
+  .vidoeconference-booking-form .fieldset{
+    grid-template-columns: repeat(1,1fr);
+  }
+}
+
+
+
+
+.amsearch-wrapper-input .categories-search{
+  display: none;
+}
+
+.minicart-wrapper .action.showcart .text{
+  all: unset;
+}
+.page-header .header.content .minicart-wrapper{
+  order: 11;
+}
+.page-header .header.content .account-wrapper{
+  order: 10;
+}
+.minicart-wrapper .action.showcart,
+.page-header .account-wrapper .showaccount{
+  text-align: center;
+  border-radius: 0;
+}
+.minicart-wrapper .action.showcart:before, 
+.page-header .account-wrapper .showaccount:before{
+background-color: transparent;
+border-radius: 0;
+width: 30px;
+height: 30px;
+}
+.page-header .account-wrapper .showaccount:hover:before{
+  background-color: transparent;
+  background-image: url('../images/ico-account.svg');
+}
+.minicart-wrapper .action.showcart:hover:before{
+  background-color: transparent;
+  background-image:url('../images/ico-cart.svg');
+}
+.header-volantino-box .header-volantino-link{
+  flex-direction: column;
+  background: none;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+}
+.header-volantino-box .header-volantino-link:hover{
+  background: none;
+  text-decoration: none;
+}
+.header-volantino-box .header-volantino-link:hover .cls-1{
+  fill: #fff;
+}
+.header-volantino-box .header-volantino-link svg{
+  width: 26px;
+  height: 26px;
+}  
+.header-volantino-box .header-volantino-link .text,
+.minicart-wrapper .action.showcart .text,
+.page-header .account-wrapper .showaccount span.text{
+  display: block;
+  color: #fff;
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.page-header .header.content .nav-toggle.nav-toggle{
+  background: none;
+  border-radius: 0;
+  width: 24px;
+  height: 24px;
+}
+.page-header .header.content .nav-toggle.nav-toggle:after{
+  background-color:transparent;
+  border-radius: 0;
+}
+.minicart-wrapper .action.showcart .counter.qty{
+  width: 18px;
+  font-size: 10px;
+  height: 18px;
+  line-height: 18px;
+  top: -8px;
+  right: -8px;
+}
+@media (min-width: 768px){
+  .minicart-wrapper,
+  .page-header .account-wrapper{
+      padding-left: 30px;
+  }
+}
+@media (min-width: 1024px){
+  .amsearch-form-container.-opened .amsearch-wrapper-input{
+      max-width: unset;
+      width: 100% !important;
+  }
+}
+@media only screen and (max-width: 767px){
+  .minicart-wrapper{
+      margin-left: 0;
+  }
+  .header-volantino-wrapper{
+      margin-left: auto;
+  }
+  .page-header .header.content .logo{
+      max-width: 40%;
+  }
+  body.openMenu .page-header .header.content .nav-toggle{
+      background: none;
+  }
+  .header-volantino-box .header-volantino-link .text, .minicart-wrapper .action.showcart .text, .page-header .account-wrapper .showaccount span.text {
+      font-size: 12px;
+  }
+  .header-volantino-box .header-volantino-link svg {
+     width: 22px;
+    height: 22px;
+  }
+}
+@media only screen and (max-width: 480px){
+  .header-volantino-wrapper{
+      display: block;
+  }
+}
+@media only screen and (max-width: 385px){
+  .page-header .header.content .logo{
+      width: 30%;
+  }
+  .minicart-wrapper .action.showcart .counter.qty{
+      width: 18px;
+      font-size: 10px;
+      height: 18px;
+      line-height: 18px;
+  }
+}
+
+.product-options-bottom .product.shortdescription{
+  font-size: 14px;
+}
+@media (max-width: 639px){
+  .amcard-page-product .product-info-main #product_addtocart_form .product-options-bottom{
+      position: static;
+      background: none;
+      padding: 0;
+  }
 }

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <!-- Iphone Email Template -->
     <template id="elightwalk_core_iphone_emailtemplate" label="Iphone Email Template" file="iphoneemail.html" type="html" module="Elightwalk_Core" area="frontend" />
+    <!-- VideoconferenceBooking Email Template -->
+    <template id="elightwalk_core_videoconferencebooking_emailtemplate" label="Videoconferencebooking Email Template" file="videoconferencebooking.html" type="html" module="Elightwalk_Core" area="frontend" />
 </config>

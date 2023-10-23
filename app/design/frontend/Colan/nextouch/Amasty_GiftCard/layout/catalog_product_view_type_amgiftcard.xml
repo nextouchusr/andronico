@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Gift Card for Magento 2
+ */-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+         <referenceContainer name="view.addto.wishlist" remove="true"/>
+         <referenceContainer name="view.addto.share" remove="true"/>
+         <referenceBlock name="product.info.addto">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.giftcard.shortdescription" template="Magento_Catalog::product/view/attribute.phtml" after="-">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getShortDescription</argument>
+                        <argument name="at_code" xsi:type="string">short_description</argument>
+                        <argument name="css_class" xsi:type="string">shortdescription</argument>
+                        <argument name="at_label" xsi:type="string">none</argument>
+                        <argument name="title" translate="true" xsi:type="string">Overview</argument>
+                        <argument name="add_attribute" xsi:type="string">itemprop="description"</argument>
+                    </arguments>
+                </block>
+        </referenceBlock>
+    </body>
+</page>

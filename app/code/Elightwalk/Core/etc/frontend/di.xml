@@ -3,4 +3,8 @@
     <type name="Magento\Wishlist\Controller\Index\Add">
         <plugin name="add_to_wishlist_plugin" type="Elightwalk\Core\Plugin\Wishlist\Controller\Index\Add" sortOrder="20" />
     </type>
+
+    <type name="Magento\Catalog\Block\Product\ImageFactory">
+        <plugin name="elightwalk_core_productimagefactory_plugin" type="Elightwalk\Core\Plugin\Block\Product\ImageFactory" sortOrder="10" />
+    </type>
 </config>

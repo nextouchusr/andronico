@@ -1,0 +1,107 @@
+<div id="vidoeconference-booking">
+    <form class="form contact vidoeconference-booking-form" id="vidoeconference-booking-form" action="<?= $block->getUrl('elightwalk/videoconferencebooking/emailsender'); ?>" method="POST" data-mage-init='{"validation": {"errorClass": "mage-error"}}'>
+        <?= $block->getBlockHtml('formkey'); ?>
+        <div class="form-content">
+            <fieldset class="fieldset">
+                <div class="field name required">
+                    <?php $nameText = __("Name"); ?>
+                    <label class="label" for="name"><span><?= $nameText; ?></span></label>
+                    <div class="control">
+                        <input name="name" id="name" class="input-text" title="<?= $nameText; ?>" type="text" placeholder="<?= $nameText; ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}" />
+                    </div>
+                </div>
+
+                <div class="field surname">
+                    <?php $surnameText = __("Surname"); ?>
+                    <label class="label" for="surname"><span><?= $surnameText; ?></span></label>
+                    <div class="control">
+                        <input name="surname" id="surname" class="input-text" title="<?= $surnameText; ?>" type="text" placeholder="<?= $surnameText; ?>" />
+                    </div>
+                </div>
+
+                <div class="field email required">
+                    <?php $emailText = __("Email"); ?>
+                    <label class="label" for="email"><span><?= $emailText; ?></span></label>
+                    <div class="control">
+                        <input name="email" id="email" class="input-text" title="<?= $emailText; ?>" type="email" placeholder="<?= $emailText; ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}" />
+                    </div>
+                </div>
+
+                <div class="field phone">
+                    <?php $phoneText = __("Phone Number"); ?>
+                    <label class="label" for="phone"><span><?= $phoneText; ?></span></label>
+                    <div class="control">
+                        <input name="phone" id="phone" class="input-text" title="<?= $phoneText; ?>" type="text" placeholder="<?= $phoneText; ?>" />
+                    </div>
+                </div>
+
+                <div class="field category">
+                    <label class="label" for="category"><span><?= __('Category'); ?></span></label>
+                    <div class="control">
+                        <select class="input-text" name="category">
+                            <option value="<?= __('Informatica'); ?>"><?= __('Informatica'); ?></option>
+                            <option value="<?= __('Telefonia'); ?>"><?= __('Telefonia'); ?></option>
+                            <option value="<?= __('Grandi Elettrodomestici'); ?>"><?= __('Grandi Elettrodomestici'); ?></option>
+                            <option value="<?= __('Piccoli Elettrodomestici'); ?>"><?= __('Piccoli Elettrodomestici'); ?></option>
+                            <option value="<?= __('Home Entertainment'); ?>"><?= __('Home Entertainment'); ?></option>
+                            <option value="<?= __('Climatizzazione e Riscaldamento'); ?>"><?= __('Climatizzazione e Riscaldamento'); ?></option>
+                            <option value="<?= __('Audio Video'); ?>"><?= __('Audio Video'); ?></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field date required">
+                    <label class="label" for="date"><span><?= __('Favorite day'); ?></span></label>
+                    <div class="control">
+                        <input type="text" id="date" name="date" class="input-text" title="<?= __("Favorite day"); ?>" placeholder="<?= __("Favorite day"); ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="field time required">
+                    <label class="label" for="time"><span><?= __('Preferred time'); ?></span></label>
+                    <div class="control">
+                        <input type="text" id="time" name="time" class="input-text" title="<?= __("Preferred time"); ?>" placeholder="<?= __("Preferred time"); ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}" autocomplete="off" />
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" title="<?= __('Submit'); ?>" class="action submit primary">
+                        <span><?= __('Submit'); ?></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    require(['jquery', 'jquery/ui'], function($) {
+        $(document).ready(function() {
+            if ($("#date").length) {
+                // Date Picker
+                $("#date").datepicker({
+                    dateFormat: 'dd MM yy',
+                    minDate: new Date(),
+                    changeMonth: true,
+                    changeYear: true,
+                });
+            }
+
+            if ($("#time").length) {
+                // Time Picker
+                $("#time").timepicker({
+                    timeFormat: 'HH:mm',
+                    hourMin: 10,
+                    hourMax: 19,
+                    stepMinute: 5,
+                    showButtonPanel: true,
+                    closeText: "<?= __('Done'); ?>",
+                    hideIfNoPrevNext: true,
+                    dynamic: false,
+                    dropdown: true,
+                });
+            }
+        });
+    });
+</script>
