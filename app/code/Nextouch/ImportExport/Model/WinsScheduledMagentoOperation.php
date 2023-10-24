@@ -39,10 +39,40 @@ class WinsScheduledMagentoOperation implements EntityDataOperationInterface
 
     public function run(): void
     {
-        $this->logger->info(__('Starting to import Wins entity data from "%1"', $this->filename));
+        $multipleFiles = $this->searchMultipleFiles();
+        if ($multipleFiles) {
+            if (is_array($multipleFiles)) {
+                foreach ($multipleFiles as $filename) {
+                    $this->filename = $filename;
+                    $this->runOperationFunction();
+                }                
+            }
+        } else {
+            // Old precedure
+            $this->runOperationFunction();
+        }        
+    }
 
+    private function runOperationFunction(){
+
+        $this->logger->info(__('Starting to import Wins entity data from "%1"', $this->filename));
+        
         try {
+
+            // Forzo aggiornamento file_name dentro operations per importazione multipla
             $operation = $this->fetchOperation();
+            $file_info = $operation->getData("file_info");
+            $file_info["file_name"] = $this->filename;
+            $operation->setData("file_info",$file_info);
+            //var_dump($file_info);
+
+            /*
+            var_dump( get_class($operation));
+            var_dump( get_class_methods($operation));
+            var_dump( $operation->getData()); 
+            */
+
+            //die();
             $operation->run();
 
             $this->moveFilenameToProcessed();
@@ -52,6 +82,43 @@ class WinsScheduledMagentoOperation implements EntityDataOperationInterface
         } finally {
             $this->logger->info(__('Finishing to import Wins entity data from "%1"', $this->filename));
         }
+        
+    }
+
+
+    private function searchMultipleFiles() {
+
+        if ( $this->filename == "prodotti.csv" || $this->filename == "giacenze.csv") {
+
+            $config = $this->config->getWinsConfig();
+            $this->client->open($config);
+            $winsLocation = $this->config->getWinsLocation();
+            $this->client->cd($winsLocation);
+            $files = $this->client->ls();
+            $this->client->close();
+
+            $search_regex_pattern = "/".str_replace(".csv","_\d+\.csv",$this->filename)."/"; // example /prodotti_\d+\.csv/
+            //echo "\r\nSearch pattern: ". $search_regex_pattern;
+            $this->logger->info(__('Search pattern ' . $search_regex_pattern));
+
+            $files_to_import = array();
+            foreach ($files as $file) {
+                $filename = $file['text'];
+                if (preg_match($search_regex_pattern, $filename)) {
+                    //echo "\r\n" . $filename;
+                    $files_to_import[] = $filename;
+                    $this->logger->info('File to import: ' . $filename);
+                }
+            }
+            sort($files_to_import);
+            
+            //var_dump($files_to_import);
+            
+            return $files_to_import;
+
+        }
+
+        return false;
     }
 
     /**
