@@ -1,0 +1,90 @@
+{
+    "nextouch_gestlogis_shipping_postcode": {
+        "column": {
+            "entity_id": true,
+            "postcode": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "nextouch_gestlogis_shipping_services": {
+        "column": {
+            "entity_id": true,
+            "not_allowed_service_id": true,
+            "service_code": true,
+            "service_name": true,
+            "status": true,
+            "is_required": true,
+            "tooltip": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "nextouch_gestlogis_attributes": {
+        "column": {
+            "entity_id": true,
+            "attribute_code": true,
+            "attribute_value": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "nextouch_gestlogis_quote_shipping_service": {
+        "column": {
+            "entity_id": true,
+            "item_id": true,
+            "service_code": true,
+            "service_name": true,
+            "price": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "NEXTOUCH_GESTLOGIS_QUOTE_SHPP_SERVICE_ITEM_ID_QUOTE_ITEM_ITEM_ID": true
+        }
+    },
+    "nextouch_gestlogis_order_shipping_service": {
+        "column": {
+            "entity_id": true,
+            "item_id": true,
+            "service_code": true,
+            "service_name": true,
+            "price": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_ECCD1FDD604C33BC7A5460726789D3FD": true
+        }
+    },
+    "nextouch_gestlogis_postcode_service_attributes": {
+        "column": {
+            "entity_id": true,
+            "postcode_id": true,
+            "service_id": true,
+            "attribute_set_id": true,
+            "attribute_id": true,
+            "postcode_price": true,
+            "service_price": true,
+            "is_service_required": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_507260C6D65752362F960D643EAF57BE": true,
+            "FK_AA54C69E24F0AC40D03F6084CC65575A": true,
+            "FK_BE3BC36CE3C3E3DC752B7DADC4D5C217": true
+        }
+    }
+}

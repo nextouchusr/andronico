@@ -1,0 +1,104 @@
+<?php $helperObj = $block->dataHelperObj(); ?>
+<?php $shippingActive = $helperObj->isShippingActive(); ?>
+
+<?php if ($shippingActive): ?>
+    <?php $currencySymbol = $helperObj->getCurrencySymbol(); ?>
+
+    <?php $item = $block->getItem(); ?>
+    <?php $shippingPrice = $helperObj->getQuoteShippingServiceCollectionObj()->getQuoteDefaultShipPrice($item->getId()); ?>
+    <?php $shippingTooltip = $helperObj->getShippingTooltip(); ?>
+    <?php $services = $block->getServicesByItemId($item->getId()); ?>
+    
+    <?php if ($shippingPrice !== null && $services && $services->getSize()): ?>
+        <div class="gestlogis-postcode-product gestlogis-shipping-method-container gestlogis-shipping-cart">
+            <div class="top-heading">
+                <span>
+                    <?= __("Delivery and additional services"); ?>
+                </span>
+            </div>
+            <?php /*<div class="default-shipping">
+                   <div class="shipping-text">
+                       <p class="shipping-top-text"><?= __("Standard Delivery"); ?>
+                           <?php if ($shippingTooltip) : ?>
+                               <span class="info-icon delivery-tooltip-container"></span>
+                       <div class="delivery-tooltip-content">
+                           <?= $shippingTooltip; ?>
+                       </div>
+                   <?php endif; ?>
+                   </p>
+                   </div>
+                   <div class="shipping-price">
+                       <span class="ship-price">
+                           <?php if ($shippingPrice > 0) : ?>
+                               <?= $block->getFormatedPrice($shippingPrice); ?>
+                           <?php endif; ?>
+                       </span>
+                   </div>
+               </div> */?>
+            <?php if ($services && $services->getSize()): ?>
+                <div class="dynamic-ship-calculator">
+                    <div class="shipping-container">
+                        <div class="shipping-text">
+                            <p class="shipping-top-text">
+                                <?= __("Delivery + Additional Services"); ?></span>
+                            </p>
+                            <p class="ship-availability-checker" style="display: none;">
+                                <?= __("Check if your area is served by entering your postcode"); ?>
+                            </p>
+                        </div>
+                        <div
+                            class="shipping-dynamic-price<?php if ($shippingPrice !== null): ?><?= ' price-available'; ?><?php endif; ?>">
+                            <span style="display: none;">
+                                <?= __("Starting from"); ?>
+                            </span>
+                            <span class="dynamic-ship-price">
+                                <?= $block->getFormatedPrice($helperObj->GetItemsPrice($item->getId())); ?>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="shipping-options" style="display: none;">
+                        <p class="shipping-option-title">
+                            <?= __("Additional services"); ?></span>
+                        </p>
+                        <?php if ($services && $services->getSize()): ?>
+                            <ul class="options shipping-option-items">
+                                <?php foreach ($services as $service): ?>
+                                    <li class="shipping-option-item">
+                                        <span class="shipping-service-label">
+                                            <?= $service->getServiceName(); ?>
+                                        </span>
+                                        <?php if ($serviceTooltip = $service->getTooltip()): ?>
+                                            <span class="info-icon service-tooltip-container"
+                                                data-title="<?= $service->getServiceName(); ?>"></span>
+                                            <div class="service-tooltip-content">
+                                                <?= $service->getTooltip(); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <span class="shipping-service-price">
+                                            <?= $block->getFormatedPrice($service->getPrice()); ?>
+                                        </span>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            <p class="shipping-services-validation">
+                                <?= __("No services been choosen."); ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <script type="text/javascript">
+            require(['jquery', 'helper'], function ($, Helper) {
+                var config = {
+                    target: ".delivery-tooltip-content",
+                    serviceTarget: ".service-tooltip-content"
+                };
+                Helper.initGestLogicHelper(config);
+            });
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

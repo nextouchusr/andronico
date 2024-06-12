@@ -18,6 +18,7 @@ class EmailSender extends Action
 {
     public const XML_PATH_EMAIL_RECIPIENT_NAME  = 'trans_email/ident_general/name';
     public const XML_PATH_EMAIL_RECIPIENT_EMAIL = 'trans_email/ident_general/email';
+    public const EMAIL_RECIPIENT                = "aps@nextouch.it ";
 
     /**
      * @var Validator
@@ -91,6 +92,7 @@ class EmailSender extends Action
 
                 $sentToEmail = $this->_scopeConfig->getValue('trans_email/ident_general/email', ScopeInterface::SCOPE_STORE);
                 $sentToName  = $this->_scopeConfig->getValue('trans_email/ident_general/name', ScopeInterface::SCOPE_STORE);
+                $recipient   = self::EMAIL_RECIPIENT;
 
                 $sender = [
                     'email' => $sentToEmail,
@@ -110,10 +112,12 @@ class EmailSender extends Action
                         'phone'    => $post['phone'],
                         'category' => $post['category'],
                         'date'     => $post['date'],
-                        'time'     => $post['time']
+                        'time'     => $post['time'],
+                        'url'      => isset($post['url']) ? $post['url'] : "",
                     ])
                     ->setFrom($sender)
-                    ->addTo($sentToEmail, $sentToName)
+                    ->addTo($recipient, $sentToName)
+                    ->addCc($post['email'], $sentToName)
                     ->getTransport();
 
                 $transport->sendMessage();

@@ -1,0 +1,644 @@
+.gestlogis-shipping-method-container {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.gestlogis-shipping-product {
+  border-bottom: 1px solid var(--light-grey);
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+}
+
+.gestlogis-shipping-method-container .top-heading {
+  margin-bottom: 18px;
+  font-family: var(--heading-font);
+  color: var(--primary-blue);
+  font-weight: 500;
+}
+.gestlogis-shipping-method-container .default-shipping {
+  margin-bottom: 13px;
+}
+
+.gestlogis-shipping-method-container .default-shipping,
+.gestlogis-shipping-method-container .dynamic-ship-calculator {
+  padding: 10px;
+  border: 1px solid var(--light-grey);
+  border-radius: 10px;
+}
+
+.gestlogis-shipping-method-container .default-shipping,
+.gestlogis-shipping-method-container .shipping-container {
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.gestlogis-shipping-method-container .shipping-container {
+  position: relative;
+  /* padding-right: 10px; */
+  padding-right: 0px !important;
+  
+}
+
+/* .gestlogis-shipping-method-container .shipping-container::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  background: url(../media/blue-arrow-down.svg) 100% 50% no-repeat;
+  background-size: 20px;
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease-in-out;
+} 
+
+.gestlogis-shipping-method-container .shipping-container.active::before {
+  transform: rotate(180deg);
+}
+
+
+*/
+
+.gestlogis-shipping-method-container .shipping-container .shipping-dynamic-price::after {
+  content: "";
+  /* position: absolute; */
+  margin-left: 5px;
+  /* right: 0; */
+  background: url(../media/blue-arrow-down.svg) 100% 50% no-repeat;
+  background-size: 20px;
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  margin-bottom: -6px;
+}
+
+.gestlogis-shipping-method-container .shipping-container.active .shipping-dynamic-price::after {
+  transform: rotate(180deg);
+}
+
+.gestlogis-shipping-method-container
+  .dynamic-ship-calculator
+  .shipping-options {
+  padding: 15px 0 0;
+  border-top: 1px solid var(--light-grey);
+  margin-top: 10px;
+}
+
+.gestlogis-shipping-method-container
+  .dynamic-ship-calculator
+  .shipping-options
+  .shipping-option-title {
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--dark-grey);
+  margin-bottom: 20px;
+}
+
+.gestlogis-shipping-method-container
+  .dynamic-ship-calculator
+  .shipping-options
+  .shipping-option-items {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.gestlogis-shipping-method-container
+  .dynamic-ship-calculator
+  .shipping-options
+  .shipping-option-items
+  .shipping-option-item {
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--dark-grey);
+  display: flex;
+}
+
+.gestlogis-shipping-method-container
+  .dynamic-ship-calculator
+  .shipping-options
+  .shipping-option-items
+  .shipping-service-label::before {
+  content: initial;
+}
+
+.gestlogis-shipping-method-container
+  .dynamic-ship-calculator
+  .shipping-options
+  .shipping-option-items
+  input[type="checkbox"] {
+  display: block;
+  border: 1px solid #c0c0c0;
+  width: 19px;
+  height: 19px;
+  margin: 0;
+  display: block;
+  position: initial;
+  accent-color: var(--primary-blue);
+  cursor: pointer;
+}
+.gestlogis-shipping-method-container
+  .dynamic-ship-calculator
+  .shipping-options
+  .shipping-option-items
+  .shipping-service-label {
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.gestlogis-shipping-method-container
+  .dynamic-ship-calculator
+  .shipping-options
+  .shipping-option-items
+  .shipping-service-price {
+  margin-left: auto;
+}
+
+.gestlogis-shipping-method-container .ship-availability-checker {
+  font-size: 12px;
+  text-decoration: underline;
+  margin: 0;
+  cursor: pointer;
+}
+
+.gestlogis-shipping-method-container .shipping-top-text {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.gestlogis-shipping-method-container .shipping-text {
+  padding: 0 15px 0 0;
+}
+
+.gestlogis-shipping-method-container .shipping-container .shipping-top-text {
+  margin-bottom: 7px;
+}
+
+.gestlogis-shipping-method-container .info-icon {
+  background: url(../media/info-circle.svg) 100% 50% no-repeat;
+  background-size: 18px;
+  width: 18px;
+  min-width: 18px;
+  display: inline-block;
+  height: 18px;
+  margin-left: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.gestlogis-shipping-product .top-heading {
+  font-size: 24px;
+  line-height: 25px;
+}
+
+.gestlogis-shipping-product .default-shipping,
+.gestlogis-shipping-product .shipping-container {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.gestlogis-shipping-cart .top-heading {
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.gestlogis-shipping-cart .default-shipping,
+.gestlogis-shipping-cart .shipping-container {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.shipping-container .shipping-dynamic-price {
+  cursor: pointer;
+  position: relative;
+}
+
+.gestlogis-shipping-cart .shipping-container .shipping-dynamic-price {
+  font-size: 14px;
+}
+
+.gestlogis-shipping-cart .default-shipping .shipping-text,
+.gestlogis-shipping-cart .default-shipping .shipping-price,
+.gestlogis-shipping-cart .top-heading span {
+  padding: 0;
+}
+
+/* tooltip model popup  */
+.tooltip-modal-class .modal-inner-wrap .modal-header,
+.postcode-modal-class .modal-inner-wrap .modal-header,
+.service-tooltip-modal-class .modal-inner-wrap .modal-header {
+  padding: 0;
+  align-items: self-start;
+}
+
+.tooltip-modal-class .modal-inner-wrap .modal-header .modal-title,
+.service-tooltip-modal-class .modal-inner-wrap .modal-header .modal-title,
+.postcode-modal-class .modal-inner-wrap .modal-header .modal-title {
+  font-size: 36px;
+  line-height: 38px;
+  display: block;
+  padding: 0;
+  border: unset;
+  color: var(--primary-blue);
+  font-family: var(--heading-font);
+  margin: 5px 0;
+  padding-right: 10px;
+}
+
+.tooltip-modal-class .modal-inner-wrap .modal-header .action-close,
+.service-tooltip-modal-class .modal-inner-wrap .modal-header .action-close,
+.postcode-modal-class .modal-inner-wrap .modal-header .action-close {
+  padding: 0;
+  position: initial;
+}
+
+.tooltip-modal-class .modal-inner-wrap .modal-header .action-close::before,
+.service-tooltip-modal-class
+  .modal-inner-wrap
+  .modal-header
+  .action-close::before,
+.postcode-modal-class .modal-inner-wrap .modal-header .action-close::before {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary-blue);
+  color: var(--light);
+}
+
+.modal-popup.tooltip-modal-class .modal-inner-wrap .modal-content p,
+.modal-popup.service-tooltip-modal-class .modal-inner-wrap .modal-content p,
+.modal-popup.postcode-modal-class .modal-inner-wrap .modal-content p {
+  margin-bottom: 0;
+}
+
+.tooltip-modal-class .modal-inner-wrap .modal-content .delivery-tooltip-content,
+.service-tooltip-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .service-tooltip-content {
+  max-width: 617px;
+  margin-top: 15px;
+}
+
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .middle-desc {
+  max-width: 367px;
+}
+
+.tooltip-modal-class .modal-inner-wrap .modal-content .delivery-tooltip-content,
+.service-tooltip-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .service-tooltip-content,
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .middle-desc {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.modal-popup.tooltip-modal-class .modal-inner-wrap .modal-footer {
+  border: unset;
+  padding: 0;
+  display: block;
+  text-align: left;
+  margin-top: 30px;
+}
+
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .button-section {
+  margin-top: 30px;
+}
+
+.tooltip-modal-class .modal-inner-wrap .modal-footer button,
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .button-section
+  .check-postcode-btn {
+  border-radius: 60px;
+  box-shadow: unset;
+  font-size: 12px;
+  line-height: 15px;
+  background: var(--primary-blue);
+  color: var(--light);
+  text-transform: uppercase;
+  font-weight: 700;
+  border: 1px solid var(--primary-blue);
+}
+
+.tooltip-modal-class .modal-inner-wrap .modal-footer button {
+  padding: 13px 42px;
+}
+
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .button-section
+  .check-postcode-btn {
+  padding: 13px 27px;
+}
+
+.tooltip-modal-class .modal-inner-wrap .modal-footer button:hover,
+.tooltip-modal-class .modal-inner-wrap .modal-footer button:focus,
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .button-section
+  .check-postcode-btn:hover,
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .button-section
+  .check-postcode-btn:focus {
+  background: transparent;
+  color: var(--primary-blue);
+}
+
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .postcode-checker {
+  margin-top: 40px;
+}
+
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .postcode-checker
+  input.postcode-input-checker {
+  height: 60px;
+  background: var(--light-grey);
+  border-radius: 10px;
+  border: unset;
+  padding: 19px 15px;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--dark-grey);
+  opacity: 1;
+}
+
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .postcode-checker
+  input.postcode-input-checker::placeholder {
+  color: var(--dark-grey);
+  opacity: 0.5;
+  font-weight: 500;
+}
+
+.postcode-modal-class
+  .modal-inner-wrap
+  .modal-content
+  .postcode-content
+  .postcode-checker
+  p {
+  margin-top: 8px;
+  color: #b6bdc3;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.catalog-product-view .product-add-form > .box-tocart {
+  display: none !important;
+}
+
+.gestlogis-header-postcode-section .default-postcode {
+  text-decoration: underline;
+}
+
+.gestlogis-header-postcode-section .change-postcode-section {
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: var(--primary-blue);
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 15px;
+  box-shadow: 0px 5px 20px #252a6326;
+  color: #ffff;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.gestlogis.grandtotal {
+  text-align: end;
+}
+
+@media (min-width: 575px) {
+  .gestlogis-shipping-method-container .default-shipping,
+  .gestlogis-shipping-method-container .dynamic-ship-calculator {
+    padding: 13px 15px 13px 20px;
+  }
+  .gestlogis-shipping-method-container .shipping-container {
+    padding-right: 30px;
+  }
+
+  .gestlogis-shipping-method-container
+    .dynamic-ship-calculator
+    .shipping-options
+    .shipping-option-items
+    .shipping-service-label {
+    padding-left: 15px;
+  }
+}
+
+@media (min-width: 640px) {
+  .gestlogis-minicart-item .gestlogis-shipping-cart .dynamic-ship-calculator {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tooltip-modal-class.modal-popup.modal-slide._inner-scroll .modal-inner-wrap,
+  .service-tooltip-modal-class.modal-popup.modal-slide._inner-scroll
+    .modal-inner-wrap,
+  .postcode-modal-class.modal-popup .modal-inner-wrap {
+    padding: 30px 15px !important;
+  }
+
+  .checkout-cart-index
+    .tooltip-modal-class.modal-popup.modal-slide._inner-scroll
+    .modal-inner-wrap {
+    padding: 30px 15px !important;
+  }
+
+  .tooltip-modal-class .modal-inner-wrap .modal-header .modal-title,
+  .service-tooltip-modal-class .modal-inner-wrap .modal-header .modal-title,
+  .postcode-modal-class .modal-inner-wrap .modal-header .modal-title {
+    font-size: 25px;
+    line-height: 1.2;
+  }
+
+  .tooltip-modal-class .modal-inner-wrap .modal-header .action-close::before,
+  .service-tooltip-modal-class
+    .modal-inner-wrap
+    .modal-header
+    .action-close::before,
+  .postcode-modal-class .modal-inner-wrap .modal-header .action-close::before {
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    line-height: 1;
+  }
+
+  .tooltip-modal-class
+    .modal-inner-wrap
+    .modal-content
+    .delivery-tooltip-content,
+  .service-tooltip-modal-class
+    .modal-inner-wrap
+    .modal-content
+    .service-tooltip-content {
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  .tooltip-modal-class .modal-inner-wrap .modal-footer button,
+  .postcode-modal-class
+    .modal-inner-wrap
+    .modal-content
+    .postcode-content
+    .button-section
+    .check-postcode-btn {
+    padding: 10px 20px;
+  }
+
+  .postcode-modal-class
+    .modal-inner-wrap
+    .modal-content
+    .postcode-content
+    .postcode-checker {
+    margin-top: 20px;
+  }
+
+  .postcode-modal-class
+    .modal-inner-wrap
+    .modal-content
+    .postcode-content
+    .postcode-checker
+    input.postcode-input-checker {
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 16px;
+    line-height: 1.2px;
+  }
+
+  body:has(.change-postcode-section) .page-header {
+    height: 180px !important;
+  }
+  body:has(.change-postcode-section) .page-header .header.content {
+    padding-top: 60px;
+  }
+  body:has(.change-postcode-section) .gestlogis-header-postcode-section {
+    position: absolute;
+    top: 10px;
+    right: 0;
+  }
+}
+
+/* minicart css */
+.gestlogis-minicart-item
+  .gestlogis-shipping-cart
+  .dynamic-ship-calculator
+  .shipping-option-item {
+  margin-bottom: 10px;
+  gap: 5px;
+}
+.gestlogis-minicart-item
+  .gestlogis-shipping-cart
+  .dynamic-ship-calculator
+  .shipping-option-item
+  .shipping-service-label {
+  padding-left: 0px;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .gestlogis-minicart-item .gestlogis-shipping-cart .dynamic-ship-calculator {
+    text-align: left;
+  }
+  .gestlogis-minicart-item .gestlogis-shipping-cart .default-shipping {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .gestlogis-minicart-item
+    .gestlogis-shipping-cart
+    .default-shipping
+    .shipping-top-text {
+    text-align: left;
+    margin-bottom: 6px;
+  }
+
+  .gestlogis-minicart-item
+    .gestlogis-shipping-cart
+    .dynamic-ship-calculator
+    .shipping-container {
+    flex-direction: column;
+    gap: 3px;
+    padding-right: 20px;
+  }
+  .gestlogis-minicart-item .shipping-container .shipping-text {
+    padding: 0px;
+  }
+
+  .gestlogis-minicart-item
+    .gestlogis-shipping-cart
+    .dynamic-ship-calculator
+    .shipping-service-label {
+    word-break: break-all;
+  }
+  .minicart-items .product-item-details .details-qty {
+    justify-content: end;
+  }
+}
+@media (max-width: 639px) {
+  .gestlogis-minicart-item .gestlogis-shipping-cart {
+    padding-bottom: 0px;
+  }
+}
+
+.minicart-wrapper #minicart-content-wrapper .block-content .subtotal {
+  display: none;
+}
+
+.minicart-wrapper #minicart-content-wrapper .block-content .minicart-items .item .details-qty.qty {
+  display: none;
+}
+
+
+
+.product-info-main-primary .gestlogis-shipping-method-container .shipping-text{
+  display: flex;
+  gap: 8px;
+ }
+ .product-info-main-primary .gestlogis-postcode-product .develiry-option{
+     width: 26px;
+     height: 26px;
+     display: block;
+ }
+ 

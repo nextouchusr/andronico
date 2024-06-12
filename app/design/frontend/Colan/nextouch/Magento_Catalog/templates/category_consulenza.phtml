@@ -1,0 +1,42 @@
+<div class="category-consultation-secion">
+    <?php $consulatationUrl = $block->getBaseUrl() . 'consulenza-a-distanza'; ?>
+    <a href="<?= $consulatationUrl; ?>" class="remote-consulation-anchor">
+        <?= __("Get a free remote consultation"); ?>
+    </a>
+    <span class="info-icon" id="category-consultation-icon"></span>
+    <div class="category-consultation-popup-content">
+        <p>
+            <?= "Continua la tua ricerca prenotando una video consulenza gratuita con un Personal Shopper di Andronico. Conoscere i prodotti che hai già visualizzato ci aiuterà a rendere la tua consulenza ancora più veloce ed efficace"; ?>
+        </p>
+    </div>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal',
+    ], function($, modal) {
+        jQuery(document).ready(function() {
+            var buildDynamicUrl = "<?= $consulatationUrl; ?>?url=" + window.location;
+            $(".remote-consulation-anchor").attr("href", buildDynamicUrl);
+            console.log(buildDynamicUrl);
+
+            // Popup Code
+            var options = {
+                type: 'popup',
+                responsive: true,
+                modalClass: 'category-consultation-popup',
+                title: "<?= __('Get a free remote consultation'); ?>",
+                innerScroll: false,
+                clickableOverlay: true,
+                buttons: []
+            };
+
+            var popup = modal(options, $('.category-consultation-popup-content'));
+
+            $('#category-consultation-icon').on('click', function() {
+                $('.category-consultation-popup-content').modal('openModal');
+            });
+        });
+    });
+</script>

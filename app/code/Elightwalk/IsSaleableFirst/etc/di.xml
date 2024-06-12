@@ -35,4 +35,9 @@
     <type name="Magento\Catalog\Model\Category">
         <plugin name="Elightwalk_IsSaleableFirst_sorting_default_sort_order" type="Elightwalk\IsSaleableFirst\Plugin\Model\Category" sortOrder="1" />
     </type>
+
+     <type name="Magento\Catalog\Helper\Product\ProductList">
+        <plugin name="Elightwalk_IsSaleableFirst_sorting_default_sort_order_product" type="Elightwalk\IsSaleableFirst\Plugin\Helper\ProductList" sortOrder="1" />
+    </type>
+    
 </config>

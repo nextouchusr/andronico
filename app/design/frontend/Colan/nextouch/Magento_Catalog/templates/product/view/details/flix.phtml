@@ -1,0 +1,56 @@
+<?php
+/** @var \Nextouch\Theme\Block\Catalog\Product\View $block */
+$_product = $block->getProduct();
+?>
+<?php // 25652 = LENOVO ?>
+<?php if ($_product->getBrand() == "25652"): ?>
+    <div id="product-flix-information-collapsible">
+        <div data-role="title">
+            <h2 class="text-center text-sm-start">
+                <?= __('Informazioni prodotto'); ?>
+            </h2>
+        </div>
+
+        <div data-role="content" class="more-less-content">
+            <div class="more-less-wrapper">
+                <div>
+                    &nbsp;
+                    <div id="flix-inpage"></div>
+                </div>
+            </div>
+            <div class="more-less">
+                <span class="more">
+                    <?= __('Show more') ?>
+                </span>
+                <span class="less">
+                    <?= __('Show less') ?>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            console.log('call');
+            var product_ean = "<?= $_product->getEan(); ?>";
+            var fallback_language = "";
+            var product_brand = "LENOVO";
+            var distributor = "18198";
+            var language = "it";
+            var headID = document.getElementsByTagName("head")[0];
+            var flixScript = document.createElement("script");
+            flixScript.type = "text/javascript";
+            flixScript.async = true;
+            flixScript.setAttribute("data-flix-distributor", distributor);
+            flixScript.setAttribute("data-flix-language", language);
+            flixScript.setAttribute("data-flix-brand", product_brand);
+            flixScript.setAttribute("data-flix-ean", product_ean);
+            flixScript.setAttribute("data-flix-inpage", "flix-inpage");
+            flixScript.setAttribute("data-flix-fallback-language", fallback_language);
+            flixScript.setAttribute("data-flix-autoload", "inpage");
+            flixScript.setAttribute("data-flix-price", "");
+            headID.appendChild(flixScript);
+            flixScript.src = "//media.flixfacts.com/js/loader.js";
+        });
+    </script>
+<?php endif; ?>

@@ -1,10 +1,12 @@
 <?php
+
 /** @var \Magento\Catalog\Block\Product\View\Attributes $block */
 
 $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
 $_product = $block->getProduct();
 
-function isURL($string) {
+function isURL($string)
+{
     return filter_var($string, FILTER_VALIDATE_URL) !== false;
 }
 
@@ -13,7 +15,7 @@ function isURL($string) {
 <?php if ($_additional = $block->getAdditionalData()) : ?>
     <div id="product-attributes-collapsible">
         <div data-role="title">
-            <span class="chart-icon"><img src="<?= $block->getViewFileUrl('images/devices.svg'); ?>" width="24" alt="chart-icon"/></span>
+            <span class="chart-icon"><img src="<?= $block->getViewFileUrl('images/devices.svg'); ?>" width="24" alt="chart-icon" /></span>
             <h2 class="text-center text-sm-start"><?= __('Feature'); ?></h2>
         </div>
 
@@ -22,37 +24,40 @@ function isURL($string) {
                 <div class="additional-attributes-wrapper table-wrapper">
                     <table class="data table additional-attributes" id="product-attribute-specs-table">
                         <tbody>
-                        <?php foreach ($_additional as $_data) : ?>
-                            <!--<tr>
-                                <th class="col label group" scope="row">
-                                    <?= $block->escapeHtml($_data['label']); ?>
-                                </th>
-                            </tr>-->
-
-                            <?php foreach ($_data['attributes'] as $_attribute) : ?>
-			    <?php if (trim($_attribute['value']) != '0,00' && 
-			              trim($_attribute['value']) != '0,00 lt' &&
-				      trim($_attribute['value']) != '0,00 cm' &&
-			              trim($_attribute['value']) != '0,00 dB' ) : ?>
+                            <?php foreach ($_additional as $_data) : ?>
+                                <?php $attribLabel = isset($_data['label']) && $_data['label'] ? $_data['label'] : __('Others'); ?>
                                 <tr>
-                                    <th class="col label" scope="row">
-                                        <?= $block->escapeHtml($_attribute['label']); ?>
+                                    <th class="col label group" scope="row">
+                                        <?= $block->escapeHtml($attribLabel); ?>
                                     </th>
-                                    <td class="col data" data-th="<?= $block->escapeHtmlAttr($_attribute['label']); ?>">
-                <?php
-                $attributeValue = $_helper->productAttribute($_product, $_attribute['value'], $_attribute['code']);
+                                </tr>
 
-                if (isURL($attributeValue)) {
-                    echo '<a href="' . htmlspecialchars($attributeValue) . '">' . __('Visualizza') . '</a>';
-                } else {
-                    echo strip_tags(htmlspecialchars($attributeValue));
-                }
-                ?>
-                                    </td>
-				</tr>
-                            <?php endif; ?>
+                                <?php foreach ($_data['attributes'] as $_attribute) : ?>
+                                    <?php if (
+                                        trim($_attribute['value']) != '0,00' &&
+                                        trim($_attribute['value']) != '0,00 lt' &&
+                                        trim($_attribute['value']) != '0,00 cm' &&
+                                        trim($_attribute['value']) != '0,00 dB'
+                                    ) : ?>
+                                        <tr>
+                                            <th class="col label" scope="row">
+                                                <?= $block->escapeHtml($_attribute['label']); ?>
+                                            </th>
+                                            <td class="col data" data-th="<?= $block->escapeHtmlAttr($_attribute['label']); ?>">
+                                                <?php
+                                                $attributeValue = $_helper->productAttribute($_product, $_attribute['value'], $_attribute['code']);
+
+                                                if (isURL($attributeValue)) {
+                                                    echo '<a href="' . htmlspecialchars($attributeValue) . '">' . __('Visualizza') . '</a>';
+                                                } else {
+                                                    echo strip_tags(htmlspecialchars($attributeValue));
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             <?php endforeach; ?>
-                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

@@ -43,7 +43,7 @@
     </div>
 <?php endif; */ ?>
 
-<?php $attributeList = $this->getLayout()->createBlock("Magento\Catalog\Block\Product\View\Description")->setTemplate("Magento_Catalog::product/attribute-list.phtml")->setProduct($_product); ?>
+<?php $attributeList = $this->getLayout()->createBlock("Magento\Catalog\Block\Product\View\Description")->setTemplate("Magento_Catalog::product/attribute-list.phtml")->setProduct($_product)->setPageAction('product_view'); ?>
 <?= $attributeList->toHtml(); ?>
 
 <?php $attributeSetId = $_product->getAttributeSetId(); ?>

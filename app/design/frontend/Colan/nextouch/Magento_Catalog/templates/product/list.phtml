@@ -57,10 +57,29 @@ $_helper = $block->getData('outputHelper');
                     <?php
                     $productImage = $block->getImage($_product, $imageDisplayArea);
                     if ($pos != null) {
-                        $position = 'left:' . $productImage->getWidth() . 'px;'
-                            . 'top:' . $productImage->getHeight() . 'px;';
+                        $position = 'left:' . $productImage->getWidth() . 'px;' . 'top:' . $productImage->getHeight() . 'px;';
                     }
                     ?>
+                    <?php $productLabels = $_product->getAttributeText('product_labels'); ?>
+                    <?php if(is_string($productLabels)) : ?>
+                        <div class="product-label">
+                            <ul class="product-label-items items">
+                                <li class="item">
+                                    <span class="p-catalog-label"><?= $productLabels; ?></span>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php elseif (is_array($productLabels) && count($productLabels)) : ?>
+                        <div class="product-label">
+                            <ul class="product-label-items items">
+                                <?php foreach($productLabels as $label) : ?>
+                                    <li class="item">
+                                        <span class="p-catalog-label"><?= $label; ?></span>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
                     <?php // Product Image ?>
                     <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
                        class="product photo product-item-photo"
@@ -88,6 +107,7 @@ $_helper = $block->getData('outputHelper');
 
                         <?php $attributeList = $this->getLayout()->createBlock("Magento\Catalog\Block\Product\AbstractProduct")->setTemplate("Magento_Catalog::product/attribute-list.phtml"); ?>
                         <?php $attributeList->setProduct($_product); ?>
+                        <?php $attributeList->setPageAction('product_list'); ?>
                         <?= $attributeList->toHtml(); ?>
 
                         <?php $review =  $block->getReviewsSummaryHtml($_product, $templateType) ?>

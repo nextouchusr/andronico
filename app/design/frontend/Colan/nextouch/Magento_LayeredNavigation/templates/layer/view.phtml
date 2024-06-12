@@ -67,9 +67,12 @@
                                         <?= $filter->getAttributeModel()->getAttributeExplanation(); ?>
                                     </div>
                                 </div>
-                                <span class="info-icon" data-trigger="trigger<?= $i ?>"></span>
+                                <div class="filter-title-text"><?= $block->escapeHtml(__($filter->getName())); ?>
+                                    <span class="info-icon" data-trigger="trigger<?= $i ?>"></span>
+                                </div>
+                            <?php else : ?>
+                                <div class="filter-title-text"><?= $block->escapeHtml(__($filter->getName())); ?></div>
                             <?php endif; ?>
-                            <div class="filter-title-text"><?= $block->escapeHtml(__($filter->getName())); ?></div>
                         </div>
                         <div data-role="content" class="filter-options-content">
                             <?= $block->getChildBlock('renderer')->render($filter); ?>

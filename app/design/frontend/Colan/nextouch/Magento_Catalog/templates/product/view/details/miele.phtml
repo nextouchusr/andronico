@@ -1,0 +1,35 @@
+<?php
+/** @var \Nextouch\Theme\Block\Catalog\Product\View $block */
+
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+?>
+<?php if($_product->getBrand() == "25641"): ?>
+<?php 
+    $eanArray = explode(',', $_product->getEan());
+    $ean = isset($eanArray[0]) ? $eanArray[0] : '';
+?>
+<div id="product-miele-information-collapsible">
+    <div data-role="title">
+        <h2 class="text-center text-sm-start"><?= __('Informazioni prodotto'); ?></h2>
+    </div>
+
+    <div data-role="content" class="more-less-content">
+        <div class="more-less-wrapper">
+          <div>
+                &nbsp;
+                <div class="loadbeeTabContent" id="loadbeeTabContentId"
+                data-loadbee-apikey="M3wt4z93Pu66KZeR6PRJ5b5FL6M6A8Hc"
+                data-loadbee-locale="it_IT"
+                data-loadbee-gtin="<?= $ean;?>"
+                data-loadbee-debug="false"
+                ></div>
+          </div>
+        </div>
+        <div class="more-less">
+            <span class="more"> <?= __('Show more') ?></span>
+            <span class="less"> <?= __('Show less') ?></span>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

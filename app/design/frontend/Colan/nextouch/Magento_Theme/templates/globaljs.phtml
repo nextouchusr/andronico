@@ -1,22 +1,41 @@
 <script>
-    (function() {
+    window.itemremoveSessioncheck = '<?= $block->getUrl('gestlogis/postcode/sessioncheck'); ?>';
+    (function () {
         require([
             "jquery",
             "jquery/ui",
-        ], function($, ui) {
-            $(document).ready(function() {
-                
-              
+        ], function ($, ui) {
+            $(document).ready(function () {
+
+
                 // Mobile menu search
                 // $(document).on("click", ".footer-links-title", function() {
                 //     $(".mb-mobile-search-wrapper").addClass("mb-mobile-search-wrapper-active");
                 // });
 
-                $(document).on("click", ".footer-links-title", function() {
+                $(document).on("click", ".footer-links-title", function () {
                     console.log("died")
                     $(this).parent().toggleClass("dropdown-active");
                 });
-               
+
+                $(document).on("ajaxSuccess", function (event, xhr, settings) {
+                    if (settings.url.indexOf("checkout/sidebar/removeItem") > -1) {
+                        $.ajax({
+                            url: window.itemremoveSessioncheck,
+                            showLoader: true,
+                            dataType: 'json',
+                            success: function (response) {
+                                if (response.remove_cookie) {
+                                    localStorage.removeItem("postcodeState");
+                                    location.reload();
+                                }
+                            }
+                        });
+
+                    }
+
+                });
+
             });
         });
     })();

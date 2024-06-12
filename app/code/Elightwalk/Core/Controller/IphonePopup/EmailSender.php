@@ -14,7 +14,7 @@ use Magento\Store\Model\Store;
 
 class EmailSender extends Action
 {
-    public const SEND_TO_EMAIL = "info@andronico.it"; //"maurizio.andronico@nextouch.it";
+    public const SEND_TO_EMAIL = "ciamberlini@gmail.com"; //"info@andronico.it"; //"maurizio.andronico@nextouch.it";
     public const SEND_TO_NAME  = "Andronico";
 
     /**

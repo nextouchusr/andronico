@@ -9,4 +9,13 @@
     <type name="Magento\Quote\Model\Quote\Address\RateResult\Method">
         <plugin name="calculate_shipping_method_price" type="Elightwalk\Core\Plugin\Model\Quote\Address\RateResult\CalculateShippingMethodPrice" />
     </type>
+    <!-- Preference for DefaultRenderer -->
+    <preference for="Magento\Customer\Block\Address\Renderer\DefaultRenderer" type="Elightwalk\Core\Preference\Block\Address\Renderer\DefaultRenderer" />
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="generate_miele_product_csv" xsi:type="object">Elightwalk\Core\Console\Command\GenerateMieleProductCsv</item>
+            </argument>
+        </arguments>
+    </type>
 </config>

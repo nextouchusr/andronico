@@ -3,6 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
         <css src="css/lightgallery.min.css"/>
+        <script src="https://cdn.loadbee.com/js/loadbee_integration.js" src_type="url"/>
     </head>
     <body>
         <referenceContainer name="columns.top">
@@ -82,6 +83,22 @@
                             <argument name="css_class" xsi:type="string">ease_of_use</argument>
                             <argument name="at_label" xsi:type="string">none</argument>
                             <argument name="title" translate="true" xsi:type="string">Ease of Use</argument>
+                            <argument name="sort_order" xsi:type="string">10</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.miele" template="Magento_Catalog::product/view/details/miele.phtml">
+                        <arguments>
+                            <argument name="css_class" xsi:type="string">product-miele-information</argument>
+                            <argument name="at_label" xsi:type="string">none</argument>
+                            <argument name="title" translate="true" xsi:type="string">Informazioni prodotto</argument>
+                            <argument name="sort_order" xsi:type="string">10</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.flix" template="Magento_Catalog::product/view/details/flix.phtml">
+                        <arguments>
+                            <argument name="css_class" xsi:type="string">product-flix-information</argument>
+                            <argument name="at_label" xsi:type="string">none</argument>
+                            <argument name="title" translate="true" xsi:type="string">Informazioni prodotto</argument>
                             <argument name="sort_order" xsi:type="string">10</argument>
                         </arguments>
                     </block>

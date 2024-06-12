@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- Postcode -->
+    <table name="nextouch_gestlogis_shipping_postcode" resource="default" engine="innodb">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID" />
+        <column xsi:type="varchar" name="postcode" nullable="true" length="255" comment="Post code" />
+        <column xsi:type="boolean" name="status" nullable="true" default="true" comment="Status" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+    </table>
+
+    <!-- Services -->
+    <table name="nextouch_gestlogis_shipping_services" resource="default" engine="innodb">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID" />
+        <column xsi:type="text" name="not_allowed_service_id" nullable="true" comment="Not Allowed Service Ids" />
+        <column xsi:type="text" name="service_code" nullable="true" comment="Service Code" />
+        <column xsi:type="text" name="service_name" nullable="true" comment="Service Name" />
+        <column xsi:type="boolean" name="status" nullable="true" default="true" comment="Status" />
+        <column xsi:type="text" name="tooltip" nullable="true" comment="Tooltip" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+    </table>
+
+    <!-- Attribute -->
+    <table name="nextouch_gestlogis_attributes" resource="default" engine="innodb">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID" />
+        <column xsi:type="varchar" name="attribute_code" nullable="true" length="255" comment="Attribute Code" />
+        <column xsi:type="varchar" name="attribute_value" nullable="true" length="255" comment="Attribute Value" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+    </table>
+
+    <!-- Quote Services -->
+    <table name="nextouch_gestlogis_quote_shipping_service" resource="default" engine="innodb">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID" />
+        <column xsi:type="int" name="item_id" unsigned="true" nullable="false" identity="false" comment="Item ID" />
+        <column xsi:type="text" name="service_code" nullable="true" comment="Service Code" />
+        <column xsi:type="text" name="service_name" nullable="true" comment="Service Name" />
+        <column xsi:type="decimal" name="price" scale="2" precision="20" nullable="true" default="0" comment="Price" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="NEXTOUCH_GESTLOGIS_QUOTE_SHIPPING_SERVICE_ITEM_ID_QUOTE_ITEM_ITEM_ID" table="nextouch_gestlogis_quote_shipping_service" column="item_id" referenceTable="quote_item" referenceColumn="item_id" onDelete="CASCADE" />
+
+    </table>
+
+    <!-- Order Services -->
+    <table name="nextouch_gestlogis_order_shipping_service" resource="default" engine="innodb">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID" />
+        <column xsi:type="int" name="item_id" unsigned="true" nullable="false" identity="false" comment="Item ID" />
+        <column xsi:type="text" name="service_code" nullable="true" comment="Service Code" />
+        <column xsi:type="text" name="service_name" nullable="true" comment="Service Name" />
+        <column xsi:type="decimal" name="price" scale="2" precision="20" nullable="true" default="0" comment="Price" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="NEXTOUCH_GESTLOGIS_ORDER_SHIPPING_SERVICE_ITEM_ID_SALES_ORDER_ITEM_ITEM_ID" table="nextouch_gestlogis_order_shipping_service" column="item_id" referenceTable="sales_order_item" referenceColumn="item_id" onDelete="CASCADE" />
+
+    </table>
+
+    <!-- Postcode, Services And Attributes Relationship -->
+    <table name="nextouch_gestlogis_postcode_service_attributes" resource="default" engine="innodb">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID" />
+        <column xsi:type="int" name="postcode_id" unsigned="true" nullable="false" comment="Parent ID" />
+        <column xsi:type="int" name="service_id" unsigned="true" nullable="false" comment="Service ID" />
+        <column xsi:type="smallint" name="attribute_set_id" unsigned="true" nullable="false" comment="Attribute Set ID" />
+        <column xsi:type="int" name="attribute_id" nullable="true" comment="Attribute ID" />
+        <column xsi:type="boolean" name="is_service_required" nullable="true" default="false" comment="Is Service Required" />
+        <column xsi:type="decimal" name="postcode_price" scale="2" precision="20" nullable="true" default="0" comment="Postcode Price" />
+        <column xsi:type="decimal" name="service_price" scale="2" precision="20" nullable="true" default="0" comment="Service Price" />
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id" />
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="NEXTOUCH_GESTLOGIS_POSTCODE_SERVICE_ATTRIBUTES_POSTCODE_ID_NEXTOUCH_GESTLOGIS_SHIPPING_POSTCODE_ENTITY_ID" table="nextouch_gestlogis_postcode_service" column="postcode_id" referenceTable="nextouch_gestlogis_shipping_postcode" referenceColumn="entity_id" onDelete="CASCADE" />
+        <constraint xsi:type="foreign" referenceId="NEXTOUCH_GESTLOGIS_POSTCODE_SERVICE_ATTRIBUTES_SERVICE_ID_NEXTOUCH_GESTLOGIS_SHIPPING_SERVICES_ENTITY_ID" table="nextouch_gestlogis_postcode_service" column="service_id" referenceTable="nextouch_gestlogis_shipping_services" referenceColumn="entity_id" onDelete="CASCADE" />
+
+        <constraint xsi:type="foreign" referenceId="NEXTOUCH_GESTLOGIS_POSTCODE_SERVICES_ATTRIBUTES_ATTRIBUTE_SET_ID_EAV_ATTRIBUTE_SET_ATTRIBUTE_SET_ID" table="nextouch_gestlogis_postcode_service_attributes" column="attribute_set_id" referenceTable="eav_attribute_set" referenceColumn="attribute_set_id" onDelete="CASCADE" />
+    </table>
+</schema>

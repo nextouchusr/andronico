@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_add_product_complete">
+        <observer name="gestlogis_cart_add_product_complete" instance="Nextouch\GestLogis\Observer\Cart\AddProduct" shared="false" />
+    </event>
+    <event name="sales_quote_remove_item">
+        <observer name="gestlogis_sales_quote_remove_item" instance="Nextouch\GestLogis\Observer\Cart\RemoveProduct" shared="false" />
+    </event>
+    <event name="load_customer_quote_merge_after">
+        <observer name="gestlogis_cart_add_product_after_merge_cart" instance="Nextouch\GestLogis\Observer\Quote\Merge" shared="false" />
+    </event>
+</config>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_item_price_renderers" />
+    <body>
+        <referenceBlock name="checkout.cart.item.renderers">
+            <!-- default -->
+            <block class="Magento\Checkout\Block\Cart\Item\Renderer" name="checkout.cart.item.renderers.default" as="default" template="Nextouch_GestLogis::cart/item/default.phtml">
+                <block class="Nextouch\GestLogis\Block\Checkout\Cart\QuoteService" name="checkout.cart.item.renderers.default.service" as="gestlogis.cart.item.service" template="Nextouch_GestLogis::cart/item/services.phtml" />
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.default.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.default.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml" />
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.default.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml" />
+                </block>
+            </block>
+            <!-- simple -->
+            <block class="Magento\Checkout\Block\Cart\Item\Renderer" name="checkout.cart.item.renderers.simple" as="simple" template="Nextouch_GestLogis::cart/item/default.phtml">
+                <block class="Nextouch\GestLogis\Block\Checkout\Cart\QuoteService" name="checkout.cart.item.renderers.simple.service" as="gestlogis.cart.item.service" template="Nextouch_GestLogis::cart/item/services.phtml" />
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.simple.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.simple.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml" />
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.simple.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml" />
+                </block>
+            </block>
+            <!-- configurable -->
+            <block class="Magento\ConfigurableProduct\Block\Cart\Item\Renderer\Configurable" name="checkout.cart.item.renderers.configurable" as="configurable" template="Nextouch_GestLogis::cart/item/default.phtml">
+                <block class="Nextouch\GestLogis\Block\Checkout\Cart\QuoteService" name="checkout.cart.item.renderers.configurable.service" as="gestlogis.cart.item.service" template="Nextouch_GestLogis::cart/item/services.phtml" />
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.configurable.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.configurable.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml" />
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.configurable.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml" />
+                </block>
+            </block>
+            <!-- bundle -->
+            <block class="Magento\Bundle\Block\Checkout\Cart\Item\Renderer" name="checkout.cart.item.renderers.bundle" as="bundle" template="Nextouch_GestLogis::cart/item/default.phtml">
+                <block class="Nextouch\GestLogis\Block\Checkout\Cart\QuoteService" name="checkout.cart.item.renderers.bundle.service" as="gestlogis.cart.item.service" template="Nextouch_GestLogis::cart/item/services.phtml" />
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.bundle.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.bundle.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml" />
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.bundle.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml" />
+                </block>
+            </block>
+            <!-- virtual -->
+            <block class="Magento\Checkout\Block\Cart\Item\Renderer" name="checkout.cart.item.renderers.virtual" as="virtual" template="Nextouch_GestLogis::cart/item/default.phtml">
+                <block class="Nextouch\GestLogis\Block\Checkout\Cart\QuoteService" name="checkout.cart.item.renderers.virtual.service" as="gestlogis.cart.item.service" template="Nextouch_GestLogis::cart/item/services.phtml" />
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.virtual.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.virtual.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml" />
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.virtual.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml" />
+                </block>
+            </block>
+            <!-- downloadable -->
+            <block class="Magento\Downloadable\Block\Checkout\Cart\Item\Renderer" name="checkout.cart.item.renderers.downloadable" as="downloadable" template="Nextouch_GestLogis::cart/item/default.phtml">
+                <block class="Nextouch\GestLogis\Block\Checkout\Cart\QuoteService" name="checkout.cart.item.renderers.downloadable.service" as="gestlogis.cart.item.service" template="Nextouch_GestLogis::cart/item/services.phtml" />
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.downloadable.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.downloadable.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml" />
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.downloadable.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml" />
+                </block>
+            </block>
+            <!-- grouped -->
+            <block class="Magento\GroupedProduct\Block\Cart\Item\Renderer\Grouped" name="checkout.cart.item.renderers.grouped" as="grouped" template="Nextouch_GestLogis::cart/item/default.phtml">
+                <block class="Nextouch\GestLogis\Block\Checkout\Cart\QuoteService" name="checkout.cart.item.renderers.grouped.service" as="gestlogis.cart.item.service" template="Nextouch_GestLogis::cart/item/services.phtml" />
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.grouped.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.grouped.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml" />
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.grouped.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml" />
+                </block>
+            </block>
+            <!-- giftcard -->
+            <!-- <block class="Magento\GiftCard\Block\Checkout\Cart\Item\Renderer" name="checkout.cart.item.renderers.giftcard" as="giftcard" template="Nextouch_GestLogis::cart/item/default.phtml">
+                <block class="Nextouch\GestLogis\Block\Checkout\Cart\QuoteService" name="checkout.cart.item.renderers.giftcard.service" as="gestlogis.cart.item.service" template="Nextouch_GestLogis::cart/item/services.phtml" />
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.gift-card.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.giftcard.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml" />
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.giftcard.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml" />
+                </block>
+            </block> -->
+        </referenceBlock>
+    </body>
+</page>

@@ -30,6 +30,8 @@
 
         <move element="catalog.compare.sidebar" destination="main" before="-"/>
 
-
+        <referenceBlock name="columns.top">
+            <block class="Magento\Framework\View\Element\Template" name="category.consulenza" template="Magento_Catalog::category_consulenza.phtml" before="-" />
+        </referenceBlock>
     </body>
 </page>

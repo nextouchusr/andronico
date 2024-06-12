@@ -1,0 +1,23 @@
+<?php
+
+/** @var \Nextouch\GestLogis\Block\Adminhtml\Sales\Order\OrderService $block */
+
+?>
+
+<?php $item           = $block->getItem(); ?>
+<?php $services       = $block->getServicesByItemId($item->getId()); ?>
+<?php $helperObj      = $block->dataHelperObj(); ?>
+<?php $currencySymbol = $helperObj->getCurrencySymbol(); ?>
+
+<?php if ($services && $services->getSize()) : ?>
+    <div class="gestlogis-postcode-order">
+        <ul class="options">
+            <?php foreach ($services as $service) : ?>
+                <li>
+                    <span><?= $service->getServiceName(); ?></span>
+                    <span><?= $service->getPrice(); ?>&nbsp;<?= $currencySymbol; ?></span>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>

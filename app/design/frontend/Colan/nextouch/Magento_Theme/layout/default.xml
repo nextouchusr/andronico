@@ -103,6 +103,12 @@
                                 <argument name="path" xsi:type="string">our-services</argument>
                             </arguments>
                         </block>
+			<block class="Magento\Framework\View\Element\Html\Link\Current" name="consulenza-distanza" after="-">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">Consulenza a distanza</argument>
+                                <argument name="path" xsi:type="string">consulenza-a-distanza</argument>
+                            </arguments>
+                        </block>
                         <block class="Magento\Framework\View\Element\Html\Link\Current" name="installation-service" after="-">
                             <arguments>
                                 <argument name="label" xsi:type="string" translate="true">Servizio installazione</argument>

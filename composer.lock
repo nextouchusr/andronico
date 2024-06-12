@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a45928cebb12c06e7eaff74cb9f79386",
+    "content-hash": "5b26e77f6fdc07705d61cce36da7d956",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -2892,6 +2892,55 @@
                 }
             ],
             "time": "2021-03-16T16:42:25+00:00"
+        },
+        {
+            "name": "doofinder/doofinder-magento2",
+            "version": "0.13.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doofinder/doofinder-magento2.git",
+                "reference": "0cc1580d01b6a1967c436ddc7c786862859b9179"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doofinder/doofinder-magento2/zipball/0cc1580d01b6a1967c436ddc7c786862859b9179",
+                "reference": "0cc1580d01b6a1967c436ddc7c786862859b9179",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "*",
+                "magento/framework": ">=101.0.6"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "5.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Doofinder\\Feed\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Doofinder",
+                    "email": "developers@doofinder.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Doofinder module for Magento 2",
+            "support": {
+                "issues": "https://github.com/doofinder/doofinder-magento2/issues",
+                "source": "https://github.com/doofinder/doofinder-magento2/tree/0.13.13"
+            },
+            "time": "2024-03-18T12:31:14+00:00"
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension",
@@ -37297,5 +37346,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.6.0"
 }

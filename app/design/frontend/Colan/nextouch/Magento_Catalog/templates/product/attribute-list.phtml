@@ -1,4 +1,5 @@
-<?php $_product = $block->getProduct(); ?>
+<?php $_product   = $block->getProduct(); ?>
+<?php $pageAction = $block->getPageAction(); ?>
 <?php if (!$_product instanceof \Magento\Catalog\Model\Product) : ?>
     <?php return; ?>
 <?php endif; ?>
@@ -505,10 +506,18 @@
                             <?php if (substr($formattedNumber, -1) == '.') : ?>
                                 <?php $formattedNumber = rtrim($formattedNumber, '.'); ?>
                             <?php endif; ?>
-                            <?= __($__attribute->getStoreLabel()); ?> <?= __($formattedNumber); ?>
+                            <?php if ($pageAction == "product_list") : ?>
+                                <?php /* echo __($__attribute->getStoreLabel()); */ ?> <?= __($formattedNumber); ?>
+                            <?php elseif ($pageAction == "product_view") : ?>
+                                <?= __($__attribute->getStoreLabel()); ?><?= ": "; ?><span class="attribute-list-value"><?= __($formattedNumber); ?></span>
+                            <?php endif; ?>
                         <?php else : ?>
                             <?php $__attributeValue = preg_replace('/,0{3}$/', '', $__attributeValue); ?>
-                            <?= __($__attribute->getStoreLabel()); ?> <?= __($__attributeValue); ?>
+                            <?php if ($pageAction == "product_list") : ?>
+                                <?php /* echo __($__attribute->getStoreLabel()); */ ?> <?= __($__attributeValue); ?>
+                            <?php elseif ($pageAction == "product_view") : ?>
+                                <?= __($__attribute->getStoreLabel()); ?><?= ": "; ?><span class="attribute-list-value"><?= __($__attributeValue); ?></span>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </span>
                 <?php endif; ?>

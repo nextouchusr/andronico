@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- <referenceBlock name="product.info.options.wrapper.bottom"> -->
+        <referenceBlock name="product.info.form.content">
+            <block class="Nextouch\GestLogis\Block\Catalog\Product\GestlogisPostcode" name="product.gestlogis.postcode" template="Nextouch_GestLogis::catalog/product/view/gestlogis-postcode.phtml" before="product.info.addtocart" cacheable="false" />
+        </referenceBlock>
+
+        <referenceBlock name="content">
+            <block class="Nextouch\GestLogis\Block\Postcode" name="gestlogis.modal.postcode" template="Nextouch_GestLogis::modal/postcode.phtml" cacheable="false" />
+        </referenceBlock>
+
+        <!-- <referenceContainer name="product.info.secondary.wrapper">
+            <block class="Nextouch\GestLogis\Block\Catalog\Product\GestlogisPostcode" name="product.gestlogis.postcode" template="Nextouch_GestLogis::catalog/product/view/gestlogis-postcode.phtml" before="-" cacheable="false" />
+        </referenceContainer> -->
+    </body>
+</page>

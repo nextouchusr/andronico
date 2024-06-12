@@ -23,6 +23,7 @@ class CalculateShippingMethodPrice
     private CheckoutSession $checkoutSession;
     private QuoteCollectionFactory $quoteCollectionFactory;
     private PriceCurrencyInterface $priceCurrency;
+    protected $smethod = "";
 
     public function __construct(
         CheckoutSession $checkoutSession,
@@ -48,6 +49,7 @@ class CalculateShippingMethodPrice
 
     private function shouldCalculatePrice(Method $method): bool
     {
+        $this->smethod = $method->getData('carrier');
         return in_array($method->getData('carrier'), [FastEst::CODE, Gls::CODE]);
     }
 
@@ -106,16 +108,61 @@ class CalculateShippingMethodPrice
      */
     private function calculateOtherCarriersPrice(): float
     {
-        $items = $this->getSortedItems();
+        $items   = $this->getSortedItems();
         $initial = $items[0]->getProduct()->getDeliveryPrice();
         $itemsForPriceCalculation = array_slice($items, 3);
 
-        return reduce(function (float $acc, CartItemInterface $item) {
-            $deliveryPrice = $item->getProduct()->getDeliveryPrice();
-            $deliveryPrice *= self::STANDARD_DELIVERY_DISCOUNT;
+        if ($this->smethod == Gls::CODE) {
+            try {
+                if (count($items) >= 2) {
+                    $glsCalculation         = 0;
+                    $containsDeliveryPrices = [];
+                    foreach ($items as $productObj) {
+                        $containsDeliveryPrices[] = $productObj->getProduct()->getDeliveryPrice();
+                    }
 
-            return $acc + $deliveryPrice;
-        }, $itemsForPriceCalculation, $initial);
+                    // You need to take the highest shipping price among the products in the cart and add the shipping prices of the other products, discounted by 50%.
+                    // Example: product 1: 6.90 - Product 2: 7.90 - Product 3: 4.90 >>> 7.90 + ((6.90 + 4.90) / 2)
+
+                    if (count($containsDeliveryPrices)) {
+                        $highestDeliveryPrice = max($containsDeliveryPrices);
+
+                        $index = array_search($highestDeliveryPrice, $containsDeliveryPrices);
+                        if ($index !== false) {
+                            unset($containsDeliveryPrices[$index]);
+                        }
+
+                        $sumUpLowerPrices = 0;
+                        foreach ($containsDeliveryPrices as $delPrices) {
+                            $sumUpLowerPrices += $delPrices;
+                        }
+
+                        $average = ($sumUpLowerPrices) / 2;
+                        $glsCalculation = $highestDeliveryPrice + $average;
+                    }
+
+                    return $glsCalculation;
+                } else {
+                    return reduce(function (float $acc, CartItemInterface $item) {
+                        $deliveryPrice = $item->getProduct()->getDeliveryPrice();
+                        $deliveryPrice *= self::STANDARD_DELIVERY_DISCOUNT;
+
+                        return $acc + $deliveryPrice;
+                    }, $itemsForPriceCalculation, $initial);
+                }
+            } catch (\Exception $exception) {
+                // Do Nothing.
+            } catch (\Error $error) {
+                // Do Nothing.
+            }
+        } else {
+            return reduce(function (float $acc, CartItemInterface $item) {
+                $deliveryPrice = $item->getProduct()->getDeliveryPrice();
+                $deliveryPrice *= self::STANDARD_DELIVERY_DISCOUNT;
+
+                return $acc + $deliveryPrice;
+            }, $itemsForPriceCalculation, $initial);
+        }
     }
 
     /**

@@ -69,9 +69,11 @@ class Toolbar
     ) {
         $collection = $subject->getCollection();
         if ($subject->getCurrentOrder()) {
-            if ($this->_getRealCurrentOrder($subject) == 'is_salable') {
+
+            if ($this->_getRealCurrentOrder($subject) == 'available_qty') {
                 if (!$this->filtered) {
-                    $collection->setOrder('is_salable', $this->_getRealCurrentDirection($subject));
+                    $collection->setOrder('available_qty', $this->_getRealCurrentDirection($subject));
+                    //$collection->setOrder('price', 'asc');
                 }
 
                 $this->filtered = true;
@@ -92,7 +94,7 @@ class Toolbar
         }
 
         switch ($this->_getRealCurrentOrder($subject)) {
-            case 'is_salable':
+            case 'available_qty':
                 $direction = 'desc';
                 break;
             default:
@@ -115,14 +117,13 @@ class Toolbar
         $defaultOrder = $subject->getOrderField();
 
         if (!isset($orders[$defaultOrder])) {
-            $defaultOrder = isset($orders['is_salable']) ? 'is_salable' : $this->_getDefaultSortOrder();
+            $defaultOrder = isset($orders['available_qty']) ? 'available_qty' : $this->_getDefaultSortOrder();
         }
 
         $order = $this->_toolbarModel->getOrder();
         if (!$order || !isset($orders[$order])) {
             $order = $defaultOrder;
         }
-
         $orderArr = explode('~', $order);
 
 
@@ -140,12 +141,13 @@ class Toolbar
         if ($currentCategory && $defaultCategorySortBy = $currentCategory->getData('default_sort_by')) {
             return $defaultCategorySortBy;
         }
-
-        return $this->_scopeConfig->getValue(
+        return 'available_qty';
+        // Commented out because it's not used
+        /*return $this->_scopeConfig->getValue(
             'catalog/frontend/default_sort_by',
             ScopeInterface::SCOPE_STORE,
             $this->_storeManager->getStore()->getId()
-        );
+        );*/
     }
 
     /**
@@ -159,7 +161,8 @@ class Toolbar
         \Closure $proceed,
         $field
     ) {
-        $field =  'is_salable~DESC';
+
+        $field =  'available_qty~DESC';
 
         return $proceed($field);
     }

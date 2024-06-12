@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Nextouch\Theme\Block\Catalog\Product\View;
@@ -45,10 +46,9 @@ class Attributes extends \Magento\Catalog\Block\Product\View\Attributes
                     }
 
                     if (is_string($value) && strlen(trim($value))) {
-                        $attributesGroup = $data[$attributeGroup->getAttributeGroupId()]['attributes'] ?? [];
-
-                        $data[$attributeGroup->getAttributeGroupId()] = [
-                            'label' => $attributeGroup->getAttributeGroupName(),
+                        $attributesGroup = $data[$attribute->getAttributeGroupLabel()]['attributes'] ?? [];
+                        $data[$attribute->getAttributeGroupLabel()] = [
+                            'label' => $attribute->getAttributeGroupLabel(),
                             'attributes' => array_merge($attributesGroup, [
                                 $attribute->getAttributeCode() => [
                                     'label' => $attribute->getStoreLabel(),
@@ -60,6 +60,17 @@ class Attributes extends \Magento\Catalog\Block\Product\View\Attributes
                     }
                 }
             }
+        }
+
+        try {
+            // Code for to push the attributes at last which don't have GroupLabel
+            uasort($data, function ($a) {
+                return (is_null($a['label']) or $a['label'] == "") ? 1 : -1;
+            });
+        } catch (\Exception $exception) {
+            // Do Nothing.
+        } catch (\Error $error) {
+            // Do Nothing.
         }
 
         return $data;

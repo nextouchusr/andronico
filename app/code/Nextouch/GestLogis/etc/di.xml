@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Cart Page -->
+    <type name="Magento\Tax\Model\TaxConfigProvider">
+        <plugin disabled="false" name="gestlogis_default_postcode_cart" sortOrder="10" type="Nextouch\GestLogis\Plugin\Magento\Tax\Model\TaxConfigProvider"/>
+    </type>
+
+    <!-- Checkout Page -->
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin disabled="false" name="gestlogis_default_postcode_checkout" sortOrder="1000" type="Nextouch\GestLogis\Plugin\Magento\Checkout\Block\Checkout\LayoutProcessor"/>
+    </type>
+
+    <type name="Magento\Quote\Model\ShippingMethodManagement">
+        <plugin disabled="false" name="gestlogis_shipping_method_checkout" sortOrder="1000" type="Nextouch\GestLogis\Plugin\Magento\Quote\Model\ShippingMethodManagement"/>
+    </type>
+
+    <!-- Multishipping Preference -->
+    <preference for="Magento\Multishipping\Model\Checkout\Type\Multishipping\PlaceOrderDefault" type="Nextouch\GestLogis\Preference\Magento\Multishipping\Model\Checkout\Type\Multishipping\PlaceOrderDefault" />
+
+    <!-- New row with multiple items in cart -->
+    <type name="Magento\Quote\Model\Quote\Item">
+        <plugin disabled="false" name="gestlogis_multiple_quote_item" sortOrder="1000" type="Nextouch\GestLogis\Plugin\Magento\Quote\Model\Quote\Item" />
+    </type>
+
+    <!-- Command -->
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="import_excelsheet_gestlogis" xsi:type="object">Nextouch\GestLogis\Console\Command\Import</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

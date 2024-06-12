@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <gestlogis>
+                <active>1</active>
+                <allow_popup_close>1</allow_popup_close>
+                <sallowspecific>0</sallowspecific>
+                <model>Nextouch\GestLogis\Model\Carrier\Shipping</model>
+                <name>GestLogis</name>
+                <title>GestLogis</title>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </gestlogis>
+        </carriers>
+    </default>
+</config>

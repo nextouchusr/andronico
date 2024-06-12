@@ -30,6 +30,20 @@ $layout = $block->getLayout();
                 </div>
             </div>
         </div>
+        <?php if($layout->renderElement('product.info.miele')):?>
+        <div class="product-details-boxes details-box-col4">
+            <div class="product-attributes product-miele-col">
+                <?= $layout->renderElement('product.info.miele'); ?>
+            </div>
+        </div>
+        <?php endif;?>
+        <?php if($layout->renderElement('product.info.flix')):?>
+        <div class="product-details-boxes details-box-col5">
+            <div class="product-attributes product-flix-col">
+                <?= $layout->renderElement('product.info.flix'); ?>
+            </div>
+        </div>
+        <?php endif;?>
         <?php if($layout->renderElement('product.info.ecoChoice')):?>
         <div class="product-details-boxes details-box-col3">
             <div class="product-attributes product-ecoChoice-col">

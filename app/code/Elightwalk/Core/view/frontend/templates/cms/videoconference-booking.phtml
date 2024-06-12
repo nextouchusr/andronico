@@ -1,6 +1,11 @@
 <div id="vidoeconference-booking">
     <form class="form contact vidoeconference-booking-form" id="vidoeconference-booking-form" action="<?= $block->getUrl('elightwalk/videoconferencebooking/emailsender'); ?>" method="POST" data-mage-init='{"validation": {"errorClass": "mage-error"}}'>
         <?= $block->getBlockHtml('formkey'); ?>
+        <?php if ($block && $block->getRequest()) : ?>
+            <?php if ($dynamicUrl = $block->getRequest()->getParam('url')) : ?>
+                <input type="hidden" name="url" value="<?= $dynamicUrl; ?>" />
+            <?php endif; ?>
+        <?php endif; ?>
         <div class="form-content">
             <fieldset class="fieldset">
                 <div class="field name required">
@@ -38,7 +43,8 @@
                 <div class="field category">
                     <label class="label" for="category"><span><?= __('Category'); ?></span></label>
                     <div class="control">
-                        <select class="input-text" name="category">
+                        <select class="input-text" name="category" required>
+                            <option value="" disabled selected hidden class="placeholder"><?= __('Seleziona una categoria'); ?></option>
                             <option value="<?= __('Informatica'); ?>"><?= __('Informatica'); ?></option>
                             <option value="<?= __('Telefonia'); ?>"><?= __('Telefonia'); ?></option>
                             <option value="<?= __('Grandi Elettrodomestici'); ?>"><?= __('Grandi Elettrodomestici'); ?></option>
@@ -100,6 +106,11 @@
                     hideIfNoPrevNext: true,
                     dynamic: false,
                     dropdown: true,
+                    timeOnlyTitle: 'Scegli l’orario',
+                    timeText: 'Orario',
+                    hourText: 'Ora',
+                    minuteText: 'Minuto',
+                    currentText: 'Subito',
                 });
             }
         });

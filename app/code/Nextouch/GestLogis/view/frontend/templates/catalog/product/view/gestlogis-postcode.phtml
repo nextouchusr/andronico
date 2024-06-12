@@ -1,0 +1,240 @@
+<?php
+
+/** @var \Nextouch\GestLogis\Block\Catalog\Product\GestlogisPostcode $block */
+
+?>
+
+<?php $productAllowed = $block->isProductAllowedForGestlogis(); ?>
+<?php $helperObj = $block->dataHelperObj(); ?>
+<?php $shippingActive = $helperObj->isShippingActive(); ?>
+
+<?php 
+    $product = $block->getProduct();
+?>
+
+<?php if ($shippingActive && $productAllowed): ?>
+    <?php $product = $block->getProduct(); ?>
+    <?php $postcode = $helperObj->getPostcodeFromSession(); ?>
+    <?php $shippingPrice = $helperObj->getPostcodePrice($product, $postcode); ?>
+    <?php $currencySymbol = $helperObj->getCurrencySymbol(); ?>
+
+    <?php //$shippingPrice = ($shippingPrice === null) ? 0 : $shippingPrice; ?>
+    <?php 
+    
+        $streetLineDeliveryPrice = ($product->getStreetLineDeliveryPrice() === null) ? 0 : $product->getStreetLineDeliveryPrice();
+    ?>
+
+    <div class="gestlogis-postcode-product gestlogis-shipping-method-container gestlogis-shipping-product">
+        <div class="top-heading">
+            <span>
+                <?= __("Delivery and additional services"); ?>
+            </span>
+        </div>
+        <?php if ($shippingPrice !== null): ?>
+            <div class="default-shipping">
+                <div class="shipping-text">
+                    <input type="radio" class="develiry-option" id="standard_delivery" name="gestlogis_delivery_option" value="standard_delivery" checked />
+                    <p class="shipping-top-text">
+                        <?= __("Standard Delivery"); ?>
+                        <?php $shippingTooltip = $helperObj->getShippingTooltip(); ?>
+                        <?php if ($shippingTooltip): ?>
+                            <span class="info-icon delivery-tooltip-container"></span>
+                        <div class="delivery-tooltip-content">
+                            <?= $shippingTooltip; ?>
+                        </div>
+                    <?php endif; ?>
+                    </p>
+                </div>
+                <div class="shipping-price">
+                    <?php //if($shippingPrice > 0) : ?>
+                    <span class="ship-price">
+                        <?= number_format($streetLineDeliveryPrice,2); ?>&nbsp;
+                        <?= $currencySymbol; ?>
+                    </span>
+                    <?php //endif; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="dynamic-ship-calculator">
+
+            <div class="shipping-container">
+                <div class="shipping-text">
+                    <input type="radio" class="develiry-option" id="delivery_additional_services" name="gestlogis_delivery_option"
+                        value="delivery_additional_services" />
+
+                    <p class="shipping-top-text">
+                        <?= __("Delivery + Additional Services"); ?>
+                    </p>
+                    <p class="ship-availability-checker">
+                        <?= __("Check if your area is served by entering your postcode"); ?>
+                    </p>
+                </div>
+                <?php if ($shippingPrice !== null): ?>
+                    <div
+                        class="shipping-dynamic-price<?php if ($shippingPrice !== null): ?><?= ' price-available'; ?><?php endif; ?>">
+                        <span style="display: none;">
+                            <?= __("Starting from"); ?>
+                        </span>
+                        <span class="dynamic-ship-price">
+                            <?php if ($shippingPrice !== null): ?>
+                                <?php if ($shippingPrice > 0): ?>
+                                    <?= $shippingPrice; ?>&nbsp;
+                                    <?= $currencySymbol; ?>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <?php //echo (int) 0; ?>
+                            <?php endif; ?>
+                        </span>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="shipping-options" style="display: none;">
+                <?php $servicesList = $block->getServicesList(); ?>
+                <p class="shipping-option-title">
+                    <?= __("Additional services"); ?>
+                </p>
+                <?php if ($servicesList && count($servicesList)): ?>
+                    <ul class="options shipping-option-items">
+                        <?php $servicePriceFound = false; 
+                        ?>
+                        <?php foreach ($servicesList as $service): ?>
+                            <?php $servicePrice = (float) $service['service_price']; ?>
+                            <?php if ($servicePrice): ?>
+                                <?php $servicePriceFound = true; ?>
+                                <li class="shipping-option-item">
+                                    <?php $serviceId = $service['entity_id']; ?>
+                                    <?php $serviceName = $service['service_name']; ?>
+                                    <input name="gestlogis[<?= $serviceId; ?>]" type="checkbox" class="shipping-service"
+                                        id="service-<?= $serviceId; ?>" data-price="<?= $servicePrice; ?>"
+                                        data-not-allow-service-id="<?= $service['not_allowed_service_id']; ?>" <?php echo ($service['is_service_required']) ? 'style="pointer-events: none;" checked=checked readonly onclick="return false"' : ''; ?> />
+                                    <label class="shipping-service-label" for="service-<?= $serviceId; ?>">
+                                        <?= $serviceName; ?>
+                                    </label>
+                                    <?php if ($serviceTooltip = $service['tooltip']): ?>
+                                        <span class="info-icon service-tooltip-container" data-title="<?= $serviceName; ?>"></span>
+                                        <div class="service-tooltip-content">
+                                            <?= $serviceTooltip; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <span class="shipping-service-price">
+                                        <?= $servicePrice; ?>&nbsp;
+                                        <?= $currencySymbol; ?>
+                                    </span>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        <?php if (!$servicePriceFound): ?>
+                            <p class="shipping-services-validation">
+                                <?= __("No services are available at the moment."); ?>
+                            </p>
+                        <?php endif; ?>
+                    </ul>
+                <?php else: ?>
+                    <p class="shipping-services-validation">
+                        <?= __("No services are available at the moment."); ?>
+                    </p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <script>
+        require(
+            ['jquery', 'helper'],
+            function ($, Helper) {
+                var config = {
+                    target: ".delivery-tooltip-content",
+                    serviceTarget: ".service-tooltip-content"
+                };
+                Helper.initGestLogicHelper(config);
+
+                if ($('input.shipping-service').length) {
+
+                    var totalPrice = parseFloat("<?= $shippingPrice; ?>");
+                    var dynamicPrice = totalPrice;
+
+                    $('input.shipping-service').each(function(i, obj) {
+                        
+                        var notAllowServiceIds = $(obj).data('notAllowServiceId');
+                        let checked = $(obj).is(":checked");
+
+                        let price = parseFloat($(obj).data('price'));
+                        manageServices(checked, notAllowServiceIds);
+                        if (checked) {
+                            manageServices(checked, notAllowServiceIds);
+                            dynamicPrice += price;
+                        }
+                    });
+
+                    $(".dynamic-ship-price").html(dynamicPrice.toFixed(2) + " " + "<?= $currencySymbol; ?>");
+
+                    $('input.shipping-service').click((event) => {
+                        var notAllowServiceIds = $(event.target).data('notAllowServiceId');
+                        let checked = event.target.checked;
+                        let price = parseFloat($(event.target).data('price'));
+                        let readonly = $(event.target).attr("readonly");
+
+                        if(readonly == undefined) {
+                            manageServices(checked, notAllowServiceIds);
+                            if (checked) {
+                                manageServices(checked, notAllowServiceIds);
+                                dynamicPrice += price;
+                            } else {
+                                dynamicPrice -= price;
+                            }
+                        }
+
+                        $(".dynamic-ship-price").html(dynamicPrice.toFixed(2) + " " + "<?= $currencySymbol; ?>");
+
+                        
+                        var isselected = $('input[id=delivery_additional_services]:checked').val();
+                        console.log('isselected ',isselected)
+                        if(!isselected) {
+                            $("input[id=delivery_additional_services]").prop("checked", true);
+                        }
+                    });
+
+                    $('input#standard_delivery').click((event) => {
+                        $('input.shipping-service').each(function(i, obj) {
+                            let readonly = $(obj).attr("readonly");
+                            let checked = $(obj).is(":checked");
+
+                            if(readonly == undefined && checked) {
+                                let price = parseFloat($(obj).data('price'));
+                                $(obj).prop('checked', false);
+                                dynamicPrice -= price;
+                            }
+                        });
+                        console.log('dynamicPrice ',dynamicPrice)
+                        $(".dynamic-ship-price").html(dynamicPrice.toFixed(2) + " " + "<?= $currencySymbol; ?>");
+                    })
+                }
+
+                function manageServices(checked, notAllowServiceIds) {
+                    const defaultCodeService = "#service-";
+                    const defaultClassForReadonly = 'readonly';
+                    const defaultAttrForDisabled = 'disabled';
+                    if (notAllowServiceIds != "") {
+                        if (notAllowServiceIds.toString().indexOf(',') != -1) {
+                            var serviceIds = notAllowServiceIds.split(',');
+                        } else {
+                            var serviceIds = [notAllowServiceIds];
+                        }
+
+                        if (checked) { // Hide services
+                            serviceIds.forEach((id) => {
+                                $(defaultCodeService + id).addClass(defaultClassForReadonly);
+                                $(defaultCodeService + id).prop(defaultAttrForDisabled, true);
+                                $(defaultCodeService + id).prop('checked', false);
+                            });
+                        } else { // Show services
+                            serviceIds.forEach((id) => {
+                                $(defaultCodeService + id).removeClass(defaultClassForReadonly);
+                                $(defaultCodeService + id).prop(defaultAttrForDisabled, false);
+                            });
+                        }
+                    }
+                }
+            }
+        );
+    </script>
+<?php endif; ?>

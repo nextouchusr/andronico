@@ -1,22 +1,26 @@
 <?php /* @var $block \Magento\Catalog\Block\Product\Compare\ListCompare */ ?>
 <?php $total = $block->getItems()->getSize() ?>
-<?php if ($total) : ?>
+<?php if ($total): ?>
     <div class="table-wrapper comparison">
         <div class="show-difference">
-            <span class="label"><?= __('Show Only difference') ?></span>
+            <span class="label">
+                <?= __('Show Only difference') ?>
+            </span>
             <span class="icon"></span>
         </div>
         <div id="compare-sticky-bar" class="compare-sticky-bar">
             <div class="container">
                 <div class="show-difference">
-                    <span class="label"><?= __('Show Only difference') ?></span>
+                    <span class="label">
+                        <?= __('Show Only difference') ?>
+                    </span>
                     <span class="icon"></span>
                 </div>
 
                 <div class="infos-list">
                     <?php $helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
                     <?php /** @var $item \Magento\Catalog\Model\Product */ ?>
-                    <?php foreach ($block->getItems() as $item) : ?>
+                    <?php foreach ($block->getItems() as $item): ?>
                         <div class="infos">
                             <a class="product-item-photo" href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>">
                                 <?= $block->getImage($item, 'product_comparison_list')->toHtml() ?>
@@ -38,32 +42,37 @@
                     <?php $index = 0; ?>
                     <?php $helper = $this->helper(Magento\Catalog\Helper\Output::class); ?>
                     <?php /** @var $item \Magento\Catalog\Model\Product */ ?>
-                    <?php foreach ($block->getItems() as $item) : ?>
-                        <?php if ($index++ == 0) : ?>
+                    <?php foreach ($block->getItems() as $item): ?>
+                        <?php if ($index++ == 0): ?>
                             <th scope="row" class="cell label remove">
                             </th>
                         <?php endif; ?>
                         <td class="cell remove product hidden-print">
                             <div class="infos">
                                 <?php $compareHelper = $this->helper(Magento\Catalog\Helper\Product\Compare::class); ?>
-                                <a href="#" data-post='<?= /* @noEscape */ $compareHelper->getPostDataRemove($item) ?>' class="action delete" title="<?= $block->escapeHtmlAttr(__('Remove Product')) ?>">
-                                    <span class="label"><?= $block->escapeHtml(__('Remove Product')) ?></span>
+                                <a href="#" data-post='<?= /* @noEscape */ $compareHelper->getPostDataRemove($item) ?>'
+                                    class="action delete" title="<?= $block->escapeHtmlAttr(__('Remove Product')) ?>">
+                                    <span class="label">
+                                        <?= $block->escapeHtml(__('Remove Product')) ?>
+                                    </span>
                                 </a>
-                                <a class="product-item-photo" href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>" title="<?= /* @noEscape */ $block->stripTags($item->getName(), null, true) ?>">
+                                <a class="product-item-photo" href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>"
+                                    title="<?= /* @noEscape */ $block->stripTags($item->getName(), null, true) ?>">
                                     <?= $block->getImage($item, 'product_comparison_list')->toHtml() ?>
                                 </a>
                                 <strong class="product-item-name">
-                                    <a href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>" title="<?= /* @noEscape */ $block->stripTags($item->getName(), null, true) ?>">
+                                    <a href="<?= $block->escapeUrl($block->getProductUrl($item)) ?>"
+                                        title="<?= /* @noEscape */ $block->stripTags($item->getName(), null, true) ?>">
                                         <?= /* @noEscape */ $helper->productAttribute($item, $item->getName(), 'name') ?>
                                     </a>
                                 </strong>
                                 <span class="price price-compared">
                                     <?=
-                                    /* @noEscape */ $block->getProductPrice(
-                                        $item,
-                                        '-compare-list-price'
-                                    )
-                                    ?>
+                                        /* @noEscape */ $block->getProductPrice(
+                                            $item,
+                                            '-compare-list-price'
+                                        )
+                                        ?>
                                 </span>
                             </div>
                         </td>
@@ -73,7 +82,9 @@
         </div>
 
         <div class="table-comparison-container">
-            <div class="head-title"> <span class="label"><?= $block->escapeHtml(__('Specs')) ?></span></div>
+            <div class="head-title"> <span class="label">
+                    <?= $block->escapeHtml(__('Specs')) ?>
+                </span></div>
             <div class="table-comparison-main">
                 <table class="data table table-comparison table-mobile" id="product-comparison" data-mage-init='{"compareList":{
                         "windowPrintSelector":".action.print",
@@ -81,15 +92,17 @@
                         "selectors":{
                             "productAddToCartSelector":"button.action.tocart"}
                     }}'>
-                    <caption class="table-caption"><?= $block->escapeHtml(__('Compare Products')) ?></caption>
+                    <caption class="table-caption">
+                        <?= $block->escapeHtml(__('Compare Products')) ?>
+                    </caption>
 
                     <tbody>
-                        <?php foreach ($block->getAttributes() as $attribute) : ?>
+                        <?php foreach ($block->getAttributes() as $attribute): ?>
                             <?php $index = 0; ?>
-                            <?php if ($block->hasAttributeValueForProducts($attribute)) : ?>
+                            <?php if ($block->hasAttributeValueForProducts($attribute)): ?>
                                 <tr>
-                                    <?php foreach ($block->getItems() as $item) : ?>
-                                        <?php if ($index++ == 0) : ?>
+                                    <?php foreach ($block->getItems() as $item): ?>
+                                        <?php if ($index++ == 0): ?>
                                             <th scope="row" class="cell label">
                                                 <span class="attribute label">
                                                     <?= $block->escapeHtml($attribute->getStoreLabel() ? $attribute->getStoreLabel() : __($attribute->getFrontendLabel())) ?>
@@ -97,21 +110,38 @@
                                             </th>
                                         <?php endif; ?>
                                         <td class="cell product attribute">
-                                            <div class="attribute value">
-                                                <?php switch ($attribute->getAttributeCode()) {
-                                                    case "price": ?>
+                                            <div class="attribute value <?php echo $attribute->getAttributeCode(); ?>">
+                                                <?php
 
-                                                    <?php break;
+                                                switch ($attribute->getAttributeCode()) {
+
+                                                    case "price": ?>
+                                                        <?php break;
                                                     case "small_image": ?>
                                                         <?php $block->getImage($item, 'product_small_image')->toHtml(); ?>
-                                                    <?php break;
+                                                        <?php break;
+                                                    /*case "wins_11008": ?>
+                                                        <?php number_format($block->getProductAttributeValue($item, $attribute), 2); ?>
+                                                        <?php break;
+                                                    case "wins_1150": ?>
+                                                        <?php number_format($block->getProductAttributeValue($item, $attribute), 2); ?>
+                                                        <?php break;
+                                                    case "wins_5090": ?>
+                                                        <?php number_format($block->getProductAttributeValue($item, $attribute), 2); ?>
+                                                        <?php break;
+                                                    case "wins_5690": ?>
+                                                        <?php number_format($block->getProductAttributeValue($item, $attribute), 2); ?>
+                                                        <?php break;*/
+
                                                     default: ?>
-                                                        <?php if (is_string($block->getProductAttributeValue($item, $attribute))) : ?>
+                                                        <?php if ($attribute->getFrontendInput() == 'price'): ?>
+                                                            <?= number_format($item->getData($attribute->getAttributeCode()),2) ?>
+                                                        <?php elseif (is_string($block->getProductAttributeValue($item, $attribute))): ?>
                                                             <?= $helper->productAttribute($item, $block->getProductAttributeValue($item, $attribute), $attribute->getAttributeCode()) ?>
-                                                        <?php else : ?>
+                                                        <?php else: ?>
                                                             <?= $block->escapeHtml($helper->productAttribute($item, $block->getProductAttributeValue($item, $attribute), $attribute->getAttributeCode())) ?>
                                                         <?php endif; ?>
-                                                <?php break;
+                                                        <?php break;
                                                 } ?>
                                             </div>
                                         </td>
@@ -124,113 +154,123 @@
             </div>
         </div>
 
-        <div class="table-comparison-container">
-            <div class="head-title"> <span class="label"><?= $block->escapeHtml(__('Dimensions and weight')) ?></span></div>
-            <div class="table-comparison-main">
-                <table class="data table table-comparison table-mobile" id="product-comparison-d">
-                    <tbody>
-                        <tr>
-                            <th scope="row" class="cell label">
-                                <span class="attribute label">
-                                    <?= __('Weight') ?>
-                                </span>
-                            </th>
-                            <?php foreach ($block->getItems() as $item) : ?>
-                                <td class="cell product attribute">
-                                    <div class="attribute value">
-                                        <?= $item->getData('weight') ? $block->escapeHtml($item->getData('weight')) : __('N/A') ?>
-                                    </div>
-                                </td>
-                            <?php endforeach; ?>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="cell label">
-                                <span class="attribute label">
-                                    <?= __('Height') ?>
-                                </span>
-                            </th>
-                            <?php foreach ($block->getItems() as $item) : ?>
-                                <td class="cell product attribute">
-                                    <div class="attribute value">
-                                        <?= $item->getData('height') ? $block->escapeHtml($item->getData('height')) : __('N/A') ?>
-                                    </div>
-                                </td>
-                            <?php endforeach; ?>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="cell label">
-                                <span class="attribute label">
-                                    <?= __('Length') ?>
-                                </span>
-                            </th>
-                            <?php foreach ($block->getItems() as $item) : ?>
-                                <td class="cell product attribute">
-                                    <div class="attribute value">
-                                        <?= $item->getData('length') ? $block->escapeHtml($item->getData('length')) : __('N/A') ?>
-                                    </div>
-                                </td>
-                            <?php endforeach; ?>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="cell label">
-                                <span class="attribute label">
-                                    <?= __('Depth') ?>
-                                </span>
-                            </th>
-                            <?php foreach ($block->getItems() as $item) : ?>
-                                <td class="cell product attribute">
-                                    <div class="attribute value">
-                                        <?= $item->getData('depth') ? $block->escapeHtml($item->getData('depth')) : __('N/A') ?>
-                                    </div>
-                                </td>
-                            <?php endforeach; ?>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <?php /*<div class="table-comparison-container">
+          <div class="head-title"> <span class="label"><?= $block->escapeHtml(__('Dimensions and weight')) ?></span></div>
+          <div class="table-comparison-main">
+              <table class="data table table-comparison table-mobile" id="product-comparison-d">
+                  <tbody>
+                      <tr>
+                          <th scope="row" class="cell label">
+                              <span class="attribute label">
+                                  <?= __('Weight') ?>
+                              </span>
+                          </th>
+                          <?php foreach ($block->getItems() as $item) : ?>
+                              <td class="cell product attribute">
+                                  <div class="attribute value">
+                                      <?= $item->getData('weight') ? $block->escapeHtml($item->getData('weight')) : __('N/A') ?>
+                                  </div>
+                              </td>
+                          <?php endforeach; ?>
+                      </tr>
+                      <tr>
+                          <th scope="row" class="cell label">
+                              <span class="attribute label">
+                                  <?= __('Height') ?>
+                              </span>
+                          </th>
+                          <?php foreach ($block->getItems() as $item) : ?>
+                              <td class="cell product attribute">
+                                  <div class="attribute value">
+                                      <?= $item->getData('height') ? $block->escapeHtml($item->getData('height')) : __('N/A') ?>
+                                  </div>
+                              </td>
+                          <?php endforeach; ?>
+                      </tr>
+                      <tr>
+                          <th scope="row" class="cell label">
+                              <span class="attribute label">
+                                  <?= __('Length') ?>
+                              </span>
+                          </th>
+                          <?php foreach ($block->getItems() as $item) : ?>
+                              <td class="cell product attribute">
+                                  <div class="attribute value">
+                                      <?= $item->getData('length') ? $block->escapeHtml($item->getData('length')) : __('N/A') ?>
+                                  </div>
+                              </td>
+                          <?php endforeach; ?>
+                      </tr>
+                      <tr>
+                          <th scope="row" class="cell label">
+                              <span class="attribute label">
+                                  <?= __('Depth') ?>
+                              </span>
+                          </th>
+                          <?php foreach ($block->getItems() as $item) : ?>
+                              <td class="cell product attribute">
+                                  <div class="attribute value">
+                                      <?= $item->getData('depth') ? $block->escapeHtml($item->getData('depth')) : __('N/A') ?>
+                                  </div>
+                              </td>
+                          <?php endforeach; ?>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div> */ ?>
 
 
     </div>
 
     <?php $relatedProducts = []; ?>
-    <?php foreach ($block->getItems() as $product) : ?>
+    <?php foreach ($block->getItems() as $product): ?>
         <?php $relatedProduct = $product->getRelatedProducts(); ?>
-        <?php if (count($relatedProduct)) : ?>
-            <?php $relatedProducts = array_merge($relatedProducts, $relatedProduct);  ?>
-        <?php endif;  ?>
+        <?php if (count($relatedProduct)): ?>
+            <?php $relatedProducts = array_merge($relatedProducts, $relatedProduct); ?>
+        <?php endif; ?>
     <?php endforeach; ?>
-    <?php if (count($relatedProducts)) :
+    <?php if (count($relatedProducts)):
         $type = 'related';
         $image = 'related_products_list';
-    ?>
+        ?>
         <?php $_elightHelper = $this->helper(Elightwalk\Core\Helper\Data::class); ?>
-        <div class="products swiper-container grid products-grid products-<?= $block->escapeHtmlAttr($type) ?> swiper <?= $block->escapeHtmlAttr($type) ?>-swiper-slider">
-            <div class="head-title"> <span class="label"><?= $block->escapeHtml(__('Additional services')) ?></span></div>
+        <div
+            class="products swiper-container grid products-grid products-<?= $block->escapeHtmlAttr($type) ?> swiper <?= $block->escapeHtmlAttr($type) ?>-swiper-slider">
+            <div class="head-title"> <span class="label">
+                    <?= $block->escapeHtml(__('Additional services')) ?>
+                </span></div>
             <div class="swiper-wrapper products list items product-items">
-                <?php foreach ($relatedProducts as $product) : ?>
+                <?php foreach ($relatedProducts as $product): ?>
                     <?php $_item = $_elightHelper->getProductById($product->getId()); ?>
-                    <?php if ($_item) : ?>
+                    <?php if ($_item): ?>
                         <?php $available = 'related-available'; ?>
-                        <div class="item product product-item swiper-slide" id="product-item_<?= /* @noEscape */ $_item->getId() ?>" data-shuffle-group="<?= $block->escapeHtmlAttr($_item->getPriority()) ?>">
+                        <div class="item product product-item swiper-slide" id="product-item_<?= /* @noEscape */ $_item->getId() ?>"
+                            data-shuffle-group="<?= $block->escapeHtmlAttr($_item->getPriority()) ?>">
                             <div class="product-item-info <?= /* @noEscape */ $available ?>">
-                                <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>" class="product photo product-item-photo">
+                                <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>"
+                                    class="product photo product-item-photo">
                                     <?= $block->getImage($_item, $image)->toHtml() ?>
                                 </a>
                                 <div class="product details product-item-details">
-                                    <strong class="product name product-item-name"><a class="product-item-link" title="<?= $block->escapeHtmlAttr($_item->getName()) ?>" href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
-                                            <?= $block->escapeHtml($_item->getName()) ?></a>
+                                    <strong class="product name product-item-name"><a class="product-item-link"
+                                            title="<?= $block->escapeHtmlAttr($_item->getName()) ?>"
+                                            href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
+                                            <?= $block->escapeHtml($_item->getName()) ?>
+                                        </a>
                                     </strong>
                                     <div class="product-item-more-button">
                                         <a href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
-                                            <span><?= $block->escapeHtml(__('FIND OUT MORE')) ?></span>
+                                            <span>
+                                                <?= $block->escapeHtml(__('FIND OUT MORE')) ?>
+                                            </span>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <?php //endforeach 
-                        ?>
+                                        ?>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div>
@@ -240,18 +280,20 @@
 
 
     <?php $compareBlocks = $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('compare_blocks'); ?>
-    <div class="compare-blocks"><?= $compareBlocks->toHtml() ?></div>
+    <div class="compare-blocks">
+        <?= $compareBlocks->toHtml() ?>
+    </div>
 
     <script type="text/x-magento-init">
-        {
-            "[data-role=tocart-form]": {
-                "catalogAddToCart": {}
-            }
-        }
-        </script>
+                {
+                    "[data-role=tocart-form]": {
+                        "catalogAddToCart": {}
+                    }
+                }
+                </script>
     <script type="text/javascript">
-        require(['jquery'], function($) {
-            $(window).on('scroll', function() {
+        require(['jquery'], function ($) {
+            $(window).on('scroll', function () {
                 if ($(window).scrollTop() > $('.table-comparison-head:not(.table-sticky)').offset().top) {
                     $('#compare-sticky-bar').addClass('active');
                 } else {
@@ -259,30 +301,33 @@
                 }
             });
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 var firstRowWidth = $($('#product-comparison').find('tbody th')[0]).innerWidth();
                 $('.table-comparison-head').find('tbody tr th').css('width', firstRowWidth);
-                $('.table-comparison-container').on('click', '.head-title', function() {
+                $('.table-comparison-container').on('click', '.head-title', function () {
                     $(this).parent().toggleClass('active');
                 });
-                $(window).on('resize', function() {
-                    setTimeout(function() {
+                $(window).on('resize', function () {
+                    setTimeout(function () {
                         var firstRowWidth = $($('#product-comparison').find('tbody th')[0]).innerWidth();
                         $('.table-comparison-head').find('tbody tr th').css('width', firstRowWidth);
                     }, 100);
                 });
-                $('.show-difference').on('click', function() {
+                $('.show-difference').on('click', function () {
                     $('.table-comparison').toggleClass('showdifference');
                     $('.show-difference').toggleClass('active');
                 });
-                $('.table-comparison tbody tr').each(function() {
+                $('.table-comparison tbody tr').each(function () {
                     var row = $(this);
                     var cols = $(this).find('td');
                     var tdValue = '';
-                    $(cols).each(function() {
+                    $(cols).each(function () {
                         if (tdValue && tdValue !== $(this).text()) {
                             $(row).addClass('different');
+                        } else if (tdValue && tdValue === $(this).text()) {
+                            $(row).addClass('no-different');
                         } else {
+
                             tdValue = $(this).text();
                         }
                     })
@@ -292,14 +337,16 @@
         });
     </script>
 
-<?php else : ?>
+<?php else: ?>
     <div class="message info empty">
-        <div><?= $block->escapeHtml(__('You have no items to compare.')) ?></div>
+        <div>
+            <?= $block->escapeHtml(__('You have no items to compare.')) ?>
+        </div>
     </div>
 <?php endif; ?>
 
 <script>
-    require(['jquery', 'swiper', 'domReady!'], function($) {
+    require(['jquery', 'swiper', 'domReady!'], function ($) {
         new Swiper('.<?= $block->escapeHtmlAttr('related') ?>-swiper-slider', {
             nextButton: '.<?= $block->escapeHtmlAttr('related') ?>-swiper-slider .swiper-button-next',
             prevButton: '.<?= $block->escapeHtmlAttr('related') ?>-swiper-slider .swiper-button-prev',
