@@ -5,3 +5,7 @@ RewriteCond %{REQUEST_URI} !^/update/
 RewriteCond %{REQUEST_URI} !^/dev/
 RewriteRule .* /pub/$0 [L]
 DirectoryIndex index.php
+
+<IfModule mod_headers.c> Header set Access-Control-Allow-Origin "*" Header set Access-Control-Allow-Methods "GET, POST, OPTIONS" Header set Access-Control-Allow-Headers "Content-Type, 
+    Authorization"
+</IfModule>

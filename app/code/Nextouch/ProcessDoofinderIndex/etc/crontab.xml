@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+<group id="default">
+<job name="process_doofinder_index" instance="Nextouch\ProcessDoofinderIndex\Cron\process" method="execute">
+<schedule>*/30 * * * *</schedule>
+<!--  ogni 30 minuti (cambiare in futuro)   -->
+</job>
+</group>
+</config>
